@@ -24,7 +24,7 @@ import type {
   Placement,
   PopperEffect,
 } from '@element-plus/components/popper'
-import type { OptionValue } from './type'
+import type { OptionPublicInstance, OptionValue } from './type'
 import type { Props } from '@element-plus/components/select-v2/src/useProps'
 
 /**
@@ -166,7 +166,9 @@ export const selectProps = buildProps({
    * @description custom filter method, the first parameter is the current input value. To use this, `filterable` must be true
    */
   filterMethod: {
-    type: definePropType<(query: string) => void>(Function),
+    type: definePropType<
+      (query: string, option: OptionPublicInstance) => boolean
+    >(Function),
   },
   /**
    * @description whether multiple-select is activated

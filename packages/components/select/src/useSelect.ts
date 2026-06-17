@@ -362,13 +362,19 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
     updateOptions()
   })
 
+  const filterOptionsByMethod = (query: string) => {
+    optionsArray.value.forEach((option) => {
+      option.visible = props.filterMethod?.(query, option) !== false
+    })
+  }
+
   const handleQueryChange = (val: string) => {
     if (states.previousQuery === val || isComposing.value) {
       return
     }
     states.previousQuery = val
     if (props.filterable && isFunction(props.filterMethod)) {
-      props.filterMethod(val)
+      filterOptionsByMethod(val)
     } else if (
       props.filterable &&
       props.remote &&
