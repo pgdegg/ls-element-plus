@@ -114,6 +114,16 @@ export const selectProps = buildProps({
    */
   loading: Boolean,
   /**
+   * @description whether options are loaded from server
+   */
+  remote: Boolean,
+  /**
+   * @description function that gets called when the input value changes. Its parameter is the current input value. To use this, `filterable` must be true
+   */
+  remoteMethod: {
+    type: definePropType<(query: string) => void>(Function),
+  },
+  /**
    * @description custom class name for Select's dropdown
    */
   popperClass: {
@@ -134,17 +144,6 @@ export const selectProps = buildProps({
     default: () => ({}) as Partial<Options>,
   },
   /**
-   * @description whether options are loaded from server
-   */
-  remote: Boolean,
-  /**
-   * @description debounce delay during remote search, in milliseconds
-   */
-  debounce: {
-    type: Number,
-    default: 300,
-  },
-  /**
    * @description displayed text while loading data from server, default is 'Loading'
    */
   loadingText: String,
@@ -156,12 +155,6 @@ export const selectProps = buildProps({
    * @description displayed text when there is no options, you can also use slot `empty`, default is 'No data'
    */
   noDataText: String,
-  /**
-   * @description function that gets called when the input value changes. Its parameter is the current input value. To use this, `filterable` must be true
-   */
-  remoteMethod: {
-    type: definePropType<(query: string) => void>(Function),
-  },
   /**
    * @description custom filter method, the first parameter is the current input value. To use this, `filterable` must be true
    */
@@ -188,7 +181,7 @@ export const selectProps = buildProps({
     type: String,
   },
   /**
-   * @description select first matching option on enter key. Use with `filterable` or `remote`
+   * @description select first matching option on enter key. Use with `filterable`
    */
   defaultFirstOption: Boolean,
   /**
@@ -272,10 +265,7 @@ export const selectProps = buildProps({
     type: Boolean,
     default: true,
   },
-  /**
-   * @description in remote search method show suffix icon
-   */
-  remoteShowSuffix: Boolean,
+
   /**
    * @description determines whether the arrow is displayed
    */

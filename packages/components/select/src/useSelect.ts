@@ -4,12 +4,12 @@ import {
   onMounted,
   reactive,
   ref,
-  useSlots,
+  // useSlots,
   watch,
   watchEffect,
 } from 'vue'
 import { clamp, findLastIndex, get, isEqual, isNil } from 'lodash-unified'
-import { useDebounceFn, useResizeObserver } from '@vueuse/core'
+import { useResizeObserver } from '@vueuse/core'
 import {
   NOOP,
   ValidateComponentsMap,
@@ -17,7 +17,7 @@ import {
   getEventCode,
   isArray,
   isClient,
-  isEmpty,
+  // isEmpty,
   isFunction,
   isIOS,
   isNumber,
@@ -63,7 +63,7 @@ import type {
 
 export const useSelect = (props: SelectProps, emit: SelectEmits) => {
   const { t } = useLocale()
-  const slots = useSlots()
+  // const slots = useSlots()
   const contentId = useId()
   const nsSelect = useNamespace('select')
   const nsInput = useNamespace('input')
@@ -99,7 +99,6 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
   // the controller of the expanded popup
   const expanded = ref(false)
   const hoverOption = ref()
-  const debouncing = ref(false)
 
   const { form, formItem } = useFormItem()
   const { inputId } = useFormItemInputId(props, {
@@ -157,11 +156,7 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
       (isFocused.value || states.inputHovering)
     )
   })
-  const iconComponent = computed(() =>
-    props.remote && props.filterable && !props.remoteShowSuffix
-      ? ''
-      : props.suffixIcon
-  )
+  const iconComponent = computed(() => props.suffixIcon)
   const iconReverse = computed(() =>
     nsSelect.is('reverse', !!(iconComponent.value && expanded.value))
   )
@@ -171,12 +166,6 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
     () =>
       validateState.value &&
       (ValidateComponentsMap[validateState.value] as Component)
-  )
-
-  const debounce = computed(() => (props.remote ? props.debounce : 0))
-
-  const isRemoteSearchEmpty = computed(
-    () => props.remote && !states.inputValue && states.options.size === 0
   )
 
   const emptyText = computed(() => {
@@ -236,8 +225,6 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
 
   const updateOptions = () => {
     if (props.filterable && isFunction(props.filterMethod)) return
-    if (props.filterable && props.remote && isFunction(props.remoteMethod))
-      return
     optionsArray.value.forEach((option) => {
       option.updateOption?.(states.inputValue)
     })
@@ -251,15 +238,8 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
 
   const dropdownMenuVisible = computed({
     get() {
-      return (
-        expanded.value &&
-        (props.loading ||
-          !isRemoteSearchEmpty.value ||
-          (props.remote && !!slots.empty)) &&
-        (!debouncing.value ||
-          !isEmpty(states.previousQuery) ||
-          states.options.size > 0)
-      )
+      if (!expanded.value) return false
+      return true
     },
     set(val: boolean) {
       expanded.value = val
@@ -331,12 +311,16 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
       if (!isClient) return
       // tooltipRef.value?.updatePopper?.()
       setSelected()
-      if (
-        props.defaultFirstOption &&
-        (props.filterable || props.remote) &&
-        filteredOptionsCount.value
-      ) {
+      if (shouldDefaultFirstOption()) {
         checkDefaultFirstOption()
+      } else if (expanded.value) {
+        const firstAvailable = optionsArray.value.findIndex(
+          (item) =>
+            item.visible && !item.isDisabled && !item.states?.groupDisabled
+        )
+        if (firstAvailable !== -1) {
+          states.hoveringIndex = firstAvailable
+        }
       }
     },
     {
@@ -382,12 +366,15 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
     ) {
       props.remoteMethod(val)
     }
-    if (
-      props.defaultFirstOption &&
-      (props.filterable || props.remote) &&
-      filteredOptionsCount.value
-    ) {
-      nextTick(checkDefaultFirstOption)
+
+    if (props.defaultFirstOption) {
+      nextTick(() => {
+        if (shouldDefaultFirstOption()) {
+          checkDefaultFirstOption()
+        } else {
+          states.hoveringIndex = -1
+        }
+      })
     } else {
       nextTick(updateHoveringIndex)
     }
@@ -403,17 +390,32 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
    * - if there's no user-created option in list, just find the first one as usual
    *   (NOTE: exclude options that are disabled or in disabled-group)
    */
+  const hasAvailableOption = () => {
+    return optionsArray.value.some(
+      (option) =>
+        option.visible && !option.isDisabled && !option.states?.groupDisabled
+    )
+  }
+
+  const shouldDefaultFirstOption = () => {
+    return props.defaultFirstOption && hasAvailableOption()
+  }
+
   const checkDefaultFirstOption = () => {
     const optionsInDropdown = optionsArray.value.filter(
-      (n) => n.visible && !n.disabled && !n.states.groupDisabled
+      (n) => n.visible && !n.isDisabled && !n.states?.groupDisabled
     )
     const userCreatedOption = optionsInDropdown.find((n) => n.created)
     const firstOriginOption = optionsInDropdown[0]
+    const targetOption = userCreatedOption || firstOriginOption
+
+    if (!targetOption) {
+      states.hoveringIndex = -1
+      return
+    }
+
     const valueList = optionsArray.value.map((item) => item.value)
-    states.hoveringIndex = getValueIndex(
-      valueList,
-      userCreatedOption || firstOriginOption
-    )
+    states.hoveringIndex = getValueIndex(valueList, targetOption)
   }
 
   const setSelected = () => {
@@ -520,18 +522,8 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
 
   const onInput = (event: Event) => {
     states.inputValue = (event.target as HTMLInputElement).value
-    if (props.remote) {
-      debouncing.value = true
-      debouncedOnInputChange()
-    } else {
-      return onInputChange()
-    }
+    return onInputChange()
   }
-
-  const debouncedOnInputChange = useDebounceFn(() => {
-    onInputChange()
-    debouncing.value = false
-  }, debounce)
 
   const emitChange = (val: OptionValue | OptionValue[]) => {
     if (!isEqual(props.modelValue, val)) {
@@ -680,6 +672,13 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
     states.isBeforeHide = false
     nextTick(() => {
       scrollbarRef.value?.update()
+
+      if (shouldDefaultFirstOption()) {
+        checkDefaultFirstOption()
+        nextTick(() => scrollToOption(hoverOption.value))
+        return
+      }
+
       scrollToOption(states.selected)
     })
   }
@@ -963,7 +962,6 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
     filteredOptionsCount,
     updateTooltip,
     updateTagTooltip,
-    debouncedOnInputChange,
     onInput,
     deletePrevTag,
     deleteTag,

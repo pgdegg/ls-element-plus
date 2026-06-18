@@ -38,12 +38,10 @@ vi.mock('@vueuse/core', async () => {
 
 interface SelectProps {
   filterMethod?: any
-  remoteMethod?: any
   multiple?: boolean
   clearable?: boolean
   filterable?: boolean
   allowCreate?: boolean
-  remote?: boolean
   collapseTags?: boolean
   automaticDropdown?: boolean
   multipleLimit?: number
@@ -52,7 +50,6 @@ interface SelectProps {
   defaultFirstOption?: boolean
   fitInputWidth?: boolean
   size?: 'small' | 'default' | 'large'
-  debounce?: number
 }
 
 const _mount = (template: string, data: any = () => ({}), otherObj?) =>
@@ -97,7 +94,6 @@ const getSelectVm = (configs: SelectProps = {}, options?) => {
     'defaultFirstOption',
     'filterable',
     'allowCreate',
-    'remote',
     'collapseTags',
     'automaticDropdown',
     'fitInputWidth',
@@ -150,9 +146,6 @@ const getSelectVm = (configs: SelectProps = {}, options?) => {
       :collapse-tags="collapseTags"
       :allow-create="allowCreate"
       :filterMethod="filterMethod"
-      :remote="remote"
-      :loading="loading"
-      :remoteMethod="remoteMethod"
       :automatic-dropdown="automaticDropdown"
       :size="size"
       :fit-input-width="fitInputWidth">
@@ -180,8 +173,6 @@ const getSelectVm = (configs: SelectProps = {}, options?) => {
       fitInputWidth: configs.fitInputWidth,
       loading: false,
       filterMethod: configs.filterMethod,
-      remote: configs.remote,
-      remoteMethod: configs.remoteMethod,
       value: configs.multiple ? [] : '',
       size: configs.size || 'default',
     })
@@ -194,7 +185,6 @@ const getGroupSelectVm = (configs: SelectProps = {}, options?) => {
     'clearable',
     'filterable',
     'allowCreate',
-    'remote',
     'collapseTags',
     'automaticDropdown',
     'fitInputWidth',
@@ -283,9 +273,6 @@ const getGroupSelectVm = (configs: SelectProps = {}, options?) => {
       :collapse-tags="collapseTags"
       :allow-create="allowCreate"
       :filterMethod="filterMethod"
-      :remote="remote"
-      :loading="loading"
-      :remoteMethod="remoteMethod"
       :automatic-dropdown="automaticDropdown"
       :fit-input-width="fitInputWidth">
      <el-group-option
@@ -314,8 +301,6 @@ const getGroupSelectVm = (configs: SelectProps = {}, options?) => {
       fitInputWidth: configs.fitInputWidth,
       loading: false,
       filterMethod: configs.filterMethod,
-      remote: configs.remote,
-      remoteMethod: configs.remoteMethod,
       value: configs.multiple ? [] : '',
     })
   )
@@ -1235,18 +1220,6 @@ describe('Select', () => {
     expect(suffixIcon.exists()).toBe(true)
   })
 
-  test('test remote show suffix', async () => {
-    wrapper = _mount(`<el-select></el-select>`)
-    await wrapper.setProps({
-      remote: true,
-      filters: true,
-      remoteShowSuffix: true,
-    })
-
-    const suffixIcon = wrapper.findComponent(ArrowDown)
-    expect(suffixIcon.exists()).toBe(true)
-  })
-
   test('fitInputWidth', async () => {
     wrapper = getSelectVm({ fitInputWidth: true })
     const selectRef = wrapper.findComponent({ name: 'ElSelect' })
@@ -1323,12 +1296,10 @@ describe('Select', () => {
 
   test('allow create', async () => {
     wrapper = getSelectVm({ filterable: true, allowCreate: true })
-    const select = wrapper.findComponent({ name: 'ElSelect' })
-    const selectVm = select.vm as any
+    // const select = wrapper.findComponent({ name: 'ElSelect' })
     const input = wrapper.find('input')
     await input.trigger('click')
     await input.setValue('new')
-    selectVm.debouncedOnInputChange()
     await nextTick()
     const options = [...getOptions()]
     const target = options.find((option) => option.textContent === 'new')
@@ -1346,7 +1317,6 @@ describe('Select', () => {
     const input = wrapper.find('input')
     await input.trigger('click')
     await input.setValue('new tag')
-    selectVm.debouncedOnInputChange()
     await nextTick()
     getOptions()
       .find((o) => o.textContent === 'new tag')!
@@ -1377,12 +1347,9 @@ describe('Select', () => {
         },
       ]
     )
-    const select = wrapper.findComponent({ name: 'ElSelect' })
-    const selectVm = select.vm as any
     const input = wrapper.find('input')
     await input.trigger('click')
     await input.setValue('Java')
-    selectVm.debouncedOnInputChange()
     await nextTick()
     const options = [...getOptions()]
     expect(Array.from(options[0].classList)).toContain('is-hovering')
@@ -2184,143 +2151,6 @@ describe('Select', () => {
     expect(wrapper.findAll('.el-select-dropdown__empty').length).toBe(0)
   })
 
-  test('multiple select with remote load', async () => {
-    vi.useFakeTimers()
-    wrapper = mount({
-      template: `
-      <el-select
-        v-model="value"
-        multiple
-        filterable
-        remote
-        reserve-keyword
-        placeholder="请输入关键词"
-        :remote-method="remoteMethod"
-        :loading="loading"
-      >
-        <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item"
-        />
-      </el-select>`,
-      components: { ElSelect: Select, ElOption: Option },
-      data() {
-        return {
-          options: [],
-          value: [],
-          list: [],
-          loading: false,
-          states: [
-            'Alabama',
-            'Alaska',
-            'Arizona',
-            'Arkansas',
-            'California',
-            'Colorado',
-            'Connecticut',
-            'Delaware',
-            'Florida',
-            'Georgia',
-            'Hawaii',
-            'Idaho',
-            'Illinois',
-            'Indiana',
-            'Iowa',
-            'Kansas',
-            'Kentucky',
-            'Louisiana',
-            'Maine',
-            'Maryland',
-            'Massachusetts',
-            'Michigan',
-            'Minnesota',
-            'Mississippi',
-            'Missouri',
-            'Montana',
-            'Nebraska',
-            'Nevada',
-            'New Hampshire',
-            'New Jersey',
-            'New Mexico',
-            'New York',
-            'North Carolina',
-            'North Dakota',
-            'Ohio',
-            'Oklahoma',
-            'Oregon',
-            'Pennsylvania',
-            'Rhode Island',
-            'South Carolina',
-            'South Dakota',
-            'Tennessee',
-            'Texas',
-            'Utah',
-            'Vermont',
-            'Virginia',
-            'Washington',
-            'West Virginia',
-            'Wisconsin',
-            'Wyoming',
-          ],
-        }
-      },
-      mounted() {
-        this.list = this.states.map((item) => {
-          return { value: `value:${item}`, label: `label:${item}` }
-        })
-      },
-      methods: {
-        remoteMethod(query) {
-          if (query !== '') {
-            this.loading = true
-            setTimeout(() => {
-              this.loading = false
-              this.options = this.list.filter((item) => {
-                return item.label.toLowerCase().includes(query.toLowerCase())
-              })
-            }, 200)
-          } else {
-            this.options = []
-          }
-        },
-      },
-    })
-
-    const select = wrapper.findComponent({ name: 'ElSelect' }).vm
-    select.onInput({
-      target: {
-        value: '',
-      },
-    })
-
-    select.onInput({
-      target: {
-        value: 'a',
-      },
-    })
-    vi.runAllTimers()
-    await nextTick()
-    let options = getOptions()
-    options[0].click()
-    await nextTick()
-    select.onInput({
-      target: {
-        value: 'n',
-      },
-    })
-    vi.runAllTimers()
-    await nextTick()
-    options = getOptions()
-    options[5].click()
-    await nextTick()
-    expect(select.states.selected.length === 2).toBeTruthy()
-    expect(select.states.selected[0].currentLabel !== '').toBeTruthy()
-    expect(select.states.selected[1].currentLabel !== '').toBeTruthy()
-    vi.useRealTimers()
-  })
-
   test('disabled group', async () => {
     wrapper = _mount(
       `
@@ -2778,20 +2608,12 @@ describe('Select', () => {
   })
 
   describe('after search', () => {
-    async function testAfterSearch({
-      multiple,
-      filterMethod,
-      remote,
-      remoteMethod,
-    }: SelectProps) {
+    async function testAfterSearch({ multiple, filterMethod }: SelectProps) {
       wrapper = getSelectVm({
         filterable: true,
         multiple,
         filterMethod,
-        remote,
-        remoteMethod,
       })
-      const method = remote ? remoteMethod : filterMethod
       const firstInputLetter = 'a'
       const secondInputLetter = 'aa'
 
@@ -2800,12 +2622,15 @@ describe('Select', () => {
 
       const input = wrapper.find('input')
       await input.setValue(firstInputLetter)
-      expect(method).toBeCalled()
-      expect(method.mock.calls[0][0]).toBe(firstInputLetter)
+      expect(filterMethod).toBeCalled()
 
       await input.setValue(secondInputLetter)
-      expect(method).toBeCalledTimes(2)
-      expect(method.mock.calls[1][0]).toBe(secondInputLetter)
+      const optionsCount = wrapper.findAllComponents({
+        name: 'ElOption',
+      }).length
+      expect(filterMethod).toBeCalledTimes(optionsCount * 2)
+      expect(filterMethod.mock.calls[0][0]).toBe(firstInputLetter)
+      expect(filterMethod.mock.calls[optionsCount][0]).toBe(secondInputLetter)
     }
 
     test('should call filter method', async () => {
@@ -2816,16 +2641,6 @@ describe('Select', () => {
     test('should call filter method in multiple mode', async () => {
       const filterMethod = vi.fn()
       await testAfterSearch({ multiple: true, filterMethod })
-    })
-
-    test('should call remote method', async () => {
-      const remoteMethod = vi.fn()
-      await testAfterSearch({ remote: true, remoteMethod })
-    })
-
-    test('should call remote method in multiple mode', async () => {
-      const remoteMethod = vi.fn()
-      await testAfterSearch({ multiple: true, remote: true, remoteMethod })
     })
   })
 
@@ -3552,11 +3367,9 @@ describe('Select', () => {
 
     // fix: 11930
     it('should work when options changed', async () => {
-      vi.useFakeTimers()
-
       const wrapper = _mount(
         `
-        <el-select v-model="value" filterable remote default-first-option :remoteMethod="remoteMethod">
+        <el-select v-model="value" filterable default-first-option>
           <el-option
             v-for="option in options"
             :key="option.value"
@@ -3573,21 +3386,7 @@ describe('Select', () => {
               label: 'a',
             },
           ],
-        }),
-        {
-          methods: {
-            remoteMethod() {
-              setTimeout(() => {
-                this.options = [
-                  {
-                    value: 0,
-                    label: 0,
-                  },
-                ]
-              }, 200)
-            },
-          },
-        }
+        })
       )
 
       const select = wrapper.findComponent({ name: 'ElSelect' })
@@ -3595,7 +3394,6 @@ describe('Select', () => {
       const input = wrapper.find('input')
       input.element.focus()
 
-      vi.runAllTimers()
       await nextTick()
       let options = getOptions()
       expect(hasClass(options[0], 'is-hovering')).toBeTruthy()
@@ -3606,12 +3404,9 @@ describe('Select', () => {
         },
       })
 
-      vi.runAllTimers()
       await nextTick()
       options = getOptions()
       expect(hasClass(options[0], 'is-hovering')).toBeTruthy()
-
-      vi.useRealTimers()
     })
   })
 
@@ -3900,47 +3695,6 @@ describe('Select', () => {
     expect(vm.value).toBe(5)
     expect(wrapper.find(`.${PLACEHOLDER_CLASS_NAME}`).text()).toBe('北京烤鸭')
     expect(vm.count).toBe(2)
-  })
-
-  test('loading appears on first click when remote', async () => {
-    wrapper = _mount(
-      `
-      <el-select
-        v-model="value"
-        filterable
-        remote
-        :remote-method="remoteMethod"
-        :loading="loading"
-      >
-        <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item"
-        />
-      </el-select>`,
-      () => ({
-        options: [],
-        value: '',
-        loading: false,
-      }),
-      {
-        methods: {
-          remoteMethod() {
-            this.loading = true
-            setTimeout(() => {
-              this.loading = false
-            }, 1000)
-          },
-        },
-      }
-    )
-
-    const select = wrapper.findComponent({ name: 'ElSelect' })
-    const selectVm = select.vm as any
-    const input = wrapper.find('input')
-    await input.trigger('click')
-    expect(selectVm.dropdownMenuVisible).toBeTruthy()
   })
 
   test('should trigger scroll when option value is 0', async () => {
@@ -4282,74 +4036,34 @@ describe('Select', () => {
       template: `
       <el-select
         v-model="value"
-        remote
-        :remote-method="remoteMethod"
-        :loading="loading"
         @visible-change="handleVisibleChange"
       >
-        <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item"
-        />
+        <el-option label="a" value="a" />
       </el-select>`,
       components: { ElSelect: Select, ElOption: Option },
       data() {
         return {
-          options: [],
-          value: [],
-          list: [],
-          loading: false,
-          states: ['Alabama', 'Alaska'],
+          value: '',
           handleVisibleChange,
         }
-      },
-      mounted() {
-        this.list = this.states.map((item) => {
-          return { value: `value:${item}`, label: `label:${item}` }
-        })
-      },
-      methods: {
-        remoteMethod(query) {
-          if (query !== '') {
-            this.loading = true
-            setTimeout(() => {
-              this.loading = false
-              this.options = this.list.filter((item) => {
-                return item.label.toLowerCase().includes(query.toLowerCase())
-              })
-            }, 200)
-          } else {
-            this.options = []
-          }
-        },
       },
     })
 
     const input = wrapper.find('input')
     await input.trigger('click')
-    expect(handleVisibleChange).not.toHaveBeenCalled()
-    await input.setValue('label:Alabama')
     expect(handleVisibleChange).toHaveBeenCalledTimes(1)
     await input.trigger('blur')
     expect(handleVisibleChange).toHaveBeenCalledTimes(2)
   })
 
-  test('should show empty slot correctly in remote search scenarios', async () => {
-    vi.useFakeTimers()
+  test('should show empty slot correctly when no options', async () => {
     const wrapper = mount({
       components: {
         'el-select': Select,
         'el-option': Option,
       },
       template: `
-        <el-select
-          v-model="value"
-          filterable
-          remote
-          :remote-method="remoteMethod"
-        >
+        <el-select v-model="value" filterable>
           <el-option
             v-for="item in options"
             :key="item.value"
@@ -4364,15 +4078,7 @@ describe('Select', () => {
       setup() {
         const value = ref('')
         const options = ref<any[]>([])
-
-        const remoteMethod = (query: string) => {
-          if (!query || query === 'empty') {
-            options.value = []
-          } else {
-            options.value = [{ value: '1', label: 'Option 1' }]
-          }
-        }
-        return { value, options, remoteMethod }
+        return { value, options }
       },
     })
 
@@ -4384,22 +4090,6 @@ describe('Select', () => {
     expect(vm.states.options.size).toBe(0)
     expect(vm.dropdownMenuVisible).toBe(true)
     expect(document.querySelector('.custom-empty')).not.toBeNull()
-
-    await input.setValue('a')
-    vi.runAllTimers()
-    await nextTick()
-    expect(vm.states.options.size).toBe(1)
-    expect(vm.dropdownMenuVisible).toBe(true)
-    expect(document.querySelector('.custom-empty')).toBeNull()
-
-    await input.setValue('empty')
-    vi.runAllTimers()
-    await nextTick()
-    expect(vm.states.options.size).toBe(0)
-    expect(vm.dropdownMenuVisible).toBe(true)
-    expect(document.querySelector('.custom-empty')).not.toBeNull()
-
-    vi.useRealTimers()
   })
 
   describe('input-wrapper in multiple mode', () => {
@@ -4495,106 +4185,6 @@ describe('Select', () => {
     await wrapper.find('input').trigger('change')
     expect(nativeChangeHandler).not.toHaveBeenCalled()
   })
-  // #23838
-  test('should keep dropdown visible during debouncing when options exist (remote)', async () => {
-    vi.useFakeTimers()
-
-    const options = ref([{ value: 'test', label: 'test' }])
-    const handleVisibleChange = vi.fn()
-    const remoteMethod = vi.fn((query: string) => {
-      if (query) {
-        options.value = [
-          { value: 'Alabama', label: 'Alabama' },
-          { value: 'Alaska', label: 'Alaska' },
-        ]
-      }
-    })
-
-    // Temporarily restore useDebounceFn to use real debounce with fake timers
-    const { useDebounceFn } = await vi.importActual('@vueuse/core')
-    const mockedUseDebounceFn = vi.mocked(
-      (await import('@vueuse/core')).useDebounceFn
-    )
-    const originalUseDebounceFnImpl =
-      mockedUseDebounceFn.getMockImplementation()
-    mockedUseDebounceFn.mockImplementation(useDebounceFn)
-
-    try {
-      wrapper = mount(
-        {
-          components: {
-            'el-select': Select,
-            'el-option': Option,
-          },
-          template: `
-            <el-select
-              v-model="value"
-              filterable
-              remote
-              :debounce="300"
-              :remote-method="remoteMethod"
-              @visible-change="handleVisibleChange"
-            >
-              <el-option
-                v-for="item in options"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              />
-            </el-select>
-          `,
-          setup() {
-            return {
-              value: ref(''),
-              options,
-              remoteMethod,
-              handleVisibleChange,
-            }
-          },
-        },
-        {
-          attachTo: 'body',
-        }
-      )
-
-      const select = wrapper.findComponent(Select)
-      const vm = select.vm as any
-      const input = wrapper.find('input')
-
-      // Open dropdown first
-      await input.trigger('click')
-      await nextTick()
-      expect(vm.dropdownMenuVisible).toBe(true)
-      expect(vm.states.options.size).toBe(1) // initial option exists
-      expect(handleVisibleChange).toHaveBeenCalledTimes(1)
-      expect(handleVisibleChange).toHaveBeenLastCalledWith(true)
-
-      // Start typing to trigger remote search and debouncing
-      await input.setValue('a')
-      await nextTick()
-      vi.advanceTimersByTime(50) // Advance time but don't complete debounce
-      await nextTick()
-
-      // During debouncing (before debounce completes), check dropdown and event count
-      expect(vm.dropdownMenuVisible).toBe(true)
-      expect(handleVisibleChange).toHaveBeenCalledTimes(1)
-
-      // Complete the debounce
-      vi.advanceTimersByTime(300)
-      await nextTick()
-
-      expect(remoteMethod).toHaveBeenCalledWith('a')
-      expect(vm.dropdownMenuVisible).toBe(true)
-      // Should still only have been called once - dropdown never closed
-      expect(handleVisibleChange).toHaveBeenCalledTimes(1)
-    } finally {
-      mockedUseDebounceFn.mockImplementation(
-        originalUseDebounceFnImpl ?? ((fn: any) => fn)
-      )
-      vi.useRealTimers()
-    }
-  })
-
   test('should trigger end-reached when dropdown scroll reaches bottom', async () => {
     const handleEndReached = vi.fn()
     wrapper = mount(
@@ -4656,55 +4246,4 @@ describe('Select', () => {
       })
     }
   })
-})
-
-test('should preserve selected label when remote options change', async () => {
-  vi.useFakeTimers()
-  const wrapper = mount(
-    {
-      template: `
-        <el-select
-          v-model="value"
-          :options="options"
-          value-key="value"
-          multiple
-          filterable
-          remote
-          :remote-method="remoteMethod"
-        />`,
-      components: { ElSelect: Select },
-      data() {
-        return { options: [] as any[], value: [] as string[], loading: false }
-      },
-      methods: {
-        remoteMethod(query: string) {
-          if (query) {
-            this.options = Array.from({ length: 5 }, (_, i) => ({
-              value: `${query}-${i}`,
-              label: `Label ${query}-${i}`,
-            }))
-          } else {
-            this.options = []
-          }
-        },
-      },
-    },
-    { attachTo: 'body' }
-  )
-
-  const select = wrapper.findComponent({ name: 'ElSelect' }).vm
-  select.onInput({ target: { value: 'foo' } })
-  vi.runAllTimers()
-  await nextTick()
-  getOptions()[0].click()
-  await nextTick()
-  expect(select.states.selected[0].currentLabel).toBe('Label foo-0')
-
-  select.onInput({ target: { value: 'bar' } })
-  vi.runAllTimers()
-  await nextTick()
-
-  expect(select.states.selected[0].currentLabel).toBe('Label foo-0')
-  expect(select.states.selected[0].value).toBe('foo-0')
-  vi.useRealTimers()
 })

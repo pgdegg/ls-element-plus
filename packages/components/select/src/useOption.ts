@@ -78,21 +78,20 @@ export function useOption(props: OptionProps, states: OptionStates) {
   watch(
     () => currentLabel.value,
     () => {
-      if (!props.created && !select.props.remote) select.setSelected()
+      if (!props.created) select.setSelected()
     }
   )
 
   watch(
     () => props.value,
     (val, oldVal) => {
-      const { remote, valueKey } = select.props
-      const shouldUpdate = remote ? val !== oldVal : !isEqual(val, oldVal)
-      if (shouldUpdate) {
+      const { valueKey } = select.props
+      if (!isEqual(val, oldVal)) {
         select.onOptionDestroy(oldVal, instance.proxy)
         select.onOptionCreate(instance.proxy)
       }
 
-      if (!props.created && !remote) {
+      if (!props.created) {
         if (
           valueKey &&
           isObject(val) &&
