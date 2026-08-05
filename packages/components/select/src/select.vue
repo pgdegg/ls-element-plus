@@ -65,7 +65,7 @@
               :select-disabled="selectDisabled"
             >
               <div
-                v-for="item in showTagList"
+                v-for="(item, index) in showTagList"
                 :key="getValueKey(item)"
                 :class="nsSelect.e('selected-item')"
               >
@@ -81,6 +81,7 @@
                   <span :class="nsSelect.e('tags-text')">
                     <slot
                       name="label"
+                      :raw-index="index"
                       :index="item.index"
                       :label="item.currentLabel"
                       :value="item.value"
@@ -138,7 +139,7 @@
                 <template #content>
                   <div ref="tagMenuRef" :class="nsSelect.e('selection')">
                     <div
-                      v-for="item in collapseTagList"
+                      v-for="(item, index) in collapseTagList"
                       :key="getValueKey(item)"
                       :class="nsSelect.e('selected-item')"
                     >
@@ -154,6 +155,7 @@
                         <span :class="nsSelect.e('tags-text')">
                           <slot
                             name="label"
+                            :raw-index="index"
                             :index="item.index"
                             :label="item.currentLabel"
                             :value="item.value"
@@ -229,6 +231,7 @@
               <slot
                 v-if="hasModelValue"
                 name="label"
+                :raw-index="-1"
                 :index="getOption(modelValue!).index"
                 :label="currentPlaceholder"
                 :value="modelValue"
