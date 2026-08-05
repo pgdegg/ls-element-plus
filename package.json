@@ -103,8 +103,8 @@
     "typescript": "catalog:",
     "vitest": "^4.1.10",
     "vue": "catalog:",
-    "vue-router": "^5.1.0",
-    "vue-tsc": "^3.1.5"
+    "vue-router": "^5.2.0",
+    "vue-tsc": "=3.1.5"
   },
   "engines": {
     "node": ">= 22.13.0"
