@@ -239,6 +239,10 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
   const dropdownMenuVisible = computed({
     get() {
       if (!expanded.value) return false
+      // When remote mode is enabled with remoteShowOnInput,
+      // only show the dropdown when there is input content
+      if (props.remote && props.remoteShowOnInput && !states.inputValue.length)
+        return false
       return true
     },
     set(val: boolean) {
