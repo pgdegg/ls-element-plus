@@ -114,6 +114,10 @@ export const selectProps = buildProps({
    */
   remote: Boolean,
   /**
+   * @description for remote mode, whether the dropdown only appears when there is input content, instead of always showing on click or focus
+   */
+  remoteShowOnInput: Boolean,
+  /**
    * @description function that gets called when the input value changes. Its parameter is the current input value. To use this, `filterable` must be true
    */
   remoteMethod: {

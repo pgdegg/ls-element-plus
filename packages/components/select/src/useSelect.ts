@@ -725,6 +725,16 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
     )
       return
 
+    // If remote mode is enabled and remoteShowOnInput is true,
+    // only allow expanding the dropdown when there is input content
+    if (
+      props.remote &&
+      props.remoteShowOnInput &&
+      !states.inputValue.length &&
+      !expanded.value
+    )
+      return
+
     // We only set the inputHovering state to true on mouseenter event on iOS devices
     // To keep the state updated we set it here to true
     if (isIOS) states.inputHovering = true
