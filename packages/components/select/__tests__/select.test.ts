@@ -1294,6 +1294,105 @@ describe('Select', () => {
     expect(selectVm.states.hoveringIndex).toBe(1) // index 0 was skipped
   })
 
+  test('check default first option when there is a selected value', async () => {
+    wrapper = _mount(
+      `
+        <el-select v-model="value" filterable default-first-option>
+          <el-option
+            v-for="item in options"
+            :label="item.label"
+            :key="item.value"
+            :value="item.value">
+          </el-option>
+        </el-select>
+      `,
+      () => ({
+        value: '选项3',
+        options: [
+          {
+            value: '选项1',
+            label: '黄金糕',
+          },
+          {
+            value: '选项2',
+            label: '双皮奶',
+          },
+          {
+            value: '选项3',
+            label: '蚵仔煎',
+          },
+          {
+            value: '选项4',
+            label: '龙须面',
+          },
+        ],
+      })
+    )
+    const select = wrapper.findComponent({ name: 'ElSelect' })
+    const selectVm = select.vm as any
+    const input = wrapper.find('input')
+    await input.trigger('click')
+
+    // hover the selected option instead of the first option
+    expect(selectVm.states.hoveringIndex).toBe(2)
+    selectVm.navigateOptions('next')
+    expect(selectVm.states.hoveringIndex).toBe(3)
+  })
+
+  test('check default first option when the selected value is filtered out', async () => {
+    vi.useFakeTimers()
+    wrapper = _mount(
+      `
+        <el-select v-model="value" filterable default-first-option>
+          <el-option
+            v-for="item in options"
+            :label="item.label"
+            :key="item.value"
+            :value="item.value">
+          </el-option>
+        </el-select>
+      `,
+      () => ({
+        value: '选项3',
+        options: [
+          {
+            value: '选项1',
+            label: '黄金糕',
+          },
+          {
+            value: '选项2',
+            label: '双皮奶',
+          },
+          {
+            value: '选项3',
+            label: '蚵仔煎',
+          },
+          {
+            value: '选项4',
+            label: '龙须面',
+          },
+        ],
+      })
+    )
+    const select = wrapper.findComponent({ name: 'ElSelect' })
+    const selectVm = select.vm as any
+    const input = wrapper.find('input')
+    input.element.focus()
+
+    selectVm.onInput({
+      target: {
+        value: '黄',
+      },
+    })
+
+    vi.runAllTimers()
+    await nextTick()
+    // the selected option is filtered out, hover the first matching option
+    expect(selectVm.states.hoveringIndex).toBe(0)
+
+    vi.useRealTimers()
+  })
+
   test('allow create', async () => {
     wrapper = getSelectVm({ filterable: true, allowCreate: true })
     // const select = wrapper.findComponent({ name: 'ElSelect' })

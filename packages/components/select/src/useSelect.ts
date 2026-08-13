@@ -394,20 +394,46 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
    * - if there's no user-created option in list, just find the first one as usual
    *   (NOTE: exclude options that are disabled or in disabled-group)
    */
-  const hasAvailableOption = () => {
-    return optionsArray.value.some(
-      (option) =>
-        option.visible && !option.isDisabled && !option.states?.groupDisabled
+  const isAvailableOption = (option?: OptionPublicInstance) => {
+    return (
+      !!option &&
+      option.visible &&
+      !option.isDisabled &&
+      !option.states?.groupDisabled
     )
+  }
+
+  const hasAvailableOption = () => {
+    return optionsArray.value.some((option) => isAvailableOption(option))
   }
 
   const shouldDefaultFirstOption = () => {
     return props.defaultFirstOption && hasAvailableOption()
   }
 
+  const getSelectedOptionIndex = () => {
+    const length = states.selected.length
+    if (length > 0) {
+      const lastOption = states.selected[length - 1]
+      return optionsArray.value.findIndex(
+        (item) => getValueKey(lastOption) === getValueKey(item)
+      )
+    }
+    return -1
+  }
+
   const checkDefaultFirstOption = () => {
-    const optionsInDropdown = optionsArray.value.filter(
-      (n) => n.visible && !n.isDisabled && !n.states?.groupDisabled
+    // When there is already a selected value, hover the selected option
+    // instead of the first one, so that the dropdown does not scroll to the
+    // first option and focus it when opened.
+    const selectedIndex = getSelectedOptionIndex()
+    if (isAvailableOption(optionsArray.value[selectedIndex])) {
+      states.hoveringIndex = selectedIndex
+      return
+    }
+
+    const optionsInDropdown = optionsArray.value.filter((n) =>
+      isAvailableOption(n)
     )
     const userCreatedOption = optionsInDropdown.find((n) => n.created)
     const firstOriginOption = optionsInDropdown[0]
@@ -487,15 +513,7 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
   }
 
   const updateHoveringIndex = () => {
-    const length = states.selected.length
-    if (length > 0) {
-      const lastOption = states.selected[length - 1]
-      states.hoveringIndex = optionsArray.value.findIndex(
-        (item) => getValueKey(lastOption) === getValueKey(item)
-      )
-    } else {
-      states.hoveringIndex = -1
-    }
+    states.hoveringIndex = getSelectedOptionIndex()
   }
 
   const resetSelectionWidth = () => {
