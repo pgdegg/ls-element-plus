@@ -1393,6 +1393,154 @@ describe('Select', () => {
     vi.useRealTimers()
   })
 
+  test('check default first option ignores selected value while searching', async () => {
+    vi.useFakeTimers()
+    wrapper = _mount(
+      `
+        <el-select v-model="value" filterable default-first-option>
+          <el-option
+            v-for="item in options"
+            :label="item.label"
+            :key="item.value"
+            :value="item.value">
+          </el-option>
+        </el-select>
+      `,
+      () => ({
+        value: '菠萝蜜',
+        options: [
+          {
+            value: '菠萝',
+            label: '菠萝',
+          },
+          {
+            value: '香蕉',
+            label: '香蕉',
+          },
+          {
+            value: '菠萝蜜',
+            label: '菠萝蜜',
+          },
+        ],
+      })
+    )
+    const select = wrapper.findComponent({ name: 'ElSelect' })
+    const selectVm = select.vm as any
+    const input = wrapper.find('input')
+    input.element.focus()
+
+    selectVm.onInput({
+      target: {
+        value: '菠萝',
+      },
+    })
+
+    vi.runAllTimers()
+    await nextTick()
+    // the selected option is still visible, but hover the first matching
+    // option instead of the selected one while searching
+    expect(selectVm.states.hoveringIndex).toBe(0)
+
+    vi.useRealTimers()
+  })
+
+  test('check default first option scrolls selected option into view when opened', async () => {
+    wrapper = _mount(
+      `
+      <el-select v-model="value" :teleported="false" default-first-option>
+        <el-option
+          v-for="{ label, value } in options"
+          :key="value"
+          :label="label"
+          :value="value"
+        />
+      </el-select>`,
+      () => ({
+        options: Array.from({ length: 10 }).map((_, i) => ({
+          label: `label-${i}`,
+          value: i,
+        })),
+        value: 9,
+      })
+    )
+
+    const wrapEl = wrapper.find('.el-select-dropdown__wrap').element
+    const optionEls = wrapper.findAll('.el-select-dropdown__item')
+    const cleanup = optionEls.map((item, i) =>
+      vi.spyOn(item.element, 'offsetTop', 'get').mockReturnValue(i * 30)
+    )
+    cleanup.push(
+      vi.spyOn(wrapEl, 'clientHeight', 'get').mockReturnValue(5 * 30)
+    )
+
+    const input = wrapper.find('input')
+    await input.trigger('click')
+    // the selected option at index 9 is scrolled into view
+    expect(wrapEl.scrollTop).toBe(4 * 30)
+    cleanup.forEach((fn) => fn())
+  })
+
+  test('check default first option re-scrolls into view when options change', async () => {
+    wrapper = _mount(
+      `
+      <el-select v-model="value" :teleported="false" default-first-option>
+        <el-option
+          v-for="{ label, value } in options"
+          :key="value"
+          :label="label"
+          :value="value"
+        />
+      </el-select>`,
+      () => ({
+        options: [
+          ...Array.from({ length: 10 }).map((_, i) => ({
+            label: `pre-${i}`,
+            value: `pre-${i}`,
+          })),
+          ...Array.from({ length: 10 }).map((_, i) => ({
+            label: `label-${i}`,
+            value: i,
+          })),
+        ],
+        value: 9,
+      })
+    )
+
+    const wrapEl = wrapper.find('.el-select-dropdown__wrap').element
+    const optionEls = wrapper.findAll('.el-select-dropdown__item')
+    const cleanup = optionEls.map((item, i) =>
+      vi.spyOn(item.element, 'offsetTop', 'get').mockReturnValue(i * 30)
+    )
+    cleanup.push(
+      vi.spyOn(wrapEl, 'clientHeight', 'get').mockReturnValue(5 * 30)
+    )
+
+    const input = wrapper.find('input')
+    await input.trigger('click')
+    // the selected option is at index 19, scroll it into view
+    expect(wrapEl.scrollTop).toBe(14 * 30)
+
+    // reset the scroll position, then options change should re-scroll the
+    // selected option into view
+    wrapEl.scrollTop = 0
+    wrapper.setData({
+      options: [
+        ...Array.from({ length: 10 }).map((_, i) => ({
+          label: `pre-${i}`,
+          value: `pre-${i}`,
+        })),
+        ...Array.from({ length: 11 }).map((_, i) => ({
+          label: `label-${i}`,
+          value: i,
+        })),
+      ],
+    })
+    await nextTick()
+    await nextTick()
+    expect(wrapEl.scrollTop).toBe(14 * 30)
+    cleanup.forEach((fn) => fn())
+  })
+
   test('allow create', async () => {
     wrapper = getSelectVm({ filterable: true, allowCreate: true })
     // const select = wrapper.findComponent({ name: 'ElSelect' })

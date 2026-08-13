@@ -317,6 +317,12 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
       setSelected()
       if (shouldDefaultFirstOption()) {
         checkDefaultFirstOption()
+        // When options change and the dropdown is open, scroll the hovered
+        // option (the selected one if any, otherwise the first option) into
+        // view. Ignore this while the user is searching.
+        if (expanded.value && !states.inputValue.length) {
+          scrollToHoveredOption()
+        }
       } else if (expanded.value) {
         const firstAvailable = optionsArray.value.findIndex(
           (item) =>
@@ -426,10 +432,14 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
     // When there is already a selected value, hover the selected option
     // instead of the first one, so that the dropdown does not scroll to the
     // first option and focus it when opened.
-    const selectedIndex = getSelectedOptionIndex()
-    if (isAvailableOption(optionsArray.value[selectedIndex])) {
-      states.hoveringIndex = selectedIndex
-      return
+    // Ignore this while the user is searching, so that the first matching
+    // option keeps being hovered to be selected by the Enter key.
+    if (!states.inputValue.length) {
+      const selectedIndex = getSelectedOptionIndex()
+      if (isAvailableOption(optionsArray.value[selectedIndex])) {
+        states.hoveringIndex = selectedIndex
+        return
+      }
     }
 
     const optionsInDropdown = optionsArray.value.filter((n) =>
@@ -446,6 +456,10 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
 
     const valueList = optionsArray.value.map((item) => item.value)
     states.hoveringIndex = getValueIndex(valueList, targetOption)
+  }
+
+  const scrollToHoveredOption = () => {
+    nextTick(() => scrollToOption(hoverOption.value))
   }
 
   const setSelected = () => {
@@ -695,7 +709,7 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
 
       if (shouldDefaultFirstOption()) {
         checkDefaultFirstOption()
-        nextTick(() => scrollToOption(hoverOption.value))
+        scrollToHoveredOption()
         return
       }
 
