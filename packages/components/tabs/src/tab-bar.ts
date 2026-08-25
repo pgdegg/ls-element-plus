@@ -8,6 +8,10 @@ import type TabBar from './tab-bar.vue'
  * @deprecated Removed after 3.0.0, Use `TabBarProps` instead.
  */
 export const tabBarProps = buildProps({
+  active: {
+    type: Boolean,
+    default: true,
+  },
   tabs: {
     type: definePropType<TabsPaneContext[]>(Array),
     default: () => mutable([] as const),
@@ -19,6 +23,7 @@ export const tabBarProps = buildProps({
 } as const)
 
 export type TabBarProps = {
+  active?: boolean
   tabs?: TabsPaneContext[]
   tabRefs?: { [key: TabPaneName]: HTMLDivElement }
 }

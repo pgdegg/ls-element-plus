@@ -1,16 +1,19 @@
 <template>
   <div
-    v-if="renderActiveBar"
     ref="barRef"
-    :class="[ns.e('active-bar'), ns.is(rootTabs!.props.tabPosition)]"
-    :style="barStyle"
+    :class="[
+      ns.e('active-bar'),
+      ns.is(rootTabs!.props.tabPosition),
+      ns.is('hidden', !barVisible),
+    ]"
+    :style="mergedBarStyle"
   />
 </template>
 
 <script lang="ts" setup>
 import { computed, inject, nextTick, onBeforeUnmount, ref, watch } from 'vue'
 import { useResizeObserver } from '@vueuse/core'
-import { capitalize, isUndefined, throwError } from '@element-plus/utils'
+import { capitalize, isUndefined, rAF, throwError } from '@element-plus/utils'
 import { useNamespace } from '@element-plus/hooks'
 import { tabsRootContextKey } from './constants'
 
@@ -22,6 +25,7 @@ defineOptions({
   name: COMPONENT_NAME,
 })
 const props = withDefaults(defineProps<TabBarProps>(), {
+  active: true,
   tabs: () => [],
   tabRefs: () => ({}),
 })
@@ -33,15 +37,22 @@ const ns = useNamespace('tabs')
 
 const barRef = ref<HTMLDivElement>()
 const barStyle = ref<CSSProperties>()
+const barReady = ref(false)
+const mergedBarStyle = computed(() => {
+  if (barReady.value) {
+    return barStyle.value
+  }
+  return { ...barStyle.value, transition: 'none' }
+})
 /**
  * when defaultValue is not set, the bar is always shown.
  *
  * when defaultValue is set, the bar will be hidden until style is calculated
  * to avoid the bar showing in the wrong position on initial render.
  */
-const renderActiveBar = computed(
+const barVisible = computed(
   () =>
-    props.tabs.some((tab) => tab.active) &&
+    props.active &&
     (isUndefined(rootTabs.props.defaultValue) ||
       Boolean(barStyle.value?.transform))
 )
@@ -85,7 +96,16 @@ const getBarStyle = (): CSSProperties => {
   }
 }
 
-const update = () => (barStyle.value = getBarStyle())
+const update = () => {
+  barStyle.value = getBarStyle()
+  if (!barReady.value) {
+    rAF(() =>
+      rAF(() => {
+        barReady.value = true
+      })
+    )
+  }
+}
 
 const tabObservers = [] as ReturnType<typeof useResizeObserver>[]
 const observerTabs = () => {

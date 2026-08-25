@@ -496,6 +496,7 @@ const TabNav = defineComponent({
           >
             {!props.type ? (
               <TabBar
+                active={panes.some(({ pane }) => pane.active)}
                 ref={
                   panes.some(({ pane }) => pane.active) ? tabBarRef : undefined
                 }
@@ -552,6 +553,10 @@ const TabNav = defineComponent({
                 {...[
                   !props.type ? (
                     <TabBar
+                      active={
+                        scrollPanes.some(({ pane }) => pane.active) ||
+                        !paneEntries.some(({ pane }) => pane.active)
+                      }
                       ref={
                         scrollPanes.some(({ pane }) => pane.active)
                           ? tabBarRef
