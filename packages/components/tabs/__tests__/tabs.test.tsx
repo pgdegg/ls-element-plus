@@ -588,6 +588,93 @@ describe('Tabs.vue', () => {
     // TODO: jsdom not support `clientWidth`.
   })
 
+  test('fixed tabs stay outside the scrollable navigation', async () => {
+    const activeName = ref('left')
+    const wrapper = mount(() => (
+      <Tabs v-model={activeName.value}>
+        <TabPane label="center-1" name="center-1" />
+        <TabPane fixed="right" label="right" name="right" />
+        <TabPane fixed="left" label="left" name="left" />
+        <TabPane label="center-2" name="center-2" />
+      </Tabs>
+    ))
+
+    await nextTick()
+
+    expect(
+      wrapper
+        .findAll('.el-tabs__nav-fixed-left .el-tabs__item')
+        .map((item) => item.text())
+    ).toEqual(['left'])
+    expect(
+      wrapper
+        .findAll('.el-tabs__nav-scroll .el-tabs__item')
+        .map((item) => item.text())
+    ).toEqual(['center-1', 'center-2'])
+    expect(
+      wrapper
+        .findAll('.el-tabs__nav-fixed-right .el-tabs__item')
+        .map((item) => item.text())
+    ).toEqual(['right'])
+    expect(
+      wrapper.find('.el-tabs__nav-fixed-left .el-tabs__active-bar').exists()
+    ).toBe(true)
+
+    await wrapper.find('#tab-left').trigger('keydown', {
+      code: EVENT_CODE.right,
+    })
+    expect(activeName.value).toBe('center-1')
+
+    await wrapper.find('#tab-right').trigger('click')
+
+    expect(activeName.value).toBe('right')
+    expect(
+      wrapper.find('.el-tabs__nav-fixed-right .el-tabs__active-bar').exists()
+    ).toBe(true)
+  })
+
+  test('scroll buttons belong to the scrollable area with fixed tabs', async () => {
+    const getBoundingClientRect = vi
+      .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
+      .mockImplementation(function (this: HTMLElement) {
+        const width = this.classList.contains('el-tabs__nav') ? 500 : 100
+        return {
+          width,
+          height: 40,
+          top: 0,
+          right: width,
+          bottom: 40,
+          left: 0,
+          x: 0,
+          y: 0,
+          toJSON: () => ({}),
+        }
+      })
+    const wrapper = mount(() => (
+      <Tabs>
+        <TabPane fixed="left" label="left" name="left" />
+        <TabPane label="center" name="center" />
+        <TabPane fixed="right" label="right" name="right" />
+      </Tabs>
+    ))
+
+    await nextTick()
+    wrapper.findComponent(TabNav).vm.$forceUpdate()
+    await nextTick()
+
+    const scrollWrap = wrapper.find('.el-tabs__nav-scroll-wrap')
+    expect(scrollWrap.find('.el-tabs__nav-prev').exists()).toBe(true)
+    expect(scrollWrap.find('.el-tabs__nav-next').exists()).toBe(true)
+    expect(
+      wrapper.find('.el-tabs__nav-fixed-left .el-tabs__nav-prev').exists()
+    ).toBe(false)
+    expect(
+      wrapper.find('.el-tabs__nav-fixed-right .el-tabs__nav-next').exists()
+    ).toBe(false)
+
+    getBoundingClientRect.mockRestore()
+  })
+
   test('vertical-scrollable', async () => {
     // TODO: jsdom not support `clientWidth`.
   })

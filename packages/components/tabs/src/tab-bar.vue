@@ -41,8 +41,9 @@ const barStyle = ref<CSSProperties>()
  */
 const renderActiveBar = computed(
   () =>
-    isUndefined(rootTabs.props.defaultValue) ||
-    Boolean(barStyle.value?.transform)
+    props.tabs.some((tab) => tab.active) &&
+    (isUndefined(rootTabs.props.defaultValue) ||
+      Boolean(barStyle.value?.transform))
 )
 
 const getBarStyle = (): CSSProperties => {

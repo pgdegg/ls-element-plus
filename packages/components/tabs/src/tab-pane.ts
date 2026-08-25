@@ -32,6 +32,13 @@ export const tabPaneProps = buildProps({
    */
   disabled: Boolean,
   /**
+   * @description fixes the tab at the start or end of the navigation area
+   */
+  fixed: {
+    type: String,
+    values: ['left', 'right'],
+  },
+  /**
    * @description whether Tab is lazily rendered
    */
   lazy: Boolean,
@@ -54,6 +61,10 @@ export type TabPaneProps = {
    * @description whether Tab is disabled
    */
   disabled?: boolean
+  /**
+   * @description fixes the tab at the start or end of the navigation area
+   */
+  fixed?: 'left' | 'right'
   /**
    * @description whether Tab is lazily rendered
    */

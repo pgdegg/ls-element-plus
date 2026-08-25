@@ -215,6 +215,9 @@ const TabNav = defineComponent({
 
       await nextTick()
 
+      const activePane = props.panes.find((pane) => pane.active)
+      if (activePane?.props.fixed) return
+
       const activeTab = tabRefsMap.value[props.currentName]
       if (!activeTab) return
 
@@ -300,9 +303,9 @@ const TabNav = defineComponent({
       }
 
       const tabList = Array.from(
-        (
-          event.currentTarget as HTMLDivElement
-        ).querySelectorAll<HTMLDivElement>('[role=tab]:not(.is-disabled)')
+        el$.value?.querySelectorAll<HTMLDivElement>(
+          '[role=tab]:not(.is-disabled)'
+        ) ?? []
       )
       const currentIndex = tabList.indexOf(event.target as HTMLDivElement)
       let nextIndex = currentIndex + step
@@ -355,6 +358,9 @@ const TabNav = defineComponent({
     useResizeObserver(el$, () => {
       rAF(update)
     })
+    useResizeObserver(navScroll$, () => {
+      rAF(update)
+    })
 
     onMounted(() => setTimeout(() => scrollToActiveTab(), 0))
     onUpdated(() => update())
@@ -396,14 +402,28 @@ const TabNav = defineComponent({
           ]
         : null
 
-      const tabs = props.panes.map((pane, index) => {
+      const paneEntries = props.panes.map((pane, index) => {
+        pane.index = `${index}`
+        return { pane, index }
+      })
+      const fixedLeftPanes = paneEntries.filter(
+        ({ pane }) => pane.props.fixed === 'left'
+      )
+      const fixedRightPanes = paneEntries.filter(
+        ({ pane }) => pane.props.fixed === 'right'
+      )
+      const scrollPanes = paneEntries.filter(
+        ({ pane }) =>
+          pane.props.fixed !== 'left' && pane.props.fixed !== 'right'
+      )
+
+      const renderTab = ({ pane, index }: (typeof paneEntries)[number]) => {
         const uid = pane.uid
         const disabled = pane.props.disabled
         const tabName = pane.props.name ?? pane.index ?? `${index}`
         const closable =
           !disabled &&
           (pane.isClosable || (pane.props.closable !== false && props.editable))
-        pane.index = `${index}`
 
         const btnClose = closable ? (
           <ElIcon
@@ -459,7 +479,33 @@ const TabNav = defineComponent({
             {...[tabLabelContent, btnClose]}
           </div>
         )
-      })
+      }
+
+      const renderFixedNav = (
+        panes: typeof paneEntries,
+        position: 'left' | 'right'
+      ) =>
+        panes.length ? (
+          <div
+            class={[
+              ns.e('nav'),
+              ns.e('nav-fixed'),
+              ns.e(`nav-fixed-${position}`),
+              ns.is(rootTabs.props.tabPosition),
+            ]}
+          >
+            {!props.type ? (
+              <TabBar
+                ref={
+                  panes.some(({ pane }) => pane.active) ? tabBarRef : undefined
+                }
+                tabs={panes.map(({ pane }) => pane)}
+                tabRefs={tabRefsMap.value}
+              />
+            ) : null}
+            {panes.map(renderTab)}
+          </div>
+        ) : null
 
       // By tracking the value property, we can schedule a job to re-render `TabNav` when needed.
       // Unlike `instance.update`, the scheduler ensures the job is queued only once even if we trigger it multiple times.
@@ -473,10 +519,18 @@ const TabNav = defineComponent({
             ns.is('scrollable', !!scrollable.value),
             ns.is(rootTabs.props.tabPosition),
           ]}
+          role="tablist"
+          onKeydown={changeTab}
         >
-          {scrollBtn}
-          <div class={ns.e('nav-scroll')} ref={navScroll$}>
-            {props.panes.length > 0 ? (
+          {renderFixedNav(fixedLeftPanes, 'left')}
+          <div
+            class={[
+              ns.e('nav-scroll-wrap'),
+              ns.is('scrollable', !!scrollable.value),
+            ]}
+          >
+            {scrollBtn?.[0]}
+            <div class={ns.e('nav-scroll')} ref={navScroll$}>
               <div
                 class={[
                   ns.e('nav'),
@@ -489,8 +543,6 @@ const TabNav = defineComponent({
                 ]}
                 ref={nav$}
                 style={navStyle.value}
-                role="tablist"
-                onKeydown={changeTab}
                 onWheel={handleWheel}
                 onTouchstart={handleTouchStart}
                 onTouchmove={handleTouchMove}
@@ -500,16 +552,22 @@ const TabNav = defineComponent({
                 {...[
                   !props.type ? (
                     <TabBar
-                      ref={tabBarRef}
-                      tabs={[...props.panes]}
+                      ref={
+                        scrollPanes.some(({ pane }) => pane.active)
+                          ? tabBarRef
+                          : undefined
+                      }
+                      tabs={scrollPanes.map(({ pane }) => pane)}
                       tabRefs={tabRefsMap.value}
                     />
                   ) : null,
-                  tabs,
+                  scrollPanes.map(renderTab),
                 ]}
               </div>
-            ) : null}
+            </div>
+            {scrollBtn?.[1]}
           </div>
+          {renderFixedNav(fixedRightPanes, 'right')}
         </div>
       )
     }
