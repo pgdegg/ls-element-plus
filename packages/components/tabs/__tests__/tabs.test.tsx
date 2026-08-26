@@ -778,6 +778,24 @@ describe('Tabs.vue', () => {
     getBoundingClientRect.mockRestore()
   })
 
+  test('all left-fixed tabs keep their outer edge', async () => {
+    const wrapper = mount(() => (
+      <Tabs type="card" leftType="border-card">
+        <TabPane fixed="left" label="left-1" name="left-1" />
+        <TabPane fixed="left" label="left-2" name="left-2" />
+      </Tabs>
+    ))
+
+    await nextTick()
+
+    const navWrap = wrapper.find('.el-tabs__nav-wrap')
+    expect(navWrap.classes()).toContain('is-scroll-empty')
+    expect(navWrap.classes()).not.toContain('is-scrollable')
+    expect(wrapper.findAll('.el-tabs__nav-scroll .el-tabs__item')).toHaveLength(
+      0
+    )
+  })
+
   test('scroll buttons belong to the scrollable area with fixed tabs', async () => {
     const getBoundingClientRect = vi
       .spyOn(HTMLElement.prototype, 'getBoundingClientRect')

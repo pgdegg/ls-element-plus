@@ -410,6 +410,7 @@ const TabNav = defineComponent({
           pane.props.fixed !== 'left' && pane.props.fixed !== 'right'
       )
       const hasFixedPanes = fixedLeftPanes.length + fixedRightPanes.length > 0
+      const isScrollEmpty = scrollPanes.length === 0
       const hasFixedBorderCard =
         (fixedLeftPanes.length > 0 &&
           (rootTabs.props.leftType || props.type) === 'border-card') ||
@@ -527,6 +528,7 @@ const TabNav = defineComponent({
             ns.is('fixed-left', fixedLeftPanes.length > 0),
             ns.is('fixed-right', fixedRightPanes.length > 0),
             ns.is('fixed-border-card', hasFixedBorderCard),
+            ns.is('scroll-empty', isScrollEmpty),
             ns.is(rootTabs.props.tabPosition),
           ]}
           role="tablist"

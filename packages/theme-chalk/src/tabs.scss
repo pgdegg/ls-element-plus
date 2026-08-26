@@ -149,7 +149,11 @@
       flex: none;
     }
 
-    &.is-fixed:not(.is-scrollable) {
+    &.is-scroll-empty > .#{$namespace}-tabs__nav-scroll-wrap {
+      display: none;
+    }
+
+    &.is-fixed:not(.is-scrollable):not(.is-scroll-empty) {
       &.is-fixed-left > .#{$namespace}-tabs__nav-fixed-left {
         border-top-right-radius: 0;
         border-right: none;
