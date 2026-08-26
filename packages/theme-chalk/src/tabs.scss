@@ -153,6 +153,14 @@
       &.is-fixed-left > .#{$namespace}-tabs__nav-fixed-left {
         border-top-right-radius: 0;
         border-right: none;
+
+        &.is-border-card {
+          box-shadow: none;
+
+          > .#{$namespace}-tabs__item:last-child {
+            border-right-color: transparent;
+          }
+        }
       }
 
       &.is-fixed-left
@@ -166,6 +174,10 @@
         .#{$namespace}-tabs__nav {
         border-top-right-radius: 0;
         border-right: none;
+
+        > .#{$namespace}-tabs__item:last-child {
+          border-right-color: transparent;
+        }
       }
 
       &.is-fixed-right > .#{$namespace}-tabs__nav-fixed-right {
