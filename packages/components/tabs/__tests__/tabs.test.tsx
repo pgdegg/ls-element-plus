@@ -678,6 +678,9 @@ describe('Tabs.vue', () => {
 
     await nextTick()
 
+    const navWrap = wrapper.find('.el-tabs__nav-wrap')
+    expect(navWrap.classes()).toContain('is-fixed')
+    expect(navWrap.classes()).not.toContain('is-scrollable')
     expect(
       wrapper
         .findAll('.el-tabs__nav-fixed-left .el-tabs__item')
@@ -708,6 +711,71 @@ describe('Tabs.vue', () => {
     expect(
       wrapper.find('.el-tabs__nav-fixed-right .el-tabs__active-bar').exists()
     ).toBe(true)
+  })
+
+  test('fixed tab regions support independent types', async () => {
+    const wrapper = mount(() => (
+      <Tabs modelValue="center" leftType="card" rightType="border-card">
+        <TabPane fixed="left" label="left" name="left" />
+        <TabPane label="center" name="center" />
+        <TabPane fixed="right" label="right" name="right" />
+      </Tabs>
+    ))
+
+    await nextTick()
+
+    const fixedLeft = wrapper.find('.el-tabs__nav-fixed-left')
+    const fixedRight = wrapper.find('.el-tabs__nav-fixed-right')
+    expect(wrapper.find('.el-tabs__nav-wrap').classes()).toContain(
+      'is-fixed-border-card'
+    )
+    expect(fixedLeft.classes()).toContain('is-card')
+    expect(fixedRight.classes()).toContain('is-border-card')
+    expect(fixedLeft.find('.el-tabs__active-bar').exists()).toBe(false)
+    expect(fixedRight.find('.el-tabs__active-bar').exists()).toBe(false)
+    expect(
+      wrapper.find('.el-tabs__nav-scroll .el-tabs__active-bar').exists()
+    ).toBe(true)
+  })
+
+  test('fixed tabs remain joined when navigation fits', async () => {
+    const getBoundingClientRect = vi
+      .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
+      .mockImplementation(function (this: HTMLElement) {
+        let width = 250
+        if (this.classList.contains('el-tabs__nav-wrap')) width = 500
+        if (this.classList.contains('el-tabs__nav-fixed')) width = 100
+        return {
+          width,
+          height: 40,
+          top: 0,
+          right: width,
+          bottom: 40,
+          left: 0,
+          x: 0,
+          y: 0,
+          toJSON: () => ({}),
+        }
+      })
+    const wrapper = mount(() => (
+      <Tabs>
+        <TabPane fixed="left" label="left" name="left" />
+        <TabPane label="center" name="center" />
+        <TabPane fixed="right" label="right" name="right" />
+      </Tabs>
+    ))
+
+    await nextTick()
+    wrapper.findComponent(TabNav).vm.$forceUpdate()
+    await nextTick()
+
+    const navWrap = wrapper.find('.el-tabs__nav-wrap')
+    expect(navWrap.classes()).toContain('is-fixed')
+    expect(navWrap.classes()).not.toContain('is-scrollable')
+    expect(navWrap.find('.el-tabs__nav-prev').exists()).toBe(false)
+    expect(navWrap.find('.el-tabs__nav-next').exists()).toBe(false)
+
+    getBoundingClientRect.mockRestore()
   })
 
   test('scroll buttons belong to the scrollable area with fixed tabs', async () => {
@@ -749,6 +817,88 @@ describe('Tabs.vue', () => {
       wrapper.find('.el-tabs__nav-fixed-right .el-tabs__nav-next').exists()
     ).toBe(false)
 
+    getBoundingClientRect.mockRestore()
+  })
+
+  test('tab navigation scrolling stays within its bounds', async () => {
+    const getBoundingClientRect = vi
+      .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
+      .mockImplementation(function (this: HTMLElement) {
+        let width = 300
+        if (this.classList.contains('el-tabs__nav-wrap')) width = 500
+        if (this.classList.contains('el-tabs__nav-fixed')) width = 100
+        if (this.classList.contains('el-tabs__nav-scroll')) width = 260
+        if (
+          this.classList.contains('el-tabs__nav') &&
+          !this.classList.contains('el-tabs__nav-fixed')
+        ) {
+          width = 600
+        }
+        return {
+          width,
+          height: 40,
+          top: 0,
+          right: width,
+          bottom: 40,
+          left: 0,
+          x: 0,
+          y: 0,
+          toJSON: () => ({}),
+        }
+      })
+    const wrapper = mount(() => (
+      <Tabs>
+        <TabPane fixed="left" label="left" name="left" />
+        <TabPane label="center-1" name="center-1" />
+        <TabPane label="center-2" name="center-2" />
+        <TabPane fixed="right" label="right" name="right" />
+      </Tabs>
+    ))
+
+    await nextTick()
+    wrapper.findComponent(TabNav).vm.$forceUpdate()
+    await nextTick()
+
+    const nav = wrapper.find('.el-tabs__nav-scroll > .el-tabs__nav')
+    const nextFrame = () =>
+      new Promise<void>((resolve) => requestAnimationFrame(() => resolve()))
+
+    nav.element.dispatchEvent(
+      new WheelEvent('wheel', {
+        bubbles: true,
+        cancelable: true,
+        shiftKey: true,
+        deltaY: 1000,
+      })
+    )
+    await nextFrame()
+    await nextTick()
+    expect(nav.attributes('style')).toContain('translateX(-340px)')
+
+    nav.element.dispatchEvent(
+      new WheelEvent('wheel', {
+        bubbles: true,
+        cancelable: true,
+        deltaX: -1000,
+      })
+    )
+    await nextFrame()
+    await nextTick()
+    expect(nav.attributes('style')).toContain('translateX(-0px)')
+
+    const dispatchTouch = (type: string, clientX: number) => {
+      const event = new Event(type, { bubbles: true, cancelable: true })
+      Object.defineProperty(event, 'touches', {
+        value: [{ clientX, clientY: 0 }],
+      })
+      nav.element.dispatchEvent(event)
+    }
+    dispatchTouch('touchstart', 100)
+    dispatchTouch('touchmove', -1000)
+    await nextTick()
+    expect(nav.attributes('style')).toContain('translateX(-340px)')
+
+    wrapper.unmount()
     getBoundingClientRect.mockRestore()
   })
 

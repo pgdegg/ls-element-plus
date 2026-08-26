@@ -1,4 +1,4 @@
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { clamp, isUndefined } from 'lodash-unified'
 import { getClientXY } from '@element-plus/utils'
 
@@ -20,22 +20,17 @@ const TOUCH_SCROLL_THRESHOLD = 5
 interface UseTabNavTouchParams {
   scrollable: Ref<false | Scrollable>
   navOffset: Ref<number>
-  navSize: ComputedRef<number>
-  navContainerSize: ComputedRef<number>
+  maxOffset: Ref<number>
   isHorizontal: ComputedRef<boolean>
 }
 
 export const useTabNavTouch = ({
   scrollable,
   navOffset,
-  navSize,
-  navContainerSize,
+  maxOffset,
   isHorizontal,
 }: UseTabNavTouchParams) => {
   const isTouchScrolling = ref(false)
-  const maxOffset = computed(() =>
-    Math.max(navSize.value - navContainerSize.value, 0)
-  )
   let touchState: TouchState | undefined
   let isMainAxisTouch: boolean | undefined
 

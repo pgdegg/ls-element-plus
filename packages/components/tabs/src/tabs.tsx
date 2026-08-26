@@ -40,6 +40,22 @@ export const tabsProps = buildProps({
     default: '',
   },
   /**
+   * @description type of tabs fixed on the left; inherits `type` when empty
+   */
+  leftType: {
+    type: String,
+    values: ['card', 'border-card', ''],
+    default: '',
+  },
+  /**
+   * @description type of tabs fixed on the right; inherits `type` when empty
+   */
+  rightType: {
+    type: String,
+    values: ['card', 'border-card', ''],
+    default: '',
+  },
+  /**
    * @description whether Tab is closable
    */
   closable: Boolean,

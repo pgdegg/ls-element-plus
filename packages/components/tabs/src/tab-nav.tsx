@@ -12,7 +12,6 @@ import {
 } from 'vue'
 import {
   useDocumentVisibility,
-  useElementSize,
   useResizeObserver,
   useWindowFocus,
 } from '@vueuse/core'
@@ -102,6 +101,7 @@ const TabNav = defineComponent({
 
     const scrollable = ref<false | Scrollable>(false)
     const navOffset = ref(0)
+    const maxOffset = ref(0)
     const isFocus = ref(false)
     const focusable = ref(true)
     const isWheelScrolling = ref(false)
@@ -121,41 +121,32 @@ const TabNav = defineComponent({
       }
     })
 
-    const { width: navContainerWidth, height: navContainerHeight } =
-      useElementSize(navScroll$)
-    const { width: navWidth, height: navHeight } = useElementSize(
-      nav$,
-      { width: 0, height: 0 },
-      { box: 'border-box' }
-    )
+    const getMaxOffset = () => {
+      if (!nav$.value || !navScroll$.value) return 0
 
-    const navContainerSize = computed(() =>
-      isHorizontal.value ? navContainerWidth.value : navContainerHeight.value
-    )
-    const navSize = computed(() =>
-      isHorizontal.value ? navWidth.value : navHeight.value
-    )
+      const navSize = nav$.value.getBoundingClientRect()[sizeName.value]
+      const containerSize =
+        navScroll$.value.getBoundingClientRect()[sizeName.value]
+      return Math.max(navSize - containerSize, 0)
+    }
 
     const { onWheel } = useWheel(
       {
         atStartEdge: computed(() => navOffset.value <= 0),
-        atEndEdge: computed(
-          () => navSize.value - navOffset.value <= navContainerSize.value
-        ),
+        atEndEdge: computed(() => navOffset.value >= maxOffset.value),
         layout: computed(() =>
           isHorizontal.value ? 'horizontal' : 'vertical'
         ),
       },
       (offset) => {
-        navOffset.value = clamp(
-          navOffset.value + offset,
-          0,
-          navSize.value - navContainerSize.value
-        )
+        maxOffset.value = getMaxOffset()
+        navOffset.value = clamp(navOffset.value + offset, 0, maxOffset.value)
       }
     )
 
     const handleWheel = (event: WheelEvent) => {
+      maxOffset.value = getMaxOffset()
+      navOffset.value = clamp(navOffset.value, 0, maxOffset.value)
       isWheelScrolling.value = true
       onWheel(event)
       rAF(() => {
@@ -171,8 +162,7 @@ const TabNav = defineComponent({
     } = useTabNavTouch({
       scrollable,
       navOffset,
-      navSize,
-      navContainerSize,
+      maxOffset,
       isHorizontal,
     })
 
@@ -185,28 +175,21 @@ const TabNav = defineComponent({
 
       if (!currentOffset) return
 
-      const newOffset =
-        currentOffset > containerSize ? currentOffset - containerSize : 0
-
-      navOffset.value = newOffset
+      maxOffset.value = getMaxOffset()
+      navOffset.value = clamp(currentOffset - containerSize, 0, maxOffset.value)
     }
 
     const scrollNext = () => {
       if (!navScroll$.value || !nav$.value) return
 
-      const navSize = nav$.value.getBoundingClientRect()[sizeName.value]
       const containerSize =
         navScroll$.value.getBoundingClientRect()[sizeName.value]
       const currentOffset = navOffset.value
+      maxOffset.value = getMaxOffset()
 
-      if (!isGreaterThan(navSize - currentOffset, containerSize)) return
+      if (!isGreaterThan(maxOffset.value, currentOffset)) return
 
-      const newOffset =
-        navSize - currentOffset > containerSize * 2
-          ? currentOffset + containerSize
-          : navSize - containerSize
-
-      navOffset.value = newOffset
+      navOffset.value = clamp(currentOffset + containerSize, 0, maxOffset.value)
     }
 
     const scrollToActiveTab = async () => {
@@ -229,9 +212,12 @@ const TabNav = defineComponent({
       const navScrollLeft = navScrollBounding.left + 1
       const navScrollRight = navScrollBounding.right - 1
       const navBounding = nav.getBoundingClientRect()
-      const maxOffset = isHorizontal.value
-        ? navBounding.width - navScrollBounding.width
-        : navBounding.height - navScrollBounding.height
+      maxOffset.value = Math.max(
+        isHorizontal.value
+          ? navBounding.width - navScrollBounding.width
+          : navBounding.height - navScrollBounding.height,
+        0
+      )
       const currentOffset = navOffset.value
       let newOffset = currentOffset
 
@@ -253,8 +239,7 @@ const TabNav = defineComponent({
             (activeTabBounding.bottom - navScrollBounding.bottom)
         }
       }
-      newOffset = Math.max(newOffset, 0)
-      navOffset.value = Math.min(newOffset, maxOffset)
+      navOffset.value = clamp(newOffset, 0, maxOffset.value)
     }
 
     const update = () => {
@@ -265,21 +250,29 @@ const TabNav = defineComponent({
       const navSize = nav$.value.getBoundingClientRect()[sizeName.value]
       const containerSize =
         navScroll$.value.getBoundingClientRect()[sizeName.value]
+      const fixedSize = Array.from(
+        el$.value?.querySelectorAll<HTMLElement>(`.${ns.e('nav-fixed')}`) ?? []
+      ).reduce(
+        (size, element) =>
+          size + element.getBoundingClientRect()[sizeName.value],
+        0
+      )
+      const availableContainerSize =
+        (el$.value?.getBoundingClientRect()[sizeName.value] ?? containerSize) -
+        fixedSize
       const currentOffset = navOffset.value
 
-      if (containerSize < navSize) {
+      if (isGreaterThan(navSize, availableContainerSize)) {
+        maxOffset.value = Math.max(navSize - containerSize, 0)
+        const nextOffset = clamp(currentOffset, 0, maxOffset.value)
+        navOffset.value = nextOffset
         scrollable.value = scrollable.value || {}
-        scrollable.value.prev = currentOffset
-        scrollable.value.next = isGreaterThan(
-          navSize,
-          currentOffset + containerSize
-        )
-        if (isGreaterThan(containerSize, navSize - currentOffset)) {
-          navOffset.value = navSize - containerSize
-        }
+        scrollable.value.prev = nextOffset
+        scrollable.value.next = isGreaterThan(maxOffset.value, nextOffset)
       } else {
+        maxOffset.value = 0
         scrollable.value = false
-        if (currentOffset > 0) {
+        if (currentOffset !== 0) {
           navOffset.value = 0
         }
       }
@@ -416,6 +409,12 @@ const TabNav = defineComponent({
         ({ pane }) =>
           pane.props.fixed !== 'left' && pane.props.fixed !== 'right'
       )
+      const hasFixedPanes = fixedLeftPanes.length + fixedRightPanes.length > 0
+      const hasFixedBorderCard =
+        (fixedLeftPanes.length > 0 &&
+          (rootTabs.props.leftType || props.type) === 'border-card') ||
+        (fixedRightPanes.length > 0 &&
+          (rootTabs.props.rightType || props.type) === 'border-card')
 
       const renderTab = ({ pane, index }: (typeof paneEntries)[number]) => {
         const uid = pane.uid
@@ -484,17 +483,22 @@ const TabNav = defineComponent({
       const renderFixedNav = (
         panes: typeof paneEntries,
         position: 'left' | 'right'
-      ) =>
-        panes.length ? (
+      ) => {
+        const fixedType =
+          rootTabs.props[position === 'left' ? 'leftType' : 'rightType'] ||
+          props.type
+
+        return panes.length ? (
           <div
             class={[
               ns.e('nav'),
               ns.e('nav-fixed'),
               ns.e(`nav-fixed-${position}`),
               ns.is(rootTabs.props.tabPosition),
+              ns.is(fixedType, !!fixedType),
             ]}
           >
-            {!props.type ? (
+            {!fixedType ? (
               <TabBar
                 active={panes.some(({ pane }) => pane.active)}
                 ref={
@@ -507,6 +511,7 @@ const TabNav = defineComponent({
             {panes.map(renderTab)}
           </div>
         ) : null
+      }
 
       // By tracking the value property, we can schedule a job to re-render `TabNav` when needed.
       // Unlike `instance.update`, the scheduler ensures the job is queued only once even if we trigger it multiple times.
@@ -518,6 +523,10 @@ const TabNav = defineComponent({
           class={[
             ns.e('nav-wrap'),
             ns.is('scrollable', !!scrollable.value),
+            ns.is('fixed', hasFixedPanes),
+            ns.is('fixed-left', fixedLeftPanes.length > 0),
+            ns.is('fixed-right', fixedRightPanes.length > 0),
+            ns.is('fixed-border-card', hasFixedBorderCard),
             ns.is(rootTabs.props.tabPosition),
           ]}
           role="tablist"
