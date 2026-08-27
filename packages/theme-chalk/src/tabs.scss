@@ -336,27 +336,6 @@
     > .#{$namespace}-tabs__header .#{$namespace}-tabs__nav-wrap::after {
       content: none;
     }
-    > .#{$namespace}-tabs__header
-      .#{$namespace}-tabs__nav-scroll-wrap.is-scrollable
-      > .#{$namespace}-tabs__nav-scroll {
-      box-sizing: border-box;
-      border-right: 1px solid getCssVar('border-color-light');
-      border-left: 1px solid getCssVar('border-color-light');
-
-      > .#{$namespace}-tabs__nav {
-        border-right: none;
-        border-left: none;
-        border-radius: 0;
-
-        > .#{$namespace}-tabs__item:first-child {
-          border-left: none;
-        }
-
-        > .#{$namespace}-tabs__item:last-child {
-          border-right: none;
-        }
-      }
-    }
     > .#{$namespace}-tabs__header .#{$namespace}-tabs__nav {
       border: 1px solid getCssVar('border-color-light');
       border-bottom: none;
@@ -464,6 +443,14 @@
       .is-scrollable
       .#{$namespace}-tabs__item:first-child {
       margin-left: 0;
+    }
+
+    > .#{$namespace}-tabs__header
+      .#{$namespace}-tabs__nav-wrap.is-fixed-left:not(.is-scrollable)
+      > .#{$namespace}-tabs__nav-scroll-wrap
+      .#{$namespace}-tabs__item:first-child {
+      margin-left: 0;
+      border-left-color: getCssVar('border-color');
     }
   }
 
@@ -616,6 +603,12 @@
     }
   }
 
+  &.#{$namespace}-tabs--border-card
+    > .#{$namespace}-tabs__header
+    .#{$namespace}-tabs__nav-fixed.is-border-card::after {
+    bottom: 0;
+  }
+
   @include m(bottom) {
     flex-direction: column;
 
@@ -645,6 +638,28 @@
   }
 
   @include m((card, border-card)) {
+    > .#{$namespace}-tabs__header
+      .#{$namespace}-tabs__nav-scroll-wrap.is-scrollable
+      > .#{$namespace}-tabs__nav-scroll {
+      box-sizing: border-box;
+      border-right: 1px solid getCssVar('border-color-light');
+      border-left: 1px solid getCssVar('border-color-light');
+
+      > .#{$namespace}-tabs__nav {
+        border-right: none;
+        border-left: none;
+        border-radius: 0;
+
+        > .#{$namespace}-tabs__item:first-child {
+          border-left: none;
+        }
+
+        > .#{$namespace}-tabs__item:last-child {
+          border-right: none;
+        }
+      }
+    }
+
     & > .#{$namespace}-tabs__header.is-left,
     & > .#{$namespace}-tabs__header.is-right {
       border-bottom: none;
