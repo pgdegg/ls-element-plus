@@ -650,16 +650,16 @@
       border-left: 1px solid getCssVar('border-color-light');
 
       > .#{$namespace}-tabs__nav {
-        border-right: none;
-        border-left: none;
+        border-right-color: transparent;
+        border-left-color: transparent;
         border-radius: 0;
 
         > .#{$namespace}-tabs__item:first-child {
-          border-left: none;
+          border-left-color: transparent;
         }
 
         > .#{$namespace}-tabs__item:last-child {
-          border-right: none;
+          border-right-color: transparent;
         }
       }
     }
