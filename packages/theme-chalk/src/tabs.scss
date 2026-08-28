@@ -112,6 +112,10 @@
     &:hover {
       color: getCssVar('color-primary');
     }
+
+    &:empty {
+      display: none;
+    }
   }
   @include e(new-tab-vertical) {
     margin-left: 0;
