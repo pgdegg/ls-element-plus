@@ -25,7 +25,12 @@ import { useNamespace, useOrderedChildren } from '@element-plus/hooks'
 import { tabsRootContextKey } from './constants'
 import TabNav from './tab-nav'
 
-import type { ExtractPropTypes, ExtractPublicPropTypes, VNode } from 'vue'
+import type {
+  ExtractPropTypes,
+  ExtractPublicPropTypes,
+  SlotsType,
+  VNode,
+} from 'vue'
 import type { Awaitable } from '@element-plus/utils'
 import type { TabNavInstance } from './tab-nav'
 import type { TabPaneName, TabsPaneContext } from './constants'
@@ -125,6 +130,15 @@ export const tabsEmits = {
 }
 export type TabsEmits = typeof tabsEmits
 
+export type TabsSlots = {
+  default?: () => VNode[]
+  'add-icon'?: () => VNode[]
+  'fixed-top'?: () => VNode[]
+  'fixed-left'?: () => VNode[]
+  'fixed-right'?: () => VNode[]
+  'fixed-bottom'?: () => VNode[]
+}
+
 export type TabsPanes = Record<number, TabsPaneContext>
 
 const Tabs = defineComponent({
@@ -132,6 +146,7 @@ const Tabs = defineComponent({
 
   props: tabsProps,
   emits: tabsEmits,
+  slots: Object as SlotsType<TabsSlots>,
 
   setup(props, { emit, slots, expose }) {
     const ns = useNamespace('tabs')
@@ -306,8 +321,35 @@ const Tabs = defineComponent({
         </div>
       )
 
-      const panels = (
+      const content = (
         <div class={ns.e('content')}>{renderSlot(slots, 'default')}</div>
+      )
+      const fixedContentPositions = ['top', 'left', 'right', 'bottom'] as const
+      const hasFixedContent = fixedContentPositions.some(
+        (position) => slots[`fixed-${position}`]
+      )
+      const renderFixedContent = (
+        position: (typeof fixedContentPositions)[number]
+      ) => {
+        const slotName = `fixed-${position}` as const
+        return slots[slotName] ? (
+          <div
+            class={[ns.e('fixed-content'), ns.em('fixed-content', position)]}
+          >
+            {renderSlot(slots, slotName)}
+          </div>
+        ) : null
+      }
+      const panels = hasFixedContent ? (
+        <div class={ns.e('content-wrap')}>
+          {renderFixedContent('top')}
+          {renderFixedContent('left')}
+          {content}
+          {renderFixedContent('right')}
+          {renderFixedContent('bottom')}
+        </div>
+      ) : (
+        content
       )
 
       return (

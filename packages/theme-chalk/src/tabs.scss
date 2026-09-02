@@ -309,6 +309,37 @@
     position: relative;
     flex-grow: 1;
   }
+  @include e(content-wrap) {
+    display: grid;
+    grid-template:
+      'top top top' auto
+      'left content right' minmax(0, 1fr)
+      'bottom bottom bottom' auto /
+      auto minmax(0, 1fr) auto;
+    flex-grow: 1;
+    min-width: 0;
+    min-height: 0;
+
+    > .#{$namespace}-tabs__content {
+      grid-area: content;
+      min-width: 0;
+      min-height: 0;
+    }
+  }
+  @include e(fixed-content) {
+    @include m(top) {
+      grid-area: top;
+    }
+    @include m(left) {
+      grid-area: left;
+    }
+    @include m(right) {
+      grid-area: right;
+    }
+    @include m(bottom) {
+      grid-area: bottom;
+    }
+  }
   @include m((top, bottom)) {
     > .#{$namespace}-tabs__header {
       .#{$namespace}-tabs__item:nth-child(2) {
@@ -401,9 +432,6 @@
     background: getCssVar('bg-color', 'overlay');
     border: 1px solid getCssVar('border-color');
 
-    > .#{$namespace}-tabs__content {
-      padding: 15px;
-    }
     > .#{$namespace}-tabs__header {
       background-color: getCssVar('fill-color', 'light');
       border-bottom: 1px solid getCssVar('border-color-light');
@@ -837,7 +865,8 @@
     }
 
     // only for SSR
-    > .#{$namespace}-tabs__content + .#{$namespace}-tabs__header {
+    > .#{$namespace}-tabs__content + .#{$namespace}-tabs__header,
+    > .#{$namespace}-tabs__content-wrap + .#{$namespace}-tabs__header {
       order: -1;
     }
   }
@@ -917,7 +946,8 @@
     flex-direction: column;
 
     // only for SSR
-    > .#{$namespace}-tabs__content + .#{$namespace}-tabs__header {
+    > .#{$namespace}-tabs__content + .#{$namespace}-tabs__header,
+    > .#{$namespace}-tabs__content-wrap + .#{$namespace}-tabs__header {
       order: -1;
     }
   }

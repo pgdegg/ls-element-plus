@@ -241,6 +241,54 @@ describe('Tabs.vue', () => {
     expect(tabsWrapper.classes('el-tabs--border-card')).toBe(true)
   })
 
+  test('fixed content slots', () => {
+    const wrapper = mount(() => (
+      <Tabs>
+        {{
+          default: () => <TabPane label="tab">content</TabPane>,
+          'fixed-top': () => <div>top</div>,
+          'fixed-left': () => <div>left</div>,
+          'fixed-right': () => <div>right</div>,
+          'fixed-bottom': () => <div>bottom</div>,
+        }}
+      </Tabs>
+    ))
+
+    const contentWrap = wrapper.find('.el-tabs__content-wrap')
+    const children = Array.from(contentWrap.element.children)
+
+    expect(contentWrap.exists()).toBe(true)
+    expect(children.map((child) => child.className)).toEqual([
+      'el-tabs__fixed-content el-tabs__fixed-content--top',
+      'el-tabs__fixed-content el-tabs__fixed-content--left',
+      'el-tabs__content',
+      'el-tabs__fixed-content el-tabs__fixed-content--right',
+      'el-tabs__fixed-content el-tabs__fixed-content--bottom',
+    ])
+    expect(contentWrap.find('.el-tabs__fixed-content--top').text()).toBe('top')
+    expect(contentWrap.find('.el-tabs__fixed-content--left').text()).toBe(
+      'left'
+    )
+    expect(contentWrap.find('.el-tabs__fixed-content--right').text()).toBe(
+      'right'
+    )
+    expect(contentWrap.find('.el-tabs__fixed-content--bottom').text()).toBe(
+      'bottom'
+    )
+    expect(contentWrap.find('.el-tabs__content').text()).toBe('content')
+  })
+
+  test('does not render content wrapper without fixed content slots', () => {
+    const wrapper = mount(() => (
+      <Tabs>
+        <TabPane label="tab">content</TabPane>
+      </Tabs>
+    ))
+
+    expect(wrapper.find('.el-tabs__content-wrap').exists()).toBe(false)
+    expect(wrapper.find('.el-tabs__content').text()).toBe('content')
+  })
+
   test('dynamic', async () => {
     const tabs = ref([
       {
