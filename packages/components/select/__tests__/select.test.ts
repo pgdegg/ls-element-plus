@@ -2889,6 +2889,50 @@ describe('Select', () => {
       const filterMethod = vi.fn()
       await testAfterSearch({ multiple: true, filterMethod })
     })
+
+    test('should not filter remote options locally', async () => {
+      const remoteMethod = vi.fn()
+      wrapper = _mount(
+        `
+        <el-select
+          v-model="value"
+          filterable
+          remote
+          :remote-method="handleRemote"
+        >
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+        `,
+        () => ({
+          value: '',
+          options: [],
+        }),
+        {
+          methods: {
+            handleRemote(query: string) {
+              remoteMethod(query)
+              this.options = [
+                {
+                  label: 'Result returned by server',
+                  value: 'remote-result',
+                },
+              ]
+            },
+          },
+        }
+      )
+
+      await wrapper.find('input').setValue('unmatched-query')
+      await nextTick()
+
+      expect(remoteMethod).toHaveBeenCalledWith('unmatched-query')
+      expect(wrapper.findComponent(Option).vm.visible).toBe(true)
+    })
   })
 
   describe('teleported API', () => {
