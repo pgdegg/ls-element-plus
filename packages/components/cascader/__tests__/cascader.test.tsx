@@ -589,6 +589,74 @@ describe('Cascader.vue', () => {
     expect(value.value).toEqual(['zhejiang', 'hangzhou'])
   })
 
+  test('should sync and restore filter value', async () => {
+    const filterValue = ref('Ha')
+    const wrapper = _mount(() => (
+      <Cascader
+        filterable
+        filterValue={filterValue.value}
+        options={OPTIONS}
+        onUpdate:filterValue={(value) => (filterValue.value = value)}
+      />
+    ))
+    const cascader = wrapper.findComponent(Cascader)
+    const input = wrapper.find('input')
+
+    ;(cascader.vm as any).togglePopperVisible(true)
+    await nextTick()
+    expect((input.element as HTMLInputElement).value).toBe('Ha')
+    expect(document.querySelectorAll(SUGGESTION_ITEM)).toHaveLength(1)
+
+    await input.setValue('Ni')
+    expect(filterValue.value).toBe('Ni')
+
+    ;(cascader.vm as any).togglePopperVisible(false)
+    await nextTick()
+    expect((input.element as HTMLInputElement).value).toBe('')
+
+    ;(cascader.vm as any).togglePopperVisible(true)
+    await nextTick()
+    expect((input.element as HTMLInputElement).value).toBe('Ni')
+    expect(document.querySelector(SUGGESTION_ITEM)?.textContent).toBe(
+      'Zhejiang / Ningbo'
+    )
+
+    filterValue.value = 'We'
+    await nextTick()
+    expect((input.element as HTMLInputElement).value).toBe('We')
+    expect(document.querySelector(SUGGESTION_ITEM)?.textContent).toBe(
+      'Zhejiang / Wenzhou'
+    )
+  })
+
+  test('should restore filter value in multiple mode', async () => {
+    const filterValue = ref('Ha')
+    const wrapper = _mount(() => (
+      <Cascader
+        filterable
+        filterValue={filterValue.value}
+        options={OPTIONS}
+        props={{ multiple: true }}
+        onUpdate:filterValue={(value) => (filterValue.value = value)}
+      />
+    ))
+    const cascader = wrapper.findComponent(Cascader)
+    const input = wrapper.find('.el-cascader__search-input')
+
+    ;(cascader.vm as any).togglePopperVisible(true)
+    await nextTick()
+    expect((input.element as HTMLInputElement).value).toBe('Ha')
+
+    await input.setValue('Ni')
+    expect(filterValue.value).toBe('Ni')
+
+    ;(cascader.vm as any).togglePopperVisible(false)
+    await nextTick()
+    ;(cascader.vm as any).togglePopperVisible(true)
+    await nextTick()
+    expect((input.element as HTMLInputElement).value).toBe('Ni')
+  })
+
   test('fitInputWidth', async () => {
     const wrapper = _mount(() => (
       <Cascader filterable fitInputWidth options={OPTIONS} />

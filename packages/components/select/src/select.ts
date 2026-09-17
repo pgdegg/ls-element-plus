@@ -102,6 +102,13 @@ export const selectProps = buildProps({
    */
   filterable: Boolean,
   /**
+   * @description binding value of the filter input
+   */
+  filterValue: {
+    type: String,
+    default: undefined,
+  },
+  /**
    * @description whether creating new items is allowed. To use this, `filterable` must be true
    */
   allowCreate: Boolean,
@@ -322,6 +329,7 @@ export const selectEmits = {
   // todo: use generics to eliminate any
   [UPDATE_MODEL_EVENT]: (val: SelectProps['modelValue'] | any) => true,
   [CHANGE_EVENT]: (val: SelectProps['modelValue'] | any) => true,
+  'update:filterValue': (val: string) => typeof val === 'string',
   'popup-scroll': scrollbarEmits.scroll,
   'end-reached': scrollbarEmits['end-reached'],
   'remove-tag': (val: unknown) => true,

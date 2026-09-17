@@ -51,6 +51,10 @@ export interface CascaderComponentProps
    */
   filterable?: boolean
   /**
+   * @description binding value of the filter input
+   */
+  filterValue?: string
+  /**
    * @description customize search logic, the first parameter is `node`, the second is `keyword`, and need return a boolean value indicating whether it hits.
    */
   filterMethod?: (node: CascaderNode, keyword: string) => boolean
@@ -180,6 +184,13 @@ export const cascaderProps = buildProps({
    * @description whether the options can be searched
    */
   filterable: Boolean,
+  /**
+   * @description binding value of the filter input
+   */
+  filterValue: {
+    type: String,
+    default: undefined,
+  },
   /**
    * @description customize search logic, the first parameter is `node`, the second is `keyword`, and need return a boolean value indicating whether it hits.
    */
@@ -332,6 +343,7 @@ const emitChangeFn = (value: CascaderValue | null | undefined) => true
 export const cascaderEmits = {
   [UPDATE_MODEL_EVENT]: emitChangeFn,
   [CHANGE_EVENT]: emitChangeFn,
+  'update:filterValue': (val: string) => typeof val === 'string',
   focus: (evt: FocusEvent) => evt instanceof FocusEvent,
   blur: (evt: FocusEvent) => evt instanceof FocusEvent,
   clear: () => true,

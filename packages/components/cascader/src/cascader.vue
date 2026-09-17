@@ -290,6 +290,7 @@ import {
   isClient,
   isNumber,
   isPromise,
+  isUndefined,
 } from '@element-plus/utils'
 import ElCascaderPanel, {
   CASCADER_PANEL_HEIGHT,
@@ -477,6 +478,13 @@ const readonly = computed(() => !props.filterable || multiple.value)
 const searchKeyword = computed(() =>
   multiple.value ? searchInputValue.value : inputValue.value
 )
+const setFilterInputValue = (value: string) => {
+  if (multiple.value) {
+    searchInputValue.value = value
+  } else {
+    inputValue.value = value
+  }
+}
 const checkedNodes: ComputedRef<CascaderNode[]> = computed(
   () => cascaderPanelRef.value?.checkedNodes || []
 )
@@ -575,6 +583,10 @@ const togglePopperVisible = (visible?: boolean) => {
     inputRef.value?.input?.setAttribute('aria-expanded', `${visible}`)
 
     if (visible) {
+      if (props.filterable && !isUndefined(props.filterValue)) {
+        setFilterInputValue(props.filterValue)
+        handleInput(props.filterValue, undefined, false)
+      }
       updatePopperPosition()
       cascaderPanelRef.value &&
         nextTick(cascaderPanelRef.value.scrollToExpandingNode)
@@ -956,10 +968,18 @@ const handleFilter = useDebounceFn(() => {
   }
 }, debounce)
 
-const handleInput = (val: string, e?: InputEvent) => {
+const handleInput = (
+  val: string,
+  e?: InputEvent,
+  shouldEmitFilterValue = true
+) => {
   !popperVisible.value && togglePopperVisible(true)
 
   if (e?.isComposing) return
+
+  if (shouldEmitFilterValue) {
+    emit('update:filterValue', val)
+  }
 
   if (val) {
     handleFilter()
@@ -973,6 +993,22 @@ const handleInput = (val: string, e?: InputEvent) => {
     hideSuggestionPanel()
   }
 }
+
+watch(
+  () => props.filterValue,
+  (val) => {
+    if (
+      !props.filterable ||
+      !popperVisible.value ||
+      isUndefined(val) ||
+      val === searchKeyword.value
+    )
+      return
+
+    setFilterInputValue(val)
+    handleInput(val, undefined, false)
+  }
+)
 
 const getInputInnerHeight = (inputInner: HTMLElement): number =>
   Number.parseFloat(

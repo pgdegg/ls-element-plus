@@ -98,6 +98,9 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
   // the controller of the expanded popup
   const expanded = ref(false)
   const hoverOption = ref()
+  const isFilterValueControlled = computed(
+    () => !isUndefined(props.filterValue)
+  )
 
   const { form, formItem } = useFormItem()
   const { inputId } = useFormItemInputId(props, {
@@ -279,6 +282,7 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
       if (props.multiple) {
         if (props.filterable && !props.reserveKeyword) {
           states.inputValue = ''
+          emit('update:filterValue', '')
           handleQueryChange('')
         }
       }
@@ -297,6 +301,9 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
     () => expanded.value,
     (val) => {
       if (val) {
+        if (isFilterValueControlled.value) {
+          states.inputValue = props.filterValue!
+        }
         handleQueryChange(states.inputValue)
       } else {
         states.inputValue = ''
@@ -304,6 +311,23 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
         states.isBeforeHide = true
         states.menuVisibleOnFocus = false
       }
+    }
+  )
+
+  watch(
+    () => props.filterValue,
+    (val) => {
+      if (
+        !props.filterable ||
+        !expanded.value ||
+        isUndefined(val) ||
+        val === states.inputValue
+      )
+        return
+
+      states.inputValue = val
+      states.previousQuery = null
+      handleQueryChange(val)
     }
   )
 
@@ -552,6 +576,7 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
 
   const onInput = (event: Event) => {
     states.inputValue = (event.target as HTMLInputElement).value
+    emit('update:filterValue', states.inputValue)
     return onInputChange()
   }
 
@@ -631,6 +656,7 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
       }
       if (props.filterable && (option.created || !props.reserveKeyword)) {
         states.inputValue = ''
+        emit('update:filterValue', '')
       }
     } else {
       !isEqual(props.modelValue, option.value) &&
@@ -740,6 +766,7 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
   const handleEsc = () => {
     if (states.inputValue.length > 0) {
       states.inputValue = ''
+      emit('update:filterValue', '')
     } else {
       expanded.value = false
     }
@@ -760,7 +787,8 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
     if (
       props.remote &&
       props.remoteShowOnInput &&
-      !states.inputValue.length &&
+      !(isFilterValueControlled.value ? props.filterValue : states.inputValue)
+        ?.length &&
       !expanded.value
     )
       return

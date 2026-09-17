@@ -2938,6 +2938,46 @@ describe('Select', () => {
       expect(remoteMethod).toHaveBeenCalledWith('unmatched-query')
       expect(wrapper.findComponent(Option).vm.visible).toBe(true)
     })
+
+    test('should sync and restore filter value', async () => {
+      wrapper = _mount(
+        `
+        <el-select
+          filterable
+          :filter-value="filterValue"
+          @update:filter-value="filterValue = $event"
+        >
+          <el-option label="黄金糕" value="1" />
+          <el-option label="双皮奶" value="2" />
+        </el-select>
+        `,
+        () => ({ filterValue: '黄' })
+      )
+
+      const select = wrapper.findComponent(Select)
+      const input = wrapper.find('input')
+
+      ;(select.vm as any).expanded = true
+      await nextTick()
+      expect((input.element as HTMLInputElement).value).toBe('黄')
+
+      await input.setValue('双')
+      expect((wrapper.vm as any).filterValue).toBe('双')
+
+      ;(select.vm as any).expanded = false
+      await nextTick()
+      expect((input.element as HTMLInputElement).value).toBe('')
+
+      ;(select.vm as any).expanded = true
+      await nextTick()
+      expect((input.element as HTMLInputElement).value).toBe('双')
+      expect(wrapper.findAllComponents(Option)[1].vm.visible).toBe(true)
+
+      ;(wrapper.vm as any).filterValue = '黄金'
+      await nextTick()
+      expect((input.element as HTMLInputElement).value).toBe('黄金')
+      expect(wrapper.findAllComponents(Option)[0].vm.visible).toBe(true)
+    })
   })
 
   describe('teleported API', () => {
