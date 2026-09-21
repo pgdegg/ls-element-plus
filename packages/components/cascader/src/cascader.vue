@@ -611,8 +611,9 @@ const highlightFirstPanelNode = () => {
   )
   const firstNode = menus?.[menus.length - 1]?.querySelector(
     `.${nsCascader.b('node')}:not(.is-disabled)`
-  )
-  setPanelNodeHighlight(firstNode as HTMLElement | undefined)
+  ) as HTMLElement | undefined
+  setPanelNodeHighlight(firstNode)
+  firstNode?.focus({ preventScroll: true })
 }
 
 const genTag = (node: CascaderNode): Tag => {

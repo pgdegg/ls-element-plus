@@ -630,6 +630,7 @@ describe('Cascader.vue', () => {
 
     const firstNode = document.querySelector(NODE) as HTMLElement
     expect(firstNode.classList.contains('is-hovering')).toBe(true)
+    expect(firstNode.matches(':focus')).toBe(true)
     expect(value.value).toEqual([])
     expect(document.querySelectorAll(MENU)).toHaveLength(1)
   })
@@ -653,9 +654,9 @@ describe('Cascader.vue', () => {
     await wrapper.find(TRIGGER).trigger('click')
     await nextTick()
 
-    expect(
-      document.querySelector(NODE)?.classList.contains('is-hovering')
-    ).toBe(true)
+    const firstNode = document.querySelector(NODE) as HTMLElement
+    expect(firstNode.classList.contains('is-hovering')).toBe(true)
+    expect(firstNode.matches(':focus')).toBe(true)
   })
 
   test('should confirm the hovering option with Enter', async () => {
@@ -695,6 +696,7 @@ describe('Cascader.vue', () => {
 
     const firstNode = document.querySelector(NODE) as HTMLElement
     expect(firstNode.classList.contains('is-hovering')).toBe(true)
+    expect(firstNode.matches(':focus')).toBe(true)
     expect(value.value).toEqual([])
   })
 
