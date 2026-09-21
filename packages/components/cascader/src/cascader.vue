@@ -170,7 +170,7 @@
         :virtual-scroll="virtualScroll"
         :item-size="itemSize"
         :height="height"
-        @mousemove="clearFirstPanelNodeHighlight"
+        @mousemove="handlePanelMouseMove"
         @expand-change="handleExpandChange"
         @close="$nextTick(() => togglePopperVisible(false))"
       >
@@ -202,6 +202,7 @@
                 ),
               ]"
               :tabindex="-1"
+              @mouseenter="hoveringSuggestionIndex = index"
               @click="handleSuggestionClick(item)"
             >
               <slot name="suggestion-item" :item="item">
@@ -251,6 +252,7 @@
                 ]"
                 :tabindex="-1"
                 :style="style"
+                @mouseenter="hoveringSuggestionIndex = index"
                 @click="handleSuggestionClick(data[index])"
               >
                 <slot name="suggestion-item" :item="data[index]">
@@ -375,6 +377,7 @@ const props = withDefaults(defineProps<CascaderComponentProps>(), {
   props: () => ({}),
   disabled: undefined,
   clearIcon: markRaw(CircleClose),
+  defaultFirstOption: true,
   filterMethod: (node, keyword) => node.text.includes(keyword),
   separator: ' / ',
   showAllLevels: true,
@@ -624,18 +627,31 @@ const clearFirstPanelNodeHighlight = () => {
     .forEach((node: Element) => node.classList.remove('is-hovering'))
 }
 
+const setPanelNodeHighlight = (node?: HTMLElement) => {
+  clearFirstPanelNodeHighlight()
+  node?.classList.add('is-hovering')
+}
+
+const handlePanelMouseMove = (event: MouseEvent) => {
+  const node = (event.target as HTMLElement).closest<HTMLElement>(
+    `.${nsCascader.b('node')}:not(.is-disabled)`
+  )
+  if (node) setPanelNodeHighlight(node)
+}
+
 const highlightFirstPanelNode = () => {
   clearFirstPanelNodeHighlight()
 
   if (!props.defaultFirstOption || !popperVisible.value || filtering.value)
     return
 
-  const firstNode = cascaderPanelRef.value?.$el.querySelector(
-    `.${nsCascader.b('menu')}:first-child .${nsCascader.b(
-      'node'
-    )}:not(.is-disabled)`
+  const menus = cascaderPanelRef.value?.$el.querySelectorAll(
+    `.${nsCascader.b('menu')}`
   )
-  firstNode?.classList.add('is-hovering')
+  const firstNode = menus?.[menus.length - 1]?.querySelector(
+    `.${nsCascader.b('node')}:not(.is-disabled)`
+  )
+  setPanelNodeHighlight(firstNode as HTMLElement | undefined)
 }
 
 const genTag = (node: CascaderNode): Tag => {
@@ -858,6 +874,12 @@ const handleKeyDown = (e: KeyboardEvent) => {
   const code = getEventCode(e)
 
   switch (code) {
+    case EVENT_CODE.up:
+    case EVENT_CODE.down:
+      togglePopperVisible(true)
+      nextTick(focusFirstNode)
+      e.preventDefault()
+      break
     case EVENT_CODE.enter:
     case EVENT_CODE.numpadEnter:
       if (
@@ -869,12 +891,17 @@ const handleKeyDown = (e: KeyboardEvent) => {
         e.preventDefault()
         break
       }
+      if (popperVisible.value && props.defaultFirstOption) {
+        const hoveringNode = cascaderPanelRef.value?.$el.querySelector(
+          `.${nsCascader.b('node')}.is-hovering`
+        ) as HTMLElement | null
+        if (hoveringNode) {
+          hoveringNode.click()
+          e.preventDefault()
+          break
+        }
+      }
       togglePopperVisible()
-      break
-    case EVENT_CODE.down:
-      togglePopperVisible(true)
-      nextTick(focusFirstNode)
-      e.preventDefault()
       break
     case EVENT_CODE.esc:
       if (popperVisible.value === true) {
@@ -1075,6 +1102,20 @@ watch(
   () => cascaderPanelRef.value?.menus,
   () => nextTick(highlightFirstPanelNode),
   { deep: true, flush: 'post' }
+)
+
+watch(
+  () => props.defaultFirstOption,
+  (enabled) => {
+    if (!enabled) {
+      hoveringSuggestionIndex.value = -1
+      clearFirstPanelNodeHighlight()
+    } else if (filtering.value) {
+      hoveringSuggestionIndex.value = suggestions.value.length ? 0 : -1
+    } else {
+      nextTick(highlightFirstPanelNode)
+    }
+  }
 )
 
 watch(

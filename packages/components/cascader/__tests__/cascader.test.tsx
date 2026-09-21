@@ -618,7 +618,7 @@ describe('Cascader.vue', () => {
   test('should highlight but not select the first option when opened', async () => {
     const value = ref([])
     const wrapper = _mount(() => (
-      <Cascader v-model={value.value} defaultFirstOption options={OPTIONS} />
+      <Cascader v-model={value.value} options={OPTIONS} />
     ))
 
     await wrapper.find(TRIGGER).trigger('click')
@@ -630,15 +630,45 @@ describe('Cascader.vue', () => {
     expect(document.querySelectorAll(MENU)).toHaveLength(1)
   })
 
+  test('should not highlight the first option when default-first-option is disabled', async () => {
+    const wrapper = _mount(() => (
+      <Cascader defaultFirstOption={false} options={OPTIONS} />
+    ))
+
+    await wrapper.find(TRIGGER).trigger('click')
+    await nextTick()
+
+    expect(document.querySelector(`${NODE}.is-hovering`)).toBeNull()
+  })
+
+  test('should confirm the hovering option with Enter', async () => {
+    const value = ref()
+    const options = [
+      { value: 'first', label: 'First' },
+      { value: 'second', label: 'Second' },
+    ]
+    const wrapper = _mount(() => (
+      <Cascader v-model={value.value} options={options} />
+    ))
+
+    await wrapper.find(TRIGGER).trigger('click')
+    await nextTick()
+
+    const nodes = document.querySelectorAll(NODE) as NodeListOf<HTMLElement>
+    nodes[1].dispatchEvent(new MouseEvent('mousemove', { bubbles: true }))
+    await nextTick()
+    expect(nodes[1].classList.contains('is-hovering')).toBe(true)
+
+    await wrapper.find('input').trigger('keydown', { code: EVENT_CODE.enter })
+    await nextTick()
+    expect(value.value).toEqual(['second'])
+  })
+
   test('should highlight the first option after options are loaded', async () => {
     const value = ref([])
     const options = ref<typeof OPTIONS>([])
     const wrapper = _mount(() => (
-      <Cascader
-        v-model={value.value}
-        defaultFirstOption
-        options={options.value}
-      />
+      <Cascader v-model={value.value} options={options.value} />
     ))
 
     await wrapper.find(TRIGGER).trigger('click')

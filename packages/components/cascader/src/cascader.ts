@@ -51,7 +51,7 @@ export interface CascaderComponentProps
    */
   filterable?: boolean
   /**
-   * @description whether to highlight the first matching option
+   * @description whether to highlight the first available option
    */
   defaultFirstOption?: boolean
   /**
@@ -189,9 +189,12 @@ export const cascaderProps = buildProps({
    */
   filterable: Boolean,
   /**
-   * @description whether to highlight the first matching option
+   * @description whether to highlight the first available option
    */
-  defaultFirstOption: Boolean,
+  defaultFirstOption: {
+    type: Boolean,
+    default: true,
+  },
   /**
    * @description binding value of the filter input
    */
