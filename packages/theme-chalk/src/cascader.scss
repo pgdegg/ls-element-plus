@@ -237,6 +237,7 @@
     cursor: pointer;
     box-sizing: border-box;
 
+    &.is-hovering,
     &:hover,
     &:focus {
       background: getCssVar('cascader-node', 'background-hover');

@@ -589,6 +589,32 @@ describe('Cascader.vue', () => {
     expect(value.value).toEqual(['zhejiang', 'hangzhou'])
   })
 
+  test('should highlight but not select the first matching option', async () => {
+    const value = ref([])
+    const wrapper = _mount(() => (
+      <Cascader
+        v-model={value.value}
+        defaultFirstOption
+        filterable
+        options={OPTIONS}
+      />
+    ))
+    const input = wrapper.find('input')
+
+    await input.setValue('Zhejiang')
+
+    const suggestions = document.querySelectorAll(
+      SUGGESTION_ITEM
+    ) as NodeListOf<HTMLElement>
+    expect(suggestions).toHaveLength(3)
+    expect(suggestions[0].classList.contains('is-hovering')).toBe(true)
+    expect(value.value).toEqual([])
+
+    await input.trigger('keydown', { code: EVENT_CODE.enter })
+    await nextTick()
+    expect(value.value).toEqual(['zhejiang', 'hangzhou'])
+  })
+
   test('should sync and restore filter value', async () => {
     const filterValue = ref('Ha')
     const wrapper = _mount(() => (

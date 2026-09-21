@@ -190,11 +190,15 @@
         >
           <template v-if="suggestions.length">
             <li
-              v-for="item in suggestions"
+              v-for="(item, index) in suggestions"
               :key="item.uid"
               :class="[
                 nsCascader.e('suggestion-item'),
                 nsCascader.is('checked', item.checked),
+                nsCascader.is(
+                  'hovering',
+                  defaultFirstOption && index === hoveringSuggestionIndex
+                ),
               ]"
               :tabindex="-1"
               @click="handleSuggestionClick(item)"
@@ -239,6 +243,10 @@
                 :class="[
                   nsCascader.e('suggestion-item'),
                   nsCascader.is('checked', data[index].checked),
+                  nsCascader.is(
+                    'hovering',
+                    defaultFirstOption && index === hoveringSuggestionIndex
+                  ),
                 ]"
                 :tabindex="-1"
                 :style="style"
@@ -431,6 +439,7 @@ const suggestionVirtualListRef = ref<FixedSizeListInstance>()
 const popperVisible = ref(false)
 const inputHover = ref(false)
 const filtering = ref(false)
+const hoveringSuggestionIndex = ref(-1)
 const inputValue = ref('')
 const searchInputValue = ref('')
 const tags = ref<Tag[]>([])
@@ -605,6 +614,7 @@ const updatePopperPosition = () => {
 }
 const hideSuggestionPanel = () => {
   filtering.value = false
+  hoveringSuggestionIndex.value = -1
 }
 
 const genTag = (node: CascaderNode): Tag => {
@@ -670,6 +680,8 @@ const calculateSuggestions = () => {
 
   filtering.value = true
   suggestions.value = res!
+  hoveringSuggestionIndex.value =
+    props.defaultFirstOption && suggestions.value.length ? 0 : -1
   nextTick(() => {
     if (props.virtualScroll && suggestions.value.length > 0) {
       suggestionVirtualListRef.value?.scrollToItem(0)
@@ -826,6 +838,15 @@ const handleKeyDown = (e: KeyboardEvent) => {
   switch (code) {
     case EVENT_CODE.enter:
     case EVENT_CODE.numpadEnter:
+      if (
+        filtering.value &&
+        props.defaultFirstOption &&
+        hoveringSuggestionIndex.value >= 0
+      ) {
+        handleSuggestionClick(suggestions.value[hoveringSuggestionIndex.value])
+        e.preventDefault()
+        break
+      }
       togglePopperVisible()
       break
     case EVENT_CODE.down:
