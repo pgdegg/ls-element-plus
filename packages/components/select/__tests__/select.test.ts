@@ -1257,6 +1257,16 @@ describe('Select', () => {
     expect(selectVm.states.hoveringIndex).toBe(1)
   })
 
+  test('check default first option when select is not filterable', async () => {
+    wrapper = getSelectVm({ defaultFirstOption: true })
+    const select = wrapper.findComponent({ name: 'ElSelect' })
+    const selectVm = select.vm as any
+
+    await wrapper.find('input').trigger('click')
+
+    expect(selectVm.states.hoveringIndex).toBe(0)
+  })
+
   test('check default first option when the very first option is disabled', async () => {
     const demoOptions = [
       {

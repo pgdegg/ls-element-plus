@@ -1703,6 +1703,46 @@ describe('Select', () => {
     expect(result).toBeTruthy()
   })
 
+  it('should highlight the first available option when opened with default-first-option', async () => {
+    const wrapper = createSelect({
+      data() {
+        return {
+          options: [
+            { value: 'disabled', label: 'Disabled', disabled: true },
+            { value: 'first', label: 'First' },
+            { value: 'second', label: 'Second' },
+          ],
+          defaultFirstOption: true,
+        }
+      },
+    })
+    const selectVm = wrapper.findComponent(Select).vm as any
+
+    await wrapper.find(`.${WRAPPER_CLASS_NAME}`).trigger('click')
+
+    expect(selectVm.states.hoveringIndex).toBe(1)
+  })
+
+  it('should highlight the selected option when opened with default-first-option', async () => {
+    const wrapper = createSelect({
+      data() {
+        return {
+          value: 'second',
+          options: [
+            { value: 'first', label: 'First' },
+            { value: 'second', label: 'Second' },
+          ],
+          defaultFirstOption: true,
+        }
+      },
+    })
+    const selectVm = wrapper.findComponent(Select).vm as any
+
+    await wrapper.find(`.${WRAPPER_CLASS_NAME}`).trigger('click')
+
+    expect(selectVm.states.hoveringIndex).toBe(1)
+  })
+
   it('should trigger end-reached when dropdown scroll reaches bottom', async () => {
     const onEndReached = vi.fn()
     const wrapper = createSelect({

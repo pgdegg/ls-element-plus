@@ -480,11 +480,7 @@ const useSelect = (props: SelectV2Props, emit: SelectV2EmitFn) => {
     ) {
       props.remoteMethod(val)
     }
-    if (
-      props.defaultFirstOption &&
-      (props.filterable || props.remote) &&
-      filteredOptions.value.length
-    ) {
+    if (shouldDefaultFirstOption()) {
       nextTick(checkDefaultFirstOption)
     } else {
       nextTick(updateHoveringIndex)
@@ -501,9 +497,28 @@ const useSelect = (props: SelectV2Props, emit: SelectV2EmitFn) => {
    * - if there's no user-created option in list, just find the first one as usual
    *   (NOTE: exclude options that are disabled or in disabled-group)
    */
+  const isAvailableOption = (option?: OptionType) => {
+    return !!option && !getDisabled(option) && option.type !== 'Group'
+  }
+
+  const shouldDefaultFirstOption = () => {
+    return (
+      props.defaultFirstOption &&
+      filteredOptions.value.some((option) => isAvailableOption(option))
+    )
+  }
+
   const checkDefaultFirstOption = () => {
-    const optionsInDropdown = filteredOptions.value.filter(
-      (n) => !n.disabled && n.type !== 'Group'
+    if (
+      !states.inputValue.length &&
+      isAvailableOption(filteredOptions.value[indexRef.value])
+    ) {
+      states.hoveringIndex = indexRef.value
+      return
+    }
+
+    const optionsInDropdown = filteredOptions.value.filter((option) =>
+      isAvailableOption(option)
     )
     const userCreatedOption = optionsInDropdown.find((n) => n.created)
     const firstOriginOption = optionsInDropdown[0]
