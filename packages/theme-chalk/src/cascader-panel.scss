@@ -107,7 +107,8 @@
     cursor: pointer;
 
     &:hover,
-    &:focus {
+    &:focus,
+    &.is-hovering {
       background: getCssVar('cascader-node', 'background-hover');
     }
   }

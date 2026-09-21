@@ -170,6 +170,7 @@
         :virtual-scroll="virtualScroll"
         :item-size="itemSize"
         :height="height"
+        @mousemove="clearFirstPanelNodeHighlight"
         @expand-change="handleExpandChange"
         @close="$nextTick(() => togglePopperVisible(false))"
       >
@@ -617,6 +618,26 @@ const hideSuggestionPanel = () => {
   hoveringSuggestionIndex.value = -1
 }
 
+const clearFirstPanelNodeHighlight = () => {
+  cascaderPanelRef.value?.$el
+    .querySelectorAll(`.${nsCascader.b('node')}.is-hovering`)
+    .forEach((node: Element) => node.classList.remove('is-hovering'))
+}
+
+const highlightFirstPanelNode = () => {
+  clearFirstPanelNodeHighlight()
+
+  if (!props.defaultFirstOption || !popperVisible.value || filtering.value)
+    return
+
+  const firstNode = cascaderPanelRef.value?.$el.querySelector(
+    `.${nsCascader.b('menu')}:first-child .${nsCascader.b(
+      'node'
+    )}:not(.is-disabled)`
+  )
+  firstNode?.classList.add('is-hovering')
+}
+
 const genTag = (node: CascaderNode): Tag => {
   const { showAllLevels, separator } = props
   return {
@@ -679,6 +700,7 @@ const calculateSuggestions = () => {
   }
 
   filtering.value = true
+  clearFirstPanelNodeHighlight()
   suggestions.value = res!
   hoveringSuggestionIndex.value =
     props.defaultFirstOption && suggestions.value.length ? 0 : -1
@@ -1044,7 +1066,16 @@ const blur = () => {
   inputRef.value?.blur()
 }
 
-watch(filtering, updatePopperPosition)
+watch(filtering, (val) => {
+  updatePopperPosition()
+  if (!val) nextTick(highlightFirstPanelNode)
+})
+
+watch(
+  () => cascaderPanelRef.value?.menus,
+  () => nextTick(highlightFirstPanelNode),
+  { deep: true, flush: 'post' }
+)
 
 watch(
   [
@@ -1074,6 +1105,11 @@ watch(
   (val) => {
     if (val && props.props.lazy && props.props.lazyLoad) {
       cascaderPanelRef.value?.loadLazyRootNodes()
+    }
+    if (val) {
+      nextTick(highlightFirstPanelNode)
+    } else {
+      clearFirstPanelNodeHighlight()
     }
   }
 )

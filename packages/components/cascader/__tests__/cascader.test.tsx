@@ -615,6 +615,42 @@ describe('Cascader.vue', () => {
     expect(value.value).toEqual(['zhejiang', 'hangzhou'])
   })
 
+  test('should highlight but not select the first option when opened', async () => {
+    const value = ref([])
+    const wrapper = _mount(() => (
+      <Cascader v-model={value.value} defaultFirstOption options={OPTIONS} />
+    ))
+
+    await wrapper.find(TRIGGER).trigger('click')
+    await nextTick()
+
+    const firstNode = document.querySelector(NODE) as HTMLElement
+    expect(firstNode.classList.contains('is-hovering')).toBe(true)
+    expect(value.value).toEqual([])
+    expect(document.querySelectorAll(MENU)).toHaveLength(1)
+  })
+
+  test('should highlight the first option after options are loaded', async () => {
+    const value = ref([])
+    const options = ref<typeof OPTIONS>([])
+    const wrapper = _mount(() => (
+      <Cascader
+        v-model={value.value}
+        defaultFirstOption
+        options={options.value}
+      />
+    ))
+
+    await wrapper.find(TRIGGER).trigger('click')
+    options.value = OPTIONS
+    await nextTick()
+    await nextTick()
+
+    const firstNode = document.querySelector(NODE) as HTMLElement
+    expect(firstNode.classList.contains('is-hovering')).toBe(true)
+    expect(value.value).toEqual([])
+  })
+
   test('should sync and restore filter value', async () => {
     const filterValue = ref('Ha')
     const wrapper = _mount(() => (
