@@ -283,7 +283,6 @@
 <script lang="ts" setup>
 import {
   computed,
-  markRaw,
   nextTick,
   onMounted,
   ref,
@@ -303,10 +302,7 @@ import {
   isPromise,
   isUndefined,
 } from '@element-plus/utils'
-import ElCascaderPanel, {
-  CASCADER_PANEL_HEIGHT,
-  CASCADER_PANEL_ITEM_SIZE,
-} from '@element-plus/components/cascader-panel'
+import ElCascaderPanel from '@element-plus/components/cascader-panel'
 import ElInput from '@element-plus/components/input'
 import ElTooltip from '@element-plus/components/tooltip'
 import ElScrollbar from '@element-plus/components/scrollbar'
@@ -331,8 +327,8 @@ import {
   EVENT_CODE,
   UPDATE_MODEL_EVENT,
 } from '@element-plus/constants'
-import { ArrowDown, Check, CircleClose } from '@element-plus/icons-vue'
-import { cascaderEmits } from './cascader'
+import { ArrowDown, Check } from '@element-plus/icons-vue'
+import { cascaderEmits, cascaderProps } from './cascader'
 
 import type { Options } from '@element-plus/components/popper'
 import type { ComputedRef, StyleValue } from 'vue'
@@ -346,7 +342,6 @@ import type {
   CascaderValue,
   Tag,
 } from '@element-plus/components/cascader-panel'
-import type { CascaderComponentProps } from './cascader'
 
 const SUGGESTION_ITEM_EXTRA_WIDTH = 34 // span margin-right (10px) + check icon width (24px)
 
@@ -372,41 +367,7 @@ defineOptions({
   name: 'ElCascader',
 })
 
-const props = withDefaults(defineProps<CascaderComponentProps>(), {
-  options: () => [],
-  props: () => ({}),
-  disabled: undefined,
-  clearIcon: markRaw(CircleClose),
-  defaultFirstOption: true,
-  filterMethod: (node, keyword) => node.text.includes(keyword),
-  separator: ' / ',
-  showAllLevels: true,
-  maxCollapseTags: 1,
-  debounce: 300,
-  beforeFilter: () => true,
-  placement: 'bottom-start',
-  fallbackPlacements: () => [
-    'bottom-start',
-    'bottom',
-    'top-start',
-    'top',
-    'right',
-    'left',
-  ],
-  teleported: true,
-  effect: 'light',
-  tagType: 'info',
-  tagEffect: 'light',
-  validateEvent: true,
-  persistent: true,
-  showCheckedStrategy: 'child',
-  showPrefix: true,
-  popperClass: undefined,
-  popperStyle: undefined,
-  valueOnClear: undefined,
-  itemSize: CASCADER_PANEL_ITEM_SIZE,
-  height: CASCADER_PANEL_HEIGHT,
-})
+const props = defineProps(cascaderProps)
 const emit = defineEmits(cascaderEmits)
 const attrs = useAttrs()
 const slots = useSlots()

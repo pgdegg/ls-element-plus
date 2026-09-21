@@ -620,6 +620,10 @@ describe('Cascader.vue', () => {
     const wrapper = _mount(() => (
       <Cascader v-model={value.value} options={OPTIONS} />
     ))
+    const cascader = wrapper.findComponent(Cascader)
+
+    expect(cascader.props('defaultFirstOption')).toBe(true)
+    expect(cascader.attributes('defaultFirstOption')).toBeUndefined()
 
     await wrapper.find(TRIGGER).trigger('click')
     await nextTick()
@@ -639,6 +643,19 @@ describe('Cascader.vue', () => {
     await nextTick()
 
     expect(document.querySelector(`${NODE}.is-hovering`)).toBeNull()
+  })
+
+  test('should highlight the first option in check-strictly mode', async () => {
+    const wrapper = _mount(() => (
+      <Cascader options={OPTIONS} props={{ checkStrictly: true }} />
+    ))
+
+    await wrapper.find(TRIGGER).trigger('click')
+    await nextTick()
+
+    expect(
+      document.querySelector(NODE)?.classList.contains('is-hovering')
+    ).toBe(true)
   })
 
   test('should confirm the hovering option with Enter', async () => {
