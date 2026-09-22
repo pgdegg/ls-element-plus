@@ -133,6 +133,7 @@ export type TabsEmits = typeof tabsEmits
 export type TabsSlots = {
   default?: () => VNode[]
   'add-icon'?: () => VNode[]
+  'header-left'?: () => VNode[]
   'fixed-top'?: () => VNode[]
   'fixed-left'?: () => VNode[]
   'fixed-right'?: () => VNode[]
@@ -313,6 +314,11 @@ const Tabs = defineComponent({
             ns.is(props.tabPosition),
           ]}
         >
+          {slots['header-left'] ? (
+            <div class={ns.e('header-left')}>
+              {renderSlot(slots, 'header-left')}
+            </div>
+          ) : null}
           {createVNode(PanesSorter, null, {
             default: tabNav,
             $stable: true,

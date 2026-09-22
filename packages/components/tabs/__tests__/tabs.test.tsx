@@ -807,9 +807,14 @@ describe('Tabs.vue', () => {
       })
     const wrapper = mount(() => (
       <Tabs>
-        <TabPane fixed="left" label="left" name="left" />
-        <TabPane label="center" name="center" />
-        <TabPane fixed="right" label="right" name="right" />
+        {{
+          default: () => [
+            <TabPane fixed="left" label="left" name="left" />,
+            <TabPane label="center" name="center" />,
+            <TabPane fixed="right" label="right" name="right" />,
+          ],
+          'header-left': () => <div class="custom-header-left">custom</div>,
+        }}
       </Tabs>
     ))
 
@@ -863,9 +868,14 @@ describe('Tabs.vue', () => {
       })
     const wrapper = mount(() => (
       <Tabs>
-        <TabPane fixed="left" label="left" name="left" />
-        <TabPane label="center" name="center" />
-        <TabPane fixed="right" label="right" name="right" />
+        {{
+          default: () => [
+            <TabPane fixed="left" label="left" name="left" />,
+            <TabPane label="center" name="center" />,
+            <TabPane fixed="right" label="right" name="right" />,
+          ],
+          'header-left': () => <div class="custom-header-left">custom</div>,
+        }}
       </Tabs>
     ))
 
@@ -874,6 +884,14 @@ describe('Tabs.vue', () => {
     await nextTick()
 
     const scrollWrap = wrapper.find('.el-tabs__nav-scroll-wrap')
+    const headerLeft = wrapper.find('.el-tabs__header-left')
+    const scrollPrev = scrollWrap.find('.el-tabs__nav-prev')
+    expect(headerLeft.text()).toBe('custom')
+    expect(scrollWrap.find('.custom-header-left').exists()).toBe(false)
+    expect(
+      headerLeft.element.compareDocumentPosition(scrollPrev.element) &
+        Node.DOCUMENT_POSITION_FOLLOWING
+    ).toBeTruthy()
     expect(scrollWrap.find('.el-tabs__nav-prev').exists()).toBe(true)
     expect(scrollWrap.find('.el-tabs__nav-next').exists()).toBe(true)
     expect(

@@ -16,6 +16,11 @@
   @include e(header-vertical) {
     flex-direction: column;
   }
+  @include e(header-left) {
+    display: flex;
+    align-items: center;
+    flex: none;
+  }
   @include e(active-bar) {
     position: absolute;
     bottom: 0;
