@@ -199,3 +199,7 @@ checkbox/with-border
 | Name    | Description               |
 | ------- | ------------------------- |
 | default | customize default content |
+
+## HIS fork extensions
+
+See [HIS customization](./his-customization.md) for the shared control APIs and component style ownership.

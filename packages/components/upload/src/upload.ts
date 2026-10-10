@@ -128,6 +128,11 @@ export interface UploadBaseProps {
    * @description accepted [file types](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-accept), will not work when `thumbnail-mode === true`
    */
   accept?: string
+  /** Maximum allowed file size in bytes. */
+  maxSize?: number
+  /** Validate accept for programmatic and dragged files as well. */
+  validateAccept?: boolean
+  onValidationError?: (reason: 'size' | 'type', file: UploadRawFile) => void
   /**
    * @description default uploaded files
    */
@@ -264,6 +269,13 @@ export const uploadBaseProps = buildProps({
   /**
    * @description accepted [file types](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-accept), will not work when `thumbnail-mode === true`
    */
+  maxSize: Number,
+  validateAccept: Boolean,
+  onValidationError: {
+    type: definePropType<
+      (reason: 'size' | 'type', file: UploadRawFile) => void
+    >(Function),
+  },
   accept: {
     type: String,
     default: '',

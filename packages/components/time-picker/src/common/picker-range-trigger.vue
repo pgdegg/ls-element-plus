@@ -129,6 +129,9 @@ const blur = () => {
 }
 
 defineExpose({
+  get inputElement() {
+    return inputRef.value
+  },
   focus,
   blur,
 })

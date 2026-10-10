@@ -43,6 +43,12 @@ export interface TagTooltipProps {
 }
 
 export const selectProps = buildProps({
+  /** @description delimiter for string-backed multiple selections */
+  separator: String,
+  /** @description selected display labels */
+  label: { type: definePropType<string | string[]>([String, Array]) },
+  /** @description additional option value fields included in local filtering */
+  filterKeys: { type: definePropType<string[]>(Array), default: () => [] },
   /**
    * @description the name attribute of select input
    */
@@ -326,10 +332,13 @@ export const selectProps = buildProps({
 })
 /* eslint-disable @typescript-eslint/no-unused-vars */
 export const selectEmits = {
+  'update:label': (value: string | string[] | undefined) =>
+    value == null || typeof value === 'string' || Array.isArray(value),
   // todo: use generics to eliminate any
   [UPDATE_MODEL_EVENT]: (val: SelectProps['modelValue'] | any) => true,
   [CHANGE_EVENT]: (val: SelectProps['modelValue'] | any) => true,
   'update:filterValue': (val: string) => typeof val === 'string',
+  'query-change': (val: string) => typeof val === 'string',
   'popup-scroll': scrollbarEmits.scroll,
   'end-reached': scrollbarEmits['end-reached'],
   'remove-tag': (val: unknown) => true,

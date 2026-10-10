@@ -187,3 +187,7 @@ tabs/default-value
 We exposed the necessary information to implement it yourself.
 You can use a native way to do it, [demo](https://tinyurl.com/2jkyw82j).
 Or using [SortableJs](https://github.com/SortableJS/Sortable), [demo](https://tinyurl.com/2r8js24y).
+
+## HIS fork extensions
+
+See [HIS customization](./his-customization.md) for the shared control APIs and component style ownership.

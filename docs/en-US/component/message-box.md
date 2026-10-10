@@ -212,3 +212,7 @@ The corresponding methods are: `ElMessageBox`, `ElMessageBox.alert`, `ElMessageB
 | roundButton                       | whether to use round button                                                                                                              | ^[boolean]                                                                                                               | false                                            |
 | buttonSize                        | custom size of confirm and cancel buttons                                                                                                | ^[string]`'small' \| 'default' \| 'large'`                                                                               | default                                          |
 | appendTo ^(2.2.19)                | set the root element for the message box                                                                                                 | ^[CSSSelector] / ^[HTMLElement]                                                                                          | —                                                |
+
+## HIS fork extensions
+
+See [HIS customization](./his-customization.md) for the shared control APIs and component style ownership.

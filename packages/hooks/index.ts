@@ -31,3 +31,7 @@ export * from './use-focus-controller'
 export * from './use-composition'
 export * from './use-empty-values'
 export * from './use-aria'
+export * from './use-input-element'
+export * from './use-content-style'
+
+export * from './use-option-model'

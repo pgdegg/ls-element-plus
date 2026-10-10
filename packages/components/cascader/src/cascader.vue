@@ -290,6 +290,7 @@ import {
   useSlots,
   watch,
 } from 'vue'
+import { useInputElement } from '@element-plus/hooks/use-input-element'
 import { clamp, cloneDeep } from 'lodash-unified'
 import { useCssVar, useDebounceFn, useResizeObserver } from '@vueuse/core'
 import {
@@ -668,7 +669,15 @@ const calculateSuggestions = () => {
     ?.filter((node) => {
       if (node.isDisabled) return false
       node.calcText(showAllLevels, separator)
-      return filterMethod(node, searchKeyword.value)
+      return (
+        filterMethod(node, searchKeyword.value) ||
+        (filterMethod === cascaderProps.filterMethod.default &&
+          (props.filterKeys ?? []).some((key) =>
+            String(node.data[key] ?? '')
+              .toLowerCase()
+              .includes(searchKeyword.value.trim().toLowerCase())
+          ))
+      )
     })
 
   if (multiple.value) {
@@ -1127,7 +1136,10 @@ onMounted(() => {
   useResizeObserver(inputWrapper, updateStyle)
 })
 
+const inputElement = useInputElement(() => inputRef.value?.input)
+
 defineExpose({
+  inputElement,
   /**
    * @description get an array of currently selected node,(leafOnly) whether only return the leaf checked nodes, default is `false`
    */

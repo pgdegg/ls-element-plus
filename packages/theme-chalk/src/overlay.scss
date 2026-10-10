@@ -15,3 +15,10 @@
     height: 0;
   }
 }
+
+// HIS component customization.
+.el-overlay,
+.el-modal-dialog,
+.el-overlay-dialog {
+  --el-overlay-color-lighter: rgba(0, 0, 0, 0.2);
+}

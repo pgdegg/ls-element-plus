@@ -12,3 +12,8 @@
   box-sizing: border-box;
   padding: getCssVar('main-padding');
 }
+
+// HIS component customization.
+.el-main {
+  --el-main-padding: 0;
+}

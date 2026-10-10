@@ -41,6 +41,14 @@ export const formMetaProps = buildProps({
 } as const)
 
 export interface FormProps extends FormMetaProps {
+  /** @description inherit readonly state for editable controls */
+  readonly?: boolean
+  /** @description display selection controls without permitting changes */
+  readonlyRaw?: boolean
+  /** @description hide placeholders in descendant controls */
+  hidePlaceholder?: boolean
+  /** @description width of inline form content */
+  contentWidth?: number
   /**
    * @description Data of form component.
    */
@@ -104,6 +112,10 @@ export interface FormProps extends FormMetaProps {
  */
 export const formProps = buildProps({
   ...formMetaProps,
+  readonly: Boolean,
+  readonlyRaw: Boolean,
+  hidePlaceholder: Boolean,
+  contentWidth: Number,
   /**
    * @description Data of form component.
    */

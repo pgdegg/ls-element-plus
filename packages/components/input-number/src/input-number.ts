@@ -15,6 +15,8 @@ import type InputNumber from './input-number.vue'
  * @description input-number component props
  */
 export interface InputNumberProps {
+  /** @description maximum decimal places without padding display */
+  maxPrecision?: number
   /**
    * @description same as `id` in native input
    */
@@ -113,6 +115,7 @@ export interface InputNumberProps {
  * @deprecated Removed after 3.0.0, Use `InputNumberProps` instead.
  */
 export const inputNumberProps = buildProps({
+  maxPrecision: Number,
   /**
    * @description same as `id` in native input
    */
@@ -261,6 +264,8 @@ export type InputNumberPropsPublic = ExtractPublicPropTypes<
 >
 
 export const inputNumberEmits = {
+  'precision-exceed': (value: number, precision: number) =>
+    isNumber(value) && isNumber(precision),
   [CHANGE_EVENT]: (cur: number | undefined, prev: number | undefined) =>
     prev !== cur,
   blur: (e: FocusEvent) => e instanceof FocusEvent,

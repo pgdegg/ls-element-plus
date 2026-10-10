@@ -292,3 +292,56 @@ $switch-content-padding: map.merge(
     }
   }
 }
+
+// HIS component customization.
+// 方正风格开关
+.el-switch {
+  $self: &;
+
+  $size: var(--el-component-size);
+  $size-height: calc(#{$size} - 4px);
+
+  &.is-checked {
+    &#{$self}-square {
+      #{$self}__core {
+        #{$self}__inner {
+          padding: 0 $size 0 4px;
+        }
+
+        #{$self}__action {
+          left: calc(100% - #{$size-height} - 1px);
+        }
+      }
+    }
+  }
+
+  &-square {
+    height: unset;
+
+    #{$self}__core {
+      height: $size;
+      border-radius: 4px;
+
+      #{$self}__inner {
+        height: $size-height;
+        padding: 0 4px 0 $size;
+
+        &-wrapper {
+          font-size: 14px;
+        }
+      }
+
+      #{$self}__action {
+        width: $size-height;
+        height: $size-height;
+        border-radius: 2px;
+      }
+    }
+
+    // &--large {
+    //   #{$self}__core {
+    //     height: calc(var(--el-component-size) * 1.5);
+    //   }
+    // }
+  }
+}

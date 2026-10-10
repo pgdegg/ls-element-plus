@@ -20,6 +20,7 @@ import {
   inject,
   onBeforeUnmount,
   onBeforeUpdate,
+  provide,
   reactive,
   ref,
   useSlots,
@@ -27,7 +28,7 @@ import {
 } from 'vue'
 import { throwError } from '@element-plus/utils'
 import { useNamespace } from '@element-plus/hooks'
-import { tabsRootContextKey } from './constants'
+import { tabPaneActiveContextKey, tabsRootContextKey } from './constants'
 
 import type { TabPaneProps } from './tab-pane'
 
@@ -55,6 +56,22 @@ const isClosable = computed(() => props.closable ?? tabsRoot.props.closable)
 const active = computed(
   () => tabsRoot.currentName.value === (props.name ?? index.value)
 )
+const parentActiveContext = inject(tabPaneActiveContextKey, undefined)
+const inheritedActive = computed(
+  () => active.value && (parentActiveContext?.active.value ?? true)
+)
+const activePath = computed(() => {
+  const current = String(props.name ?? index.value)
+  return parentActiveContext
+    ? `${parentActiveContext.path.value}/${current}`
+    : current
+})
+provide(tabPaneActiveContextKey, {
+  selfActive: active,
+  active: inheritedActive,
+  path: activePath,
+})
+
 const loaded = ref(active.value)
 const paneName = computed(() => props.name ?? index.value)
 const shouldBeRender = computed(

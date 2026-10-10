@@ -1,8 +1,17 @@
 <script lang="ts">
-import { computed, defineComponent, h, onMounted, reactive, ref } from 'vue'
+import {
+  computed,
+  createVNode,
+  defineComponent,
+  h,
+  onMounted,
+  reactive,
+  ref,
+} from 'vue'
 import { pick } from 'lodash-unified'
 import { ElSelect, selectProps } from '@element-plus/components/select'
 import { ElTree, treeProps } from '@element-plus/components/tree'
+import { definePropType } from '@element-plus/utils'
 import { useSelect } from './select'
 import { useTree } from './tree'
 import CacheOptions from './cache-options'
@@ -17,6 +26,9 @@ export default defineComponent({
   props: {
     ...selectProps,
     ...treeProps,
+    filterMethod: {
+      type: definePropType<(query: string) => void>(Function),
+    },
     /**
      * @description The cached data of the lazy node, the structure is the same as the data, used to get the label of the unloaded data
      */
@@ -81,7 +93,7 @@ export default defineComponent({
     })
 
     return () =>
-      h(
+      createVNode(
         ElSelect,
         /**
          * 1. The `props` is processed into `Refs`, but `v-bind` and
@@ -92,7 +104,9 @@ export default defineComponent({
          */
         reactive({
           ...selectProps,
-          ref: (ref: SelectInstance) => (select.value = ref),
+          ref: (instance: unknown) => {
+            select.value = instance ? (instance as SelectInstance) : undefined
+          },
         }),
         {
           ...slots,

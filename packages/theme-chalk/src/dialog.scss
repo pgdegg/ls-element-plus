@@ -205,3 +205,51 @@
     opacity: 0;
   }
 }
+
+// HIS component customization.
+.el-dialog {
+  --el-dialog-padding-primary: 0;
+  --el-dialog-border-radius: 4px;
+
+  > header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 35px;
+    padding: 0 10px !important;
+    color: whitesmoke;
+    background-color: #519bef;
+    border-radius: var(--el-dialog-border-radius) var(--el-dialog-border-radius)
+      0 0;
+  }
+
+  &__header {
+    background-color: #519bef;
+  }
+
+  &__title {
+    letter-spacing: 2px;
+    --el-text-color-primary: whitesmoke;
+  }
+
+  &__headerbtn {
+    position: relative;
+    height: auto;
+    width: auto;
+    margin-bottom: -3px;
+    --el-color-info: whitesmoke;
+    --el-color-primary: rgb(255, 128, 128);
+  }
+
+  &__body {
+    height: var(--el-dialog-body-height, auto);
+  }
+
+  &__footer {
+    background: #efefee;
+    padding: 5px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+}

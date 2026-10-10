@@ -9,3 +9,4 @@ export default ElCascader
 
 export * from './src/cascader'
 export * from './src/instances'
+export * from './src/model-adapter'

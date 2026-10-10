@@ -68,3 +68,5 @@ card/shadow
 | default | customize default content  |
 | header  | content of the Card header |
 | footer  | content of the Card footer |
+
+See [HIS customization](./his-customization.md) for fork-specific APIs.

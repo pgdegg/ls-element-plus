@@ -322,3 +322,33 @@ $button-icon-span-gap: map.merge(
     }
   }
 }
+
+// HIS component customization.
+.el-button {
+  padding: 8px 4px;
+
+  // 定制属性，还原特定样式到默认状态
+  &.restore-padding {
+    padding: 8px 15px;
+  }
+
+  &.is-round {
+    padding: 8px 4px;
+  }
+
+  & + & {
+    margin-left: 4px;
+  }
+
+  &:not(.el-button--small):not(.is-text):not(.is-link):not(.is-circle) {
+    height: var(--el-component-size);
+  }
+
+  // &.is-circle:not(.el-button--small) {
+  //   width: var(--el-component-size);
+  // }
+
+  &:focus-visible {
+    --el-button-outline-color: transparent;
+  }
+}

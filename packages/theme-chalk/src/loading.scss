@@ -105,3 +105,19 @@
     stroke-dashoffset: -120px;
   }
 }
+
+// HIS component customization.
+.loading .el-loading-spinner {
+  .circular {
+    color: var(--el-color-primary);
+  }
+
+  .el-loading-text {
+    // 加粗
+    font-weight: 600;
+    // 放大
+    font-size: 17px;
+    // 设置字体间距
+    letter-spacing: 4px;
+  }
+}

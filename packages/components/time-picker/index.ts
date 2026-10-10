@@ -8,6 +8,7 @@ import type { SFCWithInstall } from '@element-plus/utils'
 export type TimePickerInstance = InstanceType<typeof TimePicker> &
   TimePickerExpose
 export type TimePickerExpose = {
+  readonly inputElement: HTMLInputElement | undefined
   focus: () => void
   blur: () => void
   handleOpen: () => void
@@ -22,3 +23,5 @@ export const ElTimePicker: SFCWithInstall<typeof TimePicker> =
 
 export { CommonPicker, TimePickPanel }
 export default ElTimePicker
+
+export * from './src/quick-input'

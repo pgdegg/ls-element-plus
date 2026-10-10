@@ -222,7 +222,13 @@ const useSelect = (props: SelectV2Props, emit: SelectV2EmitFn) => {
     const isValidOption = (o: Option): boolean => {
       if (isFilterMethodValid.value || isRemoteMethodValid.value) return true
       // when query was given, we should test on the label see whether the label contains the given query
-      return query ? regexp.test(getLabel(o) || '') : true
+      const values = [
+        getLabel(o),
+        ...props.filterKeys.map((key) => get(o, key)),
+      ]
+      return query
+        ? values.some((value) => value != null && regexp.test(String(value)))
+        : true
     }
     if (props.loading) {
       return []

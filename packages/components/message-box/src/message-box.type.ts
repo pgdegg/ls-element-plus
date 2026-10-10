@@ -77,6 +77,8 @@ export type Callback =
 
 /** Options used in MessageBox */
 export interface ElMessageBoxOptions {
+  /** Resolve known cancellation actions instead of rejecting the promise. */
+  resolveOnCancel?: boolean
   /**
    * auto focus when open message-box
    */
@@ -242,6 +244,9 @@ export interface IElMessageBox {
 
   /** Show a confirm message box */
   confirm: ElMessageBoxShortcutMethod
+
+  /** Set defaults used by confirm calls. Per-call options take precedence. */
+  setConfirmDefaults: (options: Partial<ElMessageBoxOptions>) => void
 
   /** Show a prompt message box */
   prompt: ElMessageBoxShortcutMethod

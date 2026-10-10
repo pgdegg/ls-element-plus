@@ -16,12 +16,20 @@ defineOptions({
 })
 const props = withDefaults(defineProps<ButtonGroupProps>(), {
   direction: 'horizontal',
+  disabled: undefined,
+  plain: undefined,
+  text: undefined,
+  link: undefined,
   type: '',
 })
 provide(
   buttonGroupContextKey,
   reactive({
     size: toRef(props, 'size'),
+    disabled: toRef(props, 'disabled'),
+    plain: toRef(props, 'plain'),
+    text: toRef(props, 'text'),
+    link: toRef(props, 'link'),
     type: toRef(props, 'type'),
   })
 )

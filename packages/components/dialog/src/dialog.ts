@@ -20,6 +20,10 @@ export type DialogTransition = string | TransitionProps
  * @description dialog component props
  */
 export interface DialogProps extends DialogContentProps {
+  /** Height of the dialog body. */
+  height?: string | number
+  /** Reset drag position after window resize. */
+  resetOnResize?: boolean
   /**
    * @description whether to append Dialog itself to body. A nested Dialog should have this attribute set to `true`
    */
@@ -102,6 +106,8 @@ export interface DialogProps extends DialogContentProps {
  * @deprecated Removed after 3.0.0, Use `DialogProps` instead.
  */
 export const dialogProps = buildProps({
+  height: { type: [String, Number] },
+  resetOnResize: Boolean,
   ...dialogContentProps,
   /**
    * @description whether to append Dialog itself to body. A nested Dialog should have this attribute set to `true`

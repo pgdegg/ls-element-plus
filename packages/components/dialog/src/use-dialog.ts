@@ -58,6 +58,8 @@ export const useDialog = (
 
   const style = computed<CSSProperties>(() => {
     const style: CSSProperties = {}
+    if (props.height != null)
+      style['--el-dialog-body-height'] = addUnit(props.height)
     const varPrefix = `--${namespace.value}-dialog` as const
     if (!props.fullscreen) {
       if (props.top) {

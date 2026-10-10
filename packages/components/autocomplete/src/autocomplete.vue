@@ -3,6 +3,7 @@
     ref="popperRef"
     :visible="suggestionVisible"
     :placement="placement"
+    :offset="offset"
     :fallback-placements="['bottom-start', 'top-start']"
     :popper-class="[ns.e('popper'), popperClass!]"
     :popper-style="popperStyle"
@@ -52,7 +53,10 @@
         <template v-if="$slots.prefix" #prefix>
           <slot name="prefix" />
         </template>
-        <template v-if="$slots.suffix" #suffix>
+        <template v-if="$slots.suffix || suggestionLoading" #suffix>
+          <el-icon v-if="suggestionLoading" :class="ns.is('loading')"
+            ><Loading
+          /></el-icon>
           <slot name="suffix" />
         </template>
       </el-input>
@@ -66,6 +70,8 @@
           outline: 'none',
         }"
         role="region"
+        @mouseenter="isMouseInsideContent = true"
+        @mouseleave="isMouseInsideContent = false"
       >
         <div
           v-if="$slots.header"
@@ -130,7 +136,7 @@ import {
 import { pick } from 'lodash-unified'
 import { onClickOutside, useDebounceFn } from '@vueuse/core'
 import { Loading } from '@element-plus/icons-vue'
-import { useId, useNamespace } from '@element-plus/hooks'
+import { useId, useInputElement, useNamespace } from '@element-plus/hooks'
 import { NOOP, getEventCode, isArray, throwError } from '@element-plus/utils'
 import {
   CHANGE_EVENT,
@@ -142,7 +148,7 @@ import ElInput, { inputPropsDefaults } from '@element-plus/components/input'
 import ElScrollbar from '@element-plus/components/scrollbar'
 import ElTooltip from '@element-plus/components/tooltip'
 import ElIcon from '@element-plus/components/icon'
-import { useFormDisabled } from '@element-plus/components/form'
+import { useFormDisabled, useFormReadonly } from '@element-plus/components/form'
 import { autocompleteEmits } from './autocomplete'
 
 import type {
@@ -171,6 +177,7 @@ const props = withDefaults(defineProps<AutocompleteProps<T>>(), {
   loopNavigation: true,
   teleported: true,
   showArrow: true,
+  offset: 12,
   popperClass: undefined,
   popperStyle: undefined,
   popperOptions: () => ({}),
@@ -191,7 +198,9 @@ const regionRef = ref<HTMLElement>()
 const popperRef = ref<TooltipInstance>()
 const listboxRef = ref<HTMLElement>()
 
-let readonly = false
+const readonly = useFormReadonly()
+const isMouseInsideContent = ref(false)
+let fetchSerial = 0
 let ignoreFocusEvent = false
 const suggestions = ref([]) as Ref<AutocompleteData<T>>
 const highlightedIndex = ref(-1)
@@ -229,10 +238,14 @@ const onHide = () => {
   highlightedIndex.value = -1
 }
 
+let disposed = false
 const getData = async (queryString: string) => {
-  if (suggestionDisabled.value) return
+  if (disposed) return
+  if (suggestionDisabled.value || disabled.value || readonly.value) return
+  const serial = ++fetchSerial
 
   const cb = (suggestionList: AutocompleteData<T>) => {
+    if (serial !== fetchSerial) return
     loading.value = false
     if (suggestionDisabled.value) return
 
@@ -248,8 +261,16 @@ const getData = async (queryString: string) => {
   if (isArray(props.fetchSuggestions)) {
     cb(props.fetchSuggestions)
   } else {
-    const result = await props.fetchSuggestions(queryString, cb)
-    if (isArray(result)) cb(result)
+    try {
+      const result = await props.fetchSuggestions(queryString, cb)
+      if (isArray(result)) cb(result)
+    } catch {
+      if (serial === fetchSerial) {
+        loading.value = false
+        suggestions.value = []
+        highlightedIndex.value = -1
+      }
+    }
   }
 }
 
@@ -257,6 +278,7 @@ const debounce = computed(() => props.debounce)
 const debouncedGetData = useDebounceFn(getData, debounce)
 
 const handleInput = (value: string) => {
+  ++fetchSerial
   const valuePresented = !!value
 
   emit(INPUT_EVENT, value)
@@ -293,7 +315,7 @@ const handleFocus = (evt: FocusEvent) => {
     activated.value = true
     emit('focus', evt)
     const queryString = props.modelValue ?? ''
-    if (props.triggerOnFocus && !readonly) {
+    if (props.triggerOnFocus && !readonly.value) {
       suggestions.value = []
       highlightedIndex.value = -1
       debouncedGetData(String(queryString))
@@ -307,7 +329,7 @@ const handleBlur = (evt: FocusEvent) => {
   setTimeout(() => {
     // validate current focus event is inside el-tooltip-content
     // if so, ignore the blur event and the next focus event
-    if (popperRef.value?.isFocusInsideContent()) {
+    if (popperRef.value?.isFocusInsideContent() || isMouseInsideContent.value) {
       ignoreFocusEvent = true
       return
     }
@@ -317,7 +339,9 @@ const handleBlur = (evt: FocusEvent) => {
 }
 
 const handleClear = () => {
-  activated.value = false
+  close()
+  suggestions.value = []
+  highlightedIndex.value = -1
   emit(UPDATE_MODEL_EVENT, '')
   emit('clear')
 }
@@ -353,6 +377,8 @@ const handleKeyEscape = (evt: Event) => {
 }
 
 const close = () => {
+  ++fetchSerial
+  loading.value = false
   activated.value = false
 }
 
@@ -388,6 +414,7 @@ const highlight = (index: number) => {
   }
   const [suggestion, suggestionList] = getSuggestionContext()
   const highlightItem = suggestionList[index]
+  if (!highlightItem) return
   const scrollTop = suggestion.scrollTop
   const { offsetTop, scrollHeight } = highlightItem
 
@@ -415,7 +442,8 @@ const getSuggestionContext = () => {
 
 const stopHandle = onClickOutside(listboxRef, (event: FocusEvent) => {
   // Prevent closing if focus is inside popper content
-  if (popperRef.value?.isFocusInsideContent()) return
+  if (popperRef.value?.isFocusInsideContent() || isMouseInsideContent.value)
+    return
   const hadIgnoredFocus = ignoreFocusEvent
   ignoreFocusEvent = false
   if (!suggestionVisible.value) return
@@ -486,10 +514,17 @@ onMounted(() => {
     },
   ].forEach(({ key, value }) => inputElement.setAttribute(key, value))
   // get readonly attr
-  readonly = inputElement.hasAttribute('readonly')
+})
+
+const inputElement = useInputElement(() => inputRef.value?.inputElement)
+
+onBeforeUnmount(() => {
+  disposed = true
+  ++fetchSerial
 })
 
 defineExpose({
+  inputElement,
   /** @description the index of the currently highlighted item */
   highlightedIndex,
   /** @description autocomplete whether activated */

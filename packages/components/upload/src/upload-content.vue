@@ -97,7 +97,29 @@ const uploadFiles = (files: File[]) => {
 }
 
 const upload = async (rawFile: UploadRawFile): Promise<void> => {
-  inputRef.value!.value = ''
+  if (disabled.value) return
+  if (inputRef.value) inputRef.value.value = ''
+  const reason =
+    typeof props.maxSize === 'number' && rawFile.size > props.maxSize
+      ? 'size'
+      : props.validateAccept &&
+          props.accept &&
+          !props.accept.split(',').some((entry) => {
+            const type = entry.trim().toLowerCase()
+            const mime = rawFile.type.toLowerCase()
+            return type.startsWith('.')
+              ? rawFile.name.toLowerCase().endsWith(type)
+              : type.endsWith('/*')
+                ? mime.startsWith(type.slice(0, -1))
+                : !!type && mime === type
+          })
+        ? 'type'
+        : undefined
+  if (reason) {
+    props.onValidationError?.(reason, rawFile)
+    props.onRemove(rawFile)
+    return
+  }
 
   if (!props.beforeUpload) {
     return doUpload(rawFile)

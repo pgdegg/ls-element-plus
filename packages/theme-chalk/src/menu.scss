@@ -374,3 +374,11 @@
 .#{$namespace}-menu {
   outline: none;
 }
+
+// HIS component customization.
+.el-menu:not(.el-menu--collapse) .el-menu-item {
+  --el-menu-base-level-padding: 10px;
+}
+.el-menu--collapse {
+  --el-menu-base-level-padding: 10px;
+}

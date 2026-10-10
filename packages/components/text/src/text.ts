@@ -1,4 +1,4 @@
-import { buildProps } from '@element-plus/utils'
+import { buildProps, definePropType } from '@element-plus/utils'
 import { componentSizes } from '@element-plus/constants'
 
 import type { ExtractPublicPropTypes } from 'vue'
@@ -6,6 +6,10 @@ import type { ComponentSize } from '@element-plus/constants'
 import type Text from './text.vue'
 
 export interface TextProps {
+  /**
+   * @description native click handler on the rendered element
+   */
+  onClick?: (event: MouseEvent) => void
   /**
    * @description text type
    */
@@ -32,6 +36,9 @@ export interface TextProps {
  * @deprecated Removed after 3.0.0, Use `TextProps` instead.
  */
 export const textProps = buildProps({
+  onClick: {
+    type: definePropType<(event: MouseEvent) => void>(Function),
+  },
   /**
    * @description text type
    */

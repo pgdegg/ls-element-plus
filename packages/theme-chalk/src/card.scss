@@ -47,3 +47,31 @@
     box-sizing: border-box;
   }
 }
+
+// HIS component customization.
+.el-card {
+  border-width: 0;
+
+  &__header {
+    --el-card-padding: 10px;
+    background-color: #f8f9fa;
+  }
+
+  &__body {
+    --el-card-padding: 10px;
+  }
+}
+
+.el-card.is-disabled {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: saturate(30%);
+    cursor: not-allowed;
+    pointer-events: none;
+    border-radius: inherit;
+  }
+}

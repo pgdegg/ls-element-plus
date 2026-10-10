@@ -93,3 +93,25 @@
     }
   }
 }
+
+// HIS component customization.
+.el-autocomplete-suggestion {
+  &__wrap {
+    padding: 5px 0;
+  }
+
+  li {
+    padding: 0 10px;
+  }
+}
+
+.el-autocomplete {
+  .el-input-group {
+    &__prepend,
+    &__append {
+      .el-autocomplete {
+        display: flex;
+      }
+    }
+  }
+}

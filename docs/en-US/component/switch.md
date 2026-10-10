@@ -146,3 +146,5 @@ switch/custom-action-slot
 | Method | Description                          | Type                    |
 | ------ | ------------------------------------ | ----------------------- |
 | focus  | manual focus to the switch component | ^[Function]`() => void` |
+
+See [HIS customization](./his-customization.md) for fork-specific APIs.

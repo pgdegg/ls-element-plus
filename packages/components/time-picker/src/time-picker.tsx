@@ -33,6 +33,9 @@ export default defineComponent({
     const modelUpdater = (value: any) => ctx.emit(UPDATE_MODEL_EVENT, value)
     provide(PICKER_POPPER_OPTIONS_INJECTION_KEY, props.popperOptions)
     ctx.expose({
+      get inputElement() {
+        return commonPicker.value?.inputElement
+      },
       /**
        * @description focus the Input component
        */
@@ -71,6 +74,8 @@ export default defineComponent({
           onUpdate:modelValue={modelUpdater}
         >
           {{
+            prepend: ctx.slots.prepend,
+            append: ctx.slots.append,
             default: (props: any) => <Panel {...props} />,
           }}
         </Picker>

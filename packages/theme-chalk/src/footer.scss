@@ -10,3 +10,9 @@
   flex-shrink: 0;
   height: getCssVar('footer-height');
 }
+
+// HIS component customization.
+.el-footer {
+  --el-footer-padding: 0 4px;
+  --el-footer-height: 26px;
+}

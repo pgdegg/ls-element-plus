@@ -95,3 +95,30 @@
     opacity: 0;
   }
 }
+
+// HIS component customization.
+.el-scrollbar {
+  // overflow: unset;
+  &__wrap {
+    height: 100%;
+    // overflow: auto;
+  }
+
+  &__bar {
+    z-index: 10;
+    $horizontal: var(--el-scrollbar-bar-horizontal-height);
+    $vertical: var(--el-scrollbar-bar-vertical-width);
+
+    &.is-horizontal {
+      height: $horizontal;
+      // // 向外偏移 $horizontal，避免遮挡内容
+      // bottom: calc(#{$horizontal} * -1);
+    }
+
+    &.is-vertical {
+      width: $vertical;
+      // // 向外偏移 $vertical，避免遮挡内容
+      // right: calc((#{$vertical} + 2px) * -1);
+    }
+  }
+}

@@ -1,5 +1,5 @@
 <template>
-  <form ref="formRef" :class="formClasses">
+  <form ref="formRef" :class="formClasses" :style="contentStyle">
     <slot />
   </form>
 </template>
@@ -46,6 +46,18 @@ const props = withDefaults(defineProps<FormProps>(), {
   scrollIntoViewOptions: true,
 })
 const emit = defineEmits(formEmits)
+
+const contentStyle = computed(() =>
+  props.contentWidth == null
+    ? undefined
+    : {
+        '--el-form-item-content-width': `${props.contentWidth}px`,
+        '--el-form-item-label-width':
+          typeof props.labelWidth === 'number'
+            ? `${props.labelWidth}px`
+            : props.labelWidth,
+      }
+)
 
 const formRef = ref<HTMLElement>()
 const fields = reactive<FormItemContext[]>([])

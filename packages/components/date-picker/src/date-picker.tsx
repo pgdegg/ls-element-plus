@@ -27,6 +27,9 @@ export default defineComponent({
     )
     const commonPicker = ref<InstanceType<typeof CommonPicker>>()
     const refProps: DatePickerExpose = {
+      get inputElement() {
+        return commonPicker.value?.inputElement
+      },
       focus: () => {
         commonPicker.value?.focus()
       },
@@ -63,6 +66,8 @@ export default defineComponent({
           onUpdate:modelValue={onModelValueUpdated}
         >
           {{
+            prepend: slots.prepend,
+            append: slots.append,
             default: (scopedProps: /**FIXME: remove any type */ any) => (
               <ElDatePickerPanel
                 disabled={props.disabled}

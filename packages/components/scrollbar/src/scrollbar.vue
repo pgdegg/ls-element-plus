@@ -1,5 +1,14 @@
 <template>
-  <div ref="scrollbarRef" :class="ns.b()">
+  <div
+    ref="scrollbarRef"
+    :class="ns.b()"
+    :style="{
+      '--el-scrollbar-bar-vertical-width':
+        overflowWidth === undefined ? undefined : `${overflowWidth}px`,
+      '--el-scrollbar-bar-horizontal-height':
+        overflowHeight === undefined ? undefined : `${overflowHeight}px`,
+    }"
+  >
     <div
       ref="wrapRef"
       :class="wrapKls"
@@ -64,6 +73,8 @@ defineOptions({
 })
 
 const props = withDefaults(defineProps<ScrollbarProps>(), {
+  overflowWidth: 4,
+  overflowHeight: 4,
   distance: 0,
   height: '',
   maxHeight: '',

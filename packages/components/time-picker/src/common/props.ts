@@ -34,6 +34,9 @@ export type GetDisabledSeconds = (
 ) => number[]
 
 export const timePickerDefaultProps = buildProps({
+  hidePlaceholder: { type: Boolean, default: undefined },
+  /** @description accept compact and partial date/time input */
+  quickInput: Boolean,
   /**
    * @description this prop decides if the date picker panel pops up when the input is focused
    */

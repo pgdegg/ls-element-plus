@@ -34,3 +34,12 @@ export interface TabsRootContext {
 
 export const tabsRootContextKey: InjectionKey<TabsRootContext> =
   Symbol('tabsRootContextKey')
+
+export interface TabPaneActiveContext {
+  selfActive: ComputedRef<boolean>
+  active: ComputedRef<boolean>
+  path: ComputedRef<string>
+}
+
+export const tabPaneActiveContextKey: InjectionKey<TabPaneActiveContext> =
+  Symbol('elTabPaneActiveContext')

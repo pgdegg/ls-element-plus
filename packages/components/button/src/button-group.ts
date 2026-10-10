@@ -5,6 +5,12 @@ import type { ExtractPublicPropTypes } from 'vue'
 import type { ButtonProps } from './button'
 
 export interface ButtonGroupProps {
+  /** @description inherited disabled state */
+  disabled?: boolean
+  /** @description inherited button appearance */
+  plain?: boolean
+  text?: boolean
+  link?: boolean
   /**
    * @description control the size of buttons in this button-group
    */
@@ -23,6 +29,10 @@ export interface ButtonGroupProps {
  * @deprecated Removed after 3.0.0, Use `ButtonGroupProps` instead.
  */
 export const buttonGroupProps = {
+  disabled: { type: Boolean, default: undefined },
+  plain: { type: Boolean, default: undefined },
+  text: { type: Boolean, default: undefined },
+  link: { type: Boolean, default: undefined },
   /**
    * @description control the size of buttons in this button-group
    */

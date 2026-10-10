@@ -218,3 +218,46 @@ $radio-font-size: map.merge(
     }
   }
 }
+
+// HIS component customization.
+.el-radio {
+  height: var(--el-component-size);
+
+  &.hide-circle {
+    .el-radio__inner {
+      // 隐藏描点
+      display: none;
+    }
+
+    &.is-bordered {
+      padding: 0 6px;
+    }
+
+    .el-radio__label {
+      padding-left: 0;
+    }
+  }
+
+  &__inner:hover {
+    --el-radio-input-border-color-hover: var(--el-border-color-hover);
+  }
+
+  &-group {
+    &.cancel-disabled .el-radio {
+      // 取消默认父级禁用效果展示(无边框)
+      &.is-checked > .el-radio__label {
+        color: var(--el-color-primary);
+      }
+
+      // 取消默认父级禁用效果展示(有边框)
+      &.is-bordered.is-checked {
+        border-color: var(--el-color-primary);
+      }
+    }
+
+    // gap: 5px;
+    .el-radio {
+      margin-right: 0;
+    }
+  }
+}

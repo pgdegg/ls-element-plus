@@ -31,7 +31,7 @@ import {
 } from 'vue'
 import { useFormItem, useFormItemInputId } from '@element-plus/components/form'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@element-plus/constants'
-import { useId, useNamespace } from '@element-plus/hooks'
+import { useId, useInputElement, useNamespace } from '@element-plus/hooks'
 import { NOOP } from '@element-plus/utils'
 import {
   type RadioGroupProps,
@@ -57,6 +57,10 @@ const emit = defineEmits(radioGroupEmits)
 const ns = useNamespace('radio')
 const radioId = useId()
 const radioGroupRef = ref<HTMLDivElement>()
+const inputElement = useInputElement(() =>
+  radioGroupRef.value?.querySelector<HTMLInputElement>('input:not(:disabled)')
+)
+defineExpose({ inputElement })
 const { formItem } = useFormItem()
 const { inputId: groupId, isLabeledByFormItem } = useFormItemInputId(props, {
   formItemContext: formItem,

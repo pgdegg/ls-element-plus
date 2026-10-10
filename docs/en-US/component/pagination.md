@@ -102,6 +102,8 @@ We'll detect some deprecated usages, if your pagination don't appeared or worked
 
 ### Events
 
+Camel-case aliases (`sizeChange`, `currentChange`, `prevClick`, and `nextClick`) ^(2.14.8) are also accepted in typed event maps. Each listener is called once per event; the original kebab-case names remain supported.
+
 | Name            | Description                                                       | Type                                                         |
 | --------------- | ----------------------------------------------------------------- | ------------------------------------------------------------ |
 | size-change     | triggers when `page-size` changes                                 | ^[Function]`(value: number) => void`                         |

@@ -53,6 +53,11 @@ export interface TagTooltipProps {
 }
 
 export const selectV2Props = buildProps({
+  /** @description delimiter for string-backed multiple selections */
+  separator: String,
+  filterKeys: { type: definePropType<string[]>(Array), default: () => [] },
+  /** @description selected display labels */
+  label: { type: definePropType<string | string[]>([String, Array]) },
   /**
    * @description whether creating new items is allowed. To use this, `filterable` must be true
    */
@@ -374,6 +379,8 @@ export const optionV2Props = buildProps({
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 export const selectV2Emits = {
+  'update:label': (value: string | string[] | undefined) =>
+    value == null || typeof value === 'string' || Array.isArray(value),
   [UPDATE_MODEL_EVENT]: (val: SelectV2Props['modelValue']) => true,
   [CHANGE_EVENT]: (val: SelectV2Props['modelValue']) => true,
   'end-reached': scrollbarEmits['end-reached'],

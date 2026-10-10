@@ -115,3 +115,16 @@
     }
   }
 }
+
+// HIS component customization.
+.el-popper.el-tooltip {
+  &:not(.is-pure) {
+    padding: 4px;
+  }
+
+  .el-select__selection {
+    cursor: pointer;
+    // width: 45vw;
+    gap: 2px;
+  }
+}

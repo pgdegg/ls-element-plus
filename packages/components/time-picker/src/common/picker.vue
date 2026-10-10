@@ -1,184 +1,186 @@
 <template>
-  <el-tooltip
-    ref="refPopper"
-    :visible="pickerVisible"
-    effect="light"
-    pure
-    trigger="click"
-    v-bind="$attrs"
-    role="dialog"
-    teleported
-    :transition="`${nsDate.namespace.value}-zoom-in-top`"
-    :popper-class="[`${nsDate.namespace.value}-picker__popper`, popperClass!]"
-    :popper-style="popperStyle"
-    :popper-options="elPopperOptions"
-    :fallback-placements="fallbackPlacements"
-    :gpu-acceleration="false"
-    :placement="placement"
-    :stop-popper-mouse-event="false"
-    :hide-after="0"
-    persistent
-    @before-show="onBeforeShow"
-    @show="onShow"
-    @hide="onHide"
-  >
-    <template #default>
-      <el-input
-        v-if="!isRangeInput"
-        :id="
-          // https://github.com/vuejs/language-tools/issues/2104#issuecomment-3092541527
-          id as string
-        "
-        ref="inputRef"
-        container-role="combobox"
-        :model-value="
-          // https://github.com/vuejs/language-tools/issues/2104#issuecomment-3092541527
-          displayValue as string
-        "
-        :name="
-          // https://github.com/vuejs/language-tools/issues/2104#issuecomment-3092541527
-          name as string
-        "
-        :size="pickerSize"
-        :disabled="pickerDisabled"
-        :placeholder="placeholder"
-        :class="[
-          nsDate.b('editor'),
-          nsDate.bm('editor', type),
-          nsDate.is('focus', pickerVisible),
-          $attrs.class,
-        ]"
-        :style="$attrs.style"
-        :readonly="
-          !editable ||
-          readonly ||
-          isDatesPicker ||
-          isMonthsPicker ||
-          isYearsPicker ||
-          isQuartersPicker ||
-          type === 'week'
-        "
-        :aria-label="ariaLabel"
-        :tabindex="tabindex"
-        :validate-event="false"
-        @input="onUserInput"
-        @focus="handleFocus"
-        @blur="handleBlur"
-        @keydown="handleKeydownInput"
-        @change="handleChange"
-        @mousedown="onMouseDownInput"
-        @mouseenter="onMouseEnter"
-        @mouseleave="onMouseLeave"
-        @touchstart.passive="onTouchStartInput"
-        @click.stop
-      >
-        <template #prefix>
-          <el-icon
-            v-if="triggerIcon"
-            :class="nsInput.e('icon')"
-            @mousedown.prevent="onMouseDownInput"
-            @touchstart.passive="onTouchStartInput"
-          >
-            <component :is="triggerIcon" />
-          </el-icon>
-        </template>
-        <template #suffix>
-          <el-icon
-            v-if="showClearBtn && clearIcon"
-            :class="`${nsInput.e('icon')} clear-icon`"
-            @mousedown.prevent="onClearIconMousedown"
-            @click="onClear"
-          >
-            <component :is="clearIcon" />
-          </el-icon>
-        </template>
-      </el-input>
-      <picker-range-trigger
-        v-else
-        :id="
-          // https://github.com/vuejs/language-tools/issues/2104#issuecomment-3092541527
-          id as string[]
-        "
-        ref="inputRef"
-        :model-value="displayValue"
-        :name="
-          // https://github.com/vuejs/language-tools/issues/2104#issuecomment-3092541527
-          name as string[]
-        "
-        :disabled="pickerDisabled"
-        :readonly="!editable || readonly"
-        :start-placeholder="startPlaceholder"
-        :end-placeholder="endPlaceholder"
-        :class="rangeInputKls"
-        :style="$attrs.style"
-        :aria-label="ariaLabel"
-        :tabindex="tabindex"
-        autocomplete="off"
-        role="combobox"
-        @click="onMouseDownInput"
-        @focus="handleFocus"
-        @blur="handleBlur"
-        @start-input="handleStartInput"
-        @start-change="handleStartChange"
-        @end-input="handleEndInput"
-        @end-change="handleEndChange"
-        @mousedown="onMouseDownInput"
-        @mouseenter="onMouseEnter"
-        @mouseleave="onMouseLeave"
-        @touchstart.passive="onTouchStartInput"
-        @keydown="handleKeydownInput"
-      >
-        <template #prefix>
-          <el-icon
-            v-if="triggerIcon"
-            :class="[nsInput.e('icon'), nsRange.e('icon')]"
-          >
-            <component :is="triggerIcon" />
-          </el-icon>
-        </template>
-        <template #range-separator>
-          <slot name="range-separator">
-            <span :class="nsRange.b('separator')">{{ rangeSeparator }}</span>
-          </slot>
-        </template>
-        <template #suffix>
-          <el-icon
-            v-if="clearIcon"
-            :class="clearIconKls"
-            @mousedown.prevent="onClearIconMousedown"
-            @click="onClear"
-          >
-            <component :is="clearIcon" />
-          </el-icon>
-        </template>
-      </picker-range-trigger>
-    </template>
-    <template #content>
-      <slot
-        :visible="pickerVisible"
-        :actual-visible="pickerActualVisible"
-        :parsed-value="parsedValue"
-        :format="format"
-        :date-format="dateFormat"
-        :time-format="timeFormat"
-        :unlink-panels="unlinkPanels"
-        :type="type"
-        :default-value="defaultValue"
-        :show-now="showNow"
-        :show-confirm="showConfirm"
-        :show-footer="showFooter"
-        :show-week-number="showWeekNumber"
-        :single-panel="singlePanel"
-        @pick="onPick"
-        @select-range="setSelectionRange"
-        @set-picker-option="onSetPickerOption"
-        @calendar-change="onCalendarChange"
-        @clear="onClear"
-        @panel-change="onPanelChange"
-        @mousedown.stop
-      />
-    </template>
-  </el-tooltip>
+  <InputGroup>
+    <el-tooltip
+      ref="refPopper"
+      :visible="pickerVisible"
+      effect="light"
+      pure
+      trigger="click"
+      v-bind="$attrs"
+      role="dialog"
+      teleported
+      :transition="`${nsDate.namespace.value}-zoom-in-top`"
+      :popper-class="[`${nsDate.namespace.value}-picker__popper`, popperClass!]"
+      :popper-style="popperStyle"
+      :popper-options="elPopperOptions"
+      :fallback-placements="fallbackPlacements"
+      :gpu-acceleration="false"
+      :placement="placement"
+      :stop-popper-mouse-event="false"
+      :hide-after="0"
+      persistent
+      @before-show="onBeforeShow"
+      @show="onShow"
+      @hide="onHide"
+    >
+      <template #default>
+        <el-input
+          v-if="!isRangeInput"
+          :id="
+            // https://github.com/vuejs/language-tools/issues/2104#issuecomment-3092541527
+            id as string
+          "
+          ref="inputRef"
+          container-role="combobox"
+          :model-value="
+            // https://github.com/vuejs/language-tools/issues/2104#issuecomment-3092541527
+            displayValue as string
+          "
+          :name="
+            // https://github.com/vuejs/language-tools/issues/2104#issuecomment-3092541527
+            name as string
+          "
+          :size="pickerSize"
+          :disabled="pickerDisabled"
+          :placeholder="pickerPlaceholder"
+          :class="[
+            nsDate.b('editor'),
+            nsDate.bm('editor', type),
+            nsDate.is('focus', pickerVisible),
+            $attrs.class,
+          ]"
+          :style="$attrs.style"
+          :readonly="
+            !editable ||
+            pickerReadonly ||
+            isDatesPicker ||
+            isMonthsPicker ||
+            isYearsPicker ||
+            isQuartersPicker ||
+            type === 'week'
+          "
+          :aria-label="ariaLabel"
+          :tabindex="tabindex"
+          :validate-event="false"
+          @input="onUserInput"
+          @focus="handleFocus"
+          @blur="handleBlur"
+          @keydown="handleKeydownInput"
+          @change="handleChange"
+          @mousedown="onMouseDownInput"
+          @mouseenter="onMouseEnter"
+          @mouseleave="onMouseLeave"
+          @touchstart.passive="onTouchStartInput"
+          @click.stop
+        >
+          <template #prefix>
+            <el-icon
+              v-if="triggerIcon"
+              :class="nsInput.e('icon')"
+              @mousedown.prevent="onMouseDownInput"
+              @touchstart.passive="onTouchStartInput"
+            >
+              <component :is="triggerIcon" />
+            </el-icon>
+          </template>
+          <template #suffix>
+            <el-icon
+              v-if="showClearBtn && clearIcon"
+              :class="`${nsInput.e('icon')} clear-icon`"
+              @mousedown.prevent="onClearIconMousedown"
+              @click="onClear"
+            >
+              <component :is="clearIcon" />
+            </el-icon>
+          </template>
+        </el-input>
+        <picker-range-trigger
+          v-else
+          :id="
+            // https://github.com/vuejs/language-tools/issues/2104#issuecomment-3092541527
+            id as string[]
+          "
+          ref="inputRef"
+          :model-value="displayValue"
+          :name="
+            // https://github.com/vuejs/language-tools/issues/2104#issuecomment-3092541527
+            name as string[]
+          "
+          :disabled="pickerDisabled"
+          :readonly="!editable || pickerReadonly"
+          :start-placeholder="pickerStartPlaceholder"
+          :end-placeholder="pickerEndPlaceholder"
+          :class="rangeInputKls"
+          :style="$attrs.style"
+          :aria-label="ariaLabel"
+          :tabindex="tabindex"
+          autocomplete="off"
+          role="combobox"
+          @click="onMouseDownInput"
+          @focus="handleFocus"
+          @blur="handleBlur"
+          @start-input="handleStartInput"
+          @start-change="handleStartChange"
+          @end-input="handleEndInput"
+          @end-change="handleEndChange"
+          @mousedown="onMouseDownInput"
+          @mouseenter="onMouseEnter"
+          @mouseleave="onMouseLeave"
+          @touchstart.passive="onTouchStartInput"
+          @keydown="handleKeydownInput"
+        >
+          <template #prefix>
+            <el-icon
+              v-if="triggerIcon"
+              :class="[nsInput.e('icon'), nsRange.e('icon')]"
+            >
+              <component :is="triggerIcon" />
+            </el-icon>
+          </template>
+          <template #range-separator>
+            <slot name="range-separator">
+              <span :class="nsRange.b('separator')">{{ rangeSeparator }}</span>
+            </slot>
+          </template>
+          <template #suffix>
+            <el-icon
+              v-if="clearIcon"
+              :class="clearIconKls"
+              @mousedown.prevent="onClearIconMousedown"
+              @click="onClear"
+            >
+              <component :is="clearIcon" />
+            </el-icon>
+          </template>
+        </picker-range-trigger>
+      </template>
+      <template #content>
+        <slot
+          :visible="pickerVisible"
+          :actual-visible="pickerActualVisible"
+          :parsed-value="parsedValue"
+          :format="format"
+          :date-format="dateFormat"
+          :time-format="timeFormat"
+          :unlink-panels="unlinkPanels"
+          :type="type"
+          :default-value="defaultValue"
+          :show-now="showNow"
+          :show-confirm="showConfirm"
+          :show-footer="showFooter"
+          :show-week-number="showWeekNumber"
+          :single-panel="singlePanel"
+          @pick="onPick"
+          @select-range="setSelectionRange"
+          @set-picker-option="onSetPickerOption"
+          @calendar-change="onCalendarChange"
+          @clear="onClear"
+          @panel-change="onPanelChange"
+          @mousedown.stop
+        />
+      </template>
+    </el-tooltip>
+  </InputGroup>
 </template>
 
 <script lang="ts" setup>
@@ -191,8 +193,10 @@ import {
   ref,
   unref,
   useAttrs,
+  useSlots,
   watch,
 } from 'vue'
+import { useInputElement } from '@element-plus/hooks/use-input-element'
 import { onClickOutside, unrefElement } from '@vueuse/core'
 import {
   useEmptyValues,
@@ -202,9 +206,11 @@ import {
 import {
   useFormDisabled,
   useFormItem,
+  useFormPlaceholder,
+  useFormReadonly,
   useFormSize,
 } from '@element-plus/components/form'
-import ElInput from '@element-plus/components/input'
+import ElInput, { createInputGroup } from '@element-plus/components/input'
 import ElIcon from '@element-plus/components/icon'
 import ElTooltip from '@element-plus/components/tooltip'
 import { NOOP, debugWarn, getEventCode, isArray } from '@element-plus/utils'
@@ -215,6 +221,8 @@ import {
 } from '@element-plus/constants'
 import { Calendar, Clock } from '@element-plus/icons-vue'
 import { dayOrDaysToDate, valueEquals } from '../utils'
+import { parseQuickInput } from '../quick-input'
+import dayjs from 'dayjs'
 import {
   PICKER_BASE_INJECTION_KEY,
   PICKER_POPPER_OPTIONS_INJECTION_KEY,
@@ -231,11 +239,17 @@ import type { Options } from '@popperjs/core'
 import type { DayOrDays, TimePickerDefaultProps, UserInput } from './props'
 import type { TooltipInstance } from '@element-plus/components/tooltip'
 
+const InputGroup = createInputGroup(useSlots(), 'customize-date-picker')
+
 defineOptions({
   name: 'Picker',
 })
 
 const props = defineProps(timePickerDefaultProps)
+const pickerReadonly = useFormReadonly()
+const pickerPlaceholder = useFormPlaceholder()
+const pickerStartPlaceholder = useFormPlaceholder(undefined, 'startPlaceholder')
+const pickerEndPlaceholder = useFormPlaceholder(undefined, 'endPlaceholder')
 const emit = defineEmits([
   UPDATE_MODEL_EVENT,
   CHANGE_EVENT,
@@ -473,7 +487,7 @@ const onClearIconMousedown = () => {
 }
 
 const onClear = (event?: MouseEvent) => {
-  if (props.readonly || pickerDisabled.value) return
+  if (pickerReadonly.value || pickerDisabled.value) return
   isClearIconMousedown = false
   if (showClearBtn.value) {
     event?.stopPropagation()
@@ -491,7 +505,7 @@ const onClear = (event?: MouseEvent) => {
 }
 
 const onMouseDownInput = async (event: MouseEvent) => {
-  if (props.readonly || pickerDisabled.value) return
+  if (pickerReadonly.value || pickerDisabled.value) return
   if (
     (event.target as HTMLElement)?.tagName !== 'INPUT' ||
     isFocused.value ||
@@ -501,7 +515,7 @@ const onMouseDownInput = async (event: MouseEvent) => {
   }
 }
 const onMouseEnter = () => {
-  if (props.readonly || pickerDisabled.value) return
+  if (pickerReadonly.value || pickerDisabled.value) return
   if (!valueIsEmpty.value && props.clearable) {
     hovering.value = true
   }
@@ -512,7 +526,7 @@ const onMouseLeave = () => {
 }
 
 const onTouchStartInput = (event: TouchEvent) => {
-  if (props.readonly || pickerDisabled.value) return
+  if (pickerReadonly.value || pickerDisabled.value) return
   if (
     (event.touches[0].target as HTMLElement)?.tagName !== 'INPUT' ||
     isFocused.value ||
@@ -573,9 +587,30 @@ const handleChange = () => {
   }
 }
 
-const parseUserInputToDayjs = (value: UserInput) => {
+const parseUserInputToDayjs = (value: UserInput, end = false) => {
   if (!value) return null
-  return pickerOptions.value.parseUserInput!(value)
+  if (!props.quickInput)
+    return pickerOptions.value.parseUserInput?.(value) ?? null
+  const type = props.type.includes('time')
+    ? props.type.includes('date')
+      ? 'date-time'
+      : 'time'
+    : 'date'
+  const parse = (input: string | null, isEnd: boolean) => {
+    if (!input) return null
+    const exact = dayjs(input.trim(), props.format, true)
+    return exact.isValid()
+      ? exact
+      : (parseQuickInput(input.trim(), {
+          type,
+          defaultToExtreme: isEnd ? 'max' : 'min',
+        }) ?? null)
+  }
+  if (isArray(value)) {
+    const result = [parse(value[0], false), parse(value[1], true)]
+    return result.every(Boolean) ? (result as DayOrDays) : null
+  }
+  return parse(value, end)
 }
 
 const formatToString = (value: DayOrDays) => {
@@ -587,11 +622,21 @@ const formatToString = (value: DayOrDays) => {
 }
 
 const isValidValue = (value: DayOrDays) => {
-  return pickerOptions.value.isValidValue!(value)
+  return (
+    !!value &&
+    (isArray(value) ? value.every((v) => v?.isValid()) : value.isValid()) &&
+    !!pickerOptions.value.isValidValue?.(value)
+  )
 }
 
 const handleKeydownInput = async (event: Event | KeyboardEvent) => {
-  if (props.readonly || pickerDisabled.value) return
+  if (
+    pickerReadonly.value ||
+    pickerDisabled.value ||
+    !props.editable ||
+    (event as KeyboardEvent).isComposing
+  )
+    return
 
   const code = getEventCode(event as KeyboardEvent)
   emitKeydown(event as KeyboardEvent)
@@ -625,6 +670,20 @@ const handleKeydownInput = async (event: Event | KeyboardEvent) => {
   }
 
   if (code === EVENT_CODE.enter || code === EVENT_CODE.numpadEnter) {
+    if (props.quickInput && isRangeInput.value) {
+      const inputs = inputRef.value?.$el.querySelectorAll('input')
+      if (inputs?.length === 2 && event.target === inputs[0]) {
+        const start = parseUserInputToDayjs(inputs[0].value) as Dayjs | null
+        if (start?.isValid()) {
+          const end = inputs[1].value
+          userInput.value = [start.format(props.format), end || null]
+          inputs[1].focus()
+        }
+        event.preventDefault()
+        event.stopPropagation()
+        return
+      }
+    }
     if (!pickerVisible.value) {
       pickerVisible.value = true
     } else if (
@@ -704,7 +763,7 @@ const handleStartChange = () => {
 
 const handleEndChange = () => {
   const values = unref(userInput) as string[]
-  const value = parseUserInputToDayjs(values && values[1]) as Dayjs
+  const value = parseUserInputToDayjs(values && values[1], true) as Dayjs
   const parsedVal = unref(parsedValue) as [Dayjs, Dayjs]
   if (value && value.isValid()) {
     userInput.value = [
@@ -733,7 +792,15 @@ provide(PICKER_BASE_INJECTION_KEY, {
 })
 provide(ROOT_COMMON_PICKER_INJECTION_KEY, commonPicker)
 
+const inputElement = useInputElement(() =>
+  isRangeInput.value
+    ? (inputRef.value as InstanceType<typeof PickerRangeTrigger> | undefined)
+        ?.inputElement
+    : (inputRef.value as InputInstance | undefined)?.input
+)
+
 defineExpose({
+  inputElement,
   /**
    * @description focus input box.
    */

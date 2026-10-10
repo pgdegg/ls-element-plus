@@ -16,6 +16,8 @@ export interface CheckboxProps extends Pick<
   /**
    * @description binding value
    */
+  hideCircle?: boolean
+  cancelDisabled?: boolean
   modelValue?: number | string | boolean
   /**
    * @description label of the Checkbox when used inside a `checkbox-group`
@@ -84,6 +86,8 @@ export interface CheckboxProps extends Pick<
  * @deprecated Removed after 3.0.0, Use `CheckboxProps` instead.
  */
 export const checkboxProps = {
+  hideCircle: Boolean,
+  cancelDisabled: Boolean,
   /**
    * @description binding value
    */

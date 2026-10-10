@@ -30,7 +30,12 @@ export const useButton = (
   const globalConfig = useGlobalConfig('button')
   const { form } = useFormItem()
   const _size = useFormSize(computed(() => buttonGroupContext?.size))
-  const _disabled = useFormDisabled()
+  const formDisabled = useFormDisabled()
+  const _disabled = computed(
+    () =>
+      formDisabled.value ||
+      (!props.ignoreGroupDisabled && !!buttonGroupContext?.disabled)
+  )
   const _ref = ref<HTMLButtonElement>()
   const slots = useSlots()
 
@@ -42,12 +47,23 @@ export const useButton = (
     () => props.autoInsertSpace ?? globalConfig.value?.autoInsertSpace ?? false
   )
   const _plain = computed(
-    () => props.plain ?? globalConfig.value?.plain ?? false
+    () =>
+      buttonGroupContext?.plain ??
+      props.plain ??
+      globalConfig.value?.plain ??
+      false
   )
   const _round = computed(
     () => props.round ?? globalConfig.value?.round ?? false
   )
-  const _text = computed(() => props.text ?? globalConfig.value?.text ?? false)
+  const _text = computed(
+    () =>
+      buttonGroupContext?.text ??
+      props.text ??
+      globalConfig.value?.text ??
+      false
+  )
+  const _link = computed(() => buttonGroupContext?.link ?? props.link ?? false)
   const _dashed = computed(
     () => props.dashed ?? globalConfig.value?.dashed ?? false
   )
@@ -98,6 +114,7 @@ export const useButton = (
     _round,
     _text,
     _dashed,
+    _link,
     shouldAddSpace,
     handleClick,
   }

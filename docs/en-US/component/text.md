@@ -51,13 +51,14 @@ text/mixed
 
 ### Attributes
 
-| Name                | Description        | Type                                                               | Default |
-| ------------------- | ------------------ | ------------------------------------------------------------------ | ------- |
-| type                | text type          | ^[enum]`'primary' \| 'success' \| 'warning' \| 'danger' \| 'info'` | —       |
-| size                | text size          | ^[enum]`'large' \| 'default' \| 'small'`                           | default |
-| truncated           | render ellipsis    | ^[boolean]                                                         | false   |
-| line-clamp ^(2.4.0) | maximum lines      | ^[string] / ^[number]                                              | —       |
-| tag                 | custom element tag | ^[string]                                                          | span    |
+| Name                | Description          | Type                                                               | Default |
+| ------------------- | -------------------- | ------------------------------------------------------------------ | ------- |
+| type                | text type            | ^[enum]`'primary' \| 'success' \| 'warning' \| 'danger' \| 'info'` | —       |
+| size                | text size            | ^[enum]`'large' \| 'default' \| 'small'`                           | default |
+| truncated           | render ellipsis      | ^[boolean]                                                         | false   |
+| line-clamp ^(2.4.0) | maximum lines        | ^[string] / ^[number]                                              | —       |
+| tag                 | custom element tag   | ^[string]                                                          | span    |
+| on-click ^(2.14.8)  | native click handler | ^[Function]`(event: MouseEvent) => void`                           | —       |
 
 ### Slots
 

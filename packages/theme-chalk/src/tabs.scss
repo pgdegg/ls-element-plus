@@ -1040,3 +1040,136 @@
     opacity: 0;
   }
 }
+
+// HIS component customization.
+.el-tabs {
+  $slef: &;
+
+  .is-fixed {
+    &.is-fixed-left {
+      #{$slef}__nav-fixed-left.is-top.is-border-card {
+        border-radius: 4px 4px 0 0;
+        overflow: hidden;
+      }
+    }
+
+    &:not(.is-scrollable).is-fixed-left {
+      #{$slef}__nav-fixed-left.is-top.is-border-card {
+        border-radius: 4px 0 0 0;
+      }
+    }
+  }
+
+  // "top" | "right" | "bottom" | "left"
+  &--top {
+    &#{$slef}--card {
+      #{$slef}__content {
+        border-top-width: 0;
+        border-radius: 0 0 4px 4px;
+
+        #{$slef}__fixed-content--left + #{$slef}__content {
+          border-radius: 0 0 4px 0;
+          border-left-width: 0;
+          border-bottom-width: 0;
+        }
+      }
+
+      #{$slef}__header {
+        #{$slef}__nav-scroll-wrap.is-scrollable > #{$slef}__nav-scroll {
+          border-radius: 4px 4px 0 0;
+        }
+      }
+    }
+  }
+
+  &--left {
+    #{$slef}__content {
+      border-top-width: 1px;
+    }
+
+    #{$slef}__header.is-left {
+      margin-right: 0;
+    }
+
+    &#{$slef}--card {
+      border-radius: 0 4px 4px 0;
+    }
+  }
+
+  &--right {
+    #{$slef}__content {
+      border-top-width: 1px;
+    }
+
+    #{$slef}__header.is-right {
+      margin-left: 0;
+    }
+
+    &#{$slef}--card {
+      border-radius: 4px 0 0 4px;
+    }
+  }
+
+  &--border {
+    &-card {
+      border-radius: 4px;
+
+      & > #{$slef}__content {
+        padding: 0;
+        border-width: 0 !important;
+      }
+    }
+  }
+
+  &--card {
+    #{$slef}__content {
+      border-width: 1px;
+    }
+
+    --el-tabs-header-height: 30px;
+
+    #{$slef}__item {
+      padding: 0 10px;
+    }
+
+    #{$slef}__header {
+      #{$slef}__item.is-active.is-closable {
+        padding: 0 10px;
+      }
+    }
+  }
+
+  &.el-tabs--top.el-tabs--border-card > .el-tabs__header .el-tabs__item {
+    padding: 0 10px;
+  }
+
+  &__new-tab {
+    margin: 2px 0 0 5px;
+  }
+
+  &__nav-prev {
+    left: 4px;
+  }
+
+  &__nav-next {
+    // left: 0;
+    right: -4px;
+  }
+
+  &__nav-next,
+  &__nav-prev {
+    line-height: unset;
+    height: 30px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__item {
+    padding: 0 10px;
+    --el-tabs-header-height: 30px;
+  }
+
+  &__header {
+    margin: 0;
+  }
+}

@@ -6,6 +6,8 @@ import type { ExtractPublicPropTypes, StyleValue } from 'vue'
 import type Scrollbar from './scrollbar.vue'
 
 export interface ScrollbarProps {
+  overflowWidth?: number
+  overflowHeight?: number
   /**
    * @description trigger distance(px)
    * @default 0
@@ -90,6 +92,8 @@ export interface ScrollbarProps {
  * @deprecated Removed after 3.0.0, Use `ScrollbarProps` instead.
  */
 export const scrollbarProps = buildProps({
+  overflowWidth: { type: Number, default: 4 },
+  overflowHeight: { type: Number, default: 4 },
   /**
    * @description trigger distance(px)
    */

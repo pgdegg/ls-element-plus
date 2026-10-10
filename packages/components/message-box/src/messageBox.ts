@@ -119,7 +119,14 @@ const showMessage = (options: any, appContext?: AppContext | null) => {
     if (options.callback) {
       options.callback(resolve, instance.proxy)
     } else {
-      if (action === 'cancel' || action === 'close') {
+      if (
+        (action === 'cancel' || action === 'close') &&
+        options.resolveOnCancel
+      ) {
+        currentMsg.resolve(
+          options.distinguishCancelAndClose ? action : 'cancel'
+        )
+      } else if (action === 'cancel' || action === 'close') {
         if (options.distinguishCancelAndClose && action !== 'cancel') {
           currentMsg.reject('close')
         } else {
@@ -191,6 +198,11 @@ function MessageBox(
   })
 }
 
+const confirmDefaults: Partial<ElMessageBoxOptions> = {}
+;(MessageBox as IElMessageBox).setConfirmDefaults = (options) => {
+  Object.assign(confirmDefaults, options)
+}
+
 const MESSAGE_BOX_VARIANTS = ['alert', 'confirm', 'prompt'] as const
 const MESSAGE_BOX_DEFAULT_OPTS: Record<
   (typeof MESSAGE_BOX_VARIANTS)[number],
@@ -231,6 +243,7 @@ function messageBoxFactory(boxType: (typeof MESSAGE_BOX_VARIANTS)[number]) {
           message,
           type: '',
           ...MESSAGE_BOX_DEFAULT_OPTS[boxType],
+          ...(boxType === 'confirm' ? confirmDefaults : {}),
         },
         options,
         {

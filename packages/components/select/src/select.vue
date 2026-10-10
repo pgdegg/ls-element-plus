@@ -359,6 +359,7 @@ import {
   toRefs,
   watch,
 } from 'vue'
+import { useInputElement } from '@element-plus/hooks/use-input-element'
 import { ClickOutside } from '@element-plus/directives'
 import ElTooltip from '@element-plus/components/tooltip'
 import ElScrollbar from '@element-plus/components/scrollbar'
@@ -452,6 +453,13 @@ export default defineComponent({
       const fallback = multiple ? [] : undefined
       // When it is array, we check if this is multi-select.
       // Based on the result we get
+      if (
+        props.multiple &&
+        props.separator &&
+        typeof rawModelValue === 'string'
+      ) {
+        return rawModelValue ? rawModelValue.split(props.separator) : []
+      }
       if (isArray(rawModelValue)) {
         return multiple ? rawModelValue : fallback
       }
@@ -464,7 +472,27 @@ export default defineComponent({
       modelValue,
     })
 
-    const API = useSelect(_props, emit)
+    const selectionEmit = ((event: string, ...args: unknown[]) => {
+      if (
+        (event === 'update:modelValue' || event === 'change') &&
+        props.multiple &&
+        props.separator &&
+        Array.isArray(args[0])
+      ) {
+        const values = args[0] as unknown[]
+        args[0] = values
+          .map((value) =>
+            typeof value === 'object' && value !== null
+              ? (value as Record<string, unknown>)[props.valueKey]
+              : value
+          )
+          .join(props.separator)
+      }
+      const dispatch = emit as (event: string, ...args: unknown[]) => void
+      dispatch(event, ...args)
+    }) as typeof emit
+
+    const API = useSelect(_props, selectionEmit)
     const { calculatorRef, inputStyle } = useCalcInputWidth()
     const { getLabel, getValue, getOptions, getDisabled } = useProps(props)
 
@@ -581,8 +609,27 @@ export default defineComponent({
       }
     })
 
+    watch(
+      selectedLabel,
+      (value) => {
+        const label = Array.isArray(value)
+          ? value.map((item) => String(item ?? ''))
+          : String(value ?? '')
+        emit(
+          'update:label',
+          props.separator && Array.isArray(label)
+            ? label.join(props.separator)
+            : label
+        )
+      },
+      { immediate: true }
+    )
+
+    const inputElement = useInputElement(() => API.inputRef.value)
+
     return {
       ...API,
+      inputElement,
       modelValue,
       selectedLabel,
       calculatorRef,

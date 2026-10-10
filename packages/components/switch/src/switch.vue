@@ -149,6 +149,7 @@ const input = shallowRef<HTMLInputElement>()
 
 const switchKls = computed(() => [
   ns.b(),
+  props.square && `${ns.b()}-square`,
   ns.m(switchSize.value),
   ns.is('disabled', switchDisabled.value),
   ns.is('checked', checked.value),

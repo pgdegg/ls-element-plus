@@ -545,3 +545,240 @@
 @include b(input-hidden) {
   display: none !important;
 }
+
+// HIS component customization.
+.el-input {
+  // .el-input-group__prepend {
+  //   background-color: var(--el-fill-color-light);
+  // }
+
+  .el-input-group {
+    // .el-form-item {
+    //   width: 100%;
+    //   // margin: 0 -20px;
+    // }
+
+    &__prepend,
+    &__append {
+      .el-form-item.is-error {
+        .el-form-item__content {
+          .el-input-tag__wrapper,
+          .el-input-tag__wrapper.is-focus,
+          .el-input-tag__wrapper:focus,
+          .el-input-tag__wrapper:hover,
+          .el-input__wrapper,
+          .el-input__wrapper.is-focus,
+          .el-input__wrapper:focus,
+          .el-input__wrapper:hover,
+          .el-select__wrapper,
+          .el-select__wrapper.is-focus,
+          .el-select__wrapper:focus,
+          .el-select__wrapper:hover,
+          .el-textarea__inner,
+          .el-textarea__inner.is-focus,
+          .el-textarea__inner:focus,
+          .el-form-item__content .el-textarea__inner:hover {
+            box-shadow: 0 0 0 1px var(--el-color-danger) inset;
+          }
+        }
+      }
+
+      .el-select .el-select__wrapper {
+        &.is-focused {
+          box-shadow: 0 0 0 1px var(--el-color-primary) inset;
+        }
+
+        &.is-hovering:not(.is-focused):not(.is-disabled) {
+          box-shadow: 0 0 0 1px var(--el-border-color-hover) inset;
+        }
+      }
+
+      // .el-input-number {
+      //   .el-input {
+      //     margin: 0 -20px;
+      //   }
+      // }
+
+      .el-input {
+        flex: 1;
+        margin: 0 -20px;
+
+        &:not(.is-disabled) {
+          .el-input__wrapper {
+            &.is-focus {
+              box-shadow: 0 0 0 1px var(--el-input-focus-border-color) inset;
+            }
+
+            &:hover {
+              box-shadow: 0 0 0 1px var(--el-input-hover-border-color) inset;
+            }
+          }
+        }
+      }
+
+      &:has(.el-input-number) {
+        padding: 0 0 0 20px;
+        .el-input {
+          margin: 0 0 0 -20px;
+        }
+      }
+
+      .el-button,
+      .el-select {
+        display: flex;
+
+        &__wrapper {
+          width: 100%;
+        }
+      }
+
+      .el-form-item {
+        margin-bottom: unset;
+        margin: 0;
+
+        &__content {
+          min-width: unset;
+          width: unset;
+
+          .el-select {
+            min-width: unset;
+          }
+        }
+      }
+    }
+
+    &__prepend {
+      .el-input {
+        &__wrapper {
+          border-bottom-right-radius: 0;
+          border-top-right-radius: 0;
+          box-shadow:
+            1px 0 0 0 var(--el-input-border-color) inset,
+            0 1px 0 0 var(--el-input-border-color) inset,
+            0 -1px 0 0 var(--el-input-border-color) inset;
+        }
+      }
+    }
+
+    &__append {
+      .el-input {
+        &__wrapper {
+          border-bottom-left-radius: 0;
+          border-top-left-radius: 0;
+          box-shadow:
+            -1px 0 0 0 var(--el-input-border-color) inset,
+            0 1px 0 0 var(--el-input-border-color) inset,
+            0 -1px 0 0 var(--el-input-border-color) inset;
+        }
+      }
+    }
+  }
+
+  &.is-readonly:not(.is-disabled) .el-input__wrapper {
+    // background-color: var(--el-disabled-bg-color);
+    background-color: #fafbfc;
+    // box-shadow: 0 0 0 1px var(--el-disabled-border-color) inset;
+  }
+
+  &.is-readonly:not(.is-disabled) .el-input__inner {
+    color: var(--el-disabled-text-color);
+    -webkit-text-fill-color: var(--el-disabled-text-color);
+  }
+}
+
+.el-textarea {
+  &__inner {
+    padding: 1px 11px;
+    min-height: var(--el-component-size) !important;
+
+    &:focus {
+      box-shadow: 0 0 0 1px var(--el-input-focus-border-color) inset;
+    }
+  }
+
+  &.is-readonly .el-textarea__inner {
+    background-color: var(--el-disabled-bg-color);
+    color: var(--el-disabled-text-color);
+  }
+}
+
+// Scanner input focus animation.
+.scan .el-input__wrapper {
+  position: relative;
+  overflow: hidden;
+  transition:
+    box-shadow 0.35s ease,
+    background-color 0.35s ease;
+
+  @keyframes scan-focus {
+    /* 静息 */
+    0%,
+    60%,
+    100% {
+      box-shadow:
+        0 0 0 1.5px rgba(19, 194, 194, 0.6) inset,
+        0 0 4px rgba(19, 194, 194, 0.2);
+    }
+    /* 第一跳 lub */
+    12% {
+      box-shadow:
+        0 0 0 2px #13c2c2 inset,
+        0 0 10px rgba(19, 194, 194, 0.65);
+    }
+    20% {
+      box-shadow:
+        0 0 0 1.5px rgba(19, 194, 194, 0.55) inset,
+        0 0 5px rgba(19, 194, 194, 0.25);
+    }
+    /* 第二跳 dub（更强） */
+    35% {
+      box-shadow:
+        0 0 0 2.5px #13c2c2 inset,
+        0 0 16px rgba(19, 194, 194, 0.8);
+    }
+    48% {
+      box-shadow:
+        0 0 0 1.5px rgba(19, 194, 194, 0.6) inset,
+        0 0 4px rgba(19, 194, 194, 0.2);
+    }
+  }
+
+  @keyframes scan-beam {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(350%);
+    }
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    width: 30%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(19, 194, 194, 0.18),
+      transparent
+    );
+    transform: translateX(-100%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &.is-focus {
+    background: rgba(19, 194, 194, 0.04);
+    box-shadow:
+      0 0 0 1.5px #13c2c2 inset,
+      0 0 8px rgba(19, 194, 194, 0.45);
+    animation: scan-focus 2s ease-in-out infinite;
+
+    &::after {
+      opacity: 1;
+      animation: scan-beam 1.8s linear infinite;
+    }
+  }
+}

@@ -1,0 +1,42 @@
+// HIS component customization.
+.customize-date-picker {
+  &.el-input-group {
+    &--prepend {
+      .el-input.el-date-editor {
+        .el-input__wrapper {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+      }
+    }
+
+    &--append {
+      .el-input.el-date-editor {
+        .el-input__wrapper {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+      }
+    }
+  }
+}
+
+.el-range-editor {
+  &.is-disabled input {
+    --el-disabled-bg-color: none;
+  }
+}
+
+.el-date-editor {
+  &--datetimerange {
+    --el-date-editor-width: 320px;
+  }
+
+  .el-range-separator {
+    flex: unset;
+  }
+
+  .el-range-input {
+    width: 100%;
+  }
+}

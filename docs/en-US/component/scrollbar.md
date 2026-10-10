@@ -94,3 +94,5 @@ scrollbar/infinite-scroll
 | setScrollLeft | Set distance to scroll left                | ^[Function]`(scrollLeft: number) => void`                                  |
 | update        | update scrollbar state manually            | ^[Function]`() => void`                                                    |
 | wrapRef       | scrollbar wrap ref                         | ^[object]`Ref<HTMLDivElement>`                                             |
+
+See [HIS customization](./his-customization.md) for fork-specific APIs.

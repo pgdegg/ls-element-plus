@@ -26,3 +26,43 @@
     }
   }
 }
+
+// HIS component customization.
+.el-form--inline {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+
+  .el-form-item {
+    margin-right: 10px;
+  }
+
+  .el-form-item__content {
+    min-width: var(--el-form-item-content-width);
+
+    > .el-input,
+    > .el-cascader,
+    > .el-select,
+    > .el-date-editor {
+      min-width: var(--el-form-item-content-width);
+      width: var(--el-form-item-content-width);
+    }
+
+    > .el-date-editor {
+      &--datetimerange {
+        min-width: calc(
+          var(--el-form-item-content-width) * 2 +
+            var(--el-form-item-label-width) + 10px
+        );
+        width: calc(
+          var(--el-form-item-content-width) * 2 +
+            var(--el-form-item-label-width) + 10px
+        );
+      }
+    }
+  }
+}
+
+.el-form--inline:has(.el-form-item:nth-of-type(2)) > .el-form-item {
+  margin-bottom: 2px;
+}

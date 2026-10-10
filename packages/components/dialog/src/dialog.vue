@@ -82,6 +82,7 @@
 
 <script lang="ts" setup>
 import { computed, provide, ref, useSlots } from 'vue'
+import { useDebounceFn, useEventListener } from '@vueuse/core'
 import { ElOverlay } from '@element-plus/components/overlay'
 import { useDeprecated, useNamespace, useSameTarget } from '@element-plus/hooks'
 import ElFocusTrap from '@element-plus/components/focus-trap'
@@ -154,6 +155,13 @@ const overlayEvent = useSameTarget(onModalClick)
 const resetPosition = () => {
   dialogContentRef.value?.resetPosition()
 }
+
+useEventListener(
+  'resize',
+  useDebounceFn(() => {
+    if (props.resetOnResize && visible.value) resetPosition()
+  }, 200)
+)
 
 defineExpose({
   /** @description whether the dialog is visible */

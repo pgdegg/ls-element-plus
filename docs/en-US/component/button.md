@@ -196,3 +196,7 @@ button/custom
 | Name    | Description                    | Subtags |
 | ------- | ------------------------------ | ------- |
 | default | customize button group content | Button  |
+
+## HIS fork extensions
+
+See [HIS customization](./his-customization.md) for the shared control APIs and component style ownership.

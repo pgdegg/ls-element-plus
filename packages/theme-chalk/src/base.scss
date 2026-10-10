@@ -1,3 +1,59 @@
 @use 'var.scss';
 @use 'common/transition.scss';
 @use 'icon.scss';
+
+// HIS component customization.
+// 加粗输入框内容
+.bold-content {
+  // 加粗 vlaue
+  &__value {
+    .el-input__inner,
+    .el-select__placeholder {
+      font-weight: bold;
+
+      &::placeholder {
+        font-weight: normal;
+      }
+    }
+  }
+
+  // 加粗 label
+  &__label .el-form-item__label {
+    font-weight: bold;
+  }
+
+  // 加粗 placeholder
+  &__placeholder .el-input__inner::placeholder {
+    font-weight: bold;
+  }
+}
+
+// 放大输入框内容
+.zoom-content {
+  // 放大 vlaue
+  &__value .el-input__inner {
+    font-size: 1.2em;
+
+    &::placeholder {
+      font-size: 0.8rem;
+    }
+  }
+
+  // 放大 label
+  &__label .el-form-item__label {
+    font-size: 1.2em;
+  }
+
+  // 放大 placeholder
+  &__placeholder .el-input__inner::placeholder {
+    font-size: 1.2em;
+  }
+}
+
+// HIS theme defaults.
+:root {
+  --el-text-color-regular: #313131;
+  --el-border-color-hover: #24ab9e;
+  --el-date-editor-datetimerange-width: 300px;
+  --el-component-size: 28px;
+}

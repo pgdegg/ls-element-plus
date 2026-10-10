@@ -233,3 +233,5 @@ import { Edit, Share, Delete, Search, Loading } from '@element-plus/icons-vue'
 | Name    | Description               |
 | ------- | ------------------------- |
 | default | Customize default content |
+
+See [HIS customization](./his-customization.md) for fork-specific APIs.

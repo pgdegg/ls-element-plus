@@ -34,6 +34,8 @@ export interface RadioPropsBase {
 }
 
 export interface RadioProps extends RadioPropsBase {
+  /** @description hide the indicator while retaining the native input */
+  hideCircle?: boolean
   /**
    * @description whether to add a border around Radio
    */
@@ -90,6 +92,7 @@ export const radioPropsBase = buildProps({
  */
 export const radioProps = buildProps({
   ...radioPropsBase,
+  hideCircle: Boolean,
   /**
    * @description whether to add a border around Radio
    */

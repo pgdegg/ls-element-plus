@@ -5,6 +5,7 @@
     :class="textKls"
     :title="$attrs.title ?? (isTruncated ? textRef?.textContent : undefined)"
     :style="{ '-webkit-line-clamp': lineClamp }"
+    @click="props.onClick"
   >
     <slot />
   </component>

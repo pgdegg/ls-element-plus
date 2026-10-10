@@ -298,3 +298,38 @@ $checkbox-bordered-input-width: map.merge(
     margin-right: 0;
   }
 }
+
+// HIS component customization.
+.el-checkbox {
+  &.hide-circle {
+    .el-checkbox__inner {
+      // 隐藏描点
+      display: none;
+    }
+
+    &.is-bordered {
+      padding: 0 6px;
+    }
+
+    .el-checkbox__label {
+      padding-left: 0;
+    }
+  }
+
+  &.cancel-disabled {
+    // 取消默认父级禁用效果展示(无边框)
+    &.is-checked > .el-checkbox__label {
+      // --el-border-color-lighter: var(--el-color-primary);
+      color: var(--el-color-primary);
+    }
+
+    // 取消默认父级禁用效果展示(有边框)
+    &.is-bordered.is-checked {
+      // --el-checkbox-text-color: var(--el-color-primary);
+      border-color: var(--el-color-primary);
+    }
+  }
+
+  height: var(--el-checkbox-height, 24px);
+  margin-right: 5px;
+}

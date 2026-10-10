@@ -1,88 +1,100 @@
 <template>
-  <div
-    :class="[
-      ns.b(),
-      ns.m(inputNumberSize),
-      ns.is('disabled', inputNumberDisabled),
-      ns.is('without-controls', !controls),
-      ns.is('controls-right', controlsAtRight),
-      ns.is(align, !!align),
-    ]"
-    @dragstart.prevent
-  >
-    <span
-      v-if="controls"
-      v-repeat-click="decrease"
-      role="button"
-      :aria-label="t('el.inputNumber.decrease')"
-      :class="[ns.e('decrease'), ns.is('disabled', minDisabled)]"
-      @keydown.enter="decrease"
+  <InputGroup>
+    <div
+      :class="[
+        ns.b(),
+        ns.m(inputNumberSize),
+        ns.is('disabled', inputNumberDisabled),
+        ns.is('without-controls', !controls),
+        ns.is('controls-right', controlsAtRight),
+        ns.is(align, !!align),
+      ]"
+      @dragstart.prevent
     >
-      <slot name="decrease-icon">
-        <el-icon>
-          <arrow-down v-if="controlsAtRight" />
-          <minus v-else />
-        </el-icon>
-      </slot>
-    </span>
-    <span
-      v-if="controls"
-      v-repeat-click="increase"
-      role="button"
-      :aria-label="t('el.inputNumber.increase')"
-      :class="[ns.e('increase'), ns.is('disabled', maxDisabled)]"
-      @keydown.enter="increase"
-    >
-      <slot name="increase-icon">
-        <el-icon>
-          <arrow-up v-if="controlsAtRight" />
-          <plus v-else />
-        </el-icon>
-      </slot>
-    </span>
-    <el-input
-      :id="id"
-      ref="input"
-      :type="formatter ? 'text' : 'number'"
-      :step="step"
-      :model-value="displayValue"
-      :placeholder="placeholder"
-      :readonly="readonly"
-      :disabled="inputNumberDisabled"
-      :size="inputNumberSize"
-      :max="max"
-      :min="min"
-      :name="name"
-      :aria-label="ariaLabel"
-      :validate-event="false"
-      :inputmode="inputmode"
-      :formatter="formatter"
-      :parser="parser"
-      :tabindex="tabindex"
-      @keydown="handleKeydown"
-      @blur="handleBlur"
-      @focus="handleFocus"
-      @input="handleInput"
-      @change="handleInputChange"
-    >
-      <template v-if="$slots.prefix" #prefix>
-        <slot name="prefix" />
-      </template>
-      <template v-if="$slots.suffix" #suffix>
-        <slot name="suffix" />
-      </template>
-    </el-input>
-  </div>
+      <span
+        v-if="controls"
+        v-repeat-click="decrease"
+        role="button"
+        :aria-label="t('el.inputNumber.decrease')"
+        :class="[ns.e('decrease'), ns.is('disabled', minDisabled)]"
+        @keydown.enter="decrease"
+      >
+        <slot name="decrease-icon">
+          <el-icon>
+            <arrow-down v-if="controlsAtRight" />
+            <minus v-else />
+          </el-icon>
+        </slot>
+      </span>
+      <span
+        v-if="controls"
+        v-repeat-click="increase"
+        role="button"
+        :aria-label="t('el.inputNumber.increase')"
+        :class="[ns.e('increase'), ns.is('disabled', maxDisabled)]"
+        @keydown.enter="increase"
+      >
+        <slot name="increase-icon">
+          <el-icon>
+            <arrow-up v-if="controlsAtRight" />
+            <plus v-else />
+          </el-icon>
+        </slot>
+      </span>
+      <el-input
+        :id="id"
+        ref="input"
+        :type="formatter ? 'text' : 'number'"
+        :step="step"
+        :model-value="displayValue"
+        :placeholder="placeholder"
+        :readonly="inputNumberReadonly"
+        :disabled="inputNumberDisabled"
+        :size="inputNumberSize"
+        :max="max"
+        :min="min"
+        :name="name"
+        :aria-label="ariaLabel"
+        :validate-event="false"
+        :inputmode="inputmode"
+        :formatter="formatter"
+        :parser="parser"
+        :tabindex="tabindex"
+        @keydown="handleKeydown"
+        @blur="handleBlur"
+        @focus="handleFocus"
+        @input="handleInput"
+        @change="handleInputChange"
+      >
+        <template v-if="$slots.prefix" #prefix>
+          <slot name="prefix" />
+        </template>
+        <template v-if="$slots.suffix" #suffix>
+          <slot name="suffix" />
+        </template>
+      </el-input>
+    </div>
+  </InputGroup>
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, onUpdated, reactive, ref, watch } from 'vue'
+import {
+  computed,
+  onMounted,
+  onUpdated,
+  reactive,
+  ref,
+  useSlots,
+  watch,
+} from 'vue'
+import { useInputElement } from '@element-plus/hooks/use-input-element'
 import { isNil } from 'lodash-unified'
-import { ElInput } from '@element-plus/components/input'
+import { ElInput, createInputGroup } from '@element-plus/components/input'
 import { ElIcon } from '@element-plus/components/icon'
 import {
   useFormDisabled,
   useFormItem,
+  useFormReadonly,
   useFormSize,
 } from '@element-plus/components/form'
 import { vRepeatClick } from '@element-plus/directives'
@@ -108,6 +120,8 @@ import { inputNumberEmits } from './input-number'
 
 import type { InputInstance } from '@element-plus/components/input'
 import type { InputNumberProps } from './input-number'
+
+const InputGroup = createInputGroup(useSlots(), 'customize-number')
 
 defineOptions({
   name: 'ElInputNumber',
@@ -173,6 +187,7 @@ const controlsAtRight = computed(() => {
 
 const inputNumberSize = useFormSize()
 const inputNumberDisabled = useFormDisabled()
+const inputNumberReadonly = useFormReadonly()
 
 const displayValue = computed(() => {
   if (data.userInput !== null) {
@@ -255,7 +270,12 @@ const handleKeydown = (event: KeyboardEvent | Event) => {
   }
 }
 const increase = () => {
-  if (props.readonly || inputNumberDisabled.value || maxDisabled.value) return
+  if (
+    inputNumberReadonly.value ||
+    inputNumberDisabled.value ||
+    maxDisabled.value
+  )
+    return
   const value = Number(displayValue.value) || 0
   const newVal = ensurePrecision(value)
   setCurrentValue(newVal)
@@ -263,7 +283,12 @@ const increase = () => {
   setCurrentValueToModelValue()
 }
 const decrease = () => {
-  if (props.readonly || inputNumberDisabled.value || minDisabled.value) return
+  if (
+    inputNumberReadonly.value ||
+    inputNumberDisabled.value ||
+    minDisabled.value
+  )
+    return
   const value = Number(displayValue.value) || 0
   const newVal = ensurePrecision(value, -1)
   setCurrentValue(newVal)
@@ -299,6 +324,18 @@ const verifyValue = (
   }
   if (!isUndefined(precision)) {
     newVal = toPrecision(newVal, precision)
+  }
+  if (
+    Number.isInteger(props.maxPrecision) &&
+    props.maxPrecision! >= 0 &&
+    props.maxPrecision! <= 100
+  ) {
+    const rounded = toPrecision(newVal, props.maxPrecision)
+    if (rounded !== newVal) {
+      emit('precision-exceed', newVal, props.maxPrecision!)
+      if (update) emit(UPDATE_MODEL_EVENT, rounded)
+    }
+    newVal = rounded
   }
   if (newVal > max || newVal < min) {
     newVal = newVal > max ? max : min
@@ -396,7 +433,7 @@ watch(
 )
 
 watch(
-  () => props.precision,
+  () => [props.precision, props.maxPrecision],
   () => {
     data.currentValue = verifyValue(props.modelValue)
   }
@@ -435,7 +472,10 @@ onUpdated(() => {
   const innerInput = input.value?.input
   innerInput?.setAttribute('aria-valuenow', `${data.currentValue ?? ''}`)
 })
+const inputElement = useInputElement(() => input.value?.input)
+
 defineExpose({
+  inputElement,
   /** @description get focus the input component */
   focus,
   /** @description remove focus the input component */

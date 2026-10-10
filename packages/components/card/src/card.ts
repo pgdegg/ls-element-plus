@@ -4,6 +4,8 @@ import type { ExtractPublicPropTypes, InjectionKey, StyleValue } from 'vue'
 import type { ClassValue } from '@element-plus/utils'
 
 export interface CardProps {
+  /** Display a disabled overlay. */
+  disabled?: boolean
   /**
    * @description title of the card. Also accepts a DOM passed by `slot#header`
    */
@@ -38,6 +40,7 @@ export interface CardProps {
  * @deprecated Removed after 3.0.0, Use `CardProps` instead.
  */
 export const cardProps = buildProps({
+  disabled: Boolean,
   /**
    * @description title of the card. Also accepts a DOM passed by `slot#header`
    */

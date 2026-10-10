@@ -26,6 +26,8 @@ export type ButtonType = (typeof buttonTypes)[number]
 export type ButtonNativeType = (typeof buttonNativeTypes)[number]
 
 export interface ButtonProps {
+  /** Ignore disabled state inherited from a button group. */
+  ignoreGroupDisabled?: boolean
   /**
    * @description button size
    */
@@ -108,6 +110,7 @@ export interface ButtonProps {
  * @deprecated Removed after 3.0.0, Use `ButtonProps` instead.
  */
 export const buttonProps = buildProps({
+  ignoreGroupDisabled: Boolean,
   /**
    * @description button size
    */

@@ -391,6 +391,7 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
       return
     }
     states.previousQuery = val
+    emit('query-change', val)
     if (props.filterable && isFunction(props.filterMethod)) {
       filterOptionsByMethod(val)
     } else if (

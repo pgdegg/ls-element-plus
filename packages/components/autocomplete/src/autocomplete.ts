@@ -80,6 +80,8 @@ export interface AutocompleteProps<
    * @description determines whether the arrow is displayed
    */
   showArrow?: boolean
+  /** @description popup distance from input */
+  offset?: number
   /**
    * @description whether show suggestions when input focus
    */

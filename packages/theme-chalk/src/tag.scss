@@ -193,3 +193,10 @@ $tag-icon-span-gap: map.merge(
     }
   }
 }
+
+// HIS component customization.
+.el-tag {
+  &__content {
+    user-select: none;
+  }
+}

@@ -250,3 +250,25 @@ $directions: rtl, ltr, ttb, btt;
     }
   }
 }
+
+// HIS component customization.
+.el-drawer {
+  &__close-btn {
+    color: #313131;
+  }
+
+  &__header {
+    --el-drawer-padding-primary: 10px 15px;
+    padding-bottom: 10px;
+    margin: 0;
+    border-bottom-width: 1px;
+  }
+
+  &__body {
+    padding: 0;
+  }
+
+  &__footer {
+    padding: 5px 10px;
+  }
+}

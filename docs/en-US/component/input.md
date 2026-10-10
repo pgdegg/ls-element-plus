@@ -230,3 +230,7 @@ PS: Since the ElInput component does not have a default width, when the clearabl
 ```vue
 <el-input v-model="input" clearable style="width: 200px" />
 ```
+
+## HIS fork extensions
+
+See [HIS customization](./his-customization.md) for the shared control APIs and component style ownership.

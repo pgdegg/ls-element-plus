@@ -190,3 +190,56 @@
     }
   }
 }
+
+// HIS component customization.
+.el-input-number {
+  &.is-controls-right .el-input__wrapper {
+    padding: 1px 42px 1px 11px;
+  }
+
+  // .el-input {
+  //   &__wrapper {
+  //     padding: 1px 42px 1px 11px;
+  //   }
+  // }
+}
+
+.customize-number {
+  &.el-input-group {
+    > .#{$namespace}-input-number {
+      flex: 1;
+      width: auto;
+      min-width: 0;
+    }
+
+    &--prepend {
+      .el-input-number {
+        .el-input__wrapper {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+      }
+    }
+
+    &--append {
+      .el-input-number {
+        .el-input__wrapper {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+      }
+    }
+  }
+
+  .el-input-group__prepend {
+    .el-select {
+      display: inline-block !important;
+    }
+  }
+
+  .el-input-group__append {
+    .el-select {
+      display: inline-block !important;
+    }
+  }
+}

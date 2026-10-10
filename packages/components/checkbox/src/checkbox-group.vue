@@ -2,6 +2,7 @@
   <component
     :is="tag"
     :id="groupId"
+    ref="groupRef"
     :class="ns.b('group')"
     role="group"
     :aria-label="
@@ -21,11 +22,11 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, nextTick, provide, toRefs, watch } from 'vue'
+import { computed, nextTick, provide, ref, toRefs, watch } from 'vue'
 import { isEqual, omit, pick } from 'lodash-unified'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@element-plus/constants'
 import { NOOP } from '@element-plus/utils'
-import { useNamespace } from '@element-plus/hooks'
+import { useInputElement, useNamespace } from '@element-plus/hooks'
 import {
   useFormDisabled,
   useFormItem,
@@ -55,6 +56,10 @@ const props = withDefaults(defineProps<CheckboxGroupProps>(), {
 })
 const emit = defineEmits(checkboxGroupEmits)
 const ns = useNamespace('checkbox')
+const groupRef = ref<HTMLElement>()
+const inputElement = useInputElement(() =>
+  groupRef.value?.querySelector<HTMLInputElement>('input:not(:disabled)')
+)
 
 const checkboxDisabled = useFormDisabled()
 const { formItem } = useFormItem()
@@ -90,6 +95,36 @@ const getOptionProps = (option: Record<string, any>) => {
   }
   return { ...omit(option, [label, value, disabled]), ...base }
 }
+
+const selectableValues = computed(() =>
+  (props.options ?? [])
+    .filter(
+      (option) => !option[aliasProps.value.disabled] && option.visible !== false
+    )
+    .map((option) => option[aliasProps.value.value])
+)
+const allChecked = computed(
+  () =>
+    selectableValues.value.length > 0 &&
+    selectableValues.value.every((value) => props.modelValue.includes(value))
+)
+const isIndeterminate = computed(() => {
+  const count = selectableValues.value.filter((value) =>
+    props.modelValue.includes(value)
+  ).length
+  return count > 0 && count < selectableValues.value.length
+})
+const toggleAll = (checked: boolean) => {
+  if (checkboxDisabled.value) return
+  const values = selectableValues.value
+  const next = checked
+    ? [...new Set([...props.modelValue, ...values])]
+    : props.modelValue.filter((value) => !values.includes(value))
+  if (props.min != null && next.length < props.min) return
+  if (props.max != null && next.length > props.max) return
+  modelValue.value = next
+}
+defineExpose({ inputElement, allChecked, isIndeterminate, toggleAll })
 
 const optionComponent = computed(() =>
   props.type === 'button' ? ElCheckboxButton : ElCheckbox

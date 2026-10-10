@@ -20,6 +20,8 @@ import type { IconPropType } from '@element-plus/utils'
 import type Switch from './switch.vue'
 
 export interface SwitchProps {
+  /** Use a square switch track and action. */
+  square?: boolean
   /**
    * @description binding value, it should be equivalent to either `active-value` or `inactive-value`, by default it's `boolean` type
    */
@@ -106,6 +108,7 @@ export interface SwitchProps {
  * @deprecated Removed after 3.0.0, Use `SwitchProps` instead.
  */
 export const switchProps = buildProps({
+  square: Boolean,
   /**
    * @description binding value, it should be equivalent to either `active-value` or `inactive-value`, by default it's `boolean` type
    */

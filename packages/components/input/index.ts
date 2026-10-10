@@ -8,3 +8,7 @@ export default ElInput
 
 export * from './src/input'
 export type { InputInstance } from './src/instance'
+
+export * from './src/keeps'
+
+export * from './src/input-group'

@@ -18,6 +18,15 @@ class MockResizeObserver implements ResizeObserver {
 }
 
 describe('Text.vue', () => {
+  test('forwards a typed native click handler once', async () => {
+    const onClick = vi.fn()
+    const wrapper = mount(Text, { props: { onClick, tag: 'button' } })
+    await wrapper.find('button').trigger('click')
+    expect(onClick).toHaveBeenCalledTimes(1)
+    expect(onClick.mock.calls[0][0]).toBeInstanceOf(MouseEvent)
+    wrapper.unmount()
+  })
+
   beforeEach(() => {
     resizeObserverCallback = undefined
     vi.stubGlobal('ResizeObserver', MockResizeObserver)

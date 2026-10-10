@@ -167,3 +167,7 @@ input-number/formatter
 | ----- | -------------------------------- | ----------------------- |
 | focus | get focus the input component    | ^[Function]`() => void` |
 | blur  | remove focus the input component | ^[Function]`() => void` |
+
+## HIS fork extensions
+
+See [HIS customization](./his-customization.md) for the shared control APIs and component style ownership.

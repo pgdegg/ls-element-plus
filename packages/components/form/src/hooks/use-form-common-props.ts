@@ -1,7 +1,11 @@
 import { computed, inject, ref, unref } from 'vue'
 import { useGlobalSize } from '@element-plus/hooks/use-size'
 import { useProp } from '@element-plus/hooks/use-prop'
-import { formContextKey, formItemContextKey } from '../constants'
+import {
+  componentDisabledContextKey,
+  formContextKey,
+  formItemContextKey,
+} from '../constants'
 
 import type { ComponentSize } from '@element-plus/constants'
 import type { MaybeRef } from 'vue'
@@ -35,12 +39,50 @@ export const useFormSize = (
 export const useFormDisabled = (fallback?: MaybeRef<boolean | undefined>) => {
   const disabled = useProp<boolean>('disabled')
   const form = inject(formContextKey, undefined)
+  const inheritedDisabled = inject(componentDisabledContextKey, false)
 
   return computed(() => {
-    return disabled.value ?? unref(fallback) ?? form?.disabled ?? false
+    return (
+      unref(inheritedDisabled) ||
+      (disabled.value ?? unref(fallback) ?? form?.disabled ?? false)
+    )
   })
 }
 
 // These exports are used for preventing breaking changes
 export const useSize = useFormSize
 export const useDisabled = useFormDisabled
+
+export const useFormReadonly = (fallback?: MaybeRef<boolean | undefined>) => {
+  const readonly = useProp<boolean>('readonly')
+  const ignoreParent = useProp<boolean>('ignoreParentReadonly')
+  const form = inject(formContextKey, undefined)
+  return computed(
+    () =>
+      readonly.value ||
+      unref(fallback) ||
+      (!ignoreParent.value && (form?.readonly || form?.readonlyRaw)) ||
+      false
+  )
+}
+
+export const useFormPlaceholder = (
+  fallback?: MaybeRef<string | undefined>,
+  field = 'placeholder'
+) => {
+  const placeholder = useProp<string>(field)
+  const hide = useProp<boolean | undefined>('hidePlaceholder')
+  const ignoreParent = useProp<string | string[]>('ignoreParentHidePlaceholder')
+  const form = inject(formContextKey, undefined)
+  return computed(() =>
+    (hide.value ??
+    (form?.hidePlaceholder &&
+      !(
+        Array.isArray(ignoreParent.value)
+          ? ignoreParent.value
+          : [ignoreParent.value]
+      ).includes('form')))
+      ? ''
+      : (placeholder.value ?? unref(fallback))
+  )
+}

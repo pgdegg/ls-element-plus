@@ -38,6 +38,7 @@
 
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
+import { useInputElement } from '@element-plus/hooks/use-input-element'
 import dayjs from 'dayjs'
 import customParseFormat from 'dayjs/plugin/customParseFormat.js'
 import ElSelect from '@element-plus/components/select'
@@ -171,7 +172,10 @@ const focus = () => {
   select.value?.focus?.()
 }
 
+const inputElement = useInputElement(() => select.value?.inputElement)
+
 defineExpose({
+  inputElement,
   /**
    * @description blur the Input component
    */

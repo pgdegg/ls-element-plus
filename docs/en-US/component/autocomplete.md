@@ -129,3 +129,7 @@ autocomplete/custom-header-footer
 | popperRef        | el-tooltip component instance               | ^[object]`Ref<ElTooltipInstance>`                   |
 | suggestions      | fetch suggestions result                    | ^[object]`Ref<record<string, any>[]>`               |
 | getData ^(2.8.4) | loading suggestion list                     | ^[Function]`(queryString: string) => Promise<void>` |
+
+## HIS fork extensions
+
+See [HIS customization](./his-customization.md) for the shared control APIs and component style ownership.

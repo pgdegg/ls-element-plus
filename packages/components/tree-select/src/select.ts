@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { computed, nextTick, onMounted, toRefs, watch } from 'vue'
 import { useEventListener } from '@vueuse/core'
-import { pick } from 'lodash-unified'
+import { omit, pick } from 'lodash-unified'
 import ElSelect from '@element-plus/components/select'
 import { useNamespace } from '@element-plus/hooks'
 import { EVENT_CODE, UPDATE_MODEL_EVENT } from '@element-plus/constants'
@@ -23,7 +23,7 @@ export const useSelect = (
     tree: Ref<TreeInstance | undefined>
     key: Ref<string>
   }
-) => {
+): Record<string, unknown> => {
   const ns = useNamespace('tree-select')
 
   // update tree data when use filterMethod/remoteMethod
@@ -85,9 +85,25 @@ export const useSelect = (
     )
   })
 
+  const filterTree = (keyword = '') => {
+    if (!props.filterable) return
+    if (props.filterMethod) {
+      props.filterMethod(keyword)
+    } else if (props.remoteMethod) {
+      props.remoteMethod(keyword)
+    } else {
+      tree.value?.filter(keyword)
+    }
+  }
+
   const result = {
     ...pick(toRefs(props), Object.keys(ElSelect.props)),
-    ...attrs,
+    ...omit(attrs, [
+      'onQueryChange',
+      'onQuery-change',
+      'onVisibleChange',
+      'onVisible-change',
+    ]),
     class: computed(() => attrs.class),
     style: computed(() => attrs.style),
     // attrs is not reactive, when v-model binding source changes,
@@ -96,15 +112,17 @@ export const useSelect = (
     'onUpdate:modelValue': (value) => emit(UPDATE_MODEL_EVENT, value),
     valueKey: key,
     popperClass: computed(() => [ns.e('popper'), props.popperClass]),
-    filterMethod: (keyword = '') => {
-      if (props.filterMethod) {
-        props.filterMethod(keyword)
-      } else if (props.remoteMethod) {
-        props.remoteMethod(keyword)
-      } else {
-        // let tree node expand only, same with tree filter
-        tree.value?.filter(keyword)
-      }
+    // Tree filtering operates on the complete query, including an empty tree.
+    // ElSelect's filterMethod is an option predicate and must not drive it.
+    filterMethod: () => true,
+    remoteMethod: undefined,
+    onQueryChange: (keyword) => {
+      filterTree(keyword)
+      emit('query-change', keyword)
+    },
+    onVisibleChange: (visible) => {
+      if (!visible) filterTree('')
+      emit('visible-change', visible)
     },
   }
 

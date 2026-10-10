@@ -44,6 +44,7 @@
 
 <script lang="ts" setup>
 import { computed, inject, nextTick, onMounted, provide, ref, watch } from 'vue'
+import { useInputElement } from '@element-plus/hooks/use-input-element'
 import { ElInput } from '@element-plus/components/input'
 import { useFormDisabled, useFormItem } from '@element-plus/components/form'
 import { useNamespace } from '@element-plus/hooks'
@@ -141,7 +142,10 @@ provide(colorPickerPanelContextKey, {
   currentColor: computed(() => color.value),
 })
 
+const inputElement = useInputElement(() => inputRef.value?.input)
+
 defineExpose({
+  inputElement,
   /**
    * @description current color object
    */

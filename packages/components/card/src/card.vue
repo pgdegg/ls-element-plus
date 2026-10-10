@@ -2,6 +2,7 @@
   <div
     :class="[
       ns.b(),
+      ns.is('disabled', disabled),
       ns.is(`${shadow || globalConfig?.shadow || 'always'}-shadow`),
     ]"
   >

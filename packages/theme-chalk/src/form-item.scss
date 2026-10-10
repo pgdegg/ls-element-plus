@@ -251,3 +251,62 @@ $form-item-label-top-margin-bottom: map.merge(
     }
   }
 }
+
+// HIS component customization.
+.el-form-item,
+.el-form-item--small {
+  margin-bottom: auto;
+}
+
+.el-form-item {
+  &--label-top .el-form-item__label {
+    margin-bottom: 0;
+  }
+
+  &--label-right .el-form-item__label {
+    text-align: right;
+  }
+
+  &__label {
+    height: var(--el-component-size);
+    line-height: var(--el-component-size);
+  }
+
+  &__content {
+    line-height: 28px;
+
+    & > .el-radio {
+      &-group {
+        gap: 4px;
+
+        &:has(> .el-radio-button) {
+          gap: 0;
+        }
+
+        & > .el-radio-button {
+          display: inline-flex;
+        }
+
+        .el-radio {
+          &-button {
+            &__inner {
+              font-size: 13px;
+              padding: 7px 11px;
+            }
+          }
+        }
+      }
+
+      // &-button {
+      //   &__inner {
+      //     font-size: 13px;
+      //     padding: 7px 11px;
+      //   }
+      // }
+    }
+
+    .el-switch {
+      height: var(--el-component-size);
+    }
+  }
+}

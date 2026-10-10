@@ -696,3 +696,18 @@
     }
   }
 }
+
+// HIS component customization.
+.el-table {
+  .cell {
+    line-height: unset;
+  }
+
+  thead th.el-table__cell {
+    background: var(--el-fill-color-light);
+  }
+}
+
+.el-table--small .el-table__cell {
+  padding: 0;
+}

@@ -39,14 +39,14 @@
           :maxlength="countGraphemes ? undefined : maxlength"
           :type="showPassword ? (passwordVisible ? 'text' : 'password') : type"
           :disabled="inputDisabled"
-          :readonly="readonly"
+          :readonly="inputReadonly"
           :autocomplete="autocomplete"
           :tabindex="tabindex"
           :aria-label="ariaLabel"
-          :placeholder="placeholder"
+          :placeholder="inputPlaceholder"
           :style="inputStyle"
           :form="form"
-          :autofocus="autofocus"
+          :autofocus="autofocus && !focusDelay"
           :role="containerRole"
           :inputmode="inputmode"
           @compositionstart="handleCompositionStart"
@@ -137,13 +137,13 @@
         :maxlength="countGraphemes ? undefined : maxlength"
         :tabindex="tabindex"
         :disabled="inputDisabled"
-        :readonly="readonly"
+        :readonly="inputReadonly"
         :autocomplete="autocomplete"
         :style="textareaStyle"
         :aria-label="ariaLabel"
-        :placeholder="placeholder"
+        :placeholder="inputPlaceholder"
         :form="form"
-        :autofocus="autofocus"
+        :autofocus="autofocus && !focusDelay"
         :rows="rows"
         :role="containerRole"
         :inputmode="inputmode"
@@ -194,6 +194,7 @@ import {
   useSlots,
   watch,
 } from 'vue'
+import { useInputElement } from '@element-plus/hooks/use-input-element'
 import { useResizeObserver } from '@vueuse/core'
 import { isNil } from 'lodash-unified'
 import { ElIcon } from '@element-plus/components/icon'
@@ -202,6 +203,8 @@ import {
   useFormDisabled,
   useFormItem,
   useFormItemInputId,
+  useFormPlaceholder,
+  useFormReadonly,
   useFormSize,
 } from '@element-plus/components/form'
 import {
@@ -227,6 +230,7 @@ import {
   UPDATE_MODEL_EVENT,
 } from '@element-plus/constants'
 import { calcTextareaHeight, looseToNumber } from './utils'
+import { buildKeepRegExp } from './keeps'
 import { inputEmits, inputPropsDefaults } from './input'
 
 import type { StyleValue } from 'vue'
@@ -242,6 +246,9 @@ defineOptions({
 const props = withDefaults(defineProps<InputProps>(), inputPropsDefaults)
 const emit = defineEmits(inputEmits)
 
+const inputReadonly = useFormReadonly()
+const inputPlaceholder = useFormPlaceholder()
+
 const rawAttrs = useRawAttrs()
 const slots = useSlots()
 
@@ -249,6 +256,7 @@ const containerKls = computed(() => [
   props.type === 'textarea' ? nsTextarea.b() : nsInput.b(),
   nsInput.m(inputSize.value),
   nsInput.is('disabled', inputDisabled.value),
+  nsInput.is('readonly', inputReadonly.value),
   nsInput.is('exceed', inputExceed.value),
   {
     [nsInput.b('group')]: slots.prepend || slots.append,
@@ -496,6 +504,8 @@ const setNativeInputValue = () => {
   input.value = formatterValue
 }
 
+const keepReg = computed(() => buildKeepRegExp(props.keeps, props.ignorekeeps))
+
 const formatValue = (value: string) => {
   const { trim, number } = props.modelModifiers
   if (trim) {
@@ -507,7 +517,7 @@ const formatValue = (value: string) => {
   if (props.formatter && props.parser) {
     value = props.parser(value)
   }
-  return value
+  return keepReg.value ? value.replace(keepReg.value, '') : value
 }
 
 const handleInput = async (event: Event) => {
@@ -766,7 +776,13 @@ watch(
   }
 )
 
+let autofocusTimer: ReturnType<typeof setTimeout> | undefined
 onMounted(() => {
+  if (props.autofocus && props.focusDelay) {
+    autofocusTimer = setTimeout(() => {
+      if (!inputDisabled.value && !inputReadonly.value) focus()
+    }, props.focusDelay)
+  }
   if (!props.formatter && props.parser) {
     debugWarn(
       COMPONENT_NAME,
@@ -778,10 +794,14 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
+  clearTimeout(autofocusTimer)
   rAFId && cAF(rAFId)
 })
 
+const inputElement = useInputElement(() => _ref.value)
+
 defineExpose({
+  inputElement,
   /** @description HTML input element */
   input,
   /** @description HTML textarea element */

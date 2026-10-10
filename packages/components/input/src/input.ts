@@ -33,6 +33,14 @@ export type InputType =
   | (string & NonNullable<unknown>)
 
 export interface InputProps {
+  hidePlaceholder?: boolean
+  ignoreParentHidePlaceholder?: string | string[]
+  ignoreParentReadonly?: boolean
+  focusDelay?: number
+  /** @description character patterns retained during input */
+  keeps?: string | RegExp | (string | RegExp)[]
+  /** @description additional literal characters retained with keeps */
+  ignorekeeps?: string | string[]
   /**
    * @description native input id
    */
@@ -172,6 +180,18 @@ export interface InputProps {
  * @deprecated Removed after 3.0.0, Use `InputProps` instead.
  */
 export const inputProps = buildProps({
+  keeps: {
+    type: definePropType<InputProps['keeps']>([String, RegExp, Array]),
+  },
+  ignorekeeps: {
+    type: definePropType<string | string[]>([String, Array]),
+  },
+  hidePlaceholder: { type: Boolean, default: undefined },
+  ignoreParentHidePlaceholder: {
+    type: definePropType<string | string[]>([String, Array]),
+  },
+  ignoreParentReadonly: Boolean,
+  focusDelay: Number,
   /**
    * @description native input id
    */
@@ -400,6 +420,7 @@ export type InputEmits = typeof inputEmits
  * @description default values for InputProps, used in components that extend InputProps like Autocomplete
  */
 export const inputPropsDefaults = {
+  hidePlaceholder: undefined,
   disabled: undefined,
   modelValue: '',
   modelModifiers: () => ({}),

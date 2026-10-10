@@ -61,6 +61,8 @@ export interface CascaderComponentProps
   /**
    * @description customize search logic, the first parameter is `node`, the second is `keyword`, and need return a boolean value indicating whether it hits.
    */
+  /** Additional node data fields searched by the default filter. */
+  filterKeys?: string[]
   filterMethod?: (node: CascaderNode, keyword: string) => boolean
   /**
    * @description option label separator
@@ -205,6 +207,7 @@ export const cascaderProps = buildProps({
   /**
    * @description customize search logic, the first parameter is `node`, the second is `keyword`, and need return a boolean value indicating whether it hits.
    */
+  filterKeys: { type: definePropType<string[]>(Array), default: () => [] },
   filterMethod: {
     type: definePropType<(node: CascaderNode, keyword: string) => boolean>(
       Function

@@ -310,17 +310,18 @@ When appending the Tooltip to a custom container (via the `append-to` attribute)
 
 ### Select Events
 
-| Name                          | Description                                                   | Type                                                                     |
-| ----------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| change                        | triggers when the selected value changes                      | ^[Function]`(value: any) => void`                                        |
-| visible-change                | triggers when the dropdown appears/disappears                 | ^[Function]`(visible: boolean) => void`                                  |
-| remove-tag                    | triggers when a tag is removed in multiple mode               | ^[Function]`(tagValue: any) => void`                                     |
-| clear                         | triggers when the clear icon is clicked in a clearable Select | ^[Function]`() => void`                                                  |
-| blur                          | triggers when Input blurs                                     | ^[Function]`(event: FocusEvent) => void`                                 |
-| focus                         | triggers when Input focuses                                   | ^[Function]`(event: FocusEvent) => void`                                 |
-| update:filter-value ^(2.14.6) | triggers when the filter input value changes                  | ^[Function]`(value: string) => void`                                     |
-| popup-scroll ^(2.9.4)         | triggers when dropdown scrolls                                | ^[Function]`(data:{scrollTop: number, scrollLeft: number}) => void`      |
-| end-reached ^(2.14.0)         | triggers when dropdown scroll reaches an end                  | ^[Function]`(direction: 'top' \| 'bottom' \| 'left' \| 'right') => void` |
+| Name                          | Description                                                               | Type                                                                     |
+| ----------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| change                        | triggers when the selected value changes                                  | ^[Function]`(value: any) => void`                                        |
+| visible-change                | triggers when the dropdown appears/disappears                             | ^[Function]`(visible: boolean) => void`                                  |
+| query-change ^(2.14.8)        | triggers once when the filter query changes, including empty option lists | ^[Function]`(query: string) => void`                                     |
+| remove-tag                    | triggers when a tag is removed in multiple mode                           | ^[Function]`(tagValue: any) => void`                                     |
+| clear                         | triggers when the clear icon is clicked in a clearable Select             | ^[Function]`() => void`                                                  |
+| blur                          | triggers when Input blurs                                                 | ^[Function]`(event: FocusEvent) => void`                                 |
+| focus                         | triggers when Input focuses                                               | ^[Function]`(event: FocusEvent) => void`                                 |
+| update:filter-value ^(2.14.6) | triggers when the filter input value changes                              | ^[Function]`(value: string) => void`                                     |
+| popup-scroll ^(2.9.4)         | triggers when dropdown scrolls                                            | ^[Function]`(data:{scrollTop: number, scrollLeft: number}) => void`      |
+| end-reached ^(2.14.0)         | triggers when dropdown scroll reaches an end                              | ^[Function]`(direction: 'top' \| 'bottom' \| 'left' \| 'right') => void` |
 
 ### Select Slots
 
@@ -373,3 +374,7 @@ When appending the Tooltip to a custom container (via the `append-to` attribute)
 | Name    | Description               |
 | ------- | ------------------------- |
 | default | customize default content |
+
+## HIS fork extensions
+
+See [HIS customization](./his-customization.md) for the shared control APIs and component style ownership.

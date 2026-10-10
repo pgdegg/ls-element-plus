@@ -195,7 +195,12 @@ export const paginationEmits = {
   'prev-click': (val: number) => isNumber(val),
   'next-click': (val: number) => isNumber(val),
 }
-export type PaginationEmits = typeof paginationEmits
+export type PaginationEmits = typeof paginationEmits & {
+  sizeChange: (typeof paginationEmits)['size-change']
+  currentChange: (typeof paginationEmits)['current-change']
+  prevClick: (typeof paginationEmits)['prev-click']
+  nextClick: (typeof paginationEmits)['next-click']
+}
 
 const componentName = 'ElPagination'
 export default defineComponent({

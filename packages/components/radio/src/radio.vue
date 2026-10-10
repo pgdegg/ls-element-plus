@@ -2,6 +2,7 @@
   <label
     :class="[
       ns.b(),
+      { 'hide-circle': hideCircle },
       ns.is('disabled', disabled),
       ns.is('focus', focus),
       ns.is('bordered', border),
