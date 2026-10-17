@@ -4,6 +4,7 @@
  */
 import { defineComponent, markRaw, nextTick, ref } from 'vue'
 import { mount } from '@vue/test-utils'
+import { useElementSize } from '@vueuse/core'
 import { afterEach, describe, expect, it, test, vi } from 'vitest'
 import { BORDER_HORIZONTAL_WIDTH, EVENT_CODE } from '@element-plus/constants'
 import defineGetter from '@element-plus/test-utils/define-getter'
@@ -28,8 +29,10 @@ vi.mock('lodash-unified', async () => {
 })
 
 vi.mock('@vueuse/core', async () => {
+  const actual = await vi.importActual('@vueuse/core')
   return {
-    ...((await vi.importActual('@vueuse/core')) as Record<string, any>),
+    ...(actual as Record<string, any>),
+    useElementSize: vi.fn(actual.useElementSize),
     useDebounceFn: vi.fn((fn) => {
       return fn
     }),
@@ -1795,6 +1798,37 @@ describe('Select', () => {
     const collapseItem = wrapper.find('.el-select__collapse-item')
     expect(collapseItem.exists()).toBe(true)
     expect(collapseItem.find('.el-tag').element.style.maxWidth).toBe('')
+  })
+
+  test('collapsed tag tooltip follows the select width', async () => {
+    const width = ref(240)
+    vi.mocked(useElementSize).mockReturnValueOnce({
+      width,
+      height: ref(32),
+      stop: vi.fn(),
+    })
+    wrapper = _mount(
+      `<el-select v-model="selectedList" multiple collapse-tags collapse-tags-tooltip>
+        <el-option v-for="item in selectedList" :key="item" :label="item" :value="item" />
+      </el-select>`,
+      () => ({ selectedList: ['Department A', 'Department B', 'Department C'] })
+    )
+    await nextTick()
+    const tooltip = wrapper
+      .findComponent(Select)
+      .findComponent({ ref: 'tagTooltipRef' })
+    await wrapper.find('.el-select__collapse-item').trigger('mouseenter')
+    await tooltip.vm.onOpen()
+    await nextTick()
+    const menu = document.querySelector('.el-select__selection .in-tooltip')
+      ?.parentElement?.parentElement
+    expect(menu.style.maxWidth).toBe('240px')
+    expect(menu.querySelector('.el-select__selected-item').style.maxWidth).toBe(
+      '100%'
+    )
+    width.value = 320
+    await nextTick()
+    expect(menu.style.maxWidth).toBe('320px')
   })
 
   test('multiple select with collapseTagsTooltip', async () => {

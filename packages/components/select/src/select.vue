@@ -139,11 +139,16 @@
                   </div>
                 </template>
                 <template #content>
-                  <div ref="tagMenuRef" :class="nsSelect.e('selection')">
+                  <div
+                    ref="tagMenuRef"
+                    :class="nsSelect.e('selection')"
+                    :style="tagMenuStyle"
+                  >
                     <div
                       v-for="(item, index) in collapseTagList"
                       :key="getValueKey(item)"
                       :class="nsSelect.e('selected-item')"
+                      style="max-width: 100%"
                     >
                       <el-tag
                         class="in-tooltip"

@@ -9,7 +9,7 @@ import {
   watchEffect,
 } from 'vue'
 import { clamp, findLastIndex, get, isEqual, isNil } from 'lodash-unified'
-import { useResizeObserver } from '@vueuse/core'
+import { useElementSize, useResizeObserver } from '@vueuse/core'
 import {
   NOOP,
   ValidateComponentsMap,
@@ -564,6 +564,12 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
     tooltipRef.value?.updatePopper?.()
   }
 
+  const { width: tagMenuWidth } = useElementSize(wrapperRef)
+
+  const tagMenuStyle = computed(() => ({
+    maxWidth: tagMenuWidth.value > 0 ? `${tagMenuWidth.value}px` : undefined,
+  }))
+
   const updateTagTooltip = () => {
     tagTooltipRef.value?.updatePopper?.()
   }
@@ -1086,6 +1092,7 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
     scrollbarRef,
     menuRef,
     tagMenuRef,
+    tagMenuStyle,
     collapseItemRef,
   }
 }
