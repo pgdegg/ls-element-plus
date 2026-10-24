@@ -12,14 +12,14 @@ import { COMPONENT_NAME } from './option'
 import type { OptionInternalInstance, OptionProps, OptionStates } from './type'
 
 export function useOption(props: OptionProps, states: OptionStates) {
-  // inject
+  // 依赖注入（inject）
   const select = inject(selectKey)
   if (!select) {
     throwError(COMPONENT_NAME, 'usage: <el-select><el-option /></el-select/>')
   }
   const selectGroup = inject(selectGroupKey, { disabled: false })
 
-  // computed
+  // 计算属性
   const itemSelected = computed(() => {
     return contains(ensureArray(select.props.modelValue), props.value)
   })

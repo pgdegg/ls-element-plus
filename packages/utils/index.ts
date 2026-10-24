@@ -1,4 +1,4 @@
-// Internal code, don't use in your app!
+// 内部代码，请勿在你的应用中使用！
 export * from './dom'
 export * from './vue'
 export * from './arrays'

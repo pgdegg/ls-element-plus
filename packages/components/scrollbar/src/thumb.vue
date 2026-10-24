@@ -62,9 +62,9 @@ const thumbStyle = computed(() =>
 
 const offsetRatio = computed(
   () =>
-    // offsetRatioX = original width of thumb / current width of thumb / ratioX
-    // offsetRatioY = original height of thumb / current height of thumb / ratioY
-    // instance height = wrap height - GAP
+    // offsetRatioX = thumb 原始宽度 / thumb 当前宽度 / ratioX
+    // offsetRatioY = thumb 原始高度 / thumb 当前高度 / ratioY
+    // 实例高度 = wrap 高度 - GAP
     instance.value![bar.value.offset] ** 2 /
     scrollbar.wrapElement![bar.value.scrollSize] /
     props.ratio /
@@ -72,7 +72,7 @@ const offsetRatio = computed(
 )
 
 const clickThumbHandler = (e: MouseEvent) => {
-  // prevent click event of middle and right button
+  // 阻止鼠标中键和右键的点击事件
   e.stopPropagation()
   if (e.ctrlKey || [1, 2].includes(e.button)) return
 

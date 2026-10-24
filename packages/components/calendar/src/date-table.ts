@@ -34,7 +34,7 @@ export interface DateTableProps {
 }
 
 /**
- *  @deprecated Removed after 3.0.0, Use `DateTableProps` instead.
+ *  @deprecated 自 3.0.0 后移除，请使用 `DateTableProps`
  */
 export const dateTableProps = buildProps({
   selectedDay: {
@@ -53,7 +53,7 @@ export const dateTableProps = buildProps({
 } as const)
 
 /**
- *  @deprecated Removed after 3.0.0, Use `DateTableProps` instead.
+ *  @deprecated 自 3.0.0 后移除，请使用 `DateTableProps`
  */
 export type DateTablePropsPublic = ExtractPublicPropTypes<typeof dateTableProps>
 

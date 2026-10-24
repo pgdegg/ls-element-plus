@@ -72,7 +72,7 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
     inputValue: '',
     options: new Map(),
     cachedOptions: new Map(),
-    optionValues: [], // sorted value of options
+    optionValues: [], // 选项的排序值
     selected: [],
     collapseItemWidth: 0,
     selectedLabel: '',
@@ -83,7 +83,7 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
     isBeforeHide: false,
   })
 
-  // template refs
+  // 模板 ref
   const selectRef = ref<HTMLElement>()
   const selectionRef = ref<HTMLElement>()
   const tooltipRef = ref<TooltipInstance>()
@@ -95,7 +95,7 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
   const tagMenuRef = ref<HTMLElement>()
   const collapseItemRef = ref<HTMLElement>()
   const scrollbarRef = ref<ScrollbarInstance>()
-  // the controller of the expanded popup
+  // 弹出层展开状态的控制器
   const expanded = ref(false)
   const hoverOption = ref()
   const isFilterValueControlled = computed(
@@ -242,8 +242,8 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
   const dropdownMenuVisible = computed({
     get() {
       if (!expanded.value) return false
-      // When remote mode is enabled with remoteShowOnInput,
-      // only show the dropdown when there is input content
+      // 当启用远程模式且开启 remoteShowOnInput 时，
+      // 仅在有输入内容时才显示下拉框
       if (props.remote && props.remoteShowOnInput && !states.inputValue.length)
         return false
       return true
@@ -270,10 +270,10 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
       : states.selectedLabel
   })
 
-  // iOS Safari does not handle click events when a mouseenter event is registered and a DOM-change happens in a child
-  // We use a Vue custom event binding to only register the event on non-iOS devices
-  // ref.: https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/HandlingEvents/HandlingEvents.html
-  // Github Issue: https://github.com/vuejs/vue/issues/9859
+  // 当注册了 mouseenter 事件且子节点发生 DOM 变化时，iOS Safari 不会处理 click 事件
+  // 我们使用 Vue 自定义事件绑定，仅在非 iOS 设备上注册该事件
+  // 参考：https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/HandlingEvents/HandlingEvents.html
+  // GitHub Issue：https://github.com/vuejs/vue/issues/9859
   const mouseEnterEventName = isIOS ? null : 'mouseenter'
 
   watch(
@@ -332,7 +332,7 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
   )
 
   watch(
-    // fix `Array.prototype.push/splice/..` cannot trigger non-deep watcher
+    // 修复 `Array.prototype.push/splice/..` 无法触发非深度 watcher 的问题
     // https://github.com/vuejs/vue-next/issues/2116
     () => states.options.entries(),
     () => {
@@ -341,9 +341,9 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
       setSelected()
       if (shouldDefaultFirstOption()) {
         checkDefaultFirstOption()
-        // When options change and the dropdown is open, scroll the hovered
-        // option (the selected one if any, otherwise the first option) into
-        // view. Ignore this while the user is searching.
+        // 选项变化且下拉框打开时，将悬停的
+        // 选项（如有选中项则为选中项，否则为第一个选项）滚动到
+        // 视野中。用户搜索时忽略此行为。
         if (expanded.value && !states.inputValue.length) {
           scrollToHoveredOption()
         }
@@ -374,8 +374,8 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
   })
 
   watchEffect(() => {
-    // Anything could cause options changed, then update options
-    // If you want to control it by condition, write here
+    // 任何因素都可能导致选项变化，随后更新选项
+    // 如果想按条件控制，在此处编写
     if (states.isBeforeHide) return
     updateOptions()
   })
@@ -416,14 +416,14 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
   }
 
   /**
-   * find and highlight first option as default selected
+   * 查找并高亮第一个选项作为默认选中项
    * @remark
-   * - if the first option in dropdown list is user-created,
-   *   it would be at the end of the optionsArray
-   *   so find it and set hover.
-   *   (NOTE: there must be only one user-created option in dropdown list with query)
-   * - if there's no user-created option in list, just find the first one as usual
-   *   (NOTE: exclude options that are disabled or in disabled-group)
+   * - 如果下拉列表中的第一个选项是用户创建的，
+   *   它会位于 optionsArray 末尾，
+   *   因此找到它并设置为悬停。
+   *   （注意：带查询词的下拉列表中只能有一个用户创建的选项）
+   * - 如果列表中没有用户创建的选项，照常找到第一个即可
+   *   （注意：排除禁用选项或禁用分组中的选项）
    */
   const isAvailableOption = (option?: OptionPublicInstance) => {
     return (
@@ -454,11 +454,11 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
   }
 
   const checkDefaultFirstOption = () => {
-    // When there is already a selected value, hover the selected option
-    // instead of the first one, so that the dropdown does not scroll to the
-    // first option and focus it when opened.
-    // Ignore this while the user is searching, so that the first matching
-    // option keeps being hovered to be selected by the Enter key.
+    // 当已有选中值时，悬停在选中项上
+    // 而不是第一个选项，这样下拉框打开时不会滚动到
+    // 第一个选项并聚焦它。
+    // 用户搜索时忽略此行为，以便第一个匹配
+    // 选项保持悬停状态，等待按 Enter 键选中。
     if (!states.inputValue.length) {
       const selectedIndex = getSelectedOptionIndex()
       if (isAvailableOption(optionsArray.value[selectedIndex])) {

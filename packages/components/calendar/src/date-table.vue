@@ -78,7 +78,7 @@ const getCellClass = ({ text, type }: CalendarDateCell) => {
 }
 
 defineExpose({
-  /** @description toggle date panel */
+  /** @description 切换日期面板 */
   getFormattedDate,
 })
 </script>

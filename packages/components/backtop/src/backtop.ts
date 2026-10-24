@@ -2,50 +2,50 @@ import type { ExtractPublicPropTypes } from 'vue'
 
 export interface BacktopProps {
   /**
-   * @description the button will not show until the scroll height reaches this value.
+   * @description 滚动高度达到该值之前按钮不显示。
    */
   visibilityHeight?: number
   /**
-   * @description the target to trigger scroll.
+   * @description 触发滚动的目标元素。
    */
   target?: string
   /**
-   * @description right distance.
+   * @description 右侧距离。
    */
   right?: number
   /**
-   * @description bottom distance.
+   * @description 底部距离。
    */
   bottom?: number
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `BacktopProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `BacktopProps`
  */
 export const backtopProps = {
   /**
-   * @description the button will not show until the scroll height reaches this value.
+   * @description 滚动高度达到该值之前按钮不显示。
    */
   visibilityHeight: {
     type: Number,
     default: 200,
   },
   /**
-   * @description the target to trigger scroll.
+   * @description 触发滚动的目标元素。
    */
   target: {
     type: String,
     default: '',
   },
   /**
-   * @description right distance.
+   * @description 右侧距离。
    */
   right: {
     type: Number,
     default: 40,
   },
   /**
-   * @description bottom distance.
+   * @description 底部距离。
    */
   bottom: {
     type: Number,
@@ -54,7 +54,7 @@ export const backtopProps = {
 } as const
 
 /**
- * @deprecated Removed after 3.0.0, Use `BacktopProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `BacktopProps`
  */
 export type BacktopPropsPublic = ExtractPublicPropTypes<typeof backtopProps>
 

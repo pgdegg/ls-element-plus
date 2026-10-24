@@ -16,43 +16,43 @@ export const RowAlign = ['top', 'middle', 'bottom'] as const
 
 export interface RowProps {
   /**
-   * @description custom element tag
+   * @description 自定义元素标签
    */
   tag?: string
   /**
-   * @description grid spacing
+   * @description 栅格间距
    */
   gutter?: number
   /**
-   * @description horizontal alignment of flex layout
+   * @description flex 布局的水平对齐方式
    */
   justify?: (typeof RowJustify)[number]
   /**
-   * @description vertical alignment of flex layout
+   * @description flex 布局的垂直对齐方式
    */
   align?: (typeof RowAlign)[number]
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `RowProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `RowProps`。
  */
 export const rowProps = buildProps({
   /**
-   * @description custom element tag
+   * @description 自定义元素标签
    */
   tag: {
     type: String,
     default: 'div',
   },
   /**
-   * @description grid spacing
+   * @description 栅格间距
    */
   gutter: {
     type: Number,
     default: 0,
   },
   /**
-   * @description horizontal alignment of flex layout
+   * @description flex 布局的水平对齐方式
    */
   justify: {
     type: String,
@@ -60,7 +60,7 @@ export const rowProps = buildProps({
     default: 'start',
   },
   /**
-   * @description vertical alignment of flex layout
+   * @description flex 布局的垂直对齐方式
    */
   align: {
     type: String,
@@ -69,7 +69,7 @@ export const rowProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `RowProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `RowProps`。
  */
 export type RowPropsPublic = ExtractPublicPropTypes<typeof rowProps>
 export type RowInstance = InstanceType<typeof Row> & unknown

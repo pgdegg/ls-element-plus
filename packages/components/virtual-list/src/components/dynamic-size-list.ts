@@ -60,10 +60,10 @@ const findItem = (props: Props, listCache: ListCache, offset: number) => {
   return es(props, listCache, Math.max(0, lastVisitedIndex), offset)
 }
 
-// bs stands for binary search which has approximately time complexity of O(Log n)
-// space complexity of O(1)
-// in this case we use it for search the offset of each item, since
-// the cached items' offset is monotonically increasing
+// bs 代表二分查找，时间复杂度约为 O(Log n)
+// 空间复杂度为 O(1)
+// 这里用它搜索每项的偏移，因为
+// 缓存项的偏移单调递增
 const bs = (
   props: Props,
   listCache: ListCache,
@@ -87,10 +87,10 @@ const bs = (
   return Math.max(0, low - 1)
 }
 
-// es stands for exponential search which has time complexity of O(Log n) and
-// space complexity of O(1) in the case of finding the boundary element.
-// the exponential indicator in this case is 2.
-// for more detail about exponential search click this link
+// es 代表指数查找，时间复杂度为 O(Log n)，
+// 在查找边界元素时空间复杂度为 O(1)。
+// 此处指数因子为 2。
+// 指数查找的更多详情见此链接
 // https://www.freecodecamp.org/news/search-algorithms-exponential-search-explained/
 
 const es = (

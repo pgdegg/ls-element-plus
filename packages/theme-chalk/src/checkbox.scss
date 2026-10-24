@@ -180,7 +180,7 @@ $checkbox-bordered-input-width: map.merge(
       }
     }
     @include when(focus) {
-      // Visually distinguish when focus
+      // 聚焦时在视觉上加以区分
       &:not(.is-checked) {
         .#{$namespace}-checkbox__original:not(:focus-visible) {
           border-color: getCssVar('checkbox-input-border-color-hover');
@@ -299,7 +299,7 @@ $checkbox-bordered-input-width: map.merge(
   }
 }
 
-// HIS component customization.
+// HIS 组件定制。
 .el-checkbox {
   &.hide-circle {
     .el-checkbox__inner {

@@ -1,6 +1,6 @@
 <template>
   <div :style="style" :class="containerKls">
-    <!-- icon & line -->
+    <!-- 图标与线条 -->
     <div :class="[ns.e('head'), ns.is(currentStatus)]">
       <div v-if="!isSimple" :class="ns.e('line')">
         <i :class="ns.e('line-inner')" :style="lineStyle" />
@@ -31,7 +31,7 @@
         </slot>
       </div>
     </div>
-    <!-- title & description -->
+    <!-- 标题与描述 -->
     <div :class="ns.e('main')">
       <div :class="[ns.e('title'), ns.is(currentStatus)]">
         <slot name="title">{{ title }}</slot>

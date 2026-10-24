@@ -13,8 +13,8 @@ export function useButtonCustomStyle(props: ButtonProps) {
   const _disabled = useFormDisabled()
   const ns = useNamespace('button')
 
-  // calculate hover & active color by custom color
-  // only work when custom color
+  // 根据自定义颜色计算 hover 和 active 颜色
+  // 仅在设置了自定义颜色时生效
   return computed(() => {
     let styles: Record<string, string> = {}
 

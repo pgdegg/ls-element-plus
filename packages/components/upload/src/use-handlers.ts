@@ -188,7 +188,7 @@ export const useHandlers = (
   )
 
   return {
-    /** @description two-way binding ref from props `fileList` */
+    /** @description 与 props `fileList` 双向绑定的 ref */
     uploadFiles,
     abort,
     clearFiles,

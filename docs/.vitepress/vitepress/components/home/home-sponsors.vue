@@ -44,7 +44,7 @@ import SponsorList from './sponsor-list.vue'
     margin: 0 20px 10px;
     height: calc(var(--min-width) / 2);
     align-items: center;
-    // for dark mode
+    // 用于深色模式
     // background-color: var(--bg-color-soft);
 
     .name {

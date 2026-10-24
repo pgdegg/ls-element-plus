@@ -7,48 +7,48 @@ import type { ExtractPropTypes, ExtractPublicPropTypes, Slot, VNode } from 'vue'
 
 export const descriptionItemProps = buildProps({
   /**
-   * @description label text
+   * @description 标签文本
    */
   label: {
     type: String,
     default: '',
   },
   /**
-   * @description colspan of column
+   * @description 列的 colspan
    */
   span: {
     type: Number,
     default: 1,
   },
   /**
-   * @description the number of rows a cell should span
+   * @description 单元格应跨越的行数
    */
   rowspan: {
     type: Number,
     default: 1,
   },
   /**
-   * @description column width, the width of the same column in different rows is set by the max value (If no `border`, width contains label and content)
+   * @description 列宽；不同行中同一列的宽度取最大值（若无 `border`，宽度包含标签和内容）
    */
   width: {
     type: [String, Number],
     default: '',
   },
   /**
-   * @description column minimum width, columns with `width` has a fixed width, while columns with `min-width` has a width that is distributed in proportion (If no`border`, width contains label and content)
+   * @description 列最小宽度；使用 `width` 的列宽度固定，使用 `min-width` 的列按比例分配宽度（若无 `border`，宽度包含标签和内容）
    */
   minWidth: {
     type: [String, Number],
     default: '',
   },
   /**
-   * @description column label width, if not set, it will be the same as the width of the column. Higher priority than the `label-width` of `Descriptions`
+   * @description 列标签宽度；若未设置，则与列宽相同。优先级高于 `Descriptions` 的 `label-width`
    */
   labelWidth: {
     type: [String, Number],
   },
   /**
-   * @description column content alignment (If no `border`, effective for both label and content)
+   * @description 列内容对齐方式（若无 `border`，对标签和内容均生效）
    */
   align: {
     type: String,
@@ -56,21 +56,21 @@ export const descriptionItemProps = buildProps({
     default: 'left',
   },
   /**
-   * @description column label alignment, if omitted, the value of the above `align` attribute will be applied (If no `border`, please use `align` attribute)
+   * @description 列标签对齐方式；省略时应用上面 `align` 属性的值（若无 `border`，请使用 `align` 属性）
    */
   labelAlign: {
     type: String,
     values: columnAlignment,
   },
   /**
-   * @description column content custom class name
+   * @description 列内容自定义类名
    */
   className: {
     type: String,
     default: '',
   },
   /**
-   * @description column label custom class name
+   * @description 列标签自定义类名
    */
   labelClassName: {
     type: String,

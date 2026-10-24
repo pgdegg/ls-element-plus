@@ -52,7 +52,7 @@ import type { UseResizeObserverReturn } from '@vueuse/core'
 
 export const menuProps = buildProps({
   /**
-   * @description menu display mode
+   * @description 菜单显示模式
    */
   mode: {
     type: String,
@@ -60,29 +60,29 @@ export const menuProps = buildProps({
     default: 'vertical',
   },
   /**
-   * @description index of active menu on page load
+   * @description 页面加载时激活菜单的索引
    */
   defaultActive: {
     type: String,
     default: '',
   },
   /**
-   * @description array that contains indexes of currently active sub-menus
+   * @description 包含当前激活子菜单索引的数组
    */
   defaultOpeneds: {
     type: definePropType<string[]>(Array),
     default: () => mutable([] as const),
   },
   /**
-   * @description whether only one sub-menu can be active
+   * @description 是否只能激活一个子菜单
    */
   uniqueOpened: Boolean,
   /**
-   * @description whether `vue-router` mode is activated. If true, index will be used as 'path' to activate the route action. Use with `default-active` to set the active item on load.
+   * @description 是否启用 `vue-router` 模式。若为 true，index 将作为 'path' 用于激活路由动作。可配合 `default-active` 在加载时设置激活项。
    */
   router: Boolean,
   /**
-   * @description how sub-menus are triggered, only works when `mode` is 'horizontal'
+   * @description 子菜单触发方式，仅在 `mode` 为 'horizontal' 时生效
    */
   menuTrigger: {
     type: String,
@@ -90,93 +90,93 @@ export const menuProps = buildProps({
     default: 'hover',
   },
   /**
-   * @description whether the menu is collapsed (available only in vertical mode)
+   * @description 菜单是否折叠（仅在垂直模式下可用）
    */
   collapse: Boolean,
   /**
-   * @description background color of Menu (hex format) (deprecated, use `--bg-color` instead)
+   * @description Menu 背景色（十六进制格式）（已废弃，请改用 `--bg-color`）
    * @deprecated use `--bg-color` instead
    */
   backgroundColor: String,
   /**
-   * @description text color of Menu (hex format) (deprecated, use `--text-color` instead)
+   * @description Menu 文本色（十六进制格式）（已废弃，请改用 `--text-color`）
    * @deprecated use `--text-color` instead
    */
   textColor: String,
   /**
-   * @description text color of currently active menu item (hex format) (deprecated, use `--active-color` instead)
+   * @description 当前激活菜单项的文本色（十六进制格式）（已废弃，请改用 `--active-color`）
    * @deprecated use `--active-color` instead
    */
   activeTextColor: String,
   /**
-   * @description optional, whether menu is collapsed when clicking outside
+   * @description 可选，点击外部时菜单是否折叠
    */
   closeOnClickOutside: Boolean,
   /**
-   * @description whether to enable the collapse transition
+   * @description 是否启用折叠过渡动画
    */
   collapseTransition: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description whether the menu is ellipsis (available only in horizontal mode)
+   * @description 菜单是否省略（仅在水平模式下可用）
    */
   ellipsis: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description offset of the popper (effective for all submenus)
+   * @description popper 偏移量（对所有子菜单生效）
    */
   popperOffset: {
     type: Number,
     default: 6,
   },
   /**
-   * @description custom ellipsis icon (available only in horizontal mode and ellipsis is true)
+   * @description 自定义省略图标（仅在水平模式且 ellipsis 为 true 时可用）
    */
   ellipsisIcon: {
     type: iconPropType,
     default: () => More,
   },
   /**
-   * @description Tooltip theme, built-in theme: `dark` / `light` when menu is collapsed
+   * @description 菜单折叠时的 Tooltip 主题，内置主题：`dark` / `light`
    */
   popperEffect: {
     type: definePropType<PopperEffect>(String),
     default: 'dark',
   },
   /**
-   * @description custom class name for all popup menus
+   * @description 所有弹出菜单的自定义类名
    */
   popperClass: {
     type: definePropType<ClassValue>([String, Array, Object, Boolean]),
     default: undefined,
   },
   /**
-   * @description custom style for all popup menus
+   * @description 所有弹出菜单的自定义样式
    */
   popperStyle: {
     type: definePropType<StyleValue>([String, Array, Object, Boolean]),
     default: undefined,
   },
   /**
-   * @description control timeout for all menus before showing
+   * @description 所有菜单显示前的控制超时时间
    */
   showTimeout: {
     type: Number,
     default: 300,
   },
   /**
-   * @description control timeout for all menus before hiding
+   * @description 所有菜单隐藏前的控制超时时间
    */
   hideTimeout: {
     type: Number,
     default: 300,
   },
   /**
-   * @description when menu inactive and `persistent` is `false` , dropdown menu will be destroyed
+   * @description 菜单未激活且 `persistent` 为 `false` 时，下拉菜单将被销毁
    */
   persistent: {
     type: Boolean,
@@ -253,7 +253,7 @@ export default defineComponent({
       const indexPath = activeItem.indexPath
 
       // 展开该菜单项的路径上所有子菜单
-      // expand all subMenus of the menu item
+      // 展开该菜单项的所有子菜单
       indexPath.forEach((index) => {
         const subMenu = subMenus.value[index]
         subMenu && openMenu(index, subMenu.indexPath)
@@ -263,7 +263,7 @@ export default defineComponent({
     const openMenu: MenuProvider['openMenu'] = (index, indexPath) => {
       if (openedMenus.value.includes(index)) return
       // 将不在该菜单路径下的其余菜单收起
-      // collapse all menu that are not under current menu item
+      // 折叠当前菜单项之外的所有菜单
       if (props.uniqueOpened) {
         openedMenus.value = openedMenus.value.filter((index: string) =>
           indexPath.includes(index)
@@ -366,7 +366,7 @@ export default defineComponent({
 
     const getIndexPath = (index: string) => subMenus.value[index].indexPath
 
-    // Common computer monitor FPS is 60Hz, which means 60 redraws per second. Calculation formula: 1000ms/60 ≈ 16.67ms, In order to avoid a certain chance of repeated triggering when `resize`, set wait to 16.67 * 2 = 33.34
+    // 普通电脑显示器 FPS 为 60Hz，即每秒重绘 60 次。计算公式：1000ms/60 ≈ 16.67ms；为避免 `resize` 时偶然重复触发，将 wait 设为 16.67 * 2 = 33.34
     const debounce = (fn: () => void, wait = 33.34) => {
       let timer: ReturnType<typeof setTimeout> | null
       return () => {
@@ -388,7 +388,7 @@ export default defineComponent({
           sliceIndex.value = calcSliceIndex()
         })
       }
-      // execute callback directly when first time resize to avoid shaking
+      // 首次 resize 时直接执行回调以避免抖动
       isFirstTimeRender ? callback() : debounce(callback)()
       isFirstTimeRender = false
     }
@@ -457,7 +457,7 @@ export default defineComponent({
           closeMenu,
           handleMenuItemClick,
           handleSubMenuClick,
-        }) as unknown as MenuProvider // Avoid TS2589
+        }) as unknown as MenuProvider // 避免 TS2589
       )
 
       provide<SubMenuProvider>(`${SUB_MENU_INJECTION_KEY}${instance.uid}`, {
@@ -499,7 +499,7 @@ export default defineComponent({
         const originalSlot = (
           flattedChildren(slot) as VNodeArrayChildren
         ).filter((vnode) => {
-          // Filter text and comment nodes (https://github.com/vuejs/core/blob/c875019d49b4c36a88d929ccadc31ad414747c7b/packages/shared/src/shapeFlags.ts#L5)
+          // 过滤文本节点和注释节点（https://github.com/vuejs/core/blob/c875019d49b4c36a88d929ccadc31ad414747c7b/packages/shared/src/shapeFlags.ts#L5）
           return (vnode as VNode)?.shapeFlag !== 8
         })
         const slotDefault =

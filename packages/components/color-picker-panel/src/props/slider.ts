@@ -13,7 +13,7 @@ export interface AlphaSliderProps {
 export interface HueSliderProps extends AlphaSliderProps {}
 
 /**
- * @deprecated Removed after 3.0.0, Use `AlphaSliderProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `AlphaSliderProps`
  */
 export const alphaSliderProps = buildProps({
   color: {
@@ -25,12 +25,12 @@ export const alphaSliderProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `HueSliderProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `HueSliderProps`
  */
 export const hueSliderProps = alphaSliderProps
 
 /**
- * @deprecated Removed after 3.0.0, Use `AlphaSliderProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `AlphaSliderProps`
  */
 export type AlphaSliderPropsPublic = ExtractPublicPropTypes<
   typeof alphaSliderProps

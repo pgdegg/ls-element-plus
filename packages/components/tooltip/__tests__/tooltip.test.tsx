@@ -87,7 +87,7 @@ describe('<ElTooltip />', () => {
       expect(wrapper.emitted()).toHaveProperty('show')
 
       vi.useFakeTimers()
-      await triggerEl.trigger('mouseleave') // dispatches a timer with 200ms timeout.
+      await triggerEl.trigger('mouseleave') // 派发一个 200ms 超时的定时器。
       vi.runAllTimers()
       vi.useRealTimers()
       await rAF()

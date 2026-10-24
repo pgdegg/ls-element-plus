@@ -1,5 +1,5 @@
-// Symbols are shared by every icon instance. Keep one loading task per resource
-// so mounting another instance after the load event does not leave it waiting.
+// Symbol 由每个图标实例共享。每个资源只保留一个加载任务
+// 这样在 load 事件后挂载另一个实例时不会让它一直等待。
 const resources = new WeakMap<
   SVGElement,
   {

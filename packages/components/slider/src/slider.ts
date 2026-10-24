@@ -29,7 +29,7 @@ export interface SliderInitData {
 
 export const sliderProps = buildProps({
   /**
-   * @description binding value
+   * @description 绑定值
    */
   modelValue: {
     type: definePropType<Arrayable<number>>([Number, Array]),
@@ -40,112 +40,112 @@ export const sliderProps = buildProps({
     default: undefined,
   },
   /**
-   * @description minimum value
+   * @description 最小值
    */
   min: {
     type: Number,
     default: 0,
   },
   /**
-   * @description maximum value
+   * @description 最大值
    */
   max: {
     type: Number,
     default: 100,
   },
   /**
-   * @description step size, can be a number or `'mark'` to restrict values to marks. When set to `'mark'`, the `marks` attribute must be set
+   * @description 步长，可以是数字或 `'mark'`，将值限制为刻度。设为 `'mark'` 时必须设置 `marks` 属性
    */
   step: {
     type: definePropType<number | 'mark'>([Number, String]),
     default: 1,
   },
   /**
-   * @description whether to display an input box, works when `range` is false and `step` is not `'mark'`
+   * @description 是否显示输入框，在 `range` 为 false 且 `step` 不为 `'mark'` 时生效
    */
   showInput: Boolean,
   /**
-   * @description whether to display control buttons when `show-input` is true
+   * @description `show-input` 为 true 时是否显示控制按钮
    */
   showInputControls: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description size of the slider wrapper, will not work in vertical mode
+   * @description 滑块容器尺寸，在垂直模式下无效
    */
   size: useSizeProp,
   /**
-   * @description size of the input box, when set `size`, the default is the value of `size`
+   * @description 输入框尺寸，设置 `size` 时默认取 `size` 的值
    */
   inputSize: useSizeProp,
   /**
-   * @description whether to display breakpoints
+   * @description 是否显示断点
    */
   showStops: Boolean,
   /**
-   * @description whether to display tooltip value
+   * @description 是否显示 tooltip 值
    */
   showTooltip: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description format to display tooltip value
+   * @description tooltip 值的显示格式
    */
   formatTooltip: {
     type: definePropType<(val: number) => number | string>(Function),
     default: undefined,
   },
   /**
-   * @description whether Slider is disabled
+   * @description Slider 是否禁用
    */
   disabled: {
     type: Boolean,
     default: undefined,
   },
   /**
-   * @description whether to select a range
+   * @description 是否选择范围
    */
   range: Boolean,
   /**
-   * @description vertical mode
+   * @description 垂直模式
    */
   vertical: Boolean,
   /**
-   * @description slider height, required in vertical mode
+   * @description 滑块高度，垂直模式下必填
    */
   height: String,
   /**
-   * @description when `range` is true, screen reader label for the start of the range
+   * @description `range` 为 true 时，范围起点的屏幕阅读器标签
    */
   rangeStartLabel: {
     type: String,
     default: undefined,
   },
   /**
-   * @description when `range` is true, screen reader label for the end of the range
+   * @description `range` 为 true 时，范围终点的屏幕阅读器标签
    */
   rangeEndLabel: {
     type: String,
     default: undefined,
   },
   /**
-   * @description format to display the `aria-valuenow` attribute for screen readers
+   * @description 供屏幕阅读器使用的 `aria-valuenow` 属性显示格式
    */
   formatValueText: {
     type: definePropType<(val: number) => string>(Function),
     default: undefined,
   },
   /**
-   * @description custom class name for the tooltip
+   * @description tooltip 的自定义类名
    */
   tooltipClass: {
     type: definePropType<ClassValue>([String, Array, Object, Boolean]),
     default: undefined,
   },
   /**
-   * @description position of Tooltip
+   * @description Tooltip 的位置
    */
   placement: {
     type: String,
@@ -153,20 +153,20 @@ export const sliderProps = buildProps({
     default: 'top',
   },
   /**
-   * @description marks, type of key must be `number` and must in closed interval `[min, max]`, each mark can custom style
+   * @description 刻度，键类型必须为 `number` 且位于闭区间 `[min, max]` 内，每个刻度可自定义样式
    */
   marks: {
     type: definePropType<SliderMarks>(Object),
   },
   /**
-   * @description whether to trigger form validation
+   * @description 是否触发表单校验
    */
   validateEvent: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description when slider tooltip inactive and `persistent` is `false` , popconfirm will be destroyed. `persistent` always be `false` when `show-tooltip ` is `false`
+   * @description 当 slider tooltip 不处于激活状态且 `persistent` 为 `false` 时，popconfirm 将被销毁。`show-tooltip` 为 `false` 时 `persistent` 始终为 `false`
    */
   persistent: {
     type: Boolean,

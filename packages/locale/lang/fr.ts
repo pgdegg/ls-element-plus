@@ -159,12 +159,12 @@ export default {
       resetFilter: 'Réinitialiser',
       clearFilter: 'Tous',
       sumText: 'Somme',
-      selectAllLabel: 'Select all rows', // to be translated
-      selectRowLabel: 'Select this row', // to be translated
-      expandRowLabel: 'Expand this row', // to be translated
-      collapseRowLabel: 'Collapse this row', // to be translated
-      sortLabel: 'Sort by {column}', // to be translated
-      filterLabel: 'Filter by {column}', // to be translated
+      selectAllLabel: 'Select all rows', // 待翻译
+      selectRowLabel: 'Select this row', // 待翻译
+      expandRowLabel: 'Expand this row', // 待翻译
+      collapseRowLabel: 'Collapse this row', // 待翻译
+      sortLabel: 'Sort by {column}', // 待翻译
+      filterLabel: 'Filter by {column}', // 待翻译
     },
     tag: {
       close: 'Fermer le tag',
@@ -202,8 +202,8 @@ export default {
       indicator: 'Passer au carrousel index {index}',
     },
     inputOTP: {
-      groupLabel: 'OTP Input', // to be translated
-      defaultLabel: 'Please enter OTP character {index}', // to be translated
+      groupLabel: 'OTP Input', // 待翻译
+      defaultLabel: 'Please enter OTP character {index}', // 待翻译
     },
   },
 }

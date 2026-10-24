@@ -80,7 +80,7 @@ export * from './segmented'
 export * from './mention'
 export * from './splitter'
 
-// plugins
+// 插件
 export * from './infinite-scroll'
 export * from './loading'
 export * from './message'

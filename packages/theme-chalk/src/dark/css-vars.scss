@@ -1,6 +1,6 @@
 @use 'sass:map';
 
-// CSS3 var
+// CSS3 变量
 @use './var' as *;
 @use '../mixins/_var.scss' as *;
 @use '../mixins/mixins.scss' as *;
@@ -8,7 +8,7 @@
 html.dark {
   color-scheme: dark;
 
-  // hex colors
+  // hex 颜色
   @each $type in (primary, success, warning, danger, error, info) {
     @include set-css-color-type($colors, $type);
   }
@@ -17,13 +17,13 @@ html.dark {
   @include set-component-css-var('box-shadow', $box-shadow);
 
   // color-scheme
-  // Background --el-bg-color-#{$type}
+  // 背景 --el-bg-color-#{$type}
   @include set-component-css-var('bg-color', $bg-color);
   // --el-text-color-#{$type}
   @include set-component-css-var('text-color', $text-color);
   // --el-border-color-#{$type}
   @include set-component-css-var('border-color', $border-color);
-  // Fill --el-fill-color-#{$type}
+  // 填充 --el-fill-color-#{$type}
   @include set-component-css-var('fill-color', $fill-color);
   @include set-component-css-var('mask-color', $mask-color);
 }

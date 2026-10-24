@@ -26,13 +26,13 @@ export const useSelect = (
 ): Record<string, unknown> => {
   const ns = useNamespace('tree-select')
 
-  // update tree data when use filterMethod/remoteMethod
+  // 使用 filterMethod/remoteMethod 时更新树数据
   watch(
     () => props.data,
     () => {
       if (props.filterable) {
         nextTick(() => {
-          // let tree node expand only, same with tree filter
+          // 仅让树节点展开，与树过滤一致
           tree.value?.filter(select.value?.states.inputValue)
         })
       }
@@ -65,7 +65,7 @@ export const useSelect = (
           dropdownMenuVisible
         ) {
           await nextTick()
-          // wait navigateOption to finish
+          // 等待 navigateOption 完成
           setTimeout(() => {
             if (EVENT_CODE.up === code) {
               const listNode = tree.value.store.root.childNodes
@@ -106,14 +106,14 @@ export const useSelect = (
     ]),
     class: computed(() => attrs.class),
     style: computed(() => attrs.style),
-    // attrs is not reactive, when v-model binding source changes,
-    // this listener is still old, see the bug(or test 'v-model source change'):
+    // attrs 不是响应式的，当 v-model 绑定源变化时，
+    // 该监听器仍是旧的，参见此 bug（或测试 'v-model source change'）：
     // https://github.com/element-plus/element-plus/issues/14204
     'onUpdate:modelValue': (value) => emit(UPDATE_MODEL_EVENT, value),
     valueKey: key,
     popperClass: computed(() => [ns.e('popper'), props.popperClass]),
-    // Tree filtering operates on the complete query, including an empty tree.
-    // ElSelect's filterMethod is an option predicate and must not drive it.
+    // 树过滤作用于完整查询，包括空树。
+    // ElSelect 的 filterMethod 是选项谓词，不能驱动它。
     filterMethod: () => true,
     remoteMethod: undefined,
     onQueryChange: (keyword) => {

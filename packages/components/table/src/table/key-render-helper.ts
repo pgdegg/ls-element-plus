@@ -18,7 +18,7 @@ export default function useKeyRender<T extends DefaultRow>(table: Table<T>) {
   }
 
   onMounted(() => {
-    // fix https://github.com/element-plus/element-plus/issues/8528
+    // 修复 https://github.com/element-plus/element-plus/issues/8528
     initWatchDom()
   })
 

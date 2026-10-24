@@ -366,16 +366,16 @@ describe('Virtual Tree', () => {
     })
     await nextTick()
     let nodes = wrapper.findAll(TREE_NODE_CLASS_NAME)
-    // test props.label
+    // 测试 props.label
     expect(nodes[0].text()).toBe('node-1')
     expect(nodes[1].text()).toBe('node-2')
-    // expand node-2
+    // 展开 node-2
     await nodes[1].trigger('click')
     nodes = wrapper.findAll(TREE_NODE_CLASS_NAME)
-    // test props.children
+    // 测试 props.children
     expect(nodes[2].text()).toBe('node-2-1')
     expect(nodes[3].text()).toBe('node-2-2')
-    // test props.disabled
+    // 测试 props.disabled
     expect(nodes[3].classes()).not.toContain('is-focusable')
   })
 
@@ -442,7 +442,7 @@ describe('Virtual Tree', () => {
     })
     await nextTick()
     expect(wrapper.find('.el-checkbox').exists()).toBeTruthy()
-    // expand all nodes
+    // 展开所有节点
     let nodes = wrapper.findAll(TREE_NODE_CLASS_NAME)
     await nodes[0].trigger('click')
     nodes = wrapper.findAll(TREE_NODE_CLASS_NAME)
@@ -451,13 +451,13 @@ describe('Virtual Tree', () => {
     await nodes[4].trigger('click')
     nodes = wrapper.findAll(TREE_NODE_CLASS_NAME)
     expect(nodes.length).toBe(8)
-    // When node-1 is checked, all child nodes should be checked
+    // 勾选 node-1 时，所有子节点都应被勾选
     await nodes[0].find('.el-checkbox').trigger('click')
     expect(wrapper.findAll('.el-checkbox.is-checked').length).toBe(7)
-    // When cancel node-1 checked, all child nodes should not be checked
+    // 取消勾选 node-1 时，所有子节点都不应被勾选
     await nodes[0].find('.el-checkbox').trigger('click')
     expect(wrapper.findAll('.el-checkbox.is-checked').length).toBe(0)
-    // When node-1-1 is checked, node-1-1-1 and node-1-1-2 should be checked
+    // 勾选 node-1-1 时，node-1-1-1 和 node-1-1-2 应被勾选
     await nodes[1].find('.el-checkbox').trigger('click')
     expect(
       wrapper
@@ -465,21 +465,21 @@ describe('Virtual Tree', () => {
         .map((el) => el.text())
         .toString()
     ).toBe(['node-1-1', 'node-1-1-1', 'node-1-1-2'].toString())
-    // When cancel node-1-1, node-1-1-1 and node-1-1-2 should not be checked
+    // 取消勾选 node-1-1 时，node-1-1-1 和 node-1-1-2 不应被勾选
     await nodes[1].find('.el-checkbox').trigger('click')
     expect(wrapper.findAll('.el-checkbox.is-checked').length).toBe(0)
-    // When node-1-1-1 is checked, node-1 and node-1-1 should be indeterminate
+    // 勾选 node-1-1-1 时，node-1 和 node-1-1 应为半选状态
     await nodes[2].find('.el-checkbox').trigger('click')
     expect(wrapper.findAll('.el-checkbox.is-checked').length).toBe(1)
     expect(wrapper.findAll('.el-checkbox .is-indeterminate').length).toBe(2)
-    // When node-1-1-1 and node-1-1-2 are checked, node-1-1 should be checked, node-1 should be indeterminate
+    // 勾选 node-1-1-1 和 node-1-1-2 时，node-1-1 应被勾选，node-1 应为半选状态
     await nodes[3].find('.el-checkbox').trigger('click')
     expect(wrapper.findAll('.el-checkbox.is-checked').length).toBe(3)
     expect(wrapper.findAll('.el-checkbox .is-indeterminate').length).toBe(1)
     await nodes[3].find('.el-checkbox').trigger('click')
     await nodes[2].find('.el-checkbox').trigger('click')
-    // test one leaf node
-    // When node-1-2-1 is checked, node-1-2 should be checked
+    // 测试单个叶子节点
+    // 勾选 node-1-2-1 时，node-1-2 应被勾选
     await nodes[5].find('.el-checkbox').trigger('click')
     expect(
       wrapper
@@ -487,7 +487,7 @@ describe('Virtual Tree', () => {
         .map((el) => el.text())
         .toString()
     ).toBe(['node-1-2', 'node-1-2-1'].toString())
-    // cancel node-1-2-1, node-1-2 should not be checked
+    // 取消勾选 node-1-2-1 时，node-1-2 不应被勾选
     await nodes[5].find('.el-checkbox').trigger('click')
     expect(wrapper.findAll('.el-checkbox.is-checked').length).toBe(0)
     expect(wrapper.findAll('.el-checkbox .is-indeterminate').length).toBe(0)
@@ -769,9 +769,9 @@ describe('Virtual Tree', () => {
       },
     })
     await nextTick()
-    // node-1-1 should be checked
+    // node-1-1 应被勾选
     expect(treeRef.getCheckedKeys().length).toBe(3)
-    // node-1-1 should be indeterminate
+    // node-1-1 应为半选状态
     expect(treeRef.getHalfCheckedKeys().length).toBe(1)
   })
 
@@ -827,9 +827,9 @@ describe('Virtual Tree', () => {
       },
     })
     await nextTick()
-    // node-1-1 should not be checked
+    // node-1-1 不应被勾选
     expect(treeRef.getCheckedKeys().length).toBe(2)
-    // node-1-1 should not be indeterminate
+    // node-1-1 不应为半选状态
     expect(treeRef.getHalfCheckedKeys().length).toBe(0)
     // manual
     const nodes = wrapper.findAll(TREE_NODE_CLASS_NAME)

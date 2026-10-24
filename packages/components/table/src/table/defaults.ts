@@ -109,125 +109,125 @@ type CellStyle<T extends DefaultRow> =
 type Layout = 'fixed' | 'auto'
 interface TableProps<T extends DefaultRow = DefaultRow> {
   /**
-   * @description table data
+   * @description 表格数据
    */
   data?: T[]
   /**
-   * @description size of Table
+   * @description Table 的尺寸
    */
   size?: ComponentSize
   width?: string | number
   /**
-   * @description table's height. By default it has an `auto` height. If its value is a number, the height is measured in pixels; if its value is a string, the value will be assigned to element's style.height, the height is affected by external styles
+   * @description 表格高度。默认为 `auto` 高度。值为数字时以像素为单位；值为字符串时将赋给元素的 style.height，此时高度会受外部样式影响
    */
   height?: string | number
   /**
-   * @description table's max-height. The legal value is a number or the height in px
+   * @description 表格最大高度。合法值为数字或以 px 为单位的高度
    */
   maxHeight?: string | number
   /**
-   * @description whether width of column automatically fits its container
+   * @description 列宽是否自动适配其容器
    */
   fit?: boolean
   /**
-   * @description whether Table is striped
+   * @description Table 是否为斑马纹
    */
   stripe?: boolean
   /**
-   * @description whether Table has vertical border
+   * @description Table 是否显示纵向边框
    */
   border?: boolean
   /**
-   * @description key of row data, used for optimizing rendering. Required if `reserve-selection` is on or display tree data. When its type is String, multi-level access is supported, e.g. `user.info.id`, but `user.info[0].id` is not supported, in which case `Function` should be used
+   * @description 行数据的 key，用于优化渲染。开启 `reserve-selection` 或展示树形数据时为必填。类型为 String 时支持多级访问，例如 `user.info.id`，但不支持 `user.info[0].id`，这种情况下应使用 `Function`
    */
   rowKey?: string | ((row: T) => string)
   context?: Table<T>
   /**
-   * @description whether Table header is visible
+   * @description 是否显示表头
    */
   showHeader?: boolean
   /**
-   * @description whether to display a summary row
+   * @description 是否显示合计行
    */
   showSummary?: boolean
   /**
-   * @description displayed text for the first column of summary row
+   * @description 合计行第一列显示的文本
    */
   sumText?: string
   /**
-   * @description custom summary method
+   * @description 自定义合计方法
    */
   summaryMethod?: SummaryMethod<T>
   /**
-   * @description function that returns custom class names for a row, or a string assigning class names for every row
+   * @description 为某一行返回自定义类名的函数，或为每一行统一设置类名的字符串
    */
   rowClassName?: ColumnCls<T>
   /**
-   * @description function that returns custom style for a row, or an object assigning custom style for every row
+   * @description 为某一行返回自定义样式的函数，或为每一行统一设置自定义样式的对象
    */
   rowStyle?: ColumnStyle<T>
   /**
-   * @description function that returns custom class names for a cell, or a string assigning class names for every cell
+   * @description 为某个单元格返回自定义类名的函数，或为每个单元格统一设置类名的字符串
    */
   cellClassName?: CellCls<T>
   /**
-   * @description function that returns custom style for a cell, or an object assigning custom style for every cell
+   * @description 为某个单元格返回自定义样式的函数，或为每个单元格统一设置自定义样式的对象
    */
   cellStyle?: CellStyle<T>
   /**
-   * @description function that returns custom class names for a row in table header, or a string assigning class names for every row in table header
+   * @description 为表头某一行返回自定义类名的函数，或为表头每一行统一设置类名的字符串
    */
   headerRowClassName?: ColumnCls<T>
   /**
-   * @description function that returns custom style for a row in table header, or an object assigning custom style for every row in table header
+   * @description 为表头某一行返回自定义样式的函数，或为表头每一行统一设置自定义样式的对象
    */
   headerRowStyle?: ColumnStyle<T>
   /**
-   * @description function that returns custom class names for a cell in table header, or a string assigning class names for every cell in table header
+   * @description 为表头某个单元格返回自定义类名的函数，或为表头每个单元格统一设置类名的字符串
    */
   headerCellClassName?: CellCls<T>
   /**
-   * @description function that returns custom style for a cell in table header, or an object assigning custom style for every cell in table header
+   * @description 为表头某个单元格返回自定义样式的函数，或为表头每个单元格统一设置自定义样式的对象
    */
   headerCellStyle?: CellStyle<T>
   /**
-   * @description whether current row is highlighted
+   * @description 当前行是否高亮
    */
   highlightCurrentRow?: boolean
   /**
-   * @description key of current row, a set only prop
+   * @description 当前行的 key，仅为设置型 prop
    */
   currentRowKey?: string | number
   /**
-   * @description displayed text when data is empty. You can customize this area with `#empty`
+   * @description 数据为空时显示的文本。可使用 `#empty` 插槽自定义该区域
    */
   emptyText?: string
   /**
-   * @description set expanded rows by this prop, prop's value is the keys of expand rows, you should set row-key before using this prop
+   * @description 通过该属性设置展开的行，属性值为展开行的 key，使用前应先设置 row-key
    */
   expandRowKeys?: Array<string>
   /**
-   * @description whether expand all rows by default, works when the table has a column type="expand" or contains tree structure data
+   * @description 是否默认展开所有行，在表格存在 type="expand" 的列或包含树形结构数据时生效
    */
   defaultExpandAll?: boolean
   /**
-   * @description enable expandable rows, works when the table has a column type="expand"
+   * @description 启用可展开行，在表格存在 type="expand" 的列时生效
    */
   rowExpandable?: (row: T, index: number) => boolean
   /**
-   * @description set the default sort column and order. property `prop` is used to set default sort column, property `order` is used to set default sort order
+   * @description 设置默认排序列和排序方向。`prop` 属性用于设置默认排序列，`order` 属性用于设置默认排序方向
    */
   defaultSort?: Sort
   /**
-   * @description the `effect` of the overflow tooltip
+   * @description 溢出 tooltip 的 `effect`
    */
   tooltipEffect?: string
   /**
-   * @description the options for the overflow tooltip, [see the following tooltip component](tooltip.html#attributes)
+   * @description 溢出 tooltip 的选项，[参见以下 tooltip 组件](tooltip.html#attributes)
    */
   tooltipOptions?: TableOverflowTooltipOptions
   /**
-   * @description method that returns rowspan and colspan
+   * @description 返回 rowspan 和 colspan 的方法
    */
   spanMethod?: (data: {
     row: T
@@ -242,59 +242,59 @@ interface TableProps<T extends DefaultRow = DefaultRow> {
       }
     | undefined
   /**
-   * @description controls the behavior of master checkbox in multi-select tables when only some rows are selected (but not all). If true, all rows will be selected, else deselected
+   * @description 控制多选表格中仅选中部分行（而非全部）时全选复选框的行为。为 true 时选中所有行，否则取消选中
    */
   selectOnIndeterminate?: boolean
   /**
-   * @description horizontal indentation of tree data
+   * @description 树形数据的水平缩进
    */
   indent?: number
   /**
-   * @description configuration for rendering nested data
+   * @description 渲染嵌套数据的配置
    */
   treeProps?: TreeProps
   /**
-   * @description whether to lazy loading data
+   * @description 是否懒加载数据
    */
   lazy?: boolean
   /**
-   * @description method for loading child row data, only works when `lazy` is true
+   * @description 加载子行数据的方法，仅在 `lazy` 为 true 时生效
    */
   load?: (row: T, treeNode: TreeNode, resolve: (data: T[]) => void) => void
   className?: string
   style?: StyleValue
   /**
-   * @description sets the algorithm used to lay out table cells, rows, and columns
+   * @description 设置用于布局表格单元格、行和列的算法
    */
   tableLayout?: Layout
   /**
-   * @description always show scrollbar
+   * @description 始终显示滚动条
    */
   scrollbarAlwaysOn?: boolean
   /**
-   * @description ensure main axis minimum-size doesn't follow the content
+   * @description 确保主轴最小尺寸不随内容变化
    */
   flexible?: boolean
   /**
-   * @description whether to hide extra content and show them in a tooltip when hovering on the cell.It will affect all the table columns
+   * @description 是否隐藏多余内容，并在悬停单元格时以 tooltip 形式展示。会影响表格的所有列
    */
   showOverflowTooltip?: boolean | TableOverflowTooltipOptions
   /**
-   * @description function that formats cell tooltip content, works when `show-overflow-tooltip` is `true`
+   * @description 格式化单元格 tooltip 内容的函数，在 `show-overflow-tooltip` 为 `true` 时生效
    */
   tooltipFormatter?: TableOverflowTooltipFormatter<T>
   appendFilterPanelTo?: string
   scrollbarTabindex?: number | string
   /**
-   * @description whether to allow drag the last column
+   * @description 是否允许拖动最后一列
    */
   allowDragLastColumn?: boolean
   /**
-   * @description whether to preserve expanded row content in DOM when collapsed
+   * @description 折叠时是否在 DOM 中保留已展开行的内容
    */
   preserveExpandedContent?: boolean
   /**
-   * @description whether to use native scrollbars
+   * @description 是否使用原生滚动条
    */
   nativeScrollbar?: boolean
 }
@@ -408,167 +408,167 @@ interface TableEmits<T extends DefaultRow = DefaultRow> {
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `TableProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `TableProps`。
  */
 export const tableProps = {
   /**
-   * @description table data
+   * @description 表格数据
    */
   data: {
     type: Array as PropType<any[]>,
     default: () => [],
   },
   /**
-   * @description size of Table
+   * @description Table 的尺寸
    */
   size: useSizeProp,
   width: [String, Number],
   /**
-   * @description table's height. By default it has an `auto` height. If its value is a number, the height is measured in pixels; if its value is a string, the value will be assigned to element's style.height, the height is affected by external styles
+   * @description 表格高度。默认为 `auto` 高度。值为数字时以像素为单位；值为字符串时将赋给元素的 style.height，此时高度会受外部样式影响
    */
   height: [String, Number],
   /**
-   * @description table's max-height. The legal value is a number or the height in px
+   * @description 表格最大高度。合法值为数字或以 px 为单位的高度
    */
   maxHeight: [String, Number],
   /**
-   * @description whether width of column automatically fits its container
+   * @description 列宽是否自动适配其容器
    */
   fit: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description whether Table is striped
+   * @description Table 是否为斑马纹
    */
   stripe: Boolean,
   /**
-   * @description whether Table has vertical border
+   * @description Table 是否显示纵向边框
    */
   border: Boolean,
   /**
-   * @description key of row data, used for optimizing rendering. Required if `reserve-selection` is on or display tree data. When its type is String, multi-level access is supported, e.g. `user.info.id`, but `user.info[0].id` is not supported, in which case `Function` should be used
+   * @description 行数据的 key，用于优化渲染。开启 `reserve-selection` 或展示树形数据时为必填。类型为 String 时支持多级访问，例如 `user.info.id`，但不支持 `user.info[0].id`，这种情况下应使用 `Function`
    */
   rowKey: [String, Function] as PropType<TableProps<any>['rowKey']>,
   /**
-   * @description whether Table header is visible
+   * @description 是否显示表头
    */
   showHeader: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description whether to display a summary row
+   * @description 是否显示合计行
    */
   showSummary: Boolean,
   /**
-   * @description displayed text for the first column of summary row
+   * @description 合计行第一列显示的文本
    */
   sumText: String,
   /**
-   * @description custom summary method
+   * @description 自定义合计方法
    */
   summaryMethod: Function as PropType<TableProps<any>['summaryMethod']>,
   /**
-   * @description function that returns custom class names for a row, or a string assigning class names for every row
+   * @description 为某一行返回自定义类名的函数，或为每一行统一设置类名的字符串
    */
   rowClassName: [String, Function] as PropType<TableProps<any>['rowClassName']>,
   /**
-   * @description function that returns custom style for a row, or an object assigning custom style for every row
+   * @description 为某一行返回自定义样式的函数，或为每一行统一设置自定义样式的对象
    */
   rowStyle: [Object, Function] as PropType<TableProps<any>['rowStyle']>,
   /**
-   * @description function that returns custom class names for a cell, or a string assigning class names for every cell
+   * @description 为某个单元格返回自定义类名的函数，或为每个单元格统一设置类名的字符串
    */
   cellClassName: [String, Function] as PropType<
     TableProps<any>['cellClassName']
   >,
   /**
-   * @description function that returns custom style for a cell, or an object assigning custom style for every cell
+   * @description 为某个单元格返回自定义样式的函数，或为每个单元格统一设置自定义样式的对象
    */
   cellStyle: [Object, Function] as PropType<TableProps<any>['cellStyle']>,
   /**
-   * @description function that returns custom class names for a row in table header, or a string assigning class names for every row in table header
+   * @description 为表头某一行返回自定义类名的函数，或为表头每一行统一设置类名的字符串
    */
   headerRowClassName: [String, Function] as PropType<
     TableProps<any>['headerRowClassName']
   >,
   /**
-   * @description function that returns custom style for a row in table header, or an object assigning custom style for every row in table header
+   * @description 为表头某一行返回自定义样式的函数，或为表头每一行统一设置自定义样式的对象
    */
   headerRowStyle: [Object, Function] as PropType<
     TableProps<any>['headerRowStyle']
   >,
   /**
-   * @description function that returns custom class names for a cell in table header, or a string assigning class names for every cell in table header
+   * @description 为表头某个单元格返回自定义类名的函数，或为表头每个单元格统一设置类名的字符串
    */
   headerCellClassName: [String, Function] as PropType<
     TableProps<any>['headerCellClassName']
   >,
   /**
-   * @description function that returns custom style for a cell in table header, or an object assigning custom style for every cell in table header
+   * @description 为表头某个单元格返回自定义样式的函数，或为表头每个单元格统一设置自定义样式的对象
    */
   headerCellStyle: [Object, Function] as PropType<
     TableProps<any>['headerCellStyle']
   >,
   /**
-   * @description whether current row is highlighted
+   * @description 当前行是否高亮
    */
   highlightCurrentRow: Boolean,
   /**
-   * @description key of current row, a set only prop
+   * @description 当前行的 key，仅为设置型 prop
    */
   currentRowKey: [String, Number],
   /**
-   * @description displayed text when data is empty. You can customize this area with `#empty`
+   * @description 数据为空时显示的文本。可使用 `#empty` 插槽自定义该区域
    */
   emptyText: String,
   /**
-   * @description set expanded rows by this prop, prop's value is the keys of expand rows, you should set row-key before using this prop
+   * @description 通过该属性设置展开的行，属性值为展开行的 key，使用前应先设置 row-key
    */
   expandRowKeys: Array as PropType<TableProps<any>['expandRowKeys']>,
   /**
-   * @description whether expand all rows by default, works when the table has a column type="expand" or contains tree structure data
+   * @description 是否默认展开所有行，在表格存在 type="expand" 的列或包含树形结构数据时生效
    */
   defaultExpandAll: Boolean,
   /**
-   * @description enable expandable rows, works when the table has a column type="expand"
+   * @description 启用可展开行，在表格存在 type="expand" 的列时生效
    */
   rowExpandable: {
     type: Function as PropType<TableProps<any>['rowExpandable']>,
   },
   /**
-   * @description set the default sort column and order. property `prop` is used to set default sort column, property `order` is used to set default sort order
+   * @description 设置默认排序列和排序方向。`prop` 属性用于设置默认排序列，`order` 属性用于设置默认排序方向
    */
   defaultSort: Object as PropType<TableProps<any>['defaultSort']>,
   /**
-   * @description the `effect` of the overflow tooltip
+   * @description 溢出 tooltip 的 `effect`
    */
   tooltipEffect: String,
   /**
-   * @description the options for the overflow tooltip, [see the following tooltip component](tooltip.html#attributes)
+   * @description 溢出 tooltip 的选项，[参见以下 tooltip 组件](tooltip.html#attributes)
    */
   tooltipOptions: Object as PropType<TableProps<any>['tooltipOptions']>,
   /**
-   * @description method that returns rowspan and colspan
+   * @description 返回 rowspan 和 colspan 的方法
    */
   spanMethod: Function as PropType<TableProps<any>['spanMethod']>,
   /**
-   * @description controls the behavior of master checkbox in multi-select tables when only some rows are selected (but not all). If true, all rows will be selected, else deselected
+   * @description 控制多选表格中仅选中部分行（而非全部）时全选复选框的行为。为 true 时选中所有行，否则取消选中
    */
   selectOnIndeterminate: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description horizontal indentation of tree data
+   * @description 树形数据的水平缩进
    */
   indent: {
     type: Number,
     default: 16,
   },
   /**
-   * @description configuration for rendering nested data
+   * @description 渲染嵌套数据的配置
    */
   treeProps: {
     type: Object as PropType<TableProps<any>['treeProps']>,
@@ -581,11 +581,11 @@ export const tableProps = {
     },
   },
   /**
-   * @description whether to lazy loading data
+   * @description 是否懒加载数据
    */
   lazy: Boolean,
   /**
-   * @description method for loading child row data, only works when `lazy` is true
+   * @description 加载子行数据的方法，仅在 `lazy` 为 true 时生效
    */
   load: Function as PropType<TableProps<any>['load']>,
   style: {
@@ -599,29 +599,29 @@ export const tableProps = {
     default: '',
   },
   /**
-   * @description sets the algorithm used to lay out table cells, rows, and columns
+   * @description 设置用于布局表格单元格、行和列的算法
    */
   tableLayout: {
     type: String as PropType<Layout>,
     default: 'fixed',
   },
   /**
-   * @description always show scrollbar
+   * @description 始终显示滚动条
    */
   scrollbarAlwaysOn: Boolean,
   /**
-   * @description ensure main axis minimum-size doesn't follow the content
+   * @description 确保主轴最小尺寸不随内容变化
    */
   flexible: Boolean,
   /**
-   * @description whether to hide extra content and show them in a tooltip when hovering on the cell.It will affect all the table columns
+   * @description 是否隐藏多余内容，并在悬停单元格时以 tooltip 形式展示。会影响表格的所有列
    */
   showOverflowTooltip: {
     type: [Boolean, Object] as PropType<TableProps<any>['showOverflowTooltip']>,
     default: undefined,
   },
   /**
-   * @description function that formats cell tooltip content, works when `show-overflow-tooltip` is `true`
+   * @description 格式化单元格 tooltip 内容的函数，在 `show-overflow-tooltip` 为 `true` 时生效
    */
   tooltipFormatter: Function as PropType<TableProps<any>['tooltipFormatter']>,
   appendFilterPanelTo: String,
@@ -630,18 +630,18 @@ export const tableProps = {
     default: undefined,
   },
   /**
-   * @description whether to allow drag the last column
+   * @description 是否允许拖动最后一列
    */
   allowDragLastColumn: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description whether to preserve expanded row content in DOM when collapsed
+   * @description 折叠时是否在 DOM 中保留已展开行的内容
    */
   preserveExpandedContent: Boolean,
   /**
-   * @description whether to use native scrollbars
+   * @description 是否使用原生滚动条
    */
   nativeScrollbar: Boolean,
 }

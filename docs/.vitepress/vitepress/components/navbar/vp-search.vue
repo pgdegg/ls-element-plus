@@ -51,8 +51,8 @@ function update(options: any) {
 }
 
 function initialize(userOptions: any) {
-  // if the user has multiple locales, the search results should be filtered
-  // based on the language
+  // 如果用户有多个语言环境，搜索结果应按
+  // 语言进行过滤
   const facetFilters = props.multilang ? [`language:${lang.value}`] : []
   const algoliaLocale = searchLocale[lang.value].algolia
 
@@ -63,7 +63,7 @@ function initialize(userOptions: any) {
       placeholder: algoliaLocale.placeholder,
       translations: algoliaLocale.translations,
       searchParameters: Object.assign({}, userOptions.searchParameters, {
-        // pass a custom lang facetFilter to allow multiple language search
+        // 传入自定义的 lang facetFilter 以支持多语言搜索
         // https://github.com/algolia/docsearch-configs/pull/3942
         facetFilters: facetFilters.concat(
           userOptions.searchParameters?.facetFilters || []
@@ -84,8 +84,8 @@ function initialize(userOptions: any) {
             window.location.origin + itemUrl
           )
 
-          // Router doesn't handle same-page navigation so we use the native
-          // browser location API for anchor navigation
+          // Router 不处理同页导航，因此我们使用原生
+          // 浏览器 location API 进行锚点导航
           if (route.path === hitPathname) {
             window.location.assign(window.location.origin + itemUrl)
           } else {
@@ -119,15 +119,15 @@ function initialize(userOptions: any) {
                 return
               }
 
-              // we rely on the native link scrolling when user is already on
-              // the right anchor because Router doesn't support duplicated
-              // history entries
+              // 当用户已处于正确锚点时，我们依赖原生链接滚动，
+              // 因为 Router 不支持重复的
+              // history 记录
               if (route.path === relativeHit) {
                 return
               }
 
-              // if the hits goes to another page, we prevent the native link
-              // behavior to leverage the Router loading feature
+              // 如果命中结果跳转到其他页面，我们阻止原生链接
+              // 默认行为，以利用 Router 的加载特性
               if (route.path !== relativeHit) {
                 event.preventDefault()
               }

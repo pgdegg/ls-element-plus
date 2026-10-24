@@ -93,7 +93,7 @@ onBeforeUnmount(() => {
 })
 
 defineExpose({
-  /** @description whether the text is truncated */
+  /** @description 文本是否被截断 */
   isTruncated,
 })
 </script>

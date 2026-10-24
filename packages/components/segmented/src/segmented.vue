@@ -148,7 +148,7 @@ const updateSelect = () => {
     state.translateX = selectedItem.offsetLeft
   }
   try {
-    // This will failed in test
+    // 这在测试中会失败
     state.focusVisible = selectedItemInput.matches(':focus-visible')
   } catch {}
 }

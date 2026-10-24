@@ -2,22 +2,22 @@ export default {
   name: 'th',
   el: {
     breadcrumb: {
-      label: 'Breadcrumb', // to be translated
+      label: 'Breadcrumb', // 待翻译
     },
     colorpicker: {
       confirm: 'ตกลง',
       clear: 'ล้างข้อมูล',
-      defaultLabel: 'color picker', // to be translated
+      defaultLabel: 'color picker', // 待翻译
       description:
-        'current color is {color}. press enter to select a new color.', // to be translated
-      alphaLabel: 'pick alpha value', // to be translated
-      alphaDescription: 'alpha {alpha}, current color is {color}', // to be translated
-      hueLabel: 'pick hue value', // to be translated
-      hueDescription: 'hue {hue}, current color is {color}', // to be translated
-      svLabel: 'pick saturation and brightness value', // to be translated
+        'current color is {color}. press enter to select a new color.', // 待翻译
+      alphaLabel: 'pick alpha value', // 待翻译
+      alphaDescription: 'alpha {alpha}, current color is {color}', // 待翻译
+      hueLabel: 'pick hue value', // 待翻译
+      hueDescription: 'hue {hue}, current color is {color}', // 待翻译
+      svLabel: 'pick saturation and brightness value', // 待翻译
       svDescription:
-        'saturation {saturation}, brightness {brightness}, current color is {color}', // to be translated
-      predefineDescription: 'select {value} as the color', // to be translated
+        'saturation {saturation}, brightness {brightness}, current color is {color}', // 待翻译
+      predefineDescription: 'select {value} as the color', // 待翻译
     },
     datepicker: {
       now: 'ตอนนี้',
@@ -26,11 +26,11 @@ export default {
       clear: 'ล้างข้อมูล',
       confirm: 'ตกลง',
       dateTablePrompt:
-        'Use the arrow keys and enter to select the day of the month', // to be translated
-      monthTablePrompt: 'Use the arrow keys and enter to select the month', // to be translated
-      quarterTablePrompt: 'Use the arrow keys and enter to select the quarter', // to be translated
-      yearTablePrompt: 'Use the arrow keys and enter to select the year', // to be translated
-      selectedDate: 'Selected date', // to be translated
+        'Use the arrow keys and enter to select the day of the month', // 待翻译
+      monthTablePrompt: 'Use the arrow keys and enter to select the month', // 待翻译
+      quarterTablePrompt: 'Use the arrow keys and enter to select the quarter', // 待翻译
+      yearTablePrompt: 'Use the arrow keys and enter to select the year', // 待翻译
+      selectedDate: 'Selected date', // 待翻译
       selectDate: 'เลือกวันที่',
       selectTime: 'เลือกเวลา',
       startDate: 'วันที่เริ่มต้น',
@@ -64,13 +64,13 @@ export default {
         sat: 'ส',
       },
       weeksFull: {
-        sun: 'Sunday', // to be translated
-        mon: 'Monday', // to be translated
-        tue: 'Tuesday', // to be translated
-        wed: 'Wednesday', // to be translated
-        thu: 'Thursday', // to be translated
-        fri: 'Friday', // to be translated
-        sat: 'Saturday', // to be translated
+        sun: 'Sunday', // 待翻译
+        mon: 'Monday', // 待翻译
+        tue: 'Tuesday', // 待翻译
+        wed: 'Wednesday', // 待翻译
+        thu: 'Thursday', // 待翻译
+        fri: 'Friday', // 待翻译
+        sat: 'Saturday', // 待翻译
       },
       months: {
         jan: 'ม.ค.',
@@ -91,8 +91,8 @@ export default {
       characters: '{count} / {max} ตัวอักษร',
     },
     inputNumber: {
-      decrease: 'decrease number', // to be translated
-      increase: 'increase number', // to be translated
+      decrease: 'decrease number', // 待翻译
+      increase: 'increase number', // 待翻译
     },
     select: {
       loading: 'กำลังโหลด',
@@ -104,7 +104,7 @@ export default {
       loading: 'กำลังโหลด',
     },
     dropdown: {
-      toggleDropdown: 'Toggle Dropdown', // to be translated
+      toggleDropdown: 'Toggle Dropdown', // 待翻译
     },
     cascader: {
       noMatch: 'ไม่พบข้อมูลที่ตรงกัน',
@@ -117,27 +117,27 @@ export default {
       pagesize: '/หน้า',
       total: 'ทั้งหมด {total}',
       pageClassifier: '',
-      page: 'Page', // to be translated
-      prev: 'Go to previous page', // to be translated
-      next: 'Go to next page', // to be translated
-      currentPage: 'page {pager}', // to be translated
-      prevPages: 'Previous {pager} pages', // to be translated
-      nextPages: 'Next {pager} pages', // to be translated
+      page: 'Page', // 待翻译
+      prev: 'Go to previous page', // 待翻译
+      next: 'Go to next page', // 待翻译
+      currentPage: 'page {pager}', // 待翻译
+      prevPages: 'Previous {pager} pages', // 待翻译
+      nextPages: 'Next {pager} pages', // 待翻译
       deprecationWarning:
-        'Deprecated usages detected, please refer to the el-pagination documentation for more details', // to be translated
+        'Deprecated usages detected, please refer to the el-pagination documentation for more details', // 待翻译
     },
     dialog: {
-      close: 'Close this dialog', // to be translated
+      close: 'Close this dialog', // 待翻译
     },
     drawer: {
-      close: 'Close this dialog', // to be translated
+      close: 'Close this dialog', // 待翻译
     },
     messagebox: {
       title: 'ข้อความ',
       confirm: 'ตกลง',
       cancel: 'ยกเลิก',
       error: 'คุณป้อนข้อมูลไม่ถูกต้อง',
-      close: 'Close this dialog', // to be translated
+      close: 'Close this dialog', // 待翻译
     },
     upload: {
       deleteTip: 'กดปุ่ม "ลบ" เพื่อลบออก',
@@ -146,9 +146,9 @@ export default {
       continue: 'ทำต่อ',
     },
     slider: {
-      defaultLabel: 'slider between {min} and {max}', // to be translated
-      defaultRangeStartLabel: 'pick start value', // to be translated
-      defaultRangeEndLabel: 'pick end value', // to be translated
+      defaultLabel: 'slider between {min} and {max}', // 待翻译
+      defaultRangeStartLabel: 'pick start value', // 待翻译
+      defaultRangeEndLabel: 'pick end value', // 待翻译
     },
     table: {
       emptyText: 'ไม่พบข้อมูล',
@@ -156,21 +156,21 @@ export default {
       resetFilter: 'รีเซ็ต',
       clearFilter: 'ทั้งหมด',
       sumText: 'รวม',
-      selectAllLabel: 'Select all rows', // to be translated
-      selectRowLabel: 'Select this row', // to be translated
-      expandRowLabel: 'Expand this row', // to be translated
-      collapseRowLabel: 'Collapse this row', // to be translated
-      sortLabel: 'Sort by {column}', // to be translated
-      filterLabel: 'Filter by {column}', // to be translated
+      selectAllLabel: 'Select all rows', // 待翻译
+      selectRowLabel: 'Select this row', // 待翻译
+      expandRowLabel: 'Expand this row', // 待翻译
+      collapseRowLabel: 'Collapse this row', // 待翻译
+      sortLabel: 'Sort by {column}', // 待翻译
+      filterLabel: 'Filter by {column}', // 待翻译
     },
     tag: {
-      close: 'Close this tag', // to be translated
+      close: 'Close this tag', // 待翻译
     },
     tour: {
       next: 'ถัดไป',
       previous: 'ย้อนกลับ',
       finish: 'เสร็จสิ้น',
-      close: 'Close this dialog', // to be translated
+      close: 'Close this dialog', // 待翻译
     },
     tree: {
       emptyText: 'ไม่พบข้อมูล',
@@ -178,29 +178,29 @@ export default {
     transfer: {
       noMatch: 'ไม่พบข้อมูลที่ตรงกัน',
       noData: 'ไม่พบข้อมูล',
-      titles: ['List 1', 'List 2'], // to be translated
+      titles: ['List 1', 'List 2'], // 待翻译
       filterPlaceholder: 'กรอกคีย์เวิร์ด',
-      noCheckedFormat: '{total} items', // to be translated
-      hasCheckedFormat: '{checked}/{total} checked', // to be translated
+      noCheckedFormat: '{total} items', // 待翻译
+      hasCheckedFormat: '{checked}/{total} checked', // 待翻译
     },
     image: {
-      error: 'FAILED', // to be translated
+      error: 'FAILED', // 待翻译
     },
     pageHeader: {
       title: 'ย้อนกลับ',
     },
     popconfirm: {
-      confirmButtonText: 'Yes', // to be translated
-      cancelButtonText: 'No', // to be translated
+      confirmButtonText: 'Yes', // 待翻译
+      cancelButtonText: 'No', // 待翻译
     },
     carousel: {
-      leftArrow: 'Carousel arrow left', // to be translated
-      rightArrow: 'Carousel arrow right', // to be translated
-      indicator: 'Carousel switch to index {index}', // to be translated
+      leftArrow: 'Carousel arrow left', // 待翻译
+      rightArrow: 'Carousel arrow right', // 待翻译
+      indicator: 'Carousel switch to index {index}', // 待翻译
     },
     inputOTP: {
-      groupLabel: 'OTP Input', // to be translated
-      defaultLabel: 'Please enter OTP character {index}', // to be translated
+      groupLabel: 'OTP Input', // 待翻译
+      defaultLabel: 'Please enter OTP character {index}', // 待翻译
     },
   },
 }

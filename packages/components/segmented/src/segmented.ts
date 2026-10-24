@@ -29,49 +29,49 @@ export const defaultProps: Required<Props> = {
 export interface SegmentedProps<T extends Option = Option> {
   direction?: 'vertical' | 'horizontal'
   /**
-   * @description options of segmented
+   * @description segmented 的选项
    */
   options?: T[]
   /**
-   * @description binding value
+   * @description 绑定值
    */
   modelValue?: string | number | boolean
   /**
-   * @description configuration options, see the following table
+   * @description 配置项，见下表
    */
   props?: Props
   /**
-   * @description fit width of parent content
+   * @description 适配父内容宽度
    */
   block?: boolean
   /**
-   * @description size of component
+   * @description 组件尺寸
    */
   size?: ComponentSize
   /**
-   * @description whether segmented is disabled
+   * @description segmented 是否禁用
    */
   disabled?: boolean
   /**
-   * @description whether to trigger form validation
+   * @description 是否触发表单校验
    */
   validateEvent?: boolean
   /**
-   * @description native input id
+   * @description 原生 input id
    */
   id?: string
   /**
-   * @description native `name` attribute
+   * @description 原生 `name` 属性
    */
   name?: string
   /**
-   * @description native `aria-label` attribute
+   * @description 原生 `aria-label` 属性
    */
   ariaLabel?: string
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `SegmentedProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `SegmentedProps`。
  */
 export const segmentedProps = buildProps({
   direction: {
@@ -79,61 +79,61 @@ export const segmentedProps = buildProps({
     default: 'horizontal',
   },
   /**
-   * @description options of segmented
+   * @description segmented 的选项
    */
   options: {
     type: definePropType<Option[]>(Array),
     default: () => [],
   },
   /**
-   * @description binding value
+   * @description 绑定值
    */
   modelValue: {
     type: [String, Number, Boolean],
     default: undefined,
   },
   /**
-   * @description configuration options, see the following table
+   * @description 配置项，见下表
    */
   props: {
     type: definePropType<Props>(Object),
     default: () => defaultProps,
   },
   /**
-   * @description fit width of parent content
+   * @description 适配父内容宽度
    */
   block: Boolean,
   /**
-   * @description size of component
+   * @description 组件尺寸
    */
   size: useSizeProp,
   /**
-   * @description whether segmented is disabled
+   * @description segmented 是否禁用
    */
   disabled: {
     type: Boolean,
     default: undefined,
   },
   /**
-   * @description whether to trigger form validation
+   * @description 是否触发表单校验
    */
   validateEvent: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description native input id
+   * @description 原生 input id
    */
   id: String,
   /**
-   * @description native `name` attribute
+   * @description 原生 `name` 属性
    */
   name: String,
   ...useAriaProps(['ariaLabel']),
 })
 
 /**
- * @deprecated Removed after 3.0.0, Use `SegmentedProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `SegmentedProps`。
  */
 export type SegmentedPropsPublic = ExtractPublicPropTypes<typeof segmentedProps>
 

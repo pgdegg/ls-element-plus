@@ -25,7 +25,7 @@ export function useProps(props: Pick<SelectV2Props, 'props'>) {
   watch(
     () => props.props,
     (val) => {
-      // The props is an object, and its properties may be modified without changing the reference. In this case, the watch values before and after are equal. Here, we compare using the cached previous value.
+      // props 是对象，其属性可能在不改变引用的情况下被修改。这种情况下 watch 前后的值相等，因此这里使用缓存的前一个值进行比较。
       if (!isEqual(val, cache)) {
         aliasProps.value = { ...defaultProps, ...val }
         cache = { ...val }

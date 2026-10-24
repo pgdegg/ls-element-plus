@@ -29,7 +29,7 @@ const shortText = 'Eius optio fugiat.'
 
 const textList = [shortText, midText, longText]
 
-// generate random number in range 0 to 2
+// 生成 0 到 2 范围内的随机数
 
 let id = 0
 

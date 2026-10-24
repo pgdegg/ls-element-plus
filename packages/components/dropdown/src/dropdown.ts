@@ -27,7 +27,7 @@ export interface IElDropdownInstance {
 
 export const dropdownProps = buildProps({
   /**
-   * @description how to trigger
+   * @description 触发方式
    */
   trigger: {
     ...useTooltipTriggerProps.trigger,
@@ -46,35 +46,35 @@ export const dropdownProps = buildProps({
     ],
   },
   /**
-   * @description Indicates whether virtual triggering is enabled
+   * @description 是否启用虚拟触发
    */
   virtualTriggering: useTooltipTriggerProps.virtualTriggering,
   /**
-   * @description Indicates the reference element to which the dropdown is attached
+   * @description 下拉菜单所依附的参考元素
    */
   virtualRef: useTooltipTriggerProps.virtualRef,
   /**
-   * @description Tooltip theme, built-in theme: `dark` / `light`
+   * @description Tooltip 主题，内置主题：`dark` / `light`
    */
   effect: {
     ...useTooltipContentProps.effect,
     default: 'light',
   },
   /**
-   * @description menu button type, refer to `Button` Component, only works when `split-button` is true
+   * @description 菜单按钮类型，参考 `Button` 组件，仅在 `split-button` 为 true 时生效
    */
   type: {
     type: definePropType<ButtonType>(String),
   },
   /**
-   * @description placement of pop menu
+   * @description 弹出菜单的位置
    */
   placement: {
     type: definePropType<Placement>(String),
     default: 'bottom',
   },
   /**
-   * @description [popper.js](https://popper.js.org/docs/v2/) parameters
+   * @description [popper.js](https://popper.js.org/docs/v2/) 参数
    */
   popperOptions: {
     type: definePropType<Partial<Options>>(Object),
@@ -82,18 +82,18 @@ export const dropdownProps = buildProps({
   },
   id: String,
   /**
-   * @description menu size, also works on the split button
+   * @description 菜单尺寸，同样作用于 split 按钮
    */
   size: {
     type: String,
     default: '',
   },
   /**
-   * @description whether a button group is displayed
+   * @description 是否显示按钮组
    */
   splitButton: Boolean,
   /**
-   * @description whether to hide menu after clicking menu-item
+   * @description 点击菜单项后是否隐藏菜单
    */
   hideOnClick: {
     type: Boolean,
@@ -104,54 +104,54 @@ export const dropdownProps = buildProps({
     default: true,
   },
   /**
-   * @description whether the tooltip content has an arrow
+   * @description tooltip 内容是否带箭头
    */
   showArrow: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description delay time before show a dropdown (only works when trigger is `hover`)
+   * @description 显示下拉菜单前的延迟时间（仅在 trigger 为 `hover` 时生效）
    */
   showTimeout: {
     type: Number,
     default: 150,
   },
   /**
-   * @description delay time before hide a dropdown (only works when trigger is `hover`)
+   * @description 隐藏下拉菜单前的延迟时间（仅在 trigger 为 `hover` 时生效）
    */
   hideTimeout: {
     type: Number,
     default: 150,
   },
   /**
-   * @description [tabindex](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex) of Dropdown
+   * @description Dropdown 的 [tabindex](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex)
    */
   tabindex: {
     type: definePropType<number | string>([Number, String]),
     default: 0,
   },
   /**
-   * @description the max height of menu
+   * @description 菜单最大高度
    */
   maxHeight: {
     type: definePropType<number | string>([Number, String]),
     default: '',
   },
   /**
-   * @description custom class name for Dropdown's dropdown
+   * @description Dropdown 下拉菜单的自定义类名
    */
   popperClass: useTooltipContentProps.popperClass,
   /**
-   * @description custom style for Dropdown's dropdown
+   * @description Dropdown 下拉菜单的自定义样式
    */
   popperStyle: useTooltipContentProps.popperStyle,
   /**
-   * @description whether to disable
+   * @description 是否禁用
    */
   disabled: Boolean,
   /**
-   * @description the ARIA role attribute for the dropdown menu. Depending on the use case, you may want to change this to 'navigation'
+   * @description 下拉菜单的 ARIA role 属性。根据使用场景，你可能希望将其改为 'navigation'
    */
   role: {
     type: String,
@@ -162,15 +162,15 @@ export const dropdownProps = buildProps({
     type: definePropType<Partial<ButtonProps>>(Object),
   },
   /**
-   * @description whether the dropdown popup is teleported to the body
+   * @description 下拉弹层是否传送到 body
    */
   teleported: useTooltipContentProps.teleported,
   /**
-   * @description which element the dropdown CONTENT appends to
+   * @description 下拉内容追加到哪个元素
    */
   appendTo: useTooltipContentProps.appendTo,
   /**
-   * @description when dropdown inactive and `persistent` is `false` , dropdown menu will be destroyed
+   * @description 当下拉菜单未激活且 `persistent` 为 `false` 时，菜单将被销毁
    */
   persistent: {
     type: Boolean,
@@ -180,23 +180,23 @@ export const dropdownProps = buildProps({
 
 export const dropdownItemProps = buildProps({
   /**
-   * @description a command to be dispatched to Dropdown's `command` callback
+   * @description 派发给 Dropdown `command` 回调的命令
    */
   command: {
     type: [Object, String, Number],
     default: () => ({}),
   },
   /**
-   * @description whether the item is disabled
+   * @description 该项是否禁用
    */
   disabled: Boolean,
   /**
-   * @description whether a divider is displayed
+   * @description 是否显示分割线
    */
   divided: Boolean,
   textValue: String,
   /**
-   * @description custom icon
+   * @description 自定义图标
    */
   icon: {
     type: iconPropType,

@@ -22,107 +22,107 @@ export type radioOption = Record<string, any>
 
 export interface RadioGroupProps {
   /**
-   * @description native `id` attribute
+   * @description 原生 `id` 属性
    */
   id?: string
   /**
-   * @description the size of radio buttons or bordered radios
+   * @description 单选按钮或带边框单选框的尺寸
    */
   size?: ComponentSize
   /**
-   * @description whether the nesting radios are disabled
+   * @description 内部嵌套的单选框是否禁用
    */
   disabled?: boolean
   /**
-   * @description binding value
+   * @description 绑定值
    */
   modelValue?: string | number | boolean
   /**
-   * @description border and background color when button is active
+   * @description 按钮激活时的边框和背景色
    */
   fill?: string
   /**
-   * @description font color when button is active
+   * @description 按钮激活时的字体颜色
    */
   textColor?: string
   /**
-   * @description native `name` attribute
+   * @description 原生 `name` 属性
    */
   name?: string
   /**
-   * @description whether to trigger form validation
+   * @description 是否触发表单校验
    */
   validateEvent?: boolean
   /**
-   * @description radio options
+   * @description 单选框选项
    */
   options?: radioOption[]
   /**
-   * @description custom prop names for options
+   * @description 选项的自定义属性名
    */
   props?: radioOptionProp
   /**
-   * @description radio type
+   * @description 单选框类型
    */
   type?: 'radio' | 'button'
   /**
-   * @description native `aria-label` attribute
+   * @description 原生 `aria-label` 属性
    */
   ariaLabel?: string
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `RadioGroupProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `RadioGroupProps`。
  */
 export const radioGroupProps = buildProps({
   /**
-   * @description native `id` attribute
+   * @description 原生 `id` 属性
    */
   id: {
     type: String,
     default: undefined,
   },
   /**
-   * @description the size of radio buttons or bordered radios
+   * @description 单选按钮或带边框单选框的尺寸
    */
   size: useSizeProp,
   /**
-   * @description whether the nesting radios are disabled
+   * @description 内部嵌套的单选框是否禁用
    */
   disabled: {
     type: Boolean,
     default: undefined,
   },
   /**
-   * @description binding value
+   * @description 绑定值
    */
   modelValue: {
     type: [String, Number, Boolean],
     default: undefined,
   },
   /**
-   * @description border and background color when button is active
+   * @description 按钮激活时的边框和背景色
    */
   fill: {
     type: String,
     default: '',
   },
   /**
-   * @description font color when button is active
+   * @description 按钮激活时的字体颜色
    */
   textColor: {
     type: String,
     default: '',
   },
   /**
-   * @description native `name` attribute
+   * @description 原生 `name` 属性
    */
   name: {
     type: String,
     default: undefined,
   },
   /**
-   * @description whether to trigger form validation
+   * @description 是否触发表单校验
    */
   validateEvent: {
     type: Boolean,
@@ -144,7 +144,7 @@ export const radioGroupProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `RadioGroupProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `RadioGroupProps`。
  */
 export type RadioGroupPropsPublic = ExtractPublicPropTypes<
   typeof radioGroupProps
@@ -155,7 +155,7 @@ export type RadioGroupEmits = typeof radioGroupEmits
 export type RadioGroupInstance = InstanceType<typeof RadioGroup> & unknown
 
 /**
- * @description default values for RadioGroupProps
+ * @description RadioGroupProps 的默认值
  */
 export const radioGroupPropsDefaults = {
   id: undefined,

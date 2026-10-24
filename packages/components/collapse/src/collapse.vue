@@ -24,9 +24,9 @@ const { activeNames, setActiveNames } = useCollapse(props, emit)
 const { rootKls } = useCollapseDOM(props)
 
 defineExpose({
-  /** @description active names */
+  /** @description 激活项名称 */
   activeNames,
-  /** @description set active names */
+  /** @description 设置激活项名称 */
   setActiveNames,
 })
 </script>

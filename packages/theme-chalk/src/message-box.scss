@@ -23,7 +23,7 @@
   text-align: left;
   overflow: hidden;
   backface-visibility: hidden;
-  // To avoid small screen overflowing, see #11919
+  // 避免小屏幕溢出，参见 #11919
   box-sizing: border-box;
   overflow-wrap: break-word;
 
@@ -219,7 +219,7 @@
   }
 }
 
-// HIS component customization.
+// HIS 组件定制。
 .el-message-box {
   // padding: 0;
 

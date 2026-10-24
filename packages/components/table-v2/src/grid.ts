@@ -31,7 +31,7 @@ export const tableV2GridProps = buildProps({
   estimatedRowHeight: tableV2RowProps.estimatedRowHeight,
 
   /**
-   * Size related attributes
+   * 尺寸相关属性
    */
   width: requiredNumber,
   height: requiredNumber,
@@ -43,7 +43,7 @@ export const tableV2GridProps = buildProps({
   rowHeight: requiredNumber,
 
   /**
-   * Special attributes
+   * 特殊属性
    */
   cache: virtualizedListProps.cache,
   useIsScrolling: Boolean,
@@ -52,7 +52,7 @@ export const tableV2GridProps = buildProps({
   scrollbarEndGap: virtualizedGridProps.scrollbarEndGap,
 
   /**
-   * CSS attributes
+   * CSS 属性
    */
   class: classType,
   style: styleType,
@@ -65,7 +65,7 @@ export const tableV2GridProps = buildProps({
   rowKey: tableV2RowProps.rowKey,
 
   /**
-   * Event handlers
+   * 事件处理函数
    */
   onRowsRendered: {
     type: definePropType<(params: onRowRenderedParams) => void>(Function),

@@ -5,8 +5,8 @@ import { isClient } from '@element-plus/utils'
 import type { SelectContext } from '@element-plus/components/select'
 import type { PropType } from 'vue'
 
-// same as el-option instance,
-// these are required for `cachedOptions`
+// 与 el-option 实例相同，
+// `cachedOptions` 需要这些字段
 export type CacheOption = {
   value: string | number | boolean | object
   currentLabel: string | number
@@ -28,8 +28,8 @@ export default defineComponent({
       () => {
         props.data.forEach((item) => {
           if (!select.states.cachedOptions.has(item.value)) {
-            // TODO: the type of 'item' is not compatible with the type of 'cachedOptions',
-            // which may indicate potential runtime issues.
+            // TODO：'item' 的类型与 'cachedOptions' 的类型不兼容，
+            // 这可能意味着存在潜在的运行时问题。
             // @ts-expect-error
             select.states.cachedOptions.set(item.value, item)
           }

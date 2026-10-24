@@ -7,7 +7,7 @@ import Message from '../src/method'
 import { messageTypes } from '../src/message'
 
 const selector = '.el-message'
-// TODO: testing the original transition with `nextTick`'
+// TODO：用 `nextTick` 测试原始 transition
 
 describe('Message on command', () => {
   test('it should get component handle', async () => {
@@ -261,7 +261,7 @@ describe('Message on command', () => {
       ElMessage.install?.(testContext as any)
       expect(ElMessage._context).not.toBe(null)
       expect(ElMessage._context).toBe(testContext._context)
-      // clean up
+      // 清理
       ElMessage._context = null
     })
   })

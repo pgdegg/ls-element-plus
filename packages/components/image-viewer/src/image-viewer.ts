@@ -15,139 +15,139 @@ export type ImageViewerCrossorigin = 'anonymous' | 'use-credentials' | ''
 
 export interface ImageViewerProps {
   /**
-   * @description preview link list.
+   * @description 预览链接列表。
    */
   urlList?: string[]
   /**
-   * @description preview backdrop z-index.
+   * @description 预览背景遮罩的 z-index。
    */
   zIndex?: number
   /**
-   * @description the initial preview image index, less than or equal to the length of `url-list`.
+   * @description 初始预览图索引，小于或等于 `url-list` 的长度。
    */
   initialIndex?: number
   /**
-   * @description whether preview is infinite.
+   * @description 是否循环预览。
    */
   infinite?: boolean
   /**
-   * @description whether user can emit close event when clicking backdrop.
+   * @description 用户点击背景遮罩时是否可以触发 close 事件。
    */
   hideOnClickModal?: boolean
   /**
-   * @description whether to append image itself to body. A nested parent element attribute transform should have this attribute set to `true`.
+   * @description 是否将图片自身追加到 body。嵌套父元素带有 transform 属性时，应将此属性设为 `true`。
    */
   teleported?: boolean
   /**
-   * @description whether the image-viewer can be closed by pressing ESC.
+   * @description 是否可通过按 ESC 关闭 image-viewer。
    */
   closeOnPressEscape?: boolean
   /**
-   * @description the zoom rate of the image viewer zoom event.
+   * @description image-viewer 缩放事件的缩放速率。
    */
   zoomRate?: number
   /**
-   * @description preview image scale.
+   * @description 预览图缩放比例。
    */
   scale?: number
   /**
-   * @description the min scale of the image viewer zoom event.
+   * @description image-viewer 缩放事件的最小缩放比例。
    */
   minScale?: number
   /**
-   * @description the max scale of the image viewer zoom event.
+   * @description image-viewer 缩放事件的最大缩放比例。
    */
   maxScale?: number
   /**
-   * @description show preview image progress content.
+   * @description 是否显示预览图加载进度内容。
    */
   showProgress?: boolean
   /**
-   * @description set HTML attribute: crossorigin.
+   * @description 设置 HTML 属性：crossorigin。
    */
   crossorigin?: ImageViewerCrossorigin
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `ImageViewerProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `ImageViewerProps`。
  */
 export const imageViewerProps = buildProps({
   /**
-   * @description preview link list.
+   * @description 预览链接列表。
    */
   urlList: {
     type: definePropType<string[]>(Array),
     default: () => mutable([] as const),
   },
   /**
-   * @description preview backdrop z-index.
+   * @description 预览背景遮罩的 z-index。
    */
   zIndex: {
     type: Number,
   },
   /**
-   * @description the initial preview image index, less than or equal to the length of `url-list`.
+   * @description 初始预览图索引，小于或等于 `url-list` 的长度。
    */
   initialIndex: {
     type: Number,
     default: 0,
   },
   /**
-   * @description whether preview is infinite.
+   * @description 是否循环预览。
    */
   infinite: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description whether user can emit close event when clicking backdrop.
+   * @description 用户点击背景遮罩时是否可以触发 close 事件。
    */
   hideOnClickModal: Boolean,
   /**
-   * @description whether to append image itself to body. A nested parent element attribute transform should have this attribute set to `true`.
+   * @description 是否将图片自身追加到 body。嵌套父元素带有 transform 属性时，应将此属性设为 `true`。
    */
   teleported: Boolean,
   /**
-   * @description whether the image-viewer can be closed by pressing ESC.
+   * @description 是否可通过按 ESC 关闭 image-viewer。
    */
   closeOnPressEscape: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description the zoom rate of the image viewer zoom event.
+   * @description image-viewer 缩放事件的缩放速率。
    */
   zoomRate: {
     type: Number,
     default: 1.2,
   },
   /**
-   * @description preview image scale.
+   * @description 预览图缩放比例。
    */
   scale: {
     type: Number,
     default: 1,
   },
   /**
-   * @description the min scale of the image viewer zoom event.
+   * @description image-viewer 缩放事件的最小缩放比例。
    */
   minScale: {
     type: Number,
     default: 0.2,
   },
   /**
-   * @description the max scale of the image viewer zoom event.
+   * @description image-viewer 缩放事件的最大缩放比例。
    */
   maxScale: {
     type: Number,
     default: 7,
   },
   /**
-   * @description show preview image progress content.
+   * @description 是否显示预览图加载进度内容。
    */
   showProgress: Boolean,
   /**
-   * @description set HTML attribute: crossorigin.
+   * @description 设置 HTML 属性：crossorigin。
    */
   crossorigin: {
     type: definePropType<ImageViewerCrossorigin>(String),
@@ -155,7 +155,7 @@ export const imageViewerProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `ImageViewerProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `ImageViewerProps`。
  */
 export type ImageViewerPropsPublic = ExtractPublicPropTypes<
   typeof imageViewerProps

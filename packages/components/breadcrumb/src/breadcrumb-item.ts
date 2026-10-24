@@ -5,34 +5,34 @@ import type { RouteLocationRaw } from 'vue-router'
 
 export interface BreadcrumbItemProps {
   /**
-   * @description target route of the link, same as `to` of `vue-router`
+   * @description 链接的目标路由，与 `vue-router` 的 `to` 相同
    */
   to?: RouteLocationRaw
   /**
-   * @description if `true`, the navigation will not leave a history record
+   * @description 若为 `true`，导航不会留下历史记录
    */
   replace?: boolean
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `BreadcrumbItemProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `BreadcrumbItemProps`
  */
 export const breadcrumbItemProps = buildProps({
   /**
-   * @description target route of the link, same as `to` of `vue-router`
+   * @description 链接的目标路由，与 `vue-router` 的 `to` 相同
    */
   to: {
     type: definePropType<RouteLocationRaw>([String, Object]),
     default: '',
   },
   /**
-   * @description if `true`, the navigation will not leave a history record
+   * @description 若为 `true`，导航不会留下历史记录
    */
   replace: Boolean,
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `BreadcrumbItemProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `BreadcrumbItemProps`
  */
 export type BreadcrumbItemPropsPublic = ExtractPublicPropTypes<
   typeof breadcrumbItemProps

@@ -30,7 +30,7 @@ export default defineComponent({
     const select = inject(selectKey)!
     const ns = useNamespace('select')
 
-    // computed
+    // 计算属性
     const popperClass = computed(() => select.props.popperClass)
     const isMultiple = computed(() => select.props.multiple)
     const isFitInputWidth = computed(() => select.props.fitInputWidth)

@@ -40,9 +40,9 @@ import type {
   VNode,
 } from 'vue'
 /**
- * It it user's responsibility to guarantee that the value of props.total... is number
- * (same as pageSize, defaultPageSize, currentPage, defaultCurrentPage, pageCount)
- * Otherwise we can reasonable infer that the corresponding field is absent
+ * 需要由用户保证 props.total... 的值为数字
+ * （与 pageSize、defaultPageSize、currentPage、defaultCurrentPage、pageCount 相同）
+ * 否则我们可以合理推断对应字段缺失
  */
 const isAbsent = (v: unknown): v is undefined => typeof v !== 'number'
 
@@ -51,23 +51,23 @@ type LayoutKey =
 
 export const paginationProps = buildProps({
   /**
-   * @description options of item count per page
+   * @description 每页条数的选项
    */
   pageSize: Number,
   /**
-   * @description default initial value of page size, not setting is the same as setting 10
+   * @description 每页条数的默认初始值，不设置等同于设置为 10
    */
   defaultPageSize: Number,
   /**
-   * @description total item count
+   * @description 总条目数
    */
   total: Number,
   /**
-   * @description total page count. Set either `total` or `page-count` and pages will be displayed; if you need `page-sizes`, `total` is required
+   * @description 总页数。设置 `total` 或 `page-count` 其一即可显示分页；如果需要 `page-sizes`，则必须提供 `total`
    */
   pageCount: Number,
   /**
-   * @description number of pagers. Pagination collapses when the total page count exceeds this value
+   * @description 页码按钮数量。当总页数超过该值时分页会折叠
    */
   pagerCount: {
     type: Number,
@@ -83,15 +83,15 @@ export const paginationProps = buildProps({
     default: 7,
   },
   /**
-   * @description current page number
+   * @description 当前页码
    */
   currentPage: Number,
   /**
-   * @description default initial value of current-page, not setting is the same as setting 1
+   * @description current-page 的默认初始值，不设置等同于设置为 1
    */
   defaultCurrentPage: Number,
   /**
-   * @description layout of Pagination, elements separated with a comma
+   * @description Pagination 的布局，各元素以逗号分隔
    */
   layout: {
     type: String,
@@ -100,83 +100,83 @@ export const paginationProps = buildProps({
     ).join(', '),
   },
   /**
-   * @description item count of each page
+   * @description 每页条目数
    */
   pageSizes: {
     type: definePropType<number[]>(Array),
     default: () => mutable([10, 20, 30, 40, 50, 100] as const),
   },
   /**
-   * @description custom class name for the page size Select's dropdown
+   * @description 每页条数 Select 下拉框的自定义类名
    */
   popperClass: {
     type: definePropType<ClassValue>([String, Array, Object, Boolean]),
     default: '',
   },
   /**
-   * @description custom style for the page size Select's dropdown
+   * @description 每页条数 Select 下拉框的自定义样式
    */
   popperStyle: {
     type: definePropType<StyleValue>([String, Array, Object, Boolean]),
     default: undefined,
   },
   /**
-   * @description text for the prev button
+   * @description 上一页按钮的文字
    */
   prevText: {
     type: String,
     default: '',
   },
   /**
-   * @description icon for the prev button, higher priority of `prev-text`
+   * @description 上一页按钮的图标，优先级高于 `prev-text`
    */
   prevIcon: {
     type: iconPropType,
     default: () => ArrowLeft,
   },
   /**
-   * @description text for the next button
+   * @description 下一页按钮的文字
    */
   nextText: {
     type: String,
     default: '',
   },
   /**
-   * @description icon for the next button, higher priority of `next-text`
+   * @description 下一页按钮的图标，优先级高于 `next-text`
    */
   nextIcon: {
     type: iconPropType,
     default: () => ArrowRight,
   },
   /**
-   * @description whether Pagination size is teleported to body
+   * @description Pagination 是否被 teleport 到 body
    */
   teleported: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description whether to use small pagination
+   * @description 是否使用小型分页
    */
   small: Boolean,
   /**
-   * @description set page size
+   * @description 设置分页尺寸
    */
   size: useSizeProp,
   /**
-   * @description whether the buttons have a background color
+   * @description 按钮是否带有背景色
    */
   background: Boolean,
   /**
-   * @description whether Pagination is disabled
+   * @description Pagination 是否禁用
    */
   disabled: Boolean,
   /**
-   * @description whether to hide when there's only one page
+   * @description 只有一页时是否隐藏
    */
   hideOnSinglePage: Boolean,
   /**
-   * @description which element the size dropdown appends to.
+   * @description 尺寸下拉框挂载到哪个元素。
    */
   appendSizeTo: String,
 } as const)
@@ -227,7 +227,7 @@ export default defineComponent({
       },
       computed(() => !!props.small)
     )
-    // we can find @xxx="xxx" props on `vnodeProps` to check if user bind corresponding events
+    // 我们可以在 `vnodeProps` 上找到 @xxx="xxx" 形式的 props，以检查用户是否绑定了对应的事件
     const hasCurrentPageListener =
       'onUpdate:currentPage' in vnodeProps ||
       'onUpdate:current-page' in vnodeProps ||
@@ -237,34 +237,34 @@ export default defineComponent({
       'onUpdate:page-size' in vnodeProps ||
       'onSizeChange' in vnodeProps
     const assertValidUsage = computed(() => {
-      // Users have to set either one, otherwise count of pages cannot be determined
+      // 用户必须设置二者之一，否则无法确定页数
       if (isAbsent(props.total) && isAbsent(props.pageCount)) return false
-      // <el-pagination ...otherProps :current-page="xxx" /> without corresponding listener is forbidden now
-      // Users have to use two way binding of `currentPage`
-      // If users just want to provide a default value, `defaultCurrentPage` is here for you
+      // 现在禁止使用没有对应监听器的 <el-pagination ...otherProps :current-page="xxx" />
+      // 用户必须使用 `currentPage` 的双向绑定
+      // 如果用户只想提供默认值，可以使用 `defaultCurrentPage`
       if (!isAbsent(props.currentPage) && !hasCurrentPageListener) return false
-      // When you want to change sizes, things get more complex, detailed below
-      // Basically the most important value we need is page count
-      // either directly from props.pageCount
-      // or calculated from props.total
-      // we will take props.pageCount precedence over props.total
+      // 当需要改变每页条数时，情况会更复杂，详见下文
+      // 基本上我们最需要的关键值是页数
+      // 要么直接取自 props.pageCount
+      // 要么由 props.total 计算得出
+      // 我们优先使用 props.pageCount，而非 props.total
       if (props.layout.includes('sizes')) {
         if (!isAbsent(props.pageCount)) {
-          // if props.pageCount is assign by user, then user have to watch pageSize change
-          // and recalculate pageCount
+          // 如果 props.pageCount 由用户赋值，那么用户必须 watch pageSize 的变化
+          // 并重新计算 pageCount
           if (!hasPageSizeListener) return false
         } else if (!isAbsent(props.total)) {
-          // Otherwise, we will see if user have props.pageSize defined
-          // If so, meaning user want to have pageSize controlled himself/herself from component
-          // Thus page size listener is required
-          // users are account for page size change
+          // 否则，我们检查用户是否定义了 props.pageSize
+          // 如果是，意味着用户希望在组件外部自行控制 pageSize
+          // 因此需要提供 page size 监听器
+          // 由用户负责处理 page size 的变化
           if (!isAbsent(props.pageSize)) {
             if (!hasPageSizeListener) {
               return false
             }
           } else {
-            // (else block just for explaination)
-            // else page size is controlled by el-pagination internally
+            // （else 块仅用于说明）
+            // 否则 page size 由 el-pagination 内部控制
           }
         }
       }

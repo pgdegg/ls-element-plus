@@ -37,7 +37,7 @@ export const useScrollbar = (
     rightTableRef.value?.scrollToTop(scrollTop)
   }
 
-  // methods
+  // 方法
   function scrollTo(params: ScrollPos) {
     scrollPos.value = params
 
@@ -70,7 +70,7 @@ export const useScrollbar = (
     mainTableRef.value?.scrollToRow(row, strategy)
   }
 
-  // When scrollTop changes, maybe reaching the bottom
+  // 当 scrollTop 发生变化时，可能到达了底部
   watch(
     () => unref(scrollPos).scrollTop,
     (cur, prev) => {

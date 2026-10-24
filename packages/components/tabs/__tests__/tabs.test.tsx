@@ -147,8 +147,8 @@ describe('Tabs.vue', () => {
       </Tabs>
     ))
 
-    // the bar should stay in the DOM and only be hidden until its style
-    // is calculated, to avoid the bar flickering on initial render.
+    // 指示器条应保留在 DOM 中，仅在其样式
+    // 计算完成前隐藏，以避免初始渲染时指示器条闪烁。
     const bar = wrapper.find('.el-tabs__active-bar')
     expect(bar.exists()).toBe(true)
     expect(bar.classes()).toContain('is-hidden')
@@ -199,7 +199,7 @@ describe('Tabs.vue', () => {
     expect(bar.classes()).not.toContain('is-hidden')
     expect(bar.attributes('style')).toContain('transition: none')
 
-    // flush the double rAF that marks the bar position as ready
+    // 刷新标记指示器条位置就绪的双重 rAF
     rAFCallbacks.splice(0).forEach((cb) => cb(0))
     rAFCallbacks.splice(0).forEach((cb) => cb(0))
     await nextTick()
@@ -422,7 +422,7 @@ describe('Tabs.vue', () => {
     expect(navWrapper.findAll('.is-icon-close').length).toEqual(2)
     expect(navItemsWrapper[2].find('.is-icon-close').exists()).toBeFalsy()
 
-    // remove one tab, check panes length
+    // 移除一个 tab，检查 panes 数量
     await navItemsWrapper[1].find('.is-icon-close').trigger('click')
 
     panesWrapper = wrapper.findAllComponents(TabPane)
@@ -432,7 +432,7 @@ describe('Tabs.vue', () => {
     expect(navWrapper.findAll('.is-icon-close').length).toEqual(1)
     expect(navItemsWrapper[1].find('.is-icon-close').exists()).toBeFalsy()
 
-    // add one tab, check panes length and current tab
+    // 添加一个 tab，检查 panes 数量和当前 tab
     await wrapper.find('.el-tabs__new-tab').trigger('click')
 
     panesWrapper = wrapper.findAllComponents(TabPane)
@@ -710,7 +710,7 @@ describe('Tabs.vue', () => {
   })
 
   test('horizontal-scrollable', async () => {
-    // TODO: jsdom not support `clientWidth`.
+    // TODO: jsdom 不支持 `clientWidth`。
   })
 
   test('fixed tabs stay outside the scrollable navigation', async () => {
@@ -1083,7 +1083,7 @@ describe('Tabs.vue', () => {
   })
 
   test('vertical-scrollable', async () => {
-    // TODO: jsdom not support `clientWidth`.
+    // TODO: jsdom 不支持 `clientWidth`。
   })
 
   test('should work with lazy', async () => {
@@ -1197,7 +1197,7 @@ describe('Tabs.vue', () => {
   })
 
   test('resize', async () => {
-    // TODO: jsdom not support `clientWidth`.
+    // TODO: jsdom 不支持 `clientWidth`。
   })
 
   test('DOM update finished calculating navOffset', async () => {
@@ -1416,15 +1416,15 @@ describe('Tabs.vue', () => {
     const navWrapper = wrapper.findComponent(TabNav)
     const navItemsWrapper = navWrapper.findAll('.el-tabs__item')
 
-    // Click on the second tab
+    // 点击第二个 tab
     await navItemsWrapper[1].trigger('click')
 
-    // Verify all events have been called
+    // 验证所有事件均已触发
     expect(handleTabClick).toHaveBeenCalledTimes(1)
     expect(handleUpdateModelValue).toHaveBeenCalledTimes(1)
     expect(handleTabChange).toHaveBeenCalledTimes(1)
 
-    // Verify the event call order
+    // 验证事件调用顺序
     expect(events).toEqual(['tabClick', 'update:modelValue', 'tabChange'])
   })
 
@@ -1440,7 +1440,7 @@ describe('Tabs.vue', () => {
       events.push('tabChange')
     })
 
-    // Create a beforeLeave function that uses a timer
+    // 创建一个使用定时器的 beforeLeave 函数
     const beforeLeave = () =>
       new Promise<void>((resolve) => setTimeout(resolve, 100))
 
@@ -1467,28 +1467,28 @@ describe('Tabs.vue', () => {
     const navWrapper = wrapper.findComponent(TabNav)
     const navItemsWrapper = navWrapper.findAll('.el-tabs__item')
 
-    // Click on the second tab
+    // 点击第二个 tab
     await navItemsWrapper[1].trigger('click')
 
-    // Verify only tabClick is called immediately
+    // 验证只有 tabClick 被立即调用
     expect(handleTabClick).toHaveBeenCalledTimes(1)
     expect(handleUpdateModelValue).toHaveBeenCalledTimes(0)
     expect(handleTabChange).toHaveBeenCalledTimes(0)
     expect(events).toEqual(['tabClick'])
 
-    // Verify the model value has not been updated yet (waiting for timer)
+    // 验证 model 值尚未更新（等待定时器）
     expect(activeName.value).toBe('tab1')
 
-    // Fast-forward time to trigger the setTimeout callback
+    // 快进时间以触发 setTimeout 回调
     await beforeLeave()
     await flushPromises()
 
-    // Verify all events have been called in the correct order
+    // 验证所有事件均按正确顺序触发
     expect(handleUpdateModelValue).toHaveBeenCalledTimes(1)
     expect(handleTabChange).toHaveBeenCalledTimes(1)
     expect(events).toEqual(['tabClick', 'update:modelValue', 'tabChange'])
 
-    // Verify the model value has been updated
+    // 验证 model 值已更新
     expect(activeName.value).toBe('tab2')
   })
 
@@ -1513,20 +1513,20 @@ describe('Tabs.vue', () => {
     const navWrapper = wrapper.findComponent(TabNav)
     let navItemsWrapper = navWrapper.findAll('.el-tabs__item')
 
-    // Check initial order
+    // 检查初始顺序
     expect(navItemsWrapper[0].text()).toContain('A')
     expect(navItemsWrapper[1].text()).toContain('B')
     expect(navItemsWrapper[2].text()).toContain('C')
     expect(navItemsWrapper[3].text()).toContain('D')
 
-    // Reverse the array
+    // 反转数组
     itemList.value.reverse()
 
     await nextTick()
 
     navItemsWrapper = navWrapper.findAll('.el-tabs__item')
 
-    // Check that the order has updated
+    // 检查顺序已更新
     expect(navItemsWrapper[0].text()).toContain('D')
     expect(navItemsWrapper[1].text()).toContain('C')
     expect(navItemsWrapper[2].text()).toContain('B')

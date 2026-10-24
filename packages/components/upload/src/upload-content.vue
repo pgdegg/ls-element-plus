@@ -129,7 +129,7 @@ const upload = async (rawFile: UploadRawFile): Promise<void> => {
   let beforeData: UploadContentProps['data'] = {}
 
   try {
-    // origin data: Handle data changes after synchronization tasks are executed
+    // 原始数据：在同步任务执行后处理数据变化
     const originData = props.data
     const beforeUploadPromise = props.beforeUpload(rawFile)
     beforeData = isPlainObject(props.data) ? cloneDeep(props.data) : props.data

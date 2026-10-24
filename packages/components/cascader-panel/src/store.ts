@@ -75,7 +75,7 @@ export default class Store {
     }
   }
 
-  // when checkStrictly, leaf node first
+  // checkStrictly 模式下先处理叶子节点
   getNodeByValue(
     value: CascaderNodeValue | CascaderNodePathValue,
     leafOnly = false

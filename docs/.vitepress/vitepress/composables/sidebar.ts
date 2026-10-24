@@ -60,7 +60,7 @@ export function getSidebarConfig(sidebar: Sidebar, path: string, lang: string) {
 
   path = ensureStartingSlash(path)
   for (const dir in sidebar) {
-    // make sure the multi sidebar key starts with slash too
+    // 确保多侧边栏的 key 同样以斜杠开头
     if (path.startsWith(ensureStartingSlash(`${lang}${dir}`))) {
       return sidebar[dir][lang]
     }

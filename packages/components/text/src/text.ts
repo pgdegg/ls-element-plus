@@ -7,40 +7,40 @@ import type Text from './text.vue'
 
 export interface TextProps {
   /**
-   * @description native click handler on the rendered element
+   * @description 渲染元素上的原生 click 处理函数
    */
   onClick?: (event: MouseEvent) => void
   /**
-   * @description text type
+   * @description 文本类型
    */
   type?: 'primary' | 'success' | 'info' | 'warning' | 'danger' | ''
   /**
-   * @description text size
+   * @description 文本尺寸
    */
   size?: ComponentSize
   /**
-   * @description render ellipsis
+   * @description 是否渲染省略号
    */
   truncated?: boolean
   /**
-   * @description maximum lines
+   * @description 最大行数
    */
   lineClamp?: number | string
   /**
-   * @description custom element tag
+   * @description 自定义元素标签
    */
   tag?: string
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `TextProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `TextProps`。
  */
 export const textProps = buildProps({
   onClick: {
     type: definePropType<(event: MouseEvent) => void>(Function),
   },
   /**
-   * @description text type
+   * @description 文本类型
    */
   type: {
     type: String,
@@ -48,7 +48,7 @@ export const textProps = buildProps({
     default: '',
   },
   /**
-   * @description text size
+   * @description 文本尺寸
    */
   size: {
     type: String,
@@ -56,17 +56,17 @@ export const textProps = buildProps({
     default: '',
   },
   /**
-   * @description render ellipsis
+   * @description 是否渲染省略号
    */
   truncated: Boolean,
   /**
-   * @description maximum lines
+   * @description 最大行数
    */
   lineClamp: {
     type: [String, Number],
   },
   /**
-   * @description custom element tag
+   * @description 自定义元素标签
    */
   tag: {
     type: String,
@@ -75,7 +75,7 @@ export const textProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `TextProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `TextProps`。
  */
 export type TextPropsPublic = ExtractPublicPropTypes<typeof textProps>
 

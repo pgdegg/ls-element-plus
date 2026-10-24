@@ -28,13 +28,13 @@ type Indices = {
   rowIndex?: number
 }
 
-// generates props access key via type
+// 通过 type 生成 props 访问 key
 const ACCESS_SIZER_KEY_MAP = {
   column: 'columnWidth',
   row: 'rowHeight',
 } as const
 
-// generates cache access key via type
+// 通过 type 生成缓存访问 key
 const ACCESS_LAST_VISITED_KEY_MAP = {
   column: 'lastVisitedColumnIndex',
   row: 'lastVisitedRowIndex',
@@ -393,7 +393,7 @@ const DynamicSizeGrid = createGrid({
       row: {},
     } as GridCache
 
-    // TODO: expose methods.
+    // TODO：暴露方法。
     return cache
   },
 

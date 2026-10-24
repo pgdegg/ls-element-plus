@@ -4,75 +4,75 @@ import type { ExtractPublicPropTypes } from 'vue'
 import type TabPane from './tab-pane.vue'
 
 /**
- * @deprecated Removed after 3.0.0, Use `TabPaneProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `TabPaneProps`。
  */
 export const tabPaneProps = buildProps({
   /**
-   * @description title of the tab
+   * @description tab 的标题
    */
   label: {
     type: String,
     default: '',
   },
   /**
-   * @description identifier corresponding to the name of Tabs, representing the alias of the tab-pane, the default is ordinal number of the tab-pane in the sequence, e.g. the first tab-pane is '0'
+   * @description 与 Tabs 的 name 对应的标识符，即 tab-pane 的别名；默认为 tab-pane 在序列中的序号，例如第一个 tab-pane 为 '0'
    */
   name: {
     type: [String, Number],
   },
   /**
-   * @description whether Tab is closable
+   * @description Tab 是否可关闭
    */
   closable: {
     type: Boolean,
     default: undefined,
   },
   /**
-   * @description whether Tab is disabled
+   * @description Tab 是否禁用
    */
   disabled: Boolean,
   /**
-   * @description fixes the tab at the start or end of the navigation area
+   * @description 将 tab 固定在导航区域的开头或末尾
    */
   fixed: {
     type: String,
     values: ['left', 'right'],
   },
   /**
-   * @description whether Tab is lazily rendered
+   * @description Tab 是否懒渲染
    */
   lazy: Boolean,
 } as const)
 
 export type TabPaneProps = {
   /**
-   * @description title of the tab
+   * @description tab 的标题
    */
   label?: string
   /**
-   * @description identifier corresponding to the name of Tabs, representing the alias of the tab-pane, the default is ordinal number of the tab-pane in the sequence, e.g. the first tab-pane is '0'
+   * @description 与 Tabs 的 name 对应的标识符，即 tab-pane 的别名；默认为 tab-pane 在序列中的序号，例如第一个 tab-pane 为 '0'
    */
   name?: string | number
   /**
-   * @description whether Tab is closable
+   * @description Tab 是否可关闭
    */
   closable?: boolean
   /**
-   * @description whether Tab is disabled
+   * @description Tab 是否禁用
    */
   disabled?: boolean
   /**
-   * @description fixes the tab at the start or end of the navigation area
+   * @description 将 tab 固定在导航区域的开头或末尾
    */
   fixed?: 'left' | 'right'
   /**
-   * @description whether Tab is lazily rendered
+   * @description Tab 是否懒渲染
    */
   lazy?: boolean
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `TabPaneProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `TabPaneProps`。
  */
 export type TabPanePropsPublic = ExtractPublicPropTypes<typeof tabPaneProps>
 

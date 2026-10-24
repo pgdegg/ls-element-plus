@@ -1,18 +1,18 @@
-/* Element Chalk Variables */
+/* Element Chalk 变量 */
 @use 'sass:math';
 @use 'sass:map';
 @use 'sass:color';
 
 @use '../mixins/function.scss' as *;
 
-// Special comment for theme configurator
+// 供主题配置器使用的特殊注释
 // type|skipAutoTranslation|Category|Order
 // skipAutoTranslation 1
 
-// types
+// 类型
 $types: primary, success, warning, danger, error, info;
 
-// Color
+// 颜色
 $colors: () !default;
 $colors: map.deep-merge(
   (
@@ -50,7 +50,7 @@ $color-error: map.get($colors, 'error', 'base') !default;
 $color-info: map.get($colors, 'info', 'base') !default;
 
 // https://sass-lang.com/documentation/values/maps#immutability
-// mix colors with white/black to generate light/dark level
+// 将颜色与白色/黑色混合以生成浅色/深色阶
 @mixin set-color-mix-level(
   $type,
   $number,
@@ -134,7 +134,7 @@ $fill-color: map.merge(
   $fill-color
 );
 
-// Background
+// 背景
 $bg-color: () !default;
 $bg-color: map.merge(
   (
@@ -145,7 +145,7 @@ $bg-color: map.merge(
   $bg-color
 );
 
-// Border
+// 边框
 $border-width: 1px !default;
 $border-style: solid !default;
 $border-color-hover: getCssVar('text-color', 'disabled') !default;
@@ -161,7 +161,7 @@ $border-radius: map.merge(
   $border-radius
 );
 
-// Box-shadow
+// 阴影
 $box-shadow: () !default;
 $box-shadow: map.merge(
   (
@@ -184,11 +184,11 @@ $box-shadow: map.merge(
   $box-shadow
 );
 
-// Typography
+// 排版
 $font-family: () !default;
 $font-family: map.merge(
   (
-    // default family
+    // 默认字体族
     '':
       "'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif"
   ),
@@ -219,7 +219,7 @@ $z-index: map.merge(
   $z-index
 );
 
-// Disable default
+// 禁用默认值
 $disabled: () !default;
 $disabled: map.merge(
   (
@@ -240,7 +240,7 @@ $common-component-size: map.merge(
   $common-component-size
 );
 
-// overlay
+// 遮罩层
 $overlay-color: () !default;
 $overlay-color: map.merge(
   (
@@ -251,7 +251,7 @@ $overlay-color: map.merge(
   $overlay-color
 );
 
-// mask
+// 遮罩
 $mask-color: () !default;
 $mask-color: map.merge(
   (
@@ -261,10 +261,10 @@ $mask-color: map.merge(
   $mask-color
 );
 
-// Components
+// 组件
 // ---
 // Checkbox
-// css3 var in packages/theme-chalk/src/checkbox.scss
+// css3 变量见 packages/theme-chalk/src/checkbox.scss
 $checkbox: () !default;
 $checkbox: map.merge(
   (
@@ -484,7 +484,7 @@ $select-item-gap: map.merge(
   $select-item-gap
 );
 
-// the same height of el-tag
+// 与 el-tag 等高
 $select-item-height: () !default;
 $select-item-height: map.merge(
   (
@@ -496,7 +496,7 @@ $select-item-height: map.merge(
 );
 
 // Alert
-// css3 var in packages/theme-chalk/src/alert.scss
+// css3 变量见 packages/theme-chalk/src/alert.scss
 $alert: () !default;
 $alert: map.merge(
   (
@@ -514,7 +514,7 @@ $alert: map.merge(
 );
 
 // MessageBox
-// css3 var in packages/theme-chalk/src/message-box.scss
+// css3 变量见 packages/theme-chalk/src/message-box.scss
 $messagebox: () !default;
 $messagebox: map.merge(
   (
@@ -533,7 +533,7 @@ $messagebox: map.merge(
 );
 
 // Message
-// css3 var in packages/theme-chalk/src/message.scss
+// css3 变量见 packages/theme-chalk/src/message.scss
 $message: () !default;
 $message: map.merge(
   (
@@ -548,7 +548,7 @@ $message: map.merge(
 );
 
 // Notification
-// css3 var in packages/theme-chalk/src/notification.scss
+// css3 变量见 packages/theme-chalk/src/notification.scss
 $notification: () !default;
 $notification: map.merge(
   (
@@ -575,7 +575,7 @@ $notification: map.merge(
 );
 
 // Input
-// css3 var in packages/theme-chalk/src/input.scss
+// css3 变量见 packages/theme-chalk/src/input.scss
 $input: () !default;
 $input: map.merge(
   (
@@ -663,7 +663,7 @@ $input-padding-horizontal: map.merge(
 );
 
 // Cascader
-// css3 var in packages/theme-chalk/src/cascader.scss
+// css3 变量见 packages/theme-chalk/src/cascader.scss
 $cascader: () !default;
 $cascader: map.merge(
   (
@@ -733,7 +733,7 @@ $cascader-dropdown: map.merge(
 );
 
 //statistic
-// css3 var in packages/theme-chalk/src/statistic.scss
+// css3 变量见 packages/theme-chalk/src/statistic.scss
 $statistic: () !default;
 $statistic: map.merge(
   (
@@ -747,7 +747,7 @@ $statistic: map.merge(
   $statistic
 );
 // Button
-// css3 var in packages/theme-chalk/src/button.scss
+// css3 变量见 packages/theme-chalk/src/button.scss
 $button: () !default;
 $button: map.merge(
   (
@@ -774,7 +774,7 @@ $button: map.merge(
 
 $button-border-width: $border-width !default;
 
-// need mix, so do not use css var
+// 需要混色，因此不使用 css 变量
 $button-hover-tint-percent: 20%;
 $button-active-shade-percent: 10%;
 
@@ -839,7 +839,7 @@ $button-padding-horizontal: map.merge(
 );
 
 // Switch
-// css3 var in packages/theme-chalk/src/switch.scss
+// css3 变量见 packages/theme-chalk/src/switch.scss
 $switch: () !default;
 $switch: map.merge(
   (
@@ -850,7 +850,7 @@ $switch: map.merge(
 );
 
 // Dialog
-// css3 var in packages/theme-chalk/src/dialog.scss
+// css3 变量见 packages/theme-chalk/src/dialog.scss
 $dialog: () !default;
 $dialog: map.merge(
   (
@@ -868,7 +868,7 @@ $dialog: map.merge(
 );
 
 // Tour
-// css3 var in packages/theme-chalk/src/tour.scss
+// css3 变量见 packages/theme-chalk/src/tour.scss
 $tour: () !default;
 $tour: map.merge(
   (
@@ -888,7 +888,7 @@ $tour: map.merge(
 );
 
 // Anchor
-// css3 var in packages/theme-chalk/src/anchor.scss
+// css3 变量见 packages/theme-chalk/src/anchor.scss
 $anchor: () !default;
 $anchor: map.merge(
   (
@@ -905,7 +905,7 @@ $anchor: map.merge(
 );
 
 // Segmented
-// css3 var in packages/theme-chalk/src/segmented.scss
+// css3 变量见 packages/theme-chalk/src/segmented.scss
 $segmented: () !default;
 $segmented: map.merge(
   (
@@ -924,7 +924,7 @@ $segmented: map.merge(
 );
 
 // Mention
-// css3 var in packages/theme-chalk/src/mention.scss
+// css3 变量见 packages/theme-chalk/src/mention.scss
 $mention: () !default;
 $mention: map.merge(
   (
@@ -949,7 +949,7 @@ $mention: map.merge(
 );
 
 // InputTag
-// css3 var in packages/theme-chalk/src/input-tag.scss
+// css3 变量见 packages/theme-chalk/src/input-tag.scss
 $input-tag: () !default;
 $input-tag: map.merge(
   (
@@ -997,7 +997,7 @@ $input-tag-gap: map.merge(
 );
 
 // Table
-// css3 var in packages/theme-chalk/src/table.scss
+// css3 变量见 packages/theme-chalk/src/table.scss
 $table: () !default;
 $table: map.merge(
   (
@@ -1050,7 +1050,7 @@ $table-cell-padding: map.merge(
 );
 
 // Pagination
-// css3 var in packages/theme-chalk/src/pagination.scss
+// css3 变量见 packages/theme-chalk/src/pagination.scss
 $pagination: () !default;
 $pagination: map.merge(
   (
@@ -1076,7 +1076,7 @@ $pagination: map.merge(
 );
 
 // Popup
-// css3 var in packages/theme-chalk/src/popup.scss
+// css3 变量见 packages/theme-chalk/src/popup.scss
 $popup: () !default;
 $popup: map.merge(
   (
@@ -1087,7 +1087,7 @@ $popup: map.merge(
 );
 
 // Popover
-// css3 var in packages/theme-chalk/src/popover.scss
+// css3 变量见 packages/theme-chalk/src/popover.scss
 $popover: () !default;
 $popover: map.merge(
   (
@@ -1104,7 +1104,7 @@ $popover: map.merge(
 );
 
 // popper
-// Pay attention to the difference between 'popper' and 'popover'
+// 注意区分 'popper' 与 'popover'
 $popper: () !default;
 $popper: map.merge(
   (
@@ -1126,7 +1126,7 @@ $skeleton: map.merge(
 );
 
 // Tag
-// css3 var in packages/theme-chalk/src/tag.scss
+// css3 变量见 packages/theme-chalk/src/tag.scss
 $tag: () !default;
 $tag: map.merge(
   (
@@ -1168,7 +1168,7 @@ $tag-icon-size: map.merge(
 );
 
 // Text
-// css3 var in packages/theme-chalk/src/text.scss
+// css3 变量见 packages/theme-chalk/src/text.scss
 $text: () !default;
 $text: map.merge(
   (
@@ -1189,7 +1189,7 @@ $text-font-size: map.merge(
 );
 
 // Tree
-// css3 var in packages/theme-chalk/src/tree.scss
+// css3 变量见 packages/theme-chalk/src/tree.scss
 $tree: () !default;
 $tree: map.merge(
   (
@@ -1228,7 +1228,7 @@ $drawer: map.merge(
 );
 
 // Badge
-// css3 var in packages/theme-chalk/src/badge.scss
+// css3 变量见 packages/theme-chalk/src/badge.scss
 $badge: () !default;
 $badge: map.merge(
   (
@@ -1254,7 +1254,7 @@ $card: map.merge(
 );
 
 // Slider
-// css3 var in packages/theme-chalk/src/slider.scss
+// css3 变量见 packages/theme-chalk/src/slider.scss
 $slider: () !default;
 $slider: map.merge(
   (
@@ -1272,7 +1272,7 @@ $slider: map.merge(
 );
 
 // Menu
-// css3 var in packages/theme-chalk/src/menu.scss
+// css3 变量见 packages/theme-chalk/src/menu.scss
 $menu: () !default;
 $menu: map.merge(
   (
@@ -1303,7 +1303,7 @@ $rate: map.merge(
     'font-size': getCssVar('font-size-base'),
     'icon-size': 18px,
     'icon-margin': 6px,
-    // seems not be used, to be removed
+    // 似乎未被使用，待移除
     // 'icon-color': getCssVar('text-color-placeholder),
     'void-color': getCssVar('border-color', 'darker'),
     'fill-color': #f7ba2a,
@@ -1315,7 +1315,7 @@ $rate: map.merge(
 );
 
 // ColorPicker
-// css3 var in packages/theme-chalk/src/color-picker.scss
+// css3 变量见 packages/theme-chalk/src/color-picker.scss
 $colorpicker: () !default;
 $colorpicker: map.merge(
   (
@@ -1325,7 +1325,7 @@ $colorpicker: map.merge(
 );
 
 // DatePicker
-// css3 var packages/theme-chalk/src/date-picker/var.scss
+// css3 变量见 packages/theme-chalk/src/date-picker/var.scss
 $datepicker: () !default;
 $datepicker: map.merge(
   (
@@ -1357,7 +1357,7 @@ $date-editor: map.merge(
 );
 
 // Loading
-// css3 var in packages/theme-chalk/src/loading.scss
+// css3 变量见 packages/theme-chalk/src/loading.scss
 $loading: () !default;
 $loading: map.merge(
   (
@@ -1368,7 +1368,7 @@ $loading: map.merge(
 );
 
 // Scrollbar
-// css3 var in packages/theme-chalk/src/scrollbar.scss
+// css3 变量见 packages/theme-chalk/src/scrollbar.scss
 $scrollbar: () !default;
 $scrollbar: map.merge(
   (
@@ -1389,7 +1389,7 @@ $scrollbar: map.merge(
 );
 
 // Carousel
-// css3 var in packages/theme-chalk/src/carousel.scss
+// css3 变量见 packages/theme-chalk/src/carousel.scss
 $carousel: () !default;
 $carousel: map.merge(
   (
@@ -1407,7 +1407,7 @@ $carousel: map.merge(
 );
 
 // Collapse
-// css3 var in packages/theme-chalk/src/collapse.scss
+// css3 变量见 packages/theme-chalk/src/collapse.scss
 $collapse: () !default;
 $collapse: map.merge(
   (
@@ -1424,7 +1424,7 @@ $collapse: map.merge(
 );
 
 // Transfer
-// css3 var in packages/theme-chalk/src/transfer.scss
+// css3 变量见 packages/theme-chalk/src/transfer.scss
 $transfer: () !default;
 $transfer: map.merge(
   (
@@ -1442,7 +1442,7 @@ $transfer: map.merge(
 );
 
 // Timeline
-// css3 var in packages/theme-chalk/src/timeline-item.scss
+// css3 变量见 packages/theme-chalk/src/timeline-item.scss
 $timeline: () !default;
 $timeline: map.merge(
   (
@@ -1454,7 +1454,7 @@ $timeline: map.merge(
 );
 
 // Tabs
-// css3 var in packages/theme-chalk/src/tabs.scss
+// css3 变量见 packages/theme-chalk/src/tabs.scss
 $tabs: () !default;
 $tabs: map.merge(
   (
@@ -1464,7 +1464,7 @@ $tabs: map.merge(
 );
 
 // Backtop
-// css3 var in packages/theme-chalk/src/backtop.scss
+// css3 变量见 packages/theme-chalk/src/backtop.scss
 $backtop: () !default;
 $backtop: map.merge(
   (
@@ -1476,7 +1476,7 @@ $backtop: map.merge(
 );
 
 // Link
-// css3 var in packages/theme-chalk/src/link.scss
+// css3 变量见 packages/theme-chalk/src/link.scss
 $link: () !default;
 $link: map.merge(
   (
@@ -1501,7 +1501,7 @@ $link-text-color: () !default;
 }
 
 // Calendar
-// css3 var in packages/theme-chalk/src/calendar.scss
+// css3 变量见 packages/theme-chalk/src/calendar.scss
 $calendar: () !default;
 $calendar: map.merge(
   (
@@ -1517,7 +1517,7 @@ $calendar: map.merge(
 );
 
 // Form
-// css3 var in packages/theme-chalk/src/form.scss
+// css3 变量见 packages/theme-chalk/src/form.scss
 $form: () !default;
 $form: map.merge(
   (
@@ -1528,7 +1528,7 @@ $form: map.merge(
 );
 
 // Avatar
-// css3 var in packages/theme-chalk/src/avatar.scss
+// css3 变量见 packages/theme-chalk/src/avatar.scss
 $avatar: () !default;
 $avatar: map.merge(
   (
@@ -1561,7 +1561,7 @@ $avatar-group: map.merge(
 );
 
 // Empty
-// css3 var in packages/theme-chalk/src/empty.scss
+// css3 变量见 packages/theme-chalk/src/empty.scss
 $empty: () !default;
 $empty: map.merge(
   (
@@ -1584,7 +1584,7 @@ $empty: map.merge(
 );
 
 // Descriptions
-// css3 var in packages/theme-chalk/src/descriptions.scss
+// css3 变量见 packages/theme-chalk/src/descriptions.scss
 $descriptions: () !default;
 $descriptions: map.merge(
   (
@@ -1595,7 +1595,7 @@ $descriptions: map.merge(
 );
 
 // Result
-// css3 var in packages/theme-chalk/src/result.scss
+// css3 变量见 packages/theme-chalk/src/result.scss
 $result: () !default;
 $result: map.merge(
   (
@@ -1610,7 +1610,7 @@ $result: map.merge(
 );
 
 // Upload
-// css3 var in packages/theme-chalk/src/upload.scss
+// css3 变量见 packages/theme-chalk/src/upload.scss
 $upload: () !default;
 $upload: map.merge(
   (
@@ -1694,7 +1694,7 @@ $footer: map.merge(
   $footer
 );
 
-// Break-point
+// 断点
 $sm: 768px !default;
 $md: 992px !default;
 $lg: 1200px !default;

@@ -38,7 +38,7 @@ export function useSize(
     let ptgList: (number | undefined)[] = []
     let emptyCount = 0
 
-    // Convert the passed props size to a percentage
+    // 将传入的 props size 转换为百分比
     for (let i = 0; i < panelCounts.value; i += 1) {
       const itemSize = panels.value[i]?.size
 
@@ -61,11 +61,11 @@ export function useSize(
     const totalPtg = ptgList.reduce<number>((acc, ptg) => acc + (ptg || 0), 0)
 
     if (totalPtg > 1 || !emptyCount) {
-      // If it is greater than 1, the scaling ratio
+      // 如果大于 1，则为缩放比例
       const scale = 1 / totalPtg
       ptgList = ptgList.map((ptg) => (ptg === undefined ? 0 : ptg * scale))
     } else {
-      // If it is less than 1, the filling ratio
+      // 如果小于 1，则为填充比例
       const avgRest = (1 - totalPtg) / emptyCount
       ptgList = ptgList.map((ptg) => (ptg === undefined ? avgRest : ptg))
     }

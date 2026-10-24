@@ -121,8 +121,8 @@ function useStyle<T extends DefaultRow>(
     }
     layout.updateColumnsWidth()
 
-    // When the test case is running, the context environment simulated by jsdom may have been destroyed,
-    // and window.requestAnimationFrame does not exist at this time.
+    // 测试用例运行时，jsdom 模拟的上下文环境可能已被销毁，
+    // 此时 window.requestAnimationFrame 不存在。
     if (typeof window === 'undefined') return
     requestAnimationFrame(syncPosition)
   }
@@ -135,8 +135,8 @@ function useStyle<T extends DefaultRow>(
     const el: HTMLElement = table.vnode.el as HTMLElement
     const tableHeader: HTMLElement = table.refs.headerWrapper
     if (props.flexible && el && el.parentElement) {
-      // Automatic minimum size of flex-items
-      // Ensure that the main axis does not follow the width of the items
+      // flex-item 的自动最小尺寸
+      // 确保主轴不随 item 宽度变化
       el.parentElement.style.minWidth = '0'
     }
 
@@ -147,7 +147,7 @@ function useStyle<T extends DefaultRow>(
         props.showHeader && tableHeader ? tableHeader.offsetHeight : null,
     }
 
-    // init filters
+    // 初始化 filters
     store.states.columns.value.forEach((column: TableColumnCtx<T>) => {
       if (column.filteredValue && column.filteredValue.length) {
         table.store.commit('filterChange', {

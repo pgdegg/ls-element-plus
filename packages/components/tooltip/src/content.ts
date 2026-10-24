@@ -17,39 +17,39 @@ import type { ExtractPublicPropTypes } from 'vue'
 export interface ElTooltipContentProps
   extends UseDelayedToggleProps, Omit<PopperContentProps, 'visible'> {
   /**
-   * @description which element the tooltip CONTENT appends to
+   * @description tooltip 内容挂载到哪个元素
    */
   appendTo?: string | HTMLElement
   /**
-   * @description display content, can be overridden by `slot#content`
+   * @description 显示内容，可被 `slot#content` 覆盖
    */
   content?: string
   /**
-   * @description whether `content` is treated as HTML string
+   * @description `content` 是否作为 HTML 字符串处理
    */
   rawContent?: boolean
   /**
-   * @description when tooltip inactive and `persistent` is `false` , popconfirm will be destroyed
+   * @description tooltip 未激活且 `persistent` 为 `false` 时，popconfirm 将被销毁
    */
   persistent?: boolean
-  // because model toggle prop is generated dynamically
-  // so the typing cannot be evaluated by typescript as type:
+  // 因为 model toggle prop 是动态生成的
+  // 因此 typescript 无法将其类型推导为：
   // [name]: { type: Boolean, default: null }
-  // so we need to declare that again for type checking.
+  // 因此我们需要再次声明以进行类型检查。
   /**
-   * @description visibility of Tooltip
+   * @description Tooltip 的可见性
    */
   visible?: boolean | null
   /**
-   * @description animation name
+   * @description 动画名称
    */
   transition?: string
   /**
-   * @description whether tooltip content is teleported, if `true` it will be teleported to where `append-to` sets
+   * @description tooltip 内容是否被 teleport，为 `true` 时将传送到 `append-to` 指定的位置
    */
   teleported?: boolean
   /**
-   * @description whether Tooltip is disabled
+   * @description Tooltip 是否禁用
    */
   disabled?: boolean
   ariaLabel?: AriaProps['ariaLabel']
@@ -64,63 +64,63 @@ export const useTooltipContentPropsDefaults = {
 } as const
 
 /**
- * @deprecated Removed after 3.0.0, Use `ElTooltipContentProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `ElTooltipContentProps`。
  */
 export const useTooltipContentProps = buildProps({
   ...useDelayedToggleProps,
   ...popperContentProps,
   /**
-   * @description which element the tooltip CONTENT appends to
+   * @description tooltip 内容挂载到哪个元素
    */
   appendTo: {
     type: definePropType<string | HTMLElement>([String, Object]),
   },
   /**
-   * @description display content, can be overridden by `slot#content`
+   * @description 显示内容，可被 `slot#content` 覆盖
    */
   content: {
     type: String,
     default: '',
   },
   /**
-   * @description whether `content` is treated as HTML string
+   * @description `content` 是否作为 HTML 字符串处理
    */
   rawContent: Boolean,
   /**
-   * @description when tooltip inactive and `persistent` is `false` , popconfirm will be destroyed
+   * @description tooltip 未激活且 `persistent` 为 `false` 时，popconfirm 将被销毁
    */
   persistent: Boolean,
-  // because model toggle prop is generated dynamically
-  // so the typing cannot be evaluated by typescript as type:
+  // 因为 model toggle prop 是动态生成的
+  // 因此 typescript 无法将其类型推导为：
   // [name]: { type: Boolean, default: null }
-  // so we need to declare that again for type checking.
+  // 因此我们需要再次声明以进行类型检查。
   /**
-   * @description visibility of Tooltip
+   * @description Tooltip 的可见性
    */
   visible: {
     type: definePropType<boolean | null>(Boolean),
     default: null,
   },
   /**
-   * @description animation name
+   * @description 动画名称
    */
   transition: String,
   /**
-   * @description whether tooltip content is teleported, if `true` it will be teleported to where `append-to` sets
+   * @description tooltip 内容是否被 teleport，为 `true` 时将传送到 `append-to` 指定的位置
    */
   teleported: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description whether Tooltip is disabled
+   * @description Tooltip 是否禁用
    */
   disabled: Boolean,
   ...useAriaProps(['ariaLabel']),
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `ElTooltipContentProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `ElTooltipContentProps`。
  */
 export type ElTooltipContentPropsPublic = ExtractPublicPropTypes<
   typeof useTooltipContentProps

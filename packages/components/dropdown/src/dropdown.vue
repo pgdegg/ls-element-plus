@@ -175,7 +175,7 @@ export default defineComponent({
     }
 
     function onItemEnter() {
-      // NOOP for now
+      // 暂时为空操作（NOOP）
     }
 
     function onItemLeave() {

@@ -2,22 +2,22 @@ export default {
   name: 'sr',
   el: {
     breadcrumb: {
-      label: 'Breadcrumb', // to be translated
+      label: 'Breadcrumb', // 待翻译
     },
     colorpicker: {
       confirm: 'OK',
       clear: 'Поништи',
-      defaultLabel: 'color picker', // to be translated
+      defaultLabel: 'color picker', // 待翻译
       description:
-        'current color is {color}. press enter to select a new color.', // to be translated
-      alphaLabel: 'pick alpha value', // to be translated
-      alphaDescription: 'alpha {alpha}, current color is {color}', // to be translated
-      hueLabel: 'pick hue value', // to be translated
-      hueDescription: 'hue {hue}, current color is {color}', // to be translated
-      svLabel: 'pick saturation and brightness value', // to be translated
+        'current color is {color}. press enter to select a new color.', // 待翻译
+      alphaLabel: 'pick alpha value', // 待翻译
+      alphaDescription: 'alpha {alpha}, current color is {color}', // 待翻译
+      hueLabel: 'pick hue value', // 待翻译
+      hueDescription: 'hue {hue}, current color is {color}', // 待翻译
+      svLabel: 'pick saturation and brightness value', // 待翻译
       svDescription:
-        'saturation {saturation}, brightness {brightness}, current color is {color}', // to be translated
-      predefineDescription: 'select {value} as the color', // to be translated
+        'saturation {saturation}, brightness {brightness}, current color is {color}', // 待翻译
+      predefineDescription: 'select {value} as the color', // 待翻译
     },
     datepicker: {
       now: 'Сада',
@@ -26,11 +26,11 @@ export default {
       clear: 'Бриши',
       confirm: 'OK',
       dateTablePrompt:
-        'Use the arrow keys and enter to select the day of the month', // to be translated
-      monthTablePrompt: 'Use the arrow keys and enter to select the month', // to be translated
-      quarterTablePrompt: 'Use the arrow keys and enter to select the quarter', // to be translated
-      yearTablePrompt: 'Use the arrow keys and enter to select the year', // to be translated
-      selectedDate: 'Selected date', // to be translated
+        'Use the arrow keys and enter to select the day of the month', // 待翻译
+      monthTablePrompt: 'Use the arrow keys and enter to select the month', // 待翻译
+      quarterTablePrompt: 'Use the arrow keys and enter to select the quarter', // 待翻译
+      yearTablePrompt: 'Use the arrow keys and enter to select the year', // 待翻译
+      selectedDate: 'Selected date', // 待翻译
       selectDate: 'Изабери датум',
       selectTime: 'Изабери време',
       startDate: 'Датум почетка',
@@ -64,13 +64,13 @@ export default {
         sat: 'Суб',
       },
       weeksFull: {
-        sun: 'Sunday', // to be translated
-        mon: 'Monday', // to be translated
-        tue: 'Tuesday', // to be translated
-        wed: 'Wednesday', // to be translated
-        thu: 'Thursday', // to be translated
-        fri: 'Friday', // to be translated
-        sat: 'Saturday', // to be translated
+        sun: 'Sunday', // 待翻译
+        mon: 'Monday', // 待翻译
+        tue: 'Tuesday', // 待翻译
+        wed: 'Wednesday', // 待翻译
+        thu: 'Thursday', // 待翻译
+        fri: 'Friday', // 待翻译
+        sat: 'Saturday', // 待翻译
       },
       months: {
         jan: 'јан',
@@ -91,8 +91,8 @@ export default {
       characters: '{count} / {max} карактера',
     },
     inputNumber: {
-      decrease: 'decrease number', // to be translated
-      increase: 'increase number', // to be translated
+      decrease: 'decrease number', // 待翻译
+      increase: 'increase number', // 待翻译
     },
     select: {
       loading: 'Учитавање',
@@ -104,7 +104,7 @@ export default {
       loading: 'Учитавање',
     },
     dropdown: {
-      toggleDropdown: 'Toggle Dropdown', // to be translated
+      toggleDropdown: 'Toggle Dropdown', // 待翻译
     },
     cascader: {
       noMatch: 'Нема резултата',
@@ -121,23 +121,23 @@ export default {
       prev: 'Иди на претходну страну',
       next: 'Иди на следећу страну',
       currentPage: 'страна {pager}',
-      prevPages: 'Previous {pager} pages', // to be translated
-      nextPages: 'Next {pager} pages', // to be translated
+      prevPages: 'Previous {pager} pages', // 待翻译
+      nextPages: 'Next {pager} pages', // 待翻译
       deprecationWarning:
-        'Deprecated usages detected, please refer to the el-pagination documentation for more details', // to be translated
+        'Deprecated usages detected, please refer to the el-pagination documentation for more details', // 待翻译
     },
     dialog: {
-      close: 'Close this dialog', // to be translated
+      close: 'Close this dialog', // 待翻译
     },
     drawer: {
-      close: 'Close this dialog', // to be translated
+      close: 'Close this dialog', // 待翻译
     },
     messagebox: {
       title: 'Порука',
       confirm: 'OK',
       cancel: 'Откажи',
       error: 'Неисправан унос',
-      close: 'Close this dialog', // to be translated
+      close: 'Close this dialog', // 待翻译
     },
     upload: {
       deleteTip: 'притисни БРИШИ да обришеш',
@@ -146,9 +146,9 @@ export default {
       continue: 'Настави',
     },
     slider: {
-      defaultLabel: 'slider between {min} and {max}', // to be translated
-      defaultRangeStartLabel: 'pick start value', // to be translated
-      defaultRangeEndLabel: 'pick end value', // to be translated
+      defaultLabel: 'slider between {min} and {max}', // 待翻译
+      defaultRangeStartLabel: 'pick start value', // 待翻译
+      defaultRangeEndLabel: 'pick end value', // 待翻译
     },
     table: {
       emptyText: 'Нема података',
@@ -156,21 +156,21 @@ export default {
       resetFilter: 'Ресетуј',
       clearFilter: 'Све',
       sumText: 'Збир',
-      selectAllLabel: 'Select all rows', // to be translated
-      selectRowLabel: 'Select this row', // to be translated
-      expandRowLabel: 'Expand this row', // to be translated
-      collapseRowLabel: 'Collapse this row', // to be translated
-      sortLabel: 'Sort by {column}', // to be translated
-      filterLabel: 'Filter by {column}', // to be translated
+      selectAllLabel: 'Select all rows', // 待翻译
+      selectRowLabel: 'Select this row', // 待翻译
+      expandRowLabel: 'Expand this row', // 待翻译
+      collapseRowLabel: 'Collapse this row', // 待翻译
+      sortLabel: 'Sort by {column}', // 待翻译
+      filterLabel: 'Filter by {column}', // 待翻译
     },
     tag: {
-      close: 'Close this tag', // to be translated
+      close: 'Close this tag', // 待翻译
     },
     tour: {
-      next: 'Next', // to be translated
-      previous: 'Previous', // to be translated
-      finish: 'Finish', // to be translated
-      close: 'Close this dialog', // to be translated
+      next: 'Next', // 待翻译
+      previous: 'Previous', // 待翻译
+      finish: 'Finish', // 待翻译
+      close: 'Close this dialog', // 待翻译
     },
     tree: {
       emptyText: 'Нема података',
@@ -194,13 +194,13 @@ export default {
       cancelButtonText: 'Не',
     },
     carousel: {
-      leftArrow: 'Carousel arrow left', // to be translated
-      rightArrow: 'Carousel arrow right', // to be translated
-      indicator: 'Carousel switch to index {index}', // to be translated
+      leftArrow: 'Carousel arrow left', // 待翻译
+      rightArrow: 'Carousel arrow right', // 待翻译
+      indicator: 'Carousel switch to index {index}', // 待翻译
     },
     inputOTP: {
-      groupLabel: 'OTP Input', // to be translated
-      defaultLabel: 'Please enter OTP character {index}', // to be translated
+      groupLabel: 'OTP Input', // 待翻译
+      defaultLabel: 'Please enter OTP character {index}', // 待翻译
     },
   },
 }

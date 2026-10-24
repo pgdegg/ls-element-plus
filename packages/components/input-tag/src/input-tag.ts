@@ -25,263 +25,263 @@ import type { IconPropType } from '@element-plus/utils'
 
 export interface InputTagProps {
   /**
-   * @description binding value
+   * @description 绑定值
    */
   modelValue?: string[]
   /**
-   * @description max number tags that can be enter
+   * @description 可输入标签的最大数量
    */
   max?: number
   /**
-   * @description tag type
+   * @description 标签类型
    */
   tagType?: TagProps['type']
   /**
-   * @description tag effect
+   * @description 标签 effect
    */
   tagEffect?: TagProps['effect']
   /**
-   * @description tooltip theme, built-in theme: `dark` / `light`
+   * @description Tooltip 主题，内置主题：`dark` / `light`
    */
   effect?: PopperEffect
   /**
-   * @description the key to trigger input tag
+   * @description 触发输入标签的按键
    */
   trigger?: 'Enter' | 'Space'
   /**
-   * @description whether tags can be dragged
+   * @description 标签是否可拖拽
    */
   draggable?: boolean
   /**
-   * @description add a tag when a delimiter is matched
+   * @description 匹配到分隔符时添加标签
    */
   delimiter?: string | RegExp
   /**
-   * @description input box size
+   * @description 输入框尺寸
    */
   size?: ComponentSize
   /**
-   * @description whether to show clear button
+   * @description 是否显示清除按钮
    */
   clearable?: boolean
   /**
-   * @description custom clear icon component
+   * @description 自定义清除图标组件
    */
   clearIcon?: IconPropType
   /**
-   * @description whether to disable input-tag
+   * @description 是否禁用 input-tag
    */
   disabled?: boolean
   /**
-   * @description whether to trigger form validation
+   * @description 是否触发表单校验
    */
   validateEvent?: boolean
   /**
-   * @description native input readonly
+   * @description 原生 input 的 readonly
    */
   readonly?: boolean
   /**
-   * @description native input autofocus
+   * @description 原生 input 的 autofocus
    */
   autofocus?: boolean
   /**
-   * @description same as `id` in native input
+   * @description 与原生 input 的 `id` 相同
    */
   id?: string
   /**
-   * @description same as `tabindex` in native input
+   * @description 与原生 input 的 `tabindex` 相同
    */
   tabindex?: string | number
   /**
-   * @description same as `maxlength` in native input
+   * @description 与原生 input 的 `maxlength` 相同
    */
   maxlength?: string | number
   /**
-   * @description same as `minlength` in native input
+   * @description 与原生 input 的 `minlength` 相同
    */
   minlength?: string | number
   /**
-   * @description placeholder of input
+   * @description 输入框的 placeholder
    */
   placeholder?: string
   /**
-   * @description native input autocomplete
-   * - When the number of literal types in a union exceeds 315, the TS2590 error occurs. see: https://github.com/vuejs/core/issues/10514
+   * @description 原生 input 的 autocomplete
+   * - 当联合类型中字面量类型数量超过 315 时会出现 TS2590 错误，见：https://github.com/vuejs/core/issues/10514
    */
   autocomplete?: string // HTMLInputElement['autocomplete']
   /**
-   * @description whether to save the input value when the input loses focus
+   * @description 输入框失焦时是否保存输入值
    */
   saveOnBlur?: boolean
   /**
-   * @description whether to collapse tags to a text
+   * @description 是否将标签折叠为文本
    */
   collapseTags?: boolean
   /**
-   * @description whether show all selected tags when mouse hover text of collapse-tags. To use this, `collapse-tags` must be true
+   * @description 鼠标悬停在 collapse-tags 文本时是否显示所有已选标签。使用此功能时，`collapse-tags` 必须为 true
    */
   collapseTagsTooltip?: boolean
   /**
-   * @description the max tags number to be shown. To use this, `collapse-tags` must be true
+   * @description 显示的最大标签数量。使用此功能时，`collapse-tags` 必须为 true
    */
   maxCollapseTags?: number
   /**
-   * @description native `aria-label` attribute
+   * @description 原生 `aria-label` 属性
    */
   ariaLabel?: string
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `InputTagProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `InputTagProps`。
  */
 export const inputTagProps = buildProps({
   /**
-   * @description binding value
+   * @description 绑定值
    */
   modelValue: {
     type: definePropType<string[]>(Array),
   },
   /**
-   * @description max number tags that can be enter
+   * @description 可输入标签的最大数量
    */
   max: Number,
   /**
-   * @description tag type
+   * @description 标签类型
    */
   tagType: { ...tagProps.type, default: 'info' },
   /**
-   * @description tag effect
+   * @description 标签 effect
    */
   tagEffect: tagProps.effect,
   /**
-   * @description tooltip theme, built-in theme: `dark` / `light`
+   * @description Tooltip 主题，内置主题：`dark` / `light`
    */
   effect: {
     type: definePropType<PopperEffect>(String),
     default: 'light',
   },
   /**
-   * @description the key to trigger input tag
+   * @description 触发输入标签的按键
    */
   trigger: {
     type: definePropType<'Enter' | 'Space'>(String),
     default: EVENT_CODE.enter,
   },
   /**
-   * @description whether tags can be dragged
+   * @description 标签是否可拖拽
    */
   draggable: Boolean,
   /**
-   * @description add a tag when a delimiter is matched
+   * @description 匹配到分隔符时添加标签
    */
   delimiter: {
     type: [String, RegExp],
     default: '',
   },
   /**
-   * @description input box size
+   * @description 输入框尺寸
    */
   size: useSizeProp,
   /**
-   * @description whether to show clear button
+   * @description 是否显示清除按钮
    */
   clearable: Boolean,
   /**
-   * @description custom clear icon component
+   * @description 自定义清除图标组件
    */
   clearIcon: {
     type: iconPropType,
     default: CircleClose,
   },
   /**
-   * @description whether to disable input-tag
+   * @description 是否禁用 input-tag
    */
   disabled: {
     type: Boolean,
     default: undefined,
   },
   /**
-   * @description whether to trigger form validation
+   * @description 是否触发表单校验
    */
   validateEvent: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description native input readonly
+   * @description 原生 input 的 readonly
    */
   readonly: Boolean,
   /**
-   * @description native input autofocus
+   * @description 原生 input 的 autofocus
    */
   autofocus: Boolean,
   /**
-   * @description same as `id` in native input
+   * @description 与原生 input 的 `id` 相同
    */
   id: {
     type: String,
     default: undefined,
   },
   /**
-   * @description same as `tabindex` in native input
+   * @description 与原生 input 的 `tabindex` 相同
    */
   tabindex: {
     type: [String, Number],
     default: 0,
   },
   /**
-   * @description same as `maxlength` in native input
+   * @description 与原生 input 的 `maxlength` 相同
    */
   maxlength: {
     type: [String, Number],
   },
   /**
-   * @description same as `minlength` in native input
+   * @description 与原生 input 的 `minlength` 相同
    */
   minlength: {
     type: [String, Number],
   },
   /**
-   * @description placeholder of input
+   * @description 输入框的 placeholder
    */
   placeholder: String,
   /**
-   * @description native input autocomplete
+   * @description 原生 input 的 autocomplete
    */
   autocomplete: {
     type: definePropType<HTMLInputElement['autocomplete']>(String),
     default: 'off',
   },
   /**
-   * @description whether to save the input value when the input loses focus
+   * @description 输入框失焦时是否保存输入值
    */
   saveOnBlur: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description whether to collapse tags to a text
+   * @description 是否将标签折叠为文本
    */
   collapseTags: Boolean,
   /**
-   * @description whether show all selected tags when mouse hover text of collapse-tags. To use this, `collapse-tags` must be true
+   * @description 鼠标悬停在 collapse-tags 文本时是否显示所有已选标签。使用此功能时，`collapse-tags` 必须为 true
    */
   collapseTagsTooltip: Boolean,
   /**
-   * @description the max tags number to be shown. To use this, `collapse-tags` must be true
+   * @description 显示的最大标签数量。使用此功能时，`collapse-tags` 必须为 true
    */
   maxCollapseTags: {
     type: Number,
     default: 1,
   },
   /**
-   * @description native `aria-label` attribute
+   * @description 原生 `aria-label` 属性
    */
   ariaLabel: String,
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `InputTagProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `InputTagProps`。
  */
 export type InputTagPropsPublic = ExtractPublicPropTypes<typeof inputTagProps>
 

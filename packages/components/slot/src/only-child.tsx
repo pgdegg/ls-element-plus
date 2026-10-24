@@ -54,9 +54,9 @@ function findFirstLegitChild(
 
   for (const child of children) {
     /**
-     * when user uses h(Fragment, [text]) to render plain string,
-     * this switch case just cannot handle, when the value is primitives
-     * we should just return the wrapped string
+     * 当用户使用 h(Fragment, [text]) 渲染纯字符串时，
+     * 这个 switch 分支无法处理；当值为原始类型时，
+     * 应直接返回包裹后的字符串
      */
     if (isObject(child)) {
       switch (child.type) {

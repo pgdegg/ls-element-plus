@@ -1,6 +1,6 @@
 /* prettier-ignore */
 declare module 'vue' {
-  // GlobalComponents for Volar
+  // 供 Volar 使用的 GlobalComponents
   export interface GlobalComponents {
     ElAffix: typeof import('element-plus')['ElAffix']
     ElAlert: typeof import('element-plus')['ElAlert']

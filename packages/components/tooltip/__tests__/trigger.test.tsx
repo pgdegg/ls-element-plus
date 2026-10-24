@@ -105,7 +105,7 @@ describe('<ElTooltipTrigger />', () => {
         await nextTick()
         expect(onToggle).not.toHaveBeenCalled()
 
-        // keyboard evt
+        // 键盘事件
 
         const keyboardEvt = new KeyboardEvent('keydown')
         vm.onKeydown(keyboardEvt)
@@ -159,7 +159,7 @@ describe('<ElTooltipTrigger />', () => {
         await nextTick()
         expect(onToggle).toHaveBeenCalledTimes(2)
 
-        // keyboard evt
+        // 键盘事件
 
         let keyboardEvt = new KeyboardEvent('keydown', {
           code: EVENT_CODE.esc,

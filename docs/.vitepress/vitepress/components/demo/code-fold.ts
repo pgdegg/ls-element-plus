@@ -1,9 +1,8 @@
 /**
- * Indentation-based code folding regions, mirroring VSCode's
- * `indentation` folding strategy: a line starts a foldable region when the
- * next non-blank line is indented deeper; the region ends right before the
- * first non-blank line whose indentation is back to (or less than) the
- * starting line's.
+ * 基于缩进的代码折叠区域，对齐 VSCode 的
+ * `indentation` 折叠策略：当下一条非空行缩进更深时，
+ * 该行开启一个可折叠区域；区域就在第一条
+ * 缩进回退到（或小于）起始行缩进的非空行之前结束。
  */
 
 export const normalizeCodeFoldLines = (code: HTMLElement): HTMLElement[] => {
@@ -31,15 +30,15 @@ export const normalizeCodeFoldLines = (code: HTMLElement): HTMLElement[] => {
 }
 
 export interface FoldRegion {
-  /** index of the line that starts the region (stays visible) */
+  /* 起始区域的行索引（保持可见） */
   start: number
-  /** index of the last hidden line (inclusive) */
+  /* 最后一条被隐藏行的索引（含该行） */
   end: number
 }
 
 /**
- * Width of a rendered tab in columns. Must match the `tab-size: 4` rule for
- * code blocks in `docs/.vitepress/vitepress/styles/code.scss`.
+ * 渲染后一个 tab 所占的列宽。必须与
+ * `docs/.vitepress/vitepress/styles/code.scss` 中代码块的 `tab-size: 4` 规则一致。
  */
 const TAB_SIZE = 4
 
@@ -47,8 +46,8 @@ export const getIndent = (line: string): number => {
   let indent = 0
   for (const ch of line) {
     if (ch === ' ') indent += 1
-    // a tab advances to the next tab stop, so mixed tab/space prefixes
-    // compute the same column width they render with
+    // tab 会跳到下一个制表位，因此混用 tab/空格前缀
+    // 计算出与其渲染时一致的列宽
     else if (ch === '\t')
       indent = Math.floor(indent / TAB_SIZE) * TAB_SIZE + TAB_SIZE
     else break
@@ -65,7 +64,7 @@ export const computeFoldRegions = (lines: string[]): FoldRegion[] => {
     if (isBlank(lines[start])) continue
     const indent = getIndent(lines[start])
 
-    // first non-blank line after `start` that dedents back to `indent`
+    // `start` 之后第一条缩进回退到 `indent` 的非空行
     let bound = -1
     for (let i = start + 1; i < lines.length; i++) {
       if (isBlank(lines[i])) continue
@@ -76,12 +75,12 @@ export const computeFoldRegions = (lines: string[]): FoldRegion[] => {
     }
     if (bound === -1) bound = lines.length
 
-    // trailing blank lines are not part of the region
+    // 末尾空行不属于该区域
     let end = bound - 1
     while (end > start && isBlank(lines[end])) end--
 
-    // only fold when the region actually hides at least one line; this
-    // already implies the first non-blank line after `start` is deeper
+    // 仅当区域确实隐藏至少一行时才折叠；这样
+    // 已经意味着 `start` 之后第一条非空行缩进更深
     if (end > start) {
       regions.push({ start, end })
     }

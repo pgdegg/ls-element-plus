@@ -20,12 +20,12 @@ export function isCollapsible(
   nextPanel: PanelItemState | null | undefined,
   nextSize: number
 ) {
-  // If the current panel is collapsible and has size, then it can be collapsed
+  // 如果当前面板可折叠且有尺寸，则可以折叠
   if (panel?.collapsible.end && size > 0) {
     return true
   }
 
-  // If the next panel is collapsible and has no size, but the current panel has size, then it can be collapsed
+  // 如果下一个面板可折叠且无尺寸，但当前面板有尺寸，则当前面板可以折叠
   if (nextPanel?.collapsible.start && nextSize === 0 && size > 0) {
     return true
   }

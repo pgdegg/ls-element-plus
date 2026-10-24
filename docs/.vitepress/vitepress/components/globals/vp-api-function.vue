@@ -8,7 +8,7 @@ type ParamType = [string, string]
 
 const props = defineProps({
   /**
-   * @description params list, shape of Array<[key: string, value: string]>
+   * @description 参数列表，结构为 Array<[key: string, value: string]>
    */
   params: {
     type: Array as PropType<Array<ParamType>>,

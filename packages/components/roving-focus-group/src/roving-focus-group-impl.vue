@@ -47,8 +47,8 @@ export default defineComponent({
       undefined
     )!
     const rovingFocusGroupRootStyle = computed(() => {
-      // casting to any for fix compiler error since HTMLElement.StyleValue does not
-      // support CSSProperties
+      // 强制转换为 any 以修复编译错误，因为 HTMLElement.StyleValue 不
+      // 支持 CSSProperties
       return [
         {
           outline: 'none',

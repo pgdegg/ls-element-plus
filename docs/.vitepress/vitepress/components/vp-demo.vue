@@ -76,7 +76,7 @@ const copyCode = async () => {
 </script>
 
 <template>
-  <!-- danger here DO NOT USE INLINE SCRIPT TAG -->
+  <!-- 危险：切勿使用内联 script 标签 -->
   <div text="sm" m="y-4" v-html="decodedDescription" />
 
   <div class="example">

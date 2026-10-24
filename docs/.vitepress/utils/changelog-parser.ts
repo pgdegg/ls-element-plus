@@ -27,9 +27,9 @@ const TYPE_MAP: Record<string, ChangelogEntry['type']> = {
   'Breaking Changes': 'breaking',
 }
 
-// Alias map for sub-components or shorthand references
+// 子组件或简写引用的别名映射表
 const ALIAS_MAP: Record<string, string> = {
-  // Sub-components → parent
+  // 子组件 → 父组件
   textarea: 'input',
   'breadcrumb-item': 'breadcrumb',
   'button-group': 'button',
@@ -67,29 +67,29 @@ const ALIAS_MAP: Record<string, string> = {
   'anchor-link': 'anchor',
   'avatar-group': 'avatar',
 
-  // Container sub-components
+  // 容器类子组件
   aside: 'container',
   footer: 'container',
   header: 'container',
   main: 'container',
 
-  // Layout
+  // 布局
   col: 'layout',
   row: 'layout',
 
-  // Standalone → canonical parent
+  // 独立组件 → 规范父组件
   'virtual-table': 'table-v2',
   'image-viewer': 'image',
   'cascader-panel': 'cascader',
   'check-tag': 'tag',
   'upload-dragger': 'upload',
 
-  // Internal sub-components
+  // 内部子组件
   'popper-trigger': 'popper',
   'popper-container': 'popper',
   'tree-node-content': 'tree',
 
-  // Changelog typos & alternate names
+  // Changelog 中的拼写错误与别名
   description: 'descriptions',
   'description-item': 'descriptions',
   'descriptions-cell': 'descriptions',
@@ -118,17 +118,17 @@ function normalizeComponentNames(raw: string): string[] {
   for (let i = 0; i < parts.length; i++) {
     let name = parts[i]
 
-    // Strip 'el-' / 'El' prefix
+    // 去除 'el-' / 'El' 前缀
     name = name.replace(/^[Ee]l-?/, '')
 
-    // Convert camelCase / PascalCase → kebab-case:
+    // 将 camelCase / PascalCase 转换为 kebab-case：
     //   timelineItem → timeline-item, DatePickerPanel → date-picker-panel
     name = name
       .replace(/([a-z])([A-Z])/g, '$1-$2')
       .replace(/([A-Z]+)([A-Z][a-z])/g, '$1-$2')
       .toLowerCase()
 
-    // Handle version shorthand like [select/v2] → ['select', 'select-v2']
+    // 处理版本简写，如 [select/v2] → ['select', 'select-v2']
     if (i > 0 && /^v\d+$/.test(name)) {
       const base = normalizeComponentNames(parts[0])[0]
       const combined = `${base}-${name}`
@@ -137,7 +137,7 @@ function normalizeComponentNames(raw: string): string[] {
       continue
     }
 
-    // Apply alias mapping
+    // 应用别名映射
     if (ALIAS_MAP[name]) {
       name = ALIAS_MAP[name]
     }
@@ -160,7 +160,7 @@ export function parseChangelog(content: string): ComponentChangelogs {
   let currentType: ChangelogEntry['type'] = 'feature'
 
   for (const line of lines) {
-    // Match version: ### 2.13.3
+    // 匹配版本号：### 2.13.3
     const versionMatch = line.match(matchVersionReg)
     if (versionMatch) {
       currentVersion = versionMatch[1].trim()
@@ -168,14 +168,14 @@ export function parseChangelog(content: string): ComponentChangelogs {
       continue
     }
 
-    // Match date: _2026-02-28_
+    // 匹配日期：_2026-02-28_
     const dateMatch = line.match(matchDateReg)
     if (dateMatch) {
       currentDate = dateMatch[1].trim()
       continue
     }
 
-    // Match section type: #### Features
+    // 匹配章节类型：#### Features
     const typeMatch = line.match(matchTypeReg)
     if (typeMatch) {
       const typeKey = typeMatch[1].trim()
@@ -183,7 +183,7 @@ export function parseChangelog(content: string): ComponentChangelogs {
       continue
     }
 
-    // Match component entries
+    // 匹配组件条目
     if (!currentVersion) continue
 
     const entryMatch = line.match(COMPONENT_ENTRY_RE)
@@ -220,7 +220,7 @@ export function parseChangelog(content: string): ComponentChangelogs {
     }
   }
 
-  // Limit to most recent 20 versions per component
+  // 每个组件仅保留最近 20 个版本
   for (const key of Object.keys(componentMap)) {
     componentMap[key] = componentMap[key].slice(0, 20)
   }

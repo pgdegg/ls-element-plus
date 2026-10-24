@@ -5,7 +5,7 @@ import type { TabPaneName, TabsPaneContext } from './constants'
 import type TabBar from './tab-bar.vue'
 
 /**
- * @deprecated Removed after 3.0.0, Use `TabBarProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `TabBarProps`。
  */
 export const tabBarProps = buildProps({
   active: {
@@ -29,7 +29,7 @@ export type TabBarProps = {
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `TabBarProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `TabBarProps`。
  */
 export type TabBarPropsPublic = ExtractPublicPropTypes<typeof tabBarProps>
 export type TabBarInstance = InstanceType<typeof TabBar> & unknown

@@ -52,7 +52,7 @@ describe('Tag.vue', () => {
   test('disableTransitions', () => {
     const wrapper = mount(() => <Tag disableTransitions={true} />)
     const vm = wrapper.vm
-    // FIXME: This check actually is useless as there is no the class `md-fade-center` in the code.
+    // FIXME：这个检查实际上没有意义，因为代码中不存在 `md-fade-center` 类。
     expect(vm.$el.classList.contains('md-fade-center')).toEqual(false)
   })
 
@@ -71,7 +71,7 @@ describe('Tag.vue', () => {
     expect(el.className.includes('el-tag--plain')).toEqual(false)
   })
 
-  // should also support large size
+  // 还应支持 large 尺寸
   test('size', () => {
     const wrapper = mount(() => <Tag size="large" />)
     const vm = wrapper.vm

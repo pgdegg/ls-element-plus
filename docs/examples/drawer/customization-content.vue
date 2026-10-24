@@ -119,7 +119,7 @@ const handleClose = (done) => {
       }, 2000)
     })
     .catch(() => {
-      // catch error
+      // 捕获错误
     })
 }
 

@@ -143,7 +143,7 @@ const TableV2Row = defineComponent({
 
     expose({
       /**
-       * @description manually dispatching expand action on row.
+       * @description 在行上手动触发展开操作
        */
       onExpand,
     })

@@ -204,8 +204,8 @@ export default defineComponent({
         const relatedTarget = (e as FocusEvent)
           .relatedTarget as HTMLElement | null
         if (!isNil(relatedTarget) && !trapContainer.contains(relatedTarget)) {
-          // Give embedded focus layer time to pause this layer before reclaiming focus
-          // And only reclaim focus if it should currently be trapping
+          // 在回收焦点前，给内嵌焦点层留出暂停本层的时间
+          // 且仅在当前应处于捕获状态时才回收焦点
           setTimeout(() => {
             if (!focusLayer.paused && props.trapped) {
               const focusoutPreventedEvent = createFocusOutPreventedEvent({
@@ -226,7 +226,7 @@ export default defineComponent({
     }
 
     async function startTrap() {
-      // Wait for forwardRef to resolve
+      // 等待 forwardRef 解析完成
       await nextTick()
       const trapContainer = unref(forwardRef)
       if (trapContainer) {

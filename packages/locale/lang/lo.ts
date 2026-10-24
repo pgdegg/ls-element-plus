@@ -10,13 +10,13 @@ export default {
       defaultLabel: 'ເຄື່ອງມືເລືອກສີ',
       description: 'ສີປັດຈຸບັນແມ່ນ {color}. ກົດ enter ເພື່ອເລືອກສີໃໝ່.',
       alphaLabel: 'ເລືອກຄ່າຄວາມໂປ່ງໃສ',
-      alphaDescription: 'alpha {alpha}, current color is {color}', // to be translated
-      hueLabel: 'pick hue value', // to be translated
-      hueDescription: 'hue {hue}, current color is {color}', // to be translated
-      svLabel: 'pick saturation and brightness value', // to be translated
+      alphaDescription: 'alpha {alpha}, current color is {color}', // 待翻译
+      hueLabel: 'pick hue value', // 待翻译
+      hueDescription: 'hue {hue}, current color is {color}', // 待翻译
+      svLabel: 'pick saturation and brightness value', // 待翻译
       svDescription:
-        'saturation {saturation}, brightness {brightness}, current color is {color}', // to be translated
-      predefineDescription: 'select {value} as the color', // to be translated
+        'saturation {saturation}, brightness {brightness}, current color is {color}', // 待翻译
+      predefineDescription: 'select {value} as the color', // 待翻译
     },
     datepicker: {
       now: 'ຕອນນີ້',
@@ -154,21 +154,21 @@ export default {
       resetFilter: 'ຄືນຄ່າໃໝ່',
       clearFilter: 'ທັງໝົດ',
       sumText: 'ຜົນລວມ',
-      selectAllLabel: 'Select all rows', // to be translated
-      selectRowLabel: 'Select this row', // to be translated
-      expandRowLabel: 'Expand this row', // to be translated
-      collapseRowLabel: 'Collapse this row', // to be translated
-      sortLabel: 'Sort by {column}', // to be translated
-      filterLabel: 'Filter by {column}', // to be translated
+      selectAllLabel: 'Select all rows', // 待翻译
+      selectRowLabel: 'Select this row', // 待翻译
+      expandRowLabel: 'Expand this row', // 待翻译
+      collapseRowLabel: 'Collapse this row', // 待翻译
+      sortLabel: 'Sort by {column}', // 待翻译
+      filterLabel: 'Filter by {column}', // 待翻译
     },
     tag: {
-      close: 'Close this tag', // to be translated
+      close: 'Close this tag', // 待翻译
     },
     tour: {
       next: 'ຖັດໄປ',
       previous: 'ຍ້ອນກັບ',
       finish: 'ສຳເລັດ',
-      close: 'Close this dialog', // to be translated
+      close: 'Close this dialog', // 待翻译
     },
     tree: {
       emptyText: 'ບໍ່ມີຂໍ້ມູນ',
@@ -197,8 +197,8 @@ export default {
       indicator: 'Carousel ສະຫຼັບໄປລຳດັບທີ {index}',
     },
     inputOTP: {
-      groupLabel: 'OTP Input', // to be translated
-      defaultLabel: 'Please enter OTP character {index}', // to be translated
+      groupLabel: 'OTP Input', // 待翻译
+      defaultLabel: 'Please enter OTP character {index}', // 待翻译
     },
   },
 }

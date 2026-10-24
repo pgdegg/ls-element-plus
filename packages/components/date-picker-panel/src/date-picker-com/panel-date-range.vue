@@ -469,7 +469,7 @@ const emit = defineEmits([
 ])
 
 const unit = 'month'
-// FIXME: fix the type for ep picker
+// FIXME：修复 ep picker 的类型
 const pickerBase = inject(PICKER_BASE_INJECTION_KEY) as any
 const { cellClassName, defaultTime, clearable } = pickerBase.props
 const disabledDate = toRef(pickerBase.props, 'disabledDate')

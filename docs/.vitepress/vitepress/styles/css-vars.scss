@@ -1,11 +1,11 @@
 @use './mixins' as *;
 
-// css variables
+// CSS 变量
 :root {
-  // layouts
+  // 布局
   --vp-screen-max-width: 1376px;
 
-  // colors
+  // 颜色
   --text-color: var(--el-text-color-primary);
   --text-color-light: var(--el-text-color-regular);
   --text-color-lighter: var(--el-text-color-secondary);
@@ -26,21 +26,21 @@
     'JetBrains Mono', source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 
-  // info
+  // 信息提示
   --success-color: var(--el-color-success);
   --warning-color: var(--el-color-warning);
   --danger-color: var(--el-color-danger);
   --purple-color: #6222c2;
   --purple-color-light: #9065db;
 
-  // header vars
+  // 头部变量
   --header-height: 55px;
-  --nav-height: 55px; // alias of --header-height
+  --nav-height: 55px; // --header-height 的别名
 
-  /* Screen Size */
+  /* 屏幕尺寸 */
   --vp-screen-max-width: 1362px;
 
-  // sidebar
+  // 侧边栏
   --vp-sidebar-width-mobile: 320px;
   --vp-sidebar-width-small: 266px;
 
@@ -56,7 +56,7 @@
   --overlay-z-index: 30;
   // --dropdown-z-index: 22;
 
-  // code block vars
+  // 代码块变量
   --code-line-height: 1.4;
   --code-font-size: var(--el-font-size-base);
   --code-bg-color: var(--el-fill-color-light);
@@ -65,11 +65,11 @@
   --code-tooltip-bg-color: var(--code-bg-color);
   --code-tooltip-color: #0c61c9;
 
-  // tip block
+  // 提示块
   --block-tip-bg-color: rgba(var(--el-color-primary-rgb), 0.1);
   --block-warning-bg-color: rgba(var(--el-color-danger-rgb), 0.1);
 
-  // link
+  // 链接
   --link-active-bg-color: rgba(var(--el-color-primary-rgb), 0.1);
 
   @include respond-to('xxl') {

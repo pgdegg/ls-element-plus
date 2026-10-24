@@ -54,7 +54,7 @@ export const useOrderedChildren = <T extends ChildEssential>(
           node: T,
           anchor: Node | null
         ) => {
-          // Schedule a job to update `orderedChildren` if the root element of child components is moved
+          // 调度一个任务，在子组件的根元素发生移动时更新 `orderedChildren`
           const shouldSortChildren = nodesMap
             .get(parentNode)!
             .some((el) => node === el || anchor === el)
@@ -91,14 +91,14 @@ export const useOrderedChildren = <T extends ChildEssential>(
     return props.render()
   }
 
-  // TODO: Refactor `el-description` before converting this to a functional component
+  // TODO：在将其转换为函数式组件之前重构 `el-description`
   const ChildrenSorter = defineComponent({
     setup(_, { slots }) {
       return () => {
         sortChildren()
 
         return slots.default
-          ? // Create a new `ReactiveEffect` to ensure `ChildrenSorter` doesn't track any extra dependencies
+          ? // 创建一个新的 `ReactiveEffect`，确保 `ChildrenSorter` 不会追踪任何额外依赖
             // @ts-ignore TODO: Remove this after Vue is upgraded
             h(IsolatedRenderer, {
               render: slots.default,

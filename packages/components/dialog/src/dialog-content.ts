@@ -3,135 +3,135 @@ import { buildProps, definePropType, iconPropType } from '@element-plus/utils'
 import type { ClassValue, IconPropType } from '@element-plus/utils'
 
 /**
- * @description dialog-content component props
+ * @description dialog-content 组件的 props
  */
 export interface DialogContentProps {
   /**
-   * @description whether to align the header and footer in center
+   * @description 是否将头部和底部居中对齐
    */
   center?: boolean
   /**
-   * @description whether to align the dialog both horizontally and vertically
+   * @description 是否让对话框水平和垂直都居中
    */
   alignCenter?: boolean
   /**
-   * @description custom close icon, default is Close
+   * @description 自定义关闭图标，默认为 Close
    */
   closeIcon?: IconPropType
   /**
-   * @description enable dragging feature for Dialog
+   * @description 为 Dialog 启用拖拽功能
    */
   draggable?: boolean
   /**
-   * @description draggable Dialog can overflow the viewport
+   * @description 可拖拽的 Dialog 可能溢出视口
    */
   overflow?: boolean
   /**
-   * @description whether the Dialog takes up full screen
+   * @description Dialog 是否占满全屏
    */
   fullscreen?: boolean
   /**
-   * @description custom class names for header wrapper
+   * @description 头部容器的自定义类名
    */
   headerClass?: ClassValue
   /**
-   * @description custom class names for body wrapper
+   * @description 主体容器的自定义类名
    */
   bodyClass?: ClassValue
   /**
-   * @description custom class names for footer wrapper
+   * @description 底部容器的自定义类名
    */
   footerClass?: ClassValue
   /**
-   * @description whether to show a close button
+   * @description 是否显示关闭按钮
    */
   showClose?: boolean
   /**
-   * @description title of Dialog. Can also be passed with a named slot (see the following table)
+   * @description Dialog 的标题。也可以通过具名插槽传入（见下表）
    */
   title?: string
   /**
-   * @description header's aria-level attribute
+   * @description 头部的 aria-level 属性
    */
   ariaLevel?: string
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `DialogContentProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `DialogContentProps`。
  */
 export const dialogContentProps = buildProps({
   /**
-   * @description whether to align the header and footer in center
+   * @description 是否将头部和底部居中对齐
    */
   center: Boolean,
   /**
-   * @description whether to align the dialog both horizontally and vertically
+   * @description 是否让对话框水平和垂直都居中
    */
   alignCenter: {
     type: Boolean,
     default: undefined,
   },
   /**
-   * @description custom close icon, default is Close
+   * @description 自定义关闭图标，默认为 Close
    */
   closeIcon: {
     type: iconPropType,
   },
   /**
-   * @description enable dragging feature for Dialog
+   * @description 为 Dialog 启用拖拽功能
    */
   draggable: {
     type: Boolean,
     default: undefined,
   },
   /**
-   * @description draggable Dialog can overflow the viewport
+   * @description 可拖拽的 Dialog 可能溢出视口
    */
   overflow: {
     type: Boolean,
     default: undefined,
   },
   /**
-   * @description whether the Dialog takes up full screen
+   * @description Dialog 是否占满全屏
    */
   fullscreen: Boolean,
   /**
-   * @description custom class names for header wrapper
+   * @description 头部容器的自定义类名
    */
   headerClass: {
     type: definePropType<ClassValue>([String, Array, Object, Boolean]),
     default: undefined,
   },
   /**
-   * @description custom class names for body wrapper
+   * @description 主体容器的自定义类名
    */
   bodyClass: {
     type: definePropType<ClassValue>([String, Array, Object, Boolean]),
     default: undefined,
   },
   /**
-   * @description custom class names for footer wrapper
+   * @description 底部容器的自定义类名
    */
   footerClass: {
     type: definePropType<ClassValue>([String, Array, Object, Boolean]),
     default: undefined,
   },
   /**
-   * @description whether to show a close button
+   * @description 是否显示关闭按钮
    */
   showClose: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description title of Dialog. Can also be passed with a named slot (see the following table)
+   * @description Dialog 的标题。也可以通过具名插槽传入（见下表）
    */
   title: {
     type: String,
     default: '',
   },
   /**
-   * @description header's aria-level attribute
+   * @description 头部的 aria-level 属性
    */
   ariaLevel: {
     type: String,

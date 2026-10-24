@@ -113,23 +113,23 @@ describe('InfiniteScroll', () => {
 
     const el = wrapper.element
 
-    // wait to ensure initial full check has finished
+    // 等待确保初始全量检查完成
     await tick(INITIAL_TICK)
     expect(el[SCOPE].container).toEqual(el)
     expect(el[SCOPE].containerEl).toEqual(el)
     expect(el[SCOPE].delay).toEqual(DEFAULT_DELAY)
     expect(countListItem(wrapper)).toBe(INITIAL_VALUE)
-    // ensure observer has been destroyed, otherwise will cause memory leak
+    // 确保 observer 已被销毁，否则会导致内存泄漏
     expect(el[SCOPE].observer).toBeUndefined()
 
-    // won't trigger load when not reach the bottom distance
+    // 未达到底部距离时不会触发 load
     await makeScroll(el, 'scrollTop', ITEM_HEIGHT - 1)
     expect(countListItem(wrapper)).toBe(INITIAL_VALUE)
 
     await makeScroll(el, 'scrollTop', ITEM_HEIGHT)
     expect(countListItem(wrapper)).toBe(INITIAL_VALUE + 1)
 
-    // won't trigger load when scroll back
+    // 回滚滚动时不会触发 load
     await makeScroll(el, 'scrollTop', 0)
     expect(countListItem(wrapper)).toBe(INITIAL_VALUE + 1)
   })
@@ -154,7 +154,7 @@ describe('InfiniteScroll', () => {
 
     const el = wrapper.element
 
-    // wait to ensure initial full check has finished
+    // 等待确保初始全量检查完成
     await tick(INITIAL_TICK)
     await makeScroll(el, 'scrollTop', ITEM_HEIGHT - CUSTOM_DISTANCE)
     expect(countListItem(wrapper)).toBe(INITIAL_VALUE + 1)
@@ -187,14 +187,14 @@ describe('InfiniteScroll', () => {
 
     const el = wrapper.element
 
-    // wait to ensure initial full check has finished
+    // 等待确保初始全量检查完成
     await tick(INITIAL_TICK)
     expect(countListItem(wrapper)).toBe(INITIAL_VALUE)
 
     await makeScroll(el, 'scrollTop', ITEM_HEIGHT)
     expect(countListItem(wrapper)).toBe(INITIAL_VALUE + 1)
 
-    // no more items are loaded since `disabled = true`
+    // 自 `disabled = true` 起不再加载更多项
     await makeScroll(el, 'scrollTop', ITEM_HEIGHT + 1)
     expect(countListItem(wrapper)).toBe(INITIAL_VALUE + 1)
   })
@@ -207,20 +207,20 @@ describe('InfiniteScroll', () => {
     const el = wrapper.element
     const { documentElement } = document
 
-    // wait to ensure initial full check has finished
+    // 等待确保初始全量检查完成
     await tick(INITIAL_TICK)
     expect(el[SCOPE].container).toEqual(window)
     expect(el[SCOPE].containerEl).toEqual(documentElement)
     expect(countListItem(wrapper)).toBe(INITIAL_VALUE)
 
-    // won't trigger load when not reach the bottom distance
+    // 未达到底部距离时不会触发 load
     await makeScroll(documentElement, 'scrollTop', ITEM_HEIGHT - 1)
     expect(countListItem(wrapper)).toBe(INITIAL_VALUE)
 
     await makeScroll(documentElement, 'scrollTop', ITEM_HEIGHT)
     expect(countListItem(wrapper)).toBe(INITIAL_VALUE + 1)
 
-    // won't trigger load when scroll back
+    // 回滚滚动时不会触发 load
     await makeScroll(documentElement, 'scrollTop', 0)
     expect(countListItem(wrapper)).toBe(INITIAL_VALUE + 1)
   })

@@ -61,7 +61,7 @@ export const tabNavProps = buildProps({
   },
   stretch: Boolean,
   /**
-   * @description tab-nav tabindex
+   * @description tab-nav 的 tabindex
    */
   tabindex: {
     type: [String, Number],
@@ -208,7 +208,7 @@ const TabNav = defineComponent({
 
       const activeTabBounding = activeTab.getBoundingClientRect()
       const navScrollBounding = navScroll.getBoundingClientRect()
-      // nav has a 1px border width
+      // nav 有 1px 边框宽度
       const navScrollLeft = navScrollBounding.left + 1
       const navScrollRight = navScrollBounding.right - 1
       const navBounding = nav.getBoundingClientRect()

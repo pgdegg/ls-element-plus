@@ -88,15 +88,15 @@ const buttonKls = computed(() => [
 ])
 
 defineExpose({
-  /** @description button html element */
+  /** @description 按钮 html 元素 */
   ref: _ref,
-  /** @description button size */
+  /** @description 按钮尺寸 */
   size: _size,
-  /** @description button type */
+  /** @description 按钮类型 */
   type: _type,
-  /** @description button disabled */
+  /** @description 按钮是否禁用 */
   disabled: _disabled,
-  /** @description whether adding space */
+  /** @description 是否添加空格 */
   shouldAddSpace,
 })
 </script>

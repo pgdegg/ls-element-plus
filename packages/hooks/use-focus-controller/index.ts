@@ -14,13 +14,13 @@ import type { MaybeRef, ShallowRef } from 'vue'
 interface UseFocusControllerOptions {
   disabled?: MaybeRef<boolean>
   /**
-   * return true to cancel focus
+   * 返回 true 以取消 focus
    * @param event FocusEvent
    */
   beforeFocus?: (event: FocusEvent) => boolean | undefined
   afterFocus?: () => void
   /**
-   * return true to cancel blur
+   * 返回 true 以取消 blur
    * @param event FocusEvent
    */
   beforeBlur?: (event: FocusEvent) => boolean | undefined
@@ -91,7 +91,7 @@ export function useFocusController<T extends { focus: () => void }>(
   useEventListener(wrapperRef, 'blur', handleBlur, true)
   useEventListener(wrapperRef, 'click', handleClick, true)
 
-  // only for test
+  // 仅供测试
   if (process.env.NODE_ENV === 'test') {
     onMounted(() => {
       const targetEl = isElement(target.value)
@@ -107,7 +107,7 @@ export function useFocusController<T extends { focus: () => void }>(
 
   return {
     isFocused,
-    /** Avoid using wrapperRef and handleFocus/handleBlur together */
+    /** 不要同时使用 wrapperRef 与 handleFocus/handleBlur */
     wrapperRef,
     handleFocus,
     handleBlur,

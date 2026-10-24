@@ -19,7 +19,7 @@ const field = (value: unknown, key: string) =>
     ? (value as Record<string, unknown>)[key]
     : undefined
 
-/** Adapt object and multi-field business models without depending on application stores. */
+/** 在不依赖应用 store 的情况下适配对象和多字段业务模型。 */
 export function createCascaderModelAdapter(
   source: () => CascaderModelAdapterOptions
 ) {
@@ -50,7 +50,7 @@ export function createCascaderModelAdapter(
       if (options.bindPath) {
         if (options.valueKey && nodes[0])
           return nodes[0].pathNodes.map(nodeValue)
-        // Zero and false are valid node values and must not disappear from a path.
+        // 0 和 false 是有效的节点值，绝不能从路径中消失。
         return Array.isArray(value)
           ? value.filter((item) => item != null)
           : value

@@ -69,7 +69,7 @@
               </template>
               <template v-else>
                 <slot name="title">
-                  <!-- DEPRECATED SLOT -->
+                  <!-- 已废弃插槽 -->
                 </slot>
               </template>
               <button

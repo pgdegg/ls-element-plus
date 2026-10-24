@@ -250,7 +250,7 @@ describe('TimeLine.vue', () => {
       </TimeLine>
     ))
 
-    // It appears there's a problem with the DOM hierarchy structure being rendered by the test framework.
+    // 测试框架渲染出的 DOM 层级结构似乎存在问题。
     expect(wrapper.element.innerHTML).toBe('Custom Content')
   })
 

@@ -26,7 +26,7 @@
         >
           <slot>
             <p v-if="!dangerouslyUseHTMLString">{{ message }}</p>
-            <!-- Caution here, message could've been compromised, never use user's input as message -->
+            <!-- 注意：这里的 message 可能已被篡改，绝不要把用户输入作为 message -->
             <p v-else v-html="message" />
           </slot>
         </div>
@@ -134,7 +134,7 @@ const positionStyle = computed<CSSProperties>(() => {
   }
 })
 
-// tick interval matches the 0.1s width transition in the style, keeping the bar smooth
+// tick 间隔与样式中 0.1s 的宽度 transition 匹配，保持进度条平滑
 const { pause: pauseProgress, resume: resumeProgress } = useIntervalFn(
   () => {
     percentage.value = Math.max(
@@ -155,12 +155,12 @@ function startTimer() {
 
   const remaining = Math.max(0, props.duration - elapsed)
 
-  // close timer with remaining duration
+  // 按剩余时长关闭定时器
   ;({ stop: timer } = useTimeoutFn(() => {
     if (visible.value) close()
   }, remaining))
 
-  // progress bar resumes from current position
+  // 进度条从当前位置恢复
   if (showProgressBar.value) {
     percentage.value = (remaining / props.duration) * 100
     resumeProgress()
@@ -199,16 +199,16 @@ function onKeydown(event: KeyboardEvent) {
   switch (code) {
     case EVENT_CODE.delete:
     case EVENT_CODE.backspace:
-      clearTimer() // press delete/backspace clear timer
+      clearTimer() // 按 delete/backspace 清除定时器
       break
     case EVENT_CODE.esc:
-      // press esc to close the notification
+      // 按 ESC 关闭通知
       if (visible.value) {
         close()
       }
       break
-    default: // resume timer
-      // keep the timer paused while the pointer is still over the notification
+    default: // 恢复定时器
+      // 指针仍在通知上时保持定时器暂停
       if (isHovered && props.pauseOnHover) break
       clearTimer()
       startTimer()
@@ -227,7 +227,7 @@ useEventListener(document, 'keydown', onKeydown)
 
 defineExpose({
   visible,
-  /** @description close notification */
+  /** @description 关闭通知 */
   close,
 })
 </script>

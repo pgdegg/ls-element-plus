@@ -200,8 +200,8 @@ export const getRowIdentity = <T extends DefaultRow>(
     for (const element of key) {
       current = current[element]
     }
-    //TODO: "current" is now any, we just satisfies typecheck here
-    // but this function can actually return a number
+    // TODO: current 现在是 any，这里只是为了通过类型检查
+    // 但该函数实际可能返回一个数字
     return `${current}`
   } else if (isFunction(rowKey)) {
     return rowKey.call(null, row)
@@ -490,7 +490,7 @@ export function createTablePopper<T extends DefaultRow>(
       virtualRef: trigger,
       appendTo: parentNode,
       placement: 'top',
-      transition: 'none', // Default does not require transition
+      transition: 'none', // 默认不需要过渡动画
       offset: 0,
       hideAfter: 0,
       ...mergedProps,
@@ -553,7 +553,7 @@ export const isFixedColumn = <T extends DefaultRow>(
   let after = index
   const columns = store.states.columns.value
   if (realColumns) {
-    // fixed column supported in grouped header
+    // 分组表头支持固定列
     const curColumns = getCurrentColumns(realColumns[index])
     const preColumns = columns.slice(0, columns.indexOf(curColumns[0]))
 

@@ -54,7 +54,7 @@ const monthOptions = Array.from({ length: 12 }, (_, index) => {
 
 const yearValue = computed(() => props.date.year())
 const monthValue = computed(() => props.date.month() + 1)
-// Get an array of 20 years
+// 获取一个包含 20 年的数组
 const yearOptions = computed(() => {
   const years: typeof monthOptions = []
   for (let i = -10; i < 10; i++) {

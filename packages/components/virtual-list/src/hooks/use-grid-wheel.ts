@@ -32,14 +32,14 @@ export const useGridWheel = (
 
     let x = e.deltaX
     let y = e.deltaY
-    // Simulate native behavior when using touch pad/track pad for wheeling.
+    // 模拟使用触控板滚轮时的原生行为。
     if (Math.abs(x) > Math.abs(y)) {
       y = 0
     } else {
       x = 0
     }
 
-    // Special case for windows machine with shift key + wheel scrolling
+    // Windows 机器上 Shift 键 + 滚轮滚动的特殊情况
     if (e.shiftKey && y !== 0) {
       x = y
       y = 0
@@ -47,8 +47,8 @@ export const useGridWheel = (
 
     if (hasReachedEdge(x, y)) {
       // #23524
-      // Prevent browser back navigation when the table can still scroll
-      // horizontally but the Y-axis normalization dropped the X delta and the Y edge was hit instead.
+      // 在表格仍可滚动时阻止浏览器后退导航
+      //（表格）横向滚动，但 Y 轴归一化丢弃了 X 增量，转而命中了 Y 边缘。
       if (e.deltaX !== 0 && x === 0) {
         e.preventDefault()
       }

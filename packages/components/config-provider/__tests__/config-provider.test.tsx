@@ -271,7 +271,7 @@ describe('config-provider', () => {
       await nextTick()
       expect(afterEnter).toHaveBeenCalledTimes(1)
 
-      // trigger close to run leave hooks
+      // 触发关闭以执行离开钩子
       visible.value = false
       await nextTick()
       await rAF()

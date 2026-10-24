@@ -6,19 +6,19 @@ const component = defineComponent({
   setup(props, ctx) {
     const result = (ElOption.setup as NonNullable<any>)(props, ctx)
 
-    // use methods.selectOptionClick
+    // 调用 methods.selectOptionClick
     delete result.selectOptionClick
 
     const vm = (getCurrentInstance() as NonNullable<any>).proxy
 
     // Fix: https://github.com/element-plus/element-plus/issues/7917
-    // `el-option` will delete the cache before unmount,
-    // This is normal for flat arrays `<el-select><el-option v-for="3"></el-select>`,
-    // Because the same node key does not create a difference node,
-    // But in tree data, the same key at different levels will create diff nodes,
-    // So the destruction of `el-option` in `nextTick` will be slower than
-    // the creation of new `el-option`, which will delete the new node,
-    // here restore the deleted node.
+    // `el-option` 会在卸载前删除缓存，
+    // 对于扁平数组 `<el-select><el-option v-for="3"></el-select>` 这是正常的，
+    // 因为相同的节点 key 不会产生 diff 节点，
+    // 但在树数据中，不同层级的相同 key 会产生 diff 节点，
+    // 因此 `nextTick` 中 `el-option` 的销毁会慢于
+    // 新 `el-option` 的创建，从而删除新节点，
+    // 这里恢复被删除的节点。
     // @link https://github.com/element-plus/element-plus/blob/6df6e49db07b38d6cc3b5e9a960782bd30879c11/packages/components/select/src/option.vue#L78
     nextTick(() => {
       if (!result.select.states.cachedOptions.get(vm.value)) {

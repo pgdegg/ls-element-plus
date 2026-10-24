@@ -228,7 +228,7 @@ const handleInputKeyDown = (event: KeyboardEvent | Event) => {
 
           const newSelectionEnd = prefixIndex
           nextTick(() => {
-            // input value is updated
+            // 输入值已更新
             inputEl.selectionStart = newSelectionEnd
             inputEl.selectionEnd = newSelectionEnd
             syncDropdownVisible()
@@ -255,7 +255,7 @@ const handleInputMouseDown = () => {
   syncAfterCursorMove()
 }
 
-// Ensure that the original option passed by users is returned
+// 确保返回用户传入的原始选项
 const getOriginalOption = (mentionOption: MentionOption) => {
   return props.options.find((option: MentionOption) => {
     return mentionOption.value === option[aliasProps.value.value]

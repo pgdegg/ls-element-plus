@@ -2,22 +2,22 @@ export default {
   name: 'nl',
   el: {
     breadcrumb: {
-      label: 'Breadcrumb', // to be translated
+      label: 'Breadcrumb', // 待翻译
     },
     colorpicker: {
       confirm: 'Bevestig',
       clear: 'Wissen',
-      defaultLabel: 'color picker', // to be translated
+      defaultLabel: 'color picker', // 待翻译
       description:
-        'current color is {color}. press enter to select a new color.', // to be translated
-      alphaLabel: 'pick alpha value', // to be translated
-      alphaDescription: 'alpha {alpha}, current color is {color}', // to be translated
-      hueLabel: 'pick hue value', // to be translated
-      hueDescription: 'hue {hue}, current color is {color}', // to be translated
-      svLabel: 'pick saturation and brightness value', // to be translated
+        'current color is {color}. press enter to select a new color.', // 待翻译
+      alphaLabel: 'pick alpha value', // 待翻译
+      alphaDescription: 'alpha {alpha}, current color is {color}', // 待翻译
+      hueLabel: 'pick hue value', // 待翻译
+      hueDescription: 'hue {hue}, current color is {color}', // 待翻译
+      svLabel: 'pick saturation and brightness value', // 待翻译
       svDescription:
-        'saturation {saturation}, brightness {brightness}, current color is {color}', // to be translated
-      predefineDescription: 'select {value} as the color', // to be translated
+        'saturation {saturation}, brightness {brightness}, current color is {color}', // 待翻译
+      predefineDescription: 'select {value} as the color', // 待翻译
     },
     datepicker: {
       now: 'Nu',
@@ -26,10 +26,10 @@ export default {
       clear: 'Legen',
       confirm: 'Bevestig',
       dateTablePrompt:
-        'Use the arrow keys and enter to select the day of the month', // to be translated
-      monthTablePrompt: 'Use the arrow keys and enter to select the month', // to be translated
-      quarterTablePrompt: 'Use the arrow keys and enter to select the quarter', // to be translated
-      yearTablePrompt: 'Use the arrow keys and enter to select the year', // to be translated
+        'Use the arrow keys and enter to select the day of the month', // 待翻译
+      monthTablePrompt: 'Use the arrow keys and enter to select the month', // 待翻译
+      quarterTablePrompt: 'Use the arrow keys and enter to select the quarter', // 待翻译
+      yearTablePrompt: 'Use the arrow keys and enter to select the year', // 待翻译
       selectedDate: 'Geselecteerde datum',
       selectDate: 'Selecteer datum',
       selectTime: 'Selecteer tijd',
@@ -104,7 +104,7 @@ export default {
       loading: 'Laden',
     },
     dropdown: {
-      toggleDropdown: 'Toggle Dropdown', // to be translated
+      toggleDropdown: 'Toggle Dropdown', // 待翻译
     },
     cascader: {
       noMatch: 'Geen overeenkomende resultaten',
@@ -124,20 +124,20 @@ export default {
       prevPages: "Vorige {pager} pagina's",
       nextPages: "Volgende {pager} pagina's",
       deprecationWarning:
-        'Deprecated usages detected, please refer to the el-pagination documentation for more details', // to be translated
+        'Deprecated usages detected, please refer to the el-pagination documentation for more details', // 待翻译
     },
     dialog: {
-      close: 'Close this dialog', // to be translated
+      close: 'Close this dialog', // 待翻译
     },
     drawer: {
-      close: 'Close this dialog', // to be translated
+      close: 'Close this dialog', // 待翻译
     },
     messagebox: {
       title: 'Bericht',
       confirm: 'Bevestig',
       cancel: 'Annuleren',
       error: 'Ongeldige invoer',
-      close: 'Close this dialog', // to be translated
+      close: 'Close this dialog', // 待翻译
     },
     upload: {
       deleteTip: 'Kies verwijder om te wissen',
@@ -146,9 +146,9 @@ export default {
       continue: 'Doorgaan',
     },
     slider: {
-      defaultLabel: 'slider between {min} and {max}', // to be translated
-      defaultRangeStartLabel: 'pick start value', // to be translated
-      defaultRangeEndLabel: 'pick end value', // to be translated
+      defaultLabel: 'slider between {min} and {max}', // 待翻译
+      defaultRangeStartLabel: 'pick start value', // 待翻译
+      defaultRangeEndLabel: 'pick end value', // 待翻译
     },
     table: {
       emptyText: 'Geen data',
@@ -156,15 +156,15 @@ export default {
       resetFilter: 'Reset',
       clearFilter: 'Alles',
       sumText: 'Som',
-      selectAllLabel: 'Select all rows', // to be translated
-      selectRowLabel: 'Select this row', // to be translated
-      expandRowLabel: 'Expand this row', // to be translated
-      collapseRowLabel: 'Collapse this row', // to be translated
-      sortLabel: 'Sort by {column}', // to be translated
-      filterLabel: 'Filter by {column}', // to be translated
+      selectAllLabel: 'Select all rows', // 待翻译
+      selectRowLabel: 'Select this row', // 待翻译
+      expandRowLabel: 'Expand this row', // 待翻译
+      collapseRowLabel: 'Collapse this row', // 待翻译
+      sortLabel: 'Sort by {column}', // 待翻译
+      filterLabel: 'Filter by {column}', // 待翻译
     },
     tag: {
-      close: 'Close this tag', // to be translated
+      close: 'Close this tag', // 待翻译
     },
     tour: {
       next: 'Volgende',
@@ -194,13 +194,13 @@ export default {
       cancelButtonText: 'Nee',
     },
     carousel: {
-      leftArrow: 'Carousel arrow left', // to be translated
-      rightArrow: 'Carousel arrow right', // to be translated
-      indicator: 'Carousel switch to index {index}', // to be translated
+      leftArrow: 'Carousel arrow left', // 待翻译
+      rightArrow: 'Carousel arrow right', // 待翻译
+      indicator: 'Carousel switch to index {index}', // 待翻译
     },
     inputOTP: {
-      groupLabel: 'OTP Input', // to be translated
-      defaultLabel: 'Please enter OTP character {index}', // to be translated
+      groupLabel: 'OTP Input', // 待翻译
+      defaultLabel: 'Please enter OTP character {index}', // 待翻译
     },
   },
 }

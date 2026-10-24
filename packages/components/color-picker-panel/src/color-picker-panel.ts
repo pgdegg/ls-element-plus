@@ -15,97 +15,97 @@ import type Color from './utils/color'
 
 export interface ColorPickerPanelProps {
   /**
-   * @description binding value
+   * @description 绑定值
    */
   modelValue?: string | null
   /**
-   * @description whether the color picker is bordered
+   * @description 颜色选择器是否有边框
    */
   border?: boolean
   /**
-   * @description whether to display the alpha slider
+   * @description 是否显示透明度滑块
    */
   showAlpha?: boolean
   /**
-   * @description color format of v-model
+   * @description v-model 的颜色格式
    */
   colorFormat?: ColorFormats
   /**
-   * @description whether to disable the color picker
+   * @description 是否禁用颜色选择器
    */
   disabled?: boolean
   /**
-   * @description predefined color options
+   * @description 预定义颜色选项
    */
   predefine?: string[]
   /**
-   * @description whether to trigger form validation
+   * @description 是否触发表单校验
    */
   validateEvent?: boolean
   /**
-   * @description class names will be passed to hue-slider
+   * @description 类名将传给 hue-slider
    */
   hueSliderClass?: ClassValue
   /**
-   * @description styles will be passed to hue-slider
+   * @description 样式将传给 hue-slider
    */
   hueSliderStyle?: StyleValue
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `ColorPickerPanelProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `ColorPickerPanelProps`
  */
 export const colorPickerPanelProps = buildProps({
   /**
-   * @description binding value
+   * @description 绑定值
    */
   modelValue: {
     type: definePropType<string | null>(String),
     default: undefined,
   },
   /**
-   * @description whether the color picker is bordered
+   * @description 颜色选择器是否有边框
    */
   border: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description whether to display the alpha slider
+   * @description 是否显示透明度滑块
    */
   showAlpha: Boolean,
   /**
-   * @description color format of v-model
+   * @description v-model 的颜色格式
    */
   colorFormat: {
     type: definePropType<ColorFormats>(String),
   },
   /**
-   * @description whether to disable the color picker
+   * @description 是否禁用颜色选择器
    */
   disabled: Boolean,
   /**
-   * @description predefined color options
+   * @description 预定义颜色选项
    */
   predefine: {
     type: definePropType<string[]>(Array),
   },
   /**
-   * @description whether to trigger form validation
+   * @description 是否触发表单校验
    */
   validateEvent: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description class names will be passed to <hue-slider />
+   * @description 类名将传给 `<hue-slider />`
    */
   hueSliderClass: {
     type: definePropType<ClassValue>([String, Array, Object, Boolean]),
     default: undefined,
   },
   /**
-   * @description styles will be passed to <hue-slider />
+   * @description 样式将传给 `<hue-slider />`
    */
   hueSliderStyle: {
     type: definePropType<StyleValue>([String, Array, Object, Boolean]),
@@ -117,7 +117,7 @@ export const colorPickerPanelEmits = {
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `ColorPickerPanelProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `ColorPickerPanelProps`
  */
 export type ColorPickerPanelPropsPublic = ExtractPublicPropTypes<
   typeof colorPickerPanelProps

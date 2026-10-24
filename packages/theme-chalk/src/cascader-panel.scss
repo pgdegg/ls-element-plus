@@ -33,7 +33,7 @@
   }
 
   @include e(wrap) {
-    // Raise the priority
+    // 提高优先级
     &.#{$namespace}-scrollbar__wrap {
       height: 204px;
     }
@@ -48,7 +48,7 @@
     box-sizing: border-box;
 
     &.#{$namespace}-vl__window {
-      // for virtual scroll
+      // 用于虚拟滚动
       margin: 6px 0;
       padding: 0;
       ul {

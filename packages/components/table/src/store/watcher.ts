@@ -205,7 +205,7 @@ function useWatcher<T extends DefaultRow>() {
     }
   }
 
-  // Used by selectable to compute row indices in tree-shaped data
+  // 供 selectable 在树形数据中计算行索引使用
   const rowIndexMap = computed(() => {
     const map = new Map<string, number>()
     if (!rowKey.value || !selectable.value) return map
@@ -224,7 +224,7 @@ function useWatcher<T extends DefaultRow>() {
     return map
   })
 
-  // Update parent selection and indeterminate state based on children selection
+  // 根据子节点的选中状态更新父节点的选中与半选状态
   const updateSelectionByChildren = (
     options: {
       emitChange?: boolean
@@ -255,7 +255,7 @@ function useWatcher<T extends DefaultRow>() {
     )
     const rowsToAdd: T[] = []
     let selectionChanged = false
-    // Sync parent selection without triggering external select event
+    // 同步父节点选中状态，且不触发外部 select 事件
     const _updateSelectionForRow = (row: T, id: string, selected: boolean) => {
       const isRowSelected = selectedIdSet.has(id)
       if (selected && !isRowSelected) {
@@ -344,7 +344,7 @@ function useWatcher<T extends DefaultRow>() {
       deleted = []
       const childrenKey = instance?.store?.states?.childrenColumnName.value
       const dataMap = getKeysMap(data.value, rowKey.value, true, childrenKey)
-      // Include lazy-loaded children only if their parent is still in data
+      // 仅当懒加载子项的父节点仍在 data 中时才纳入
       const { lazyTreeNodeMap } = instance.store.states
       if (lazyTreeNodeMap.value) {
         Object.entries(lazyTreeNodeMap.value).forEach(
@@ -418,10 +418,10 @@ function useWatcher<T extends DefaultRow>() {
         childIndex,
         rowKey.value
       )
-      // Recursively handle lazy children's inline descendants
+      // 递归处理懒加载子项的内联后代
       cascadeToLazyChildren(child, selected, rowIndexMap)
     }
-    // Only recurse into inline children (lazy children handled above)
+    // 仅向内联子项递归（懒加载子项已在上面处理）
     for (const child of inlineChildren) {
       cascadeToLazyChildren(child, selected, rowIndexMap)
     }
@@ -447,7 +447,7 @@ function useWatcher<T extends DefaultRow>() {
       rowKey.value
     )
     if (changed) {
-      // lazy mode and non-strict mode, sync lazy children selection status
+      // 懒加载模式与非严格模式下，同步懒加载子项的选中状态
       if (treeStates.lazy.value && !treeStates.checkStrictly.value) {
         const finalSelected = selected ?? isSelected(row)
         cascadeToLazyChildren(row, finalSelected, rowIndexMap.value)
@@ -459,7 +459,7 @@ function useWatcher<T extends DefaultRow>() {
         updateSelectionByChildren({ emitChange: false })
       }
       const newSelection = (selection.value || []).slice()
-      // API call to modify selection, don't trigger select event
+      // 通过 API 修改选中状态，不要触发 select 事件
       if (emitChange) {
         instance.emit('select', newSelection, row)
       }
@@ -468,8 +468,8 @@ function useWatcher<T extends DefaultRow>() {
   }
 
   const _toggleAllSelection = () => {
-    // when only some rows are selected (but not all), select or deselect all of them
-    // depending on the value of selectOnIndeterminate
+    // 当仅选中部分行（而非全部）时，根据 selectOnIndeterminate 的值
+    // 决定全选或取消全选
     const value = selectOnIndeterminate.value
       ? !isAllSelected.value
       : !(isAllSelected.value || selection.value.length)
@@ -481,7 +481,7 @@ function useWatcher<T extends DefaultRow>() {
     const { childrenColumnName } = instance.store.states
     const treeProps = {
       children: childrenColumnName.value,
-      checkStrictly: false, // Disable checkStrictly when selecting all
+      checkStrictly: false, // 全选时关闭 checkStrictly
     }
 
     data.value.forEach((row, index) => {
@@ -541,7 +541,7 @@ function useWatcher<T extends DefaultRow>() {
   }
 
   const updateAllSelected = () => {
-    // When data is null, default values during destructuring are ignored
+    // 当 data 为 null 时，解构时的默认值会被忽略
     if (data.value?.length === 0) {
       isAllSelected.value = false
       return
@@ -648,7 +648,7 @@ function useWatcher<T extends DefaultRow>() {
     })
   }
 
-  // Filter and sort data based on filters and sort conditions
+  // 根据过滤条件和排序条件对数据进行过滤和排序
   const execQuery = (ignore: { filter: boolean } | undefined = undefined) => {
     if (!ignore?.filter) {
       execFilter()
@@ -744,14 +744,14 @@ function useWatcher<T extends DefaultRow>() {
     data,
     rowKey,
   })
-  // Adapter layer, expand-row-keys is used in both Expand and TreeTable
+  // 适配层，expand-row-keys 在 Expand 和 TreeTable 中都会使用
   const setExpandRowKeysAdapter = (val: string[]) => {
-    // Triggers extra computation, but kept for compatibility
+    // 会触发额外计算，但为保持兼容而保留
     setExpandRowKeys(val)
     updateTreeExpandKeys(val)
   }
 
-  // Used for both expand rows and TreeTable
+  // 同时用于展开行和 TreeTable
   const toggleRowExpansionAdapter = (row: T, expanded?: boolean) => {
     const hasExpandColumn = columns.value.some(({ type }) => type === 'expand')
     if (hasExpandColumn) {
@@ -768,7 +768,7 @@ function useWatcher<T extends DefaultRow>() {
         selectionIndeterminate.value = {}
         halfSelection = []
       } else {
-        // Internal sync when switching strict mode, avoid triggering selection-change
+        // 切换严格模式时的内部同步，避免触发 selection-change
         updateSelectionByChildren({ emitChange: false })
       }
       updateAllSelected()

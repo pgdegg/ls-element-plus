@@ -13,116 +13,116 @@ export type ColSize = number | ColSizeObject
 
 export interface ColProps {
   /**
-   * @description custom element tag
+   * @description 自定义元素标签
    */
   tag?: string
   /**
-   * @description number of column the grid spans
+   * @description 栅格占据的列数
    */
   span?: number
   /**
-   * @description number of spacing on the left side of the grid
+   * @description 栅格左侧的间隔列数
    */
   offset?: number
   /**
-   * @description number of columns that grid moves to the left
+   * @description 栅格向左移动的列数
    */
   pull?: number
   /**
-   * @description number of columns that grid moves to the right
+   * @description 栅格向右移动的列数
    */
   push?: number
   /**
-   * @description `<768px` Responsive columns or column props object
+   * @description `<768px` 响应式列数或列属性对象
    */
   xs?: ColSize
   /**
-   * @description `≥768px` Responsive columns or column props object
+   * @description `≥768px` 响应式列数或列属性对象
    */
   sm?: ColSize
   /**
-   * @description `≥992px` Responsive columns or column props object
+   * @description `≥992px` 响应式列数或列属性对象
    */
   md?: ColSize
   /**
-   * @description `≥1200px` Responsive columns or column props object
+   * @description `≥1200px` 响应式列数或列属性对象
    */
   lg?: ColSize
   /**
-   * @description `≥1920px` Responsive columns or column props object
+   * @description `≥1920px` 响应式列数或列属性对象
    */
   xl?: ColSize
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `ColProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `ColProps`
  */
 export const colProps = buildProps({
   /**
-   * @description custom element tag
+   * @description 自定义元素标签
    */
   tag: {
     type: String,
     default: 'div',
   },
   /**
-   * @description number of column the grid spans
+   * @description 栅格占据的列数
    */
   span: {
     type: Number,
     default: 24,
   },
   /**
-   * @description number of spacing on the left side of the grid
+   * @description 栅格左侧的间隔列数
    */
   offset: {
     type: Number,
     default: 0,
   },
   /**
-   * @description number of columns that grid moves to the left
+   * @description 栅格向左移动的列数
    */
   pull: {
     type: Number,
     default: 0,
   },
   /**
-   * @description number of columns that grid moves to the right
+   * @description 栅格向右移动的列数
    */
   push: {
     type: Number,
     default: 0,
   },
   /**
-   * @description `<768px` Responsive columns or column props object
+   * @description `<768px` 响应式列数或列属性对象
    */
   xs: {
     type: definePropType<ColSize>([Number, Object]),
     default: () => mutable({} as const),
   },
   /**
-   * @description `≥768px` Responsive columns or column props object
+   * @description `≥768px` 响应式列数或列属性对象
    */
   sm: {
     type: definePropType<ColSize>([Number, Object]),
     default: () => mutable({} as const),
   },
   /**
-   * @description `≥992px` Responsive columns or column props object
+   * @description `≥992px` 响应式列数或列属性对象
    */
   md: {
     type: definePropType<ColSize>([Number, Object]),
     default: () => mutable({} as const),
   },
   /**
-   * @description `≥1200px` Responsive columns or column props object
+   * @description `≥1200px` 响应式列数或列属性对象
    */
   lg: {
     type: definePropType<ColSize>([Number, Object]),
     default: () => mutable({} as const),
   },
   /**
-   * @description `≥1920px` Responsive columns or column props object
+   * @description `≥1920px` 响应式列数或列属性对象
    */
   xl: {
     type: definePropType<ColSize>([Number, Object]),
@@ -131,7 +131,7 @@ export const colProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `ColProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `ColProps`
  */
 export type ColPropsPublic = ExtractPublicPropTypes<typeof colProps>
 export type ColInstance = InstanceType<typeof Col> & unknown

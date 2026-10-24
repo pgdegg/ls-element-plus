@@ -8,8 +8,8 @@ const tick = async (times: number) => {
 
 export default tick
 
-// in order to test transitions, we need to use
-// await rAF() after firing transition events.
+// 为了测试 transition，我们需要使用
+// 在触发 transition 事件后 await rAF()。
 export const rAF = async () => {
   return new Promise((res) => {
     requestAnimationFrame(() => {

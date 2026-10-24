@@ -247,7 +247,7 @@ export default defineComponent({
     overflow: Boolean,
     roundButton: Boolean,
     container: {
-      type: String, // default append to body
+      type: String, // 默认追加到 body
       default: 'body',
     },
     boxType: {
@@ -272,9 +272,9 @@ export default defineComponent({
     const { nextZIndex } = zIndex
 
     const visible = ref(false)
-    // s represents state
+    // s 表示 state
     const state = reactive<MessageBoxState>({
-      // autofocus element when open message-box
+      // 打开 message-box 时自动聚焦元素
       autofocus: true,
       beforeClose: null,
       callback: null,
@@ -311,8 +311,8 @@ export default defineComponent({
       cancelButtonLoadingIcon: markRaw(Loading),
       confirmButtonDisabled: false,
       editorErrorMessage: '',
-      // refer to: https://github.com/ElemeFE/element/commit/2999279ae34ef10c373ca795c87b020ed6753eed
-      // seemed ok for now without this state.
+      // 参见：https://github.com/ElemeFE/element/commit/2999279ae34ef10c373ca795c87b020ed6753eed
+      // 目前没有此状态似乎也可以。
       // isOnComposition: false, // temporary remove
       validateError: false,
       zIndex: nextZIndex(),
@@ -474,19 +474,19 @@ export default defineComponent({
       handleAction('close')
     }
 
-    // when close on press escape is disabled, pressing esc should not callout
-    // any other message box and close any other dialog-ish elements
-    // e.g. Dialog has a close on press esc feature, and when it closes, it calls
-    // props.beforeClose method to make a intermediate state by callout a message box
-    // for some verification or alerting. then if we allow global event like this
-    // to dispatch, it could callout another message box.
+    // 当按 ESC 关闭被禁用时，按 ESC 不应唤起
+    // 任何其他 message box，并关闭其他对话框类元素
+    // 例如 Dialog 有按 ESC 关闭的功能，关闭时会调用
+    // props.beforeClose 方法，通过唤起 message box 形成中间状态
+    // 用于某些校验或提醒。那么如果我们允许此类全局事件
+    // 派发，就可能唤起另一个 message box。
     const onCloseRequested = () => {
       if (props.closeOnPressEscape) {
         handleClose()
       }
     }
 
-    // locks the screen to prevent scroll
+    // 锁定屏幕以防止滚动
     if (props.lockScroll) {
       useLockscreen(visible, { ns })
     }
@@ -509,8 +509,8 @@ export default defineComponent({
       inputRef,
       isDragging,
       confirmRef,
-      doClose, // for outside usage
-      handleClose, // for out side usage
+      doClose, // 供外部使用
+      handleClose, // 供外部使用
       onCloseRequested,
       handleWrapperClick,
       handleInputEnter,

@@ -20,8 +20,8 @@ function getComponentsSideBar() {
   )
 }
 
-// return sidebar with language configs.
-// this might create duplicated data but the overhead is ignorable
+// 返回携带语言配置的侧边栏。
+// 这可能会产生重复数据，但开销可忽略
 const getSidebars = () => {
   return {
     '/guide/': getGuideSidebar(),

@@ -45,8 +45,8 @@ export const useDelayedRender = ({
     }
   )
 
-  // because we don't always set the value ourselves, so that we
-  // simply watch the value's state, then invoke the corresponding hook.
+  // 由于我们并不总是自己设置该值，因此
+  // 只需 watch 该值的状态，然后调用对应的 hook。
   watch(
     () => intermediateIndicator.value,
     (val) => {

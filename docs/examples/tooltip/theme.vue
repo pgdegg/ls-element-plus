@@ -13,7 +13,7 @@
 
 <style>
 .el-popper.is-customized {
-  /* Set padding to ensure the height is 32px */
+  /* 设置内边距以确保高度为 32px */
   padding: 6px 12px;
   background: linear-gradient(90deg, rgb(159, 229, 151), rgb(204, 229, 129));
 }

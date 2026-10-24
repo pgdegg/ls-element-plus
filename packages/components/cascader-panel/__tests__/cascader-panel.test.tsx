@@ -38,7 +38,7 @@ const NORMAL_OPTIONS = [
     value: 'shanghai',
     label: 'Shanghai',
     children: [
-      // for test nodes in different levels have same value
+      // 用于测试不同层级的节点具有相同值
       {
         value: 'shanghai',
         label: 'Shanghai',
@@ -183,7 +183,7 @@ describe('CascaderPanel.vue', () => {
     expect(handleExpandChange).toBeCalledTimes(1)
 
     await hzNode.trigger('click')
-    // won't trigger when expanding node not change
+    // 展开节点未变化时不会触发
     expect(handleExpandChange).toBeCalledTimes(1)
     expect(handleChange).toBeCalledTimes(1)
     expect(value.value).toEqual(['zhejiang', 'hangzhou'])
@@ -224,14 +224,14 @@ describe('CascaderPanel.vue', () => {
     expect(wrapper.findAll(MENU).length).toBe(1)
     expect(wrapper.find(NODE).classes('is-active')).toBe(true)
 
-    // leaf node should be checked
+    // 叶子节点应被选中
     value.value = ['shanghai', 'shanghai']
     await nextTick()
     const secondMenu = wrapper.findAll(MENU)[1]
     expect(shNode.classes('is-active')).toBe(false)
     expect(secondMenu.find(NODE).classes('is-active')).toBe(true)
 
-    // leaf node should be checked
+    // 叶子节点应被选中
     value.value = null
     await nextTick()
     expect(wrapper.find('is-active').exists()).toBe(false)
@@ -500,8 +500,8 @@ describe('CascaderPanel.vue', () => {
     const [bjNode, , jsNode] = wrapper.findAll(NODE)
     const bjRadio = bjNode.find(RADIO)
 
-    // leaf nodes should add a disabled style for that they are not expandable
-    // but non-leaf nodes are not
+    // 叶子节点因不可展开，应添加禁用样式
+    // 而非叶子节点则不会
     expect(bjNode.classes('is-disabled')).toBe(true)
     expect(jsNode.classes('is-disabled')).toBe(false)
     expect(bjRadio.classes('is-disabled')).toBe(true)
@@ -613,7 +613,7 @@ describe('CascaderPanel.vue', () => {
             leaf: level >= 2,
           }))
           if (level === 1) {
-            // Simulate loading failure for the second level nodes
+            // 模拟第二层级节点加载失败
             reject()
             return
           }
@@ -652,7 +652,7 @@ describe('CascaderPanel.vue', () => {
             leaf: level >= 2,
           }))
           if (level === 0) {
-            // Simulate loading failure for the first level nodes
+            // 模拟第一层级节点加载失败
             reject()
             return
           }
@@ -688,7 +688,7 @@ describe('CascaderPanel.vue', () => {
             leaf: level >= 2,
           }))
           if (level === 2) {
-            // Simulate loading failure for the second level nodes
+            // 模拟第二层级节点加载失败
             reject()
             return
           }
@@ -1176,8 +1176,8 @@ describe('CascaderPanel.vue', () => {
   })
 })
 
-// Generate large options for virtual scroll testing
-// Creates options with 2 levels: parent -> [non-leaf child, leaf child] -> [leaf1, leaf2]
+// 生成大量选项用于虚拟滚动测试
+// 创建两级选项：父节点 -> [非叶子子节点, 叶子子节点] -> [leaf1, leaf2]
 const generateLargeOptions = (count: number) => {
   return Array.from({ length: count }).map((_, index) => ({
     value: `option-${index}`,
@@ -1197,7 +1197,7 @@ const generateLargeOptions = (count: number) => {
   }))
 }
 
-// Large dataset for performance testing
+// 用于性能测试的大数据集
 const LARGE_OPTIONS = generateLargeOptions(2000)
 
 const VIRTUAL_SCROLL = '.el-virtual-scrollbar'
@@ -1215,7 +1215,7 @@ describe('CascaderPanel.vue - Virtual Scroll', () => {
         />
       ))
 
-      // Check that FixedSizeList is rendered
+      // 检查 FixedSizeList 已渲染
       expect(wrapper.find(VIRTUAL_SCROLL).exists()).toBe(true)
       expect(wrapper.find('.el-cascader-menu__list').exists()).toBe(true)
       expect(wrapper.find(SCROLLBAR).exists()).toBe(false)
@@ -1227,11 +1227,11 @@ describe('CascaderPanel.vue - Virtual Scroll', () => {
         <CascaderPanel v-model={value.value} options={NORMAL_OPTIONS} />
       ))
 
-      // Should use el-scrollbar instead of virtual list
+      // 应使用 el-scrollbar 而非虚拟列表
       expect(wrapper.find(SCROLLBAR).exists()).toBe(true)
       expect(wrapper.find(VIRTUAL_SCROLL).exists()).toBe(false)
 
-      // Test basic functionality
+      // 测试基本功能
       const nodes = wrapper.findAll(NODE)
       await nodes[1].trigger('click')
 
@@ -1240,7 +1240,7 @@ describe('CascaderPanel.vue - Virtual Scroll', () => {
     })
 
     test('virtual scroll default values', async () => {
-      // Test default itemSize and height
+      // 测试默认 itemSize 和 height
       const wrapper = mount(() => (
         <CascaderPanel options={LARGE_OPTIONS} virtualScroll />
       ))
@@ -1258,14 +1258,14 @@ describe('CascaderPanel.vue - Virtual Scroll', () => {
         />
       ))
 
-      // Component should render without errors with custom sizes
+      // 使用自定义尺寸时组件应无错误渲染
       expect(wrapper.find(VIRTUAL_SCROLL).exists()).toBe(true)
     })
 
     test('virtual scroll with empty options', async () => {
       const wrapper = mount(() => <CascaderPanel options={[]} virtualScroll />)
 
-      // Should show empty state
+      // 应展示空状态
       expect(wrapper.find('.is-empty').exists()).toBe(true)
     })
 
@@ -1279,11 +1279,11 @@ describe('CascaderPanel.vue - Virtual Scroll', () => {
         />
       ))
 
-      // With height 204 and itemSize 34, should render approximately 6 visible items
-      // plus buffer items for virtual scrolling
+      // height 为 204、itemSize 为 34 时，应渲染约 6 个可见项
+      // 外加虚拟滚动的缓冲项
       const nodes = wrapper.findAll(NODE)
       expect(nodes.length).toBeGreaterThan(0)
-      expect(nodes.length).toBeLessThan(20) // Should not render all 1000 items
+      expect(nodes.length).toBeLessThan(20) // 不应渲染全部 1000 项
     })
   })
 
@@ -1300,18 +1300,18 @@ describe('CascaderPanel.vue - Virtual Scroll', () => {
         />
       ))
 
-      // Find and click first node
+      // 找到并点击第一个节点
       const nodes = wrapper.findAll(NODE)
       expect(nodes.length).toBeGreaterThan(0)
 
       const firstNode = nodes[0]
       await firstNode.trigger('click')
 
-      // Should expand to show second menu
+      // 应展开显示第二个菜单
       const menus = wrapper.findAll(MENU)
       expect(menus.length).toBe(2)
 
-      // Click child node in second menu (leaf node)
+      // 点击第二个菜单中的子节点（叶子节点）
       const secondMenuNodes = menus[1].findAll(NODE)
       await secondMenuNodes[0].trigger('click')
 
@@ -1331,11 +1331,11 @@ describe('CascaderPanel.vue - Virtual Scroll', () => {
 
       await nextTick()
 
-      // Should have two menus expanded
+      // 应有两个菜单处于展开状态
       const menus = wrapper.findAll(MENU)
       expect(menus.length).toBe(2)
 
-      // Check that the correct node is active
+      // 检查正确的节点处于激活状态
       const activeNodes = wrapper.findAll('.is-active')
       expect(activeNodes.length).toBeGreaterThan(0)
     })
@@ -1352,7 +1352,7 @@ describe('CascaderPanel.vue - Virtual Scroll', () => {
 
       await nextTick()
 
-      // Should have expanded menus
+      // 菜单应处于展开状态
       const menus = wrapper.findAll(MENU)
       expect(menus.length).toBe(2)
     })
@@ -1369,11 +1369,11 @@ describe('CascaderPanel.vue - Virtual Scroll', () => {
 
       await nextTick()
 
-      // Change value programmatically
+      // 通过代码修改 value
       value.value = ['option-10', 'child-10-2']
       await nextTick()
 
-      // Should have expanded menus
+      // 菜单应处于展开状态
       const menus = wrapper.findAll(MENU)
       expect(menus.length).toBe(2)
     })
@@ -1392,15 +1392,15 @@ describe('CascaderPanel.vue - Virtual Scroll', () => {
         />
       ))
 
-      // Click first node to expand
+      // 点击第一个节点展开
       const nodes = wrapper.findAll(NODE)
       await nodes[0].trigger('click')
 
-      // Should show checkboxes
+      // 应显示复选框
       const checkboxes = wrapper.findAll(CHECKBOX)
       expect(checkboxes.length).toBeGreaterThan(0)
 
-      // Click checkbox in second menu (leaf node)
+      // 点击第二个菜单中的复选框（叶子节点）
       const menus = wrapper.findAll(MENU)
       const secondMenuCheckboxes = menus[1].findAll(CHECKBOX)
       await secondMenuCheckboxes[0].find('input').trigger('click')
@@ -1420,18 +1420,18 @@ describe('CascaderPanel.vue - Virtual Scroll', () => {
         />
       ))
 
-      // Click first node to expand
+      // 点击第一个节点展开
       const nodes = wrapper.findAll(NODE)
       await nodes[0].trigger('click')
 
-      // Click all checkboxes in second menu
+      // 点击第二个菜单中的所有复选框
       const menus = wrapper.findAll(MENU)
       const secondMenuCheckboxes = menus[1].findAll(CHECKBOX)
       for (const checkbox of secondMenuCheckboxes) {
         await checkbox.find('input').trigger('click')
       }
 
-      // Parent checkbox should be checked
+      // 父节点复选框应被选中
       const parentCheckbox = nodes[0].find(CHECKBOX)
       expect(parentCheckbox.classes('is-checked')).toBe(true)
     })
@@ -1450,11 +1450,11 @@ describe('CascaderPanel.vue - Virtual Scroll', () => {
 
       await nextTick()
 
-      // Should have expanded menus
+      // 菜单应处于展开状态
       const menus = wrapper.findAll(MENU)
       expect(menus.length).toBe(2)
 
-      // Check checkbox is checked
+      // 检查复选框已被选中
       const checkboxes = wrapper.findAll(CHECKBOX)
       const checkedCheckbox = checkboxes.find((c) => c.classes('is-checked'))
       expect(checkedCheckbox).toBeDefined()
@@ -1474,11 +1474,11 @@ describe('CascaderPanel.vue - Virtual Scroll', () => {
         />
       ))
 
-      // Should show radios
+      // 应显示单选框
       const radios = wrapper.findAll(RADIO)
       expect(radios.length).toBeGreaterThan(0)
 
-      // Click first radio
+      // 点击第一个单选框
       await radios[0].find('input').trigger('click')
       expect(value.value).toEqual(['option-0'])
     })
@@ -1495,15 +1495,15 @@ describe('CascaderPanel.vue - Virtual Scroll', () => {
         />
       ))
 
-      // Click node to expand (not to select)
+      // 点击节点以展开（而非选中）
       const nodes = wrapper.findAll(NODE)
       await nodes[0].trigger('click')
 
-      // Should expand to show second menu
+      // 应展开显示第二个菜单
       const menus = wrapper.findAll(MENU)
       expect(menus.length).toBe(2)
 
-      // Value should not change (just expanded)
+      // value 不应改变（仅展开）
       expect(value.value).toEqual([])
     })
 
@@ -1519,7 +1519,7 @@ describe('CascaderPanel.vue - Virtual Scroll', () => {
         />
       ))
 
-      // Click checkboxes to select parent nodes independently
+      // 点击复选框以独立选中父节点
       const checkboxes = wrapper.findAll(CHECKBOX)
       await checkboxes[0].find('input').trigger('click')
 
@@ -1564,7 +1564,7 @@ describe('CascaderPanel.vue - Virtual Scroll', () => {
       const nodes = wrapper.findAll(NODE)
       await nodes[0].trigger('click')
 
-      // Should not select disabled option
+      // 不应选中禁用的选项
       expect(value.value).toEqual([])
 
       await nodes[1].trigger('click')
@@ -1582,7 +1582,7 @@ describe('CascaderPanel.vue - Virtual Scroll', () => {
       const nodes = wrapper.findAll(NODE)
       await nodes[0].trigger('mouseenter')
 
-      // Should expand to show second menu
+      // 应展开显示第二个菜单
       const menus = wrapper.findAll(MENU)
       expect(menus.length).toBe(2)
     })
@@ -1621,7 +1621,7 @@ describe('CascaderPanel.vue - Virtual Scroll', () => {
         />
       ))
 
-      // Should not render all 2000 nodes
+      // 不应渲染全部 2000 个节点
       const nodes = wrapper.findAll(NODE)
       expect(nodes.length).toBeLessThan(50)
     })
@@ -1638,7 +1638,7 @@ describe('CascaderPanel.vue - Virtual Scroll', () => {
 
       await nextTick()
 
-      // The panel should have expanded and scrolled to the active node
+      // 面板应已展开并滚动到激活节点
       const menus = wrapper.findAll(MENU)
       expect(menus.length).toBe(2)
     })
@@ -1655,11 +1655,11 @@ describe('CascaderPanel.vue - Virtual Scroll', () => {
         />
       ))
 
-      // Click first node
+      // 点击第一个节点
       const nodes = wrapper.findAll(NODE)
       await nodes[0].trigger('click')
 
-      // Expand and select
+      // 展开并选中
       const menus = wrapper.findAll(MENU)
       const childNodes = menus[1].findAll(NODE)
       await childNodes[0].trigger('click')
@@ -1716,7 +1716,7 @@ describe('CascaderPanel.vue - Virtual Scroll', () => {
 
       await nextTick()
 
-      // Change to a different option
+      // 切换为另一个选项
       value.value = ['option-100', 'child-100-2']
       await nextTick()
 
@@ -1929,7 +1929,7 @@ describe('CascaderPanel.vue - Virtual Scroll', () => {
 
       await nextTick()
 
-      // Clear value
+      // 清空 value
       value.value = []
       await nextTick()
 

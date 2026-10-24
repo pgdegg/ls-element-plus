@@ -31,7 +31,7 @@ describe('dom style', () => {
       canvas.className = 'canvas-a canvas-b cc'
       expect(hasClass(canvas, 'a')).toBe(false)
       expect(hasClass(canvas, 'canvas-a')).toBe(true)
-      // remove classList
+      // 移除 classList
       canvas.setAttribute('classList', '')
       expect(hasClass(canvas, 'b')).toBe(false)
       expect(hasClass(canvas, 'canvas-b')).toBe(true)
@@ -40,7 +40,7 @@ describe('dom style', () => {
       svg.setAttribute('class', 'svg-a svg-b')
       expect(hasClass(svg, 'a')).toBe(false)
       expect(hasClass(svg, 'svg-a')).toBe(true)
-      // remove classList
+      // 移除 classList
       svg.setAttribute('classList', '')
       expect(hasClass(svg, 'b')).toBe(false)
       expect(hasClass(svg, 'svg-b')).toBe(true)
@@ -52,7 +52,7 @@ describe('dom style', () => {
       path.setAttribute('class', 'path-a path-b')
       expect(hasClass(path, 'a')).toBe(false)
       expect(hasClass(path, 'path-a')).toBe(true)
-      // remove classList
+      // 移除 classList
       path.setAttribute('classList', '')
       expect(hasClass(path, 'b')).toBe(false)
       expect(hasClass(path, 'path-b')).toBe(true)
@@ -68,7 +68,7 @@ describe('dom style', () => {
       expect(hasClass(div, 'div')).toBe(false)
       addClass(div, 'abc')
       expect(getClass(div)).toEqual('div-abc abc')
-      // remove classList
+      // 移除 classList
       div.setAttribute('classList', '')
       addClass(div, 'div-box con')
       expect(hasClass(div, 'con')).toBe(true)
@@ -87,7 +87,7 @@ describe('dom style', () => {
       expect(getClass(svg)).toEqual('svg-abc svg')
       addClass(svg, 'svg-aa     space')
       expect(getClass(svg)).toEqual('svg-abc svg svg-aa space')
-      // remove classList
+      // 移除 classList
       svg.setAttribute('classList', '')
       addClass(svg, 'svg-abc-a svg-b')
       expect(hasClass(svg, 'svg')).toBe(true)
@@ -109,7 +109,7 @@ describe('dom style', () => {
       expect(hasClass(path, 'pa')).toBe(false)
       addClass(path, 'path')
       expect(getClass(path)).toEqual('path-abc path')
-      // remove classList
+      // 移除 classList
       path.setAttribute('classList', '')
       expect(hasClass(path, 'path')).toBe(true)
       expect(hasClass(path, 'path-abc')).toBe(true)
@@ -134,7 +134,7 @@ describe('dom style', () => {
       expect(hasClass(div, 'cc')).toBe(false)
       expect(getClass(div)).toEqual('div-abc ab')
 
-      // remove classList
+      // 移除 classList
       div.setAttribute('classList', '')
       addClass(div, 'div-box con')
       removeClass(div, 'div-box con')
@@ -148,7 +148,7 @@ describe('dom style', () => {
       expect(hasClass(svg, 'svg-abc')).toBe(false)
       expect(hasClass(svg, 'abc')).toBe(false)
       expect(getClass(svg)).toEqual('')
-      // remove classList
+      // 移除 classList
       svg.setAttribute('classList', '')
       addClass(svg, 'svg-abc-a svg-b')
       expect(hasClass(svg, 'svg')).toBe(false)
@@ -174,7 +174,7 @@ describe('dom style', () => {
       removeClass(path, 'path')
       expect(hasClass(path, 'path')).toBe(false)
       expect(hasClass(path, 'path-abc')).toBe(true)
-      // remove classList
+      // 移除 classList
       path.setAttribute('classList', '')
       addClass(path, 'path path-1 path2')
       expect(hasClass(path, 'path')).toBe(true)

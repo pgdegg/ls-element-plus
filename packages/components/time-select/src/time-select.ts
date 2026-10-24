@@ -11,79 +11,79 @@ import type { ClassValue, IconPropType } from '@element-plus/utils'
 
 export interface TimeSelectProps extends UseEmptyValuesProps {
   /**
-   * @description set format of time
+   * @description 设置时间格式
    */
   format?: string
   /**
-   * @description binding value
+   * @description 绑定值
    */
   modelValue?: string | null
   /**
-   * @description whether TimeSelect is disabled
+   * @description TimeSelect 是否禁用
    */
   disabled?: boolean
   /**
-   * @description whether the input is editable
+   * @description 输入框是否可编辑
    */
   editable?: boolean
   /**
-   * @description Tooltip theme, built-in theme: `dark` / `light`
+   * @description Tooltip 主题，内置主题：`dark` / `light`
    */
   effect?: PopperEffect
   /**
-   * @description whether to show clear button
+   * @description 是否显示清除按钮
    */
   clearable?: boolean
   /**
-   * @description size of Input
+   * @description Input 的尺寸
    */
   size?: ComponentSize
   /**
-   * @description placeholder in non-range mode
+   * @description 非范围模式下的占位符
    */
   placeholder?: string
   /**
-   * @description start time
+   * @description 开始时间
    */
   start?: string
   /**
-   * @description end time
+   * @description 结束时间
    */
   end?: string
   /**
-   * @description time step
+   * @description 时间步长
    */
   step?: string
   /**
-   * @description minimum time, any time before this time will be disabled
+   * @description 最小时间，早于该时间的时刻将被禁用
    */
   minTime?: string | null
   /**
-   * @description maximum time, any time after this time will be disabled
+   * @description 最大时间，晚于该时间的时刻将被禁用
    */
   maxTime?: string | null
   /**
-   * @description whether `end` is included in options
+   * @description 选项中是否包含 `end`
    */
   includeEndTime?: boolean
   /**
-   * @description same as `name` in native input
+   * @description 与原生 input 的 `name` 相同
    */
   name?: string
   /**
-   * @description custom prefix icon component
+   * @description 自定义前缀图标组件
    */
   prefixIcon?: IconPropType
   /**
-   * @description custom clear icon component
+   * @description 自定义清除图标组件
    */
   clearIcon?: IconPropType
   /**
-   * @description custom class name for TimeSelect's dropdown
+   * @description TimeSelect 下拉框的自定义类名
    */
   popperClass?: ClassValue
   /**
-   * @description custom style for TimeSelect's dropdown
+   * @description TimeSelect 下拉框的自定义样式
    */
   popperStyle?: StyleValue
 }
@@ -93,122 +93,122 @@ export const DEFAULT_END = '18:00'
 export const DEFAULT_STEP = '00:30'
 
 /**
- * @deprecated Removed after 3.0.0, Use `TimeSelectProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `TimeSelectProps`。
  */
 export const timeSelectProps = buildProps({
   /**
-   * @description set format of time
+   * @description 设置时间格式
    */
   format: {
     type: String,
     default: 'HH:mm',
   },
   /**
-   * @description binding value
+   * @description 绑定值
    */
   modelValue: {
     type: definePropType<string | null>(String),
   },
   /**
-   * @description whether TimeSelect is disabled
+   * @description TimeSelect 是否禁用
    */
   disabled: {
     type: Boolean,
     default: undefined,
   },
   /**
-   * @description whether the input is editable
+   * @description 输入框是否可编辑
    */
   editable: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description Tooltip theme, built-in theme: `dark` / `light`
+   * @description Tooltip 主题，内置主题：`dark` / `light`
    */
   effect: {
     type: definePropType<PopperEffect>(String),
     default: 'light',
   },
   /**
-   * @description whether to show clear button
+   * @description 是否显示清除按钮
    */
   clearable: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description size of Input
+   * @description Input 的尺寸
    */
   size: useSizeProp,
   /**
-   * @description placeholder in non-range mode
+   * @description 非范围模式下的占位符
    */
   placeholder: String,
   /**
-   * @description start time
+   * @description 开始时间
    */
   start: {
     type: String,
     default: DEFAULT_START,
   },
   /**
-   * @description end time
+   * @description 结束时间
    */
   end: {
     type: String,
     default: DEFAULT_END,
   },
   /**
-   * @description time step
+   * @description 时间步长
    */
   step: {
     type: String,
     default: DEFAULT_STEP,
   },
   /**
-   * @description minimum time, any time before this time will be disabled
+   * @description 最小时间，早于该时间的时刻将被禁用
    */
   minTime: {
     type: definePropType<string | null>(String),
   },
   /**
-   * @description maximum time, any time after this time will be disabled
+   * @description 最大时间，晚于该时间的时刻将被禁用
    */
   maxTime: {
     type: definePropType<string | null>(String),
   },
   /**
-   * @description whether `end` is included in options
+   * @description 选项中是否包含 `end`
    */
   includeEndTime: Boolean,
   /**
-   * @description same as `name` in native input
+   * @description 与原生 input 的 `name` 相同
    */
   name: String,
   /**
-   * @description custom prefix icon component
+   * @description 自定义前缀图标组件
    */
   prefixIcon: {
     type: definePropType<string | Component>([String, Object]),
     default: () => Clock,
   },
   /**
-   * @description custom clear icon component
+   * @description 自定义清除图标组件
    */
   clearIcon: {
     type: definePropType<string | Component>([String, Object]),
     default: () => CircleClose,
   },
   /**
-   * @description custom class name for TimeSelect's dropdown
+   * @description TimeSelect 下拉框的自定义类名
    */
   popperClass: {
     type: definePropType<ClassValue>([String, Array, Object, Boolean]),
     default: '',
   },
   /**
-   * @description custom style for TimeSelect's dropdown
+   * @description TimeSelect 下拉框的自定义样式
    */
   popperStyle: {
     type: definePropType<StyleValue>([String, Array, Object, Boolean]),
@@ -218,7 +218,7 @@ export const timeSelectProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `TimeSelectProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `TimeSelectProps`。
  */
 export type TimeSelectPropsPublic = ExtractPublicPropTypes<
   typeof timeSelectProps

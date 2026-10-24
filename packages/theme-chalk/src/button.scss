@@ -25,7 +25,7 @@ $button-icon-span-gap: map.merge(
   align-items: center;
 
   line-height: 1;
-  // min-height will expand when in flex
+  // 在 flex 布局中 min-height 会展开
   height: map.get($input-height, 'default');
   white-space: nowrap;
   cursor: pointer;
@@ -133,7 +133,7 @@ $button-icon-span-gap: map.merge(
     pointer-events: none;
 
     &:before {
-      // mask the button
+      // 遮罩按钮
       z-index: 1;
       pointer-events: none;
       content: '';
@@ -323,7 +323,7 @@ $button-icon-span-gap: map.merge(
   }
 }
 
-// HIS component customization.
+// HIS 组件定制。
 .el-button {
   padding: 8px 4px;
 

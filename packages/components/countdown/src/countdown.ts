@@ -7,63 +7,63 @@ import type Countdown from './countdown.vue'
 
 export interface CountdownProps {
   /**
-   * @description Formatting the countdown display
+   * @description 倒计时显示的格式化
    */
   format?: string
   /**
-   * @description Sets the prefix of a countdown
+   * @description 设置倒计时前缀
    */
   prefix?: string
   /**
-   * @description Sets the suffix of a countdown
+   * @description 设置倒计时后缀
    */
   suffix?: string
   /**
-   * @description countdown titles
+   * @description 倒计时标题
    */
   title?: string
   /**
-   * @description target time
+   * @description 目标时间
    */
   value?: number | Dayjs
   /**
-   * @description Styles countdown values
+   * @description 设置倒计时数值样式
    */
   valueStyle?: StyleValue
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `CountdownProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `CountdownProps`
  */
 export const countdownProps = buildProps({
   /**
-   * @description Formatting the countdown display
+   * @description 倒计时显示的格式化
    */
   format: {
     type: String,
     default: 'HH:mm:ss',
   },
   /**
-   * @description Sets the prefix of a countdown
+   * @description 设置倒计时前缀
    */
   prefix: String,
   /**
-   * @description Sets the suffix of a countdown
+   * @description 设置倒计时后缀
    */
   suffix: String,
   /**
-   * @description countdown titles
+   * @description 倒计时标题
    */
   title: String,
   /**
-   * @description target time
+   * @description 目标时间
    */
   value: {
     type: definePropType<number | Dayjs>([Number, Object]),
     default: 0,
   },
   /**
-   * @description Styles countdown values
+   * @description 设置倒计时数值样式
    */
   valueStyle: {
     type: definePropType<StyleValue>([String, Object, Array, Boolean]),
@@ -72,7 +72,7 @@ export const countdownProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `CountdownProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `CountdownProps`
  */
 export type CountdownPropsPublic = ExtractPublicPropTypes<typeof countdownProps>
 

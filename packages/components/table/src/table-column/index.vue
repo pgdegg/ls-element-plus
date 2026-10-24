@@ -87,7 +87,7 @@ onBeforeMount(() => {
 
   const type = (props.type as keyof typeof cellStarts) || 'default'
   const sortable = props.sortable === '' ? true : props.sortable
-  //The selection column should not be affected by `showOverflowTooltip`.
+  //选择列不应受 `showOverflowTooltip` 的影响。
   const showOverflowTooltip =
     type === 'selection'
       ? false
@@ -214,7 +214,7 @@ const TableColumnRenderer = () => {
           children.push(childNode)
         } else if (childNode.type === Fragment && isArray(childNode.children)) {
           childNode.children.forEach((vnode: VNode) => {
-            // No rendering when vnode is dynamic slot or text
+            // 当 vnode 是动态插槽或文本时不渲染
             if (
               (vnode as VNode)?.patchFlag !== 1024 &&
               !isString((vnode as VNode)?.children)

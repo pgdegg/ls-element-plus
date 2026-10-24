@@ -40,7 +40,7 @@
   box-sizing: border-box;
 
   &.#{$namespace}-vl__window {
-    // for select-v2
+    // 用于 select-v2
     margin: map.get($select-dropdown, 'padding');
     padding: 0;
   }

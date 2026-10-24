@@ -6,64 +6,64 @@ import type TimelineItem from './timeline-item.vue'
 
 export interface TimelineItemProps {
   /**
-   * @description timestamp content
+   * @description 时间戳内容
    */
   timestamp?: string
   /**
-   * @description whether to show timestamp
+   * @description 是否显示时间戳
    */
   hideTimestamp?: boolean
   /**
-   * @description whether vertically centered
+   * @description 是否垂直居中
    */
   center?: boolean
   /**
-   * @description position of timestamp
+   * @description 时间戳的位置
    */
   placement?: 'top' | 'bottom'
   /**
-   * @description node type
+   * @description 节点类型
    */
   type?: 'primary' | 'success' | 'warning' | 'danger' | 'info' | ''
   /**
-   * @description background color of node
+   * @description 节点的背景色
    */
   color?: string
   /**
-   * @description node size
+   * @description 节点尺寸
    */
   size?: 'normal' | 'large'
   /**
-   * @description icon component
+   * @description 图标组件
    */
   icon?: IconPropType
   /**
-   * @description icon is hollow
+   * @description 图标是否为空心
    */
   hollow?: boolean
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `TimelineItemProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `TimelineItemProps`。
  */
 export const timelineItemProps = buildProps({
   /**
-   * @description timestamp content
+   * @description 时间戳内容
    */
   timestamp: {
     type: String,
     default: '',
   },
   /**
-   * @description whether to show timestamp
+   * @description 是否显示时间戳
    */
   hideTimestamp: Boolean,
   /**
-   * @description whether vertically centered
+   * @description 是否垂直居中
    */
   center: Boolean,
   /**
-   * @description position of timestamp
+   * @description 时间戳的位置
    */
   placement: {
     type: String,
@@ -71,7 +71,7 @@ export const timelineItemProps = buildProps({
     default: 'bottom',
   },
   /**
-   * @description node type
+   * @description 节点类型
    */
   type: {
     type: String,
@@ -79,14 +79,14 @@ export const timelineItemProps = buildProps({
     default: '',
   },
   /**
-   * @description background color of node
+   * @description 节点的背景色
    */
   color: {
     type: String,
     default: '',
   },
   /**
-   * @description node size
+   * @description 节点尺寸
    */
   size: {
     type: String,
@@ -94,19 +94,19 @@ export const timelineItemProps = buildProps({
     default: 'normal',
   },
   /**
-   * @description icon component
+   * @description 图标组件
    */
   icon: {
     type: iconPropType,
   },
   /**
-   * @description icon is hollow
+   * @description 图标是否为空心
    */
   hollow: Boolean,
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `TimelineItemProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `TimelineItemProps`。
  */
 export type TimelineItemPropsPublic = ExtractPublicPropTypes<
   typeof timelineItemProps

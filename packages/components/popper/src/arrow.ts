@@ -5,13 +5,13 @@ import type Arrow from './arrow.vue'
 
 export interface PopperArrowProps {
   /**
-   * @description arrow offset
+   * @description 箭头偏移量
    */
   arrowOffset?: number
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `PopperArrowProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `PopperArrowProps`。
  */
 export const popperArrowProps = buildProps({
   arrowOffset: {
@@ -21,7 +21,7 @@ export const popperArrowProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `PopperArrowProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `PopperArrowProps`。
  */
 export type PopperArrowPropsPublic = ExtractPublicPropTypes<
   typeof popperArrowProps
@@ -33,11 +33,11 @@ export const popperArrowPropsDefaults = {
 
 export type PopperArrowInstance = InstanceType<typeof Arrow> & unknown
 
-/** @deprecated use `popperArrowProps` instead, and it will be deprecated in the next major version */
+/** @deprecated 请改用 `popperArrowProps`，它将在下一个大版本中被废弃 */
 export const usePopperArrowProps = popperArrowProps
 
-/** @deprecated use `PopperArrowProps` instead, and it will be deprecated in the next major version */
+/** @deprecated 请改用 `PopperArrowProps`，它将在下一个大版本中被废弃 */
 export type UsePopperArrowProps = PopperArrowProps
 
-/** @deprecated use `PopperArrowInstance` instead, and it will be deprecated in the next major version */
+/** @deprecated 请改用 `PopperArrowInstance`，它将在下一个大版本中被废弃 */
 export type ElPopperArrowInstance = PopperArrowInstance

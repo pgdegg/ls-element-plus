@@ -1082,18 +1082,18 @@ describe('Dropdown', () => {
 
     await nextTick()
 
-    // Open dropdown
+    // 打开下拉菜单
     const triggerElm = wrapper.find('.el-dropdown-link')
     await triggerElm.trigger(MOUSE_ENTER_EVENT)
     await nextTick()
 
-    // The el-icon should be rendered
+    // el-icon 应被渲染
     const icon = wrapper
       .findComponent({ name: 'DropdownItemImpl' })
       .findComponent({ name: 'ElIcon' })
     expect(icon.exists()).toBe(true)
 
-    // The icon content should be rendered
+    // 图标内容应被渲染
     const content = icon.find('.test-icon')
     expect(content.exists()).toBe(true)
     expect(content.text()).toBe('ICON')
@@ -1117,17 +1117,17 @@ describe('Dropdown', () => {
 
     await nextTick()
 
-    // Open dropdown
+    // 打开下拉菜单
     const triggerElm = wrapper.find('.el-dropdown-link')
     await triggerElm.trigger(MOUSE_ENTER_EVENT)
     await nextTick()
 
-    // Find icon element
+    // 查找图标元素
     const icon = wrapper
       .findComponent({ name: 'DropdownItemImpl' })
       .findComponent({ name: 'ElIcon' })
 
-    // The icon slot content shouldn't be rendered
+    // 图标插槽内容不应被渲染
     expect(icon.exists()).toBe(false)
   })
 })

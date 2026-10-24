@@ -18,7 +18,7 @@ export type InputElementRegistrar = (
   element: InputElement
 ) => void | (() => void)
 
-/** Register native controls without relying on component roots or fragment siblings. */
+/** 注册原生控件，无需依赖组件根节点或 fragment 同级节点。 */
 export const inputElementRegistrationKey: InjectionKey<
   InputElementRegistrar | undefined
 > = Symbol('elInputElementRegistration')
@@ -35,7 +35,7 @@ export function useInputElement<T extends InputElement>(
   const register = inject(inputElementRegistrationKey, undefined)
   const active = ref(true)
   if (register) {
-    // An outer control owns registration; its implementation inputs must not register twice.
+    // 由外层控件负责注册；其内部实现的 input 不得重复注册。
     provide(inputElementRegistrationKey, undefined)
     const stop = watch(
       () => (active.value ? inputElement.value : undefined),

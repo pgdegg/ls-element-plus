@@ -71,7 +71,7 @@ const filledNode = (
     node.props.span = count
   }
   if (isLast) {
-    // set the last span
+    // 设置最后一项的 span
     node.props.span = span
   }
   return node
@@ -87,8 +87,8 @@ const getRows = () => {
   const rows: DescriptionItemVNode[][] = []
   let temp: DescriptionItemVNode[] = []
   let count = props.column
-  let totalSpan = 0 // all spans number of item
-  const rowspanTemp: number[] = [] // the number of row spans
+  let totalSpan = 0 // 各项的 span 总数
+  const rowspanTemp: number[] = [] // 行跨越的数量
 
   children.forEach((node, index) => {
     const span = node.props?.span || 1
@@ -112,7 +112,7 @@ const getRows = () => {
     }
 
     if (index === children.length - 1) {
-      // calculate the last item span
+      // 计算最后一项的 span
       const lastSpan = props.column - (totalSpan % props.column)
       temp.push(filledNode(node, lastSpan, count, true))
       rows.push(temp)

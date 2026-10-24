@@ -15,7 +15,7 @@ export const buttonTypes = [
   'danger',
   /**
    * @deprecated
-   * Text type will be deprecated in the next major version (3.0.0)
+   * Text 类型将在下一个大版本 (3.0.0) 中被废弃
    */
   'text',
   '',
@@ -26,104 +26,104 @@ export type ButtonType = (typeof buttonTypes)[number]
 export type ButtonNativeType = (typeof buttonNativeTypes)[number]
 
 export interface ButtonProps {
-  /** Ignore disabled state inherited from a button group. */
+  /** 忽略从按钮组继承的 disabled 状态。 */
   ignoreGroupDisabled?: boolean
   /**
-   * @description button size
+   * @description 按钮尺寸
    */
   size?: ComponentSize
   /**
-   * @description disable the button
+   * @description 禁用按钮
    */
   disabled?: boolean
   /**
-   * @description button type
+   * @description 按钮类型
    */
   type?: ButtonType
   /**
-   * @description icon component
+   * @description 图标组件
    */
   icon?: IconPropType
   /**
-   * @description native button type
+   * @description 原生按钮类型
    */
   nativeType?: ButtonNativeType
   /**
-   * @description determine whether it's loading
+   * @description 是否正在加载
    */
   loading?: boolean
   /**
-   * @description customize loading icon component
+   * @description 自定义加载图标组件
    */
   loadingIcon?: IconPropType
   /**
-   * @description determine whether it's a plain button
+   * @description 是否为朴素按钮
    */
   plain?: boolean
   /**
-   * @description determine whether it's a text button
+   * @description 是否为文本按钮
    */
   text?: boolean
   /**
-   * @description determine whether it's a link button
+   * @description 是否为链接按钮
    */
   link?: boolean
   /**
-   * @description determine whether the text button background color is always on
+   * @description 文本按钮背景色是否始终显示
    */
   bg?: boolean
   /**
-   * @description native button autofocus
+   * @description 原生按钮自动聚焦
    */
   autofocus?: boolean
   /**
-   * @description determine whether it's a round button
+   * @description 是否为圆角按钮
    */
   round?: boolean
   /**
-   * @description determine whether it's a circle button
+   * @description 是否为圆形按钮
    */
   circle?: boolean
   /**
-   * @description determine whether it's a dashed button
+   * @description 是否为虚线按钮
    */
   dashed?: boolean
   /**
-   * @description custom button color, automatically calculate `hover` and `active` color
+   * @description 自定义按钮颜色，自动计算 `hover` 和 `active` 颜色
    */
   color?: string
   /**
-   * @description dark mode, which automatically converts `color` to dark mode colors
+   * @description 深色模式，自动将 `color` 转换为深色模式颜色
    */
   dark?: boolean
   /**
-   * @description automatically insert a space between two chinese characters
+   * @description 在两个中文字符之间自动插入空格
    */
   autoInsertSpace?: boolean
   /**
-   * @description custom element tag
+   * @description 自定义元素标签
    */
   tag?: string | Component
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `ButtonProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `ButtonProps`
  */
 export const buttonProps = buildProps({
   ignoreGroupDisabled: Boolean,
   /**
-   * @description button size
+   * @description 按钮尺寸
    */
   size: useSizeProp,
   /**
-   * @description disable the button
+   * @description 禁用按钮
    */
   disabled: {
     type: Boolean,
     default: undefined,
   },
   /**
-   * @description button type
+   * @description 按钮类型
    */
   type: {
     type: String,
@@ -131,13 +131,13 @@ export const buttonProps = buildProps({
     default: '',
   },
   /**
-   * @description icon component
+   * @description 图标组件
    */
   icon: {
     type: iconPropType,
   },
   /**
-   * @description native button type
+   * @description 原生按钮类型
    */
   nativeType: {
     type: String,
@@ -145,77 +145,77 @@ export const buttonProps = buildProps({
     default: 'button',
   },
   /**
-   * @description determine whether it's loading
+   * @description 是否正在加载
    */
   loading: Boolean,
   /**
-   * @description customize loading icon component
+   * @description 自定义加载图标组件
    */
   loadingIcon: {
     type: iconPropType,
     default: () => Loading,
   },
   /**
-   * @description determine whether it's a plain button
+   * @description 是否为朴素按钮
    */
   plain: {
     type: Boolean,
     default: undefined,
   },
   /**
-   * @description determine whether it's a text button
+   * @description 是否为文本按钮
    */
   text: {
     type: Boolean,
     default: undefined,
   },
   /**
-   * @description determine whether it's a link button
+   * @description 是否为链接按钮
    */
   link: Boolean,
   /**
-   * @description determine whether the text button background color is always on
+   * @description 文本按钮背景色是否始终显示
    */
   bg: Boolean,
   /**
-   * @description native button autofocus
+   * @description 原生按钮自动聚焦
    */
   autofocus: Boolean,
   /**
-   * @description determine whether it's a round button
+   * @description 是否为圆角按钮
    */
   round: {
     type: Boolean,
     default: undefined,
   },
   /**
-   * @description determine whether it's a circle button
+   * @description 是否为圆形按钮
    */
   circle: Boolean,
   /**
-   * @description determine whether it's a dashed button
+   * @description 是否为虚线按钮
    */
   dashed: {
     type: Boolean,
     default: undefined,
   },
   /**
-   * @description custom button color, automatically calculate `hover` and `active` color
+   * @description 自定义按钮颜色，自动计算 `hover` 和 `active` 颜色
    */
   color: String,
   /**
-   * @description dark mode, which automatically converts `color` to dark mode colors
+   * @description 深色模式，自动将 `color` 转换为深色模式颜色
    */
   dark: Boolean,
   /**
-   * @description automatically insert a space between two chinese characters
+   * @description 在两个中文字符之间自动插入空格
    */
   autoInsertSpace: {
     type: Boolean,
     default: undefined,
   },
   /**
-   * @description custom element tag
+   * @description 自定义元素标签
    */
   tag: {
     type: definePropType<string | Component>([String, Object]),
@@ -227,7 +227,7 @@ export const buttonEmits = {
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `ButtonProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `ButtonProps`
  */
 export type ButtonPropsPublic = ExtractPublicPropTypes<typeof buttonProps>
 export type ButtonEmits = typeof buttonEmits

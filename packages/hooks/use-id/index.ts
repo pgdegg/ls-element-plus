@@ -39,7 +39,7 @@ usage: app.provide(ID_INJECTION_KEY, {
 
   const namespace = useGetDerivedNamespace()
 
-  // NOTE: Here we use `computedEager` to calculate the id value immediately, avoiding inconsistent id generation due to the lazy feature of `computed` when server rendering.
+  // 注意：此处使用 `computedEager` 立即计算 id 值，避免服务端渲染时因 `computed` 的惰性特性导致 id 生成不一致。
   const idRef = computedEager(
     () =>
       unref(deterministicId) ||

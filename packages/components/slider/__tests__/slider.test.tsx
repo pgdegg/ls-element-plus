@@ -452,11 +452,11 @@ describe('Slider', () => {
 
     await nextTick()
 
-    // Mouse down at 0
+    // 在 0 处按下鼠标
     await slider.trigger('mousedown', { clientX: 0, clientY: 0 })
 
-    // Mouse move to 50px (value 25)
-    // 25 is closer to 30 (diff 5) than 10 (diff 15)
+    // 鼠标移动到 50px（值 25）
+    // 25 更接近 30（差 5）而不是 10（差 15）
     const mousemove = new MouseEvent('mousemove', {
       clientX: 50,
       clientY: 0,
@@ -472,7 +472,7 @@ describe('Slider', () => {
     await nextTick()
     expect(value.value).toBe(30)
 
-    // Keyboard navigation
+    // 键盘导航
     await slider.trigger('keydown', {
       key: EVENT_CODE.right,
       code: EVENT_CODE.right,
@@ -556,11 +556,11 @@ describe('Slider', () => {
 
     await nextTick()
 
-    // Move first button from 10 (20px) to near 13 (26px)
+    // 将第一个按钮从 10（20px）移动到接近 13（26px）
     await firstButton.trigger('mousedown', { clientX: 20, clientY: 0 })
 
     const mousemove1 = new MouseEvent('mousemove', {
-      clientX: 25, // 12.5 -> closest mark 13
+      clientX: 25, // 12.5 -> 最近刻度 13
       clientY: 0,
       bubbles: true,
     })
@@ -573,11 +573,11 @@ describe('Slider', () => {
     expect(value.value[0]).toBe(13)
     expect(value.value[1]).toBe(50)
 
-    // Move second button from 50 (100px) to near 58 (116px)
+    // 将第二个按钮从 50（100px）移动到接近 58（116px）
     await secondButton.trigger('mousedown', { clientX: 100, clientY: 0 })
 
     const mousemove2 = new MouseEvent('mousemove', {
-      clientX: 110, // 55 -> closest mark 58
+      clientX: 110, // 55 -> 最近刻度 58
       clientY: 0,
       bubbles: true,
     })
@@ -839,8 +839,8 @@ describe('Slider', () => {
       const slider = wrapper.getComponent({ name: 'ElSlider' })
       slider.vm.onSliderClick(new MouseEvent('mousedown', { clientX: 100 }))
       await nextTick()
-      // Because mock the clientWidth, so the targetValue is 50.
-      // The behavior of the setPosition method in the useSlider.ts file should be that the value of the second button is 50
+      // 由于 mock 了 clientWidth，因此 targetValue 为 50。
+      // useSlider.ts 中 setPosition 方法的行为应为：第二个按钮的值为 50
       expect(value.value[0] === 0).toBeTruthy()
       expect(value.value[1] === 50).toBeTruthy()
       mockRect.mockRestore()

@@ -10,7 +10,7 @@ import type { ClassValue } from '@element-plus/utils'
 
 export const avatarGroupProps = {
   /**
-   * @description control the size of avatars in this avatar-group
+   * @description 控制该 avatar-group 中头像的尺寸
    */
   size: {
     type: definePropType<AvatarProps['size']>([Number, String]),
@@ -18,36 +18,36 @@ export const avatarGroupProps = {
     validator: (val: unknown): val is number => isNumber(val),
   },
   /**
-   * @description control the shape of avatars in this avatar-group
+   * @description 控制该 avatar-group 中头像的形状
    */
   shape: {
     type: definePropType<AvatarProps['shape']>(String),
     values: ['circle', 'square'] as const,
   },
   /**
-   * @description whether to collapse avatars
+   * @description 是否折叠头像
    */
   collapseAvatars: Boolean,
   /**
-   * @description whether show all collapsed avatars when mouse hover text of the collapse-avatar. To use this, `collapse-avatars` must be true
+   * @description 鼠标悬停在折叠头像文本上时是否显示全部已折叠头像。使用此项需将 `collapse-avatars` 设为 true
    */
   collapseAvatarsTooltip: Boolean,
   /**
-   * @description the max avatars number to be shown. To use this, `collapse-avatars` must be true
+   * @description 最多显示的头像数量。使用此项需将 `collapse-avatars` 设为 true
    */
   maxCollapseAvatars: {
     type: Number,
     default: 1,
   },
   /**
-   * @description tooltip theme, built-in theme: `dark` / `light`
+   * @description tooltip 主题，内置主题：`dark` / `light`
    */
   effect: {
     type: definePropType<PopperEffect>(String),
     default: 'light',
   },
   /**
-   * @description placement of tooltip
+   * @description tooltip 的位置
    */
   placement: {
     type: definePropType<Placement>(String),
@@ -55,22 +55,22 @@ export const avatarGroupProps = {
     default: 'top',
   },
   /**
-   * @description custom class name for tooltip
+   * @description tooltip 的自定义类名
    */
   popperClass: useTooltipContentProps.popperClass,
   /**
-   * @description custom style for tooltip
+   * @description tooltip 的自定义样式
    */
   popperStyle: useTooltipContentProps.popperStyle,
   /**
-   * @description custom class name for the collapse-avatar
+   * @description 折叠头像的自定义类名
    */
   collapseClass: {
     type: definePropType<ClassValue>([String, Array, Object, Boolean]),
     default: undefined,
   },
   /**
-   * @description custom style for the collapse-avatar
+   * @description 折叠头像的自定义样式
    */
   collapseStyle: {
     type: definePropType<StyleValue>([String, Array, Object, Boolean]),

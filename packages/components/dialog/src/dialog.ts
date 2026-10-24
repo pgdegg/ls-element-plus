@@ -17,204 +17,204 @@ export type DialogBeforeCloseFn = (done: DoneFn) => void
 export type DialogTransition = string | TransitionProps
 
 /**
- * @description dialog component props
+ * @description dialog 组件的 props
  */
 export interface DialogProps extends DialogContentProps {
-  /** Height of the dialog body. */
+  /** 对话框主体的高度。 */
   height?: string | number
-  /** Reset drag position after window resize. */
+  /** 窗口尺寸变化后重置拖拽位置。 */
   resetOnResize?: boolean
   /**
-   * @description whether to append Dialog itself to body. A nested Dialog should have this attribute set to `true`
+   * @description 是否将 Dialog 自身追加到 body。嵌套 Dialog 应将此属性设为 `true`
    */
   appendToBody?: boolean
   /**
-   * @description which element the Dialog appends to
+   * @description Dialog 追加到哪个元素
    */
   appendTo?: string | HTMLElement
   /**
-   * @description callback before Dialog closes, and it will prevent Dialog from closing, use done to close the dialog
+   * @description Dialog 关闭前的回调，会阻止 Dialog 关闭，使用 done 关闭对话框
    */
   beforeClose?: DialogBeforeCloseFn
   /**
-   * @description destroy elements in Dialog when closed
+   * @description 关闭时销毁 Dialog 中的元素
    */
   destroyOnClose?: boolean
   /**
-   * @description whether the Dialog can be closed by clicking the mask
+   * @description 是否可通过点击遮罩关闭 Dialog
    */
   closeOnClickModal?: boolean
   /**
-   * @description whether the Dialog can be closed by pressing ESC
+   * @description 是否可通过按 ESC 关闭 Dialog
    */
   closeOnPressEscape?: boolean
   /**
-   * @description whether scroll of body is disabled while Dialog is displayed
+   * @description Dialog 显示时是否禁用 body 滚动
    */
   lockScroll?: boolean
   /**
-   * @description whether a mask is displayed
+   * @description 是否显示遮罩
    */
   modal?: boolean
   /**
-   * @description whether the mask is penetrable
+   * @description 遮罩是否可穿透
    */
   modalPenetrable?: boolean
   /**
-   * @description the Time(milliseconds) before open
+   * @description 打开前的时长（毫秒）
    */
   openDelay?: number
   /**
-   * @description the Time(milliseconds) before close
+   * @description 关闭前的时长（毫秒）
    */
   closeDelay?: number
   /**
-   * @description value for `margin-top` of Dialog CSS, default is 15vh
+   * @description Dialog CSS 的 `margin-top` 值，默认为 15vh
    */
   top?: string
   /**
-   * @description visibility of Dialog
+   * @description Dialog 的可见性
    */
   modelValue?: boolean
   /**
-   * @description custom class names for mask
+   * @description 遮罩的自定义类名
    */
   modalClass?: ClassValue
   /**
-   * @description width of Dialog, default is 50%
+   * @description Dialog 宽度，默认为 50%
    */
   width?: string | number
   /**
-   * @description same as z-index in native CSS, z-order of dialog
+   * @description 与原生 CSS 中的 z-index 相同，对话框的层叠顺序
    */
   zIndex?: number
   /**
-   * @description trap focus within dialog
+   * @description 将焦点限制在对话框内
    */
   trapFocus?: boolean
   /**
-   * @description header's aria-level attribute
+   * @description 头部的 aria-level 属性
    */
   headerAriaLevel?: string
   /**
-   * @description custom transition configuration for dialog animation, it can be a string (transition name) or an object with Vue transition props
+   * @description 对话框动画的自定义 transition 配置，可以是字符串（transition 名称）或包含 Vue transition props 的对象
    */
   transition?: DialogTransition
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `DialogProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `DialogProps`。
  */
 export const dialogProps = buildProps({
   height: { type: [String, Number] },
   resetOnResize: Boolean,
   ...dialogContentProps,
   /**
-   * @description whether to append Dialog itself to body. A nested Dialog should have this attribute set to `true`
+   * @description 是否将 Dialog 自身追加到 body。嵌套 Dialog 应将此属性设为 `true`
    */
   appendToBody: Boolean,
   /**
-   * @description which element the Dialog appends to
+   * @description Dialog 追加到哪个元素
    */
   appendTo: {
     type: definePropType<string | HTMLElement>([String, Object]),
     default: 'body',
   },
   /**
-   * @description callback before Dialog closes, and it will prevent Dialog from closing, use done to close the dialog
+   * @description Dialog 关闭前的回调，会阻止 Dialog 关闭，使用 done 关闭对话框
    */
   beforeClose: {
     type: definePropType<DialogBeforeCloseFn>(Function),
   },
   /**
-   * @description destroy elements in Dialog when closed
+   * @description 关闭时销毁 Dialog 中的元素
    */
   destroyOnClose: Boolean,
   /**
-   * @description whether the Dialog can be closed by clicking the mask
+   * @description 是否可通过点击遮罩关闭 Dialog
    */
   closeOnClickModal: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description whether the Dialog can be closed by pressing ESC
+   * @description 是否可通过按 ESC 关闭 Dialog
    */
   closeOnPressEscape: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description whether scroll of body is disabled while Dialog is displayed
+   * @description Dialog 显示时是否禁用 body 滚动
    */
   lockScroll: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description whether a mask is displayed
+   * @description 是否显示遮罩
    */
   modal: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description whether the mask is penetrable
+   * @description 遮罩是否可穿透
    */
   modalPenetrable: Boolean,
   /**
-   * @description the Time(milliseconds) before open
+   * @description 打开前的时长（毫秒）
    */
   openDelay: {
     type: Number,
     default: 0,
   },
   /**
-   * @description the Time(milliseconds) before close
+   * @description 关闭前的时长（毫秒）
    */
   closeDelay: {
     type: Number,
     default: 0,
   },
   /**
-   * @description value for `margin-top` of Dialog CSS, default is 15vh
+   * @description Dialog CSS 的 `margin-top` 值，默认为 15vh
    */
   top: {
     type: String,
   },
   /**
-   * @description visibility of Dialog
+   * @description Dialog 的可见性
    */
   modelValue: Boolean,
   /**
-   * @description custom class names for mask
+   * @description 遮罩的自定义类名
    */
   modalClass: {
     type: definePropType<ClassValue>([String, Array, Object, Boolean]),
     default: undefined,
   },
   /**
-   * @description width of Dialog, default is 50%
+   * @description Dialog 宽度，默认为 50%
    */
   width: {
     type: [String, Number],
   },
   /**
-   * @description same as z-index in native CSS, z-order of dialog
+   * @description 与原生 CSS 中的 z-index 相同，对话框的层叠顺序
    */
   zIndex: {
     type: Number,
   },
   trapFocus: Boolean,
   /**
-   * @description header's aria-level attribute
+   * @description 头部的 aria-level 属性
    */
   headerAriaLevel: {
     type: String,
     default: '2',
   },
   /**
-   * @description custom transition configuration for dialog animation, it can be a string (transition name) or an object with Vue transition props
+   * @description 对话框动画的自定义 transition 配置，可以是字符串（transition 名称）或包含 Vue transition props 的对象
    */
   transition: {
     type: definePropType<DialogTransition>([String, Object]),
@@ -223,7 +223,7 @@ export const dialogProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `DialogProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `DialogProps`。
  */
 export type DialogPropsPublic = ExtractPublicPropTypes<typeof dialogProps>
 

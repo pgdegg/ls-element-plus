@@ -9,7 +9,7 @@ export interface BarProps {
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `BarProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `BarProps`。
  */
 export const barProps = buildProps({
   always: {
@@ -23,7 +23,7 @@ export const barProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `BarProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `BarProps`。
  */
 export type BarPropsPublic = ExtractPublicPropTypes<typeof barProps>
 

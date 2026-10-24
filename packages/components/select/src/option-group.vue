@@ -35,11 +35,11 @@ export default defineComponent({
 
   props: {
     /**
-     * @description name of the group
+     * @description 分组名称
      */
     label: String,
     /**
-     * @description whether to disable all options in this group
+     * @description 是否禁用该分组内的所有选项
      */
     disabled: Boolean,
   },
@@ -65,7 +65,7 @@ export default defineComponent({
     ): node is VNode & { component: OptionInternalInstance } =>
       (node.type as Component).name === 'ElOption' && !!node.component?.proxy
 
-    // get all instances of options
+    // 获取所有选项实例
     const flattedChildren = (node: VNode | VNodeArrayChildren) => {
       const nodes = ensureArray(node) as VNode[] | VNodeArrayChildren
       const children: OptionPublicInstance[] = []

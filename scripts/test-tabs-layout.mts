@@ -1,5 +1,5 @@
 /// <reference lib="dom" />
-// Run with: pnpm exec tsx scripts/test-tabs-layout.mts
+// 运行方式：pnpm exec tsx scripts/test-tabs-layout.mts
 import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
 import { createRequire } from 'node:module'

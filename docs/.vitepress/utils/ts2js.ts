@@ -51,7 +51,7 @@ function ts2Js(content: string): string {
       module: ModuleKind.ESNext,
       target: ScriptTarget.ESNext,
       alwaysStrict: false,
-      // Ensures the import is not removed or changed
+      // 确保 import 不被移除或改动
       verbatimModuleSyntax: true,
       jsx: JsxEmit.Preserve,
     },

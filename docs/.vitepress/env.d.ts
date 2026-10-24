@@ -1,6 +1,6 @@
 /// <reference types="vitepress/client" />
 
-// VitePress 1.x does not ship declarations for these runtime helpers.
+// VitePress 1.x 未为这些运行时辅助函数提供类型声明。
 declare module 'vitepress/dist/client/shared' {
   export function isExternal(path: string): boolean
   export function isActive(

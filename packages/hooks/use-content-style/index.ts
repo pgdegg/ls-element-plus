@@ -6,7 +6,7 @@ export type ContentStyleTarget = 'value' | 'label' | 'placeholder'
 export type ContentStyleTargets =
   ContentStyleTarget | ContentStyleTarget[] | undefined
 
-/** Classes shared by input, selection and form controls. */
+/** input、selection 与表单控件共用的类名。 */
 export function useContentStyle(
   highlight: MaybeRefOrGetter<ContentStyleTargets>,
   zoom: MaybeRefOrGetter<ContentStyleTargets>

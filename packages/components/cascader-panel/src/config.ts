@@ -14,75 +14,75 @@ import type {
 
 export interface CascaderCommonProps {
   /**
-   * @description specify which key of node object is used as the node's value
+   * @description 指定节点对象的哪个键作为节点的值
    */
   modelValue?: CascaderValue | null
   /**
-   * @description data of the options, the key of `value` and `label` can be customize by `CascaderProps`.
+   * @description 选项数据，`value` 和 `label` 的键可通过 `CascaderProps` 自定义。
    */
   options?: CascaderOption[]
   /**
-   * @description configuration options, see the following `CascaderProps` table.
+   * @description 配置选项，见下文 `CascaderProps` 表格。
    */
   props?: CascaderProps
   /**
-   * @description whether to enable virtual scrolling
+   * @description 是否启用虚拟滚动
    */
   virtualScroll?: boolean
   /**
-   * @description node height for virtual scrolling
+   * @description 虚拟滚动的节点高度
    */
   itemSize?: number
   /**
-   * @description menu height for virtual scrolling
+   * @description 虚拟滚动的菜单高度
    */
   height?: number
 }
 
 /**
- * @description node height for virtual scrolling
+ * @description 虚拟滚动的节点高度
  */
 export const CASCADER_PANEL_ITEM_SIZE = 34
 
 /**
- * @description menu height for virtual scrolling
+ * @description 虚拟滚动的菜单高度
  */
 export const CASCADER_PANEL_HEIGHT = 204
 
 export const CommonProps = buildProps({
   /**
-   * @description specify which key of node object is used as the node's value
+   * @description 指定节点对象的哪个键作为节点的值
    */
   modelValue: {
     type: definePropType<CascaderValue | null>([Number, String, Array, Object]),
   },
   /**
-   * @description data of the options, the key of `value` and `label` can be customize by `CascaderProps`.
+   * @description 选项数据，`value` 和 `label` 的键可通过 `CascaderProps` 自定义。
    */
   options: {
     type: definePropType<CascaderOption[]>(Array),
     default: () => [] as CascaderOption[],
   },
   /**
-   * @description configuration options, see the following `CascaderProps` table.
+   * @description 配置选项，见下文 `CascaderProps` 表格。
    */
   props: {
     type: definePropType<CascaderProps>(Object),
     default: () => ({}) as CascaderProps,
   },
   /**
-   * @description whether to enable virtual scrolling
+   * @description 是否启用虚拟滚动
    */
   virtualScroll: Boolean,
   /**
-   * @description node height for virtual scrolling
+   * @description 虚拟滚动的节点高度
    */
   itemSize: {
     type: Number,
     default: CASCADER_PANEL_ITEM_SIZE,
   },
   /**
-   * @description menu height for virtual scrolling
+   * @description 虚拟滚动的菜单高度
    */
   height: {
     type: Number,
@@ -97,69 +97,69 @@ export interface CascaderPanelProps extends CascaderCommonProps {
 
 export const DefaultProps: CascaderConfig = {
   /**
-   * @description trigger mode of expanding options
+   * @description 展开选项的触发方式
    */
   expandTrigger: 'click',
   /**
-   * @description whether multiple selection is enabled
+   * @description 是否启用多选
    */
   multiple: false,
   /**
-   * @description whether checked state of a node not affects its parent and child nodes
+   * @description 节点的选中状态是否不影响其父节点和子节点
    */
-  checkStrictly: false, // whether all nodes can be selected
+  checkStrictly: false, // 是否所有节点都可被选中
   /**
-   * @description when checked nodes change, whether to emit an array of node's path, if false, only emit the value of node.
+   * @description 选中节点变化时，是否发出节点路径数组；若为 false，则只发出节点的值。
    */
-  emitPath: true, // whether to emit an array of all levels value in which node is located
+  emitPath: true, // 是否发出节点所在所有层级的值组成的数组
   /**
-   * @description whether to dynamic load child nodes, use with `lazyload` attribute
+   * @description 是否动态加载子节点，配合 `lazyload` 属性使用
    */
   lazy: false,
   /**
-   * @description method for loading child nodes data, only works when `lazy` is true
+   * @description 加载子节点数据的方法，仅当 `lazy` 为 true 时生效
    */
   lazyLoad: NOOP,
   /**
-   * @description specify which key of node object is used as the node's value
+   * @description 指定节点对象的哪个键作为节点的值
    */
   value: 'value',
   /**
-   * @description specify which key of node object is used as the node's label
+   * @description 指定节点对象的哪个键作为节点的标签
    */
   label: 'label',
   /**
-   * @description specify which key of node object is used as the node's children
+   * @description 指定节点对象的哪个键作为节点的子节点
    */
   children: 'children',
   /**
-   * @description specify which key of node object is used as the node's leaf
+   * @description 指定节点对象的哪个键作为节点的叶子标记
    */
   leaf: 'leaf',
   /**
-   * @description specify which key of node object is used as the node's disabled
+   * @description 指定节点对象的哪个键作为节点的禁用标记
    */
   disabled: 'disabled',
   /**
-   * @description hover threshold of expanding options
+   * @description 展开选项的悬停阈值
    */
   hoverThreshold: 500,
   /**
-   * @description whether to check or uncheck node when clicking on the node
+   * @description 点击节点时是否勾选或取消勾选该节点
    */
   checkOnClickNode: false,
   /**
-   * @description whether to check or uncheck node when clicking on leaf node (last children).
+   * @description 点击叶子节点（最后一级子节点）时是否勾选或取消勾选该节点。
    */
   checkOnClickLeaf: true,
   /**
-   * @description whether to show the radio or checkbox prefix
+   * @description 是否显示单选框或复选框前缀
    */
   showPrefix: true,
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `CascaderPanelProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `CascaderPanelProps`
  */
 export const cascaderPanelProps = buildProps({
   ...CommonProps,

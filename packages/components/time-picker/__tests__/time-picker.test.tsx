@@ -109,7 +109,7 @@ describe('TimePicker', () => {
     const secondEl = secondsEl.querySelectorAll(
       '.el-time-spinner__item'
     )[20] as any
-    // click hour, minute, second one at a time.
+    // 依次点击时、分、秒。
     hourEl.click()
     await nextTick()
     minuteEl.click()
@@ -198,7 +198,7 @@ describe('TimePicker', () => {
     expect(date.getMinutes()).toBe(36)
     expect(date.getSeconds()).toBe(20)
 
-    // show picker panel and click cancel button
+    // 显示选择面板并点击取消按钮
     input.trigger('blur')
     input.trigger('focus')
     await nextTick()
@@ -245,11 +245,11 @@ describe('TimePicker', () => {
     const input = wrapper.find('input')
     input.trigger('focus')
     await nextTick()
-    await rAF() // Set selection range causes focus to be retained
+    await rAF() // 设置选择范围会保持焦点
     input.element.blur()
     input.trigger('blur')
     await nextTick()
-    await rAF() // Blur is delayed to ensure focus was not moved to popper
+    await rAF() // 延迟失焦，以确保焦点未移到 popper 上
     input.trigger('keydown')
     await nextTick()
     await rAF()
@@ -268,7 +268,7 @@ describe('TimePicker', () => {
     expect(changeHandler).toHaveBeenCalledTimes(0)
     ;(document.querySelector('.el-time-panel__btn.confirm') as any).click()
     await nextTick()
-    await nextTick() // onchange is triggered by props.modelValue update
+    await nextTick() // onchange 由 props.modelValue 的更新触发
     expect(changeHandler).toHaveBeenCalledTimes(1)
   })
 
@@ -611,9 +611,9 @@ describe('TimePicker', () => {
       expect(clearIcon.exists()).toBe(true)
 
       await clearIcon.trigger('mousedown')
-      // in real browsers ElInput's capture-phase click listener focuses the
-      // input here, and a microtask checkpoint runs before the clear icon's
-      // own click handler
+      // 在真实浏览器中，ElInput 的捕获阶段 click 监听器会将焦点放到
+      // 该输入框上，并且在清除图标的
+      // 自身 click 处理函数之前会运行一个微任务检查点
       wrapper.find('input').element.focus()
       await nextTick()
       await nextTick()
@@ -666,8 +666,8 @@ describe('TimePicker', () => {
       ) as HTMLElement
       expect(popperEl.style.display).not.toBe('none')
 
-      // press the clear icon but release over the wrapper (canceled gesture):
-      // neither onClear nor onMouseLeave runs
+      // 按下清除图标但在 wrapper 上松开（取消的手势）：
+      // onClear 和 onMouseLeave 都不会执行
       await wrapper.find('.el-input').trigger('mouseenter')
       await wrapper.find('.clear-icon').trigger('mousedown')
       await wrapper.find('.el-input__wrapper').trigger('click')
@@ -702,7 +702,7 @@ describe('TimePicker(range)', () => {
     input.trigger('blur')
     input.trigger('focus')
     await nextTick()
-    // For skipping Transition animation
+    // 用于跳过 Transition 动画
     await rAF()
     const list = document.querySelectorAll(
       '.el-time-spinner__list .el-time-spinner__item.is-active'
@@ -736,7 +736,7 @@ describe('TimePicker(range)', () => {
     input.trigger('blur')
     input.trigger('focus')
     await nextTick()
-    // For skipping Transition animation
+    // 用于跳过 Transition 动画
     await rAF()
     const list = document.querySelectorAll(
       '.el-time-spinner__list .el-time-spinner__item.is-active'
@@ -762,7 +762,7 @@ describe('TimePicker(range)', () => {
     await nextTick()
     input.trigger('focus')
     await nextTick()
-    // For skipping Transition animation
+    // 用于跳过 Transition 动画
     await rAF()
     ;(document.querySelector('.el-time-panel__btn.cancel') as any).click()
     await rAF()
@@ -822,14 +822,14 @@ describe('TimePicker(range)', () => {
     await inputWrapper.trigger('mousedown')
 
     await nextTick()
-    // when the input is clicked, the picker is displayed.
+    // 点击输入框时显示选择器。
     expect(findPicker()).toBeTruthy()
     const clearIcon = findClear()
     await clearIcon.trigger('click')
 
     await nextTick()
     expect(value.value).toEqual(null)
-    // when the "clear" button is clicked, the pick is hidden.
+    // 点击“清除”按钮时隐藏选择器。
     expect(findPicker().exists()).toBe(false)
   })
 
@@ -901,7 +901,7 @@ describe('TimePicker(range)', () => {
     const input = wrapper.find('input')
     input.trigger('focus')
     await nextTick()
-    // For skipping Transition animation
+    // 用于跳过 Transition 动画
     await rAF()
 
     const list = document.querySelectorAll('.el-time-spinner__list')
@@ -1004,7 +1004,7 @@ describe('TimePicker(range)', () => {
     input.trigger('blur')
     input.trigger('focus')
     await nextTick()
-    // For skipping Transition animation
+    // 用于跳过 Transition 动画
     await rAF()
 
     const list = document.querySelectorAll('.el-time-spinner__list')
@@ -1122,8 +1122,8 @@ describe('TimePicker(range)', () => {
       await rAF()
       expect(document.querySelector('.el-time-panel')).toBeTruthy()
       picker.vm.onPick('', false)
-      await rAF() // Picker triggers popup close, event propagation
-      await rAF() // Focus trap recognizes focusout event, and propagation
+      await rAF() // 选择器触发弹层关闭，事件冒泡
+      await rAF() // 焦点陷阱识别 focusout 事件及冒泡
       expect(document.activeElement).toBe(wrapper.find('input').element)
       expect(document.querySelector('.el-time-panel')).toBeFalsy()
       input.vm.$emit('input', 'a')

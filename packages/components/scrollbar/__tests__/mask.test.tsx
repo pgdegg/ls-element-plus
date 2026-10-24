@@ -495,7 +495,7 @@ describe('Scrollbar masks', () => {
     expect(rightMask.element.style.height).toBe('185px')
     expect(rightMask.element.style.right).toBe('15px')
 
-    // A native RTL scrollbar can occupy the left side; account for wrap borders too.
+    // 原生 RTL 滚动条可能占据左侧；还要把 wrap 的边框计算在内。
     defineGetter(wrap.element, 'clientLeft', 17)
     defineGetter(wrap.element, 'clientTop', 2)
     defineGetter(wrap.element, 'clientWidth', 181)

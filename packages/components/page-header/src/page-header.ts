@@ -7,36 +7,36 @@ import type PageHeader from './page-header.vue'
 
 export interface PageHeaderProps {
   /**
-   * @description icon component of page header
+   * @description 页头的图标组件
    */
   icon?: IconPropType
   /**
-   * @description main title of page header
+   * @description 页头的主标题
    */
   title?: string
   /**
-   * @description content of page header
+   * @description 页头的内容
    */
   content?: string
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `PageHeaderProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `PageHeaderProps`。
  */
 export const pageHeaderProps = buildProps({
   /**
-   * @description icon component of page header
+   * @description 页头的图标组件
    */
   icon: {
     type: iconPropType,
     default: () => Back,
   },
   /**
-   * @description main title of page header
+   * @description 页头的主标题
    */
   title: String,
   /**
-   * @description content of page header
+   * @description 页头的内容
    */
   content: {
     type: String,
@@ -45,7 +45,7 @@ export const pageHeaderProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `PageHeaderProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `PageHeaderProps`。
  */
 export type PageHeaderPropsPublic = ExtractPublicPropTypes<
   typeof pageHeaderProps

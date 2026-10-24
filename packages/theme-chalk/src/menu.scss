@@ -46,7 +46,7 @@
 }
 
 :root {
-  // They are defined on :root so they can be inherited by sub-menu instead of overwritten
+  // 它们定义在 :root 上，以便被子菜单继承而非覆盖
   @include set-component-css-var('menu', $menu);
 }
 
@@ -64,7 +64,7 @@
   }
 
   @include m((inline, vertical)) {
-    // Prevent title margin collapse when submenu lists are shown or hidden.
+    // 防止子菜单列表显示或隐藏时标题外边距折叠。
     > .#{$namespace}-sub-menu,
     > .#{$namespace}-menu-item-group > ul > .#{$namespace}-sub-menu {
       display: flow-root;
@@ -100,7 +100,7 @@
 
     height: getCssVar('menu-horizontal-height');
 
-    // reset menu-item popup height
+    // 重置菜单项弹出层高度
     &.#{$namespace}-menu--popup-container {
       height: unset;
     }
@@ -387,7 +387,7 @@
   outline: none;
 }
 
-// HIS component customization.
+// HIS 组件定制。
 .el-menu:not(.el-menu--collapse) .el-menu-item {
   --el-menu-base-level-padding: 10px;
 }

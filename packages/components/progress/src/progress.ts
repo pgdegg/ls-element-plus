@@ -8,69 +8,69 @@ export type ProgressFn = (percentage: number) => string
 
 export interface ProgressProps {
   /**
-   * @description type of progress bar
+   * @description 进度条类型
    */
   type?: 'line' | 'circle' | 'dashboard'
   /**
-   * @description percentage, required
+   * @description 百分比，必填
    */
   percentage?: number
   /**
-   * @description the current status of progress bar
+   * @description 进度条当前状态
    */
   status?: '' | 'success' | 'exception' | 'warning'
   /**
-   * @description set indeterminate progress
+   * @description 设置为不确定进度
    */
   indeterminate?: boolean
   /**
-   * @description control the animation duration of indeterminate progress or striped flow progress
+   * @description 控制不确定进度或条纹流动进度的动画时长
    */
   duration?: number
   /**
-   * @description the width of progress bar
+   * @description 进度条宽度
    */
   strokeWidth?: number
   /**
-   * @description butt/circle/dashboard type shape at the end path
+   * @description 路径末端的形状，可选 butt/circle/dashboard 类型
    */
   strokeLinecap?: NonNullable<SVGAttributes['stroke-linecap']>
   /**
-   * @description whether to place the percentage inside progress bar, only works when `type` is 'line'
+   * @description 是否将百分比显示在进度条内部，仅在 `type` 为 'line' 时生效
    */
   textInside?: boolean
   /**
-   * @description the canvas width of circle progress bar
+   * @description 圆形进度条的画布宽度
    */
   width?: number
   /**
-   * @description whether to show percentage
+   * @description 是否显示百分比
    */
   showText?: boolean
   /**
-   * @description background color of progress bar. Overrides `status` prop
+   * @description 进度条背景色，会覆盖 `status` prop
    */
   color?: string | ProgressColor[] | ProgressFn
   /**
-   * @description stripe over the progress bar's color
+   * @description 在进度条颜色上叠加条纹
    */
   striped?: boolean
   /**
-   * @description get the stripes to flow
+   * @description 使条纹流动
    */
   stripedFlow?: boolean
   /**
-   * @description custom text format
+   * @description 自定义文本格式
    */
   format?: ProgressFn
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `ProgressProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `ProgressProps`。
  */
 export const progressProps = buildProps({
   /**
-   * @description type of progress bar
+   * @description 进度条类型
    */
   type: {
     type: String,
@@ -78,7 +78,7 @@ export const progressProps = buildProps({
     values: ['line', 'circle', 'dashboard'],
   },
   /**
-   * @description percentage, required
+   * @description 百分比，必填
    */
   percentage: {
     type: Number,
@@ -86,7 +86,7 @@ export const progressProps = buildProps({
     validator: (val: number): boolean => val >= 0 && val <= 100,
   },
   /**
-   * @description the current status of progress bar
+   * @description 进度条当前状态
    */
   status: {
     type: String,
@@ -94,50 +94,50 @@ export const progressProps = buildProps({
     values: ['', 'success', 'exception', 'warning'],
   },
   /**
-   * @description set indeterminate progress
+   * @description 设置为不确定进度
    */
   indeterminate: Boolean,
   /**
-   * @description control the animation duration of indeterminate progress or striped flow progress
+   * @description 控制不确定进度或条纹流动进度的动画时长
    */
   duration: {
     type: Number,
     default: 3,
   },
   /**
-   * @description the width of progress bar
+   * @description 进度条宽度
    */
   strokeWidth: {
     type: Number,
     default: 6,
   },
   /**
-   * @description butt/circle/dashboard type shape at the end path
+   * @description 路径末端的形状，可选 butt/circle/dashboard 类型
    */
   strokeLinecap: {
     type: definePropType<NonNullable<SVGAttributes['stroke-linecap']>>(String),
     default: 'round',
   },
   /**
-   * @description whether to place the percentage inside progress bar, only works when `type` is 'line'
+   * @description 是否将百分比显示在进度条内部，仅在 `type` 为 'line' 时生效
    */
   textInside: Boolean,
   /**
-   * @description the canvas width of circle progress bar
+   * @description 圆形进度条的画布宽度
    */
   width: {
     type: Number,
     default: 126,
   },
   /**
-   * @description whether to show percentage
+   * @description 是否显示百分比
    */
   showText: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description background color of progress bar. Overrides `status` prop
+   * @description 进度条背景色，会覆盖 `status` prop
    */
   color: {
     type: definePropType<string | ProgressColor[] | ProgressFn>([
@@ -148,15 +148,15 @@ export const progressProps = buildProps({
     default: '',
   },
   /**
-   * @description stripe over the progress bar's color
+   * @description 在进度条颜色上叠加条纹
    */
   striped: Boolean,
   /**
-   * @description get the stripes to flow
+   * @description 使条纹流动
    */
   stripedFlow: Boolean,
   /**
-   * @description custom text format
+   * @description 自定义文本格式
    */
   format: {
     type: definePropType<ProgressFn>(Function),
@@ -165,7 +165,7 @@ export const progressProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `ProgressProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `ProgressProps`。
  */
 export type ProgressPropsPublic = ExtractPublicPropTypes<typeof progressProps>
 export type ProgressInstance = InstanceType<typeof Progress> & unknown

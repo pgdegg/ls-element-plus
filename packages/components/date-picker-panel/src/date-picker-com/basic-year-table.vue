@@ -253,11 +253,11 @@ const handleMouseMove = (event: MouseEvent) => {
   const row = (target.parentNode as HTMLTableRowElement).rowIndex
   const column = (target as HTMLTableCellElement).cellIndex
 
-  // can not select disabled date
+  // 无法选择已禁用的日期
   if (rows.value[row][column].disabled) return
 
-  // only update rangeState when mouse moves to a new cell
-  // this avoids frequent Date object creation and improves performance
+  // 仅当鼠标移动到新单元格时才更新 rangeState
+  // 这避免了频繁创建 Date 对象，提升性能
   if (row !== lastRow.value || column !== lastColumn.value) {
     lastRow.value = row
     lastColumn.value = column
@@ -282,7 +282,7 @@ watch(
 
 defineExpose({
   /**
-   * @description focus on the current cell
+   * @description 聚焦当前单元格
    */
   focus,
 })

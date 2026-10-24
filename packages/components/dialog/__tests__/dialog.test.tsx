@@ -421,8 +421,8 @@ describe('Dialog.vue', () => {
       await nextTick()
       await wrapper.find('.el-dialog__headerbtn').trigger('click')
       await wrapper.setProps({
-        // manually setting this prop because that Transition is not available in testing,
-        // updating model value event was emitted via transition hooks.
+        // 手动设置此 prop，因为测试环境中 Transition 不可用，
+        // 更新 model 值的事件是通过 transition 钩子触发的。
         modelValue: false,
       })
       await nextTick()

@@ -105,15 +105,15 @@ provide(uploadContextKey, {
 })
 
 defineExpose({
-  /** @description cancel upload request */
+  /** @description 取消上传请求 */
   abort,
-  /** @description upload the file list manually */
+  /** @description 手动上传文件列表 */
   submit,
-  /** @description clear the file list  */
+  /** @description 清空文件列表 */
   clearFiles,
-  /** @description select the file manually */
+  /** @description 手动选择文件 */
   handleStart,
-  /** @description remove the file manually */
+  /** @description 手动移除文件 */
   handleRemove,
 })
 </script>

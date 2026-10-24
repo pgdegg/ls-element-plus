@@ -27,8 +27,8 @@ export const useTeleport = (
 
   const showTeleport = () => {
     isTeleportVisible.value = true
-    // this allows the delayed showing strategy since the the content itself could be enterable
-    // e.g. el-popper
+    // 这支持延迟显示策略，因为内容本身可能可进入（enterable）
+    // 例如 el-popper
     if ($el !== null) return
 
     $el = createGlobalNode()

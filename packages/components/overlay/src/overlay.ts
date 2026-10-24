@@ -40,8 +40,8 @@ export default defineComponent({
   emits: overlayEmits,
 
   setup(props, { slots, emit }) {
-    // No reactivity on this prop because when its rendering with a global
-    // component, this will be a constant flag.
+    // 此 prop 无需响应式，因为当它与全局
+    // 组件一起渲染时，这将是一个恒定标志。
     const ns = useNamespace(BLOCK)
 
     const onMaskClick = (e: MouseEvent) => {
@@ -52,10 +52,10 @@ export default defineComponent({
       props.customMaskEvent ? undefined : onMaskClick
     )
 
-    // init here
+    // 在此初始化
     return () => {
-      // when the vnode meets the same structure but with different change trigger
-      // it will not automatically update, thus we simply use h function to manage updating
+      // 当 vnode 遇到相同结构但变化触发方式不同时
+      // 它不会自动更新，因此我们直接使用 h 函数来管理更新
       return props.mask
         ? createVNode(
             'div',

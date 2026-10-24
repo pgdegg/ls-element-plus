@@ -12,7 +12,7 @@ import type { CSSProperties } from 'vue'
 
 interface AsideProps {
   /**
-   * @description width of the side section
+   * @description 侧边区域宽度
    */
   width?: string | null
 }

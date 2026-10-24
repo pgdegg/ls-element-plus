@@ -39,7 +39,7 @@ export function useSpace(props: SpaceProps) {
   watchEffect(() => {
     const { size = 'small', wrap, direction: dir, fill } = props
 
-    // when the specified size have been given
+    // 当指定了 size 时
     if (isArray(size)) {
       const [h = 0, v = 0] = size
       horizontalSize.value = h

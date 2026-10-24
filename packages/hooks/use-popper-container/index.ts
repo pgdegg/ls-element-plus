@@ -30,9 +30,9 @@ export const usePopperContainer = () => {
   onBeforeMount(() => {
     if (!isClient) return
 
-    // This is for bypassing the error that when under testing env, we often encounter
-    // document.body.innerHTML = '' situation
-    // for this we need to disable the caching since it's not really needed
+    // 这是为了绕过测试环境下经常遇到的错误
+    // 即 document.body.innerHTML = '' 的场景
+    // 因此我们需要禁用缓存，因为它并非真正必需
     if (
       process.env.NODE_ENV === 'test' ||
       !document.body.querySelector(selector.value)

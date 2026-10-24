@@ -91,7 +91,7 @@ const setupConfig = (configEnv) => {
     },
 
     postRender(context) {
-      // Inject the teleport markup
+      // 注入 teleport 标记
       if (context.teleports) {
         const body = Object.entries(context.teleports).reduce(
           (all, [key, value]) => {

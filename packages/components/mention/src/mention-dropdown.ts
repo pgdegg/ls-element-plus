@@ -11,7 +11,7 @@ export interface MentionDropdownProps {
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `MentionDropdownProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `MentionDropdownProps`。
  */
 export const mentionDropdownProps = buildProps({
   options: {

@@ -26,7 +26,7 @@ const homeLang = computed(() => homeLocale[lang.value])
 
 function jumpTo(path: string) {
   if (!isClient) return
-  // vitepress has not router
+  // vitepress 没有 router
   window.location.href = `/${lang.value}/${path}`
 }
 
@@ -76,7 +76,7 @@ const peopleLayer = computed(() => ({
   }px) scale(1)`,
 }))
 
-// center layer
+// 中间图层
 const leftLayer = computed(() => ({
   ...layerBase,
   width: '20%',

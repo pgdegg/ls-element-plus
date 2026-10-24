@@ -8,65 +8,65 @@ import type { TourContentProps } from './content'
 
 export interface TourStepProps {
   /**
-   * @description get the element the guide card points to. empty makes it show in center of screen
+   * @description 获取引导卡片指向的元素。为空时显示在屏幕中央
    */
   target?: string | HTMLElement | (() => HTMLElement | null) | null
   /**
-   * @description the title of the tour content
+   * @description tour 内容的标题
    */
   title?: string
   /**
-   * @description description
+   * @description 描述
    */
   description?: string
   /**
-   * @description whether to show a close button
+   * @description 是否显示关闭按钮
    */
   showClose?: boolean
   /**
-   * @description custom close icon, default is Close
+   * @description 自定义关闭图标，默认为 Close
    */
   closeIcon?: IconPropType
   /**
-   * @description whether to show the arrow
+   * @description 是否显示箭头
    */
   showArrow?: boolean
   /**
-   * @description position of the guide card relative to the target element
+   * @description 引导卡片相对于目标元素的位置
    */
   placement?: TourContentProps['placement']
   /**
-   * @description whether to enable masking, change mask style and fill color by pass custom props
+   * @description 是否启用遮罩，可通过传入自定义 props 修改遮罩样式和填充色
    */
   mask?: TourMask
   /**
-   * @description custom style for content
+   * @description 内容的自定义样式
    */
   contentStyle?: CSSProperties
   /**
-   * @description properties of the previous button
+   * @description 上一步按钮的属性
    */
   prevButtonProps?: TourBtnProps
   /**
-   * @description properties of the Next button
+   * @description 下一步按钮的属性
    */
   nextButtonProps?: TourBtnProps
   /**
-   * @description support pass custom scrollIntoView options
+   * @description 支持传入自定义 scrollIntoView 选项
    */
   scrollIntoViewOptions?: boolean | ScrollIntoViewOptions
   /**
-   * @description type, affects the background color and text color
+   * @description 类型，影响背景色和文字颜色
    */
   type?: 'default' | 'primary'
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `TourStepProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `TourStepProps`。
  */
 export const tourStepProps = buildProps({
   /**
-   * @description get the element the guide card points to. empty makes it show in center of screen
+   * @description 获取引导卡片指向的元素。为空时显示在屏幕中央
    */
   target: {
     type: definePropType<
@@ -74,71 +74,71 @@ export const tourStepProps = buildProps({
     >([String, Object, Function]),
   },
   /**
-   * @description the title of the tour content
+   * @description tour 内容的标题
    */
   title: String,
   /**
-   * @description description
+   * @description 描述
    */
   description: String,
   /**
-   * @description whether to show a close button
+   * @description 是否显示关闭按钮
    */
   showClose: {
     type: Boolean,
     default: undefined,
   },
   /**
-   * @description custom close icon, default is Close
+   * @description 自定义关闭图标，默认为 Close
    */
   closeIcon: {
     type: iconPropType,
   },
   /**
-   * @description whether to show the arrow
+   * @description 是否显示箭头
    */
   showArrow: {
     type: Boolean,
     default: undefined,
   },
   /**
-   * @description position of the guide card relative to the target element
+   * @description 引导卡片相对于目标元素的位置
    */
   placement: tourContentProps.placement,
   /**
-   * @description whether to enable masking, change mask style and fill color by pass custom props
+   * @description 是否启用遮罩，可通过传入自定义 props 修改遮罩样式和填充色
    */
   mask: {
     type: definePropType<TourMask>([Boolean, Object]),
     default: undefined,
   },
   /**
-   * @description custom style for content
+   * @description 内容的自定义样式
    */
   contentStyle: {
     type: definePropType<CSSProperties>([Object]),
   },
   /**
-   * @description properties of the previous button
+   * @description 上一步按钮的属性
    */
   prevButtonProps: {
     type: definePropType<TourBtnProps>(Object),
   },
   /**
-   * @description properties of the Next button
+   * @description 下一步按钮的属性
    */
   nextButtonProps: {
     type: definePropType<TourBtnProps>(Object),
   },
   /**
-   * @description support pass custom scrollIntoView options
+   * @description 支持传入自定义 scrollIntoView 选项
    */
   scrollIntoViewOptions: {
     type: definePropType<boolean | ScrollIntoViewOptions>([Boolean, Object]),
     default: undefined,
   },
   /**
-   * @description type, affects the background color and text color
+   * @description 类型，影响背景色和文字颜色
    */
   type: {
     type: definePropType<'default' | 'primary'>(String),
@@ -146,7 +146,7 @@ export const tourStepProps = buildProps({
 })
 
 /**
- * @deprecated Removed after 3.0.0, Use `TourStepProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `TourStepProps`。
  */
 export type TourStepPropsPublic = ExtractPublicPropTypes<typeof tourStepProps>
 

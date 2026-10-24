@@ -11,13 +11,13 @@ export default {
       description:
         'رنگ فعلی {color} است. برای انتخاب رنگ جدید، اینتر را فشار دهید.',
       alphaLabel: 'مقدار آلفا را انتخاب کنید',
-      alphaDescription: 'alpha {alpha}, current color is {color}', // to be translated
-      hueLabel: 'pick hue value', // to be translated
-      hueDescription: 'hue {hue}, current color is {color}', // to be translated
-      svLabel: 'pick saturation and brightness value', // to be translated
+      alphaDescription: 'alpha {alpha}, current color is {color}', // 待翻译
+      hueLabel: 'pick hue value', // 待翻译
+      hueDescription: 'hue {hue}, current color is {color}', // 待翻译
+      svLabel: 'pick saturation and brightness value', // 待翻译
       svDescription:
-        'saturation {saturation}, brightness {brightness}, current color is {color}', // to be translated
-      predefineDescription: 'select {value} as the color', // to be translated
+        'saturation {saturation}, brightness {brightness}, current color is {color}', // 待翻译
+      predefineDescription: 'select {value} as the color', // 待翻译
     },
     datepicker: {
       now: 'اکنون',
@@ -159,21 +159,21 @@ export default {
       resetFilter: 'بازنشانی',
       clearFilter: 'همه',
       sumText: 'مجموع',
-      selectAllLabel: 'Select all rows', // to be translated
-      selectRowLabel: 'Select this row', // to be translated
-      expandRowLabel: 'Expand this row', // to be translated
-      collapseRowLabel: 'Collapse this row', // to be translated
-      sortLabel: 'Sort by {column}', // to be translated
-      filterLabel: 'Filter by {column}', // to be translated
+      selectAllLabel: 'Select all rows', // 待翻译
+      selectRowLabel: 'Select this row', // 待翻译
+      expandRowLabel: 'Expand this row', // 待翻译
+      collapseRowLabel: 'Collapse this row', // 待翻译
+      sortLabel: 'Sort by {column}', // 待翻译
+      filterLabel: 'Filter by {column}', // 待翻译
     },
     tag: {
-      close: 'Close this tag', // to be translated
+      close: 'Close this tag', // 待翻译
     },
     tour: {
       next: 'بعدی',
       previous: 'قبلی',
       finish: 'پایان',
-      close: 'Close this dialog', // to be translated
+      close: 'Close this dialog', // 待翻译
     },
     tree: {
       emptyText: 'داده‌ای موجود نیست',
@@ -202,8 +202,8 @@ export default {
       indicator: 'سوئیچ چرخان به شاخص {index}',
     },
     inputOTP: {
-      groupLabel: 'OTP Input', // to be translated
-      defaultLabel: 'Please enter OTP character {index}', // to be translated
+      groupLabel: 'OTP Input', // 待翻译
+      defaultLabel: 'Please enter OTP character {index}', // 待翻译
     },
   },
 }

@@ -7,11 +7,11 @@ export const useSameTarget = (handleClick?: (e: MouseEvent) => void) => {
 
   let mousedownTarget = false
   let mouseupTarget = false
-  // refer to this https://javascript.info/mouse-events-basics
-  // events fired in the order: mousedown -> mouseup -> click
-  // we need to set the mousedown handle to false after click fired.
+  // 参考 https://javascript.info/mouse-events-basics
+  // 事件触发顺序：mousedown -> mouseup -> click
+  // 我们需要在 click 触发后将 mousedown 标记设为 false。
   const onClick = (e: MouseEvent) => {
-    // if and only if
+    // 当且仅当
     if (mousedownTarget && mouseupTarget) {
       handleClick(e)
     }
@@ -19,11 +19,11 @@ export const useSameTarget = (handleClick?: (e: MouseEvent) => void) => {
   }
 
   const onMousedown = (e: MouseEvent) => {
-    // marking current mousedown target.
+    // 标记当前 mousedown 的目标。
     mousedownTarget = e.target === e.currentTarget
   }
   const onMouseup = (e: MouseEvent) => {
-    // marking current mouseup target.
+    // 标记当前 mouseup 的目标。
     mouseupTarget = e.target === e.currentTarget
   }
 

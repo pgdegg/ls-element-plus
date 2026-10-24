@@ -20,8 +20,8 @@ export type NotificationPosition =
   'top-right' | 'top-left' | 'bottom-right' | 'bottom-left'
 
 /**
- * Progress bar configuration. `percentage`, `type`, `duration`, `indeterminate`
- * and `width` are excluded: the bar is always a countdown-driven line.
+ * 进度条配置。`percentage`、`type`、`duration`、`indeterminate`
+ * 和 `width` 不适用：进度条始终是倒计时驱动的线条。
  */
 export type NotificationProgress = Omit<
   Partial<ProgressProps>,
@@ -30,112 +30,112 @@ export type NotificationProgress = Omit<
 
 export interface NotificationProps {
   /**
-   * @description custom class name for Notification
+   * @description Notification 的自定义类名
    */
   customClass?: ClassValue
   /**
-   * @description whether `message` is treated as HTML string
+   * @description `message` 是否作为 HTML 字符串处理
    */
   dangerouslyUseHTMLString?: boolean
   /**
-   * @description duration before close. It will not automatically close if set 0
+   * @description 关闭前的时长。设为 0 时不会自动关闭
    */
   duration?: number
   /**
-   * @description custom icon component. It will be overridden by `type`
+   * @description 自定义图标组件，会被 `type` 覆盖
    */
   icon?: IconPropType
   /**
-   * @description notification dom id
+   * @description 通知的 dom id
    */
   id?: string
   /**
-   * @description description text
+   * @description 描述文本
    */
   message?: string | VNode | (() => VNode)
   /**
-   * @description offset from the top edge of the screen. Every Notification instance of the same moment should have the same offset
+   * @description 距屏幕顶部边缘的偏移量。同一时刻的每个 Notification 实例应具有相同偏移量
    */
   offset?: number
   /**
-   * @description callback function when notification clicked
+   * @description 点击通知时的回调函数
    */
   onClick?: () => void
   /**
-   * @description callback function when closed
+   * @description 关闭时的回调函数
    */
   onClose: () => void
   /**
-   * @description custom position
+   * @description 自定义位置
    */
   position?: NotificationPosition
   /**
-   * @description whether to show a close button
+   * @description 是否显示关闭按钮
    */
   showClose?: boolean
   /**
-   * @description title
+   * @description 标题
    */
   title?: string
   /**
-   * @description notification type
+   * @description 通知类型
    */
   type?: NotificationType
   /**
-   * @description initial zIndex
+   * @description 初始 zIndex
    */
   zIndex?: number
   /**
-   * @description custom close icon, default is Close
+   * @description 自定义关闭图标，默认为 Close
    */
   closeIcon?: IconPropType
   /**
-   * @description progress bar indicating auto-close countdown. Set `true` to show a default progress bar, or pass an object to customize it (options of `ElProgress`)
+   * @description 表示自动关闭倒计时的进度条。设为 `true` 显示默认进度条，或传入对象自定义（`ElProgress` 的选项）
    */
   progress?: boolean | NotificationProgress
   /**
-   * @description whether to pause the timer when hovering over the notification
+   * @description 悬停在通知上时是否暂停定时器
    */
   pauseOnHover?: boolean
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `NotificationProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `NotificationProps`。
  */
 export const notificationProps = buildProps({
   /**
-   * @description custom class name for Notification
+   * @description Notification 的自定义类名
    */
   customClass: {
     type: definePropType<ClassValue>([String, Array, Object, Boolean]),
     default: '',
   },
   /**
-   * @description whether `message` is treated as HTML string
+   * @description `message` 是否作为 HTML 字符串处理
    */
   dangerouslyUseHTMLString: Boolean,
   /**
-   * @description duration before close. It will not automatically close if set 0
+   * @description 关闭前的时长。设为 0 时不会自动关闭
    */
   duration: {
     type: Number,
     default: 4500,
   },
   /**
-   * @description custom icon component. It will be overridden by `type`
+   * @description 自定义图标组件，会被 `type` 覆盖
    */
   icon: {
     type: iconPropType,
   },
   /**
-   * @description notification dom id
+   * @description 通知的 dom id
    */
   id: {
     type: String,
     default: '',
   },
   /**
-   * @description description text
+   * @description 描述文本
    */
   message: {
     type: definePropType<string | VNode | (() => VNode)>([
@@ -146,28 +146,28 @@ export const notificationProps = buildProps({
     default: '',
   },
   /**
-   * @description offset from the top edge of the screen. Every Notification instance of the same moment should have the same offset
+   * @description 距屏幕顶部边缘的偏移量。同一时刻的每个 Notification 实例应具有相同偏移量
    */
   offset: {
     type: Number,
     default: 0,
   },
   /**
-   * @description callback function when notification clicked
+   * @description 点击通知时的回调函数
    */
   onClick: {
     type: definePropType<() => void>(Function),
     default: () => undefined,
   },
   /**
-   * @description callback function when closed
+   * @description 关闭时的回调函数
    */
   onClose: {
     type: definePropType<() => void>(Function),
     required: true,
   },
   /**
-   * @description custom position
+   * @description 自定义位置
    */
   position: {
     type: String,
@@ -175,21 +175,21 @@ export const notificationProps = buildProps({
     default: 'top-right',
   },
   /**
-   * @description whether to show a close button
+   * @description 是否显示关闭按钮
    */
   showClose: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description title
+   * @description 标题
    */
   title: {
     type: String,
     default: '',
   },
   /**
-   * @description notification type
+   * @description 通知类型
    */
   type: {
     type: String,
@@ -197,25 +197,25 @@ export const notificationProps = buildProps({
     default: '',
   },
   /**
-   * @description initial zIndex
+   * @description 初始 zIndex
    */
   zIndex: Number,
   /**
-   * @description custom close icon, default is Close
+   * @description 自定义关闭图标，默认为 Close
    */
   closeIcon: {
     type: iconPropType,
     default: Close,
   },
   /**
-   * @description progress bar indicating auto-close countdown. Set `true` to show a default progress bar, or pass an object to customize it (options of `ElProgress`)
+   * @description 表示自动关闭倒计时的进度条。设为 `true` 显示默认进度条，或传入对象自定义（`ElProgress` 的选项）
    */
   progress: {
     type: definePropType<boolean | NotificationProgress>([Boolean, Object]),
     default: false,
   },
   /**
-   * @description whether to pause the timer when hovering over the notification
+   * @description 悬停在通知上时是否暂停定时器
    */
   pauseOnHover: {
     type: Boolean,
@@ -224,7 +224,7 @@ export const notificationProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `NotificationProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `NotificationProps`。
  */
 export type NotificationPropsPublic = ExtractPublicPropTypes<
   typeof notificationProps
@@ -238,18 +238,18 @@ export type NotificationEmits = typeof notificationEmits
 export type NotificationInstance = InstanceType<typeof Notification> & unknown
 
 export interface NotificationExposed {
-  /** @description close notification */
+  /** @description 关闭通知 */
   close: () => void
   visible: Ref<boolean>
 }
 
 export type NotificationOptions = Omit<NotificationProps, 'id' | 'onClose'> & {
   /**
-   * @description set the root element for the notification, default to `document.body`
+   * @description 设置通知的根元素，默认为 `document.body`
    */
   appendTo?: HTMLElement | string
   /**
-   * @description callback function when closed
+   * @description 关闭时的回调函数
    */
   onClose?(vm: VNode): void
 }

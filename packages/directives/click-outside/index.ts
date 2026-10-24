@@ -40,7 +40,7 @@ function createDocumentHandler(
   if (isArray(binding.arg)) {
     excludes = binding.arg
   } else if (isElement(binding.arg)) {
-    // due to current implementation on binding type is wrong the type casting is necessary here
+    // 由于当前 binding 类型的实现有误，此处需要进行类型断言
     excludes.push(binding.arg as unknown as HTMLElement)
   }
   return function (mouseup, mousedown) {
@@ -80,7 +80,7 @@ function createDocumentHandler(
 
 const ClickOutside: ObjectDirective<HTMLElement, any> = {
   beforeMount(el, binding) {
-    // there could be multiple handlers on the element
+    // 元素上可能存在多个 handler
     if (!nodeList.has(el)) {
       nodeList.set(el, [])
     }
@@ -105,14 +105,14 @@ const ClickOutside: ObjectDirective<HTMLElement, any> = {
     }
 
     if (oldHandlerIndex >= 0) {
-      // replace the old handler to the new handler
+      // 用新的 handler 替换旧的 handler
       handlers.splice(oldHandlerIndex, 1, newHandler)
     } else {
       handlers.push(newHandler)
     }
   },
   unmounted(el) {
-    // remove all listeners when a component unmounted
+    // 组件卸载时移除所有监听器
     nodeList.delete(el)
   },
 }

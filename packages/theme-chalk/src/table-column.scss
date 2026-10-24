@@ -19,7 +19,7 @@
   box-shadow: map.get($dropdown, 'menu-box-shadow');
   box-sizing: border-box;
 
-  /** used for dropdown mode */
+  /** 用于下拉模式 */
   @include e(list) {
     padding: 5px 0;
     margin: 0;

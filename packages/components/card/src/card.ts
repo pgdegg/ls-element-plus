@@ -4,87 +4,87 @@ import type { ExtractPublicPropTypes, InjectionKey, StyleValue } from 'vue'
 import type { ClassValue } from '@element-plus/utils'
 
 export interface CardProps {
-  /** Display a disabled overlay. */
+  /** 展示一个禁用遮罩层。 */
   disabled?: boolean
   /**
-   * @description title of the card. Also accepts a DOM passed by `slot#header`
+   * @description 卡片标题。同时接受由 `slot#header` 传入的 DOM
    */
   header?: string
   /**
-   * @description content of footer. Also accepts a DOM passed by `slot#footer`
+   * @description 页脚内容。同时接受由 `slot#footer` 传入的 DOM
    */
   footer?: string
   /**
-   * @description CSS style of card body
+   * @description 卡片主体的 CSS 样式
    */
   bodyStyle?: StyleValue
   /**
-   * @description custom class name of card header
+   * @description 卡片头部的自定义类名
    */
   headerClass?: ClassValue
   /**
-   * @description custom class name of card body
+   * @description 卡片主体的自定义类名
    */
   bodyClass?: ClassValue
   /**
-   * @description custom class name of card footer
+   * @description 卡片底部的自定义类名
    */
   footerClass?: ClassValue
   /**
-   * @description when to show card shadows
+   * @description 何时显示卡片阴影
    */
   shadow?: 'always' | 'hover' | 'never'
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `CardProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `CardProps`
  */
 export const cardProps = buildProps({
   disabled: Boolean,
   /**
-   * @description title of the card. Also accepts a DOM passed by `slot#header`
+   * @description 卡片标题。同时接受由 `slot#header` 传入的 DOM
    */
   header: {
     type: String,
     default: '',
   },
   /**
-   * @description content of footer. Also accepts a DOM passed by `slot#footer`
+   * @description 页脚内容。同时接受由 `slot#footer` 传入的 DOM
    */
   footer: {
     type: String,
     default: '',
   },
   /**
-   * @description CSS style of card body
+   * @description 卡片主体的 CSS 样式
    */
   bodyStyle: {
     type: definePropType<StyleValue>([String, Object, Array, Boolean]),
     default: '',
   },
   /**
-   * @description custom class name of card footer
+   * @description 卡片底部的自定义类名
    */
   headerClass: {
     type: definePropType<ClassValue>([String, Array, Object, Boolean]),
     default: undefined,
   },
   /**
-   * @description custom class name of card body
+   * @description 卡片主体的自定义类名
    */
   bodyClass: {
     type: definePropType<ClassValue>([String, Array, Object, Boolean]),
     default: undefined,
   },
   /**
-   * @description custom class name of card footer
+   * @description 卡片底部的自定义类名
    */
   footerClass: {
     type: definePropType<ClassValue>([String, Array, Object, Boolean]),
     default: undefined,
   },
   /**
-   * @description when to show card shadows
+   * @description 何时显示卡片阴影
    */
   shadow: {
     type: String,
@@ -94,7 +94,7 @@ export const cardProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `CardProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `CardProps`
  */
 export type CardPropsPublic = ExtractPublicPropTypes<typeof cardProps>
 export interface CardConfigContext {

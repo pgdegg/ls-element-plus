@@ -7,58 +7,58 @@ import type Description from './description.vue'
 
 export interface DescriptionProps {
   /**
-   * @description with or without border
+   * @description 是否带边框
    * @default false
    */
   border?: boolean
   /**
-   * @description numbers of `Descriptions Item` in one line
+   * @description 一行中 `Descriptions Item` 的数量
    * @default 3
    */
   column?: number
   /**
-   * @description direction of list
+   * @description 列表方向
    * @default 'horizontal'
    */
   direction?: 'horizontal' | 'vertical'
   /**
-   * @description size of list
+   * @description 列表尺寸
    * @default ''
    */
   size?: ComponentSize
   /**
-   * @description title text, display on the top left
+   * @description 标题文本，显示在左上角
    * @default ''
    */
   title?: string
   /**
-   * @description extra text, display on the top right
+   * @description 额外文本，显示在右上角
    * @default ''
    */
   extra?: string
   /**
-   * @description width of every label column
+   * @description 每个标签列的宽度
    */
   labelWidth?: string | number
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `DescriptionProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `DescriptionProps`。
  */
 export const descriptionProps = buildProps({
   /**
-   * @description with or without border
+   * @description 是否带边框
    */
   border: Boolean,
   /**
-   * @description numbers of `Descriptions Item` in one line
+   * @description 一行中 `Descriptions Item` 的数量
    */
   column: {
     type: Number,
     default: 3,
   },
   /**
-   * @description direction of list
+   * @description 列表方向
    */
   direction: {
     type: String,
@@ -66,25 +66,25 @@ export const descriptionProps = buildProps({
     default: 'horizontal',
   },
   /**
-   * @description size of list
+   * @description 列表尺寸
    */
   size: useSizeProp,
   /**
-   * @description title text, display on the top left
+   * @description 标题文本，显示在左上角
    */
   title: {
     type: String,
     default: '',
   },
   /**
-   * @description extra text, display on the top right
+   * @description 额外文本，显示在右上角
    */
   extra: {
     type: String,
     default: '',
   },
   /**
-   * @description width of every label column
+   * @description 每个标签列的宽度
    */
   labelWidth: {
     type: [String, Number],
@@ -92,7 +92,7 @@ export const descriptionProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `DescriptionProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `DescriptionProps`。
  */
 export type DescriptionPropsPublic = ExtractPublicPropTypes<
   typeof descriptionProps

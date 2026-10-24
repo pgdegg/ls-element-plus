@@ -94,9 +94,9 @@ const afterLeave = () => {
 }
 
 defineExpose({
-  /** @description popper ref */
+  /** @description popper 的 ref */
   popperRef,
-  /** @description hide popover */
+  /** @description 隐藏 popover */
   hide,
 })
 </script>

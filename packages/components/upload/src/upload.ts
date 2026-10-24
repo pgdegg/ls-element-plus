@@ -7,7 +7,7 @@ import type { ExtractPublicPropTypes } from 'vue'
 import type Upload from './upload.vue'
 
 /**
- * @deprecated Removed after 3.0.0, Use `UploadProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `UploadProps`。
  */
 export const uploadListTypes = ['text', 'picture', 'picture-card'] as const
 
@@ -88,150 +88,150 @@ export type Crossorigin = 'anonymous' | 'use-credentials' | ''
 
 export interface UploadBaseProps {
   /**
-   * @description request URL
+   * @description 请求 URL
    */
   action?: string
   /**
-   * @description request headers
+   * @description 请求头
    */
   headers?: Headers | Record<string, any>
   /**
-   * @description set upload request method
+   * @description 设置上传请求方法
    */
   method?: string
   /**
-   * @description additions options of request
+   * @description 请求的附加选项
    */
   data?:
     Awaitable<UploadData> | ((rawFile: UploadRawFile) => Awaitable<UploadData>)
   /**
-   * @description whether uploading multiple files is permitted
+   * @description 是否允许多文件上传
    */
   multiple?: boolean
   /**
-   * @description key name for uploaded file
+   * @description 上传文件的字段名
    */
   name?: string
   /**
-   * @description whether to activate drag and drop mode
+   * @description 是否启用拖拽模式
    */
   drag?: boolean
   /**
-   * @description whether cookies are sent
+   * @description 是否发送 cookies
    */
   withCredentials?: boolean
   /**
-   * @description whether to show the uploaded file list
+   * @description 是否显示已上传文件列表
    */
   showFileList?: boolean
   /**
-   * @description accepted [file types](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-accept), will not work when `thumbnail-mode === true`
+   * @description 接受的 [文件类型](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-accept)，在 `thumbnail-mode === true` 时无效
    */
   accept?: string
-  /** Maximum allowed file size in bytes. */
+  /** 允许的最大文件大小，单位为字节。*/
   maxSize?: number
-  /** Validate accept for programmatic and dragged files as well. */
+  /** 同时校验程序化选择和拖拽文件的 accept。*/
   validateAccept?: boolean
   onValidationError?: (reason: 'size' | 'type', file: UploadRawFile) => void
   /**
-   * @description default uploaded files
+   * @description 默认已上传文件
    */
   fileList?: UploadUserFile[]
   /**
-   * @description whether to auto upload file
+   * @description 是否自动上传文件
    */
   autoUpload?: boolean
   /**
-   * @description type of file list
+   * @description 文件列表类型
    */
   listType?: ListType
   /**
-   * @description override default xhr behavior, allowing you to implement your own upload-file's request
+   * @description 覆盖默认 xhr 行为，允许自行实现上传文件的请求
    */
   httpRequest?: UploadRequestHandler
   /**
-   * @description whether to disable upload
+   * @description 是否禁用上传
    */
   disabled?: boolean
   /**
-   * @description maximum number of uploads allowed
+   * @description 允许的最大上传数量
    */
   limit?: number
   /**
-   * @description whether to support uploading directory
+   * @description 是否支持上传目录
    */
   directory?: boolean
 }
 
 export interface UploadProps extends UploadBaseProps {
   /**
-   * @description hook function before uploading with the file to be uploaded as its parameter. If `false` is returned or a `Promise` is returned and then is rejected, uploading will be aborted
+   * @description 上传前的钩子函数，参数为待上传文件。若返回 `false`，或返回 `Promise` 且被 reject，则中止上传
    */
   beforeUpload?: UploadHooks['beforeUpload']
   /**
-   * @description hook function before removing a file with the file and file list as its parameters. If `false` is returned or a `Promise` is returned and then is rejected, removing will be aborted
+   * @description 移除文件前的钩子函数，参数为该文件和文件列表。若返回 `false`，或返回 `Promise` 且被 reject，则中止移除
    */
   beforeRemove?: UploadHooks['beforeRemove']
   /**
-   * @description hook function when files are removed
+   * @description 文件被移除时的钩子函数
    */
   onRemove?: UploadHooks['onRemove']
   /**
-   * @description hook function when select file or upload file success or upload file fail
+   * @description 选择文件、上传成功或上传失败时的钩子函数
    */
   onChange?: UploadHooks['onChange']
   /**
-   * @description hook function when clicking the uploaded files
+   * @description 点击已上传文件时的钩子函数
    */
   onPreview?: UploadHooks['onPreview']
   /**
-   * @description hook function when uploaded successfully
+   * @description 上传成功时的钩子函数
    */
   onSuccess?: UploadHooks['onSuccess']
   /**
-   * @description hook function when some progress occurs
+   * @description 产生上传进度时的钩子函数
    */
   onProgress?: UploadHooks['onProgress']
   /**
-   * @description hook function when some errors occurs
+   * @description 发生错误时的钩子函数
    */
   onError?: UploadHooks['onError']
   /**
-   * @description hook function when limit is exceeded
+   * @description 超出数量限制时的钩子函数
    */
   onExceed?: UploadHooks['onExceed']
   /**
-   * @description set HTML attribute: crossorigin.
+   * @description 设置 HTML 属性：crossorigin。
    */
   crossorigin?: Crossorigin
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `UploadBaseProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `UploadBaseProps`。
  */
 export const uploadBaseProps = buildProps({
   /**
-   * @description request URL
+   * @description 请求 URL
    */
   action: {
     type: String,
     default: '#',
   },
   /**
-   * @description request headers
+   * @description 请求头
    */
   headers: {
     type: definePropType<Headers | Record<string, any>>(Object),
   },
   /**
-   * @description set upload request method
+   * @description 设置上传请求方法
    */
   method: {
     type: String,
     default: 'post',
   },
   /**
-   * @description additions options of request
+   * @description 请求的附加选项
    */
   data: {
     type: definePropType<
@@ -241,33 +241,33 @@ export const uploadBaseProps = buildProps({
     default: () => mutable({} as const),
   },
   /**
-   * @description whether uploading multiple files is permitted
+   * @description 是否允许多文件上传
    */
   multiple: Boolean,
   /**
-   * @description key name for uploaded file
+   * @description 上传文件的字段名
    */
   name: {
     type: String,
     default: 'file',
   },
   /**
-   * @description whether to activate drag and drop mode
+   * @description 是否启用拖拽模式
    */
   drag: Boolean,
   /**
-   * @description whether cookies are sent
+   * @description 是否发送 cookies
    */
   withCredentials: Boolean,
   /**
-   * @description whether to show the uploaded file list
+   * @description 是否显示已上传文件列表
    */
   showFileList: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description accepted [file types](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-accept), will not work when `thumbnail-mode === true`
+   * @description 接受的 [文件类型](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-accept)，在 `thumbnail-mode === true` 时无效
    */
   maxSize: Number,
   validateAccept: Boolean,
@@ -281,21 +281,21 @@ export const uploadBaseProps = buildProps({
     default: '',
   },
   /**
-   * @description default uploaded files
+   * @description 默认已上传文件
    */
   fileList: {
     type: definePropType<UploadUserFile[]>(Array),
     default: () => mutable([] as const),
   },
   /**
-   * @description whether to auto upload file
+   * @description 是否自动上传文件
    */
   autoUpload: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description type of file list
+   * @description 文件列表类型
    */
   listType: {
     type: String,
@@ -303,98 +303,98 @@ export const uploadBaseProps = buildProps({
     default: 'text',
   },
   /**
-   * @description override default xhr behavior, allowing you to implement your own upload-file's request
+   * @description 覆盖默认 xhr 行为，允许自行实现上传文件的请求
    */
   httpRequest: {
     type: definePropType<UploadRequestHandler>(Function),
     default: ajaxUpload,
   },
   /**
-   * @description whether to disable upload
+   * @description 是否禁用上传
    */
   disabled: {
     type: Boolean,
     default: undefined,
   },
   /**
-   * @description maximum number of uploads allowed
+   * @description 允许的最大上传数量
    */
   limit: Number,
   /**
-   * @description whether to support uploading directory
+   * @description 是否支持上传目录
    */
   directory: Boolean,
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `UploadProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `UploadProps`。
  */
 export const uploadProps = buildProps({
   ...uploadBaseProps,
   /**
-   * @description hook function before uploading with the file to be uploaded as its parameter. If `false` is returned or a `Promise` is returned and then is rejected, uploading will be aborted
+   * @description 上传前的钩子函数，参数为待上传文件。若返回 `false`，或返回 `Promise` 且被 reject，则中止上传
    */
   beforeUpload: {
     type: definePropType<UploadHooks['beforeUpload']>(Function),
     default: NOOP,
   },
   /**
-   * @description hook function before removing a file with the file and file list as its parameters. If `false` is returned or a `Promise` is returned and then is rejected, removing will be aborted
+   * @description 移除文件前的钩子函数，参数为该文件和文件列表。若返回 `false`，或返回 `Promise` 且被 reject，则中止移除
    */
   beforeRemove: {
     type: definePropType<UploadHooks['beforeRemove']>(Function),
   },
   /**
-   * @description hook function when files are removed
+   * @description 文件被移除时的钩子函数
    */
   onRemove: {
     type: definePropType<UploadHooks['onRemove']>(Function),
     default: NOOP,
   },
   /**
-   * @description hook function when select file or upload file success or upload file fail
+   * @description 选择文件、上传成功或上传失败时的钩子函数
    */
   onChange: {
     type: definePropType<UploadHooks['onChange']>(Function),
     default: NOOP,
   },
   /**
-   * @description hook function when clicking the uploaded files
+   * @description 点击已上传文件时的钩子函数
    */
   onPreview: {
     type: definePropType<UploadHooks['onPreview']>(Function),
     default: NOOP,
   },
   /**
-   * @description hook function when uploaded successfully
+   * @description 上传成功时的钩子函数
    */
   onSuccess: {
     type: definePropType<UploadHooks['onSuccess']>(Function),
     default: NOOP,
   },
   /**
-   * @description hook function when some progress occurs
+   * @description 产生上传进度时的钩子函数
    */
   onProgress: {
     type: definePropType<UploadHooks['onProgress']>(Function),
     default: NOOP,
   },
   /**
-   * @description hook function when some errors occurs
+   * @description 发生错误时的钩子函数
    */
   onError: {
     type: definePropType<UploadHooks['onError']>(Function),
     default: NOOP,
   },
   /**
-   * @description hook function when limit is exceeded
+   * @description 超出数量限制时的钩子函数
    */
   onExceed: {
     type: definePropType<UploadHooks['onExceed']>(Function),
     default: NOOP,
   },
   /**
-   * @description set HTML attribute: crossorigin.
+   * @description 设置 HTML 属性：crossorigin。
    */
   crossorigin: {
     type: definePropType<'anonymous' | 'use-credentials' | ''>(String),
@@ -402,7 +402,7 @@ export const uploadProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `UploadProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `UploadProps`。
  */
 export type UploadPropsPublic = ExtractPublicPropTypes<typeof uploadProps>
 

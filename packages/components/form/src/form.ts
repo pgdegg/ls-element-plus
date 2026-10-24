@@ -14,101 +14,101 @@ import type { FormRules } from './types'
 
 export interface FormMetaProps {
   /**
-   * @description Control the size of components in this form.
+   * @description 控制该表单内组件的尺寸。
    */
   size?: ComponentSize
   /**
-   * @description Whether to disable all components in this form. If set to `true`, it will override the `disabled` prop of the inner component.
+   * @description 是否禁用该表单内的所有组件。设为 `true` 时，将覆盖内部组件的 `disabled` prop。
    */
   disabled?: boolean
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `FormMetaProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `FormMetaProps`。
  */
 export const formMetaProps = buildProps({
   /**
-   * @description Control the size of components in this form.
+   * @description 控制该表单内组件的尺寸。
    */
   size: {
     type: String,
     values: componentSizes,
   },
   /**
-   * @description Whether to disable all components in this form. If set to `true`, it will override the `disabled` prop of the inner component.
+   * @description 是否禁用该表单内的所有组件。设为 `true` 时，将覆盖内部组件的 `disabled` prop。
    */
   disabled: Boolean,
 } as const)
 
 export interface FormProps extends FormMetaProps {
-  /** @description inherit readonly state for editable controls */
+  /** @description 为可编辑控件继承 readonly 状态 */
   readonly?: boolean
-  /** @description display selection controls without permitting changes */
+  /** @description 显示选择控件但不允许更改 */
   readonlyRaw?: boolean
-  /** @description hide placeholders in descendant controls */
+  /** @description 隐藏后代控件中的占位符 */
   hidePlaceholder?: boolean
-  /** @description width of inline form content */
+  /** @description 内联表单内容的宽度 */
   contentWidth?: number
   /**
-   * @description Data of form component.
+   * @description 表单组件的数据。
    */
   model?: Record<string, any>
   /**
-   * @description Validation rules of form.
+   * @description 表单校验规则。
    */
   rules?: FormRules
   /**
-   * @description Position of label. If set to `'left'` or `'right'`, `label-width` prop is also required.
+   * @description 标签位置。若设为 `'left'` 或 `'right'`，还需提供 `label-width` prop。
    */
   labelPosition?: 'left' | 'right' | 'top'
   /**
-   * @description Position of asterisk.
+   * @description 星号的位置。
    */
   requireAsteriskPosition?: 'left' | 'right'
   /**
-   * @description Width of label, e.g. `'50px'`. All its direct child form items will inherit this value. `auto` is supported.
+   * @description 标签宽度，例如 `'50px'`。其所有直接子 form-item 都将继承此值，支持 `auto`。
    */
   labelWidth?: string | number
   /**
-   * @description Suffix of the label.
+   * @description 标签的后缀。
    */
   labelSuffix?: string
   /**
-   * @description Whether the form is inline.
+   * @description 表单是否为内联。
    */
   inline?: boolean
   /**
-   * @description Whether to display the error message inline with the form item.
+   * @description 是否将错误信息与表单项内联显示。
    */
   inlineMessage?: boolean
   /**
-   * @description Whether to display an icon indicating the validation result.
+   * @description 是否显示指示校验结果的图标。
    */
   statusIcon?: boolean
   /**
-   * @description Whether to show the error message.
+   * @description 是否显示错误信息。
    */
   showMessage?: boolean
   /**
-   * @description Whether to trigger validation when the `rules` prop is changed.
+   * @description 当 `rules` prop 改变时是否触发校验。
    */
   validateOnRuleChange?: boolean
   /**
-   * @description Whether to hide required fields should have a red asterisk (star) beside their labels.
+   * @description 是否隐藏必填字段标签旁的红色星号（*）。
    */
   hideRequiredAsterisk?: boolean
   /**
-   * @description When validation fails, scroll to the first error form entry.
+   * @description 校验失败时，滚动到第一个出错的表单项。
    */
   scrollToError?: boolean
   /**
-   * @description When validation fails, it scrolls to the first error item based on the scrollIntoView option.
+   * @description 校验失败时，根据 scrollIntoView 选项滚动到第一个出错项。
    */
   scrollIntoViewOptions?: ScrollIntoViewOptions | boolean
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `FormProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `FormProps`。
  */
 export const formProps = buildProps({
   ...formMetaProps,
@@ -117,17 +117,17 @@ export const formProps = buildProps({
   hidePlaceholder: Boolean,
   contentWidth: Number,
   /**
-   * @description Data of form component.
+   * @description 表单组件的数据。
    */
   model: Object,
   /**
-   * @description Validation rules of form.
+   * @description 表单校验规则。
    */
   rules: {
     type: definePropType<FormRules>(Object),
   },
   /**
-   * @description Position of label. If set to `'left'` or `'right'`, `label-width` prop is also required.
+   * @description 标签位置。若设为 `'left'` 或 `'right'`，还需提供 `label-width` prop。
    */
   labelPosition: {
     type: String,
@@ -135,7 +135,7 @@ export const formProps = buildProps({
     default: 'right',
   },
   /**
-   * @description Position of asterisk.
+   * @description 星号的位置。
    */
   requireAsteriskPosition: {
     type: String,
@@ -143,55 +143,55 @@ export const formProps = buildProps({
     default: 'left',
   },
   /**
-   * @description Width of label, e.g. `'50px'`. All its direct child form items will inherit this value. `auto` is supported.
+   * @description 标签宽度，例如 `'50px'`。其所有直接子 form-item 都将继承此值，支持 `auto`。
    */
   labelWidth: {
     type: [String, Number],
     default: '',
   },
   /**
-   * @description Suffix of the label.
+   * @description 标签的后缀。
    */
   labelSuffix: {
     type: String,
     default: '',
   },
   /**
-   * @description Whether the form is inline.
+   * @description 表单是否为内联。
    */
   inline: Boolean,
   /**
-   * @description Whether to display the error message inline with the form item.
+   * @description 是否将错误信息与表单项内联显示。
    */
   inlineMessage: Boolean,
   /**
-   * @description Whether to display an icon indicating the validation result.
+   * @description 是否显示指示校验结果的图标。
    */
   statusIcon: Boolean,
   /**
-   * @description Whether to show the error message.
+   * @description 是否显示错误信息。
    */
   showMessage: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description Whether to trigger validation when the `rules` prop is changed.
+   * @description 当 `rules` prop 改变时是否触发校验。
    */
   validateOnRuleChange: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description Whether to hide required fields should have a red asterisk (star) beside their labels.
+   * @description 是否隐藏必填字段标签旁的红色星号（*）。
    */
   hideRequiredAsterisk: Boolean,
   /**
-   * @description When validation fails, scroll to the first error form entry.
+   * @description 校验失败时，滚动到第一个出错的表单项。
    */
   scrollToError: Boolean,
   /**
-   * @description When validation fails, it scrolls to the first error item based on the scrollIntoView option.
+   * @description 校验失败时，根据 scrollIntoView 选项滚动到第一个出错项。
    */
   scrollIntoViewOptions: {
     type: definePropType<ScrollIntoViewOptions | boolean>([Object, Boolean]),
@@ -200,12 +200,12 @@ export const formProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `FormProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `FormProps`。
  */
 export type FormPropsPublic = ExtractPublicPropTypes<typeof formProps>
 
 /**
- * @deprecated Removed after 3.0.0, Use `FormMetaProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `FormMetaProps`。
  */
 export type FormMetaPropsPublic = ExtractPublicPropTypes<typeof formMetaProps>
 

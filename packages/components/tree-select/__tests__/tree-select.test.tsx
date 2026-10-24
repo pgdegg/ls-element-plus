@@ -13,7 +13,7 @@ import type { TreeSelectInstance } from '../src/instance'
 import type { SelectInstance } from '../../select'
 import type { TreeInstance } from '../../tree'
 
-// Keep track of all mounted wrappers for cleanup
+// 跟踪所有已挂载的 wrapper，便于清理
 const mountedWrappers: VueWrapper<any>[] = []
 
 beforeEach(() => {
@@ -103,7 +103,7 @@ const createComponent = ({
     }
   ) as unknown as VueWrapper<TreeSelectInstance>
 
-  // Add wrapper to tracking array for cleanup
+  // 将 wrapper 加入跟踪数组，便于清理
   mountedWrappers.push(wrapper)
 
   return {
@@ -147,7 +147,7 @@ describe('TreeSelect.vue', () => {
   })
 
   test('render tree-select with default value and persistent is false', async () => {
-    // This is convenient for testing the default value label rendering when persistent is false.
+    // 便于测试 persistent 为 false 时默认值标签的渲染。
     process.env.RUN_TEST_WITH_PERSISTENT = 'true'
     const { select, wrapper } = createComponent({
       props: {
@@ -463,7 +463,7 @@ describe('TreeSelect.vue', () => {
       },
     })
 
-    // check child node when folder node checked,
+    // 勾选文件夹节点时勾选子节点，
     // value.value will be 111
     await tree
       .find('.el-tree-node__content .el-checkbox__original')
@@ -471,7 +471,7 @@ describe('TreeSelect.vue', () => {
     await nextTick()
     expect(select.vm.modelValue).equal(111)
 
-    // unselect when has child checked
+    // 有子节点被勾选时取消选中
     await tree
       .find('.el-tree-node__content .el-checkbox__original')
       .trigger('click')
@@ -487,13 +487,13 @@ describe('TreeSelect.vue', () => {
       },
     })
 
-    // check child node when folder node checked,
+    // 勾选文件夹节点时勾选子节点，
     // value.value will be 111
     await tree.findAll('.el-tree-node__content').slice(-1)[0].trigger('click')
     await nextTick()
     expect(select.vm.modelValue).equal(111)
 
-    // unselect when has child checked
+    // 有子节点被勾选时取消选中
     await tree.findAll('.el-tree-node__content').slice(-1)[0].trigger('click')
     await nextTick()
     expect(select.vm.modelValue).toBe(undefined)
@@ -676,16 +676,16 @@ describe('TreeSelect.vue', () => {
       },
     })
 
-    // no load & no cache will be default value
+    // 无加载且无缓存时取默认值
     await nextTick()
     expect(select.vm.states.selectedLabel).toBe(1)
 
-    // no load & has cache will be correct label
+    // 无加载但有缓存时标签正确
     modelValue.value = 3
     await nextTick()
     expect(select.vm.states.selectedLabel).toBe('3-label')
 
-    // no load & set cache lazy will be correct label
+    // 无加载且设置缓存懒加载时标签正确
     modelValue.value = 1
     await nextTick()
     cacheData.push({
@@ -710,7 +710,7 @@ describe('TreeSelect.vue', () => {
       ]
     }
     const testMethod = async (props: any) => {
-      // Reset shared state
+      // 重置共享状态
       data.value = []
 
       vi.useFakeTimers()
@@ -738,7 +738,7 @@ describe('TreeSelect.vue', () => {
           ? '.el-checkbox__original'
           : '.el-select-dropdown__item'
 
-        // show drop menu
+        // 展开下拉菜单
         await input.trigger('click')
         await vi.runOnlyPendingTimersAsync()
         expect(method).toBeCalledWith('')
@@ -746,11 +746,11 @@ describe('TreeSelect.vue', () => {
         const testKeywords = async (keywords: string) => {
           await input.setValue(keywords)
 
-          // flush debounced query handling without waiting real time
+          // 不等真实时间，立即刷新防抖查询处理
           await vi.advanceTimersByTimeAsync(300)
           expect(method).toBeCalledWith(keywords)
 
-          // flush remote method async update without waiting real time
+          // 不等真实时间，立即刷新 remote 方法的异步更新
           await vi.advanceTimersByTimeAsync(200)
 
           expect(tree.vm.data).toEqual(data.value)
@@ -764,19 +764,19 @@ describe('TreeSelect.vue', () => {
 
         await testKeywords('a')
 
-        // check first child - use itemSelector for clicking
+        // 勾选第一个子节点——使用 itemSelector 点击
         let clickItems = tree.findAll(itemSelector)
         await clickItems[1].trigger('click')
         expect(select.vm.modelValue).toEqual([`a-child`])
 
         await testKeywords('aa')
 
-        // check first child again - use itemSelector for clicking
+        // 再次勾选第一个子节点——使用 itemSelector 点击
         clickItems = tree.findAll(itemSelector)
         await clickItems[1].trigger('click')
         expect(select.vm.modelValue).toEqual(['a-child', 'aa-child'])
 
-        // hide drop menu
+        // 隐藏下拉菜单
         await input.trigger('blur')
         await vi.runOnlyPendingTimersAsync()
         expect(method).toBeCalledWith('')
@@ -855,7 +855,7 @@ describe('TreeSelect.vue', () => {
     expect(onCheck).toHaveBeenLastCalledWith(11, [11], [11], [], [])
     expect(onCheckChange).toHaveBeenLastCalledWith(11)
 
-    // finally will cancel older checked node
+    // 最终会取消较早勾选的节点
     await nextTick()
     expect(onCheckChange).toHaveBeenLastCalledWith(1)
   })
@@ -1040,12 +1040,12 @@ describe('TreeSelect.vue', () => {
     await nextTick()
     expect(select.vm.modelValue).equal(1)
 
-    // click again not to deselect
+    // 再次点击不会取消选中
     await nodes[0].trigger('click')
     await nextTick()
     expect(select.vm.modelValue).equal(1)
 
-    // can correctly choose another
+    // 可以正确选择另一个
     await nodes.slice(-1)[0].trigger('click')
     await nextTick()
     expect(select.vm.modelValue).equal(2)
@@ -1069,7 +1069,7 @@ describe('TreeSelect.vue', () => {
       template: `<TreeSelect v-for="item in data" v-model="item.value" :data="options" @update:modelValue="item.handleModelValue" />`,
     })
 
-    // Add to tracking for cleanup
+    // 加入跟踪以便清理
     mountedWrappers.push(wrapper)
 
     const select = wrapper.findComponent({
@@ -1105,18 +1105,18 @@ describe('TreeSelect.vue', () => {
 
     const input = select.find('input')
 
-    // mock browser blur events
+    // mock 浏览器 blur 事件
     tree.element.addEventListener('click', () => input.element.blur(), true)
 
     input.element.focus()
     expect(document.activeElement).toBe(input.element)
 
-    // normal click
+    // 普通点击
     await tree.find('.el-tree-node__content').trigger('click')
     expect(select.vm.modelValue).toBe(1)
     expect(document.activeElement).toBe(input.element)
 
-    // checkbox click
+    // checkbox 点击
     await tree
       .findAll('.el-tree-node__content .el-checkbox')[1]
       .trigger('click')

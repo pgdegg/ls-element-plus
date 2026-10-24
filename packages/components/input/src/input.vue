@@ -11,15 +11,15 @@
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave"
   >
-    <!-- input -->
+    <!-- 输入框 -->
     <template v-if="type !== 'textarea'">
-      <!-- prepend slot -->
+      <!-- 前置插槽 -->
       <div v-if="$slots.prepend" :class="nsInput.be('group', 'prepend')">
         <slot name="prepend" />
       </div>
 
       <div ref="wrapperRef" :class="wrapperKls">
-        <!-- prefix slot -->
+        <!-- 前缀插槽 -->
         <span v-if="$slots.prefix || prefixIcon" :class="nsInput.e('prefix')">
           <span :class="nsInput.e('prefix-inner')">
             <slot name="prefix" />
@@ -57,7 +57,7 @@
           @keydown="handleKeydown"
         />
 
-        <!-- suffix slot -->
+        <!-- 后缀插槽 -->
         <span v-if="suffixVisible" :class="nsInput.e('suffix')">
           <span :class="nsInput.e('suffix-inner')">
             <el-icon
@@ -115,13 +115,13 @@
         </span>
       </div>
 
-      <!-- append slot -->
+      <!-- 后置插槽 -->
       <div v-if="$slots.append" :class="nsInput.be('group', 'append')">
         <slot name="append" />
       </div>
     </template>
 
-    <!-- textarea -->
+    <!-- 文本域 -->
     <template v-else>
       <textarea
         :id="inputId"
@@ -302,7 +302,7 @@ const textareaHeight = ref<string>()
 
 const _ref = computed(() => input.value || textarea.value)
 
-// wrapperRef for type="text", handleFocus and handleBlur for type="textarea"
+// type="text" 用 wrapperRef，type="textarea" 用 handleFocus 和 handleBlur
 // @ts-ignore - used in template ref binding, TS cannot detect template usage
 const { wrapperRef, isFocused, handleFocus, handleBlur } = useFocusController(
   _ref,
@@ -395,7 +395,7 @@ const wordLimitLabel = computed(() =>
 )
 const inputExceed = computed(
   () =>
-    // show exceed style if length of initial value greater then maxlength
+    // 当初始值长度大于 maxlength 时显示超限样式
     !!isWordLimitVisible.value && textLength.value > Number(maxlength.value)
 )
 const suffixVisible = computed(
@@ -451,17 +451,17 @@ const resizeTextarea = () => {
     const maxRows = isObject(autosize) ? autosize.maxRows : undefined
     const textareaStyle = calcTextareaHeight(textarea.value, minRows, maxRows)
 
-    // If the scrollbar is displayed, the height of the textarea needs more space than the calculated height.
-    // If set textarea height in this case, the scrollbar will not hide.
-    // So we need to hide scrollbar first, and reset it in next tick.
-    // see https://github.com/element-plus/element-plus/issues/8825
+    // 若显示滚动条，textarea 的高度需要比计算高度更多空间。
+    // 此情况下若设置 textarea 高度，滚动条将无法隐藏。
+    // 因此需先隐藏滚动条，并在下一 tick 恢复。
+    // 见 https://github.com/element-plus/element-plus/issues/8825
     textareaCalcStyle.value = {
       overflowY: 'hidden',
       ...textareaStyle,
     }
 
     nextTick(() => {
-      // NOTE: Force repaint to make sure the style set above is applied.
+      // 注意：强制重绘以确保上述样式被应用。
       textarea.value!.offsetHeight
       textareaCalcStyle.value = textareaStyle
     })
@@ -477,8 +477,8 @@ const createOnceInitResize = (resizeTextarea: () => void) => {
   return () => {
     if (isInit || !props.autosize) {
       if (props.resize !== 'none') {
-        // The execution here may occur before `setTimeout(resizeTextarea)`,
-        // potentially causing a regression of issue #21836, so the assignment needs to be deferred.
+        // 此处执行可能发生在 `setTimeout(resizeTextarea)` 之前，
+        // 可能导致 #21836 问题复现，因此赋值需要延迟。
         setTimeout(() => {
           textareaHeight.value = textarea.value?.style.height
         })
@@ -492,7 +492,7 @@ const createOnceInitResize = (resizeTextarea: () => void) => {
     }
   }
 }
-// fix: https://github.com/element-plus/element-plus/issues/12074
+// 修复：https://github.com/element-plus/element-plus/issues/12074
 const onceInitSizeTextarea = createOnceInitResize(resizeTextarea)
 
 const setNativeInputValue = () => {
@@ -521,8 +521,8 @@ const formatValue = (value: string) => {
 }
 
 const handleInput = async (event: Event) => {
-  // should not emit input during composition
-  // see: https://github.com/ElemeFE/element/issues/10516
+  // 组词（composition）期间不应触发 input
+  // 见：https://github.com/ElemeFE/element/issues/10516
   if (isComposing.value) return
 
   const { lazy } = props.modelModifiers
@@ -540,14 +540,14 @@ const handleInput = async (event: Event) => {
     const graphemes = props.countGraphemes(value)
     const saveGraphemes = props.countGraphemes(saveValue.value)
     if (graphemes > limit && graphemes > saveGraphemes) {
-      // If current value already exceeds limit, block further input and keep exceed state.
+      // 若当前值已超限，阻止进一步输入并保持超限状态。
       if (saveGraphemes > limit) {
         value = saveValue.value
         shouldForceNativeUpdate = true
       } else {
-        // Keep unchanged suffix like native maxlength behavior.
-        // Instead of truncating from the end of the whole string,
-        // only limit the inserted segment to available capacity.
+        // 保持后缀不变，与原生 maxlength 行为一致。
+        // 不从整个字符串末尾截断，
+        // 仅将插入片段限制在可用容量内。
         const prevValue = saveValue.value
         const nextValue = value
         let prefixLen = 0
@@ -582,7 +582,7 @@ const handleInput = async (event: Event) => {
 
         let acceptedInserted = ''
         if (availableInserted > 0) {
-          // Use Intl.Segmenter for proper grapheme cluster iteration if available.
+          // 若可用，使用 Intl.Segmenter 进行正确的字形簇迭代。
           if (typeof Intl !== 'undefined' && 'Segmenter' in Intl) {
             const segmenter = new Intl.Segmenter(undefined, {
               granularity: 'grapheme',
@@ -594,7 +594,7 @@ const handleInput = async (event: Event) => {
               acceptedInserted = candidate
             }
           } else {
-            // Fallback to code-point iteration for older environments.
+            // 旧环境回退到码点迭代。
             for (const char of Array.from(inserted)) {
               const candidate = acceptedInserted + char
               const newCount = props.countGraphemes(candidate)
@@ -610,17 +610,17 @@ const handleInput = async (event: Event) => {
     }
   }
 
-  // hack for https://github.com/ElemeFE/element/issues/8548
-  // should remove the following line when we don't support IE
+  // 针对 https://github.com/ElemeFE/element/issues/8548 的 hack
+  // 不再支持 IE 时应删除下面这行
   if (String(value) === nativeInputValue.value) {
-    // preserve native features while being compatible with #9501
+    // 在兼容 #9501 的同时保留原生特性
     if (props.formatter || shouldForceNativeUpdate) {
       const target = event.target as TargetElement
       const blockedValue = target.value
       const selectionStart = target.selectionStart
       const selectionEnd = target.selectionEnd
       setNativeInputValue()
-      // Keep caret position stable when input is blocked and value is reset.
+      // 输入被阻止且值被重置时，保持光标位置稳定。
       if (
         shouldForceNativeUpdate &&
         _ref.value &&
@@ -646,8 +646,8 @@ const handleInput = async (event: Event) => {
   emit(UPDATE_MODEL_EVENT, value)
   emit(INPUT_EVENT, value)
 
-  // ensure native input value is controlled
-  // see: https://github.com/ElemeFE/element/issues/12850
+  // 确保原生 input 的值为受控值
+  // 见：https://github.com/ElemeFE/element/issues/12850
   await nextTick()
 
   if ((props.formatter && props.parser) || !hasModelModifiers.value) {
@@ -737,9 +737,9 @@ watch(
   { immediate: true }
 )
 
-// native input value is set explicitly
-// do not use v-model / :value in template
-// see: https://github.com/ElemeFE/element/issues/14521
+// 原生 input 的值被显式设置
+// 模板中不要使用 v-model / :value
+// 见：https://github.com/ElemeFE/element/issues/14521
 watch(nativeInputValue, (newValue) => {
   if (!_ref.value) {
     return
@@ -764,8 +764,8 @@ watch(nativeInputValue, (newValue) => {
   setNativeInputValue()
 })
 
-// when change between <input> and <textarea>,
-// update DOM dependent value and styles
+// 在 <input> 与 <textarea> 之间切换时，
+// 更新依赖 DOM 的值和样式
 // https://github.com/ElemeFE/element/issues/14857
 watch(
   () => props.type,
@@ -802,33 +802,33 @@ const inputElement = useInputElement(() => _ref.value)
 
 defineExpose({
   inputElement,
-  /** @description HTML input element */
+  /** @description HTML input 元素 */
   input,
-  /** @description HTML textarea element */
+  /** @description HTML textarea 元素 */
   textarea,
-  /** @description HTML element, input or textarea */
+  /** @description HTML 元素，input 或 textarea */
   ref: _ref,
-  /** @description style of textarea. */
+  /** @description textarea 的样式。 */
   textareaStyle,
 
-  /** @description from props (used on unit test) */
+  /** @description 来自 props（用于单元测试） */
   autosize: toRef(props, 'autosize'),
 
-  /** @description is input composing */
+  /** @description input 是否处于组词状态 */
   isComposing,
 
-  /** @description whether the password is visible */
+  /** @description 密码是否可见 */
   passwordVisible,
 
-  /** @description HTML input element native method */
+  /** @description HTML input 元素的原生方法 */
   focus,
-  /** @description HTML input element native method */
+  /** @description HTML input 元素的原生方法 */
   blur,
-  /** @description HTML input element native method */
+  /** @description HTML input 元素的原生方法 */
   select,
-  /** @description clear input value */
+  /** @description 清除输入值 */
   clear,
-  /** @description resize textarea. */
+  /** @description 调整 textarea 大小。 */
   resizeTextarea,
 })
 </script>

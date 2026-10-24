@@ -75,7 +75,7 @@ const onMouseleave = composeEventHandlers(
 const onClick = composeEventHandlers(
   stopWhenControlledOrDisabled,
   whenTrigger(trigger, 'click', (e) => {
-    // distinguish left click
+    // 区分左键点击
     if ((e as MouseEvent).button === 0) {
       onToggle(e)
     }
@@ -113,7 +113,7 @@ const onKeydown = composeEventHandlers(
 
 defineExpose({
   /**
-   * @description trigger element
+   * @description 触发元素
    */
   triggerRef,
 })

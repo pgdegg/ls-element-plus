@@ -83,13 +83,13 @@ const isResizable = computed(() => {
   return (
     props.resizable &&
     nextPanel.value?.resizable &&
-    // If it is 0, it means it is collapsed => check if the minimum value is set
+    // 如果为 0，表示已折叠 => 检查是否设置了最小值
     (panelSize.value !== 0 || !props.min) &&
     (nextSize.value !== 0 || !nextPanel.value.min)
   )
 })
 
-// The last panel doesn't need a drag bar
+// 最后一个面板不需要拖动条
 const isShowBar = computed(() => {
   if (!panel.value) return false
   return index.value !== panels.value.length - 1
@@ -112,7 +112,7 @@ function sizeToPx(str: string | number | undefined) {
   return str ?? 0
 }
 
-// Two-way binding for size
+// size 的双向绑定
 let isSizeUpdating = false
 watch(
   () => props.size,
@@ -127,7 +127,7 @@ watch(
       const maxSize = sizeToPx(props.max)
       const minSize = sizeToPx(props.min)
 
-      // Ensure it is within the maximum and minimum value range
+      // 确保其位于最大、最小值范围内
       const finalSize = Math.min(Math.max(size, minSize || 0), maxSize || size)
 
       if (finalSize !== size) {
@@ -172,7 +172,7 @@ registerPanel(_panel)
 onBeforeUnmount(() => unregisterPanel(_panel))
 
 defineExpose({
-  /** @description splitter-panel html element */
+  /** @description splitter-panel 的 html 元素 */
   splitterPanelRef: panelEl,
 })
 </script>

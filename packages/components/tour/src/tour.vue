@@ -25,7 +25,7 @@
       </el-tour-content>
     </div>
   </teleport>
-  <!-- just for IDE -->
+  <!-- 仅用于 IDE-->
   <slot v-if="false" name="indicators" :current="current + 1" :total="total" />
 </template>
 

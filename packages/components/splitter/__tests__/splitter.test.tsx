@@ -4,7 +4,7 @@ import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest'
 import { ElSplitter, ElSplitterPanel } from '../index'
 import { useElementSize } from './__mocks__/vueuse'
 
-// jsdom does not support useElementSize and useResizeObserver so mock
+// jsdom 不支持 useElementSize 和 useResizeObserver，因此进行 mock
 vi.mock('@vueuse/core', () => {
   return import('./__mocks__/vueuse')
 })
@@ -71,7 +71,7 @@ describe('Splitter', () => {
     await nextTick()
     const panels = wrapper.findAll('.el-splitter-panel')
 
-    // default size
+    // 默认尺寸
     expect(panels[0].attributes('style')).toContain('flex-basis: 70px;')
     expect(panels[1].attributes('style')).toContain('flex-basis: 30px;')
 
@@ -80,7 +80,7 @@ describe('Splitter', () => {
 
     await nextTick()
 
-    // default size
+    // 默认尺寸
     expect(panels[0].attributes('style')).toContain('flex-basis: 0px;')
     expect(panels[1].attributes('style')).toContain('flex-basis: 0px;')
 
@@ -106,24 +106,24 @@ describe('Splitter', () => {
     await nextTick()
     const panels = wrapper.findAll('.el-splitter-panel')
 
-    // default size
+    // 默认尺寸
     expect(panels[0].attributes('style')).toContain('flex-basis: 150px;')
 
-    // mock mouse event
+    // mock 鼠标事件
     const simulateDrag = async (startPos: number, endPos: number) => {
       const splitBar = wrapper.find('.el-splitter-bar__dragger')
 
-      // Simulate mouse down
+      // 模拟鼠标按下
       const mousedown = new MouseEvent('mousedown', { bubbles: true })
       Object.defineProperty(mousedown, 'pageX', { value: startPos })
       splitBar.element.dispatchEvent(mousedown)
 
-      // Simulate mouse move
+      // 模拟鼠标移动
       const mousemove = new MouseEvent('mousemove', { bubbles: true })
       Object.defineProperty(mousemove, 'pageX', { value: endPos })
       window.dispatchEvent(mousemove)
 
-      // Simulate mouse up
+      // 模拟鼠标抬起
       const mouseup = new MouseEvent('mouseup', { bubbles: true })
       Object.defineProperty(mouseup, 'pageX', { value: endPos })
       window.dispatchEvent(mouseup)
@@ -131,11 +131,11 @@ describe('Splitter', () => {
       await nextTick()
     }
 
-    // Test min size constraint: drag left to minimum value 100px
+    // 测试最小尺寸约束：向左拖动到最小值 100px
     await simulateDrag(150, 50)
     expect(panels[0].attributes('style')).toContain('flex-basis: 100px;')
 
-    // Test max size constraint: drag right to maximum value 200px
+    // 测试最大尺寸约束：向右拖动到最大值 200px
     await simulateDrag(50, 150)
     expect(panels[0].attributes('style')).toContain('flex-basis: 200px;')
   })
@@ -161,21 +161,21 @@ describe('Splitter', () => {
       '.el-splitter-bar__horizontal-collapse-icon-end'
     )
 
-    // default size
+    // 默认尺寸
     expect(panels[0].attributes('style')).toContain('flex-basis: 150px;')
 
-    // Click collapse button
+    // 点击折叠按钮
     await startCollapseButton.trigger('click')
     await nextTick()
 
-    // Panel should be collapsed (size = 0)
+    // 面板应折叠（size = 0）
     expect(panels[0].attributes('style')).toContain('flex-basis: 0px;')
 
-    // Click collapse button  to expand
+    // 点击折叠按钮以展开
     await endCollapseButton.trigger('click')
     await nextTick()
 
-    // Panel should be restored to original size
+    // 面板应恢复为原始尺寸
     expect(panels[0].attributes('style')).toContain('flex-basis: 150px;')
   })
 
@@ -198,26 +198,26 @@ describe('Splitter', () => {
     ))
     await nextTick()
 
-    // mock mouse event
+    // mock 鼠标事件
     const simulateDrag = async (startPos: number, endPos: number) => {
       const splitBar = wrapper.find('.el-splitter-bar__dragger')
 
-      // Simulate mouse down
+      // 模拟鼠标按下
       const mousedown = new MouseEvent('mousedown', { bubbles: true })
       Object.defineProperty(mousedown, 'pageX', { value: startPos })
       splitBar.element.dispatchEvent(mousedown)
       await nextTick()
 
-      // Simulate mouse move
+      // 模拟鼠标移动
       const mousemove = new MouseEvent('mousemove', { bubbles: true })
       Object.defineProperty(mousemove, 'pageX', { value: endPos })
       window.dispatchEvent(mousemove)
 
-      // Move again
+      // 再次移动
       await nextTick()
       window.dispatchEvent(mousemove)
 
-      // Simulate mouse up
+      // 模拟鼠标抬起
       const mouseup = new MouseEvent('mouseup', { bubbles: true })
       Object.defineProperty(mouseup, 'pageX', { value: endPos })
       window.dispatchEvent(mouseup)
@@ -253,12 +253,12 @@ describe('Splitter', () => {
       '.el-splitter-bar__horizontal-collapse-icon-end'
     )
 
-    // Click collapse button
+    // 点击折叠按钮
     await startCollapseButton.trigger('click')
     await nextTick()
     expect(onCollapse).toHaveBeenCalledWith(0, 'start', [0, 400])
 
-    // Click collapse button to expand
+    // 点击折叠按钮以展开
     await endCollapseButton.trigger('click')
     await nextTick()
     expect(onCollapse).toHaveBeenCalledWith(0, 'end', [200, 200])
@@ -291,28 +291,28 @@ describe('Splitter', () => {
       '.el-splitter-bar__horizontal-collapse-icon-end'
     )
 
-    // default size
+    // 默认尺寸
     expect(panels[0].attributes('style')).toContain('flex-basis: 150px;')
 
-    // Click collapse button
+    // 点击折叠按钮
     await startCollapseButton.trigger('click')
     await nextTick()
 
-    // Panel should be collapsed (size = 0)
+    // 面板应折叠（size = 0）
     expect(panels[0].attributes('style')).toContain('flex-basis: 0px;')
 
-    // Click collapse button to expand
+    // 点击折叠按钮以展开
     await endCollapseButton.trigger('click')
     await nextTick()
 
-    // Panel should be restored to original size
+    // 面板应恢复为原始尺寸
     expect(panels[0].attributes('style')).toContain('flex-basis: 150px;')
 
-    // Click collapse button  to expand
+    // 点击折叠按钮以展开
     await endCollapseButton.trigger('click')
     await nextTick()
 
-    // Panel should be collapsed (size = 400)
+    // 面板应折叠（size = 400）
     expect(panels[0].attributes('style')).toContain('flex-basis: 400px;')
   })
 

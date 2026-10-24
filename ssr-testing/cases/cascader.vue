@@ -26,7 +26,7 @@ const props = {
 }
 
 const handleChange = () => {
-  // do nothing
+  // 不做任何处理
 }
 
 const options = [

@@ -241,7 +241,7 @@ table.layout = layout
 const isEmpty = computed(() => (store.states.data.value || []).length === 0)
 
 /**
- * open functions
+ * 对外暴露的方法
  */
 const {
   setCurrentRow,
@@ -332,51 +332,51 @@ defineExpose({
   emptyBlockStyle,
   debouncedUpdateLayout,
   /**
-   * @description used in single selection Table, set a certain row selected. If called without any parameter, it will clear selection
+   * @description 用于单选 Table，选中指定的某一行。不带参数调用时将清除选中
    */
   setCurrentRow,
   /**
-   * @description returns the currently selected rows
+   * @description 返回当前选中的行
    */
   getSelectionRows,
   /**
-   * @description returns the currently half-selected rows
+   * @description 返回当前半选的行
    */
   getHalfSelectionRows,
   /**
-   * @description used in multiple selection Table, toggle if a certain row is selected. With the second parameter, you can directly set if this row is selected
+   * @description 用于多选 Table，切换某一行的选中状态。通过第二个参数可以直接设置该行是否被选中
    */
   toggleRowSelection,
   /**
-   * @description used in multiple selection Table, clear user selection
+   * @description 用于多选 Table，清除用户的选中
    */
   clearSelection,
   /**
-   * @description clear filters of the columns whose `columnKey` are passed in. If no params, clear all filters
+   * @description 清除传入 `columnKey` 的列的过滤。若无参数，则清除所有过滤
    */
   clearFilter,
   /**
-   * @description used in multiple selection Table, toggle select all and deselect all
+   * @description 用于多选 Table，切换全选与取消全选
    */
   toggleAllSelection,
   /**
-   * @description used in expandable Table or tree Table, toggle if a certain row is expanded. With the second parameter, you can directly set if this row is expanded or collapsed
+   * @description 用于可展开 Table 或树形 Table，切换某一行的展开状态。通过第二个参数可以直接设置该行是展开还是折叠
    */
   toggleRowExpansion,
   /**
-   * @description clear sorting, restore data to the original order
+   * @description 清除排序，将数据恢复为原始顺序
    */
   clearSort,
   /**
-   * @description refresh the layout of Table. When the visibility of Table changes, you may need to call this method to get a correct layout
+   * @description 刷新 Table 的布局。当 Table 的可见性发生变化时，可能需要调用此方法以获得正确布局
    */
   doLayout,
   /**
-   * @description sort Table manually. Property `prop` is used to set sort column, property `order` is used to set sort order
+   * @description 手动对 Table 排序。`prop` 属性用于设置排序列，`order` 属性用于设置排序方向
    */
   sort,
   /**
-   * @description used in lazy Table, must set `rowKey`, update key children
+   * @description 用于懒加载 Table，必须设置 `rowKey`，更新 key 对应的子项
    */
   updateKeyChildren,
   t,
@@ -391,19 +391,19 @@ defineExpose({
   scrollbarStyle,
   scrollBarRef,
   /**
-   * @description scrolls to a particular set of coordinates
+   * @description 滚动到指定的坐标位置
    */
   scrollTo,
   /**
-   * @description set horizontal scroll position
+   * @description 设置水平滚动位置
    */
   setScrollLeft,
   /**
-   * @description set vertical scroll position
+   * @description 设置垂直滚动位置
    */
   setScrollTop,
   /**
-   * @description whether to allow drag the last column
+   * @description 是否允许拖动最后一列
    */
   allowDragLastColumn: props.allowDragLastColumn,
 })

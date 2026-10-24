@@ -84,11 +84,11 @@ describe('Space.vue', () => {
 
     expect(wrapper.text()).toContain(stringSpacer)
 
-    // 2 elements expecting only 1 spacer
+    // 2 个元素，预期仅 1 个间隔符
     expect(wrapper.text().split(stringSpacer)).toHaveLength(2)
     const testSpacerCls = 'test-spacer-cls'
 
-    // vnode type spacer
+    // vnode 类型的间隔符
     await wrapper.setProps({
       spacer: <div class={testSpacerCls} />,
     })
@@ -136,7 +136,7 @@ describe('Space.vue', () => {
       'min-width: 100%'
     )
 
-    // custom fill ratio
+    // 自定义填充比例
     await wrapper.setProps({
       fillRatio: 50,
     })
@@ -148,7 +148,7 @@ describe('Space.vue', () => {
   })
 
   it('should handle empty conditional templates correctly', async () => {
-    // Test with a component that uses v-if to simulate empty templates
+    // 使用一个通过 v-if 模拟空模板的组件进行测试
     const TestComponent = {
       template: `
         <el-space spacer="|">

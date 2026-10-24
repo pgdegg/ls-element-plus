@@ -5,8 +5,6 @@ import type { IfNever, UnknownToNever, WritableArray } from './util'
 type Value<T> = T[keyof T]
 
 /**
- * Extract the type of a single prop
- *
  * 提取单个 prop 的参数类型
  *
  * @example
@@ -21,8 +19,6 @@ export type ExtractPropType<T extends object> = Value<
 >
 
 /**
- * Extracts types via `ExtractPropTypes`, accepting `PropType<T>`, `XXXConstructor`, `never`...
- *
  * 通过 `ExtractPropTypes` 提取类型，接受 `PropType<T>`、`XXXConstructor`、`never`...
  *
  * @example
@@ -39,7 +35,6 @@ export type ResolvePropType<T> = IfNever<
 >
 
 /**
- * Merge Type, Value, Validator types
  * 合并 Type、Value、Validator 的类型
  *
  * @example
@@ -52,8 +47,6 @@ export type EpPropMergeType<Type, Value, Validator> =
   | UnknownToNever<Validator>
 
 /**
- * Handling default values for input (constraints)
- *
  * 处理输入参数的默认值（约束）
  */
 export type EpPropInputDefault<
@@ -66,17 +59,13 @@ export type EpPropInputDefault<
     : (() => Default) | Default
 
 /**
- * Native prop types, e.g: `BooleanConstructor`, `StringConstructor`, `null`, `undefined`, etc.
- *
- * 原生 prop `类型，BooleanConstructor`、`StringConstructor`、`null`、`undefined` 等
+ * 原生 prop 类型，例如 `BooleanConstructor`、`StringConstructor`、`null`、`undefined` 等。
  */
 export type NativePropType =
   ((...args: any) => any) | { new (...args: any): any } | undefined | null
 export type IfNativePropType<T, Y, N> = [T] extends [NativePropType] ? Y : N
 
 /**
- * input prop `buildProp` or `buildProps` (constraints)
- *
  * prop 输入参数（约束）
  *
  * @example
@@ -105,8 +94,6 @@ export type EpPropInput<
 }
 
 /**
- * output prop `buildProp` or `buildProps`.
- *
  * prop 输出参数。
  *
  * @example
@@ -128,13 +115,11 @@ export type EpProp<Type, Default, Required> = {
 } & IfNever<Default, unknown, { readonly default: Default }>
 
 /**
- * Determine if it is `EpProp`
+ * 判断是否为 `EpProp`
  */
 export type IfEpProp<T, Y, N> = T extends { [epPropKey]: true } ? Y : N
 
 /**
- * Converting input to output.
- *
  * 将输入转换为输出
  */
 export type EpPropConvert<Input> =
@@ -149,8 +134,6 @@ export type EpPropConvert<Input> =
     : never
 
 /**
- * Finalized conversion output
- *
  * 最终转换 EpProp
  */
 export type EpPropFinalized<Type, Value, Validator, Default, Required> = EpProp<

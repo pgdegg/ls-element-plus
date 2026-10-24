@@ -9,7 +9,7 @@ import type { TimelineProvider } from './tokens'
 
 export const timelineProps = buildProps({
   /**
-   * @description relative position of timeline and content
+   * @description 时间线与内容的相对位置
    */
   mode: {
     type: String,
@@ -17,7 +17,7 @@ export const timelineProps = buildProps({
     default: 'start',
   },
   /**
-   * @description whether reverse order
+   * @description 是否倒序
    */
   reverse: Boolean,
 } as const)

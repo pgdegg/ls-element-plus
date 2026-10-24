@@ -1,7 +1,7 @@
 import type { InjectionKey } from 'vue'
 import type { SelectContext, SelectGroupContext } from './type'
 
-// For individual build sharing injection key, we had to make `Symbol` to string
+// 为了让独立构建之间共享注入键，我们必须把 `Symbol` 转为字符串
 export const selectGroupKey: InjectionKey<SelectGroupContext> =
   Symbol('ElSelectGroup')
 

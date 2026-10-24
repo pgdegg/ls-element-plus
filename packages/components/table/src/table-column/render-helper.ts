@@ -37,14 +37,14 @@ function useRender<T extends DefaultRow>(
   const ns = useNamespace('table')
   watchEffect(() => {
     realAlign.value = props.align ? `is-${props.align}` : null
-    // nextline help render
+    // 下一行用于辅助渲染（触发响应式更新）
     realAlign.value
   })
   watchEffect(() => {
     realHeaderAlign.value = props.headerAlign
       ? `is-${props.headerAlign}`
       : realAlign.value
-    // nextline help render
+    // 下一行用于辅助渲染（触发响应式更新）
     realHeaderAlign.value
   })
   const columnOrTableParent = computed<Table<T> | TableColumn<T>>(() => {
@@ -122,13 +122,13 @@ function useRender<T extends DefaultRow>(
       )
     } else if (column.type !== 'selection') {
       column.renderHeader = (scope) => {
-        // help render
+        // 辅助渲染
         instance.columnConfig.value['label']
 
         if (slots.header) {
           const slotResult = slots.header(scope)
-          // Manual valid check to support v-if fallback
-          // and bypass renderSlot to support HMR
+          // 手动进行有效校验以支持 v-if 回退
+          // 并绕过 renderSlot 以支持 HMR
           if (ensureValidVNode(slotResult)) {
             return h(Fragment, slotResult)
           }

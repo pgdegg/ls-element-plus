@@ -5,7 +5,7 @@ import type { ExtractPublicPropTypes } from 'vue'
 
 export interface SkeletonItemProps {
   /**
-   * @description the current rendering skeleton type
+   * @description 当前渲染的骨架类型
    */
   variant?:
     | 'circle'
@@ -20,11 +20,11 @@ export interface SkeletonItemProps {
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `SkeletonItemProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `SkeletonItemProps`。
  */
 export const skeletonItemProps = buildProps({
   /**
-   * @description the current rendering skeleton type
+   * @description 当前渲染的骨架类型
    */
   variant: {
     type: String,
@@ -44,7 +44,7 @@ export const skeletonItemProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `SkeletonItemProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `SkeletonItemProps`。
  */
 export type SkeletonItemPropsPublic = ExtractPublicPropTypes<
   typeof skeletonItemProps

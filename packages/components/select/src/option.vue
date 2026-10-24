@@ -81,7 +81,7 @@ export default defineComponent({
     onBeforeUnmount(() => {
       const key = vm.value
 
-      // if option is not selected, remove it from cache
+      // 如果选项未被选中，将其从缓存中移除
       nextTick(() => {
         const { selected: selectedOptions } = select.states
         const doesSelected = selectedOptions.some((item) => {

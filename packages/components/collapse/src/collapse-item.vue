@@ -79,7 +79,7 @@ const {
 } = useCollapseItemDOM(props, { focusing, isActive, id })
 
 defineExpose({
-  /** @description current collapse-item whether active */
+  /** @description 当前折叠项是否处于激活状态 */
   isActive,
 })
 </script>

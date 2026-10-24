@@ -80,7 +80,7 @@ export default defineComponent({
         )
 
         if (isKeydownContained) {
-          // TODO: implement typeahead search
+          // TODO：实现 typeahead 搜索
         }
 
         if (EVENT_CODE.tab === code) {

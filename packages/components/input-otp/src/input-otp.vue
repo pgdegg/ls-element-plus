@@ -174,12 +174,12 @@ const handleInput = (event: Event, index: number) => {
   let focusIndex = targetIndex + 1
   let value = target.value
 
-  // Safari and Firefox do not trigger the paste event during autofill,
-  // so the paste logic needs to be handled in the input event
+  // Safari 和 Firefox 在自动填充期间不会触发 paste 事件，
+  // 因此粘贴逻辑需要在 input 事件中处理
   if (value.length > 1) {
     const chars = castValues(value, targetIndex)
 
-    // Avoid innerValue inconsistency with the input box value after pasting when char has no change
+    // 避免字符无变化时粘贴后 innerValue 与输入框值不一致
     target.value = innerValue.value[index] ?? ''
 
     chars.forEach((char, i) => (innerValue.value[targetIndex + i] = char))

@@ -10,7 +10,7 @@ import type {
 
 export const COLLECTION_ITEM_SIGN = `data-el-collection-item`
 
-// Make sure the first letter of name is capitalized
+// 确保 name 的首字母大写
 export const createCollectionWithScope = (name: string) => {
   const COLLECTION_NAME = `El${name}Collection`
   const COLLECTION_ITEM_NAME = `${COLLECTION_NAME}Item`

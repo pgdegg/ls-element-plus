@@ -12,41 +12,41 @@ import type { IconPropType, ObjectFit } from '@element-plus/utils'
 
 export interface AvatarProps {
   /**
-   * @description avatar size.
+   * @description 头像尺寸。
    */
   size?: number | ComponentSize
   /**
-   * @description avatar shape.
+   * @description 头像形状。
    */
   shape?: 'circle' | 'square'
   /**
-   * @description representation type to icon, more info on icon component.
+   * @description 图标的展示类型，详见 icon 组件。
    */
   icon?: IconPropType
   /**
-   * @description the source of the image for an image avatar.
+   * @description 图片头像的图片地址。
    */
   src?: string
   /**
-   * @description native attribute `alt` of image avatar.
+   * @description 图片头像的原生属性 `alt`。
    */
   alt?: string
   /**
-   * @description native attribute srcset of image avatar.
+   * @description 图片头像的原生属性 srcset。
    */
   srcSet?: string
   /**
-   * @description set how the image fit its container for an image avatar.
+   * @description 设置图片头像中图片如何适应其容器。
    */
   fit?: ObjectFit
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `AvatarProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `AvatarProps`
  */
 export const avatarProps = buildProps({
   /**
-   * @description avatar size.
+   * @description 头像尺寸。
    */
   size: {
     type: [Number, String],
@@ -54,35 +54,35 @@ export const avatarProps = buildProps({
     validator: (val: unknown): val is number => isNumber(val),
   },
   /**
-   * @description avatar shape.
+   * @description 头像形状。
    */
   shape: {
     type: String,
     values: ['circle', 'square'],
   },
   /**
-   * @description representation type to icon, more info on icon component.
+   * @description 图标的展示类型，详见 icon 组件。
    */
   icon: {
     type: iconPropType,
   },
   /**
-   * @description the source of the image for an image avatar.
+   * @description 图片头像的图片地址。
    */
   src: {
     type: String,
     default: '',
   },
   /**
-   * @description native attribute `alt` of image avatar.
+   * @description 图片头像的原生属性 `alt`。
    */
   alt: String,
   /**
-   * @description native attribute srcset of image avatar.
+   * @description 图片头像的原生属性 srcset。
    */
   srcSet: String,
   /**
-   * @description set how the image fit its container for an image avatar.
+   * @description 设置图片头像中图片如何适应其容器。
    */
   fit: {
     type: definePropType<ObjectFit>(String),
@@ -91,7 +91,7 @@ export const avatarProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `AvatarProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `AvatarProps`
  */
 export type AvatarPropsPublic = ExtractPublicPropTypes<typeof avatarProps>
 

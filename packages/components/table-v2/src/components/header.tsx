@@ -100,7 +100,7 @@ const TableV2Header = defineComponent({
     })
     expose({
       /**
-       * @description scroll to position based on the provided value
+       * @description 根据提供的值滚动到对应位置
        */
       scrollToLeft,
     })
@@ -129,7 +129,7 @@ export default TableV2Header
 
 export type TableV2HeaderInstance = InstanceType<typeof TableV2Header> & {
   /**
-   * @description scroll to position based on the provided value
+   * @description 根据提供的值滚动到对应位置
    */
   scrollToLeft: (left?: number) => void
 }

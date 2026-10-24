@@ -12,7 +12,7 @@ export interface ThumbProps {
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `ThumbProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `ThumbProps`。
  */
 export const thumbProps = buildProps({
   vertical: Boolean,
@@ -26,7 +26,7 @@ export const thumbProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `ThumbProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `ThumbProps`。
  */
 export type ThumbPropsPublic = ExtractPublicPropTypes<typeof thumbProps>
 

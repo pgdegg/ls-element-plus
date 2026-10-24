@@ -56,7 +56,7 @@ const data = generateData(columns, 200)
 
 const expandColumnKey = 'column-0'
 
-// add some sub items
+// 添加一些子项
 for (let i = 0; i < 50; i++) {
   data.push(
     {

@@ -49,7 +49,7 @@ export const useFormDisabled = (fallback?: MaybeRef<boolean | undefined>) => {
   })
 }
 
-// These exports are used for preventing breaking changes
+// 这些导出用于防止破坏性变更
 export const useSize = useFormSize
 export const useDisabled = useFormDisabled
 

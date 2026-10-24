@@ -17,14 +17,14 @@
         >
           <div :class="ns.e('mask')" @click.self="hideOnClickModal && hide()" />
 
-          <!-- CLOSE -->
+          <!-- 关闭 -->
           <span :class="[ns.e('btn'), ns.e('close')]" @click="hide">
             <el-icon>
               <Close />
             </el-icon>
           </span>
 
-          <!-- ARROW -->
+          <!-- 箭头 -->
           <template v-if="!isSingle">
             <span :class="arrowPrevKls" @click="prev">
               <el-icon>
@@ -49,7 +49,7 @@
               {{ progress }}
             </slot>
           </div>
-          <!-- ACTIONS -->
+          <!-- 操作 -->
           <div :class="[ns.e('btn'), ns.e('actions')]">
             <div :class="ns.e('actions__inner')">
               <slot
@@ -81,7 +81,7 @@
               </slot>
             </div>
           </div>
-          <!-- CANVAS -->
+          <!-- 画布 -->
           <div :class="ns.e('canvas')">
             <slot
               v-if="loadError && $slots['viewer-error']"
@@ -517,7 +517,7 @@ onMounted(() => {
 
 defineExpose({
   /**
-   * @description manually switch image
+   * @description 手动切换图片
    */
   setActiveItem,
 })

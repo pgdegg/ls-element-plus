@@ -62,7 +62,7 @@ const displayValue = computed(() => {
 
 defineExpose({
   /**
-   * @description current display value
+   * @description 当前显示值
    */
   displayValue,
 })

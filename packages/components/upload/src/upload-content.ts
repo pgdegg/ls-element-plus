@@ -23,7 +23,7 @@ export interface UploadContentProps extends UploadBaseProps {
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `UploadContentProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `UploadContentProps`。
  */
 export const uploadContentProps = buildProps({
   ...uploadBaseProps,
@@ -65,7 +65,7 @@ export const uploadContentProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `UploadContentProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `UploadContentProps`。
  */
 export type UploadContentPropsPublic = ExtractPublicPropTypes<
   typeof uploadContentProps

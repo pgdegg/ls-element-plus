@@ -1,6 +1,6 @@
 /**
- * Trigger event
- * mouseenter, mouseleave, mouseover, keyup, change, click
+ * 触发事件
+ * mouseenter、mouseleave、mouseover、keyup、change、click
  */
 const triggerEvent = (elm: Element, name: string, ...opts: any[]) => {
   let eventName: string
@@ -17,7 +17,7 @@ const triggerEvent = (elm: Element, name: string, ...opts: any[]) => {
   evt.initEvent(name, ...opts)
 
   if (name === 'keydown' && opts[0]) {
-    // trigger event with keycode
+    // 携带 keycode 触发事件
     // triggerEvent(ele, 'keydown', 'ArrowDown')
     Object.defineProperty(evt, 'code', { value: opts[0] })
   }

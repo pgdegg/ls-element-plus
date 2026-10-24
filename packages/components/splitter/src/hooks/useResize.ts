@@ -55,7 +55,7 @@ export function useResize(
   const onMoving = (index: number, offset: number) => {
     let confirmedIndex: number | null = null
 
-    // When overlapping, find the nearest draggable index
+    // 重叠时，查找最近的可拖动索引
     if ((!movingIndex.value || !movingIndex.value.confirmed) && offset !== 0) {
       if (offset > 0) {
         confirmedIndex = index
@@ -75,7 +75,7 @@ export function useResize(
     const numSizes = [...cachePxSizes]
     const nextIndex = mergedIndex + 1
 
-    // Handle the maximum and minimum edge cases
+    // 处理最大值和最小值的边界情况
     const startMinSize = getLimitSize(limitSizes.value[mergedIndex]![0], 0)
     const endMinSize = getLimitSize(limitSizes.value[nextIndex]![0], 0)
     const startMaxSize = getLimitSize(

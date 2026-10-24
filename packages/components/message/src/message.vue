@@ -40,7 +40,7 @@
           {{ message }}
         </slot>
       </p>
-      <!-- Caution here, message could've been compromised, never use user's input as message -->
+      <!-- 注意：这里的 message 可能已被篡改，绝不要把用户输入作为 message -->
       <p v-else :class="ns.e('content')" v-html="message" />
       <el-icon v-if="showClose" :class="ns.e('closeBtn')" @click.stop="close">
         <Close />
@@ -147,7 +147,7 @@ function clearTimer() {
 function close() {
   visible.value = false
 
-  // if the message has never started a transition, we can destroy it immediately
+  // 如果 message 从未开始 transition，可立即销毁
   nextTick(() => {
     if (!isStartTransition.value) {
       props.onClose?.()
@@ -159,7 +159,7 @@ function close() {
 function keydown(event: KeyboardEvent) {
   const code = getEventCode(event)
   if (code === EVENT_CODE.esc) {
-    // press esc to close the message
+    // 按 ESC 关闭 message
     close()
   }
 }

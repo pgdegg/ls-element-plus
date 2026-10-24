@@ -34,7 +34,7 @@ import type {
 } from '@element-plus/components/popper'
 
 /**
- * @description Tag tooltip configuration interface
+ * @description Tag 提示框（tooltip）配置接口
  */
 export interface TagTooltipProps {
   appendTo?: string | HTMLElement
@@ -53,61 +53,61 @@ export interface TagTooltipProps {
 }
 
 export const selectV2Props = buildProps({
-  /** @description delimiter for string-backed multiple selections */
+  /** @description 字符串形式多选值的分隔符 */
   separator: String,
   filterKeys: { type: definePropType<string[]>(Array), default: () => [] },
-  /** @description selected display labels */
+  /** @description 选中项的展示标签 */
   label: { type: definePropType<string | string[]>([String, Array]) },
   /**
-   * @description whether creating new items is allowed. To use this, `filterable` must be true
+   * @description 是否允许创建新条目。使用此项时 `filterable` 必须为 true
    */
   allowCreate: Boolean,
   /**
-   * @description autocomplete of select input
+   * @description select 输入框的自动补全
    */
   autocomplete: {
     type: definePropType<'none' | 'both' | 'list' | 'inline'>(String),
     default: 'none',
   },
   /**
-   * @description for non-filterable Select, this prop decides if the option menu pops up when the input is focused
+   * @description 对于不可筛选的 Select，该 prop 决定输入框聚焦时是否弹出选项菜单
    */
   automaticDropdown: Boolean,
   /**
-   * @description whether select can be cleared
+   * @description Select 是否可清空
    */
   clearable: Boolean,
   /**
-   * @description custom clear icon
+   * @description 自定义清除图标
    */
   clearIcon: {
     type: iconPropType,
     default: CircleClose,
   },
   /**
-   * @description tooltip theme, built-in theme: `dark` / `light`
+   * @description Tooltip 主题，内置主题：`dark` / `light`
    */
   effect: {
     type: definePropType<PopperEffect>(String),
     default: 'light',
   },
   /**
-   * @description whether to collapse tags to a text when multiple selecting
+   * @description 多选时是否将标签折叠为一段文本
    */
   collapseTags: Boolean,
   /**
-   * @description whether show all selected tags when mouse hover text of collapse-tags. To use this, `collapse-tags` must be true
+   * @description 鼠标悬停在折叠标签文本上时是否显示全部已选标签。使用此项时 `collapse-tags` 必须为 true
    */
   collapseTagsTooltip: Boolean,
   /**
-   * @description configuration object for the collapse-tags tooltip. To use this, `collapse-tags` and `collapse-tags-tooltip` must be true
+   * @description 折叠标签 tooltip 的配置对象。使用此项时 `collapse-tags` 和 `collapse-tags-tooltip` 必须为 true
    */
   tagTooltip: {
     type: definePropType<TagTooltipProps>(Object),
     default: () => ({}),
   },
   /**
-   * @description The max tags number to be shown. To use this, `collapse-tags` must be true
+   * @description 最多显示的标签数量。使用此项时 `collapse-tags` 必须为 true
    */
   maxCollapseTags: {
     type: Number,
@@ -118,57 +118,57 @@ export const selectV2Props = buildProps({
    */
   defaultFirstOption: Boolean,
   /**
-   * @description is disabled
+   * @description 是否禁用
    */
   disabled: {
     type: Boolean,
     default: undefined,
   },
   /**
-   * @description Estimated item height for variable option sizes. Defaults to fixed `itemHeight` when omitted.
+   * @description 可变选项尺寸下的预估条目高度。省略时默认使用固定的 `itemHeight`。
    */
   estimatedOptionHeight: {
     type: Number,
     default: undefined,
   },
   /**
-   * @description whether Select is filterable
+   * @description Select 是否可筛选
    */
   filterable: Boolean,
   /**
-   * @description custom filter method, the first parameter is the current input value. To use this, `filterable` must be true
+   * @description 自定义筛选方法，第一个参数为当前输入值。使用此项时 `filterable` 必须为 true
    */
   filterMethod: {
     type: definePropType<(query: string) => void>(Function),
   },
   /**
-   * @description The height of the dropdown panel, 34px for each item
+   * @description 下拉面板高度，每项 34px
    */
   height: {
     type: Number,
-    default: 274, // same as select dropdown menu
+    default: 274, // 与 select 下拉菜单相同
   },
   /**
-   * @description The height of the dropdown item
+   * @description 下拉条目的高度
    */
   itemHeight: {
     type: Number,
     default: 34,
   },
   /**
-   * @description native input id
+   * @description 原生 input id
    */
   id: String,
   /**
-   * @description whether Select is loading data from server
+   * @description Select 是否正在从服务器加载数据
    */
   loading: Boolean,
   /**
-   * @description displayed text while loading data from server, default is 'Loading'
+   * @description 从服务器加载数据时显示的文字，默认 'Loading'
    */
   loadingText: String,
   /**
-   * @description biding value
+   * @description 绑定值
    */
   modelValue: {
     type: definePropType<
@@ -177,140 +177,140 @@ export const selectV2Props = buildProps({
     default: undefined,
   },
   /**
-   * @description is multiple
+   * @description 是否多选
    */
   multiple: Boolean,
   /**
-   * @description maximum number of options user can select when multiple is true. No limit when set to 0
+   * @description multiple 为 true 时用户可选择的最大选项数，设为 0 表示不限
    */
   multipleLimit: {
     type: Number,
     default: 0,
   },
   /**
-   * @description the name attribute of select input
+   * @description select 输入框的 name 属性
    */
   name: String,
   /**
-   * @description displayed text when there is no options, you can also use slot empty, the default is 'No Data'
+   * @description 无选项时显示的文字，也可使用 empty 插槽，默认 'No Data'
    */
   noDataText: String,
   /**
-   * @description displayed text when no data matches the filtering query, you can also use slot `empty`, default is 'No matching data'
+   * @description 没有数据匹配筛选条件时显示的文字，也可使用 `empty` 插槽，默认 'No matching data'
    */
   noMatchText: String,
   /**
-   * @description function that gets called when the input value changes. Its parameter is the current input value. To use this, `filterable` must be true
+   * @description 输入值变化时调用的函数，其参数为当前输入值。使用此项时 `filterable` 必须为 true
    */
   remoteMethod: {
     type: definePropType<(query: string) => void>(Function),
   },
   /**
-   * @description whether reserve the keyword after select filtered option.
+   * @description 选中筛选出的选项后是否保留关键字。
    */
   reserveKeyword: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description data of the options, the key of `value` and `label` can be customize by `props`
+   * @description 选项数据，`value` 和 `label` 的键名可通过 `props` 自定义
    */
   options: {
     type: definePropType<OptionType[]>(Array),
     required: true,
   },
   /**
-   * @description placeholder, the default is 'Please select'
+   * @description 占位文本，默认 'Please select'
    */
   placeholder: {
     type: String,
   },
   /**
-   * @description whether select dropdown is teleported, if `true` it will be teleported to where `append-to` sets
+   * @description 下拉框是否被 teleport；为 `true` 时将挂载到 `append-to` 指定的位置
    */
   teleported: useTooltipContentProps.teleported,
   /**
-   * @description when select dropdown is inactive and `persistent` is `false`, select dropdown will be destroyed
+   * @description 当下拉框不处于激活状态且 `persistent` 为 `false` 时，下拉框将被销毁
    */
   persistent: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description custom class name for Select's dropdown
+   * @description Select 下拉框的自定义类名
    */
   popperClass: useTooltipContentProps.popperClass,
   /**
-   * @description custom style for Select's dropdown
+   * @description Select 下拉框的自定义样式
    */
   popperStyle: useTooltipContentProps.popperStyle,
   /**
-   * @description [popper.js](https://popper.js.org/docs/v2/) parameters
+   * @description [popper.js](https://popper.js.org/docs/v2/) 参数
    */
   popperOptions: {
     type: definePropType<Partial<Options>>(Object),
     default: () => ({}) as Partial<Options>,
   },
   /**
-   * @description whether search data from server
+   * @description 是否从服务器搜索数据
    */
   remote: Boolean,
   /**
-   * @description debounce delay during remote search, in milliseconds
+   * @description 远程搜索时的防抖延迟，单位毫秒
    */
   debounce: {
     type: Number,
     default: 300,
   },
   /**
-   * @description size of component
+   * @description 组件尺寸
    */
   size: useSizeProp,
   /**
-   * @description configuration options, see the following table
+   * @description 配置项，见下表
    */
   props: {
     type: definePropType<Props>(Object),
     default: () => defaultProps,
   },
   /**
-   * @description unique identity key name for value, required when value is an object
+   * @description 值的唯一标识键名，当值为对象时必填
    */
   valueKey: {
     type: String,
     default: 'value',
   },
   /**
-   * @description Controls whether the scrollbar is always displayed
+   * @description 控制滚动条是否始终显示
    */
   scrollbarAlwaysOn: Boolean,
   /**
-   * @description whether to trigger form validation
+   * @description 是否触发表单校验
    */
   validateEvent: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description offset of the dropdown
+   * @description 下拉框偏移量
    */
   offset: {
     type: Number,
     default: 12,
   },
   /**
-   * @description in remote search method show suffix icon
+   * @description 远程搜索时是否显示后缀图标
    */
   remoteShowSuffix: Boolean,
   /**
-   * @description Determines whether the arrow is displayed
+   * @description 是否显示箭头
    */
   showArrow: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description position of dropdown
+   * @description 下拉框位置
    */
   placement: {
     type: definePropType<Placement>(String),
@@ -318,35 +318,35 @@ export const selectV2Props = buildProps({
     default: 'bottom-start',
   },
   /**
-   * @description list of possible positions for dropdown
+   * @description 下拉框可选位置列表
    */
   fallbackPlacements: {
     type: definePropType<Placement[]>(Array),
     default: ['bottom-start', 'top-start', 'right', 'left'],
   },
   /**
-   * @description tag type
+   * @description 标签类型
    */
   tagType: { ...tagProps.type, default: 'info' },
   /**
-   * @description tag effect
+   * @description 标签效果
    */
   tagEffect: { ...tagProps.effect, default: 'light' },
   /**
-   * @description tabindex for input
+   * @description input 的 tabindex
    */
   tabindex: {
     type: [String, Number],
     default: 0,
   },
   /**
-   * @description which element the select dropdown appends to
+   * @description 下拉框挂载到哪个元素
    */
   appendTo: useTooltipContentProps.appendTo,
   /**
-   * @description if it is `true`, the width of the dropdown panel is the same as the input box.
-   * if it is `false`, the width is automatically calculated based on the value of `label`,
-   * or it can be set to a number to make it a fixed width
+   * @description 为 `true` 时，下拉面板宽度与输入框相同；
+   * 为 `false` 时，宽度根据 `label` 的值自动计算；
+   * 也可设为数字以使用固定宽度
    */
   fitInputWidth: {
     type: [Boolean, Number],

@@ -398,8 +398,8 @@ const warnHandlerMap = new WeakMap<AppContext, WarnHandlerRecord>()
 
 const createSelectWarnHandler = (appContext: AppContext): WarnHandler => {
   return (...args) => {
-    // Overrides warnings about slots not being executable outside of a render function.
-    // We call slot below just to simulate data when persist is false, this warning message should be ignored
+    // 覆盖关于 slot 不能在渲染函数之外执行的警告。
+    // 我们在下面调用 slot 只是为了在 persist 为 false 时模拟数据，此警告信息应被忽略
     const message = args[0]
     if (
       !message ||
@@ -456,8 +456,8 @@ export default defineComponent({
     const modelValue = computed(() => {
       const { modelValue: rawModelValue, multiple } = props
       const fallback = multiple ? [] : undefined
-      // When it is array, we check if this is multi-select.
-      // Based on the result we get
+      // 当它是数组时，我们判断是否为多选。
+      // 根据得到的结果
       if (
         props.multiple &&
         props.separator &&
@@ -518,9 +518,9 @@ export default defineComponent({
     }
 
     const manuallyRenderSlots = (vnodes: VNode[] | undefined) => {
-      // After option rendering is completed, the useSelect internal state can collect the value of each option.
-      // If the persistent value is false, option will not be rendered by default, so in this case,
-      // manually render and load option data here.
+      // 选项渲染完成后，useSelect 的内部状态可以收集每个选项的值。
+      // 如果 persistent 为 false，选项默认不会渲染，因此在这种情况下，
+      // 在这里手动渲染并加载选项数据。
       const children = flattedChildren(vnodes || []) as VNode[]
       children.forEach((item) => {
         if (
@@ -531,8 +531,8 @@ export default defineComponent({
           // @ts-expect-error
           const _name = item.type.name
           if (_name === 'ElTree') {
-            // tree-select component is a special case.
-            // So we need to handle it separately.
+            // tree-select 组件是一种特殊情况。
+            // 因此需要单独处理。
             const treeData = item.props?.data || []
             const flatData = flatTreeSelectData(treeData)
             flatData.forEach((treeItem: any) => {
@@ -558,22 +558,22 @@ export default defineComponent({
         modelValue.value,
       ],
       () => {
-        // When persistent is false and the dropdown is closed, the menu is unmounted.
-        // We should always re-hydrate option data from slots so labels stay in sync
-        // with dynamic option list updates. Skip only when persistent is true or
-        // when the dropdown is currently expanded (mounted options will manage themselves).
+        // 当 persistent 为 false 且下拉框关闭时，菜单会被卸载。
+        // 我们应始终从 slot 重新加载选项数据，以使标签保持同步
+        // 跟随动态选项列表更新。仅当 persistent 为 true 或
+        // 下拉框当前展开时才跳过（已挂载的选项会自行管理）。
         if (props.persistent || API.expanded.value) {
-          // If persistent is true, we don't need to manually render slots.
+          // 如果 persistent 为 true，就不需要手动渲染 slot。
           return
         }
-        // When using :options prop (no slot content), el-option components register
-        // and unregister themselves via onOptionCreate/onOptionDestroy lifecycle hooks.
-        // Calling options.clear() here would prematurely wipe options that are still
-        // mounted, causing a "No Data" flash during rapid open/close toggling.
+        // 使用 :options prop（无 slot 内容）时，el-option 组件通过
+        // onOptionCreate/onOptionDestroy 生命周期钩子自行注册和注销。
+        // 在此调用 options.clear() 会过早清除仍在
+        // 挂载的选项，在快速切换开/关时造成 "No Data" 闪烁。
         if (!slots.default) {
           return
         }
-        // Reset current options snapshot before re-collecting from slots.
+        // 在重新从 slot 收集之前重置当前选项快照。
         API.states.options.clear()
         manuallyRenderSlots(slots.default?.())
       },
@@ -593,7 +593,7 @@ export default defineComponent({
         handleOptionSelect: API.handleOptionSelect,
         onOptionCreate: API.onOptionCreate,
         onOptionDestroy: API.onOptionDestroy,
-      }) as unknown as SelectContext // Avoid TS2589
+      }) as unknown as SelectContext // 避免 TS2589
     )
 
     const selectedLabel = computed(() => {

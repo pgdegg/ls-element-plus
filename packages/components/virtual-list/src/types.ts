@@ -184,7 +184,7 @@ export type GridConstructorProps<
 }
 
 /**
- * Instance methods and emits
+ * 实例方法与 emits
  */
 export type GridDefaultSlotParams = {
   columnIndex: number

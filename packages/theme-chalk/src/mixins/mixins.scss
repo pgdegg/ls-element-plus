@@ -1,6 +1,6 @@
 @use 'function' as *;
 @use '../common/var' as *;
-// forward mixins
+// 转发 mixin
 @forward 'config';
 @forward 'function';
 @forward '_var';
@@ -11,9 +11,9 @@
 $B: null;
 $E: null;
 
-// Break-points
+// 断点
 @mixin res($key, $map: $breakpoints) {
-  // loop breakpoint Map, return if present
+  // 遍历断点 Map，命中则返回
   @if map.has-key($map, $key) {
     @media only screen and #{string.unquote(map.get($map, $key))} {
       @content;
@@ -23,7 +23,7 @@ $E: null;
   }
 }
 
-// Scrollbar
+// 滚动条
 @mixin scroll-bar {
   $scrollbar-thumb-background: getCssVar('text-color', 'disabled');
   $scrollbar-track-background: getCssVar('fill-color', 'blank');

@@ -98,7 +98,7 @@ onBeforeUnmount(() => {
 
 defineExpose({
   /**
-   * @description focus on current cell
+   * @description 聚焦当前单元格
    */
   focus,
 })

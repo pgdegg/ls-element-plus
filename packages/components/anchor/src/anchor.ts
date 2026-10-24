@@ -10,45 +10,45 @@ import type Anchor from './anchor.vue'
 
 export interface AnchorProps {
   /**
-   * @description scroll container
+   * @description 滚动容器
    */
   container?: string | HTMLElement | Window | null
   /**
-   * @description Set the offset of the anchor scroll
+   * @description 设置锚点滚动的偏移量
    */
   offset?: number
   /**
-   * @description The offset of the element starting to trigger the anchor
+   * @description 开始触发锚点的元素偏移量
    */
   bound?: number
   /**
-   * @description Set the scroll duration of the container when the anchor is clicked, in milliseconds
+   * @description 点击锚点时容器的滚动时长，单位为毫秒
    */
   duration?: number
   /**
-   * @description Whether to show the marker
+   * @description 是否显示标记
    */
   marker?: boolean
   /**
-   * @description Set Anchor type
+   * @description 设置 Anchor 类型
    */
   type?: 'default' | 'underline'
   /**
-   * @description Set Anchor direction
+   * @description 设置 Anchor 方向
    */
   direction?: 'vertical' | 'horizontal'
   /**
-   * @description Scroll whether link is selected at the top
+   * @description 滚动至顶部时链接是否被选中
    */
   selectScrollTop?: boolean
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `AnchorProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `AnchorProps`
  */
 export const anchorProps = buildProps({
   /**
-   * @description scroll container
+   * @description 滚动容器
    */
   container: {
     type: definePropType<string | HTMLElement | Window | null>([
@@ -57,55 +57,55 @@ export const anchorProps = buildProps({
     ]),
   },
   /**
-   * @description Set the offset of the anchor scroll
+   * @description 设置锚点滚动的偏移量
    */
   offset: {
     type: Number,
     default: 0,
   },
   /**
-   * @description The offset of the element starting to trigger the anchor
+   * @description 开始触发锚点的元素偏移量
    */
   bound: {
     type: Number,
     default: 15,
   },
   /**
-   * @description Set the scroll duration of the container when the anchor is clicked, in milliseconds
+   * @description 点击锚点时容器的滚动时长，单位为毫秒
    */
   duration: {
     type: Number,
     default: 300,
   },
   /**
-   * @description Whether to show the marker
+   * @description 是否显示标记
    */
   marker: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description Set Anchor type
+   * @description 设置 Anchor 类型
    */
   type: {
     type: definePropType<'default' | 'underline'>(String),
     default: 'default',
   },
   /**
-   * @description Set Anchor direction
+   * @description 设置 Anchor 方向
    */
   direction: {
     type: definePropType<'vertical' | 'horizontal'>(String),
     default: 'vertical',
   },
   /**
-   * @description Scroll whether link is selected at the top
+   * @description 滚动至顶部时链接是否被选中
    */
   selectScrollTop: Boolean,
 })
 
 /**
- * @deprecated Removed after 3.0.0, Use `AnchorProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `AnchorProps`
  */
 export type AnchorPropsPublic = ExtractPublicPropTypes<typeof anchorProps>
 export type AnchorInstance = InstanceType<typeof Anchor> & unknown

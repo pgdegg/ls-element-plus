@@ -1,7 +1,7 @@
 import { onMounted, ref } from 'vue'
 
 const cache = new Map<string, { count: number; timestamp: number }>()
-const CACHE_TTL = 5 * 60 * 1000 // 5 minutes
+const CACHE_TTL = 5 * 60 * 1000 // 5 分钟
 
 export const useIssueCount = (component: string) => {
   const count = ref<number | null>(null)

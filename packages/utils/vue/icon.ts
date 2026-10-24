@@ -46,5 +46,5 @@ export const ValidateComponentsMap = {
   error: CircleClose,
 }
 
-// All icon components have the same type, so we can pick any one of them to get the type
+// 所有图标组件的类型都相同，因此我们可以任选一个来获取其类型
 export type IconComponent = typeof Loading

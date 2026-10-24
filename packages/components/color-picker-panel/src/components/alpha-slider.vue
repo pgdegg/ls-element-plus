@@ -68,17 +68,17 @@ function getBackground() {
 
 defineExpose({
   /**
-   * @description update alpha slider manually
+   * @description 手动更新透明度滑块
    * @type {Function}
    */
   update,
   /**
-   * @description bar element ref
+   * @description 条元素 ref
    * @type {HTMLElement}
    */
   bar,
   /**
-   * @description thumb element ref
+   * @description 滑块元素 ref
    * @type {HTMLElement}
    */
   thumb,

@@ -72,9 +72,9 @@ const createList = ({
 
       const getItemStyleCache = useCache<CSSProperties>()
       // refs
-      // here windowRef and innerRef can be type of HTMLElement
-      // or user defined component type, depends on the type passed
-      // by user
+      // 这里 windowRef 和 innerRef 可以是 HTMLElement 类型
+      // 或用户自定义组件类型，取决于传入的类型
+      // 由用户传入
       const windowRef = ref<HTMLElement>()
       const innerRef = ref<HTMLElement>()
       const scrollbarRef = ref()

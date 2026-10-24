@@ -4,7 +4,7 @@
 @use 'sass:math';
 @use 'sass:color';
 
-// BEM support Func
+// BEM 支持函数
 @function selectorToString($selector) {
   $selector: meta.inspect($selector);
   $selector: string.slice($selector, 2, -2);
@@ -46,7 +46,7 @@
     containPseudoClass($selector);
 }
 
-// join var name
+// 拼接变量名
 // joinVarName(('button', 'text-color')) => '--el-button-text-color'
 @function joinVarName($list) {
   $name: '--' + config.$namespace;

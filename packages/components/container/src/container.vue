@@ -12,7 +12,7 @@ import type { Component, VNode } from 'vue'
 
 interface ContainerProps {
   /**
-   * @description layout direction for child elements
+   * @description 子元素的布局方向
    */
   direction?: 'horizontal' | 'vertical'
 }

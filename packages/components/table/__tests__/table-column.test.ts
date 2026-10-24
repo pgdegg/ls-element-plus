@@ -401,28 +401,28 @@ describe('table column', () => {
           selectionKeys = getSelection().map((item) => item.id)
           expect(selectionKeys).toEqual([0, 1, 2, 3, 4])
 
-          // add
+          // 添加
           wrapper.vm.addRow()
           await doubleWait()
 
           selectionKeys = getSelection().map((item) => item.id)
           expect(selectionKeys).toEqual([0, 1, 2, 3, 4])
 
-          // remove
+          // 移除
           wrapper.vm.removeRow()
           await doubleWait()
 
           selectionKeys = getSelection().map((item) => item.id)
           expect(selectionKeys).toEqual([0, 1, 2, 3, 4])
 
-          // remove child
+          // 移除子项
           wrapper.vm.removeChildRow()
           await doubleWait()
 
           selectionKeys = getSelection().map((item) => item.id)
           expect(selectionKeys).toEqual([0, 1, 2, 3])
 
-          // remove with child
+          // 连同子项一起移除
           wrapper.vm.removeRow()
           await doubleWait()
 
@@ -514,7 +514,7 @@ describe('table column', () => {
           await doubleWait()
           expect(wrapper.findAll('.el-checkbox.is-checked')).toHaveLength(0)
 
-          // test children
+          // 测试子项
 
           wrapper.findAll('.el-checkbox')[3].trigger('click')
           await doubleWait()
@@ -687,7 +687,7 @@ describe('table column', () => {
           {
             methods: {
               sortMethod(a, b) {
-                // sort method should return number
+                // sort 方法应返回数字
                 if (a.runtime < b.runtime) {
                   return 1
                 }
@@ -937,24 +937,24 @@ describe('table column', () => {
 
     describe('preserve-expanded-content', () => {
       it('should lose expanded state when refreshing data without preserve-expanded-content', async () => {
-        const wrapper = createInstance() // No preserve-expanded-content prop
+        const wrapper = createInstance() // 未设置 preserve-expanded-content prop
         await doubleWait()
 
-        // Click expand icon and verify initial state
+        // 点击展开图标并验证初始状态
         const expandIcon = wrapper.find('.el-table__expand-icon')
         await expandIcon.trigger('click')
         await doubleWait()
         expect(wrapper.findAll('.el-table__expanded-cell')).toHaveLength(1)
 
-        // Clear and replace data
+        // 清空并替换数据
         wrapper.vm.testData = []
         await doubleWait()
         wrapper.vm.testData = getTestData()
         await doubleWait()
 
-        // Without preserve-expanded-content, expanded state should be lost
+        // 在未设置 preserve-expanded-content 的情况下，展开状态应丢失
         expect(wrapper.findAll('.el-table__expanded-cell')).toHaveLength(0)
-        // All expand icons should be in collapsed state
+        // 所有展开图标都应处于折叠状态
         expect(
           wrapper.find('.el-table__expand-icon--expanded').exists()
         ).toBeFalsy()
@@ -966,20 +966,20 @@ describe('table column', () => {
         const wrapper = createInstance('preserve-expanded-content')
         await doubleWait()
 
-        // First expand the row
+        // 先展开该行
         const expandEl = wrapper.find('.el-table__expand-icon')
         await expandEl.trigger('click')
 
-        // Verify initial expand
+        // 验证初始展开状态
         expect(wrapper.find('.el-table__expanded-cell').exists()).toBeTruthy()
         const expandedContent = wrapper.find('.el-table__expanded-cell').text()
         expect(expandedContent).toContain(wrapper.vm.testData[0].name)
 
-        // Refresh data
+        // 刷新数据
         wrapper.vm.refreshData()
         await doubleWait()
 
-        // With preserve-expanded-content, expanded state and content should persist
+        // 设置了 preserve-expanded-content 后，展开状态和内容应保持不变
         expect(wrapper.find('.el-table__expanded-cell').exists()).toBeTruthy()
         expect(wrapper.find('.el-table__expanded-cell').text()).toBe(
           expandedContent
@@ -992,32 +992,32 @@ describe('table column', () => {
         const wrapper = createInstance('preserve-expanded-content')
         await doubleWait()
 
-        // Find first two expand icons
+        // 找到前两个展开图标
         const expandIcons = wrapper
           .findAll('.el-table__expand-icon')
           .slice(0, 2)
 
-        // Expand first two rows
+        // 展开前两行
         for (const icon of expandIcons) {
           await icon.trigger('click')
           await doubleWait()
         }
 
-        // Verify both rows are expanded
+        // 验证两行均已展开
         const expandedIcons = wrapper.findAll(
           '.el-table__expand-icon--expanded'
         )
         expect(expandedIcons).toHaveLength(2)
 
-        // Store expanded content
+        // 保存已展开的内容
         const expandedRows = wrapper.findAll('.el-table__expanded-cell')
         const initialContents = expandedRows.map((row) => row.text())
 
-        // Replace data with new reference
+        // 用新引用替换数据
         wrapper.vm.testData = [...getTestData()]
         await doubleWait()
 
-        // Verify expansions and content are preserved
+        // 验证展开状态和内容均被保留
         const expandedIconsAfter = wrapper.findAll(
           '.el-table__expand-icon--expanded'
         )
@@ -1591,7 +1591,7 @@ describe('table column', () => {
         },
       })
 
-      const rowLength = wrapper.vm.testData.length + 1 // include header
+      const rowLength = wrapper.vm.testData.length + 1 // 包含表头
       const dynamicFixCols = 2
 
       expect(wrapper.findAll('.el-table-fixed-column--left').length).toEqual(0)

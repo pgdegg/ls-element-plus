@@ -27,185 +27,185 @@ import type { ClassValue, IconPropType } from '@element-plus/utils'
 export interface CascaderComponentProps
   extends CascaderCommonProps, UseEmptyValuesProps {
   /**
-   * @description size of input
+   * @description 输入框尺寸
    */
   size?: ComponentSize
   /**
-   * @description placeholder of input
+   * @description 输入框占位文本
    */
   placeholder?: string
   /**
-   * @description whether Cascader is disabled
+   * @description Cascader 是否禁用
    */
   disabled?: boolean
   /**
-   * @description whether selected value can be cleared
+   * @description 选中值是否可清除
    */
   clearable?: boolean
   /**
-   * @description custom clear icon component
+   * @description 自定义清除图标组件
    */
   clearIcon?: IconPropType
   /**
-   * @description whether the options can be searched
+   * @description 选项是否可搜索
    */
   filterable?: boolean
   /**
-   * @description whether to highlight the first available option
+   * @description 是否高亮第一个可用选项
    */
   defaultFirstOption?: boolean
   /**
-   * @description binding value of the filter input
+   * @description 过滤输入框的绑定值
    */
   filterValue?: string
   /**
-   * @description customize search logic, the first parameter is `node`, the second is `keyword`, and need return a boolean value indicating whether it hits.
+   * @description 自定义搜索逻辑，第一个参数为 `node`，第二个为 `keyword`，需返回布尔值表示是否命中。
    */
-  /** Additional node data fields searched by the default filter. */
+  /** 默认过滤器额外搜索的节点数据字段。 */
   filterKeys?: string[]
   filterMethod?: (node: CascaderNode, keyword: string) => boolean
   /**
-   * @description option label separator
+   * @description 选项标签分隔符
    */
   separator?: string
   /**
-   * @description whether to display all levels of the selected value in the input
+   * @description 是否在输入框中展示选中值的所有层级
    */
   showAllLevels?: boolean
   /**
-   * @description whether to collapse tags in multiple selection mode
+   * @description 多选模式下是否折叠标签
    */
   collapseTags?: boolean
   /**
-   * @description The max tags number to be shown. To use this, collapse-tags must be true
+   * @description 最多显示的标签数量。使用此项需将 collapse-tags 设为 true
    */
   maxCollapseTags?: number
   /**
-   * @description whether show all selected tags when mouse hover text of collapse-tags. To use this, collapse-tags must be true
+   * @description 鼠标悬停在折叠标签文本上时是否显示全部已选标签。使用此项需将 collapse-tags 设为 true
    */
   collapseTagsTooltip?: boolean
   /**
-   * @description The max height of collapse tags tooltip, in pixels. To use this, collapse-tags-tooltip must be true
+   * @description 折叠标签 tooltip 的最大高度，单位为像素。使用此项需将 collapse-tags-tooltip 设为 true
    */
   maxCollapseTagsTooltipHeight?: string | number
   /**
-   * @description debounce delay when typing filter keyword, in milliseconds
+   * @description 输入过滤关键词时的防抖延迟，单位为毫秒
    */
   debounce?: number
   /**
-   * @description hook function before filtering with the value to be filtered as its parameter. If `false` is returned or a `Promise` is returned and then is rejected, filtering will be aborted
+   * @description 过滤前的钩子函数，参数为待过滤的值。若返回 `false`，或返回 `Promise` 后被拒绝，则中止过滤
    */
   beforeFilter?: (value: string) => boolean | Promise<any>
   /**
-   * @description position of dropdown
+   * @description 下拉框位置
    */
   placement?: Placement
   /**
-   * @description list of possible positions for dropdown
+   * @description 下拉框可选位置列表
    */
   fallbackPlacements?: Placement[]
   /**
-   * @description custom class name for Cascader's dropdown
+   * @description Cascader 下拉框的自定义类名
    */
   popperClass?: ClassValue
   /**
-   * @description custom style for Cascader's dropdown
+   * @description Cascader 下拉框的自定义样式
    */
   popperStyle?: StyleValue
   /**
-   * @description whether cascader popup is teleported
+   * @description 弹层是否被传送
    */
   teleported?: boolean
   /**
-   * @description tooltip theme, built-in theme: `dark` / `light`
+   * @description tooltip 主题，内置主题：`dark` / `light`
    */
   effect?: PopperEffect
   /**
-   * @description tag type
+   * @description 标签类型
    */
   tagType?: TagProps['type']
   /**
-   * @description tag effect
+   * @description 标签效果
    */
   tagEffect?: TagProps['effect']
   /**
-   * @description whether to trigger form validation
+   * @description 是否触发表单校验
    */
   validateEvent?: boolean
   /**
-   * @description when dropdown is inactive and `persistent` is `false`, dropdown will be destroyed
+   * @description 下拉框未激活且 `persistent` 为 `false` 时，下拉框将被销毁
    */
   persistent?: boolean
   /**
-   * @description Use `parent` when you want things tidy (like "Entire Collection" instead of listing 100 items)
-   * Use `child` when every single item matters (like important settings)
+   * @description 希望整洁时使用 `parent`（如“整个集合”而非列出 100 项）
+   * 每项都很重要时使用 `child`（如重要设置）
    */
   showCheckedStrategy?: 'parent' | 'child'
   /**
-   * @description whether to check or uncheck node when clicking on the node
+   * @description 点击节点时是否勾选或取消勾选该节点
    */
   checkOnClickNode?: boolean
   /**
-   * @description whether to show the radio or checkbox prefix
+   * @description 是否显示单选框或复选框前缀
    */
   showPrefix?: boolean
   /**
-   * @description whether the width of the suggestion panel is the same as the input, if the value is `number`, then the width is fixed
+   * @description 建议面板宽度是否与输入框一致；若值为 `number`，则宽度固定
    */
   fitInputWidth?: boolean | number
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `CascaderComponentProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `CascaderComponentProps`
  */
 export const cascaderProps = buildProps({
   ...CommonProps,
   /**
-   * @description size of input
+   * @description 输入框尺寸
    */
   size: useSizeProp,
   /**
-   * @description placeholder of input
+   * @description 输入框占位文本
    */
   placeholder: String,
   /**
-   * @description whether Cascader is disabled
+   * @description Cascader 是否禁用
    */
   disabled: {
     type: Boolean,
     default: undefined,
   },
   /**
-   * @description whether selected value can be cleared
+   * @description 选中值是否可清除
    */
   clearable: Boolean,
   /**
-   * @description custom clear icon component
+   * @description 自定义清除图标组件
    */
   clearIcon: {
     type: iconPropType,
     default: CircleClose,
   },
   /**
-   * @description whether the options can be searched
+   * @description 选项是否可搜索
    */
   filterable: Boolean,
   /**
-   * @description whether to highlight the first available option
+   * @description 是否高亮第一个可用选项
    */
   defaultFirstOption: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description binding value of the filter input
+   * @description 过滤输入框的绑定值
    */
   filterValue: {
     type: String,
     default: undefined,
   },
   /**
-   * @description customize search logic, the first parameter is `node`, the second is `keyword`, and need return a boolean value indicating whether it hits.
+   * @description 自定义搜索逻辑，第一个参数为 `node`，第二个为 `keyword`，需返回布尔值表示是否命中。
    */
   filterKeys: { type: definePropType<string[]>(Array), default: () => [] },
   filterMethod: {
@@ -216,56 +216,56 @@ export const cascaderProps = buildProps({
       node.text.includes(keyword),
   },
   /**
-   * @description option label separator
+   * @description 选项标签分隔符
    */
   separator: {
     type: String,
     default: ' / ',
   },
   /**
-   * @description whether to display all levels of the selected value in the input
+   * @description 是否在输入框中展示选中值的所有层级
    */
   showAllLevels: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description whether to collapse tags in multiple selection mode
+   * @description 多选模式下是否折叠标签
    */
   collapseTags: Boolean,
   /**
-   * @description The max tags number to be shown. To use this, collapse-tags must be true
+   * @description 最多显示的标签数量。使用此项需将 collapse-tags 设为 true
    */
   maxCollapseTags: {
     type: Number,
     default: 1,
   },
   /**
-   * @description whether show all selected tags when mouse hover text of collapse-tags. To use this, collapse-tags must be true
+   * @description 鼠标悬停在折叠标签文本上时是否显示全部已选标签。使用此项需将 collapse-tags 设为 true
    */
   collapseTagsTooltip: Boolean,
   /**
-   * @description The max height of collapse tags tooltip, in pixels. To use this, collapse-tags-tooltip must be true
+   * @description 折叠标签 tooltip 的最大高度，单位为像素。使用此项需将 collapse-tags-tooltip 设为 true
    */
   maxCollapseTagsTooltipHeight: {
     type: [String, Number],
   },
   /**
-   * @description debounce delay when typing filter keyword, in milliseconds
+   * @description 输入过滤关键词时的防抖延迟，单位为毫秒
    */
   debounce: {
     type: Number,
     default: 300,
   },
   /**
-   * @description hook function before filtering with the value to be filtered as its parameter. If `false` is returned or a `Promise` is returned and then is rejected, filtering will be aborted
+   * @description 过滤前的钩子函数，参数为待过滤的值。若返回 `false`，或返回 `Promise` 后被拒绝，则中止过滤
    */
   beforeFilter: {
     type: definePropType<(value: string) => boolean | Promise<any>>(Function),
     default: () => true,
   },
   /**
-   * @description position of dropdown
+   * @description 下拉框位置
    */
   placement: {
     type: definePropType<Placement>(String),
@@ -273,57 +273,57 @@ export const cascaderProps = buildProps({
     default: 'bottom-start',
   },
   /**
-   * @description list of possible positions for dropdown
+   * @description 下拉框可选位置列表
    */
   fallbackPlacements: {
     type: definePropType<Placement[]>(Array),
     default: ['bottom-start', 'bottom', 'top-start', 'top', 'right', 'left'],
   },
   /**
-   * @description custom class name for Cascader's dropdown
+   * @description Cascader 下拉框的自定义类名
    */
   popperClass: useTooltipContentProps.popperClass,
   /**
-   * @description custom style for Cascader's dropdown
+   * @description Cascader 下拉框的自定义样式
    */
   popperStyle: useTooltipContentProps.popperStyle,
   /**
-   * @description whether cascader popup is teleported
+   * @description 弹层是否被传送
    */
   teleported: useTooltipContentProps.teleported,
   /**
-   * @description tooltip theme, built-in theme: `dark` / `light`
+   * @description tooltip 主题，内置主题：`dark` / `light`
    */
   effect: {
     type: definePropType<PopperEffect>(String),
     default: 'light',
   },
   /**
-   * @description tag type
+   * @description 标签类型
    */
 
   tagType: { ...tagProps.type, default: 'info' },
   /**
-   * @description tag effect
+   * @description 标签效果
    */
   tagEffect: { ...tagProps.effect, default: 'light' },
   /**
-   * @description whether to trigger form validation
+   * @description 是否触发表单校验
    */
   validateEvent: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description when dropdown is inactive and `persistent` is `false`, dropdown will be destroyed
+   * @description 下拉框未激活且 `persistent` 为 `false` 时，下拉框将被销毁
    */
   persistent: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description Use `parent` when you want things tidy (like "Entire Collection" instead of listing 100 items)
-   * Use `child` when every single item matters (like important settings)
+   * @description 希望整洁时使用 `parent`（如“整个集合”而非列出 100 项）
+   * 每项都很重要时使用 `child`（如重要设置）
    */
   showCheckedStrategy: {
     type: String,
@@ -331,18 +331,18 @@ export const cascaderProps = buildProps({
     default: 'child',
   },
   /**
-   * @description whether to check or uncheck node when clicking on the node
+   * @description 点击节点时是否勾选或取消勾选该节点
    */
   checkOnClickNode: Boolean,
   /**
-   * @description whether to show the radio or checkbox prefix
+   * @description 是否显示单选框或复选框前缀
    */
   showPrefix: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description whether the width of the suggestion panel is the same as the input, if the value is `number`, then the width is fixed
+   * @description 建议面板宽度是否与输入框一致；若值为 `number`，则宽度固定
    */
   fitInputWidth: {
     type: [Boolean, Number],

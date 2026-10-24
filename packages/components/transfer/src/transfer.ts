@@ -47,102 +47,102 @@ export const RIGHT_CHECK_CHANGE_EVENT = 'right-check-change'
 
 export interface TransferProps<T extends TransferDataItem = TransferDataItem> {
   /**
-   * @description data source
+   * @description 数据源
    */
   data?: T[]
   /**
-   * @description custom list titles
+   * @description 自定义列表标题
    */
   titles?: [string, string]
   /**
-   * @description custom button texts
+   * @description 自定义按钮文案
    */
   buttonTexts?: [string, string]
   /**
-   * @description placeholder for the filter input
+   * @description 过滤输入框的占位符
    */
   filterPlaceholder?: string
   /**
-   * @description custom filter method
+   * @description 自定义过滤方法
    */
   filterMethod?: (query: string, item: T) => boolean
   /**
-   * @description key array of initially checked data items of the left list
+   * @description 左侧列表初始勾选数据项的 key 数组
    */
   leftDefaultChecked?: TransferKey[]
   /**
-   * @description key array of initially checked data items of the right list
+   * @description 右侧列表初始勾选数据项的 key 数组
    */
   rightDefaultChecked?: TransferKey[]
   /**
-   * @description custom render function for data items
+   * @description 数据项的自定义渲染函数
    */
   renderContent?: renderContent<T>
   /**
-   * @description binding value
+   * @description 绑定值
    */
   modelValue?: TransferKey[]
   /**
-   * @description texts for checking status in list header
+   * @description 列表头部勾选状态的文案
    */
   format?: TransferFormat
   /**
-   * @description whether Transfer is filterable
+   * @description Transfer 是否可过滤
    */
   filterable?: boolean
   /**
-   * @description prop aliases for data source
+   * @description 数据源的 prop 别名
    */
   props?: TransferPropsAlias
   /**
-   * @description order strategy for elements in the target list. If set to `original`, the elements will keep the same order as the data source. If set to `push`, the newly added elements will be pushed to the bottom. If set to `unshift`, the newly added elements will be inserted on the top
+   * @description 目标列表中元素的排序策略。设为 `original` 时保持与数据源相同的顺序；设为 `push` 时新增元素追加到底部；设为 `unshift` 时新增元素插入到顶部
    */
   targetOrder?: 'original' | 'push' | 'unshift'
   /**
-   * @description whether to trigger form validation
+   * @description 是否触发表单校验
    */
   validateEvent?: boolean
   /**
-   * @description whether to enable virtual scrolling
+   * @description 是否启用虚拟滚动
    */
   virtualScroll?: boolean
   /**
-   * @description line height for virtual scrolling
+   * @description 虚拟滚动的行高
    */
   itemSize?: number
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `TransferProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `TransferProps`。
  */
 export const transferProps = buildProps({
   /**
-   * @description data source
+   * @description 数据源
    */
   data: {
     type: definePropType<TransferDataItem[]>(Array),
     default: () => [],
   },
   /**
-   * @description custom list titles
+   * @description 自定义列表标题
    */
   titles: {
     type: definePropType<[string, string]>(Array),
     default: () => [],
   },
   /**
-   * @description custom button texts
+   * @description 自定义按钮文案
    */
   buttonTexts: {
     type: definePropType<[string, string]>(Array),
     default: () => [],
   },
   /**
-   * @description placeholder for the filter input
+   * @description 过滤输入框的占位符
    */
   filterPlaceholder: String,
   /**
-   * @description custom filter method
+   * @description 自定义过滤方法
    */
   filterMethod: {
     type: definePropType<(query: string, item: TransferDataItem) => boolean>(
@@ -150,45 +150,45 @@ export const transferProps = buildProps({
     ),
   },
   /**
-   * @description key array of initially checked data items of the left list
+   * @description 左侧列表初始勾选数据项的 key 数组
    */
   leftDefaultChecked: {
     type: definePropType<TransferKey[]>(Array),
     default: () => [],
   },
   /**
-   * @description key array of initially checked data items of the right list
+   * @description 右侧列表初始勾选数据项的 key 数组
    */
   rightDefaultChecked: {
     type: definePropType<TransferKey[]>(Array),
     default: () => [],
   },
   /**
-   * @description custom render function for data items
+   * @description 数据项的自定义渲染函数
    */
   renderContent: {
     type: definePropType<renderContent>(Function),
   },
   /**
-   * @description binding value
+   * @description 绑定值
    */
   modelValue: {
     type: definePropType<TransferKey[]>(Array),
     default: () => [],
   },
   /**
-   * @description texts for checking status in list header
+   * @description 列表头部勾选状态的文案
    */
   format: {
     type: definePropType<TransferFormat>(Object),
     default: () => ({}),
   },
   /**
-   * @description whether Transfer is filterable
+   * @description Transfer 是否可过滤
    */
   filterable: Boolean,
   /**
-   * @description prop aliases for data source
+   * @description 数据源的 prop 别名
    */
   props: {
     type: definePropType<TransferPropsAlias>(Object),
@@ -200,7 +200,7 @@ export const transferProps = buildProps({
       } as const),
   },
   /**
-   * @description order strategy for elements in the target list. If set to `original`, the elements will keep the same order as the data source. If set to `push`, the newly added elements will be pushed to the bottom. If set to `unshift`, the newly added elements will be inserted on the top
+   * @description 目标列表中元素的排序策略。设为 `original` 时保持与数据源相同的顺序；设为 `push` 时新增元素追加到底部；设为 `unshift` 时新增元素插入到顶部
    */
   targetOrder: {
     type: String,
@@ -208,18 +208,18 @@ export const transferProps = buildProps({
     default: 'original',
   },
   /**
-   * @description whether to trigger form validation
+   * @description 是否触发表单校验
    */
   validateEvent: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description whether to enable virtual scrolling
+   * @description 是否启用虚拟滚动
    */
   virtualScroll: Boolean,
   /**
-   * @description line height for virtual scrolling
+   * @description 虚拟滚动的行高
    */
   itemSize: {
     type: Number,
@@ -228,7 +228,7 @@ export const transferProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `TransferProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `TransferProps`。
  */
 export type TransferPropsPublic = ExtractPublicPropTypes<typeof transferProps>
 

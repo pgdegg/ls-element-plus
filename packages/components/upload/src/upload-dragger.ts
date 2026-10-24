@@ -9,7 +9,7 @@ export interface UploadDraggerProps {
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `UploadDraggerProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `UploadDraggerProps`。
  */
 export const uploadDraggerProps = buildProps({
   disabled: {
@@ -20,7 +20,7 @@ export const uploadDraggerProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `UploadDraggerProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `UploadDraggerProps`。
  */
 export type UploadDraggerPropsPublic = ExtractPublicPropTypes<
   typeof uploadDraggerProps

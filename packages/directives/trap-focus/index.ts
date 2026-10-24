@@ -15,7 +15,7 @@ export interface TrapFocusElement extends HTMLElement {
 const FOCUS_STACK: TrapFocusElement[] = []
 
 const FOCUS_HANDLER = (e: KeyboardEvent) => {
-  // Getting the top layer.
+  // 获取最顶层元素。
   if (FOCUS_STACK.length === 0) return
   const code = getEventCode(e)
   const focusableElement =
@@ -40,8 +40,8 @@ const FOCUS_HANDLER = (e: KeyboardEvent) => {
       focusableElement[0].focus()
     }
 
-    // the is critical since jsdom did not implement user actions, you can only mock it
-    // DELETE ME: when testing env switches to puppeteer
+    // 这一点很关键，因为 jsdom 没有实现用户操作，只能通过 mock 来模拟
+    // DELETE ME：测试环境切换到 puppeteer 后可删除
     if (process.env.NODE_ENV === 'test') {
       const index = focusableElement.indexOf(e.target as HTMLElement)
       if (index !== -1) {

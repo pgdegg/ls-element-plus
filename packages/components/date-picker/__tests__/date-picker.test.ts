@@ -549,7 +549,7 @@ describe('DatePicker', () => {
     await input.trigger('blur')
     expect(dayjs(wrapper.vm.value).format('YYYY-MM-DD')).toBe('2023-10-01')
 
-    // invalid user input not work
+    // 无效的用户输入不生效
     input.element.value = '9999999-10-01'
     await input.trigger('input')
     await input.trigger('blur')
@@ -567,25 +567,25 @@ describe('DatePicker', () => {
     )
     const input = wrapper.find('input')
 
-    // ISO 8601 datetime string
+    // ISO 8601 日期时间字符串
     input.element.value = '2026-07-18T11:19:23'
     await input.trigger('input')
     await input.trigger('blur')
     expect(input.element.value).toBe('2026-07-18')
 
-    // compact format without separators
+    // 无分隔符的紧凑格式
     input.element.value = '20260718'
     await input.trigger('input')
     await input.trigger('blur')
     expect(input.element.value).toBe('2026-07-18')
 
-    // slash-separated format
+    // 斜杠分隔格式
     input.element.value = '2026/7/8'
     await input.trigger('input')
     await input.trigger('blur')
     expect(input.element.value).toBe('2026-07-08')
 
-    // US-style MM/DD/YYYY
+    // 美式 MM/DD/YYYY
     input.element.value = '07/18/2026'
     await input.trigger('input')
     await input.trigger('blur')
@@ -614,9 +614,9 @@ describe('DatePicker', () => {
     expect(dayjs(wrapper.vm.value).format('YYYY-MM-DD')).toBe('2023-10-01')
   })
 
-  // Documents the current lenient fallback of correctlyParseUserInput:
-  // input that fails strict format parsing is retried with dayjs(value),
-  // which accepts overflowing days/months and clamps over-long years.
+  // 说明 correctlyParseUserInput 当前宽松的回退处理：
+  // 严格格式解析失败的输入会用 dayjs(value) 重试，
+  // 它接受溢出的日/月，并将过长的年份截断。
   it('should keep lenient parsing for overflowing and long-year input', async () => {
     const wrapper = _mount(
       `<el-date-picker
@@ -628,13 +628,13 @@ describe('DatePicker', () => {
     )
     const input = wrapper.find('input')
 
-    // six-digit year is clamped to 9999 instead of being rejected
+    // 六位数年份会被截断为 9999，而不是被拒绝
     input.element.value = '999999-10-01'
     await input.trigger('input')
     await input.trigger('blur')
     expect(dayjs(wrapper.vm.value).format('YYYY-MM-DD')).toBe('9999-10-01')
 
-    // overflowing month/day rolls over instead of being rejected
+    // 溢出的月/日会进位滚动，而不是被拒绝
     input.element.value = '2023-13-45'
     await input.trigger('input')
     await input.trigger('blur')
@@ -747,7 +747,7 @@ describe('DatePicker', () => {
         'row',
         'customClass',
         'end',
-      ] //TODO: we should later increase the list in order to fit DateCell perfectly
+      ] //TODO：后续应扩充该列表，以完美适配 DateCell
       expect(Object.keys(cell)).toEqual(expect.arrayContaining(cellProperties))
       const values = Object.entries(cell)
         .filter(([key]) => cellProperties.includes(key))
@@ -1439,7 +1439,7 @@ describe('DatePicker Navigation', () => {
   })
 
   it('month with fewer dates', async () => {
-    // July has 31 days, June has 30
+    // 七月有 31 天，六月有 30 天
     await initNavigationTest(new Date(2000, 6, 31))
     prevMonth.click()
     await nextTick()
@@ -1448,7 +1448,7 @@ describe('DatePicker Navigation', () => {
   })
 
   it('year with fewer February dates', async () => {
-    // February 2008 has 29 days, February 2007 has 28
+    // 2008 年 2 月有 29 天，2007 年 2 月有 28 天
     await initNavigationTest(new Date(2008, 1, 29))
     prevYear.click()
     await nextTick()
@@ -1664,7 +1664,7 @@ describe('WeekPicker', () => {
     input.trigger('focus')
     await nextTick()
     expect(document.querySelector('.is-week-mode')).not.toBeNull()
-    // select month still is in week-mode
+    // 选择月份时仍处于周模式
     ;(
       document.querySelectorAll(
         '.el-date-picker__header-label'
@@ -1692,11 +1692,11 @@ describe('WeekPicker', () => {
     input.trigger('focus')
     await nextTick()
     expect(numberOfHighlightRows()).toBe(1)
-    // test: next month should not have highlight
+    // 测试：下个月不应有高亮
     ;(document.querySelector('.arrow-right') as HTMLElement).click()
     await nextTick()
     expect(numberOfHighlightRows()).toBe(0)
-    // test: next year should not have highlight
+    // 测试：下一年不应有高亮
     ;(document.querySelector('.arrow-left') as HTMLElement).click()
     await nextTick()
     ;(document.querySelector('.d-arrow-right') as HTMLElement).click()
@@ -1737,7 +1737,7 @@ describe('WeekPicker', () => {
       input.trigger('blur')
       input.trigger('focus')
       await nextTick()
-      // click Wednesday
+      // 点击星期三
       ;(
         document.querySelectorAll(
           '.el-date-table__row ~ .el-date-table__row td'
@@ -1749,7 +1749,7 @@ describe('WeekPicker', () => {
       expect(+dayjs(vm.value).locale(loObj.locale.name)).toBe(
         +dayjs(vm.value).locale(loObj.locale.name).startOf('week')
       )
-      expect(dayjs(vm.value).locale(loObj.locale.name).day()).toBe(loObj.value) // Sunday or Monday
+      expect(dayjs(vm.value).locale(loObj.locale.name).day()).toBe(loObj.value) // 周日或周一
     })
   })
 })
@@ -1924,7 +1924,7 @@ describe('DatePicker months', () => {
     const vm = wrapper.vm
     expect(vm.value.length).toBe(1)
     expect(vm.value[0].getFullYear()).toBe(2025)
-    expect(vm.value[0].getMonth()).toBe(2) // March is month 2 (0-indexed)
+    expect(vm.value[0].getMonth()).toBe(2) // 三月是第 2 个月（0 索引）
     vi.useRealTimers()
   })
 })
@@ -2019,7 +2019,7 @@ describe('DateRangePicker', () => {
     expect(dayjs(vm.value[0]).format('YYYY-MM-DD')).toBe('2022-07-08')
     expect(dayjs(vm.value[1]).format('YYYY-MM-DD')).toBe('2022-07-18')
 
-    // unparseable user input not work
+    // 无法解析的用户输入不生效
     await startInput.setValue('abc123')
     await startInput.trigger('change')
     await nextTick()
@@ -2073,20 +2073,20 @@ describe('DateRangePicker', () => {
         .querySelector('.el-picker__popper')
         .classList.contains(popperClassName)
     ).toBe(true)
-    // correct highlight
+    // 高亮正确
     const startDate = document.querySelectorAll('.start-date')
     const endDate = document.querySelectorAll('.end-date')
     const inRangeDate = document.querySelectorAll('.in-range')
     expect(startDate.length).toBe(1)
     expect(endDate.length).toBe(1)
     expect(inRangeDate.length).toBeGreaterThan(28)
-    // value is array
+    // 值为数组
     const vm = wrapper.vm as any
     expect(Array.isArray(vm.value)).toBeTruthy()
-    // input text is something like date string
+    // 输入文本类似日期字符串
     expect(inputs[0].element.value.length).toBe(10)
     expect(inputs[1].element.value.length).toBe(10)
-    // calendar-change event
+    // calendar-change 事件
     expect(changeHandler).toHaveBeenCalledTimes(2)
     expect(calendarChangeValue.length).toBe(2)
     expect(calendarChangeValue[0]).toBeInstanceOf(Date)
@@ -2190,7 +2190,7 @@ describe('DateRangePicker', () => {
     inputs[0].trigger('blur')
     inputs[0].trigger('focus')
     await nextTick()
-    // correct highlight
+    // 高亮正确
     const startDate = document.querySelectorAll('.start-date')
     const endDate = document.querySelectorAll('.end-date')
     const inRangeDate = document.querySelectorAll('.in-range')
@@ -2295,9 +2295,9 @@ describe('DateRangePicker', () => {
   })
 
   it('daylight saving time highlight', async () => {
-    // Run test with environment variable TZ=Australia/Sydney
-    // The following test uses Australian Eastern Daylight Time (AEDT)
-    // AEST -> AEDT shift happened on 2016-10-02 02:00:00
+    // 使用环境变量 TZ=Australia/Sydney 运行测试
+    // 以下测试使用澳大利亚东部夏令时（AEDT）
+    // AEST -> AEDT 的切换发生在 2016-10-02 02:00:00
     const wrapper = _mount(
       `<el-date-picker
       type='daterange'
@@ -2669,23 +2669,23 @@ describe('MonthRange', () => {
     await nextTick()
     inputs[0].trigger('blur')
     inputs[0].trigger('focus')
-    // correct highlight
+    // 高亮正确
     const startDate = document.querySelectorAll('.start-date')
     const endDate = document.querySelectorAll('.end-date')
     const inRangeDate = document.querySelectorAll('.in-range')
     expect(startDate.length).toBe(1)
     expect(endDate.length).toBe(1)
     expect(inRangeDate.length).toBeGreaterThan(0)
-    // value is array
+    // 值为数组
     const vm = wrapper.vm as any
     expect(Array.isArray(vm.value)).toBeTruthy()
-    // input text is something like date string
+    // 输入文本类似日期字符串
     expect(inputs[0].element.value.length).toBe(7)
     expect(inputs[1].element.value.length).toBe(7)
     inputs[0].trigger('blur')
     inputs[0].trigger('focus')
     await nextTick()
-    // reverse selection
+    // 反向选择
     p1.click()
     await nextTick()
     p0.click()
@@ -2827,7 +2827,7 @@ describe('MonthRange', () => {
     expect(vm.value[0]).toBe('2015-01')
     expect(vm.value[1]).toBe('2017-01')
 
-    // invalid user input not work
+    // 无效的用户输入不生效
     await startInput.setValue('9999999-01')
     await nextTick()
     expect(vm.value[0]).toBe('2015-01')
@@ -3025,20 +3025,20 @@ describe('YearRange', () => {
     await nextTick()
     inputs[0].trigger('blur')
     inputs[0].trigger('focus')
-    // correct highlight
+    // 高亮正确
     const startDate = document.querySelectorAll('.start-date')
     const endDate = document.querySelectorAll('.end-date')
     const inRangeDate = document.querySelectorAll('.in-range')
     expect(startDate.length).toBe(1)
     expect(endDate.length).toBe(1)
     expect(inRangeDate.length).toBeGreaterThan(0)
-    // value is array
+    // 值为数组
     const vm = wrapper.vm as any
     expect(Array.isArray(vm.value)).toBeTruthy()
-    // input text is something like date string
+    // 输入文本类似日期字符串
     expect(inputs[0].element.value.length).toBe(4)
     expect(inputs[1].element.value.length).toBe(4)
-    // reverse selection
+    // 反向选择
     p1.click()
     await nextTick()
     p0.click()
@@ -3329,16 +3329,16 @@ describe('QuarterPicker', () => {
     input.trigger('blur')
     input.trigger('focus')
     await nextTick()
-    // quarter table is visible, others are not
+    // 季度表可见，其他表不可见
     expect(
       (document.querySelector('.el-quarter-table') as HTMLElement).style.display
     ).toBe('')
     expect(document.querySelector('.el-year-table')).toBeNull()
     expect(document.querySelector('.el-month-table')).toBeNull()
-    // four quarter cells are rendered in a single row
+    // 四个季度单元格渲染在同一行
     expect(document.querySelectorAll('.el-quarter-table tr').length).toBe(1)
     expect(document.querySelectorAll('.el-quarter-table td').length).toBe(4)
-    // pick Q1
+    // 选择 Q1
     ;(
       document.querySelector(
         '.el-quarter-table .el-date-table-cell__text'
@@ -3346,7 +3346,7 @@ describe('QuarterPicker', () => {
     ).click()
     await nextTick()
     const vm = wrapper.vm as any
-    // Q1 -> January
+    // Q1 -> 一月
     expect(vm.value.getMonth()).toBe(0)
   })
 
@@ -3378,13 +3378,13 @@ describe('QuarterPicker', () => {
       () => ({ value: '2020-Q3' })
     )
     await nextTick()
-    // displayed value follows default format
+    // 显示值遵循默认格式
     expect(wrapper.findComponent(Input).vm.modelValue).toBe('2020-Q3')
     const input = wrapper.find('input')
     input.trigger('blur')
     input.trigger('focus')
     await nextTick()
-    // pick Q1
+    // 选择 Q1
     ;(
       document.querySelector(
         '.el-quarter-table .el-date-table-cell__text'
@@ -3422,7 +3422,7 @@ describe('QuarterPicker', () => {
       () => ({
         value: new Date(2020, 0, 1),
         disabledDate(time) {
-          // disable everything before 2020-07-01 (Q1, Q2)
+          // 禁用 2020-07-01 之前的所有项（Q1、Q2）
           return time.getTime() < new Date(2020, 6, 1).getTime()
         },
       })
@@ -3431,7 +3431,7 @@ describe('QuarterPicker', () => {
     await wrapper.find('input').trigger('focus')
     await nextTick()
     const tds = Array.from(document.querySelectorAll('.el-quarter-table td'))
-    // Q1, Q2 disabled; Q3, Q4 enabled
+    // Q1、Q2 禁用；Q3、Q4 启用
     expect(tds[0].classList.contains('disabled')).toBeTruthy()
     expect(tds[1].classList.contains('disabled')).toBeTruthy()
     expect(tds[2].classList.contains('disabled')).toBeFalsy()
@@ -3975,13 +3975,13 @@ describe('QuarterRange', () => {
     expect(inRangeDate.length).toBeGreaterThan(0)
     const vm = wrapper.vm as any
     expect(Array.isArray(vm.value)).toBeTruthy()
-    // input text is something like "2020-Q1"
+    // 输入文本类似 "2020-Q1"
     expect(inputs[0].element.value.length).toBe(7)
     expect(inputs[1].element.value.length).toBe(7)
     inputs[0].trigger('blur')
     inputs[0].trigger('focus')
     await nextTick()
-    // reverse selection
+    // 反向选择
     p1.click()
     await nextTick()
     p0.click()

@@ -23,7 +23,7 @@ const createComponent = (slot?: () => VNodeArrayChildren) => {
     global: {
       provide: defaultProvide,
     },
-    // vue test utils adds the entry for us even though default's value is null
+    // 即使 default 的值为 null，vue test utils 也会为我们添加该条目
     slots: slot ? { default: slot } : undefined,
   })
 }

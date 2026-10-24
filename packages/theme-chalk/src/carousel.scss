@@ -16,7 +16,7 @@
     overflow: hidden;
   }
 
-  // When vertical with outside indicators, use flex layout for horizontal arrangement
+  // 垂直方向且指示器在外部时，使用 flex 布局进行水平排列
   @include when(vertical-outside) {
     display: flex;
     flex-direction: row;
@@ -165,8 +165,8 @@
     cursor: pointer;
     transition: getCssVar('transition-duration');
 
-    // To prevent styles from being overridden
-    // When labels exist, use auto size so button content can center correctly
+    // 防止样式被覆盖
+    // 存在标签时使用自适应尺寸，使按钮内容正确居中
     .#{$namespace}-carousel__indicators--labels & {
       height: auto;
       width: auto;

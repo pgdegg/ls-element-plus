@@ -214,7 +214,7 @@ export default defineComponent({
       )
     }
 
-    // computed
+    // 计算属性
     const { onKeyboardNavigate, onKeyboardSelect } = select
 
     const onForward = () => {
@@ -226,7 +226,7 @@ export default defineComponent({
     }
 
     const onEscOrTab = () => {
-      // The following line actually doesn't work. Fixing it may introduce a small breaking change for some users, so just comment it out for now.
+      // 下面这行实际上不起作用。修复它可能会给部分用户带来小幅破坏性变更，所以暂时先注释掉。
       // select.expanded = false
     }
 
@@ -264,7 +264,7 @@ export default defineComponent({
       const { data, width } = props
       const { height, multiple, scrollbarAlwaysOn } = select.props
 
-      // fix https://github.com/element-plus/element-plus/issues/19127
+      // 修复 https://github.com/element-plus/element-plus/issues/19127
       const isScrollbarAlwaysOn = isIOS ? true : scrollbarAlwaysOn
 
       const List = unref(isSized) ? FixedSizeList : DynamicSizeList

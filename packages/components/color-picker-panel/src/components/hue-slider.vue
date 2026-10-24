@@ -59,19 +59,19 @@ const ariaValuetext = computed(() => {
 
 defineExpose({
   /**
-   * @description bar element ref
+   * @description 条元素 ref
    */
   bar,
   /**
-   * @description thumb element ref
+   * @description 滑块元素 ref
    */
   thumb,
   /**
-   * @description thumb top position, only for vertical slider
+   * @description 滑块顶部位置，仅用于垂直滑块
    */
   thumbTop,
   /**
-   * @description update hue slider manually
+   * @description 手动更新色相滑块
    */
   update,
 })

@@ -11,13 +11,13 @@ const isHTMLElement = (e: unknown): e is Element => {
 }
 
 /**
- * Determine if the testing element is visible on screen no matter if its on the viewport or not
+ * 判断待测试元素在屏幕上是否可见，无论它是否位于视口内
  */
 export const isVisible = (element: HTMLElement) => {
   if (process.env.NODE_ENV === 'test') return true
   const computed = getComputedStyle(element)
-  // element.offsetParent won't work on fix positioned
-  // WARNING: potential issue here, going to need some expert advices on this issue
+  // 对于 fixed 定位的元素，element.offsetParent 无效
+  // 警告：这里存在潜在问题，需要该领域专家提供建议
   return computed.position === 'fixed' ? false : element.offsetParent !== null
 }
 
@@ -30,9 +30,9 @@ export const obtainAllFocusableElements = (
 }
 
 /**
- * @desc Determine if target element is focusable
+ * @desc 判断目标元素是否可聚焦
  * @param element {HTMLElement}
- * @returns {Boolean} true if it is focusable
+ * @returns {Boolean} 若可聚焦则为 true
  */
 export const isFocusable = (element: HTMLElement): boolean => {
   if (
@@ -51,7 +51,7 @@ export const isFocusable = (element: HTMLElement): boolean => {
 
   switch (element.nodeName) {
     case 'A': {
-      // casting current element to Specific HTMLElement in order to be more type precise
+      // 将当前元素断言为特定 HTMLElement，以获得更精确的类型
       return (
         !!(element as HTMLAnchorElement).href &&
         (element as HTMLAnchorElement).rel !== 'ignore'
@@ -75,8 +75,8 @@ export const isFocusable = (element: HTMLElement): boolean => {
 }
 
 /**
- * Trigger an event
- * mouseenter, mouseleave, mouseover, keyup, change, click, etc.
+ * 触发一个事件
+ * mouseenter、mouseleave、mouseover、keyup、change、click 等。
  * @param  {HTMLElement} elm
  * @param  {String} name
  * @param  {*} opts

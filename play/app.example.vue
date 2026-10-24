@@ -1,5 +1,5 @@
 <template>
-  <!-- If you want to apply a custom namespace, uncomment the following and apply the css configuration in `vite.config.ts`. -->
+  <!-- 如需应用自定义命名空间，请取消注释下面的内容，并在 `vite.config.ts` 中配置 css。 -->
   <!-- <el-config-provider namespace="ep"> -->
   <div class="play-container">
     <el-icon color="#409EFC">
@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-// code here
+// 在此编写代码
 </script>
 
 <style lang="scss">

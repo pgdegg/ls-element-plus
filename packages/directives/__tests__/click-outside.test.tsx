@@ -6,10 +6,10 @@ const AXIOM = 'Rem is the best girl'
 const TRIGGER = 'trigger'
 const OTHER_CLASS = 'other-class'
 
-// init some local variables
+// 初始化一些局部变量
 let mousedownObject: MouseEvent | null
 let mouseupObject: MouseEvent | null
-// mock handler with implementations which makes assignment to the local variable that we registered above.
+// 使用带实现的 mock handler，为上面注册的局部变量赋值。
 const handler = vi.fn((eMouseup, eMousedown) => {
   mouseupObject = eMouseup
   mousedownObject = eMousedown
@@ -58,7 +58,7 @@ const triggerDocumentClickEvent = () => {
 
 describe('Directives.vue', () => {
   beforeEach(() => {
-    // clear the previously assigned event object
+    // 清除之前赋值的事件对象
     mousedownObject = null
     mouseupObject = null
   })
@@ -78,8 +78,8 @@ describe('Directives.vue', () => {
 
     triggerDocumentClickEvent()
 
-    // here is the different part
-    // we test the existence of the local variable.
+    // 这里是不同之处
+    // 我们测试该局部变量是否存在。
     expect(mousedownObject).toBeDefined()
     expect(mouseupObject).toBeDefined()
   })
@@ -111,18 +111,18 @@ describe('Multiple click-outside directives', () => {
       }
     )
 
-    // click inside trigger element
+    // 点击 trigger 元素内部
     await wrapper.find(`.${TRIGGER}`).trigger('mousedown')
     await wrapper.find(`.${TRIGGER}`).trigger('mouseup')
     expect(firstHandler).toHaveBeenCalledTimes(0)
     expect(secondHandler).toHaveBeenCalledTimes(0)
 
-    // click outside trigger element
+    // 点击 trigger 元素外部
     triggerDocumentClickEvent()
     expect(firstHandler).toHaveBeenCalledTimes(1)
     expect(secondHandler).toHaveBeenCalledTimes(1)
 
-    // update the component instance
+    // 更新组件实例
     wrapper.vm.$forceUpdate()
     triggerDocumentClickEvent()
     expect(firstHandler).toHaveBeenCalledTimes(2)

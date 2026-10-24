@@ -7,56 +7,56 @@ import type { CollapseActiveName } from './collapse'
 
 export interface CollapseItemProps {
   /**
-   * @description title of the panel
+   * @description 面板标题
    */
   title?: string
   /**
-   * @description unique identification of the panel
+   * @description 面板的唯一标识
    */
   name?: CollapseActiveName
   /**
-   * @description icon of the collapse item
+   * @description 折叠项图标
    */
   icon?: IconPropType
   /**
-   * @description disable the collapse item
+   * @description 禁用折叠项
    */
   disabled?: boolean
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `CollapseItemProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `CollapseItemProps`
  */
 export const collapseItemProps = buildProps({
   /**
-   * @description title of the panel
+   * @description 面板标题
    */
   title: {
     type: String,
     default: '',
   },
   /**
-   * @description unique identification of the panel
+   * @description 面板的唯一标识
    */
   name: {
     type: definePropType<CollapseActiveName>([String, Number]),
     default: undefined,
   },
   /**
-   * @description icon of the collapse item
+   * @description 折叠项图标
    */
   icon: {
     type: iconPropType,
     default: ArrowRight,
   },
   /**
-   * @description disable the collapse item
+   * @description 禁用折叠项
    */
   disabled: Boolean,
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `CollapseItemProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `CollapseItemProps`
  */
 export type CollapseItemPropsPublic = ExtractPublicPropTypes<
   typeof collapseItemProps

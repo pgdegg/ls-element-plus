@@ -20,7 +20,7 @@ export type InputModelModifiers = {
   trim?: true
 }
 export type InputAutoSize = { minRows?: number; maxRows?: number } | boolean
-// Some commonly used values for input type
+// input type 的一些常用取值
 export type InputType =
   | 'text'
   | 'textarea'
@@ -37,147 +37,147 @@ export interface InputProps {
   ignoreParentHidePlaceholder?: string | string[]
   ignoreParentReadonly?: boolean
   focusDelay?: number
-  /** @description character patterns retained during input */
+  /** @description 输入期间保留的字符模式 */
   keeps?: string | RegExp | (string | RegExp)[]
-  /** @description additional literal characters retained with keeps */
+  /** @description 与 keeps 一同保留的额外字面字符 */
   ignorekeeps?: string | string[]
   /**
-   * @description native input id
+   * @description 原生 input 的 id
    */
   id?: string
   /**
-   * @description input box size
+   * @description 输入框尺寸
    */
   size?: ComponentSize
   /**
-   * @description whether to disable
+   * @description 是否禁用
    */
   disabled?: boolean
   /**
-   * @description binding value
+   * @description 绑定值
    */
   modelValue?: string | number | null | undefined
   /**
-   * @description v-model modifiers, reference [Vue modifiers](https://vuejs.org/guide/essentials/forms.html#modifiers)
+   * @description v-model 修饰符，参考 [Vue modifiers](https://vuejs.org/guide/essentials/forms.html#modifiers)
    */
   modelModifiers?: InputModelModifiers
   /**
-   * @description same as `maxlength` in native input
+   * @description 与原生 input 的 `maxlength` 相同
    */
   maxlength?: string | number
   /**
-   * @description same as `minlength` in native input
+   * @description 与原生 input 的 `minlength` 相同
    */
   minlength?: string | number
   /**
-   * @description type of input, see more in [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types)
+   * @description 输入框类型，详见 [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types)
    */
   type?: InputType
   /**
-   * @description control the resizability
+   * @description 控制是否可调整大小
    */
   resize?: 'none' | 'both' | 'horizontal' | 'vertical'
   /**
-   * @description whether textarea has an adaptive height
+   * @description textarea 是否自适应高度
    */
   autosize?: InputAutoSize
   /**
-   * @description native input autocomplete
-   * - When the number of literal types in a union exceeds 315, the TS2590 error occurs. see: https://github.com/vuejs/core/issues/10514
+   * @description 原生 input 的 autocomplete
+   * - 当联合类型中字面量类型数量超过 315 时会出现 TS2590 错误，见：https://github.com/vuejs/core/issues/10514
    */
   autocomplete?: string // HTMLInputElement['autocomplete']
   /**
-   * @description format content
+   * @description 格式化内容
    */
   formatter?: (value: string) => string
   /**
-   * @description parse content
+   * @description 解析内容
    */
   parser?: (value: string) => string
   /**
-   * @description placeholder
+   * @description 占位文本
    */
   placeholder?: string
   /**
-   * @description native input form
+   * @description 原生 input 的 form
    */
   form?: string
   /**
-   * @description native input readonly
+   * @description 原生 input 的 readonly
    */
   readonly?: boolean
   /**
-   * @description whether to show clear button
+   * @description 是否显示清除按钮
    */
   clearable?: boolean
   /**
-   * @description custom clear icon component
+   * @description 自定义清除图标组件
    */
   clearIcon?: IconPropType
   /**
-   * @description toggleable password input
+   * @description 可切换显示的密码输入框
    */
   showPassword?: boolean
   /**
-   * @description word count
+   * @description 字数统计
    */
   showWordLimit?: boolean
   /**
-   * @description word count position, valid when `show-word-limit` is true
+   * @description 字数统计位置，`show-word-limit` 为 true 时生效
    */
   wordLimitPosition?: 'inside' | 'outside'
   /**
-   * @description suffix icon
+   * @description 后缀图标
    */
   suffixIcon?: IconPropType
   /**
-   * @description prefix icon
+   * @description 前缀图标
    */
   prefixIcon?: IconPropType
   /**
-   * @description container role, internal properties provided for use by the picker component
+   * @description 容器 role，供 picker 组件使用的内部属性
    */
   containerRole?: string
   /**
-   * @description input tabindex
+   * @description 输入框 tabindex
    */
   tabindex?: string | number
   /**
-   * @description whether to trigger form validation
+   * @description 是否触发表单校验
    */
   validateEvent?: boolean
   /**
-   * @description input or textarea element style
+   * @description input 或 textarea 元素的样式
    */
   inputStyle?: StyleValue
   /**
-   * @description native input autofocus
+   * @description 原生 input 的 autofocus
    */
   autofocus?: boolean
   /**
-   * @description number of rows of textarea, only works when `type` is 'textarea'
+   * @description textarea 行数，仅在 `type` 为 'textarea' 时生效
    */
   rows?: number
   /**
-   * @description native `aria-label` attribute
+   * @description 原生 `aria-label` 属性
    */
   ariaLabel?: string
   /**
-   * @description native input mode for virtual keyboards
+   * @description 用于虚拟键盘的原生 input mode
    */
   inputmode?: HTMLAttributes['inputmode']
   /**
-   * @description same as `name` in native input
+   * @description 与原生 input 的 `name` 相同
    */
   name?: string
   /**
-   * @description Count graphemes of input value. If it's set, native maxlength and minlength won't be used.
+   * @description 统计输入值的字形（grapheme）数量。设置后将不再使用原生 maxlength 和 minlength。
    */
   countGraphemes?: (value: string) => number
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `InputProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `InputProps`。
  */
 export const inputProps = buildProps({
   keeps: {
@@ -193,25 +193,25 @@ export const inputProps = buildProps({
   ignoreParentReadonly: Boolean,
   focusDelay: Number,
   /**
-   * @description native input id
+   * @description 原生 input 的 id
    */
   id: {
     type: String,
     default: undefined,
   },
   /**
-   * @description input box size
+   * @description 输入框尺寸
    */
   size: useSizeProp,
   /**
-   * @description whether to disable
+   * @description 是否禁用
    */
   disabled: {
     type: Boolean,
     default: undefined,
   },
   /**
-   * @description binding value
+   * @description 绑定值
    */
   modelValue: {
     type: definePropType<string | number | null | undefined>([
@@ -222,101 +222,101 @@ export const inputProps = buildProps({
     default: '',
   },
   /**
-   * @description v-model modifiers, reference [Vue modifiers](https://vuejs.org/guide/essentials/forms.html#modifiers)
+   * @description v-model 修饰符，参考 [Vue modifiers](https://vuejs.org/guide/essentials/forms.html#modifiers)
    */
   modelModifiers: {
     type: definePropType<InputModelModifiers>(Object),
     default: () => ({}),
   },
   /**
-   * @description same as `maxlength` in native input
+   * @description 与原生 input 的 `maxlength` 相同
    */
   maxlength: {
     type: [String, Number],
   },
   /**
-   * @description same as `minlength` in native input
+   * @description 与原生 input 的 `minlength` 相同
    */
   minlength: {
     type: [String, Number],
   },
   /**
-   * @description type of input, see more in [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types)
+   * @description 输入框类型，详见 [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types)
    */
   type: {
     type: definePropType<InputType>(String),
     default: 'text',
   },
   /**
-   * @description control the resizability
+   * @description 控制是否可调整大小
    */
   resize: {
     type: String,
     values: ['none', 'both', 'horizontal', 'vertical'],
   },
   /**
-   * @description whether textarea has an adaptive height
+   * @description textarea 是否自适应高度
    */
   autosize: {
     type: definePropType<InputAutoSize>([Boolean, Object]),
     default: false,
   },
   /**
-   * @description native input autocomplete
+   * @description 原生 input 的 autocomplete
    */
   autocomplete: {
     type: definePropType<HTMLInputElement['autocomplete']>(String),
     default: 'off',
   },
   /**
-   * @description format content
+   * @description 格式化内容
    */
   formatter: {
     type: Function,
   },
   /**
-   * @description parse content
+   * @description 解析内容
    */
   parser: {
     type: Function,
   },
   /**
-   * @description placeholder
+   * @description 占位文本
    */
   placeholder: {
     type: String,
   },
   /**
-   * @description native input form
+   * @description 原生 input 的 form
    */
   form: {
     type: String,
   },
   /**
-   * @description native input readonly
+   * @description 原生 input 的 readonly
    */
   readonly: Boolean,
   /**
-   * @description whether to show clear button
+   * @description 是否显示清除按钮
    */
   clearable: Boolean,
   /**
-   * @description custom clear icon component
+   * @description 自定义清除图标组件
    */
   clearIcon: {
     type: iconPropType,
     default: CircleClose,
   },
   /**
-   * @description toggleable password input
+   * @description 可切换显示的密码输入框
    */
   showPassword: Boolean,
   /**
-   * @description word count
+   * @description 字数统计
    */
   showWordLimit: Boolean,
   /**
-   * @description word count position, valid when `show-word-limit` is true
+   * @description 字数统计位置，`show-word-limit` 为 true 时生效
    */
   wordLimitPosition: {
     type: String,
@@ -324,53 +324,53 @@ export const inputProps = buildProps({
     default: 'inside',
   },
   /**
-   * @description suffix icon
+   * @description 后缀图标
    */
   suffixIcon: {
     type: iconPropType,
   },
   /**
-   * @description prefix icon
+   * @description 前缀图标
    */
   prefixIcon: {
     type: iconPropType,
   },
   /**
-   * @description container role, internal properties provided for use by the picker component
+   * @description 容器 role，供 picker 组件使用的内部属性
    */
   containerRole: {
     type: String,
     default: undefined,
   },
   /**
-   * @description input tabindex
+   * @description 输入框 tabindex
    */
   tabindex: {
     type: [String, Number],
     default: 0,
   },
   /**
-   * @description whether to trigger form validation
+   * @description 是否触发表单校验
    */
   validateEvent: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description input or textarea element style
+   * @description input 或 textarea 元素的样式
    */
   inputStyle: {
     type: definePropType<StyleValue>([Object, Array, String, Boolean]),
     default: () => mutable({} as const),
   },
   /**
-   * @description Count graphemes of input value. If it's set, native maxlength and minlength won't be used.
+   * @description 统计输入值的字形（grapheme）数量。设置后将不再使用原生 maxlength 和 minlength。
    */
   countGraphemes: {
     type: definePropType<(value: string) => number>(Function),
   },
   /**
-   * @description native input autofocus
+   * @description 原生 input 的 autofocus
    */
   autofocus: Boolean,
   rows: {
@@ -379,20 +379,20 @@ export const inputProps = buildProps({
   },
   ...useAriaProps(['ariaLabel']),
   /**
-   * @description native input mode for virtual keyboards
+   * @description 用于虚拟键盘的原生 input mode
    */
   inputmode: {
     type: definePropType<HTMLAttributes['inputmode']>(String),
     default: undefined,
   },
   /**
-   * @description same as `name` in native input
+   * @description 与原生 input 的 `name` 相同
    */
   name: String,
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `InputProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `InputProps`。
  */
 export type InputPropsPublic = ExtractPublicPropTypes<typeof inputProps>
 
@@ -407,8 +407,8 @@ export const inputEmits = {
     evt === undefined || evt instanceof MouseEvent,
   mouseleave: (evt: MouseEvent) => evt instanceof MouseEvent,
   mouseenter: (evt: MouseEvent) => evt instanceof MouseEvent,
-  // NOTE: when autofill by browser, the keydown event is instanceof Event, not KeyboardEvent
-  // relative bug report https://github.com/element-plus/element-plus/issues/6665
+  // 注意：浏览器自动填充时，keydown 事件是 Event 的实例，而非 KeyboardEvent
+  // 相关 bug 报告 https://github.com/element-plus/element-plus/issues/6665
   keydown: (evt: KeyboardEvent | Event) => evt instanceof Event,
   compositionstart: (evt: CompositionEvent) => evt instanceof CompositionEvent,
   compositionupdate: (evt: CompositionEvent) => evt instanceof CompositionEvent,
@@ -417,7 +417,7 @@ export const inputEmits = {
 export type InputEmits = typeof inputEmits
 
 /**
- * @description default values for InputProps, used in components that extend InputProps like Autocomplete
+ * @description InputProps 的默认值，用于继承 InputProps 的组件（如 Autocomplete）
  */
 export const inputPropsDefaults = {
   hidePlaceholder: undefined,

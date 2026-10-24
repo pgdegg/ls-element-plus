@@ -11,7 +11,7 @@ export const epRoot = resolve(pkgRoot, 'element-plus')
 export const utilRoot = resolve(pkgRoot, 'utils')
 export const buildRoot = resolve(projRoot, 'internal', 'build')
 
-// Docs
+// 文档
 export const docsDirName = 'docs'
 export const docRoot = resolve(projRoot, docsDirName)
 export const vpRoot = resolve(docRoot, '.vitepress')
@@ -33,8 +33,8 @@ export const docPackage = resolve(docRoot, 'package.json')
 
 const windowsSlashRE = /\\/g
 /**
- * Normalize a path to use forward slashes.
- * This is useful for ensuring consistent path formatting across different platforms.
+ * 规范化路径，使用正斜杠。
+ * 这有助于在不同平台上保持一致的路径格式。
  */
 export function normalizePath(p: string): string {
   if (typeof process !== 'undefined' && process.platform === 'win32') {

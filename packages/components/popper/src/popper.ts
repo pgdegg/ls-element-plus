@@ -30,13 +30,13 @@ export type PopperTrigger = (typeof triggers)[number]
 
 export interface PopperProps {
   /**
-   * @description role determines how aria attributes are distributed
+   * @description role 决定 aria 属性如何分配
    */
   role?: (typeof roleTypes)[number]
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `PopperProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `PopperProps`。
  */
 export const popperProps = buildProps({
   role: {
@@ -47,14 +47,14 @@ export const popperProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `PopperProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `PopperProps`。
  */
 export type PopperPropsPublic = ExtractPublicPropTypes<typeof popperProps>
 
 export type PopperInstance = InstanceType<typeof Popper> & unknown
 
-/** @deprecated use `popperProps` instead, and it will be deprecated in the next major version */
+/** @deprecated 请改用 `popperProps`，它将在下一个大版本中被废弃 */
 export const usePopperProps = popperProps
 
-/** @deprecated use `PopperProps` instead, and it will be deprecated in the next major version */
+/** @deprecated 请改用 `PopperProps`，它将在下一个大版本中被废弃 */
 export type UsePopperProps = PopperProps

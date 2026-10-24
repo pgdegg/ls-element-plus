@@ -2,7 +2,7 @@ export default {
   name: 'ko',
   el: {
     breadcrumb: {
-      label: 'Breadcrumb', // to be translated
+      label: 'Breadcrumb', // 待翻译
     },
     colorpicker: {
       confirm: '확인',
@@ -10,14 +10,14 @@ export default {
       defaultLabel: '색상 선택기',
       description:
         '현재 색상은 {color}입니다. Enter 키를 눌러 새 색상을 선택합니다.',
-      alphaLabel: 'pick alpha value', // to be translated
-      alphaDescription: 'alpha {alpha}, current color is {color}', // to be translated
-      hueLabel: 'pick hue value', // to be translated
-      hueDescription: 'hue {hue}, current color is {color}', // to be translated
-      svLabel: 'pick saturation and brightness value', // to be translated
+      alphaLabel: 'pick alpha value', // 待翻译
+      alphaDescription: 'alpha {alpha}, current color is {color}', // 待翻译
+      hueLabel: 'pick hue value', // 待翻译
+      hueDescription: 'hue {hue}, current color is {color}', // 待翻译
+      svLabel: 'pick saturation and brightness value', // 待翻译
       svDescription:
-        'saturation {saturation}, brightness {brightness}, current color is {color}', // to be translated
-      predefineDescription: 'select {value} as the color', // to be translated
+        'saturation {saturation}, brightness {brightness}, current color is {color}', // 待翻译
+      predefineDescription: 'select {value} as the color', // 待翻译
     },
     datepicker: {
       now: '지금',
@@ -31,7 +31,7 @@ export default {
         '화살표 키를 사용하고 Enter를 눌러 분기를 선택합니다.',
       yearTablePrompt:
         '화살표 키를 사용하고 Enter 키를 눌러 연도를 선택합니다.',
-      selectedDate: 'Selected date', // to be translated
+      selectedDate: 'Selected date', // 待翻译
       selectDate: '날짜 선택',
       selectTime: '시간 선택',
       startDate: '시작 날짜',
@@ -65,13 +65,13 @@ export default {
         sat: '토',
       },
       weeksFull: {
-        sun: 'Sunday', // to be translated
-        mon: 'Monday', // to be translated
-        tue: 'Tuesday', // to be translated
-        wed: 'Wednesday', // to be translated
-        thu: 'Thursday', // to be translated
-        fri: 'Friday', // to be translated
-        sat: 'Saturday', // to be translated
+        sun: 'Sunday', // 待翻译
+        mon: 'Monday', // 待翻译
+        tue: 'Tuesday', // 待翻译
+        wed: 'Wednesday', // 待翻译
+        thu: 'Thursday', // 待翻译
+        fri: 'Friday', // 待翻译
+        sat: 'Saturday', // 待翻译
       },
       months: {
         jan: '1월',
@@ -157,21 +157,21 @@ export default {
       resetFilter: '초기화',
       clearFilter: '전체',
       sumText: '합계',
-      selectAllLabel: 'Select all rows', // to be translated
-      selectRowLabel: 'Select this row', // to be translated
-      expandRowLabel: 'Expand this row', // to be translated
-      collapseRowLabel: 'Collapse this row', // to be translated
-      sortLabel: 'Sort by {column}', // to be translated
-      filterLabel: 'Filter by {column}', // to be translated
+      selectAllLabel: 'Select all rows', // 待翻译
+      selectRowLabel: 'Select this row', // 待翻译
+      expandRowLabel: 'Expand this row', // 待翻译
+      collapseRowLabel: 'Collapse this row', // 待翻译
+      sortLabel: 'Sort by {column}', // 待翻译
+      filterLabel: 'Filter by {column}', // 待翻译
     },
     tag: {
-      close: 'Close this tag', // to be translated
+      close: 'Close this tag', // 待翻译
     },
     tour: {
       next: '다음',
       previous: '이전',
       finish: '종료',
-      close: 'Close this dialog', // to be translated
+      close: 'Close this dialog', // 待翻译
     },
     tree: {
       emptyText: '데이터 없음',
@@ -195,13 +195,13 @@ export default {
       cancelButtonText: '아니오',
     },
     carousel: {
-      leftArrow: 'Carousel arrow left', // to be translated
-      rightArrow: 'Carousel arrow right', // to be translated
-      indicator: 'Carousel switch to index {index}', // to be translated
+      leftArrow: 'Carousel arrow left', // 待翻译
+      rightArrow: 'Carousel arrow right', // 待翻译
+      indicator: 'Carousel switch to index {index}', // 待翻译
     },
     inputOTP: {
-      groupLabel: 'OTP Input', // to be translated
-      defaultLabel: 'Please enter OTP character {index}', // to be translated
+      groupLabel: 'OTP Input', // 待翻译
+      defaultLabel: 'Please enter OTP character {index}', // 待翻译
     },
   },
 }

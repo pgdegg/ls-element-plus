@@ -36,8 +36,7 @@
       @click.stop
     >
       <!--
-        Add an empty element to avoid render label,
-        do not use empty fragment here for https://github.com/vuejs/vue-next/pull/2485
+        添加一个空元素以避免渲染 label，此处不要使用空片段，原因见 https://github.com/vuejs/vue-next/pull/2485
       -->
       <span />
     </el-radio>
@@ -97,7 +96,7 @@ const expandable = computed(
 )
 const inExpandingPath = computed(() => isInPath(panel.expandingNode!))
 
-// only useful in check-strictly mode
+// 仅在 check-strictly 模式下有用
 const inCheckedPath = computed(
   () => checkStrictly.value && panel.checkedNodes.some(isInPath)
 )
@@ -132,7 +131,7 @@ const handleHoverExpand = (e: Event) => {
 
 const handleExpand = () => {
   const { node } = props
-  // do not exclude leaf node because the menus expanded might have to reset
+  // 不要排除叶子节点，因为已展开的菜单可能需要重置
   if (!expandable.value || node.loading) return
   node.loaded ? doExpand() : doLoad()
 }

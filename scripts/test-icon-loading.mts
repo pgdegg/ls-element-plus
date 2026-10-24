@@ -1,6 +1,6 @@
 /// <reference lib="dom" />
-// Run with: pnpm exec tsx scripts/test-icon-loading.mts
-// Set PUPPETEER_EXECUTABLE_PATH to use an installed Chrome or Edge.
+// 运行方式：pnpm exec tsx scripts/test-icon-loading.mts
+// 设置 PUPPETEER_EXECUTABLE_PATH 以使用已安装的 Chrome 或 Edge。
 import assert from 'node:assert/strict'
 import { createRequire } from 'node:module'
 import { pathToFileURL } from 'node:url'

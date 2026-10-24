@@ -33,8 +33,8 @@ export interface TreeProps {
   highlightCurrent?: boolean
   showCheckbox?: boolean
   defaultCheckedKeys?: TreeKey[]
-  // Whether checked state of a node not affects its father and
-  // child nodes when show-checkbox is true
+  // 勾选某节点时是否不影响其父节点和
+  // 子节点（当 show-checkbox 为 true 时）
   checkStrictly?: boolean
   defaultExpandedKeys?: TreeKey[]
   indent?: number
@@ -46,10 +46,10 @@ export interface TreeProps {
   currentNodeKey?: string | number
   accordion?: boolean
   filterMethod?: FilterMethod
-  // Performance mode will increase memory usage, but scrolling will be smoother
+  // 性能模式会增加内存占用，但滚动更流畅
   perfMode?: boolean
   /**
-   * @description always show scrollbar
+   * @description 始终显示滚动条
    */
   scrollbarAlwaysOn?: boolean
 }
@@ -67,7 +67,7 @@ export interface TreeNodeProps {
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `TreeProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `TreeProps`。
  */
 export type TreePropsPublic = ExtractPublicPropTypes<typeof treeProps>
 
@@ -83,16 +83,16 @@ export interface TreeNode {
   expanded?: boolean
 
   /**
-   * Determines whether the current tree node is effectively checked.
+   * 判断当前树节点是否被有效勾选。
    *
-   * Rules:
-   * 1. A disabled leaf node is always considered checked.
-   * 2. A non-disabled leaf node reflects its actual checked state.
-   * 3. A non-leaf node is considered checked only when:
-   *    - All of its child nodes are effectively checked, and
-   *    - Each child follows the same evaluation rules:
-   *      - Disabled leaf nodes follow rule #1.
-   *      - Non-leaf child nodes are recursively evaluated under this rule (#3).
+   * 规则：
+   * 1. 被禁用的叶子节点始终视为已勾选。
+   * 2. 未禁用的叶子节点反映其真实勾选状态。
+   * 3. 非叶子节点仅在以下情况视为已勾选：
+   *    - 其所有子节点都被有效勾选，且
+   *    - 每个子节点遵循相同的评估规则：
+   *      - 禁用的叶子节点遵循规则 #1。
+   *      - 非叶子子节点在本规则（#3）下递归评估。
    */
   isEffectivelyChecked?: boolean
 }

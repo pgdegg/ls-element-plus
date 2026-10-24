@@ -10,7 +10,7 @@ export interface SplitterProps {
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `SplitterProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `SplitterProps`。
  */
 export const splitterProps = buildProps({
   layout: {
@@ -22,7 +22,7 @@ export const splitterProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `SplitterProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `SplitterProps`。
  */
 export type SplitterPropsPublic = ExtractPublicPropTypes<typeof splitterProps>
 export type SplitterInstance = InstanceType<typeof Splitter> & unknown

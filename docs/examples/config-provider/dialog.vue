@@ -57,14 +57,14 @@ const globalConfig = computed<GlobalConfig>(() => {
           nextTick(() => {
             const dialogEl = el.querySelector('.el-dialog') as HTMLElement
             if (dialogEl) {
-              // force reflow
+              // 强制重排（reflow）
               dialogEl.offsetHeight
 
               dialogEl.style.transition = `all ${ANIMATION_DURATION}ms cubic-bezier(0.4, 0, 1, 1)`
               dialogEl.style.transform = 'translate(0, 0) scale(1)'
               dialogEl.style.opacity = '1'
 
-              // wait for animation to complete, then cleanup inline styles to avoid affecting drag
+              // 等待动画完成后清理内联样式，避免影响拖拽
               setTimeout(() => {
                 dialogEl.style.transition = ''
                 dialogEl.style.transform = ''
@@ -87,7 +87,7 @@ const globalConfig = computed<GlobalConfig>(() => {
               let dragOffsetX = 0
               let dragOffsetY = 0
 
-              // avoid draggable effect
+              // 避免可拖拽效果
               if (currentTransform) {
                 const translateMatch = currentTransform.match(
                   /translate\(([^,]+),\s*([^)]+)\)/
@@ -113,7 +113,7 @@ const globalConfig = computed<GlobalConfig>(() => {
               dialogEl.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(0.3)`
               dialogEl.style.opacity = '0'
 
-              // wait for animation to complete, then cleanup inline styles
+              // 等待动画完成后清理内联样式
               setTimeout(() => {
                 dialogEl.style.transition = ''
                 dialogEl.style.transform = ''
@@ -192,7 +192,7 @@ const globalConfig = computed<GlobalConfig>(() => {
 </template>
 
 <style>
-/* Bounce Animation */
+/* 弹跳动画 */
 .dialog-bounce-enter-active,
 .dialog-bounce-leave-active,
 .dialog-bounce-enter-active .el-dialog,

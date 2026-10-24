@@ -2,10 +2,10 @@ import { isFunction, isUndefined } from 'lodash-unified'
 
 /**
  *
- * @param obj Object on which to add or modify the property.
- * @param prop The property name
- * @param value The value of `obj[prop]` or a getter
- * @returns A restore function which can reset `obj[prop]`'s value or getter
+ * @param obj 用于添加或修改属性的对象。
+ * @param prop 属性名
+ * @param value `obj[prop]` 的值或一个 getter
+ * @returns 一个恢复函数，可重置 `obj[prop]` 的值或 getter
  */
 const defineGetter = (
   obj: Record<string, any>,

@@ -66,7 +66,7 @@ const style = computed<StyleValue>(() => {
 })
 
 defineExpose({
-  /** @description badge content */
+  /** @description 徽章内容 */
   content,
 })
 </script>

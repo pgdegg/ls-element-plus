@@ -23,7 +23,7 @@ const open1 = () => {
   const checked = ref<boolean | string | number>(false)
   ElMessageBox({
     title: 'Message',
-    // Should pass a function if VNode contains dynamic props
+    // 当 VNode 包含动态 props 时，应传入函数
     message: () =>
       h(ElSwitch, {
         modelValue: checked.value,

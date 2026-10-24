@@ -88,7 +88,7 @@ provide(POPPER_CONTENT_INJECTION_KEY, {
 })
 
 if (formItemContext) {
-  // disallow auto-id from inside popper content
+  // 禁止在 popper 内容内部使用自动 id
   provide(formItemContextKey, {
     ...formItemContext,
     addInputId: NOOP,
@@ -155,20 +155,20 @@ onBeforeUnmount(() => {
 
 defineExpose({
   /**
-   * @description popper content element
+   * @description popper 内容元素
    */
   popperContentRef: contentRef,
   /**
-   * @description popperjs instance
+   * @description popperjs 实例
    */
   popperInstanceRef: instanceRef,
   /**
-   * @description method for updating popper
+   * @description 更新 popper 的方法
    */
   updatePopper,
 
   /**
-   * @description content style
+   * @description 内容样式
    */
   contentStyle,
 })

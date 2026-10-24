@@ -140,7 +140,7 @@ describe('Notification.vue', () => {
       })
 
       expect(wrapper.find('.el-notification__icon').exists()).toBe(false)
-      // TODO: Uncomment after runtime validation is added
+      // TODO：添加运行时校验后取消注释
       // expect(console.warn).toHaveBeenCalled()
       ;(console.warn as any as MockInstance).mockRestore()
     })
@@ -259,7 +259,7 @@ describe('Notification.vue', () => {
         },
       })
 
-      // Same as above
+      // 同上
       const event = new KeyboardEvent('keydown', {
         code: EVENT_CODE.esc,
       })
@@ -280,7 +280,7 @@ describe('Notification.vue', () => {
 
       await wrapper.find('[role=alert]').trigger('mouseenter')
 
-      // pressing an unrelated key should not resume the timer while hovered
+      // 悬停时按无关按键不应恢复定时器
       document.dispatchEvent(
         new KeyboardEvent('keydown', { code: 'KeyA', bubbles: true })
       )

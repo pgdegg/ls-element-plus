@@ -22,37 +22,37 @@ export const tourPlacements = [
 
 export interface TourContentProps {
   /**
-   * @description position of the guide card relative to the target element
+   * @description 引导卡片相对于目标元素的位置
    */
   placement?: Placement
   /**
-   * @description the reference dom
+   * @description 参考 dom
    */
   reference?: HTMLElement | VirtualElement | null
   /**
-   * @description position strategy of the content
+   * @description 内容的定位策略
    */
   strategy?: Strategy
   /**
-   * @description offset of the arrow
+   * @description 箭头的偏移量
    */
   offset?: number
   /**
-   * @description whether to show the arrow
+   * @description 是否显示箭头
    */
   showArrow?: boolean
   /**
-   * @description content's zIndex
+   * @description 内容的 zIndex
    */
   zIndex?: number
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `TourContentProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `TourContentProps`。
  */
 export const tourContentProps = buildProps({
   /**
-   * @description position of the guide card relative to the target element
+   * @description 引导卡片相对于目标元素的位置
    */
   placement: {
     type: definePropType<Placement>(String),
@@ -60,14 +60,14 @@ export const tourContentProps = buildProps({
     default: 'bottom',
   },
   /**
-   * @description the reference dom
+   * @description 参考 dom
    */
   reference: {
     type: definePropType<HTMLElement | VirtualElement | null>(Object),
     default: null,
   },
   /**
-   * @description position strategy of the content
+   * @description 内容的定位策略
    */
   strategy: {
     type: definePropType<Strategy>(String),
@@ -75,18 +75,18 @@ export const tourContentProps = buildProps({
     default: 'absolute',
   },
   /**
-   * @description offset of the arrow
+   * @description 箭头的偏移量
    */
   offset: {
     type: Number,
     default: 10,
   },
   /**
-   * @description whether to show the arrow
+   * @description 是否显示箭头
    */
   showArrow: Boolean,
   /**
-   * @description content's zIndex
+   * @description 内容的 zIndex
    */
   zIndex: {
     type: Number,
@@ -95,7 +95,7 @@ export const tourContentProps = buildProps({
 })
 
 /**
- * @deprecated Removed after 3.0.0, Use `TourContentProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `TourContentProps`。
  */
 export type TourContentPropsPublic = ExtractPublicPropTypes<
   typeof tourContentProps

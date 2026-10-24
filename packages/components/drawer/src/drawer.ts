@@ -7,33 +7,33 @@ import type { DialogProps } from '@element-plus/components/dialog'
 
 export interface DrawerProps extends DialogProps {
   /**
-   * @description Set the direction in which the Drawer opens
+   * @description 设置 Drawer 的打开方向
    */
   direction?: 'ltr' | 'rtl' | 'ttb' | 'btt'
   /**
-   * @description Whether to enable the resizable function for the drawer
+   * @description 是否为抽屉启用可调大小功能
    */
   resizable?: boolean
   /**
-   * @description The size of the Drawer form, when using the number type, is measured in pixels. When using the string type, please pass in 'x%'; otherwise, it will be interpreted as the number type
+   * @description Drawer 尺寸；使用 number 类型时以像素为单位，使用 string 类型时请传入 'x%'；否则将被解释为 number 类型
    */
   size?: string | number
   /**
-   * @description You can remove the title from the drawer, so that your drawer will have more space on the screen. If you want to be visited, you must set the title attribute.
+   * @description 可以移除抽屉的标题，让抽屉在屏幕上拥有更多空间。若希望可被访问，必须设置 title 属性。
    */
   withHeader?: boolean
   /**
-   * @description The fade-in and fade-out animation switch of the mask layer
+   * @description 遮罩层的淡入淡出动画开关
    */
   modalFade?: boolean
   /**
-   * @description Help assistive technologies such as screen readers identify content hierarchies
+   * @description 帮助屏幕阅读器等辅助技术识别内容层级
    */
   headerAriaLevel?: string
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `DrawerProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `DrawerProps`。
  */
 export const drawerProps = buildProps({
   ...dialogProps,
@@ -62,7 +62,7 @@ export const drawerProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `DrawerProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `DrawerProps`。
  */
 export type DrawerPropsPublic = ExtractPublicPropTypes<typeof drawerProps>
 

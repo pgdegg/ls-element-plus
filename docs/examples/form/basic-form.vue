@@ -67,7 +67,7 @@
 <script lang="ts" setup>
 import { reactive } from 'vue'
 
-// do not use same name with ref
+// 不要与 ref 使用相同名称
 const form = reactive({
   name: '',
   region: '',

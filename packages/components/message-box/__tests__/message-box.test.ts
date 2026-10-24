@@ -59,7 +59,7 @@ describe('MessageBox', () => {
       msgbox.querySelector('.el-message-box__message')?.querySelector('p')
         ?.textContent
     ).toEqual('这是一段内容')
-    /** custom inline style */
+    /** 自定义内联样式 */
     expect(
       (msgbox.querySelector('.el-message-box') as HTMLElement).style.width
     ).toEqual('100px')
@@ -373,7 +373,7 @@ describe('MessageBox', () => {
       ElMessageBox.install?.(testContext as any)
       expect(ElMessageBox._context).not.toBe(null)
       expect(ElMessageBox._context).toBe(testContext._context)
-      // clean up
+      // 清理
       ElMessageBox._context = null
     })
   })

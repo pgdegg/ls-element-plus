@@ -45,7 +45,7 @@ describe('Loading', () => {
 
     vi.useFakeTimers()
     loading.value = false
-    // Trigger update event for dispatching close event.
+    // 触发 update 事件以派发 close 事件。
     await nextTick()
 
     vi.runAllTimers()
@@ -202,9 +202,9 @@ describe('Loading', () => {
     vi.useRealTimers()
     await nextTick()
 
-    // the mask is removed from the document ...
+    // 遮罩从文档中被移除……
     expect(mask.parentNode).toBeNull()
-    // ... and no reference on the instance keeps it alive anymore
+    // ……且实例上不再有引用使其存活
     expect(loadingInstance.$el).toBeNull()
     const internalInstance = loadingInstance.vm.$
     expect(internalInstance.vnode.el).toBeNull()

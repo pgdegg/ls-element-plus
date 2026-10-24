@@ -14,174 +14,174 @@ export interface CheckboxProps extends Pick<
   'ariaLabel' | 'ariaControls'
 > {
   /**
-   * @description binding value
+   * @description 绑定值
    */
   hideCircle?: boolean
   cancelDisabled?: boolean
   modelValue?: number | string | boolean
   /**
-   * @description label of the Checkbox when used inside a `checkbox-group`
+   * @description 在 `checkbox-group` 中使用时 Checkbox 的标签
    */
   label?: string | boolean | number | object
   /**
-   * @description value of the Checkbox when used inside a `checkbox-group`
+   * @description 在 `checkbox-group` 中使用时 Checkbox 的值
    */
   value?: string | boolean | number | object
   /**
-   * @description Set indeterminate state, only responsible for style control
+   * @description 设置半选状态，仅负责样式控制
    */
   indeterminate?: boolean
   /**
-   * @description whether the Checkbox is disabled
+   * @description Checkbox 是否禁用
    */
   disabled?: boolean
   /**
-   * @description if the Checkbox is checked
+   * @description Checkbox 是否被选中
    */
   checked?: boolean
   /**
-   * @description native 'name' attribute
+   * @description 原生 'name' 属性
    */
   name?: string
   /**
-   * @description value of the Checkbox if it's checked
+   * @description Checkbox 选中时的值
    */
   trueValue?: string | number
   /**
-   * @description value of the Checkbox if it's not checked
+   * @description Checkbox 未选中时的值
    */
   falseValue?: string | number
   /**
-   * @deprecated use `trueValue` instead
-   * @description value of the Checkbox if it's checked
+   * @deprecated 请使用 `trueValue` 代替
+   * @description Checkbox 选中时的值
    */
   trueLabel?: string | number
   /**
-   * @deprecated use `falseValue` instead
-   * @description value of the Checkbox if it's not checked
+   * @deprecated 请使用 `falseValue` 代替
+   * @description Checkbox 未选中时的值
    */
   falseLabel?: string | number
   /**
-   * @description input id
+   * @description 输入框 id
    */
   id?: string
   /**
-   * @description whether to add a border around Checkbox
+   * @description 是否在 Checkbox 周围添加边框
    */
   border?: boolean
   /**
-   * @description size of the Checkbox
+   * @description Checkbox 尺寸
    */
   size?: ComponentSize
   /**
-   * @description input tabindex
+   * @description 输入框 tabindex
    */
   tabindex?: string | number
   /**
-   * @description whether to trigger form validation
+   * @description 是否触发表单校验
    */
   validateEvent?: boolean
 }
 /**
- * @deprecated Removed after 3.0.0, Use `CheckboxProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `CheckboxProps`
  */
 export const checkboxProps = {
   hideCircle: Boolean,
   cancelDisabled: Boolean,
   /**
-   * @description binding value
+   * @description 绑定值
    */
   modelValue: {
     type: [Number, String, Boolean],
     default: undefined,
   },
   /**
-   * @description label of the Checkbox when used inside a `checkbox-group`
+   * @description 在 `checkbox-group` 中使用时 Checkbox 的标签
    */
   label: {
     type: [String, Boolean, Number, Object],
     default: undefined,
   },
   /**
-   * @description value of the Checkbox when used inside a `checkbox-group`
+   * @description 在 `checkbox-group` 中使用时 Checkbox 的值
    */
   value: {
     type: [String, Boolean, Number, Object],
     default: undefined,
   },
   /**
-   * @description Set indeterminate state, only responsible for style control
+   * @description 设置半选状态，仅负责样式控制
    */
   indeterminate: Boolean,
   /**
-   * @description whether the Checkbox is disabled
+   * @description Checkbox 是否禁用
    */
   disabled: {
     type: Boolean,
     default: undefined,
   },
   /**
-   * @description if the Checkbox is checked
+   * @description Checkbox 是否被选中
    */
   checked: Boolean,
   /**
-   * @description native 'name' attribute
+   * @description 原生 'name' 属性
    */
   name: {
     type: String,
     default: undefined,
   },
   /**
-   * @description value of the Checkbox if it's checked
+   * @description Checkbox 选中时的值
    */
   trueValue: {
     type: [String, Number],
     default: undefined,
   },
   /**
-   * @description value of the Checkbox if it's not checked
+   * @description Checkbox 未选中时的值
    */
   falseValue: {
     type: [String, Number],
     default: undefined,
   },
   /**
-   * @deprecated use `trueValue` instead
-   * @description value of the Checkbox if it's checked
+   * @deprecated 请使用 `trueValue` 代替
+   * @description Checkbox 选中时的值
    */
   trueLabel: {
     type: [String, Number],
     default: undefined,
   },
   /**
-   * @deprecated use `falseValue` instead
-   * @description value of the Checkbox if it's not checked
+   * @deprecated 请使用 `falseValue` 代替
+   * @description Checkbox 未选中时的值
    */
   falseLabel: {
     type: [String, Number],
     default: undefined,
   },
   /**
-   * @description input id
+   * @description 输入框 id
    */
   id: {
     type: String,
     default: undefined,
   },
   /**
-   * @description whether to add a border around Checkbox
+   * @description 是否在 Checkbox 周围添加边框
    */
   border: Boolean,
   /**
-   * @description size of the Checkbox
+   * @description Checkbox 尺寸
    */
   size: useSizeProp,
   /**
-   * @description input tabindex
+   * @description 输入框 tabindex
    */
   tabindex: [String, Number],
   /**
-   * @description whether to trigger form validation
+   * @description 是否触发表单校验
    */
   validateEvent: {
     type: Boolean,
@@ -199,7 +199,7 @@ export const checkboxEmits = {
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `CheckboxProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `CheckboxProps`
  */
 export type CheckboxPropsPublic = ExtractPublicPropTypes<typeof checkboxProps>
 export type CheckboxEmits = typeof checkboxEmits

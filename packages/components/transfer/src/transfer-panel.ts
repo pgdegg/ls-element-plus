@@ -37,7 +37,7 @@ export interface TransferPanelProps<
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `TransferPanelProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `TransferPanelProps`。
  */
 export const transferPanelProps = buildProps({
   data: transferProps.data,
@@ -58,7 +58,7 @@ export const transferPanelProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `TransferPanelProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `TransferPanelProps`。
  */
 export type TransferPanelPropsPublic = ExtractPublicPropTypes<
   typeof transferPanelProps

@@ -82,7 +82,7 @@ export const tableV2RowProps = buildProps({
     required: true,
   },
   /**
-   * Unique item key
+   * 唯一项 key
    */
   rowKey,
   style: {

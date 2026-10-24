@@ -55,7 +55,7 @@
     display: block;
     resize: vertical;
 
-    // #24721 Keep Firefox's caret in view after autosize temporarily hides overflow.
+    // #24721 在自适应高度临时隐藏溢出内容后，保持 Firefox 光标可见。
     overflow-y: auto;
     padding: 5px map.get($input-padding-horizontal, 'default')-$border-width;
     line-height: 1.5;
@@ -241,7 +241,7 @@
     cursor: text;
     transition: getCssVar('transition-box-shadow');
 
-    // Keep the 3D transform to avoid Chromium inset box-shadow noise.
+    // 保留 3D 变换，以避免 Chromium 内阴影噪点。
     transform: translateZ(0);
     @include inset-input-border(
       var(
@@ -260,7 +260,7 @@
   }
 
   & {
-    // use map.get as default value for date picker range
+    // 使用 map.get 作为日期范围选择器的默认值
     @include set-css-var-value(
       'input-inner-height',
       calc(
@@ -301,7 +301,7 @@
       );
     }
 
-    // override edge default style
+    // 覆盖 Edge 默认样式
     &[type='password']::-ms-reveal {
       display: none;
     }
@@ -546,7 +546,7 @@
   display: none !important;
 }
 
-// HIS component customization.
+// HIS 组件定制。
 .el-input {
   // .el-input-group__prepend {
   //   background-color: var(--el-fill-color-light);
@@ -702,7 +702,7 @@
   }
 }
 
-// Scanner input focus animation.
+// 扫码枪输入框聚焦动画。
 .scan .el-input__wrapper {
   position: relative;
   overflow: hidden;

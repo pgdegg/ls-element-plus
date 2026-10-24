@@ -91,24 +91,24 @@ const TableV2 = defineComponent({
 
     expose({
       /**
-       * @description scroll to a given position
-       * @params params {{ scrollLeft?: number, scrollTop?: number }} where to scroll to.
+       * @description 滚动到指定位置
+       * @params params {{ scrollLeft?: number, scrollTop?: number }} 滚动到的目标位置。
        */
       scrollTo,
       /**
-       * @description scroll to a given position horizontally
-       * @params scrollLeft {Number} where to scroll to.
+       * @description 水平滚动到指定位置
+       * @params scrollLeft {Number} 滚动到的目标位置。
        */
       scrollToLeft,
       /**
-       * @description scroll to a given position vertically
-       * @params scrollTop { Number } where to scroll to.
+       * @description 垂直滚动到指定位置
+       * @params scrollTop { Number } 滚动到的目标位置。
        */
       scrollToTop,
       /**
-       * @description scroll to a given row
-       * @params row {Number} which row to scroll to
-       * @params @optional strategy {ScrollStrategy} use what strategy to scroll to
+       * @description 滚动到指定行
+       * @params row {Number} 要滚动到哪一行
+       * @params @optional strategy {ScrollStrategy} 使用哪种滚动策略
        */
       scrollToRow,
     })

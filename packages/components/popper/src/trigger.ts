@@ -4,9 +4,9 @@ import type { Measurable } from './constants'
 import type Trigger from './trigger.vue'
 
 export interface PopperTriggerProps {
-  /** @description Indicates the reference element to which the popper is attached */
+  /** @description popper 所附着的参考元素 */
   virtualRef?: Measurable
-  /** @description Indicates whether virtual triggering is enabled */
+  /** @description 是否启用虚拟触发 */
   virtualTriggering?: boolean
   onMouseenter?: (e: MouseEvent) => void
   onMouseleave?: (e: MouseEvent) => void
@@ -20,14 +20,14 @@ export interface PopperTriggerProps {
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `PopperTriggerProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `PopperTriggerProps`。
  */
 export const popperTriggerProps = buildProps({
-  /** @description Indicates the reference element to which the popper is attached */
+  /** @description popper 所附着的参考元素 */
   virtualRef: {
     type: definePropType<Measurable>(Object),
   },
-  /** @description Indicates whether virtual triggering is enabled */
+  /** @description 是否启用虚拟触发 */
   virtualTriggering: Boolean,
   onMouseenter: {
     type: definePropType<(e: MouseEvent) => void>(Function),
@@ -56,8 +56,8 @@ export const popperTriggerProps = buildProps({
 
 export type PopperTriggerInstance = InstanceType<typeof Trigger> & unknown
 
-/** @deprecated use `popperTriggerProps` instead, and it will be deprecated in the next major version */
+/** @deprecated 请改用 `popperTriggerProps`，它将在下一个大版本中被废弃 */
 export const usePopperTriggerProps = popperTriggerProps
 
-/** @deprecated use `PopperTriggerInstance` instead, and it will be deprecated in the next major version */
+/** @deprecated 请改用 `PopperTriggerInstance`，它将在下一个大版本中被废弃 */
 export type ElPopperArrowTrigger = PopperTriggerInstance

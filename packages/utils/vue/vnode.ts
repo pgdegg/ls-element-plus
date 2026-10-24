@@ -64,8 +64,8 @@ export function isTemplate(node: unknown): node is VNode {
 }
 
 /**
- * determine if the element is a valid element type rather than fragments and comment e.g. <template> v-if
- * @param node {VNode} node to be tested
+ * 判断该节点是否为有效的元素类型，而非 fragment 或注释节点（例如 <template> v-if）
+ * @param node {VNode} 待测试的节点
  */
 export function isValidElementNode(node: VNode): boolean
 export function isValidElementNode(node: unknown): node is VNode
@@ -74,9 +74,9 @@ export function isValidElementNode(node: unknown): node is VNode {
 }
 
 /**
- * get a valid child node (not fragment nor comment)
- * @param node {VNode} node to be searched
- * @param depth {number} depth to be searched
+ * 获取有效的子节点（非 fragment、非注释）
+ * @param node {VNode} 待搜索的节点
+ * @param depth {number} 搜索深度
  */
 function getChildren(
   node: VNodeNormalizedChildren | VNodeChild,

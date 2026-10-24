@@ -696,10 +696,10 @@ describe('Color-picker-panel', () => {
     const hueSlider = wrapper.find('.el-color-hue-slider')
     expect(hueSlider.exists()).toBe(true)
 
-    // Got class name
+    // 获取到类名
     expect(hueSlider.attributes('class')).toContain('custom')
 
-    // Got style
+    // 获取到样式
     expect(hueSlider.attributes('style')).toContain(TEST_STYLE)
 
     wrapper.unmount()

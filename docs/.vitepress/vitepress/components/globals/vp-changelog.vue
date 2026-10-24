@@ -38,7 +38,7 @@ onMounted(async () => {
   } catch {
     releases.value = []
     currentRelease.value = undefined
-    // do something
+    // 在此处补充处理逻辑
   } finally {
     loading.value = false
   }

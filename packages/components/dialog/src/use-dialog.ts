@@ -44,7 +44,7 @@ export const useDialog = (
   const bodyId = useId()
   const visible = ref(false)
   const closed = ref(false)
-  const rendered = ref(false) // when destroyOnClose is true, we initialize it as false vise versa
+  const rendered = ref(false) // 当 destroyOnClose 为 true 时，初始化为 false，反之亦然
   const zIndex = ref(props.zIndex ?? nextZIndex())
   const closing = ref(false)
 
@@ -257,7 +257,7 @@ export const useDialog = (
         closed.value = false
         closing.value = false
         open()
-        rendered.value = true // enables lazy rendering
+        rendered.value = true // 启用懒渲染
         zIndex.value = props.zIndex ?? nextZIndex()
         // this.$el.addEventListener('scroll', this.updatePopper)
         nextTick(() => {
@@ -293,7 +293,7 @@ export const useDialog = (
   onMounted(() => {
     if (props.modelValue) {
       visible.value = true
-      rendered.value = true // enables lazy rendering
+      rendered.value = true // 启用懒渲染
       open()
     }
   })

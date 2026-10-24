@@ -141,10 +141,10 @@ describe('use-model-toggle', () => {
     model.value = true
     disabled.value = true
     await nextTick()
-    // when disabled emits false that modifies the model
+    // 当 disabled 时发出 false，从而修改 model
     expect(model.value).toBe(false)
 
-    // should not hide when disabled
+    // disabled 时不应隐藏
     await wrapper.find('.hide').trigger('click')
     expect(onHide).toHaveBeenCalledTimes(1)
   })

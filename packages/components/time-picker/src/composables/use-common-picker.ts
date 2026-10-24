@@ -85,7 +85,7 @@ export const useCommonPicker = <
       if (!isEqual(availableResult, dayOrDays!)) {
         dayOrDays = availableResult
 
-        // The result is corrected only when model-value exists
+        // 仅当 model-value 存在时才修正结果
         if (!valueIsEmpty.value) {
           emitInput(dayOrDaysToDate(dayOrDays))
         }
@@ -124,7 +124,7 @@ export const useCommonPicker = <
     if (isArray(date)) {
       result = date.map((_) => _.toDate())
     } else {
-      // clear btn emit null
+      // 清除按钮触发 emit null
       result = date ? date.toDate() : date
     }
     userInput.value = null

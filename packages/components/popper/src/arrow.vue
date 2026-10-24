@@ -29,7 +29,7 @@ onBeforeUnmount(() => {
 
 defineExpose({
   /**
-   * @description Arrow element
+   * @description 箭头元素
    */
   arrowRef,
 })

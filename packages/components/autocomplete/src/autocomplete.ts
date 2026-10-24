@@ -45,105 +45,105 @@ export interface AutocompleteProps<
   T extends AutocompleteDataItem = AutocompleteDataItem,
 > extends InputProps {
   /**
-   * @description key name of the input suggestion object for display
+   * @description 用于展示的输入建议对象的键名
    */
   valueKey?: string
   /**
-   * @description binding value
+   * @description 绑定值
    */
   modelValue?: string | number
   /**
-   * @description debounce delay when typing, in milliseconds
+   * @description 输入时的防抖延迟，单位为毫秒
    */
   debounce?: number
   /**
-   * @description placement of the popup menu
+   * @description 弹出菜单的位置
    */
   placement?: AutocompletePlacement
   /**
-   * @description a method to fetch input suggestions. When suggestions are ready, invoke `callback(data:[])` to return them to Autocomplete
+   * @description 获取输入建议的方法。建议准备就绪后，调用 `callback(data:[])` 将其返回给 Autocomplete
    */
   fetchSuggestions?: AutocompleteFetchSuggestions<T>
   /**
-   * @description custom class name for autocomplete's dropdown
+   * @description autocomplete 下拉框的自定义类名
    */
   popperClass?: ElTooltipContentProps['popperClass']
   /**
-   * @description custom style for autocomplete's dropdown
+   * @description autocomplete 下拉框的自定义样式
    */
   popperStyle?: ElTooltipContentProps['popperStyle']
   /**
-   * @description [popper.js](https://popper.js.org/docs/v2/) parameters
+   * @description [popper.js](https://popper.js.org/docs/v2/) 参数
    */
   popperOptions?: Partial<Options>
   /**
-   * @description determines whether the arrow is displayed
+   * @description 是否显示箭头
    */
   showArrow?: boolean
-  /** @description popup distance from input */
+  /** @description 弹出框与输入框的距离 */
   offset?: number
   /**
-   * @description whether show suggestions when input focus
+   * @description 输入框聚焦时是否显示建议
    */
   triggerOnFocus?: boolean
   /**
-   * @description whether to emit a `select` event on enter when there is no autocomplete match
+   * @description 无自动匹配时，按回车是否触发 `select` 事件
    */
   selectWhenUnmatched?: boolean
   /**
-   * @description whether to hide the loading icon in remote search
+   * @description 远程搜索时是否隐藏加载图标
    */
   hideLoading?: boolean
   /**
-   * @description whether select dropdown is teleported to the body
+   * @description 下拉框是否传送到 body
    */
   teleported?: ElTooltipContentProps['teleported']
   /**
-   * @description which select dropdown appends to
+   * @description 下拉框追加到哪个元素
    */
   appendTo?: ElTooltipContentProps['appendTo']
   /**
-   * @description whether to highlight first item in remote search suggestions by default
+   * @description 远程搜索建议默认是否高亮第一项
    */
   highlightFirstItem?: boolean
   /**
-   * @description whether the width of the dropdown is the same as the input
+   * @description 下拉框宽度是否与输入框一致
    */
   fitInputWidth?: boolean
   /**
-   * @description whether keyboard navigation loops from end to start
+   * @description 键盘导航是否首尾循环
    */
   loopNavigation?: boolean
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `AutocompleteProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `AutocompleteProps`
  */
 export const autocompleteProps = buildProps({
   ...inputProps,
   /**
-   * @description key name of the input suggestion object for display
+   * @description 用于展示的输入建议对象的键名
    */
   valueKey: {
     type: String,
     default: 'value',
   },
   /**
-   * @description binding value
+   * @description 绑定值
    */
   modelValue: {
     type: [String, Number],
     default: '',
   },
   /**
-   * @description debounce delay when typing, in milliseconds
+   * @description 输入时的防抖延迟，单位为毫秒
    */
   debounce: {
     type: Number,
     default: 300,
   },
   /**
-   * @description placement of the popup menu
+   * @description 弹出菜单的位置
    */
   placement: {
     type: definePropType<Placement>(String),
@@ -158,64 +158,64 @@ export const autocompleteProps = buildProps({
     default: 'bottom-start',
   },
   /**
-   * @description a method to fetch input suggestions. When suggestions are ready, invoke `callback(data:[])` to return them to Autocomplete
+   * @description 获取输入建议的方法。建议准备就绪后，调用 `callback(data:[])` 将其返回给 Autocomplete
    */
   fetchSuggestions: {
     type: definePropType<AutocompleteFetchSuggestions>([Function, Array]),
     default: NOOP,
   },
   /**
-   * @description custom class name for autocomplete's dropdown
+   * @description autocomplete 下拉框的自定义类名
    */
   popperClass: useTooltipContentProps.popperClass,
   /**
-   * @description custom style for autocomplete's dropdown
+   * @description autocomplete 下拉框的自定义样式
    */
   popperStyle: useTooltipContentProps.popperStyle,
   /**
-   * @description [popper.js](https://popper.js.org/docs/v2/) parameters
+   * @description [popper.js](https://popper.js.org/docs/v2/) 参数
    */
   popperOptions: useTooltipContentProps.popperOptions,
   /**
-   * @description determines whether the arrow is displayed
+   * @description 是否显示箭头
    */
   showArrow: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description whether show suggestions when input focus
+   * @description 输入框聚焦时是否显示建议
    */
   triggerOnFocus: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description whether to emit a `select` event on enter when there is no autocomplete match
+   * @description 无自动匹配时，按回车是否触发 `select` 事件
    */
   selectWhenUnmatched: Boolean,
   /**
-   * @description whether to hide the loading icon in remote search
+   * @description 远程搜索时是否隐藏加载图标
    */
   hideLoading: Boolean,
   /**
-   * @description whether select dropdown is teleported to the body
+   * @description 下拉框是否传送到 body
    */
   teleported: useTooltipContentProps.teleported,
   /**
-   * @description which select dropdown appends to
+   * @description 下拉框追加到哪个元素
    */
   appendTo: useTooltipContentProps.appendTo,
   /**
-   * @description whether to highlight first item in remote search suggestions by default
+   * @description 远程搜索建议默认是否高亮第一项
    */
   highlightFirstItem: Boolean,
   /**
-   * @description whether the width of the dropdown is the same as the input
+   * @description 下拉框宽度是否与输入框一致
    */
   fitInputWidth: Boolean,
   /**
-   * @description whether keyboard navigation loops from end to start
+   * @description 键盘导航是否首尾循环
    */
   loopNavigation: {
     type: Boolean,
@@ -224,7 +224,7 @@ export const autocompleteProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `AutocompleteProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `AutocompleteProps`
  */
 export type AutocompletePropsPublic = ExtractPublicPropTypes<
   typeof autocompleteProps

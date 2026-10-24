@@ -45,10 +45,10 @@ const mergedBarStyle = computed(() => {
   return { ...barStyle.value, transition: 'none' }
 })
 /**
- * when defaultValue is not set, the bar is always shown.
+ * 未设置 defaultValue 时，指示器条始终显示。
  *
- * when defaultValue is set, the bar will be hidden until style is calculated
- * to avoid the bar showing in the wrong position on initial render.
+ * 设置 defaultValue 时，指示器条将隐藏直到样式计算完成
+ * 以避免初始渲染时指示器条出现在错误位置。
  */
 const barVisible = computed(
   () =>
@@ -136,9 +136,9 @@ onBeforeUnmount(() => {
 })
 
 defineExpose({
-  /** @description tab root html element */
+  /** @description tab 根 html 元素 */
   ref: barRef,
-  /** @description method to manually update tab bar style, return the updated style */
+  /** @description 手动更新 tab 条样式的方法，返回更新后的样式 */
   update,
 })
 </script>

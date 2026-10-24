@@ -10,19 +10,19 @@ export type TooltipTriggerType = 'hover' | 'focus' | 'click' | 'contextmenu'
 
 export interface UseTooltipTriggerProps extends PopperTriggerProps {
   /**
-   * @description whether Tooltip is disabled
+   * @description Tooltip 是否禁用
    */
   disabled?: boolean
   /**
-   * @description How should the tooltip be triggered (to show), not valid in controlled mode
+   * @description tooltip 如何触发（显示），在受控模式下无效
    */
   trigger?: Arrayable<TooltipTriggerType>
   /**
-   * @description When you click the mouse to focus on the trigger element, you can define a set of keyboard codes to control the display of tooltip through the keyboard, not valid in controlled mode
+   * @description 鼠标点击聚焦到触发元素时，可定义一组键盘码，通过键盘控制 tooltip 的显示，在受控模式下无效
    */
   triggerKeys?: string[]
   /**
-   * @description when triggering tooltips through hover, whether to focus the trigger element, which improves accessibility
+   * @description 通过 hover 触发 tooltip 时，是否聚焦触发元素，以提升可访问性
    */
   focusOnTarget?: boolean
 }
@@ -37,41 +37,41 @@ export const useTooltipTriggerPropsDefaults = {
 } as const
 
 /**
- * @deprecated Removed after 3.0.0, Use `UseTooltipTriggerProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `UseTooltipTriggerProps`。
  */
 export const useTooltipTriggerProps = buildProps({
   ...popperTriggerProps,
   /**
-   * @description whether Tooltip is disabled
+   * @description Tooltip 是否禁用
    */
   disabled: Boolean,
   /**
-   * @description How should the tooltip be triggered (to show), not valid in controlled mode
+   * @description tooltip 如何触发（显示），在受控模式下无效
    */
   trigger: {
     type: definePropType<Arrayable<TooltipTriggerType>>([String, Array]),
     default: 'hover',
   },
   /**
-   * @description When you click the mouse to focus on the trigger element, you can define a set of keyboard codes to control the display of tooltip through the keyboard, not valid in controlled mode
+   * @description 鼠标点击聚焦到触发元素时，可定义一组键盘码，通过键盘控制 tooltip 的显示，在受控模式下无效
    */
   triggerKeys: {
     type: definePropType<string[]>(Array),
     default: () => [EVENT_CODE.enter, EVENT_CODE.numpadEnter, EVENT_CODE.space],
   },
   /**
-   * @description when triggering tooltips through hover, whether to focus the trigger element, which improves accessibility
+   * @description 通过 hover 触发 tooltip 时，是否聚焦触发元素，以提升可访问性
    */
   focusOnTarget: Boolean,
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `UseTooltipTriggerProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `UseTooltipTriggerProps`。
  */
 export type ElTooltipTriggerProps = UseTooltipTriggerProps
 
 /**
- * @deprecated Removed after 3.0.0, Use `UseTooltipTriggerProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `UseTooltipTriggerProps`。
  */
 export type ElTooltipTriggerPropsPublic = ExtractPublicPropTypes<
   typeof useTooltipTriggerProps

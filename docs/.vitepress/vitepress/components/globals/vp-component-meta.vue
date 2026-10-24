@@ -69,9 +69,9 @@ const escapeHtml = (text: string) =>
   text.replace(/[&<>"']/g, (ch) => HTML_ESCAPE[ch])
 
 const renderDescription = (desc: string) => {
-  // Convert `code` to <code> tags
+  // 将 `code` 转换为 <code> 标签
   let html = escapeHtml(desc).replace(/`([^`]+)`/g, '<code>$1</code>')
-  // Ensure description ends with a period
+  // 确保描述以句点结尾
   html = html.replace(/([^.]$)/, '$1.')
   return html
 }

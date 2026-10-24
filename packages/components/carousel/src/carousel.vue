@@ -152,7 +152,7 @@ const carouselClasses = computed(() => {
   if (unref(isCardType)) {
     classes.push(ns.m('card'))
   }
-  // When vertical with outside indicators, add modifier for flex layout
+  // 垂直方向且指示器在外侧时，添加用于 flex 布局的修饰类
   classes.push(
     ns.is(
       'vertical-outside',
@@ -195,13 +195,13 @@ function handleTransitionEnd(e: TransitionEvent) {
 }
 
 defineExpose({
-  /** @description active slide index */
+  /** @description 当前激活幻灯片的索引 */
   activeIndex: exposeActiveIndex,
-  /** @description manually switch slide, index of the slide to be switched to, starting from 0; or the `name` of corresponding `el-carousel-item` */
+  /** @description 手动切换幻灯片，传入要切换到的幻灯片索引（从 0 开始）；或对应 `el-carousel-item` 的 `name` */
   setActiveItem,
-  /** @description switch to the previous slide */
+  /** @description 切换到上一张幻灯片 */
   prev,
-  /** @description switch to the next slide */
+  /** @description 切换到下一张幻灯片 */
   next,
 })
 </script>

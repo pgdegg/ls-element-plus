@@ -9,7 +9,7 @@ import type { Action } from 'element-plus'
 
 const open = () => {
   ElMessageBox.alert('This is a message', 'Title', {
-    // if you want to disable its autofocus
+    // 如果你想禁用其自动聚焦
     // autofocus: false,
     confirmButtonText: 'OK',
     callback: (action: Action) => {

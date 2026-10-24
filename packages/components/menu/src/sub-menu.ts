@@ -47,69 +47,69 @@ import type { MenuProvider, SubMenuProvider } from './types'
 
 export const subMenuProps = buildProps({
   /**
-   * @description unique identification
+   * @description 唯一标识
    */
   index: {
     type: String,
     required: true,
   },
   /**
-   * @description timeout before showing a sub-menu(inherit `show-timeout` of the menu by default.)
+   * @description 显示子菜单前的超时时间（默认继承菜单的 `show-timeout`）
    */
   showTimeout: Number,
   /**
-   * @description timeout before hiding a sub-menu(inherit `hide-timeout` of the menu by default.)
+   * @description 隐藏子菜单前的超时时间（默认继承菜单的 `hide-timeout`）
    */
   hideTimeout: Number,
   /**
-   * @description custom class name for the popup menu
+   * @description 弹出菜单的自定义类名
    */
   popperClass: {
     type: definePropType<ClassValue>([String, Array, Object, Boolean]),
     default: undefined,
   },
   /**
-   * @description custom style for the popup menu
+   * @description 弹出菜单的自定义样式
    */
   popperStyle: {
     type: definePropType<StyleValue>([String, Array, Object, Boolean]),
     default: undefined,
   },
   /**
-   * @description whether the sub-menu is disabled
+   * @description 子菜单是否禁用
    */
   disabled: Boolean,
   /**
-   * @description whether popup menu is teleported to the body
+   * @description 弹出菜单是否传送到 body
    */
   teleported: {
     type: Boolean,
     default: undefined,
   },
   /**
-   * @description offset of the popper (overrides the `popper` of menu)
+   * @description popper 偏移量（覆盖菜单的 `popper`）
    */
   popperOffset: Number,
   /**
-   * @description Icon when menu are expanded and submenu are closed, `expand-close-icon` and `expand-open-icon` need to be passed together to take effect
+   * @description 菜单展开且子菜单关闭时的图标；`expand-close-icon` 与 `expand-open-icon` 需一同传入才生效
    */
   expandCloseIcon: {
     type: iconPropType,
   },
   /**
-   * @description Icon when menu are expanded and submenu are opened, `expand-open-icon` and `expand-close-icon` need to be passed together to take effect
+   * @description 菜单展开且子菜单打开时的图标；`expand-open-icon` 与 `expand-close-icon` 需一同传入才生效
    */
   expandOpenIcon: {
     type: iconPropType,
   },
   /**
-   * @description Icon when menu are collapsed and submenu are closed, `collapse-close-icon` and `collapse-open-icon` need to be passed together to take effect
+   * @description 菜单折叠且子菜单关闭时的图标；`collapse-close-icon` 与 `collapse-open-icon` 需一同传入才生效
    */
   collapseCloseIcon: {
     type: iconPropType,
   },
   /**
-   * @description Icon when menu are collapsed and submenu are opened, `collapse-open-icon` and `collapse-close-icon` need to be passed together to take effect
+   * @description 菜单折叠且子菜单打开时的图标；`collapse-open-icon` 与 `collapse-close-icon` 需一同传入才生效
    */
   collapseOpenIcon: {
     type: iconPropType,
@@ -388,7 +388,7 @@ export default defineComponent({
         ),
       ]
 
-      // this render function is only used for bypass `Vue`'s compiler caused patching issue.
+      // 此渲染函数仅用于绕过 `Vue` 编译器导致的补丁（patching）问题。
       const child = rootMenu.isMenuPopup
         ? h(
             ElTooltip,

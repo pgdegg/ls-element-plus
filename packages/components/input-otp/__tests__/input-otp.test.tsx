@@ -197,7 +197,7 @@ describe('InputOtp.vue', () => {
     const wrapper = mount(() => <InputOtp v-model={model.value} />)
     const inputs = wrapper.findAll('input')
 
-    // Focus the 3rd input but type into it
+    // 聚焦第 3 个输入框但向其中输入
     await inputs[2].setValue('1')
 
     expect(model.value).toBe('1')
@@ -211,7 +211,7 @@ describe('InputOtp.vue', () => {
     const wrapper = mount(() => <InputOtp v-model={model.value} />)
     const inputs = wrapper.findAll('input')
 
-    // Skip index 2, type in index 3
+    // 跳过索引 2，在索引 3 中输入
     await inputs[3].setValue('3')
 
     expect(model.value).toBe('123')
@@ -280,7 +280,7 @@ describe('InputOtp.vue', () => {
       const wrapper = mount(() => <InputOtp v-model={model.value} />)
 
       const inputs = wrapper.findAll('input')
-      // Simulate pasting '123456' into the first input
+      // 模拟向第一个输入框粘贴 '123456'
       inputs[0].element.value = '123456'
       await inputs[0].trigger('input')
       expect(model.value).toBe('123456')

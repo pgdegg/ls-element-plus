@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'vue'
 import type { ThumbProps } from './thumb'
 
-export const GAP = 4 // top 2 + bottom 2 of bar instance
+export const GAP = 4 // bar 实例的顶部 2 + 底部 2
 
 export const BAR_MAP = {
   vertical: {

@@ -24,7 +24,7 @@ import type { OptionPublicInstance, OptionValue } from './type'
 import type { Props } from '@element-plus/components/select-v2/src/useProps'
 
 /**
- * @description Tag tooltip configuration interface
+ * @description Tag 提示框（tooltip）配置接口
  */
 export interface TagTooltipProps {
   appendTo?: string | HTMLElement
@@ -43,22 +43,22 @@ export interface TagTooltipProps {
 }
 
 export const selectProps = buildProps({
-  /** @description delimiter for string-backed multiple selections */
+  /** @description 字符串形式多选值的分隔符 */
   separator: String,
-  /** @description selected display labels */
+  /** @description 选中项的展示标签 */
   label: { type: definePropType<string | string[]>([String, Array]) },
-  /** @description additional option value fields included in local filtering */
+  /** @description 本地筛选时纳入的额外选项值字段 */
   filterKeys: { type: definePropType<string[]>(Array), default: () => [] },
   /**
-   * @description the name attribute of select input
+   * @description select 输入框的 name 属性
    */
   name: String,
   /**
-   * @description native input id
+   * @description 原生 input id
    */
   id: String,
   /**
-   * @description binding value
+   * @description 绑定值
    */
   modelValue: {
     type: definePropType<OptionValue | OptionValue[] | null>([
@@ -71,106 +71,106 @@ export const selectProps = buildProps({
     default: undefined,
   },
   /**
-   * @description the autocomplete attribute of select input
+   * @description select 输入框的 autocomplete 属性
    */
   autocomplete: {
     type: String,
     default: 'off',
   },
   /**
-   * @description for non-filterable Select, this prop decides if the option menu pops up when the input is focused
+   * @description 对于不可筛选的 Select，该 prop 决定输入框聚焦时是否弹出选项菜单
    */
   automaticDropdown: Boolean,
   /**
-   * @description size of Input
+   * @description Input 的尺寸
    */
   size: useSizeProp,
   /**
-   * @description tooltip theme, built-in theme: `dark` / `light`
+   * @description Tooltip 主题，内置主题：`dark` / `light`
    */
   effect: {
     type: definePropType<PopperEffect>(String),
     default: 'light',
   },
   /**
-   * @description whether Select is disabled
+   * @description Select 是否禁用
    */
   disabled: {
     type: Boolean,
     default: undefined,
   },
   /**
-   * @description whether select can be cleared
+   * @description Select 是否可清空
    */
   clearable: Boolean,
   /**
-   * @description whether Select is filterable
+   * @description Select 是否可筛选
    */
   filterable: Boolean,
   /**
-   * @description binding value of the filter input
+   * @description 筛选输入框的绑定值
    */
   filterValue: {
     type: String,
     default: undefined,
   },
   /**
-   * @description whether creating new items is allowed. To use this, `filterable` must be true
+   * @description 是否允许创建新条目。使用此项时 `filterable` 必须为 true
    */
   allowCreate: Boolean,
   /**
-   * @description whether Select is loading data from server
+   * @description Select 是否正在从服务器加载数据
    */
   loading: Boolean,
   /**
-   * @description whether options are loaded from server
+   * @description 选项是否从服务器加载
    */
   remote: Boolean,
   /**
-   * @description for remote mode, whether the dropdown only appears when there is input content, instead of always showing on click or focus
+   * @description 远程模式下，下拉框是否仅在有输入内容时出现，而不是点击或聚焦时始终显示
    */
   remoteShowOnInput: Boolean,
   /**
-   * @description function that gets called when the input value changes. Its parameter is the current input value. To use this, `filterable` must be true
+   * @description 输入值变化时调用的函数，其参数为当前输入值。使用此项时 `filterable` 必须为 true
    */
   remoteMethod: {
     type: definePropType<(query: string) => void>(Function),
   },
   /**
-   * @description custom class name for Select's dropdown
+   * @description Select 下拉框的自定义类名
    */
   popperClass: {
     type: definePropType<ClassValue>([String, Array, Object, Boolean]),
     default: '',
   },
   /**
-   * @description custom style for Select's dropdown
+   * @description Select 下拉框的自定义样式
    */
   popperStyle: {
     type: definePropType<StyleValue>([String, Array, Object, Boolean]),
     default: undefined,
   },
   /**
-   * @description [popper.js](https://popper.js.org/docs/v2/) parameters
+   * @description [popper.js](https://popper.js.org/docs/v2/) 参数
    */
   popperOptions: {
     type: definePropType<Partial<Options>>(Object),
     default: () => ({}) as Partial<Options>,
   },
   /**
-   * @description displayed text while loading data from server, default is 'Loading'
+   * @description 从服务器加载数据时显示的文字，默认 'Loading'
    */
   loadingText: String,
   /**
-   * @description displayed text when no data matches the filtering query, you can also use slot `empty`, default is 'No matching data'
+   * @description 没有数据匹配筛选条件时显示的文字，也可使用 `empty` 插槽，默认 'No matching data'
    */
   noMatchText: String,
   /**
-   * @description displayed text when there is no options, you can also use slot `empty`, default is 'No data'
+   * @description 无选项时显示的文字，也可使用 empty 插槽，默认 'No Data'
    */
   noDataText: String,
   /**
-   * @description custom filter method, the first parameter is the current input value. To use this, `filterable` must be true
+   * @description 自定义筛选方法，第一个参数为当前输入值。使用此项时 `filterable` 必须为 true
    */
   filterMethod: {
     type: definePropType<
@@ -178,102 +178,102 @@ export const selectProps = buildProps({
     >(Function),
   },
   /**
-   * @description whether multiple-select is activated
+   * @description 是否启用多选
    */
   multiple: Boolean,
   /**
-   * @description maximum number of options user can select when `multiple` is `true`. No limit when set to 0
+   * @description `multiple` 为 `true` 时用户可选择的最大选项数，设为 0 表示不限
    */
   multipleLimit: {
     type: Number,
     default: 0,
   },
   /**
-   * @description placeholder, default is 'Select'
+   * @description 占位文本，默认 'Select'
    */
   placeholder: {
     type: String,
   },
   /**
-   * @description select first matching option on enter key. Use with `filterable`
+   * @description 按下回车时选中第一个匹配项。需配合 `filterable` 使用
    */
   defaultFirstOption: Boolean,
   /**
-   * @description when `multiple` and `filter` is true, whether to reserve current keyword after selecting an option
+   * @description 当 `multiple` 且 `filter` 为 true 时，选中选项后是否保留当前关键字
    */
   reserveKeyword: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description unique identity key name for value, required when value is an object
+   * @description 值的唯一标识键名，当值为对象时必填
    */
   valueKey: {
     type: String,
     default: 'value',
   },
   /**
-   * @description whether to collapse tags to a text when multiple selecting
+   * @description 多选时是否将标签折叠为一段文本
    */
   collapseTags: Boolean,
   /**
-   * @description whether show all selected tags when mouse hover text of collapse-tags. To use this, `collapse-tags` must be true
+   * @description 鼠标悬停在折叠标签文本上时是否显示全部已选标签。使用此项时 `collapse-tags` 必须为 true
    */
   collapseTagsTooltip: Boolean,
   /**
-   * @description configuration object for the collapse-tags tooltip. To use this, `collapse-tags` and `collapse-tags-tooltip` must be true
+   * @description 折叠标签 tooltip 的配置对象。使用此项时 `collapse-tags` 和 `collapse-tags-tooltip` 必须为 true
    */
   tagTooltip: {
     type: definePropType<TagTooltipProps>(Object),
     default: () => ({}),
   },
   /**
-   * @description the max tags number to be shown. To use this, `collapse-tags` must be true
+   * @description 最多显示的标签数量。使用此项时 `collapse-tags` 必须为 true
    */
   maxCollapseTags: {
     type: Number,
     default: 1,
   },
   /**
-   * @description whether select dropdown is teleported, if `true` it will be teleported to where `append-to` sets
+   * @description 下拉框是否被 teleport；为 `true` 时将挂载到 `append-to` 指定的位置
    */
   teleported: useTooltipContentProps.teleported,
   /**
-   * @description when select dropdown is inactive and `persistent` is `false`, select dropdown will be destroyed
+   * @description 当下拉框不处于激活状态且 `persistent` 为 `false` 时，下拉框将被销毁
    */
   persistent: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description custom clear icon component
+   * @description 自定义清除图标组件
    */
   clearIcon: {
     type: iconPropType,
     default: CircleClose,
   },
   /**
-   * @description whether the width of the dropdown is the same as the input
+   * @description 下拉框宽度是否与输入框相同
    */
   fitInputWidth: Boolean,
   /**
-   * @description custom suffix icon component
+   * @description 自定义后缀图标组件
    */
   suffixIcon: {
     type: iconPropType,
     default: ArrowDown,
   },
   /**
-   * @description tag type
+   * @description 标签类型
    */
 
   tagType: { ...tagProps.type, default: 'info' },
   /**
-   * @description tag effect
+   * @description 标签效果
    */
   tagEffect: { ...tagProps.effect, default: 'light' },
   /**
-   * @description whether to trigger form validation
+   * @description 是否触发表单校验
    */
   validateEvent: {
     type: Boolean,
@@ -281,21 +281,21 @@ export const selectProps = buildProps({
   },
 
   /**
-   * @description determines whether the arrow is displayed
+   * @description 是否显示箭头
    */
   showArrow: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description offset of the dropdown
+   * @description 下拉框偏移量
    */
   offset: {
     type: Number,
     default: 12,
   },
   /**
-   * @description position of dropdown
+   * @description 下拉框位置
    */
   placement: {
     type: definePropType<Placement>(String),
@@ -303,21 +303,21 @@ export const selectProps = buildProps({
     default: 'bottom-start',
   },
   /**
-   * @description list of possible positions for dropdown
+   * @description 下拉框可选位置列表
    */
   fallbackPlacements: {
     type: definePropType<Placement[]>(Array),
     default: ['bottom-start', 'top-start', 'right', 'left'],
   },
   /**
-   * @description tabindex for input
+   * @description input 的 tabindex
    */
   tabindex: {
     type: [String, Number],
     default: 0,
   },
   /**
-   * @description which element the selection dropdown appends to
+   * @description 下拉框挂载到哪个元素
    */
   appendTo: useTooltipContentProps.appendTo,
   options: {
@@ -334,7 +334,7 @@ export const selectProps = buildProps({
 export const selectEmits = {
   'update:label': (value: string | string[] | undefined) =>
     value == null || typeof value === 'string' || Array.isArray(value),
-  // todo: use generics to eliminate any
+  // todo: 使用泛型消除 any
   [UPDATE_MODEL_EVENT]: (val: SelectProps['modelValue'] | any) => true,
   [CHANGE_EVENT]: (val: SelectProps['modelValue'] | any) => true,
   'update:filterValue': (val: string) => typeof val === 'string',

@@ -25,7 +25,7 @@ const BASE_SIZE = 25 * 100 // base size * total
 
 const widths = Array.from({ length: 100 }).map(
   () => 25 + Math.floor(Math.random() * 5) + 1
-) // greater than 26 less or equal to 30
+) // 大于 26 且小于等于 30
 
 const mount = makeMount(
   {
@@ -66,9 +66,9 @@ describe('<dynamic-size-list />', () => {
   describe('render testing', () => {
     it('should render vertical list correctly', async () => {
       const wrapper = mount()
-      // since the width is variable width, so that we can only conclude
-      // a relative number based on the minimal width 26
-      // (item's width is greater or equal to 26)
+      // 由于宽度可变，因此只能推断
+      // 基于最小宽度 26 得出一个相对数值
+      //（项宽度大于等于 26）
       expect(wrapper.findAll(ITEM_SELECTOR).length).toBeLessThanOrEqual(7)
     })
 
@@ -79,8 +79,8 @@ describe('<dynamic-size-list />', () => {
         },
       })
       await nextTick()
-      // same like the vertical one, since the window size is 50, item size is >= 26
-      // with cache items the total size cannot be greater than 5
+      // 与纵向一致，因为窗口尺寸为 50，项尺寸 >= 26
+      // 含缓存项时，总尺寸不能大于 5
       expect(wrapper.findAll(ITEM_SELECTOR).length).toBeLessThanOrEqual(5)
     })
   })
@@ -91,31 +91,31 @@ describe('<dynamic-size-list />', () => {
       const listRef = wrapper.vm.$refs.listRef as ListRef
       await nextTick()
       const estimatedTotalSize = Number.parseInt(listRef.innerRef.style.height)
-      // when the size is all 26, then there should be 7 items 4 visible + 3 cache
-      // so the size must be greater or equal to BASE_SIZE + 1 * 7, so it must be greater
-      // than BASE_SIZE + 1 * 6
+      // 尺寸全为 26 时，应有 7 项：4 可见 + 3 缓存
+      // 因此尺寸必须大于等于 BASE_SIZE + 1 * 7，必须大于
+      // 即大于 BASE_SIZE + 1 * 6
       expect(estimatedTotalSize).toBeGreaterThan(BASE_SIZE + 1 * 6)
-      // when the size is all 30, then there should be 6 items at most 3 visible 3 cache.
-      // because the window size is 100, 100 / 30 = 3.333 less than 3.5, so that we can only
-      // place 3 items into the visible list.
+      // 尺寸全为 30 时，最多应有 6 项：3 可见 3 缓存。
+      // 因为窗口尺寸为 100，100 / 30 = 3.333 小于 3.5，因此只能
+      // 向可见列表放入 3 项。
       // so it must be less than 5(30 - 25) * 7 (6 + 1 items)
       expect(estimatedTotalSize).toBeLessThan(BASE_SIZE + 5 * 7)
 
-      // scroll 200px is approximately ~7(size 30px) - ~8(size 26px) items away.
+      // 滚动 200px 大约跨越 ~7（尺寸 30px）到 ~8（尺寸 26px）项。
       listRef.scrollTo(200)
       await nextTick()
       expect(Number.parseInt(listRef.innerRef.style.height)).toBeGreaterThan(
         estimatedTotalSize
       )
 
-      // when using scrollTo method, the list consists of
+      // 使用 scrollTo 方法时，列表由
       // 3 cached items + (3 ~ 4) visible items + 3 cached items
-      // as we scroll 7 ~ 8 items far, then the first item in the DOM should be
+      // 滚动 7 ~ 8 项后，DOM 中的第一项应为
       // (7 | 8) - 3 = (4 | 5) cached items
-      // continue with (7 | 8) visible items
-      // end with (10 | 11) cached items
-      // so the base case is that our window's height has been updated for at least 10 times
-      // the height should be only be updated at most 5(the biggest size) * 11
+      // 接着是 (7 | 8) 个可见项
+      // 末尾为 (10 | 11) 个缓存项
+      // 基本情况是窗口高度至少更新了 10 次
+      // 高度最多更新 5（最大尺寸）* 11 次
       expect(Number.parseInt(listRef.innerRef.style.height)).toBeGreaterThan(
         BASE_SIZE + 1 * 10
       )
@@ -138,31 +138,31 @@ describe('<dynamic-size-list />', () => {
       const listRef = wrapper.vm.$refs.listRef as ListRef
       await nextTick()
       const estimatedTotalSize = Number.parseInt(listRef.innerRef.style.width)
-      // when the size is all 26, then there should be 7 items 2 visible + 3 cache
-      // so the size must be greater or equal to BASE_SIZE + 1 * 5, so it must be greater
-      // than BASE_SIZE + 1 * 4
+      // 尺寸全为 26 时，应有 7 项：2 可见 + 3 缓存
+      // 因此尺寸必须大于等于 BASE_SIZE + 1 * 5，必须大于
+      // 即大于 BASE_SIZE + 1 * 4
       expect(estimatedTotalSize).toBeGreaterThan(BASE_SIZE + 1 * 4)
-      // when the size is all 30, then there should be 5 items at most 2 visible 3 cache.
-      // because the window size is 100, 50 / 30 = 1.66 greater than 1.5, so that we can only
-      // place 2 items into the visible list.
+      // 尺寸全为 30 时，最多应有 5 项：2 可见 3 缓存。
+      // 因为窗口尺寸为 100，50 / 30 = 1.66 大于 1.5，因此只能
+      // 向可见列表放入 2 项。
       // so it must be less than 5(30 - 25) * 6 (5 + 1 items)
       expect(estimatedTotalSize).toBeLessThan(BASE_SIZE + 5 * 6)
 
-      // scroll 200px is approximately ~7(size 30px) - ~8(size 26px) items away.
+      // 滚动 200px 大约跨越 ~7（尺寸 30px）到 ~8（尺寸 26px）项。
       listRef.scrollTo(200)
       await nextTick()
       expect(Number.parseInt(listRef.innerRef.style.width)).toBeGreaterThan(
         estimatedTotalSize
       )
 
-      // when using scrollTo method, the list consists of
+      // 使用 scrollTo 方法时，列表由
       // 3 cached items + 2 visible items + 3 cached items
-      // as we scroll 7 ~ 8 items far, then the first item in the DOM should be
+      // 滚动 7 ~ 8 项后，DOM 中的第一项应为
       // (7 | 8) - 3 = (4 | 5) cached items
-      // continue with (6 | 7) visible items
-      // end with (9 | 10) cached items
-      // so the base case is that our window's width has been updated for at least 10 times
-      // the width should be only be updated at most 5(the biggest size) * 11
+      // 接着是 (6 | 7) 个可见项
+      // 末尾为 (9 | 10) 个缓存项
+      // 基本情况是窗口宽度至少更新了 10 次
+      // 宽度最多更新 5（最大尺寸）* 11 次
       expect(Number.parseInt(listRef.innerRef.style.width)).toBeGreaterThan(
         BASE_SIZE + 1 * 9
       )
@@ -274,24 +274,24 @@ describe('<dynamic-size-list />', () => {
       expect(onEndReached).toHaveBeenCalledTimes(2)
     })
 
-    // make sure to scroll with in [0, 30), thus we won't get offset issue since
-    // item index bigger than 30 could create unwanted offset issue in testing.
+    // 确保滚动范围在 [0, 30) 内，这样就不会出现偏移问题，因为
+    // 大于 30 的项索引可能在测试中产生不必要的偏移问题。
     it('should scrollToItem correctly', async () => {
       const wrapper = mount()
 
       const listRef = wrapper.vm.$refs.listRef as ListRef
-      // auto alignment
+      // 自动对齐
       listRef.scrollToItem(10)
       await nextTick()
-      // when scroll to item 10 the estimated offset should be 250
-      // the original grid position is 0, so it should return 200 (offset 250 - size 50)
-      // to scrollTo method to handle, which at this time the scrollTo item should be placed
-      // at the bottom of the list since the maximum visible items to display is 4.
-      // minus the cache size 3 the first item should be item 4.
+      // 滚动到第 10 项时，估算偏移应为 250
+      // 原始网格位置为 0，因此应返回 200（偏移 250 - 尺寸 50）
+      // 交由 scrollTo 方法处理，此时 scrollTo 的项应放置在
+      // 列表底部，因为最多显示 4 个可见项。
+      // 减去缓存数 3，第一项应为第 4 项。
       expect(
         Number.parseInt(wrapper.find(ITEM_SELECTOR).text())
       ).toBeLessThanOrEqual(4)
-      // smart alignment
+      // 智能对齐
       listRef.scrollToItem(20, SMART_ALIGNMENT)
       await nextTick()
       expect(
@@ -337,7 +337,7 @@ describe('<dynamic-size-list />', () => {
             config: {
               errorHandler,
               warnHandler() {
-                // suppress warning
+                // 抑制警告
               },
             },
           },

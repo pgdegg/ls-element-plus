@@ -149,7 +149,7 @@ const hasFooter = computed(() => !isEmpty(slots.default!()[0].children))
 const { checked, allChecked, query } = toRefs(panelState)
 
 defineExpose({
-  /** @description filter keyword */
+  /** @description 过滤关键字 */
   query,
 })
 </script>

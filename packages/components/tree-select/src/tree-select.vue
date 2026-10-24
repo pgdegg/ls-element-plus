@@ -21,7 +21,7 @@ import type { SelectInstance } from '@element-plus/components/select'
 
 export default defineComponent({
   name: 'ElTreeSelect',
-  // disable `ElSelect` inherit current attrs
+  // 禁用 `ElSelect` 继承当前 attrs
   inheritAttrs: false,
   props: {
     ...selectProps,
@@ -30,7 +30,7 @@ export default defineComponent({
       type: definePropType<(query: string) => void>(Function),
     },
     /**
-     * @description The cached data of the lazy node, the structure is the same as the data, used to get the label of the unloaded data
+     * @description 懒加载节点的缓存数据，结构与 data 相同，用于获取未加载数据的标签
      */
     cacheData: {
       type: Array,
@@ -60,12 +60,12 @@ export default defineComponent({
       }
     )
 
-    // expose ElTree/ElSelect methods
+    // 暴露 ElTree/ElSelect 方法
     const methods = reactive({})
     expose(methods)
     onMounted(() => {
       Object.assign(methods, {
-        //TODO: let only tree and select in 3.0
+        // TODO：3.0 仅保留 tree 和 select
         ...pick(tree.value, [
           'filter',
           'updateKeyChildren',
@@ -96,11 +96,11 @@ export default defineComponent({
       createVNode(
         ElSelect,
         /**
-         * 1. The `props` is processed into `Refs`, but `v-bind` and
-         * render function props cannot read `Refs`, so use `reactive`
-         * unwrap the `Refs` and keep reactive.
-         * 2. The keyword `ref` requires `Ref`, but `reactive` broke it,
-         * so use function.
+         * 1. `props` 被处理为 `Refs`，但 `v-bind` 和
+         * 渲染函数的 props 无法读取 `Refs`，因此使用 `reactive`
+         * 解包 `Refs` 并保持响应式。
+         * 2. 关键字 `ref` 需要 `Ref`，但 `reactive` 破坏了它，
+         * 因此使用函数。
          */
         reactive({
           ...selectProps,

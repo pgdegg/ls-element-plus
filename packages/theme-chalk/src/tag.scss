@@ -30,7 +30,7 @@ $tag-icon-span-gap: map.merge(
   @return $list;
 }
 
-// false mean --el-color-white
+// false 表示 --el-color-white
 @mixin genTheme($backgroundColorWeight, $borderColorWeight, $hoverColorWeight) {
   @include css-var-from-global(
     ('tag', 'bg-color'),
@@ -194,7 +194,7 @@ $tag-icon-span-gap: map.merge(
   }
 }
 
-// HIS component customization.
+// HIS 组件定制。
 .el-tag {
   &__content {
     user-select: none;

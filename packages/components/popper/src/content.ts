@@ -24,22 +24,22 @@ export interface PopperCoreConfigProps {
   fallbackPlacements?: Placement[]
   gpuAcceleration?: boolean
   /**
-   * @description offset of the Tooltip
+   * @description Tooltip 的偏移量
    */
   offset?: number
   /**
-   * @description position of Tooltip
+   * @description Tooltip 的位置
    */
   placement?: Placement
   /**
-   * @description [popper.js](https://popper.js.org/docs/v2/) parameters
+   * @description [popper.js](https://popper.js.org/docs/v2/) 参数
    */
   popperOptions?: Partial<Options>
   strategy?: (typeof POSITIONING_STRATEGIES)[number]
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `PopperCoreConfigProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `PopperCoreConfigProps`。
  */
 export const popperCoreConfigProps = buildProps({
   boundariesPadding: {
@@ -55,14 +55,14 @@ export const popperCoreConfigProps = buildProps({
     default: true,
   },
   /**
-   * @description offset of the Tooltip
+   * @description Tooltip 的偏移量
    */
   offset: {
     type: Number,
     default: 12,
   },
   /**
-   * @description position of Tooltip
+   * @description Tooltip 的位置
    */
   placement: {
     type: String,
@@ -70,7 +70,7 @@ export const popperCoreConfigProps = buildProps({
     default: 'bottom',
   },
   /**
-   * @description [popper.js](https://popper.js.org/docs/v2/) parameters
+   * @description [popper.js](https://popper.js.org/docs/v2/) 参数
    */
   popperOptions: {
     type: definePropType<Partial<Options>>(Object),
@@ -84,7 +84,7 @@ export const popperCoreConfigProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `PopperCoreConfigProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `PopperCoreConfigProps`。
  */
 export type PopperCoreConfigPropsPublic = ExtractPublicPropTypes<
   typeof popperCoreConfigProps
@@ -113,7 +113,7 @@ export interface PopperContentProps
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `PopperContentProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `PopperContentProps`。
  */
 export const popperContentProps = buildProps({
   ...popperCoreConfigProps,
@@ -163,7 +163,7 @@ export const popperContentProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `PopperContentProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `PopperContentProps`。
  */
 export type PopperContentPropsPublic = ExtractPublicPropTypes<
   typeof popperContentProps
@@ -206,20 +206,20 @@ export type PopperContentEmits = typeof popperContentEmits
 
 export type PopperContentInstance = InstanceType<typeof Content> & unknown
 
-/** @deprecated use `popperCoreConfigProps` instead, and it will be deprecated in the next major version */
+/** @deprecated 请改用 `popperCoreConfigProps`，它将在下一个大版本中被废弃 */
 export const usePopperCoreConfigProps = popperCoreConfigProps
 
-/** @deprecated use `popperContentProps` instead, and it will be deprecated in the next major version */
+/** @deprecated 请改用 `popperContentProps`，它将在下一个大版本中被废弃 */
 export const usePopperContentProps = popperContentProps
 
-/** @deprecated use `popperContentEmits` instead, and it will be deprecated in the next major version */
+/** @deprecated 请改用 `popperContentEmits`，它将在下一个大版本中被废弃 */
 export const usePopperContentEmits = popperContentEmits
 
-/** @deprecated use `PopperCoreConfigProps` instead, and it will be deprecated in the next major version */
+/** @deprecated 请改用 `PopperCoreConfigProps`，它将在下一个大版本中被废弃 */
 export type UsePopperCoreConfigProps = PopperCoreConfigProps
 
-/** @deprecated use `PopperContentProps` instead, and it will be deprecated in the next major version */
+/** @deprecated 请改用 `PopperContentProps`，它将在下一个大版本中被废弃 */
 export type UsePopperContentProps = PopperContentProps
 
-/** @deprecated use `PopperContentInstance` instead, and it will be deprecated in the next major version */
+/** @deprecated 请改用 `PopperContentInstance`，它将在下一个大版本中被废弃 */
 export type ElPopperArrowContent = PopperContentInstance

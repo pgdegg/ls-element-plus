@@ -12,7 +12,7 @@ import type { CSSProperties } from 'vue'
 
 interface HeaderProps {
   /**
-   * @description height of the header
+   * @description 头部高度
    */
   height?: string | null
 }

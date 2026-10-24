@@ -47,7 +47,7 @@ const props = defineProps<IconProps>()
 const ns = useNamespace('icon')
 
 const element = ref<HTMLElement>()
-// The version argument invalidates the computed sprite after async updates.
+// version 参数使异步更新后计算出的 sprite 失效。
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const resolveSymbol = (_version?: string | number) => {
   if (!props.symbol || typeof document === 'undefined') return null
@@ -60,7 +60,7 @@ const resolveSymbol = (_version?: string | number) => {
       ) ?? null
     )
   for (const item of Array.isArray(prefix) ? prefix : [prefix]) {
-    // Sprite IDs may contain characters requiring CSS escaping.
+    // Sprite ID 可能包含需要 CSS 转义的字符。
     // eslint-disable-next-line unicorn/prefer-query-selector
     const symbol = document.getElementById(`${item}-${props.symbol}`)
     if (symbol) return symbol

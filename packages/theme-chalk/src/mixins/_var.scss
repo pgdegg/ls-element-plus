@@ -5,8 +5,8 @@
 @use 'function' as *;
 @use '../common/var' as *;
 
-// set css var value, because we need translate value to string
-// for example:
+// 设置 css 变量值，因为需要将值转换为字符串
+// 例如：
 // @include set-css-var-value(('color', 'primary'), red);
 // --el-color-primary: red;
 @mixin set-css-var-value($name, $value) {
@@ -35,7 +35,7 @@
   );
 }
 
-// set all css var for component by map
+// 通过 map 为组件设置全部 css 变量
 @mixin set-component-css-var($name, $variables) {
   @each $attribute, $value in $variables {
     @if $attribute == 'default' {
@@ -56,8 +56,8 @@
   );
 }
 
-// generate css var from existing css var
-// for example:
+// 从已有 css 变量生成新的 css 变量
+// 例如：
 // @include css-var-from-global(('button', 'text-color'), ('color', $type))
 // --el-button-text-color: var(--el-color-#{$type});
 @mixin css-var-from-global($var, $gVar) {

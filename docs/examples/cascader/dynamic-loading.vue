@@ -16,7 +16,7 @@ const props: CascaderProps = {
         label: `Option - ${id}`,
         leaf: level >= 2,
       }))
-      // Invoke `resolve` callback to return the child nodes data and indicate the loading is finished.
+      // 调用 `resolve` 回调以返回子节点数据，并表示加载已完成。
       resolve(nodes)
     }, 1000)
   },

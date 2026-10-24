@@ -34,7 +34,7 @@ import type {
 
 let seed = 1
 
-// TODO: Since Notify.ts is basically the same like this file. So we could do some encapsulation against them to reduce code duplication.
+// TODO：Notify.ts 与本文件基本相同，可对二者做封装以减少代码重复。
 
 const normalizeAppendTo = (normalized: MessageOptions) => {
   const appendTo = normalized.appendTo
@@ -43,7 +43,7 @@ const normalizeAppendTo = (normalized: MessageOptions) => {
   } else if (isString(normalized.appendTo)) {
     let appendTo = document.querySelector<HTMLElement>(normalized.appendTo)
 
-    // should fallback to default value with a warning
+    // 应回退到默认值并给出警告
     if (!isElement(appendTo)) {
       debugWarn(
         'ElMessage',
@@ -56,7 +56,7 @@ const normalizeAppendTo = (normalized: MessageOptions) => {
 }
 
 const normalizePlacement = (normalized: MessageOptions) => {
-  // if placement is not passed and global has config, use global config
+  // 未传 placement 且全局有配置时，使用全局配置
   if (
     !normalized.placement &&
     isString(messageConfig.placement) &&
@@ -65,11 +65,11 @@ const normalizePlacement = (normalized: MessageOptions) => {
     normalized.placement = messageConfig.placement as
       MessagePlacement | undefined
   }
-  // if placement is not passed and global has no config, use default config
+  // 未传 placement 且全局无配置时，使用默认配置
   if (!normalized.placement) {
     normalized.placement = MESSAGE_DEFAULT_PLACEMENT
   }
-  // if placement is not valid, use default config
+  // placement 无效时，使用默认配置
   if (!messagePlacement.includes(normalized.placement!)) {
     debugWarn(
       'ElMessage',
@@ -93,9 +93,9 @@ const normalizeOptions = (params?: MessageParams) => {
   normalizeAppendTo(normalized)
   normalizePlacement(normalized)
 
-  // When grouping is configured globally,
-  // if grouping is manually set when calling message individually and it is not equal to the default value,
-  // the global configuration cannot override the current setting. default => false
+  // 当全局配置了 grouping 时，
+  // 单独调用 message 时手动设置了 grouping 且与默认值不同，
+  // 全局配置不能覆盖当前设置。默认 => false
   if (isBoolean(messageConfig.grouping) && !normalized.grouping) {
     normalized.grouping = messageConfig.grouping
   }
@@ -137,7 +137,7 @@ const createMessage = (
 
   const props = {
     ...options,
-    // now the zIndex will be used inside the message.vue component instead of here.
+    // 现在 zIndex 在 message.vue 组件内部使用，而不是在这里。
     // zIndex: nextIndex() + options.zIndex
     id,
     onClose: () => {
@@ -145,11 +145,11 @@ const createMessage = (
       closeMessage(instance)
     },
 
-    // clean message element preventing mem leak
+    // 清理 message 元素以防止内存泄漏
     onDestroy: () => {
-      // since the element is destroy, then the VNode should be collected by GC as well
-      // we do not want cause any mem leak because we have returned vm as a reference to users
-      // so that we manually set it to false.
+      // 元素销毁后，VNode 也应被 GC 回收
+      // 我们不希望造成内存泄漏，因为我们已把 vm 作为引用返回给用户
+      // 因此手动将其设为 false。
       render(null, container)
     },
   }
@@ -167,14 +167,14 @@ const createMessage = (
   vnode.appContext = context || message._context
 
   render(vnode, container)
-  // instances will remove this item when close function gets called. So we do not need to worry about it.
+  // 调用 close 函数时实例会移除该项，无需为此担心。
   appendTo.appendChild(container.firstElementChild!)
 
   const vm = vnode.component!
 
   const handler: MessageHandler = {
-    // instead of calling the onClose function directly, setting this value so that we can have the full lifecycle
-    // for out component, so that all closing steps will not be skipped.
+    // 不直接调用 onClose 函数，而是设置此值以便走完完整生命周期
+    // 以便组件的所有关闭步骤都不会被跳过。
     close: () => {
       vm.exposed!.close()
     },
@@ -234,7 +234,7 @@ messageTypes.forEach((type) => {
 export function closeAll(type?: MessageType): void {
   for (const placement in placementInstances) {
     if (hasOwn(placementInstances, placement)) {
-      // Create a copy of instances to avoid modification during iteration
+      // 创建 instances 的副本，避免迭代过程中被修改
       const instances: MessageContext[] = [...placementInstances[placement]]
       for (const instance of instances) {
         if (!type || type === instance.props.type) {
@@ -247,7 +247,7 @@ export function closeAll(type?: MessageType): void {
 
 export function closeAllByPlacement(placement: MessagePlacement) {
   if (!placementInstances[placement]) return
-  // Create a copy of instances to avoid modification during iteration
+  // 创建 instances 的副本，避免迭代过程中被修改
   const instances = [...placementInstances[placement]]
   instances.forEach((instance) => instance.handler.close())
 }

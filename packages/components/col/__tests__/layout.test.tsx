@@ -61,7 +61,7 @@ describe('Col', () => {
     expect(colElm.style.paddingLeft === '10px').toBe(true)
     expect(colElm.style.paddingRight === '10px').toBe(true)
 
-    outer.value = 40 // change gutter value
+    outer.value = 40 // 修改 gutter 值
     await nextTick()
     expect(rowElm.style.marginLeft === '-20px').toBe(true)
     expect(rowElm.style.marginRight === '-20px').toBe(true)

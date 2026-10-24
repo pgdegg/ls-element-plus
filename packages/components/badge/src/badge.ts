@@ -5,75 +5,75 @@ import type { ClassValue } from '@element-plus/utils'
 
 export interface BadgeProps {
   /**
-   * @description display value.
+   * @description 显示值。
    */
   value?: string | number
   /**
-   * @description maximum value, shows `{max}+` when exceeded. Only works if value is a number.
+   * @description 最大值，超出时显示 `{max}+`。仅当 value 为数字时生效。
    */
   max?: number
   /**
-   * @description if a little dot is displayed.
+   * @description 是否显示小圆点。
    */
   isDot?: boolean
   /**
-   * @description hidden badge.
+   * @description 隐藏徽章。
    */
   hidden?: boolean
   /**
-   * @description badge type.
+   * @description 徽章类型。
    */
   type?: 'primary' | 'success' | 'warning' | 'info' | 'danger'
   /**
-   * @description whether to show badge when value is zero.
+   * @description value 为零时是否显示徽章。
    */
   showZero?: boolean
   /**
-   * @description customize dot background color
+   * @description 自定义圆点背景色
    */
   color?: string
   /**
-   * @description CSS style of badge
+   * @description 徽章的 CSS 样式
    */
   badgeStyle?: StyleValue
   /**
-   * @description set offset of the badge
+   * @description 设置徽章的偏移量
    */
   offset?: [number, number]
   /**
-   * @description custom class name of badge
+   * @description 徽章的自定义类名
    */
   badgeClass?: ClassValue
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `BadgeProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `BadgeProps`
  */
 export const badgeProps = buildProps({
   /**
-   * @description display value.
+   * @description 显示值。
    */
   value: {
     type: [String, Number],
     default: '',
   },
   /**
-   * @description maximum value, shows `{max}+` when exceeded. Only works if value is a number.
+   * @description 最大值，超出时显示 `{max}+`。仅当 value 为数字时生效。
    */
   max: {
     type: Number,
     default: 99,
   },
   /**
-   * @description if a little dot is displayed.
+   * @description 是否显示小圆点。
    */
   isDot: Boolean,
   /**
-   * @description hidden badge.
+   * @description 隐藏徽章。
    */
   hidden: Boolean,
   /**
-   * @description badge type.
+   * @description 徽章类型。
    */
   type: {
     type: String,
@@ -81,32 +81,32 @@ export const badgeProps = buildProps({
     default: 'danger',
   },
   /**
-   * @description whether to show badge when value is zero.
+   * @description value 为零时是否显示徽章。
    */
   showZero: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description customize dot background color
+   * @description 自定义圆点背景色
    */
   color: String,
   /**
-   * @description CSS style of badge
+   * @description 徽章的 CSS 样式
    */
   badgeStyle: {
     type: definePropType<StyleValue>([String, Object, Array, Boolean]),
     default: undefined,
   },
   /**
-   * @description set offset of the badge
+   * @description 设置徽章的偏移量
    */
   offset: {
     type: definePropType<[number, number]>(Array),
     default: () => [0, 0],
   },
   /**
-   * @description custom class name of badge
+   * @description 徽章的自定义类名
    */
   badgeClass: {
     type: definePropType<ClassValue>([String, Array, Object, Boolean]),
@@ -115,6 +115,6 @@ export const badgeProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `BadgeProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `BadgeProps`
  */
 export type BadgePropsPublic = ExtractPublicPropTypes<typeof badgeProps>

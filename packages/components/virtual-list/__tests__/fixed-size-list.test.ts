@@ -65,12 +65,12 @@ describe('<fixed-size-list />', () => {
 
     await nextTick()
 
-    // due to the default layout is vertical, so we use height to calc
-    // because the height is 100 item size is 25 so we have visible
+    // 由于默认布局为纵向，因此使用 height 计算
+    // 因为高度为 100，项尺寸为 25，所以可见
     // item 4
-    // then we added cache as 3 (because we are currently at the top
-    // which means we do not have cache before the items)
-    // so we have cache of 3
+    // 然后添加 3 个缓存（因为当前在顶部
+    // 意味着项之前没有缓存）
+    // 因此有 3 个缓存
     // the total of items should be 4 + 3 = 7
     expect(wrapper.findAll(`.${ITEM_KLS}`)).toHaveLength(7)
     expect(
@@ -123,7 +123,7 @@ describe('<fixed-size-list />', () => {
 
     await nextTick()
 
-    // window ref has onScroll handler so we trigger scroll on windowRef
+    // window ref 有 onScroll 处理函数，因此在 windowRef 上触发滚动
 
     const { windowRef } = wrapper.vm.$refs.listRef as ListRef
 
@@ -176,7 +176,7 @@ describe('<fixed-size-list />', () => {
 
     const { windowRef } = wrapper.vm.$refs.listRef as ListRef
 
-    // Step 1: wheel-scroll to the bottom (uses maxOffset internally).
+    // 第 1 步：滚轮滚动到底部（内部使用 maxOffset）。
     windowRef.dispatchEvent(
       new WheelEvent('wheel', {
         bubbles: true,
@@ -189,15 +189,15 @@ describe('<fixed-size-list />', () => {
 
     expect(onEndReached).toHaveBeenCalledOnce()
 
-    // Step 2: simulate the native scroll event that onUpdated triggers,
-    // but with scrollTop slightly below maxOffset — as a browser with
-    // fractional DPR (e.g. 1.25) would do when it clamps to its own
-    // scrollHeight−clientHeight.
+    // 第 2 步：模拟 onUpdated 触发的原生滚动事件，
+    // 但 scrollTop 略低于 maxOffset，就像使用
+    // 小数 DPR（如 1.25）的浏览器在钳制到自身
+    // scrollHeight clientHeight 时的行为。
     // maxOffset = 100*25 − 100 = 2400; sub-pixel clamped value = 2399.6
     await makeScroll(windowRef, 'scrollTop', 2399.6)
     await nextTick()
 
-    // Step 3: another wheel event tries to scroll further down.
+    // 第 3 步：又一个滚轮事件尝试继续向下滚动。
     windowRef.dispatchEvent(
       new WheelEvent('wheel', {
         bubbles: true,
@@ -208,7 +208,7 @@ describe('<fixed-size-list />', () => {
     await rAF()
     await nextTick()
 
-    // end-reached must still have been called only once.
+    // end-reached 仍必须只被调用一次。
     expect(onEndReached).toHaveBeenCalledOnce()
   })
 
@@ -243,8 +243,8 @@ describe('<fixed-size-list />', () => {
 
     const track = wrapper.find('.el-virtual-scrollbar').element
 
-    // Stub getBoundingClientRect so clickTrackHandler resolves the click
-    // position deterministically instead of relying on jsdom's default zeros.
+    // stub 掉 getBoundingClientRect，使 clickTrackHandler 确定性地解析点击
+    // 位置，而不依赖 jsdom 默认的零值。
     const trackTop = 10
     const trackHeight = 98 // clientSize(100) - GAP(2)
     vi.spyOn(track, 'getBoundingClientRect').mockReturnValue({
@@ -259,8 +259,8 @@ describe('<fixed-size-list />', () => {
       toJSON: () => ({}),
     })
 
-    // clientY at the bottom edge of the track so the click maps past
-    // totalSteps and clamps to the maximum scroll offset.
+    // clientY 位于轨道底边，使点击映射超过
+    // totalSteps 并钳制到最大滚动偏移。
     const event = new MouseEvent('mousedown', {
       bubbles: true,
       cancelable: true,
@@ -453,7 +453,7 @@ describe('<fixed-size-list />', () => {
       listRef.scrollTo(275)
       await nextTick()
 
-      // when it reaches the boundary, it should only render visible ones.
+      // 到达边界时，应只渲染可见项。
       expect(wrapper.findAll(ITEM_SELECTOR)).toHaveLength(4)
     })
 
@@ -488,7 +488,7 @@ describe('<fixed-size-list />', () => {
 
   describe('scrollToItem', () => {
     it('should scrollToItem correctly', async () => {
-      // auto alignment
+      // 自动对齐
       const wrapper = mount()
 
       await nextTick()
@@ -506,43 +506,43 @@ describe('<fixed-size-list />', () => {
       listRef.scrollToItem(20)
       await nextTick()
       expect(wrapper.find(ITEM_SELECTOR).text()).toContain(14)
-      // out bounds
+      // 越界
       listRef.scrollToItem(101)
       await nextTick()
       expect(wrapper.find(ITEM_SELECTOR).text()).toContain(93)
 
-      // start alignment
+      // 起始对齐
       listRef.scrollToItem(10, START_ALIGNMENT)
       await nextTick()
       // 10 - 3 (cache)
       expect(wrapper.find(ITEM_SELECTOR).text()).toContain(7)
 
-      // center alignment
+      // 居中对齐
       listRef.scrollToItem(10, CENTERED_ALIGNMENT)
       await nextTick()
-      // 10th item should be positioned in the middle, at position 3
-      // so there were 2 items left in the viewport
-      // also we have 3 cache items.
+      // 第 10 项应位于中间，即位置 3
+      // 因此视口中还剩 2 项
+      // 另外有 3 个缓存项。
       // so that we get the first item: 10 - 2 - 3 = 5th item
       expect(wrapper.find(ITEM_SELECTOR).text()).toContain(5)
-      // centered alignment nearing the left boundary
+      // 接近左边界时的居中对齐
       listRef.scrollToItem(1, CENTERED_ALIGNMENT)
       await nextTick()
-      // centered alignment nearing the right boundary
+      // 接近右边界时的居中对齐
       listRef.scrollToItem(101, CENTERED_ALIGNMENT)
       await nextTick()
       expect(wrapper.find(ITEM_SELECTOR).text()).toContain(93)
 
-      // end alignment
+      // 末尾对齐
       listRef.scrollToItem(10, END_ALIGNMENT)
       await nextTick()
-      // 10th item should be positioned at the end of the viewport
-      // the viewport is size of 4, so there were 3 items left
-      // and we have cache of 3, so the first item should be
+      // 第 10 项应位于视口末尾
+      // 视口尺寸为 4，因此还剩 3 项
+      // 且有 3 个缓存，因此第一项应为
       // 10 - 3 - 3 = 4th item
       expect(wrapper.find(ITEM_SELECTOR).text()).toContain(4)
 
-      // smart alignment
+      // 智能对齐
       listRef.scrollToItem(10, SMART_ALIGNMENT)
       await nextTick()
       expect(wrapper.find(ITEM_SELECTOR).text()).toContain(4)

@@ -96,11 +96,11 @@ const addField: FormContext['addField'] = (field) => {
 
 const removeField: FormContext['removeField'] = (field, oldPropString?) => {
   if (oldPropString) {
-    // Prop changed on a live field: delete stale key, field stays in fields[]
+    // 活动字段上的 prop 发生变化：删除过期键，字段保留在 fields[] 中
     initialValues.delete(oldPropString)
     return
   }
-  // Unmount: splice from array, cache initialValue for potential remount
+  // 卸载：从数组中移除，缓存 initialValue 以便可能的重新挂载
   const idx = fields.indexOf(field)
   if (idx > -1) {
     fields.splice(idx, 1)
@@ -218,7 +218,7 @@ const validateField: FormContext['validateField'] = async (
   const shouldThrow = !isFunction(callback)
   try {
     result = await doValidateField(modelProps)
-    // When result is false meaning that the fields are not validatable
+    // 当结果为 false 时，表示这些字段不可校验
     if (result === true) {
       await callback?.(result)
     }
@@ -229,8 +229,8 @@ const validateField: FormContext['validateField'] = async (
     const invalidFields = e as ValidateFieldsError
 
     if (props.scrollToError) {
-      // form-item may be dynamically rendered based on the judgment conditions, and the order in invalidFields is uncertain.
-      // Therefore, the first form field with an error is determined by directly looking for the rendered element.
+      // form-item 可能根据判断条件动态渲染，invalidFields 中的顺序不确定。
+      // 因此，直接查找已渲染的元素来确定第一个出错的表单项。
       if (formRef.value) {
         const formItem = formRef.value.querySelector(`.${ns.b()}-item.is-error`)
         formItem?.scrollIntoView(props.scrollIntoViewOptions)
@@ -278,35 +278,35 @@ provide(
 
 defineExpose({
   /**
-   * @description Validate the whole form. Receives a callback or returns `Promise`.
+   * @description 校验整个表单。接收回调或返回 `Promise`。
    */
   validate,
   /**
-   * @description Validate specified fields.
+   * @description 校验指定字段。
    */
   validateField,
   /**
-   * @description Reset specified fields and remove validation result.
+   * @description 重置指定字段并清除校验结果。
    */
   resetFields,
   /**
-   * @description Clear validation message for specified fields.
+   * @description 清除指定字段的校验信息。
    */
   clearValidate,
   /**
-   * @description Scroll to the specified fields.
+   * @description 滚动到指定字段。
    */
   scrollToField,
   /**
-   * @description Get a field context.
+   * @description 获取字段上下文。
    */
   getField,
   /**
-   * @description All fields context.
+   * @description 所有字段的上下文。
    */
   fields,
   /**
-   * @description Set initial values for form fields. When `resetFields` is called, fields will reset to these values.
+   * @description 为表单字段设置初始值。调用 `resetFields` 时，字段将重置为这些值。
    */
   setInitialValues,
 })

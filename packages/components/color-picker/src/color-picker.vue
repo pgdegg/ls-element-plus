@@ -166,7 +166,7 @@ const pickerPanelRef = ref<ColorPickerPanelInstance>()
 const showPicker = ref(false)
 const showPanelColor = ref(false)
 
-// active-change is used to prevent modelValue changes from triggering.
+// active-change 用于阻止 modelValue 变化触发。
 let shouldActiveChange = true
 
 const { isFocused, handleFocus, handleBlur } = useFocusController(triggerRef, {
@@ -270,7 +270,7 @@ function confirmValue() {
     formItem?.validate('change').catch(NOOP)
   }
   debounceSetShowPicker(false)
-  // check if modelValue change, if not change, then reset color.
+  // 检查 modelValue 是否变化；若未变化，则重置颜色。
   nextTick(() => {
     const newColor = new Color({
       enableAlpha: props.showAlpha,
@@ -376,23 +376,23 @@ provide(ROOT_COMMON_COLOR_INJECTION_KEY, commonColor)
 
 defineExpose({
   /**
-   * @description current color object
+   * @description 当前颜色对象
    */
   color,
   /**
-   * @description manually show ColorPicker
+   * @description 手动显示 ColorPicker
    */
   show,
   /**
-   * @description manually hide ColorPicker
+   * @description 手动隐藏 ColorPicker
    */
   hide,
   /**
-   * @description focus the input element
+   * @description 聚焦输入框元素
    */
   focus,
   /**
-   * @description blur the input element
+   * @description 使输入框元素失焦
    */
   blur,
 })

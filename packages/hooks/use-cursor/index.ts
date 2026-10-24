@@ -8,7 +8,7 @@ interface SelectionInfo {
   afterTxt?: string
 }
 
-// Keep input cursor in the correct position when we use formatter.
+// 使用 formatter 时，将输入光标保持在正确位置。
 export function useCursor(
   input: ShallowRef<HTMLInputElement | undefined>
 ): [() => void, () => void] {

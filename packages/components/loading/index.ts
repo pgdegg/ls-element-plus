@@ -4,7 +4,7 @@ import vLoading from './src/directive'
 import type { App, AppContext, Directive } from 'vue'
 import type { ElementLoading, LoadingBinding } from './src/directive'
 
-// installer and everything in all
+// installer 以及全部内容
 export const ElLoading = {
   install(app: App) {
     Loading._context = app._context

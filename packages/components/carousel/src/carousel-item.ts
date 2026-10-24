@@ -4,25 +4,25 @@ import type { ExtractPublicPropTypes } from 'vue'
 
 export interface CarouselItemProps {
   /**
-   * @description name of the item, can be used in `setActiveItem`
+   * @description 项的名称，可用于 `setActiveItem`
    */
   name?: string
   /**
-   * @description text content for the corresponding indicator
+   * @description 对应指示器的文本内容
    */
   label?: string | number
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `CarouselItemProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `CarouselItemProps`
  */
 export const carouselItemProps = buildProps({
   /**
-   * @description name of the item, can be used in `setActiveItem`
+   * @description 项的名称，可用于 `setActiveItem`
    */
   name: { type: String, default: '' },
   /**
-   * @description text content for the corresponding indicator
+   * @description 对应指示器的文本内容
    */
   label: {
     type: [String, Number],
@@ -31,7 +31,7 @@ export const carouselItemProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `CarouselItemProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `CarouselItemProps`
  */
 export type CarouselItemPropsPublic = ExtractPublicPropTypes<
   typeof carouselItemProps

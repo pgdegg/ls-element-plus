@@ -65,7 +65,7 @@ describe('menu', () => {
       window.getComputedStyle(instance)._values['--el-menu-bg-color']
     ).toEqual(backgroundColor)
 
-    // We can not test final style, so comment it out for now.
+    // 我们无法测试最终样式，因此暂时注释掉。
     // expect(instance.style.backgroundColor).toEqual(backgroundColor)
     // expect(item1.vm.$el.style.backgroundColor).toEqual(backgroundColor)
     // expect(item1.vm.$el.style.color).toEqual(textColor)
@@ -192,7 +192,7 @@ describe('menu', () => {
   })
 
   test('menu-overflow', async () => {
-    // TODO: jsdom not support `offsetWidth` and `ResizeObserver`.
+    // TODO：jsdom 不支持 `offsetWidth` 和 `ResizeObserver`。
   })
 })
 
@@ -498,7 +498,7 @@ describe('other', () => {
     const menuItems = wrapper.findAllComponents({ name: 'ElMenuItem' })
     expect(menu.exists()).toBeTruthy()
 
-    // mock size
+    // mock 尺寸
     const styleSpy = vi
       .spyOn(window, 'getComputedStyle')
       .mockImplementation(() => {
@@ -552,7 +552,7 @@ describe('other', () => {
     const menuItems = wrapper.findAllComponents({ name: 'ElMenuItem' })
     expect(menu.exists()).toBeTruthy()
 
-    // mock size
+    // mock 尺寸
     const styleSpy = vi
       .spyOn(window, 'getComputedStyle')
       .mockImplementation(() => {

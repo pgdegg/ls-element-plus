@@ -38,7 +38,7 @@
     background-color: getCssVar('fill-color', 'blank');
     transition: getCssVar('transition-box-shadow');
 
-    // Keep the 3D transform to avoid Chromium inset box-shadow noise.
+    // 保留 3D 变换，以避免 Chromium 内阴影噪点。
     transform: translateZ(0);
     @include mixed-input-border(#{getCssVar('border-color')});
 
@@ -83,7 +83,7 @@
         cursor: not-allowed;
       }
 
-      // When the native input tag is disabled, the cursor value is the 'default'.
+      // 当原生 input 标签被禁用时，光标值为 'default'。
       input {
         cursor: not-allowed;
       }
@@ -216,7 +216,7 @@
     flex: 1;
 
     @include when(hidden) {
-      // Out of the document flow
+      // 脱离文档流
       position: absolute;
       opacity: 0;
       z-index: -1;
@@ -279,7 +279,7 @@
   }
 }
 
-// HIS component customization.
+// HIS 组件定制。
 // 禁用状态下，取消默认的灰色背景和鼠标样式，改为可点击的外观
 .ignore-disable__style {
   .el-select__wrapper.is-disabled,

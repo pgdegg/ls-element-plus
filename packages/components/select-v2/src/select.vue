@@ -362,8 +362,8 @@ export default defineComponent({
     const modelValue = computed(() => {
       const { modelValue: rawModelValue, multiple } = props
       const fallback = multiple ? [] : undefined
-      // When it is array, we check if this is multi-select.
-      // Based on the result we get
+      // 当它是数组时，我们判断是否为多选。
+      // 根据得到的结果
       if (
         props.multiple &&
         props.separator &&

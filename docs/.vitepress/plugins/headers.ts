@@ -3,12 +3,12 @@ import { resolveHeadersFromTokens, slugify } from '@mdit-vue/shared'
 import type { MarkdownRenderer } from 'vitepress'
 
 /**
- * Get markdown headers info
+ * 获取 markdown 标题信息
  *
- * Extract them into env
+ * 将其提取到 env 中
  */
 export default (md: MarkdownRenderer): void => {
-  // extract headers to env
+  // 将标题提取到 env
   const render = md.renderer.render.bind(md.renderer)
 
   const level = [2, 3, 4, 5, 6]
@@ -20,7 +20,7 @@ export default (md: MarkdownRenderer): void => {
       shouldEscapeText: false,
       slugify,
     })
-    // remove space before <
+    // 移除 < 之前的空格
     env.headers.forEach((header) => {
       header.title = header.title.replace(/\s+</g, '<')
     })

@@ -68,7 +68,7 @@ const colKls = computed(() => {
     }
   })
 
-  // this is for the fix
+  // 用于修复此问题
   if (gutter.value) {
     classes.push(ns.is('guttered'))
   }

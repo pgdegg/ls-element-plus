@@ -431,12 +431,12 @@ describe('buildProps', () => {
       key9: Date,
       key10: Set,
       key11: undefined,
-      // nested
+      // 嵌套
       key12: buildProp({
         type: String,
       } as const),
 
-      // default generator
+      // 默认值生成函数
       key13: {
         type: [String, Number, Function],
         default: () => '123' as const,

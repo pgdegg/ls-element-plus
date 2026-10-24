@@ -344,7 +344,7 @@ import type {
   Tag,
 } from '@element-plus/components/cascader-panel'
 
-const SUGGESTION_ITEM_EXTRA_WIDTH = 34 // span margin-right (10px) + check icon width (24px)
+const SUGGESTION_ITEM_EXTRA_WIDTH = 34 // span 的 margin-right (10px) + 勾选图标宽度 (24px)
 
 const popperOptions: Partial<Options> = {
   modifiers: [

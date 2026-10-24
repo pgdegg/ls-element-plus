@@ -57,7 +57,7 @@ $dropdown-divider-width: 1px !default;
   @include e(popper) {
     @include set-component-css-var('dropdown', $dropdown);
 
-    // using attributes selector to override
+    // 使用属性选择器进行覆盖
 
     @include picker-popper(
       getCssVar('bg-color', 'overlay'),

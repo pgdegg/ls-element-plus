@@ -137,13 +137,13 @@ export const useTree = (
     ...attrs,
     nodeKey: key,
 
-    // only expand on click node when the `check-strictly` is false
+    // 仅在 `check-strictly` 为 false 时点击节点才展开
     expandOnClickNode: computed(() => {
       return !props.checkStrictly && props.expandOnClickNode
     }),
 
-    // show current selected node only first time,
-    // fix the problem of expanding multiple nodes when checking multiple nodes
+    // 仅首次显示当前选中节点，
+    // 修复勾选多个节点时展开多个节点的问题
     defaultExpandedKeys: computed(() => {
       return props.defaultExpandedKeys
         ? props.defaultExpandedKeys.concat(defaultExpandedParentKeys)
@@ -176,10 +176,10 @@ export const useTree = (
     onNodeClick: (data, node, e) => {
       attrs.onNodeClick?.(data, node, e)
 
-      // `onCheck` is trigger when `checkOnClickNode`
+      // `onCheck` 在 `checkOnClickNode` 时触发
       if (props.showCheckbox && props.checkOnClickNode) return
 
-      // now `checkOnClickNode` is false, only no checkbox and `checkStrictly` or `isLeaf`
+      // 现在 `checkOnClickNode` 为 false，仅在无 checkbox 且 `checkStrictly` 或 `isLeaf` 时
       if (!props.showCheckbox && (props.checkStrictly || node.isLeaf)) {
         if (!getNodeValByProp('disabled', data)) {
           const option = select.value?.states.options.get(
@@ -192,7 +192,7 @@ export const useTree = (
       }
     },
     onCheck: (data, params) => {
-      // ignore when no checkbox, like only `checkOnClickNode` is true
+      // 无 checkbox 时忽略，与仅 `checkOnClickNode` 为 true 的情况一致
       if (!props.showCheckbox) return
 
       const dataValue = getNodeValByProp('value', data)
@@ -203,7 +203,7 @@ export const useTree = (
         (node) => node.childNodes
       )
 
-      // fix: checkedKeys has not cached keys
+      // 修复：checkedKeys 未缓存 key
       const uncachedCheckedKeys = params.checkedKeys
       const cachedKeys = props.multiple
         ? toValidArray(props.modelValue).filter(
@@ -213,7 +213,7 @@ export const useTree = (
       const checkedKeys = cachedKeys.concat(uncachedCheckedKeys)
 
       if (props.checkStrictly) {
-        // Checking for changes may come from `check-on-node-click`
+        // 勾选变化可能来自 `check-on-node-click`
         update(
           props.multiple
             ? checkedKeys
@@ -222,12 +222,12 @@ export const useTree = (
               : undefined
         )
       }
-      // only can select leaf node
+      // 只能选择叶子节点
       else if (props.multiple) {
         const childKeys = getChildCheckedKeys()
         update(cachedKeys.concat(childKeys))
       } else {
-        // select first leaf node when check parent
+        // 勾选父节点时选中第一个叶子节点
         const firstLeaf = treeFind(
           [data],
           (data) =>
@@ -239,7 +239,7 @@ export const useTree = (
           ? getNodeValByProp('value', firstLeaf)
           : undefined
 
-        // unselect when any child checked
+        // 任意子节点被勾选时取消选中
         const hasCheckedChild =
           isValidValue(props.modelValue) &&
           !!treeFind(

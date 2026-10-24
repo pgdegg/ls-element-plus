@@ -6,7 +6,7 @@ import type { SetupContext } from 'vue'
 import type { useLocale } from '@element-plus/hooks'
 import type { RangePickerSharedEmits } from '../props/shared'
 
-// FIXME: extract this to `date-picker.ts`
+// FIXME: 将此处提取到 `date-picker.ts`
 export type Shortcut = {
   text: string
   value: [Date, Date] | (() => [Date, Date])

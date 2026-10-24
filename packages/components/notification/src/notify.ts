@@ -20,7 +20,7 @@ import type {
   NotifyFn,
 } from './notification'
 
-// This should be a queue but considering there were `non-autoclosable` notifications.
+// 这里本应是队列，但考虑到存在 `non-autoclosable` 通知。
 const notifications: Record<NotificationPosition, NotificationQueue> = {
   'top-left': [],
   'top-right': [],
@@ -28,7 +28,7 @@ const notifications: Record<NotificationPosition, NotificationQueue> = {
   'bottom-right': [],
 }
 
-// the gap size between each notification
+// 各 notification 之间的间距
 const GAP_SIZE = 16
 let seed = 1
 
@@ -65,7 +65,7 @@ const notify: NotifyFn & Partial<Notify> = function (options = {}, context) {
     appendTo = document.querySelector(options.appendTo)
   }
 
-  // should fallback to default value with a warning
+  // 应回退到默认值并给出警告
   if (!isElement(appendTo)) {
     debugWarn(
       'ElNotification',
@@ -87,21 +87,21 @@ const notify: NotifyFn & Partial<Notify> = function (options = {}, context) {
   )
   vm.appContext = isUndefined(context) ? notify._context : context
 
-  // clean notification element preventing mem leak
+  // 清理 notification 元素以防止内存泄漏
   vm.props!.onDestroy = () => {
     render(null, container)
   }
 
-  // instances will remove this item when close function gets called. So we do not need to worry about it.
+  // 调用 close 函数时实例会移除该项，无需为此担心。
   render(vm, container)
   notifications[position].push({ vm })
   appendTo.appendChild(container.firstElementChild!)
 
   return {
-    // instead of calling the onClose function directly, setting this value so that we can have the full lifecycle
-    // for out component, so that all closing steps will not be skipped.
-    // UPDATE: call the exposed close() here rather than setting visible.value = false,
-    // because close() also runs clearTimer() to stop the progress tick and close timeout.
+    // 不直接调用 onClose 函数，而是设置此值以便走完完整生命周期
+    // 以便组件的所有关闭步骤都不会被跳过。
+    // 更新：在此处调用暴露的 close()，而不是设置 visible.value = false，
+    // 因为 close() 还会运行 clearTimer() 以停止进度 tick 和关闭超时。
     close: () => {
       ;(vm.component!.exposed as NotificationExposed).close()
     },
@@ -119,19 +119,19 @@ notificationTypes.forEach((type) => {
 })
 
 /**
- * This function gets called when user click `x` button or press `esc` or the time reached its limitation.
- * Emitted by transition@before-leave event so that we can fetch the current notification.offsetHeight, if this was called
- * by @after-leave the DOM element will be removed from the page thus we can no longer fetch the offsetHeight.
- * @param {String} id notification id to be closed
- * @param {Position} position the positioning strategy
- * @param {Function} userOnClose the callback called when close passed by user
+ * 用户点击 `x` 按钮、按 `esc` 或时间达到上限时调用此函数。
+ * 由 transition@before-leave 事件触发，以便获取当前 notification.offsetHeight；若在 @after-leave 中调用，
+ * DOM 元素已从页面移除，将无法再获取 offsetHeight。
+ * @param {String} id 待关闭的通知 id
+ * @param {Position} position 定位策略
+ * @param {Function} userOnClose 用户传入 close 时调用的回调
  */
 export function close(
   id: string,
   position: NotificationPosition,
   userOnClose?: (vm: VNode) => void
 ): void {
-  // maybe we can store the index when inserting the vm to notification list.
+  // 或许可以在把 vm 插入通知列表时存储其索引。
   const orientedNotifications = notifications[position]
   const idx = orientedNotifications.findIndex(
     ({ vm }) => vm.component?.props.id === id
@@ -139,18 +139,18 @@ export function close(
   if (idx === -1) return
   const { vm } = orientedNotifications[idx]
   if (!vm) return
-  // calling user's on close function before notification gets removed from DOM.
+  // 在通知从 DOM 移除前调用用户的 onClose 函数。
   userOnClose?.(vm)
 
-  // note that this is called @before-leave, that's why we were able to fetch this property.
+  // 注意此处为 @before-leave 调用，因此才能获取该属性。
   const removedHeight = vm.el!.offsetHeight
   const verticalPos = position.split('-')[0]
   orientedNotifications.splice(idx, 1)
   const len = orientedNotifications.length
   if (len < 1) return
-  // starting from the removing item.
+  // 从被移除的项开始。
   for (let i = idx; i < len; i++) {
-    // new position equals the current offsetTop minus removed height plus 16px(the gap size between each item)
+    // 新位置 = 当前 offsetTop - 被移除项高度 + 16px（各项之间的间距）
     const { el, component } = orientedNotifications[i].vm
     const pos =
       Number.parseInt(el!.style[verticalPos], 10) - removedHeight - GAP_SIZE
@@ -159,11 +159,11 @@ export function close(
 }
 
 export function closeAll(): void {
-  // loop through all directions, close them at once.
+  // 遍历所有方向，一次性关闭。
   for (const orientedNotifications of Object.values(notifications)) {
     orientedNotifications.forEach(({ vm }) => {
-      // same as the previous close method, we'd like to make sure lifecycle gets handle properly.
-      // UPDATE: call exposed close() so that clearTimer() also runs.
+      // 与前一个 close 方法相同，我们要确保生命周期得到妥善处理。
+      // 更新：调用暴露的 close()，使 clearTimer() 也一并运行。
       ;(vm.component!.exposed as NotificationExposed).close()
     })
   }

@@ -12,172 +12,172 @@ import type { ComponentSize } from '@element-plus/constants'
 import type InputNumber from './input-number.vue'
 
 /**
- * @description input-number component props
+ * @description input-number 组件的 props
  */
 export interface InputNumberProps {
-  /** @description maximum decimal places without padding display */
+  /** @description 不补零显示的最大小数位数 */
   maxPrecision?: number
   /**
-   * @description same as `id` in native input
+   * @description 与原生 input 的 `id` 相同
    */
   id?: string
   /**
-   * @description incremental step
+   * @description 递增步长
    */
   step?: number
   /**
-   * @description whether input value can only be multiple of step
+   * @description 输入值是否只能是 step 的整数倍
    */
   stepStrictly?: boolean
   /**
-   * @description the maximum allowed value
+   * @description 允许的最大值
    */
   max?: number
   /**
-   * @description the minimum allowed value
+   * @description 允许的最小值
    */
   min?: number
   /**
-   * @description binding value
+   * @description 绑定值
    */
   modelValue?: number | null
   /**
-   * @description same as `readonly` in native input
+   * @description 与原生 input 的 `readonly` 相同
    */
   readonly?: boolean
   /**
-   * @description whether the component is disabled
+   * @description 组件是否禁用
    */
   disabled?: boolean
   /**
-   * @description size of the component
+   * @description 组件尺寸
    */
   size?: ComponentSize
   /**
-   * @description whether to enable the control buttons
+   * @description 是否启用控制按钮
    */
   controls?: boolean
   /**
-   * @description position of the control buttons
+   * @description 控制按钮的位置
    */
   controlsPosition?: '' | 'right'
   /**
-   * @description value should be set when input box is cleared
+   * @description 清除输入框时应设置的值
    */
   valueOnClear?: 'min' | 'max' | number | null
   /**
-   * @description same as `name` in native input
+   * @description 与原生 input 的 `name` 相同
    */
   name?: string
   /**
-   * @description same as `placeholder` in native input
+   * @description 与原生 input 的 `placeholder` 相同
    */
   placeholder?: string
   /**
-   * @description precision of input value
+   * @description 输入值的精度
    */
   precision?: number
   /**
-   * @description whether to trigger form validation
+   * @description 是否触发表单校验
    */
   validateEvent?: boolean
   /**
-   * @description native aria-label attribute
+   * @description 原生 aria-label 属性
    */
   ariaLabel?: string
   /**
-   * @description native input mode for virtual keyboards
+   * @description 用于虚拟键盘的原生 input mode
    */
   inputmode?: HTMLAttributes['inputmode']
   /**
-   * @description alignment for the inner input text
+   * @description 内部输入文本的对齐方式
    */
   align?: 'left' | 'right' | 'center'
   /**
-   * @description whether to disable scientific notation input (e.g. 'e', 'E')
+   * @description 是否禁用科学计数法输入（例如 'e'、'E'）
    */
   disabledScientific?: boolean
   /**
-   * @description specifies the format of the value presented in the input
+   * @description 指定输入框中展示值的格式
    */
   formatter?: (value: string) => string
   /**
-   * @description specifies the value extracted from the formatted input
+   * @description 指定从格式化输入中提取的值
    */
   parser?: (value: string) => string
   /**
-   * @description same as `tabindex` in native input
+   * @description 与原生 input 的 `tabindex` 相同
    */
   tabindex?: string | number
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `InputNumberProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `InputNumberProps`。
  */
 export const inputNumberProps = buildProps({
   maxPrecision: Number,
   /**
-   * @description same as `id` in native input
+   * @description 与原生 input 的 `id` 相同
    */
   id: {
     type: String,
     default: undefined,
   },
   /**
-   * @description incremental step
+   * @description 递增步长
    */
   step: {
     type: Number,
     default: 1,
   },
   /**
-   * @description whether input value can only be multiple of step
+   * @description 输入值是否只能是 step 的整数倍
    */
   stepStrictly: Boolean,
   /**
-   * @description the maximum allowed value
+   * @description 允许的最大值
    */
   max: {
     type: Number,
     default: Number.MAX_SAFE_INTEGER,
   },
   /**
-   * @description the minimum allowed value
+   * @description 允许的最小值
    */
   min: {
     type: Number,
     default: Number.MIN_SAFE_INTEGER,
   },
   /**
-   * @description binding value
+   * @description 绑定值
    */
   modelValue: {
     type: [Number, null],
   },
   /**
-   * @description same as `readonly` in native input
+   * @description 与原生 input 的 `readonly` 相同
    */
   readonly: Boolean,
   /**
-   * @description whether the component is disabled
+   * @description 组件是否禁用
    */
   disabled: {
     type: Boolean,
     default: undefined,
   },
   /**
-   * @description size of the component
+   * @description 组件尺寸
    */
   size: useSizeProp,
   /**
-   * @description whether to enable the control buttons
+   * @description 是否启用控制按钮
    */
   controls: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description position of the control buttons
+   * @description 控制按钮的位置
    */
   controlsPosition: {
     type: String,
@@ -185,7 +185,7 @@ export const inputNumberProps = buildProps({
     values: ['', 'right'],
   },
   /**
-   * @description value should be set when input box is cleared
+   * @description 清除输入框时应设置的值
    */
   valueOnClear: {
     type: definePropType<'min' | 'max' | number | null>([String, Number, null]),
@@ -194,15 +194,15 @@ export const inputNumberProps = buildProps({
     default: null,
   },
   /**
-   * @description same as `name` in native input
+   * @description 与原生 input 的 `name` 相同
    */
   name: String,
   /**
-   * @description same as `placeholder` in native input
+   * @description 与原生 input 的 `placeholder` 相同
    */
   placeholder: String,
   /**
-   * @description precision of input value
+   * @description 输入值的精度
    */
   precision: {
     type: Number,
@@ -210,7 +210,7 @@ export const inputNumberProps = buildProps({
       val >= 0 && val === Number.parseInt(`${val}`, 10),
   },
   /**
-   * @description whether to trigger form validation
+   * @description 是否触发表单校验
    */
   validateEvent: {
     type: Boolean,
@@ -218,37 +218,37 @@ export const inputNumberProps = buildProps({
   },
   ...useAriaProps(['ariaLabel']),
   /**
-   * @description native input mode for virtual keyboards
+   * @description 用于虚拟键盘的原生 input mode
    */
   inputmode: {
     type: definePropType<HTMLAttributes['inputmode']>(String),
     default: undefined,
   },
   /**
-   * @description alignment for the inner input text
+   * @description 内部输入文本的对齐方式
    */
   align: {
     type: definePropType<'left' | 'right' | 'center'>(String),
     default: 'center',
   },
   /**
-   * @description whether to disable scientific notation input (e.g. 'e', 'E')
+   * @description 是否禁用科学计数法输入（例如 'e'、'E'）
    */
   disabledScientific: Boolean,
   /**
-   * @description specifies the format of the value presented in the input
+   * @description 指定输入框中展示值的格式
    */
   formatter: {
     type: Function,
   },
   /**
-   * @description specifies the value extracted from the formatted input
+   * @description 指定从格式化输入中提取的值
    */
   parser: {
     type: Function,
   },
   /**
-   * @description same as `tabindex` in native input
+   * @description 与原生 input 的 `tabindex` 相同
    */
   tabindex: {
     type: [String, Number],
@@ -257,7 +257,7 @@ export const inputNumberProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `InputNumberProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `InputNumberProps`。
  */
 export type InputNumberPropsPublic = ExtractPublicPropTypes<
   typeof inputNumberProps

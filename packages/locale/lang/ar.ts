@@ -2,21 +2,21 @@ export default {
   name: 'ar',
   el: {
     breadcrumb: {
-      label: 'Breadcrumb', // to be translated
+      label: 'Breadcrumb', // 待翻译
     },
     colorpicker: {
       confirm: 'موافق',
       clear: 'إزالة',
       defaultLabel: 'إختر اللون',
       description: 'اللون الحالي هو {color}. اضفط انتر لاختيار لون جديد',
-      alphaLabel: 'pick alpha value', // to be translated
-      alphaDescription: 'alpha {alpha}, current color is {color}', // to be translated
-      hueLabel: 'pick hue value', // to be translated
-      hueDescription: 'hue {hue}, current color is {color}', // to be translated
-      svLabel: 'pick saturation and brightness value', // to be translated
+      alphaLabel: 'pick alpha value', // 待翻译
+      alphaDescription: 'alpha {alpha}, current color is {color}', // 待翻译
+      hueLabel: 'pick hue value', // 待翻译
+      hueDescription: 'hue {hue}, current color is {color}', // 待翻译
+      svLabel: 'pick saturation and brightness value', // 待翻译
       svDescription:
-        'saturation {saturation}, brightness {brightness}, current color is {color}', // to be translated
-      predefineDescription: 'select {value} as the color', // to be translated
+        'saturation {saturation}, brightness {brightness}, current color is {color}', // 待翻译
+      predefineDescription: 'select {value} as the color', // 待翻译
     },
     datepicker: {
       now: 'الآن',
@@ -29,7 +29,7 @@ export default {
       monthTablePrompt: 'استخدم مفاتيح الاسهم واضغط انتر لاختيار الشهر',
       quarterTablePrompt: 'استخدم مفاتيح الاسهم واضغط انتر لاختيار الربع',
       yearTablePrompt: 'استخدم مفاتيح الاسهم واضغط انتر لاختيار السنة',
-      selectedDate: 'Selected date', // to be translated
+      selectedDate: 'Selected date', // 待翻译
       selectDate: 'إختر التاريخ',
       selectTime: 'إختر الوقت',
       startDate: 'تاريخ البدء',
@@ -63,13 +63,13 @@ export default {
         sat: 'السبت',
       },
       weeksFull: {
-        sun: 'Sunday', // to be translated
-        mon: 'Monday', // to be translated
-        tue: 'Tuesday', // to be translated
-        wed: 'Wednesday', // to be translated
-        thu: 'Thursday', // to be translated
-        fri: 'Friday', // to be translated
-        sat: 'Saturday', // to be translated
+        sun: 'Sunday', // 待翻译
+        mon: 'Monday', // 待翻译
+        tue: 'Tuesday', // 待翻译
+        wed: 'Wednesday', // 待翻译
+        thu: 'Thursday', // 待翻译
+        fri: 'Friday', // 待翻译
+        sat: 'Saturday', // 待翻译
       },
       months: {
         jan: 'كانون الثاني',
@@ -116,14 +116,14 @@ export default {
       pagesize: '/صفحة',
       total: 'الكل {total}',
       pageClassifier: '',
-      page: 'Page', // to be translated
-      prev: 'Go to previous page', // to be translated
-      next: 'Go to next page', // to be translated
-      currentPage: 'page {pager}', // to be translated
-      prevPages: 'Previous {pager} pages', // to be translated
-      nextPages: 'Next {pager} pages', // to be translated
+      page: 'Page', // 待翻译
+      prev: 'Go to previous page', // 待翻译
+      next: 'Go to next page', // 待翻译
+      currentPage: 'page {pager}', // 待翻译
+      prevPages: 'Previous {pager} pages', // 待翻译
+      nextPages: 'Next {pager} pages', // 待翻译
       deprecationWarning:
-        'Deprecated usages detected, please refer to the el-pagination documentation for more details', // to be translated
+        'Deprecated usages detected, please refer to the el-pagination documentation for more details', // 待翻译
     },
     dialog: {
       close: 'أغلق هذا التبويب',
@@ -145,9 +145,9 @@ export default {
       continue: 'إستمرار',
     },
     slider: {
-      defaultLabel: 'slider between {min} and {max}', // to be translated
-      defaultRangeStartLabel: 'pick start value', // to be translated
-      defaultRangeEndLabel: 'pick end value', // to be translated
+      defaultLabel: 'slider between {min} and {max}', // 待翻译
+      defaultRangeStartLabel: 'pick start value', // 待翻译
+      defaultRangeEndLabel: 'pick end value', // 待翻译
     },
     table: {
       emptyText: 'لايوجد بيانات',
@@ -155,21 +155,21 @@ export default {
       resetFilter: 'حذف',
       clearFilter: 'الكل',
       sumText: 'المجموع',
-      selectAllLabel: 'Select all rows', // to be translated
-      selectRowLabel: 'Select this row', // to be translated
-      expandRowLabel: 'Expand this row', // to be translated
-      collapseRowLabel: 'Collapse this row', // to be translated
-      sortLabel: 'Sort by {column}', // to be translated
-      filterLabel: 'Filter by {column}', // to be translated
+      selectAllLabel: 'Select all rows', // 待翻译
+      selectRowLabel: 'Select this row', // 待翻译
+      expandRowLabel: 'Expand this row', // 待翻译
+      collapseRowLabel: 'Collapse this row', // 待翻译
+      sortLabel: 'Sort by {column}', // 待翻译
+      filterLabel: 'Filter by {column}', // 待翻译
     },
     tag: {
-      close: 'Close this tag', // to be translated
+      close: 'Close this tag', // 待翻译
     },
     tour: {
-      next: 'Next', // to be translated
-      previous: 'Previous', // to be translated
-      finish: 'Finish', // to be translated
-      close: 'Close this dialog', // to be translated
+      next: 'Next', // 待翻译
+      previous: 'Previous', // 待翻译
+      finish: 'Finish', // 待翻译
+      close: 'Close this dialog', // 待翻译
     },
     tree: {
       emptyText: 'لايوجد بيانات',
@@ -189,17 +189,17 @@ export default {
       title: 'عودة',
     },
     popconfirm: {
-      confirmButtonText: 'Yes', // to be translated
-      cancelButtonText: 'No', // to be translated
+      confirmButtonText: 'Yes', // 待翻译
+      cancelButtonText: 'No', // 待翻译
     },
     carousel: {
-      leftArrow: 'Carousel arrow left', // to be translated
-      rightArrow: 'Carousel arrow right', // to be translated
-      indicator: 'Carousel switch to index {index}', // to be translated
+      leftArrow: 'Carousel arrow left', // 待翻译
+      rightArrow: 'Carousel arrow right', // 待翻译
+      indicator: 'Carousel switch to index {index}', // 待翻译
     },
     inputOTP: {
-      groupLabel: 'OTP Input', // to be translated
-      defaultLabel: 'Please enter OTP character {index}', // to be translated
+      groupLabel: 'OTP Input', // 待翻译
+      defaultLabel: 'Please enter OTP character {index}', // 待翻译
     },
   },
 }

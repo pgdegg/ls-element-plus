@@ -2,7 +2,7 @@
 @use 'common/transition.scss';
 @use 'icon.scss';
 
-// HIS component customization.
+// HIS 组件定制。
 // 加粗输入框内容
 .bold-content {
   // 加粗 vlaue
@@ -50,7 +50,7 @@
   }
 }
 
-// HIS theme defaults.
+// HIS 主题默认值。
 :root {
   --el-text-color-regular: #313131;
   --el-border-color-hover: #24ab9e;

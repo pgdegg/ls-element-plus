@@ -36,8 +36,8 @@ export function createStore<T extends DefaultRow>(
   }
 
   const store = useStore<T>()
-  // fix https://github.com/ElemeFE/element/issues/14075
-  // related pr https://github.com/ElemeFE/element/pull/14146
+  // 修复 https://github.com/ElemeFE/element/issues/14075
+  // 相关 PR https://github.com/ElemeFE/element/pull/14146
   store.toggleAllSelection = debounce(store._toggleAllSelection, 10)
   Object.keys(InitialStateMap).forEach((key) => {
     handleValue(getArrKeysValue(props, key), key, store)

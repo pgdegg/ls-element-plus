@@ -54,11 +54,10 @@ export default defineComponent({
 
         const target = e.currentTarget as HTMLElement
         /**
-         * This handles the following scenario:
-         *   when the item contains a form element such as input element
-         *   when the mouse is moving over the element itself which is contained by
-         *   the item, the default focusing logic should be prevented so that
-         *   it won't cause weird action.
+         * 处理以下场景：
+         *   当菜单项包含 input 等表单元素时，
+         *   鼠标悬停在菜单项内的该元素自身上时，
+         *   应阻止默认的聚焦逻辑，以免产生异常行为。
          */
         if (
           target === document.activeElement ||
@@ -101,7 +100,7 @@ export default defineComponent({
       }
     )
 
-    // direct usage of v-bind={ ...$props, ...$attrs } causes type errors
+    // 直接使用 v-bind={ ...$props, ...$attrs } 会导致类型错误
     const propsAndAttrs = computed(() => ({ ...props, ...attrs }))
 
     return {

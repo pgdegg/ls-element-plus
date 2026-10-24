@@ -7,60 +7,60 @@ import type { AriaProps } from '@element-plus/hooks'
 
 export interface InputOtpProps extends Pick<AriaProps, 'ariaLabel'> {
   /**
-   * @description The value of the OTP fields.
+   * @description OTP 字段的值。
    *
-   * Since numbers must not have leading zeros, `modelValue` is allowed to be a number only during initialization.
+   * 由于数字不能有前导零，`modelValue` 仅在初始化时允许为数字。
    *
    * @default undefined
    */
   modelValue?: string | number
   /**
-   * @description The OTP fields length
+   * @description OTP 字段长度
    * @default 6
    */
   length?: number
   /**
-   * @description Custom validator function
+   * @description 自定义校验器函数
    * @default () => true
    */
   validator?: (char: string, index: number) => boolean
   /**
-   * @description Native input mode for virtual keyboards
+   * @description 用于虚拟键盘的原生 input mode
    */
   inputmode?: InputHTMLAttributes['inputmode']
   /**
-   * @description The type of the OTP fields
+   * @description OTP 字段的类型
    * @default 'outlined'
    */
   type?: 'outlined' | 'filled' | 'underlined'
   /**
-   * @description The size of the OTP fields
+   * @description OTP 字段的尺寸
    * @default undefined
    */
   size?: ComponentSize
   /**
-   * @description Whether to enable password mode
+   * @description 是否启用密码模式
    */
   mask?: boolean
   /**
-   * @description Whether the OTP fields are disabled
+   * @description OTP 字段是否禁用
    * @default undefined
    */
   disabled?: boolean
   /**
-   * @description Same as `readonly` in native input
+   * @description 与原生 input 的 `readonly` 相同
    */
   readonly?: boolean
   /**
-   * @description Same as `id` in native input
+   * @description 与原生 input 的 `id` 相同
    */
   id?: string
   /**
-   * @description Whether to trigger form validation
+   * @description 是否触发表单校验
    */
   validateEvent?: boolean
   /**
-   * @description The separator between OTP fields
+   * @description OTP 字段之间的分隔符
    */
   separator?: string | VNode | ((index: number) => string | VNode)
 }

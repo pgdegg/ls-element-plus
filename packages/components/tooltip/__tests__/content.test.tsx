@@ -181,7 +181,7 @@ describe('<ElTooltipContent />', () => {
 
       describe('onCloseOutside', () => {
         beforeEach(() => {
-          // Have to mock this ref because we are not going to render the content in this component
+          // 必须 mock 这个 ref，因为我们不会在该组件中渲染内容
           wrapper.vm.contentRef = {
             popperContentRef: document.createElement('div'),
           }

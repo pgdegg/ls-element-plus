@@ -209,7 +209,7 @@ describe('Pagination', () => {
         <Pagination layout="pager" total={100} pageSize={pageSize.value} />
       ))
 
-      // total pages = Math.ceil(total / pageSize)
+      // 总页数 = Math.ceil(total / pageSize)
       assertPages(wrapper, 10)
       pageSize.value = 20
       await nextTick()
@@ -232,7 +232,7 @@ describe('Pagination', () => {
 
       assertCurrent(wrapper, 2)
       defaultCurrentPage.value = 1
-      assertCurrent(wrapper, 2) // still 2
+      assertCurrent(wrapper, 2) // 仍然是 2
       await wrapper.find('.el-pager li:last-child').trigger('click')
       assertCurrent(wrapper, 10)
       await wrapper.find('button.btn-prev').trigger('click')
@@ -261,7 +261,7 @@ describe('Pagination', () => {
       expect(wrapper.findComponent(DArrowLeft).exists()).toBeFalsy()
       expect(wrapper.findComponent(DArrowRight).exists()).toBeFalsy()
 
-      // quick prev
+      // 快速上一页
       const quickPrev = wrapper.find('.btn-quickprev')
       await quickPrev.trigger('mouseenter')
       expect(wrapper.findComponent(DArrowLeft).exists()).toBeTruthy()
@@ -275,7 +275,7 @@ describe('Pagination', () => {
       expect(wrapper.find('.btn-quickprev').exists()).toBeTruthy()
       expect(wrapper.findComponent(DArrowLeft).exists()).toBeFalsy()
 
-      // quick next
+      // 快速下一页
       const quickNext = wrapper.find('.btn-quicknext')
       await quickNext.trigger('mouseenter')
       expect(wrapper.findComponent(DArrowRight).exists()).toBeTruthy()
@@ -289,8 +289,8 @@ describe('Pagination', () => {
       expect(wrapper.find('.btn-quicknext').exists()).toBeTruthy()
       expect(wrapper.findComponent(DArrowRight).exists()).toBeFalsy()
 
-      // While hovering over the icon
-      // switching pages does not change the icon's display state or the position of the more button
+      // 悬停在图标上时
+      // 切换页面不会改变图标的显示状态或更多按钮的位置
       await wrapper.find('.btn-quickprev').trigger('mouseenter')
       expect(wrapper.findComponent(DArrowLeft).exists()).toBeTruthy()
 
@@ -315,8 +315,8 @@ describe('Pagination', () => {
       assertCurrent(wrapper, 20)
       pageCount.value = 5
       await nextTick()
-      // side effect, if currentPage is greater than pageCount
-      // currentPage should change accordingly
+      // 副作用：如果 currentPage 大于 pageCount
+      // currentPage 应相应地改变
       assertPages(wrapper, 5)
       assertCurrent(wrapper, 5)
     })
@@ -396,7 +396,7 @@ describe('Pagination', () => {
         key: 'Enter',
       })
       assertCurrent(wrapper, 3)
-      // TODO getComputedStyle is not implemented in jsdom, so I duno how to assert style of psuedo-class
+      // TODO getComputedStyle 在 jsdom 中未实现，因此我不知道如何断言伪类的样式
       /*
        * await wrapper.find('.el-pager li:nth-child(3)').trigger('keyup', {
        *   key: 'Tab',

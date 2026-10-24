@@ -1,11 +1,11 @@
 import 'normalize.css'
 // import 'element-plus/dist/index.css'
 
-// for dev
-// reset
+// 用于开发
+// 重置
 import '../../../packages/theme-chalk/src/reset.scss'
 import '../../../packages/theme-chalk/src/index.scss'
-// for dark mode
+// 用于深色模式
 import '../../../packages/theme-chalk/src/dark/css-vars.scss'
 
 import './styles/css-vars.scss'

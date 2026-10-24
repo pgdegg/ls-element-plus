@@ -23,10 +23,10 @@ import type {
   MessageBoxState,
 } from './message-box.type'
 
-// component default merge props & data
+// 组件默认合并 props 和 data
 
 const messageInstance = new Map<
-  ComponentPublicInstance<{ doClose: CloseFn }>, // marking doClose as function
+  ComponentPublicInstance<{ doClose: CloseFn }>, // 将 doClose 标记为函数
   {
     options: any
     callback: Callback | undefined
@@ -45,7 +45,7 @@ const getAppendToElement = (props: any): HTMLElement => {
       appendTo = props.appendTo
     }
 
-    // should fallback to default value with a warning
+    // 应回退到默认值并给出警告
     if (!isElement(appendTo)) {
       debugWarn(
         'ElMessageBox',
@@ -97,15 +97,15 @@ const genContainer = () => {
 
 const showMessage = (options: any, appContext?: AppContext | null) => {
   const container = genContainer()
-  // Adding destruct method.
-  // when transition leaves emitting `vanish` evt. so that we can do the clean job.
+  // 添加 destruct 方法。
+  // transition 离开时触发 `vanish` 事件，以便我们进行清理。
   options.onVanish = () => {
-    // not sure if this causes mem leak, need proof to verify that.
-    // maybe calling out like 1000 msg-box then close them all.
+    // 不确定这是否会导致内存泄漏，需要证据验证。
+    // 例如先唤起 1000 个 msg-box 再全部关闭。
     render(null, container)
-    messageInstance.delete(vm) // Remove vm to avoid mem leak.
-    // here we were suppose to call document.body.removeChild(container.firstElementChild)
-    // but render(null, container) did that job for us. so that we do not call that directly
+    messageInstance.delete(vm) // 移除 vm 以避免内存泄漏。
+    // 这里本应调用 document.body.removeChild(container.firstElementChild)
+    // 但 render(null, container) 已经替我们完成了，因此不直接调用
   }
 
   options.onAction = (action: Action) => {
@@ -140,9 +140,9 @@ const showMessage = (options: any, appContext?: AppContext | null) => {
 
   const instance = initInstance(options, container, appContext)!
 
-  // This is how we use message box programmatically.
-  // Maybe consider releasing a template version?
-  // get component instance like v2.
+  // 这就是我们以编程方式使用消息框的方式。
+  // 是否考虑发布一个模板版本？
+  // 像 v2 那样获取组件实例。
   const vm = instance.proxy as ComponentPublicInstance<
     {
       visible: boolean
@@ -160,7 +160,7 @@ const showMessage = (options: any, appContext?: AppContext | null) => {
     }
   }
 
-  // change visibility after everything is settled
+  // 一切就绪后再改变可见性
   vm.visible = true
   return vm
 }
@@ -188,7 +188,7 @@ function MessageBox(
       options,
       appContext ?? (MessageBox as IElMessageBox)._context
     )
-    // collect this vm in order to handle upcoming events.
+    // 收集该 vm 以便处理后续事件。
     messageInstance.set(vm, {
       options,
       callback,

@@ -5,7 +5,7 @@
   @return string.unquote('#' + #{string.slice(color.ie-hex-str($color), 4)});
 }
 
-// rgba color above solid color
+// rgba 颜色叠加在实色之上
 @function mix-overlay-color($upper, $lower) {
   $opacity: color.alpha($upper);
 

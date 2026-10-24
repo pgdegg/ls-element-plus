@@ -22,81 +22,81 @@ export interface MentionProps<
   T extends MentionOption = MentionOption,
 > extends InputProps {
   /**
-   * @description mention options list
+   * @description @提及选项列表
    */
   options?: T[]
   /**
-   * @description prefix character to trigger mentions. The string length must be exactly 1.
+   * @description 触发 @提及的前缀字符。字符串长度必须恰好为 1。
    */
   prefix?: string | string[]
   /**
-   * @description character to split mentions. The string length must be exactly 1.
+   * @description 分隔 @提及的字符。字符串长度必须恰好为 1。
    */
   split?: string
   /**
-   * @description customize filter option logic.
+   * @description 自定义选项过滤逻辑。
    */
   filterOption?: false | typeof filterOption<T>
   /**
-   * @description set popup placement
+   * @description 设置弹层位置
    */
   placement?: 'bottom' | 'top'
   /**
-   * @description whether the dropdown panel has an arrow
+   * @description 下拉面板是否带箭头
    */
   showArrow?: boolean
   /**
-   * @description offset of the dropdown panel
+   * @description 下拉面板的偏移量
    */
   offset?: number
   /**
-   * @description when backspace is pressed to delete, whether the mention content is deleted as a whole
+   * @description 按 backspace 删除时，是否将 @提及内容整体删除
    */
   whole?: boolean
   /**
-   * @description when backspace is pressed to delete, check if the mention is a whole
+   * @description 按 backspace 删除时，检查 @提及是否为整体
    */
   checkIsWhole?: (pattern: string, prefix: string) => boolean
   /**
-   * @description input value
+   * @description 输入值
    */
   modelValue?: string
   /**
-   * @description whether the dropdown panel of mentions is in a loading state.
+   * @description @提及下拉面板是否处于加载状态。
    */
   loading?: boolean
   /**
-   * @description custom class name for dropdown panel
+   * @description 下拉面板的自定义类名
    */
   popperClass?: ElTooltipContentProps['popperClass']
   /**
-   * @description custom style for dropdown panel
+   * @description 下拉面板的自定义样式
    */
   popperStyle?: ElTooltipContentProps['popperStyle']
   /**
-   * @description [popper.js](https://popper.js.org/docs/v2/) parameters
+   * @description [popper.js](https://popper.js.org/docs/v2/) 参数
    */
   popperOptions?: Partial<Options>
   /**
-   * @description configuration options
+   * @description 配置选项
    */
   props?: MentionOptionProps
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `MentionProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `MentionProps`。
  */
 export const mentionProps = buildProps({
   ...inputProps,
   /**
-   * @description mention options list
+   * @description @提及选项列表
    */
   options: {
     type: definePropType<MentionOption[]>(Array),
     default: () => [],
   },
   /**
-   * @description prefix character to trigger mentions. The string length must be exactly 1.
+   * @description 触发 @提及的前缀字符。字符串长度必须恰好为 1。
    */
   prefix: {
     type: definePropType<string | string[]>([String, Array]),
@@ -107,7 +107,7 @@ export const mentionProps = buildProps({
     },
   },
   /**
-   * @description character to split mentions. The string length must be exactly 1.
+   * @description 分隔 @提及的字符。字符串长度必须恰好为 1。
    */
   split: {
     type: String,
@@ -115,7 +115,7 @@ export const mentionProps = buildProps({
     validator: (val: string) => val.length === 1,
   },
   /**
-   * @description customize filter option logic.
+   * @description 自定义选项过滤逻辑。
    */
   filterOption: {
     type: definePropType<false | typeof filterOption>([Boolean, Function]),
@@ -126,29 +126,29 @@ export const mentionProps = buildProps({
     },
   },
   /**
-   * @description set popup placement
+   * @description 设置弹层位置
    */
   placement: {
     type: definePropType<'bottom' | 'top'>(String),
     default: 'bottom',
   },
   /**
-   * @description whether the dropdown panel has an arrow
+   * @description 下拉面板是否带箭头
    */
   showArrow: Boolean,
   /**
-   * @description offset of the dropdown panel
+   * @description 下拉面板的偏移量
    */
   offset: {
     type: Number,
     default: 0,
   },
   /**
-   * @description when backspace is pressed to delete, whether the mention content is deleted as a whole
+   * @description 按 backspace 删除时，是否将 @提及内容整体删除
    */
   whole: Boolean,
   /**
-   * @description when backspace is pressed to delete, check if the mention is a whole
+   * @description 按 backspace 删除时，检查 @提及是否为整体
    */
   checkIsWhole: {
     type: definePropType<(pattern: string, prefix: string) => boolean>(
@@ -156,30 +156,30 @@ export const mentionProps = buildProps({
     ),
   },
   /**
-   * @description input value
+   * @description 输入值
    */
   modelValue: String,
   /**
-   * @description whether the dropdown panel of mentions is in a loading state.
+   * @description @提及下拉面板是否处于加载状态。
    */
   loading: Boolean,
   /**
-   * @description custom class name for dropdown panel
+   * @description 下拉面板的自定义类名
    */
   popperClass: useTooltipContentProps.popperClass,
   /**
-   * @description custom style for dropdown panel
+   * @description 下拉面板的自定义样式
    */
   popperStyle: useTooltipContentProps.popperStyle,
   /**
-   * @description [popper.js](https://popper.js.org/docs/v2/) parameters
+   * @description [popper.js](https://popper.js.org/docs/v2/) 参数
    */
   popperOptions: {
     type: definePropType<Partial<Options>>(Object),
     default: () => ({}) as Partial<Options>,
   },
   /**
-   * @description configuration options
+   * @description 配置选项
    */
   props: {
     type: definePropType<MentionOptionProps>(Object),
@@ -203,7 +203,7 @@ export const mentionEmits = {
 export type MentionEmits = typeof mentionEmits
 
 /**
- * @deprecated Removed after 3.0.0, Use `MentionProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `MentionProps`。
  */
 export type MentionPropsPublic = ExtractPublicPropTypes<typeof mentionProps>
 export type MentionInstance = ComponentInstance<typeof Mention> &

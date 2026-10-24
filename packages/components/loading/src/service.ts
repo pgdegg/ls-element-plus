@@ -47,12 +47,10 @@ const Loading = function (
     addClassList(resolved, resolved.parent, instance)
 
   /**
-   * add loading-number to parent.
-   * because if a fullscreen loading is triggered when somewhere
-   * a v-loading.body was triggered before and it's parent is
-   * document.body which with a margin , the fullscreen loading's
-   * destroySelf function will remove 'el-loading-parent--relative',
-   * and then the position of v-loading.body will be error.
+   * 向父级添加 loading-number。
+   * 因为如果某处先前触发过 v-loading.body（其父级为带 margin 的 document.body），
+   * 此时再触发全屏 loading，全屏 loading 的 destroySelf 函数会移除 'el-loading-parent--relative'，
+   * 随后 v-loading.body 的位置就会出错。
    */
   let loadingNumber: string | null =
     resolved.parent.getAttribute('loading-number')
@@ -65,7 +63,7 @@ const Loading = function (
 
   resolved.parent.appendChild(instance.$el!)
 
-  // after instance render, then modify visible to trigger transition
+  // 实例渲染后，再修改 visible 以触发 transition
   nextTick(() => (instance.visible.value = resolved.visible))
 
   if (resolved.fullscreen) {
@@ -104,7 +102,7 @@ const addStyle = async (
   parent: HTMLElement,
   instance: LoadingInstance
 ) => {
-  // Compatible with the instance data format of vue@3.2.12 and earlier versions #12351
+  // 兼容 vue@3.2.12 及更早版本的实例数据格式 #12351
   const { nextZIndex } =
     ((instance.vm as any).zIndex as UseZIndexReturn) ||
     (instance.vm as any)._.exposed.zIndex
@@ -117,9 +115,9 @@ const addStyle = async (
   } else if (options.parent === document.body) {
     instance.originalPosition.value = getStyle(document.body, 'position')
     /**
-     * await dom render when visible is true in init,
-     * because some component's height maybe 0.
-     * e.g. el-table.
+     * 初始化时 visible 为 true 则等待 DOM 渲染，
+     * 因为某些组件的高度可能为 0，
+     * 例如 el-table。
      */
     await nextTick()
     for (const property of ['top', 'left']) {
@@ -149,7 +147,7 @@ const addClassList = (
   parent: HTMLElement,
   instance: LoadingInstance
 ) => {
-  // Compatible with the instance data format of vue@3.2.12 and earlier versions #12351
+  // 兼容 vue@3.2.12 及更早版本的实例数据格式 #12351
   const ns =
     ((instance.vm as any).ns as UseNamespaceReturn) ||
     (instance.vm as any)._.exposed.ns

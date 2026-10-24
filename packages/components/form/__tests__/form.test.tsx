@@ -357,12 +357,12 @@ describe('Form', () => {
 
     const formRef = wrapper.findComponent({ ref: 'form' }).vm as FormInstance
     formRef.resetFields()
-    // first await waits for the validation to be dispatched.
+    // 第一个 await 等待校验被派发。
     await nextTick()
-    // after validation dispatched, it will update `validateStateDebounced` with a 100ms delay.
-    // That's why we put this `vi.runAllTimers` here.
+    // 校验派发后，会以 100ms 的延迟更新 `validateStateDebounced`。
+    // 这就是我们在此处放置 `vi.runAllTimers` 的原因。
     vi.runAllTimers()
-    // after timer fired, we should wait for the UI to be updated.
+    // 定时器触发后，应等待 UI 更新。
     await nextTick()
     expect(form.name).toBe('')
     expect(form.address).toBe('')
@@ -1025,7 +1025,7 @@ describe('Form', () => {
     it('should register form item', async () => {
       expect(findDomainItems()).toHaveLength(1)
       await findSubmitButton().trigger('click')
-      // wait for AsyncValidator to be resolved
+      // 等待 AsyncValidator 解析完成
       await rAF()
       expect(onError).toHaveBeenCalled()
     })
@@ -1035,7 +1035,7 @@ describe('Form', () => {
       expect(findDomainItems()).toHaveLength(2)
 
       await findSubmitButton().trigger('click')
-      // wait for AsyncValidator to be resolved
+      // 等待 AsyncValidator 解析完成
       await rAF()
       expect(onError).toHaveBeenCalledWith(formatDomainError(2))
       const deleteBtns = findDeleteDomainButton()
@@ -1043,7 +1043,7 @@ describe('Form', () => {
       await findDeleteDomainButton().at(1)!.trigger('click')
       expect(findDomainItems()).toHaveLength(1)
       await findSubmitButton().trigger('click')
-      // wait for AsyncValidator to be resolved
+      // 等待 AsyncValidator 解析完成
       await rAF()
       expect(onError).toHaveBeenLastCalledWith(formatDomainError(1))
     })
@@ -1093,7 +1093,7 @@ describe('Form', () => {
       const formRef = wrapper.findComponent({ ref: 'formRef' })
         .vm as FormInstance
 
-      // Set new initial values
+      // 设置新的初始值
       formRef.setInitialValues({
         name: 'InitName',
         age: '30',
@@ -1101,13 +1101,13 @@ describe('Form', () => {
       })
       await nextTick()
 
-      // Modify form values
+      // 修改表单值
       form.name = 'Modified'
       form.age = '40'
       form.address = 'Chicago'
       await nextTick()
 
-      // Reset form, should reset to values set by setInitialValues
+      // 重置表单，应重置为 setInitialValues 设置的值
       formRef.resetFields()
       await nextTick()
       vi.runAllTimers()
@@ -1153,29 +1153,29 @@ describe('Form', () => {
       const formRef = wrapper.findComponent({ ref: 'formRef' })
         .vm as FormInstance
 
-      // Only update initial values for partial fields
+      // 仅为部分字段更新初始值
       formRef.setInitialValues({
         name: 'NewInitName',
         age: '25',
       })
       await nextTick()
 
-      // Modify all fields
+      // 修改所有字段
       form.name = 'Modified'
       form.age = '30'
       form.address = 'ModifiedAddress'
       await nextTick()
 
-      // Reset form
+      // 重置表单
       formRef.resetFields()
       await nextTick()
       vi.runAllTimers()
       await nextTick()
 
-      // name and age should reset to new initial values
+      // name 和 age 应重置为新的初始值
       expect(form.name).toBe('NewInitName')
       expect(form.age).toBe('25')
-      // address has no new initial value set in partial update, resets to undefined with unified cache
+      // address 在部分更新中未设置新初始值，将随统一缓存重置为 undefined
       expect(form.address).toBeUndefined()
 
       vi.useRealTimers()
@@ -1214,24 +1214,24 @@ describe('Form', () => {
       const nameItem = wrapper.findComponent({ ref: 'nameItem' })
         .vm as FormItemInstance
 
-      // Set new initial value only for name field
+      // 仅为 name 字段设置新初始值
       nameItem.setInitialValue('CustomInitName')
       await nextTick()
 
-      // Modify field values
+      // 修改字段值
       form.name = 'Modified'
       form.age = '30'
       await nextTick()
 
-      // Reset form
+      // 重置表单
       formRef.resetFields()
       await nextTick()
       vi.runAllTimers()
       await nextTick()
 
-      // name should reset to custom initial value
+      // name 应重置为自定义初始值
       expect(form.name).toBe('CustomInitName')
-      // age should reset to original mounted value
+      // age 应重置为挂载时的原始值
       expect(form.age).toBe('')
 
       vi.useRealTimers()

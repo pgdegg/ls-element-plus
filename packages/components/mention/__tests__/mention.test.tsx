@@ -234,7 +234,7 @@ describe('Mention.vue', () => {
         .mockReturnValue(Object.assign(defaultRect, rect))
     }
 
-    // Actual information obtained on the browser
+    // 在浏览器上获取的实际信息
     mockBoundingClientRect(elInputEl, {
       width: 320,
       height: 32,

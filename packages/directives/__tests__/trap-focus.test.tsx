@@ -84,14 +84,14 @@ describe('v-trap-focus', () => {
     })
 
     expect(document.activeElement).toBe(wrapper.find('.button-1').element)
-    // the current active element is .button-1
+    // 当前活动元素是 .button-1
     await wrapper.find('.button-1').trigger('keydown', {
       code: 'Tab',
     })
 
     expect(document.activeElement).toBe(wrapper.find('.button-2').element)
 
-    // now the active element became .button-2, this time we navigate back
+    // 现在活动元素变为 .button-2，这次我们向后导航
     await wrapper.find('.button-2').trigger('keydown', {
       code: 'Tab',
       shiftKey: true,

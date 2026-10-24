@@ -197,25 +197,25 @@ const TableGrid = defineComponent({
     expose({
       forceUpdate,
       /**
-       * @description fetch total height
+       * @description 获取总高度
        */
       totalHeight,
       /**
-       * @description scroll to a position
+       * @description 滚动到指定位置
        */
       scrollTo,
       /**
-       * @description scroll vertically to position y
+       * @description 纵向滚动到位置 y
        */
       scrollToTop,
       /**
-       * @description scroll to a given row
-       * @params row {Number} which row to scroll to
-       * @params strategy {ScrollStrategy} use what strategy to scroll to
+       * @description 滚动到指定行
+       * @params row {Number} 要滚动到哪一行
+       * @params strategy {ScrollStrategy} 使用哪种滚动策略
        */
       scrollToRow,
       /**
-       * @description reset rendered state after row index
+       * @description 重置行索引之后的渲染状态
        */
       resetAfterRowIndex,
     })
@@ -324,29 +324,29 @@ export type TableGridInstance = InstanceType<typeof TableGrid> &
   UnwrapRef<{
     forceUpdate: () => void
     /**
-     * @description fetch total height
+     * @description 获取总高度
      */
     totalHeight: number
 
     /**
-     * @description scrollTo a position
+     * @description 滚动到指定位置
      * @param { number | ScrollToOptions } arg1
      * @param { number } arg2
      */
     scrollTo(leftOrOptions: number | GridScrollOptions, top?: number): void
 
     /**
-     * @description scroll vertically to position y
+     * @description 纵向滚动到位置 y
      */
     scrollToTop(scrollTop: number): void
     /**
-     * @description scroll to a given row
-     * @params row {Number} which row to scroll to
-     * @params @optional strategy {ScrollStrategy} use what strategy to scroll to
+     * @description 滚动到指定行
+     * @params row {Number} 要滚动到哪一行
+     * @params @optional strategy {ScrollStrategy} 使用哪种滚动策略
      */
     scrollToRow(row: number, strategy: ScrollStrategy): void
     /**
-     * @description reset rendered state after row index
+     * @description 重置行索引之后的渲染状态
      * @param { number } rowIndex
      * @param { boolean } forceUpdate
      */

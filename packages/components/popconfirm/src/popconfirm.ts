@@ -17,85 +17,85 @@ import type Popconfirm from './popconfirm.vue'
 
 export interface PopconfirmProps {
   /**
-   * @description Title
+   * @description 标题
    */
   title?: string
   /**
-   * @description Confirm button text
+   * @description 确认按钮文字
    */
   confirmButtonText?: string
   /**
-   * @description Cancel button text
+   * @description 取消按钮文字
    */
   cancelButtonText?: string
   /**
-   * @description Confirm button type
+   * @description 确认按钮类型
    */
   confirmButtonType?: ButtonType
   /**
-   * @description Cancel button type
+   * @description 取消按钮类型
    */
   cancelButtonType?: ButtonType
   /**
-   * @description Icon Component
+   * @description 图标组件
    */
   icon?: IconPropType
   /**
-   * @description Icon color
+   * @description 图标颜色
    */
   iconColor?: string
   /**
-   * @description is hide Icon
+   * @description 是否隐藏图标
    */
   hideIcon?: boolean
   /**
-   * @description delay of disappear, in millisecond
+   * @description 消失延迟时间，单位为毫秒
    */
   hideAfter?: number
   /**
-   * @description Tooltip theme, built-in theme: `dark` / `light`
+   * @description Tooltip 主题，内置主题：`dark` / `light`
    */
   effect?: ElTooltipContentProps['effect']
   /**
-   * @description whether popconfirm is teleported to the body
+   * @description popconfirm 是否被 teleport 到 body
    */
   teleported?: ElTooltipContentProps['teleported']
   /**
-   * @description when popconfirm inactive and `persistent` is `false` , popconfirm will be destroyed
+   * @description 当 popconfirm 不处于激活状态且 `persistent` 为 `false` 时，popconfirm 将被销毁
    */
   persistent?: ElTooltipContentProps['persistent']
   /**
-   * @description popconfirm width, min width 150px
+   * @description popconfirm 宽度，最小宽度 150px
    */
   width?: string | number
   /**
-   * @description Indicates whether virtual triggering is enabled
+   * @description 是否启用虚拟触发
    */
   virtualTriggering?: ElTooltipTriggerProps['virtualTriggering']
   /**
-   * @description Indicates the reference element to which the popper is attached
+   * @description popper 所附着的参考元素
    */
   virtualRef?: ElTooltipTriggerProps['virtualRef']
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `PopconfirmProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `PopconfirmProps`。
  */
 export const popconfirmProps = buildProps({
   /**
-   * @description Title
+   * @description 标题
    */
   title: String,
   /**
-   * @description Confirm button text
+   * @description 确认按钮文字
    */
   confirmButtonText: String,
   /**
-   * @description Cancel button text
+   * @description 取消按钮文字
    */
   cancelButtonText: String,
   /**
-   * @description Confirm button type
+   * @description 确认按钮类型
    */
   confirmButtonType: {
     type: String,
@@ -103,7 +103,7 @@ export const popconfirmProps = buildProps({
     default: 'primary',
   },
   /**
-   * @description Cancel button type
+   * @description 取消按钮类型
    */
   cancelButtonType: {
     type: String,
@@ -111,47 +111,47 @@ export const popconfirmProps = buildProps({
     default: 'text',
   },
   /**
-   * @description Icon Component
+   * @description 图标组件
    */
   icon: {
     type: iconPropType,
     default: () => QuestionFilled,
   },
   /**
-   * @description Icon color
+   * @description 图标颜色
    */
   iconColor: {
     type: String,
     default: '#f90',
   },
   /**
-   * @description is hide Icon
+   * @description 是否隐藏图标
    */
   hideIcon: Boolean,
   /**
-   * @description delay of disappear, in millisecond
+   * @description 消失延迟时间，单位为毫秒
    */
   hideAfter: {
     type: Number,
     default: 200,
   },
   /**
-   * @description Tooltip theme, built-in theme: `dark` / `light`
+   * @description Tooltip 主题，内置主题：`dark` / `light`
    */
   effect: {
     ...useTooltipContentProps.effect,
     default: 'light',
   },
   /**
-   * @description whether popconfirm is teleported to the body
+   * @description popconfirm 是否被 teleport 到 body
    */
   teleported: useTooltipContentProps.teleported,
   /**
-   * @description when popconfirm inactive and `persistent` is `false` , popconfirm will be destroyed
+   * @description 当 popconfirm 不处于激活状态且 `persistent` 为 `false` 时，popconfirm 将被销毁
    */
   persistent: useTooltipContentProps.persistent,
   /**
-   * @description popconfirm width, min width 150px
+   * @description popconfirm 宽度，最小宽度 150px
    */
   width: {
     type: [String, Number],
@@ -163,11 +163,11 @@ export const popconfirmProps = buildProps({
 
 export const popconfirmEmits = {
   /**
-   * @description triggers when click confirm button
+   * @description 点击确认按钮时触发
    */
   confirm: (e: MouseEvent) => e instanceof MouseEvent,
   /**
-   * @description triggers when click cancel button
+   * @description 点击取消按钮时触发
    */
   cancel: (e: MouseEvent) => e instanceof MouseEvent,
 }
@@ -175,7 +175,7 @@ export const popconfirmEmits = {
 export type PopconfirmEmits = typeof popconfirmEmits
 
 /**
- * @deprecated Removed after 3.0.0, Use `PopconfirmProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `PopconfirmProps`。
  */
 export type PopconfirmPropsPublic = ExtractPublicPropTypes<
   typeof popconfirmProps

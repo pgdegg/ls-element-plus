@@ -2,23 +2,23 @@ import type { ExtractPublicPropTypes } from 'vue'
 
 export interface MenuItemGroupProps {
   /**
-   * @description group title
+   * @description 分组标题
    */
   title?: string
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `MenuItemGroupProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `MenuItemGroupProps`。
  */
 export const menuItemGroupProps = {
   /**
-   * @description group title
+   * @description 分组标题
    */
   title: String,
 } as const
 
 /**
- * @deprecated Removed after 3.0.0, Use `MenuItemGroupProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `MenuItemGroupProps`。
  */
 export type MenuItemGroupPropsPublic = ExtractPublicPropTypes<
   typeof menuItemGroupProps

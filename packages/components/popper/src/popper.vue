@@ -26,23 +26,23 @@ const role = computed(() => props.role)
 
 const popperProvides = {
   /**
-   * @description trigger element
+   * @description 触发元素
    */
   triggerRef,
   /**
-   * @description popperjs instance
+   * @description popperjs 实例
    */
   popperInstanceRef,
   /**
-   * @description popper content element
+   * @description popper 内容元素
    */
   contentRef,
   /**
-   * @description popper reference element
+   * @description popper 参考元素
    */
   referenceRef,
   /**
-   * @description role determines how aria attributes are distributed
+   * @description role 决定 aria 属性如何分配
    */
   role,
 } as ElPopperInjectionContext

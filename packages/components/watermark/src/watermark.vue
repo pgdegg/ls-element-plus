@@ -63,7 +63,7 @@ const getMarkStyle = () => {
     backgroundRepeat: 'repeat',
   }
 
-  /** Calculate the style of the offset */
+  /** 计算偏移样式*/
   let positionLeft = offsetLeft.value - gapXCenter.value
   let positionTop = offsetTop.value - gapYCenter.value
   if (positionLeft > 0) {
@@ -103,7 +103,7 @@ const appendWatermark = (base64Url: string, markWidth: number) => {
       })
     )
     containerRef.value?.append(watermarkRef.value)
-    // Delayed execution
+    // 延迟执行
     setTimeout(() => {
       stopObservation.value = false
     })
@@ -111,8 +111,8 @@ const appendWatermark = (base64Url: string, markWidth: number) => {
 }
 
 /**
- * Get the width and height of the watermark. The default values are as follows
- * Image: [120, 64]; Content: It's calculated by content;
+ * 获取水印的宽高。默认值如下
+ * 图片：[120, 64]；文本：由内容计算；
  */
 const getMarkSize = (ctx: CanvasRenderingContext2D) => {
   let defaultWidth = 120
@@ -136,7 +136,7 @@ const getMarkSize = (ctx: CanvasRenderingContext2D) => {
         actualBoundingBoxAscent,
         actualBoundingBoxDescent,
       } = ctx.measureText(item!)
-      // Using `actualBoundingBoxAscent` to be compatible with lower version browsers (eg: Firefox < 116)
+      // 使用 `actualBoundingBoxAscent` 以兼容低版本浏览器（如 Firefox < 116）
       const height = isUndefined(fontBoundingBoxAscent)
         ? actualBoundingBoxAscent + actualBoundingBoxDescent
         : fontBoundingBoxAscent + fontBoundingBoxDescent

@@ -18,8 +18,8 @@ export type UseLockScreenOptions = {
 }
 
 /**
- * Hook that monitoring the ref value to lock or unlock the screen.
- * When the trigger became true, it assumes modal is now opened and vice versa.
+ * 该 Hook 用于监控 ref 值以锁定或解锁屏幕。
+ * 当 trigger 变为 true 时，认为弹窗已打开，反之亦然。
  * @param trigger {Ref<boolean>}
  */
 export const useLockscreen = (
@@ -47,8 +47,8 @@ export const useLockscreen = (
 
     cleaned = true
     setTimeout(() => {
-      // When the test case is running, the context environment simulated by jsdom may have been destroyed,
-      // and the document does not exist at this time.
+      // 测试用例运行时，jsdom 模拟的上下文环境可能已被销毁，
+      // 此时 document 可能不存在。
       if (typeof document === 'undefined') return
       if (withoutHiddenClass && document) {
         document.body.style.width = bodyWidth

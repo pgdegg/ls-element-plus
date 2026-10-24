@@ -7,7 +7,7 @@ const Comp = defineComponent({
   setup() {
     const loading = ref(false)
     const throttled = useThrottleRender(loading, 1000)
-    // Test the settimeout branch clearly: trigger the watch to record the settimeout first, and then record the settimeout again when mount.
+    // 清晰地测试 settimeout 分支：先触发 watch 记录 settimeout，再在挂载时再次记录 settimeout。
     loading.value = true
 
     return () => <div class="test-dom">{throttled.value.toString()}</div>
@@ -26,12 +26,12 @@ describe.concurrent('useThrottleRender', () => {
   it('should throttle rendering when loading is true', async () => {
     const wrapper = mount(Comp)
     await nextTick()
-    expect(wrapper.find('.test-dom').text()).toBe('false') // initially false
+    expect(wrapper.find('.test-dom').text()).toBe('false') // 初始为 false
 
     vi.advanceTimersByTime(1000)
     await nextTick()
 
-    expect(wrapper.find('.test-dom').text()).toBe('true') // after throttle time, should be true
+    expect(wrapper.find('.test-dom').text()).toBe('true') // 节流时间后应为 true
     wrapper.unmount()
   })
 
@@ -44,21 +44,21 @@ describe.concurrent('useThrottleRender', () => {
   it('should return the same value immediately when throttle is 0', () => {
     const loading = ref(true)
     const throttled = useThrottleRender(loading, 0)
-    expect(throttled.value).toBe(true) // should be same as loading
+    expect(throttled.value).toBe(true) // 应与 loading 相同
   })
 
   it('should throttle rendering and update when loading changes', async () => {
     const loading = ref(true)
     const throttled = useThrottleRender(loading, 1000)
-    expect(throttled.value).toBe(false) // initially false
+    expect(throttled.value).toBe(false) // 初始为 false
     loading.value = false
-    expect(throttled.value).toBe(false) // should remain false immediately
+    expect(throttled.value).toBe(false) // 应立即保持 false
 
     vi.advanceTimersByTime(250)
     await nextTick()
 
     loading.value = true
-    expect(throttled.value).toBe(false) // should still be false after throttle time
+    expect(throttled.value).toBe(false) // 节流时间后仍应为 false
   })
 
   it('should use `initVal` as initial value when pass `{ initVal: true/false }`', async () => {
@@ -75,22 +75,22 @@ describe.concurrent('useThrottleRender', () => {
       leading: 200,
       trailing: 200,
     })
-    expect(throttled.value).toBe(false) // initially false when not pass initVal
+    expect(throttled.value).toBe(false) // 未传入 initVal 时初始为 false
     loading.value = true
     await nextTick()
-    expect(throttled.value).toBe(false) // should remain false until throttle time
+    expect(throttled.value).toBe(false) // 在节流时间到来前应保持 false
 
     vi.advanceTimersByTime(250)
     await nextTick()
 
-    expect(throttled.value).toBe(true) // should be true after leading time
+    expect(throttled.value).toBe(true) // leading 时间后应为 true
     loading.value = false
     await nextTick()
-    expect(throttled.value).toBe(true) // should remain true until trailing time
+    expect(throttled.value).toBe(true) // 在 trailing 时间到来前应保持 true
 
     vi.advanceTimersByTime(250)
     await nextTick()
 
-    expect(throttled.value).toBe(false) // should be false after trailing time
+    expect(throttled.value).toBe(false) // trailing 时间后应为 false
   })
 })

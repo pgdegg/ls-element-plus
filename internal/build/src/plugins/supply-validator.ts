@@ -69,12 +69,12 @@ function extractImportPropsStatements(
 }
 
 export function SupplyValidator(): Plugin {
-  // some props type name and prop name are not consistent and require remapping
+  // 某些 props 的类型名与 prop 名不一致，需要重新映射
   const reMapPropsName: Record<string, string> = {
     elTooltipContentProps: 'useTooltipContentProps', // tooltip/src/conent.vue
     cascaderComponentProps: 'cascaderProps',
   }
-  // some import file need remapping
+  // 某些 import 文件需要重新映射
   const reMapImportFile: Record<string, string> = {
     './types': './virtual-tree', // tree-node.vue
   }

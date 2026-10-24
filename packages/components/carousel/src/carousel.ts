@@ -4,79 +4,79 @@ import type { ExtractPublicPropTypes } from 'vue'
 
 export interface CarouselProps {
   /**
-   * @description index of the initially active slide (starting from 0)
+   * @description 初始激活幻灯片的索引（从 0 开始）
    */
   initialIndex?: number
   /**
-   * @description height of the carousel
+   * @description 轮播高度
    */
   height?: string
   /**
-   * @description how indicators are triggered
+   * @description 指示器的触发方式
    */
   trigger?: 'hover' | 'click'
   /**
-   * @description whether automatically loop the slides
+   * @description 是否自动循环播放幻灯片
    */
   autoplay?: boolean
   /**
-   * @description interval of the auto loop, in milliseconds
+   * @description 自动循环的间隔，单位为毫秒
    */
   interval?: number
   /**
-   * @description position of the indicators
+   * @description 指示器的位置
    */
   indicatorPosition?: '' | 'none' | 'outside'
   /**
-   * @description when arrows are shown
+   * @description 箭头的显示时机
    */
   arrow?: 'always' | 'hover' | 'never'
   /**
-   * @description type of the Carousel
+   * @description Carousel 的类型
    */
   type?: '' | 'card'
   /**
-   * @description when type is card, scaled size of secondary cards
+   * @description 类型为 card 时，次要卡片的缩放尺寸
    */
   cardScale?: number
   /**
-   * @description display the items in loop
+   * @description 循环展示各项
    */
   loop?: boolean
   /**
-   * @description display direction
+   * @description 展示方向
    */
   direction?: 'horizontal' | 'vertical'
   /**
-   * @description pause autoplay when hover
+   * @description 悬停时暂停自动播放
    */
   pauseOnHover?: boolean
   /**
-   * @description infuse dynamism and smoothness into the carousel
+   * @description 为轮播注入动感与流畅度
    */
   motionBlur?: boolean
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `CarouselProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `CarouselProps`
  */
 export const carouselProps = buildProps({
   /**
-   * @description index of the initially active slide (starting from 0)
+   * @description 初始激活幻灯片的索引（从 0 开始）
    */
   initialIndex: {
     type: Number,
     default: 0,
   },
   /**
-   * @description height of the carousel
+   * @description 轮播高度
    */
   height: {
     type: String,
     default: '',
   },
   /**
-   * @description how indicators are triggered
+   * @description 指示器的触发方式
    */
   trigger: {
     type: String,
@@ -84,21 +84,21 @@ export const carouselProps = buildProps({
     default: 'hover',
   },
   /**
-   * @description whether automatically loop the slides
+   * @description 是否自动循环播放幻灯片
    */
   autoplay: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description interval of the auto loop, in milliseconds
+   * @description 自动循环的间隔，单位为毫秒
    */
   interval: {
     type: Number,
     default: 3000,
   },
   /**
-   * @description position of the indicators
+   * @description 指示器的位置
    */
   indicatorPosition: {
     type: String,
@@ -106,7 +106,7 @@ export const carouselProps = buildProps({
     default: '',
   },
   /**
-   * @description when arrows are shown
+   * @description 箭头的显示时机
    */
   arrow: {
     type: String,
@@ -114,7 +114,7 @@ export const carouselProps = buildProps({
     default: 'hover',
   },
   /**
-   * @description type of the Carousel
+   * @description Carousel 的类型
    */
   type: {
     type: String,
@@ -122,21 +122,21 @@ export const carouselProps = buildProps({
     default: '',
   },
   /**
-   * @description when type is card, scaled size of secondary cards
+   * @description 类型为 card 时，次要卡片的缩放尺寸
    */
   cardScale: {
     type: Number,
     default: 0.83,
   },
   /**
-   * @description display the items in loop
+   * @description 循环展示各项
    */
   loop: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description display direction
+   * @description 展示方向
    */
   direction: {
     type: String,
@@ -144,29 +144,29 @@ export const carouselProps = buildProps({
     default: 'horizontal',
   },
   /**
-   * @description pause autoplay when hover
+   * @description 悬停时暂停自动播放
    */
   pauseOnHover: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description infuse dynamism and smoothness into the carousel
+   * @description 为轮播注入动感与流畅度
    */
   motionBlur: Boolean,
 } as const)
 
 export const carouselEmits = {
   /**
-   * @description triggers when the active slide switches
-   * @param current index of the new active slide
-   * @param prev index of the old active slide
+   * @description 激活幻灯片切换时触发
+   * @param current 新激活幻灯片的索引
+   * @param prev 旧激活幻灯片的索引
    */
   change: (current: number, prev: number) => [current, prev].every(isNumber),
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `CarouselProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `CarouselProps`
  */
 export type CarouselPropsPublic = ExtractPublicPropTypes<typeof carouselProps>
 export type CarouselEmits = typeof carouselEmits

@@ -47,7 +47,7 @@ const itemSize = {
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `TreeProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `TreeProps`。
  */
 export const treeProps = buildProps({
   data: {
@@ -78,8 +78,8 @@ export const treeProps = buildProps({
     type: definePropType<TreeKey[]>(Array),
     default: () => mutable([] as const),
   },
-  // Whether checked state of a node not affects its father and
-  // child nodes when show-checkbox is true
+  // 勾选某节点时是否不影响其父节点和
+  // 子节点（当 show-checkbox 为 true 时）
   checkStrictly: Boolean,
   defaultExpandedKeys: {
     type: definePropType<TreeKey[]>(Array),
@@ -105,24 +105,24 @@ export const treeProps = buildProps({
   currentNodeKey: {
     type: definePropType<TreeKey>([String, Number]),
   },
-  // TODO need to optimization
+  // TODO：需要优化
   accordion: Boolean,
   filterMethod: {
     type: definePropType<FilterMethod>(Function),
   },
-  // Performance mode will increase memory usage, but scrolling will be smoother
+  // 性能模式会增加内存占用，但滚动更流畅
   perfMode: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description always show scrollbar
+   * @description 始终显示滚动条
    */
   scrollbarAlwaysOn: Boolean,
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `TreeNodeProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `TreeNodeProps`。
  */
 export const treeNodeProps = buildProps({
   node: {

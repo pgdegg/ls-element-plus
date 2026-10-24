@@ -77,8 +77,8 @@ export const useSlider = (
     const { shiftKey } = event
     const code = getEventCode(event)
     const step = shiftKey ? 10 : 1
-    // NOTE: The hue-slider is opposite in direction to the regular slider, so the hue slider has been reversed here.
-    // But this is not the best way to handle it.
+    // 注意：hue-slider 的方向与普通滑块相反，因此此处将色相滑块做了反转。
+    // 但这并不是最佳处理方式。
     const reverse = key === 'hue' ? -1 : 1
     let isPreventDefault = true
 

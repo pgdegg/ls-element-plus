@@ -16,153 +16,153 @@ import type Rate from './rate.vue'
 
 export interface RateProps {
   /**
-   * @description binding value
+   * @description 绑定值
    */
   modelValue?: number
   /**
-   * @description native `id` attribute
+   * @description 原生 `id` 属性
    */
   id?: string
   /**
-   * @description threshold value between low and medium level. The value itself will be included in low level
+   * @description 低等级与中等级之间的阈值，该值本身归入低等级
    */
   lowThreshold?: number
   /**
-   * @description threshold value between medium and high level. The value itself will be included in high level
+   * @description 中等级与高等级之间的阈值，该值本身归入高等级
    */
   highThreshold?: number
   /**
-   * @description max rating score
+   * @description 最大评分
    */
   max?: number
   /**
-   * @description colors for icons. If array, it should have 3 elements, each of which corresponds with a score level, else if object, the key should be threshold value between two levels, and the value should be corresponding color
+   * @description 图标颜色。若为数组，应包含 3 个元素，分别对应一个评分等级；若为对象，键为两个等级之间的阈值，值为对应的颜色
    */
   colors?: string[] | Record<number, string>
   /**
-   * @description color of unselected icons
+   * @description 未选中图标的颜色
    */
   voidColor?: string
   /**
-   * @description color of unselected read-only icons
+   * @description 只读状态下未选中图标的颜色
    */
   disabledVoidColor?: string
   /**
-   * @description icon components. If array, it should have 3 elements, each of which corresponds with a score level, else if object, the key should be threshold value between two levels, and the value should be corresponding icon component
+   * @description 图标组件。若为数组，应包含 3 个元素，分别对应一个评分等级；若为对象，键为两个等级之间的阈值，值为对应的图标组件
    */
   icons?: Array<IconPropType> | Record<number, IconPropType>
   /**
-   * @description component of unselected icons
+   * @description 未选中图标的组件
    */
   voidIcon?: IconPropType
   /**
-   * @description component of unselected read-only icons
+   * @description 只读状态下未选中图标的组件
    */
   disabledVoidIcon?: IconPropType
   /**
-   * @description whether Rate is read-only
+   * @description Rate 是否为只读
    */
   disabled?: boolean
   /**
-   * @description whether picking half start is allowed
+   * @description 是否允许选择半星
    */
   allowHalf?: boolean
   /**
-   * @description whether to display texts
+   * @description 是否显示文本
    */
   showText?: boolean
   /**
-   * @description whether to display current score. show-score and show-text cannot be true at the same time
+   * @description 是否显示当前分数。show-score 与 show-text 不能同时为 true
    */
   showScore?: boolean
   /**
-   * @description color of texts
+   * @description 文本颜色
    */
   textColor?: string
   /**
-   * @description text array
+   * @description 文本数组
    */
   texts?: string[]
   /**
-   * @description score template
+   * @description 分数模板
    */
   scoreTemplate?: string
   /**
-   * @description size of Rate
+   * @description Rate 的尺寸
    */
   size?: ComponentSize
   /**
-   * @description whether value can be reset to `0`
+   * @description 值是否可重置为 `0`
    */
   clearable?: boolean
   /**
-   * @description native `aria-label` attribute
+   * @description 原生 `aria-label` 属性
    */
   ariaLabel?: string
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `RateProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `RateProps`。
  */
 export const rateProps = buildProps({
   /**
-   * @description binding value
+   * @description 绑定值
    */
   modelValue: {
     type: Number,
     default: 0,
   },
   /**
-   * @description native `id` attribute
+   * @description 原生 `id` 属性
    */
   id: {
     type: String,
     default: undefined,
   },
   /**
-   * @description threshold value between low and medium level. The value itself will be included in low level
+   * @description 低等级与中等级之间的阈值，该值本身归入低等级
    */
   lowThreshold: {
     type: Number,
     default: 2,
   },
   /**
-   * @description threshold value between medium and high level. The value itself will be included in high level
+   * @description 中等级与高等级之间的阈值，该值本身归入高等级
    */
   highThreshold: {
     type: Number,
     default: 4,
   },
   /**
-   * @description max rating score
+   * @description 最大评分
    */
   max: {
     type: Number,
     default: 5,
   },
   /**
-   * @description colors for icons. If array, it should have 3 elements, each of which corresponds with a score level, else if object, the key should be threshold value between two levels, and the value should be corresponding color
+   * @description 图标颜色。若为数组，应包含 3 个元素，分别对应一个评分等级；若为对象，键为两个等级之间的阈值，值为对应的颜色
    */
   colors: {
     type: definePropType<string[] | Record<number, string>>([Array, Object]),
     default: () => mutable(['', '', ''] as const),
   },
   /**
-   * @description color of unselected icons
+   * @description 未选中图标的颜色
    */
   voidColor: {
     type: String,
     default: '',
   },
   /**
-   * @description color of unselected read-only icons
+   * @description 只读状态下未选中图标的颜色
    */
   disabledVoidColor: {
     type: String,
     default: '',
   },
   /**
-   * @description icon components. If array, it should have 3 elements, each of which corresponds with a score level, else if object, the key should be threshold value between two levels, and the value should be corresponding icon component
+   * @description 图标组件。若为数组，应包含 3 个元素，分别对应一个评分等级；若为对象，键为两个等级之间的阈值，值为对应的图标组件
    */
   icons: {
     type: definePropType<
@@ -172,47 +172,47 @@ export const rateProps = buildProps({
       [StarFilled, StarFilled, StarFilled] as [Component, Component, Component],
   },
   /**
-   * @description component of unselected icons
+   * @description 未选中图标的组件
    */
   voidIcon: {
     type: iconPropType,
     default: () => Star as Component,
   },
   /**
-   * @description component of unselected read-only icons
+   * @description 只读状态下未选中图标的组件
    */
   disabledVoidIcon: {
     type: iconPropType,
     default: () => StarFilled as Component,
   },
   /**
-   * @description whether Rate is read-only
+   * @description Rate 是否为只读
    */
   disabled: {
     type: Boolean,
     default: undefined,
   },
   /**
-   * @description whether picking half start is allowed
+   * @description 是否允许选择半星
    */
   allowHalf: Boolean,
   /**
-   * @description whether to display texts
+   * @description 是否显示文本
    */
   showText: Boolean,
   /**
-   * @description whether to display current score. show-score and show-text cannot be true at the same time
+   * @description 是否显示当前分数。show-score 与 show-text 不能同时为 true
    */
   showScore: Boolean,
   /**
-   * @description color of texts
+   * @description 文本颜色
    */
   textColor: {
     type: String,
     default: '',
   },
   /**
-   * @description text array
+   * @description 文本数组
    */
   texts: {
     type: definePropType<string[]>(Array),
@@ -226,25 +226,25 @@ export const rateProps = buildProps({
       ] as const),
   },
   /**
-   * @description score template
+   * @description 分数模板
    */
   scoreTemplate: {
     type: String,
     default: '{value}',
   },
   /**
-   * @description size of Rate
+   * @description Rate 的尺寸
    */
   size: useSizeProp,
   /**
-   * @description whether value can be reset to `0`
+   * @description 值是否可重置为 `0`
    */
   clearable: Boolean,
   ...useAriaProps(['ariaLabel']),
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `RateProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `RateProps`。
  */
 export type RatePropsPublic = ExtractPublicPropTypes<typeof rateProps>
 

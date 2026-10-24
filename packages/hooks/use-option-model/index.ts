@@ -6,7 +6,7 @@ export interface OptionModelAdapterOptions {
   multiple?: boolean
 }
 
-/** Keep primitive UI selection and object-valued application models synchronized. */
+/** 保持基础类型的 UI 选中值与对象形式的应用模型同步。 */
 export function createOptionModelAdapter(
   source: () => OptionModelAdapterOptions
 ) {

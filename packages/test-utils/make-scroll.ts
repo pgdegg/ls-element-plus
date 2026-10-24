@@ -15,7 +15,7 @@ const makeScroll = (
     },
   })
   eventTarget.dispatchEvent(evt)
-  // must use setTimeout instead of nextTick to wait dom change
+  // 必须使用 setTimeout 而非 nextTick 来等待 DOM 更新
   return sleep()
 }
 

@@ -24,7 +24,7 @@ export const whenMouse = (handler: WhenMouseHandler): WhenMouseHandler => {
 
 export const getEventCode = (event: KeyboardEvent): string => {
   if (event.code && event.code !== 'Unidentified') return event.code
-  // On android, event.code is always '' (see https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code#browser_compatibility)
+  // 在 Android 上，event.code 始终为 ''（参见 https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code#browser_compatibility）
   const key = getEventKey(event)
 
   if (key) {
@@ -44,9 +44,9 @@ export const getEventCode = (event: KeyboardEvent): string => {
 export const getEventKey = (event: KeyboardEvent): string => {
   let key = event.key && event.key !== 'Unidentified' ? event.key : ''
 
-  // On Android, event.key and event.code may not be useful when entering characters or space
-  // So here we directly get the last character of the input
-  // **only takes effect in the keyup event**
+  // 在 Android 上，输入字符或空格时 event.key 与 event.code 可能不可用
+  // 因此这里直接取输入的最后一个字符
+  // **仅在 keyup 事件中生效**
   if (!key && event.type === 'keyup' && isAndroid()) {
     const target = event.target as HTMLInputElement
     key = target.value.charAt(target.selectionStart! - 1)

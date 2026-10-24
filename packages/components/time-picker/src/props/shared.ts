@@ -9,19 +9,19 @@ import type {
 
 export const disabledTimeListsProps = buildProps({
   /**
-   * @description To specify the array of hours that cannot be selected
+   * @description 指定不可选择的小时数组
    */
   disabledHours: {
     type: definePropType<GetDisabledHours>(Function),
   },
   /**
-   * @description To specify the array of minutes that cannot be selected
+   * @description 指定不可选择的分钟数组
    */
   disabledMinutes: {
     type: definePropType<GetDisabledMinutes>(Function),
   },
   /**
-   * @description To specify the array of seconds that cannot be selected
+   * @description 指定不可选择的秒数组
    */
   disabledSeconds: {
     type: definePropType<GetDisabledSeconds>(Function),

@@ -9,14 +9,14 @@ import type RadioButton from './radio-button.vue'
 export interface RadioButtonProps extends RadioPropsBase {}
 
 /**
- * @deprecated Removed after 3.0.0, Use `RadioButtonProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `RadioButtonProps`。
  */
 export const radioButtonProps = buildProps({
   ...radioPropsBase,
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `RadioButtonProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `RadioButtonProps`。
  */
 export type RadioButtonPropsPublic = ExtractPublicPropTypes<
   typeof radioButtonProps
@@ -24,7 +24,7 @@ export type RadioButtonPropsPublic = ExtractPublicPropTypes<
 export type RadioButtonInstance = InstanceType<typeof RadioButton> & unknown
 
 /**
- * @description default values for RadioButtonProps
+ * @description RadioButtonProps 的默认值
  */
 export const radioButtonPropsDefaults = {
   modelValue: undefined,

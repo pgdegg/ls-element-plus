@@ -37,7 +37,7 @@ export const useBackTop = (
       }
       container.value = el.value
     }
-    // Give visible an initial value, fix #13066
+    // 为 visible 设置初始值，修复 #13066
     handleScroll()
   })
 

@@ -15,7 +15,7 @@ export default (md: MarkdownRenderer): void => {
     const token = state.push('html_inline', '', 0)
     const value = result[1].trim()
     /**
-     * Add styles for some special tags
+     * 为部分特殊标签添加样式
      * vitepress/styles/content/tag-content.scss
      */
     const tagClass = ['beta', 'deprecated', 'a11y', 'required'].includes(value)

@@ -172,9 +172,9 @@ useEventListener(scrollContainer, 'scroll', handleScroll)
 watchEffect(update)
 
 defineExpose({
-  /** @description update affix status */
+  /** @description 更新 affix 状态 */
   update,
-  /** @description update rootRect info */
+  /** @description 更新 rootRect 信息 */
   updateRoot: updateRootRect,
 })
 </script>

@@ -13,7 +13,7 @@ export type FixedDirection = FixedDir
 export type KeyType = string | number | symbol
 
 /**
- * Param types
+ * 参数类型
  */
 export type CellRendererParams<T> = {
   cellData: T
@@ -53,7 +53,7 @@ export type HeaderClassGetter<T> = (
 ) => string
 
 /**
- * Renderer/Getter types
+ * Renderer/Getter 类型
  */
 export type CellRenderer<T> = (params: CellRendererParams<T>) => VNode
 
@@ -63,7 +63,7 @@ export type HeaderCellRenderer<T> = (
 
 export type Column<T = any> = {
   /**
-   * Attributes
+   * 属性
    */
   align?: Alignment
   class?: string | ClassNameGetter<T>
@@ -81,12 +81,12 @@ export type Column<T = any> = {
   sortable?: boolean
   width: number
   /**
-   * Renderers
+   * 渲染器
    */
   cellRenderer?: CellRenderer<T>
   headerCellRenderer?: HeaderCellRenderer<T>
   /**
-   * Extendable sections
+   * 可扩展的区块
    */
   [key: string]: any
 }

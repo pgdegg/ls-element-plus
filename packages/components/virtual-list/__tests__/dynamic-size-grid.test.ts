@@ -64,10 +64,10 @@ describe('<fixed-size-grid />', () => {
 
       await nextTick()
 
-      // 16 visible grid. 4 x 4
-      //               total rows  total columns
+      // 16 个可见网格，4 x 4
+      // 总行数  总列数
       //                   |           |
-      // 20 cached grid  (4 + 2) x (4 + 2)
+      // 20 个缓存网格 (4 + 2) x (4 + 2)
       expect(wrapper.findAll(ITEM_SELECTOR)).toHaveLength(36)
     })
 
@@ -140,7 +140,7 @@ describe('<fixed-size-grid />', () => {
       // 9 x 9 grid
       expect(wrapper.findAll(ITEM_SELECTOR)).toHaveLength(81)
 
-      // should do nothing
+      // 应不执行任何操作
       gridRef.scrollTo({
         scrollLeft: 100,
         scrollTop: 100,
@@ -155,12 +155,12 @@ describe('<fixed-size-grid />', () => {
       expect(wrapper.findAll(ITEM_SELECTOR)).toHaveLength(36)
 
       const gridRef = wrapper.vm.$refs.gridRef as GridRef
-      // do nothing scroll
+      // 滚动时不执行任何操作
       gridRef.scrollToItem()
       await nextTick()
       expect(wrapper.findAll(ITEM_SELECTOR)).toHaveLength(36)
 
-      // auto alignment
+      // 自动对齐
       gridRef.scrollToItem(10)
       await nextTick()
       // 7 x 6 grid
@@ -220,13 +220,13 @@ describe('<fixed-size-grid />', () => {
             config: {
               errorHandler,
               warnHandler() {
-                // suppress warning
+                // 抑制警告
               },
             },
           },
         })
       } catch {
-        // suppress error
+        // 抑制错误
       }
 
       expect(errorHandler).toHaveBeenCalled()
@@ -243,13 +243,13 @@ describe('<fixed-size-grid />', () => {
             config: {
               errorHandler,
               warnHandler() {
-                // suppress warning
+                // 抑制警告
               },
             },
           },
         })
       } catch {
-        // suppress error
+        // 抑制错误
       }
 
       expect(errorHandler).toHaveBeenCalled()

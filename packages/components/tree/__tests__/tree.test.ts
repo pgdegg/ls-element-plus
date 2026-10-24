@@ -204,14 +204,14 @@ describe('Tree.vue', () => {
     const firstNodeWrapper = wrapper.find('.el-tree-node')
 
     await firstNodeContentWrapper.trigger('click')
-    await nextTick() // because node click method to expaned is async
+    await nextTick() // 因为节点点击展开方法是异步的
 
     expect(vm.clickedNode.label).toEqual('一级 1')
     expect(firstNodeWrapper.classes('is-expanded')).toBe(true)
     expect(firstNodeWrapper.classes('is-current')).toBe(true)
 
     await firstNodeContentWrapper.trigger('click')
-    await nextTick() // because node click method to expaned is async
+    await nextTick() // 因为节点点击展开方法是异步的
 
     expect(firstNodeWrapper.classes('is-expanded')).toBe(false)
     expect(firstNodeWrapper.classes('is-current')).toBe(true)
@@ -233,7 +233,7 @@ describe('Tree.vue', () => {
     const firstNodeWrapper = wrapper.find('.el-tree-node')
 
     await firstNodeContentWrapper.trigger('click')
-    await nextTick() // because node click method to expaned is async
+    await nextTick() // 因为节点点击展开方法是异步的
 
     expect(firstNodeWrapper.classes('is-expanded')).toBe(false)
   })
@@ -419,7 +419,7 @@ describe('Tree.vue', () => {
     nodeWrappers = wrapper.findAll('.el-tree-node__content')
     expect(nodeWrappers.length).toEqual(7)
     expect(wrapper.findAll('.is-expanded').length).toEqual(3)
-    // collapse node
+    // 折叠节点
     const rootNode = nodeWrappers[0]
     rootNode.trigger('click')
     await sleep()
@@ -1211,7 +1211,7 @@ describe('Tree.vue', () => {
     await nodeWrappers[0].trigger('click')
     vi.runAllTimers()
     vi.useRealTimers()
-    await nextTick() // wait load finish
+    await nextTick() // 等待加载完成
     nodeWrappers = wrapper.findAll('.el-tree-node__content')
     expect(nodeWrappers.length).toEqual(4)
   })
@@ -1400,9 +1400,9 @@ describe('Tree.vue', () => {
     )
 
     await firstNodeContentWrapper.trigger('click')
-    await nextTick() // first next tick for UI update
-    await nextTick() // second next tick for triggering loadNode
-    await nextTick() // third next tick for updating props.node.expanded
+    await nextTick() // 第一个 nextTick 用于 UI 更新
+    await nextTick() // 第二个 nextTick 用于触发 loadNode
+    await nextTick() // 第三个 nextTick 用于更新 props.node.expanded
 
     expect(vm.nodeExpended).toEqual(true)
     expect(vm.currentNode.label).toEqual('region1')
@@ -2020,7 +2020,7 @@ describe('Tree.vue', () => {
     await nextTick()
     expect(
       Object.values((tree.vm as InstanceType<typeof Tree>).store.nodesMap)
-    ).toHaveLength(5) // The root node (void node) + 4 child nodes (region1, region2, zone1, zone2)
+    ).toHaveLength(5) // 根节点（空节点）+ 4 个子节点（region1、region2、zone1、zone2）
     expect(
       Object.values(
         Object.values(
@@ -2037,7 +2037,7 @@ describe('Tree.vue', () => {
         ).filter((item) => item.canFocus).length === 2
       )
     ).toBeTruthy()
-    // ArrowDown, region2 focus
+    // ArrowDown，region2 获得焦点
     region1.dispatchEvent(
       new KeyboardEvent('keydown', {
         code: 'ArrowDown',
@@ -2047,7 +2047,7 @@ describe('Tree.vue', () => {
     )
     expect(flag).toBe(true)
     defineGetter(region1, 'focus', handleFocus)
-    // ArrowDown, region1 focus
+    // ArrowDown，region1 获得焦点
     region2.dispatchEvent(
       new KeyboardEvent('keydown', {
         code: 'ArrowDown',

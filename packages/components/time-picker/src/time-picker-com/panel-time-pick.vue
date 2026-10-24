@@ -60,7 +60,7 @@ import type { Dayjs } from 'dayjs'
 const props = defineProps(panelTimePickerProps)
 const emit = defineEmits(['pick', 'select-range', 'set-picker-option'])
 
-// Injections
+// 注入
 const pickerBase = inject(PICKER_BASE_INJECTION_KEY) as any
 const {
   arrowControl,
@@ -116,7 +116,7 @@ const handleConfirm = (visible = false, first = false) => {
   emit('pick', props.parsedValue, visible)
 }
 const handleChange = (_date: Dayjs) => {
-  // visible avoids edge cases, when use scrolls during panel closing animation
+  // visible 用于避免面板关闭动画期间用户滚动时的边界情况
   if (!props.visible) {
     return
   }

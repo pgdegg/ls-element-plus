@@ -6,58 +6,58 @@ import type { ThrottleType } from '@element-plus/hooks'
 
 export interface SkeletonProps {
   /**
-   * @description whether showing the animation
+   * @description 是否显示动画
    */
   animated?: boolean
   /**
-   * @description how many fake items to render to the DOM
+   * @description 渲染到 DOM 的伪条目数量
    */
   count?: number
   /**
-   * @description numbers of the row, only useful when no template slot were given
+   * @description 行数，仅在未提供模板 slot 时有效
    */
   rows?: number
   /**
-   * @description whether showing the real DOM
+   * @description 是否显示真实 DOM
    */
   loading?: boolean
   /**
-   * @description rendering delay in milliseconds
+   * @description 渲染延迟，单位毫秒
    */
   throttle?: ThrottleType
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `SkeletonProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `SkeletonProps`。
  */
 export const skeletonProps = buildProps({
   /**
-   * @description whether showing the animation
+   * @description 是否显示动画
    */
   animated: Boolean,
   /**
-   * @description how many fake items to render to the DOM
+   * @description 渲染到 DOM 的伪条目数量
    */
   count: {
     type: Number,
     default: 1,
   },
   /**
-   * @description numbers of the row, only useful when no template slot were given
+   * @description 行数，仅在未提供模板 slot 时有效
    */
   rows: {
     type: Number,
     default: 3,
   },
   /**
-   * @description whether showing the real DOM
+   * @description 是否显示真实 DOM
    */
   loading: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description rendering delay in milliseconds
+   * @description 渲染延迟，单位毫秒
    */
   throttle: {
     type: definePropType<ThrottleType>([Number, Object]),
@@ -65,7 +65,7 @@ export const skeletonProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `SkeletonProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `SkeletonProps`。
  */
 export type SkeletonPropsPublic = ExtractPublicPropTypes<typeof skeletonProps>
 

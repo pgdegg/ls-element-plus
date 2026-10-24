@@ -44,7 +44,7 @@ const querySearch = (queryString: string, cb: any) => {
   const results = queryString
     ? restaurants.value.filter(createFilter(queryString))
     : restaurants.value
-  // call callback function to return suggestions
+  // 调用回调函数以返回建议
   cb(results)
 }
 const createFilter = (queryString: string) => {

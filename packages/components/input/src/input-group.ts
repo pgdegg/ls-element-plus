@@ -3,7 +3,7 @@ import { useNamespace } from '@element-plus/hooks/use-namespace'
 
 import type { Slots } from 'vue'
 
-/** Shared group layout for controls whose native input lives inside a trigger. */
+/** 为原生 input 位于触发器内部的控件提供共享组布局。 */
 export function createInputGroup(slots: Slots, className: string) {
   return defineComponent({
     inheritAttrs: false,

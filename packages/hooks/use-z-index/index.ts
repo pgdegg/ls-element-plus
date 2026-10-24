@@ -15,7 +15,7 @@ const zIndex = ref(0)
 
 export const defaultInitialZIndex = 2000
 
-// For SSR
+// 用于 SSR
 export const ZINDEX_INJECTION_KEY: InjectionKey<ElZIndexInjectionContext> =
   Symbol('elZIndexContextKey')
 

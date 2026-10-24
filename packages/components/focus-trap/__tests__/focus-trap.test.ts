@@ -137,7 +137,7 @@ describe('<ElFocusTrap', () => {
       const firstItem = items.at(0)
       expect(document.activeElement).toBe(firstItem?.element)
 
-      // Expect no emit if esc while not trapped
+      // 未处于捕获状态时按 ESC 不应触发 emit
       expect(wrapper.emitted('release-requested')).toBeFalsy()
 
       focusContainer?.trigger('keydown', {
@@ -147,7 +147,7 @@ describe('<ElFocusTrap', () => {
       await nextTick()
       await nextTick()
 
-      // Expect emit if esc while trapped
+      // 处于捕获状态时按 ESC 应触发 emit
       expect(wrapper.emitted('release-requested')?.length).toBe(1)
 
       createComponent({ loop: true }, 3)
@@ -158,7 +158,7 @@ describe('<ElFocusTrap', () => {
         code: EVENT_CODE.esc,
       })
 
-      // Expect no emit if esc while layer paused
+      // 图层暂停时按 ESC 不应触发 emit
       expect(wrapper.emitted('release-requested')?.length).toBe(1)
     })
 
@@ -196,12 +196,11 @@ describe('<ElFocusTrap', () => {
       expect(document.activeElement).toBe(items.at(0)?.element)
 
       /**
-       * NOTE:
-       * JSDOM does not support keyboard navigation simulation so that
-       * dispatching keyboard event with tab key is useless, we cannot test it
-       * it here, maybe turn to cypress for robust e2e test would be a better idea
+       * 注意：
+       * JSDOM 不支持键盘导航模拟，因此派发 tab 键的键盘事件没有意义，
+       * 这里无法对其进行测试；改用 cypress 进行健壮的 e2e 测试可能是更好的方案
        */
-      // when loop is off
+      // 当 loop 关闭时
       await childComponent.trigger('keydown.shift', {
         code: EVENT_CODE.tab,
       })
@@ -214,7 +213,7 @@ describe('<ElFocusTrap', () => {
       })
       expect(document.activeElement).toBe(items.at(2)?.element)
 
-      // set loop to true so that tab can tabbing from last to first and back forth
+      // 将 loop 设为 true，使 tab 可以从最后一项循环回到第一项，来回切换
       await wrapper.setProps({
         loop: true,
       })

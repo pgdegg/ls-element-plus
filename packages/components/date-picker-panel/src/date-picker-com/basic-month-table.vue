@@ -219,11 +219,11 @@ const handleMouseMove = (event: MouseEvent) => {
 
   const row = (target.parentNode as HTMLTableRowElement).rowIndex
   const column = (target as HTMLTableCellElement).cellIndex
-  // can not select disabled date
+  // 无法选择已禁用的日期
   if (rows.value[row][column].disabled) return
 
-  // only update rangeState when mouse moves to a new cell
-  // this avoids frequent Date object creation and improves performance
+  // 仅当鼠标移动到新单元格时才更新 rangeState
+  // 这避免了频繁创建 Date 对象，提升性能
   if (row !== lastRow.value || column !== lastColumn.value) {
     lastRow.value = row
     lastColumn.value = column
@@ -259,8 +259,8 @@ const handleMonthTableClick = (event: MouseEvent | KeyboardEvent) => {
     const newValue = hasClass(target, 'current')
       ? castArray(props.parsedValue).filter(
           (d) =>
-            // Filter out the selected month only when both year and month match
-            // This allows remove same months from different years #20019
+            // 仅当年份和月份都匹配时，才过滤出已选择的月份
+            // 这样可以移除不同年份中相同的月份 #20019
             d?.year() !== newMonth.year() || d?.month() !== newMonth.month()
         )
       : castArray(props.parsedValue).concat([dayjs(newMonth)])
@@ -294,7 +294,7 @@ watch(
 
 defineExpose({
   /**
-   * @description focus current cell
+   * @description 聚焦当前单元格
    */
   focus,
 })

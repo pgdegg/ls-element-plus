@@ -55,7 +55,7 @@ function useTable(props: TableV2Props) {
   const ns = useNamespace('table-v2')
   const instance = getCurrentInstance()!
 
-  // state
+  // 状态
   const isScrolling = shallowRef(false)
 
   const {
@@ -88,7 +88,7 @@ function useTable(props: TableV2Props) {
     const { estimatedRowHeight, rowHeight } = props
     const _data = unref(data)
     if (isNumber(estimatedRowHeight)) {
-      // calculate the actual height
+      // 计算实际高度
       return Object.values(unref(rowHeights)).reduce(
         (acc, curr) => acc + curr,
         0
@@ -116,7 +116,7 @@ function useTable(props: TableV2Props) {
     rowsHeight,
   })
 
-  // DOM/Component refs
+  // DOM/组件 refs
   const containerRef = ref()
 
   const showEmpty = computed(() => {
@@ -162,7 +162,7 @@ function useTable(props: TableV2Props) {
     }
   }
 
-  // events
+  // 事件
 
   watch(
     () => unref(rowsHeight),
@@ -178,18 +178,18 @@ function useTable(props: TableV2Props) {
   )
 
   return {
-    // models
+    // 模型
     columns,
     containerRef,
     mainTableRef,
     leftTableRef,
     rightTableRef,
-    // states
+    // 状态
     isDynamic,
     isResetting,
     isScrolling,
     hasFixedColumns,
-    // records
+    // 记录
     columnsStyles,
     columnsTotalWidth,
     data,
@@ -198,7 +198,7 @@ function useTable(props: TableV2Props) {
     fixedColumnsOnLeft,
     fixedColumnsOnRight,
     mainColumns,
-    // metadata
+    // 元数据
     bodyWidth,
     emptyStyle,
     rootStyle,
@@ -207,19 +207,19 @@ function useTable(props: TableV2Props) {
     fixedTableHeight,
     leftTableWidth,
     rightTableWidth,
-    // flags
+    // 标志位
     showEmpty,
 
-    // methods
+    // 方法
     getRowHeight,
 
-    // event handlers
+    // 事件处理函数
     onColumnSorted,
     onRowHovered,
     onRowExpanded,
     onRowsRendered,
     onRowHeightChange,
-    // use scrollbars
+    // 滚动条相关
     scrollTo,
     scrollToLeft,
     scrollToTop,

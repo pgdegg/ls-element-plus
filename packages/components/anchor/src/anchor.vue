@@ -116,7 +116,7 @@ const scrollToAnchor = (href: string) => {
     to,
     props.duration,
     () => {
-      // make sure it is executed after throttleByRaf's handleScroll
+      // 确保其在 throttleByRaf 的 handleScroll 之后执行
       setTimeout(() => {
         isScrolling = false
         currentTargetHref = ''

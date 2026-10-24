@@ -35,7 +35,7 @@ const HeaderCellRenderer: FunctionalComponent<HeaderCellRendererProps> = (
   const { headerCellRenderer, headerClass, sortable } = column
 
   /**
-   * render Cell children
+   * 渲染 Cell 子元素
    */
 
   const cellProps = {
@@ -53,7 +53,7 @@ const HeaderCellRenderer: FunctionalComponent<HeaderCellRendererProps> = (
       ])
 
   /**
-   * Render cell container and sort indicator
+   * 渲染单元格容器和排序指示器
    */
   const { sortBy, sortState, headerCellProps } = props
 
@@ -91,7 +91,7 @@ const HeaderCellRenderer: FunctionalComponent<HeaderCellRendererProps> = (
     ['data-key']: column.key,
   }
 
-  // For now we don't deliver resizable column feature since it has some UX issue.
+  // 目前暂不提供可调整列宽功能，因为存在一些 UX 问题。
   return (
     <div {...cellWrapperProps} role="columnheader">
       {Cell}

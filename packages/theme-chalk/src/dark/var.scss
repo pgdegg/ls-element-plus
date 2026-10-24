@@ -20,14 +20,14 @@ $colors: () !default;
 }
 
 // https://sass-lang.com/documentation/values/maps#immutability
-// mix colors with white/black to generate light/dark level
+// 将颜色与白色/黑色混合以生成浅色/深色阶
 @mixin set-color-mix-level(
   $type,
   $number,
   $mode: 'light',
   $mix-color: $color-white
 ) {
-  // hex mix color
+  // hex 混合颜色
   $colors: map.deep-merge(
     (
       $type: (
@@ -43,7 +43,7 @@ $colors: () !default;
     $colors
   ) !global;
 
-  // for designer to view transparent
+  // 供设计师查看透明效果
   // $colors: map.deep-merge(
   //   (
   //     $type: (
@@ -55,7 +55,7 @@ $colors: () !default;
   // ) !global;
 }
 
-// Background
+// 背景
 $bg-color: () !default;
 $bg-color: map.merge(
   (
@@ -66,7 +66,7 @@ $bg-color: map.merge(
   $bg-color
 );
 
-// dark-mode
+// 深色模式
 @each $type in common.$types {
   @for $i from 1 through 9 {
     @include set-color-mix-level($type, $i, 'light', map.get($bg-color, ''));
@@ -76,7 +76,7 @@ $bg-color: map.merge(
   @include set-color-mix-level($type, 2, 'dark', common.$color-white);
 }
 
-// border
+// 边框
 $border-color-base: #f5f8ff;
 $border-color: () !default;
 $border-color: map.merge(
@@ -91,7 +91,7 @@ $border-color: map.merge(
   $border-color
 );
 
-// mix to hex to avoid overlay issues
+// 混合为 hex 以避免叠加问题
 @each $key, $val in $border-color {
   $border-color: map.merge(
     $border-color,
@@ -101,7 +101,7 @@ $border-color: map.merge(
   ) !global;
 }
 
-// Box-shadow
+// 阴影
 $box-shadow: () !default;
 $box-shadow: map.merge(
   (
@@ -124,7 +124,7 @@ $box-shadow: map.merge(
   $box-shadow
 );
 
-// fill
+// 填充
 $fill-color-base: #fafcff;
 $fill-color: () !default;
 $fill-color: map.merge(
@@ -140,7 +140,7 @@ $fill-color: map.merge(
   $fill-color
 );
 
-// mix to hex to avoid overlay issues
+// 混合为 hex 以避免叠加问题
 @each $key, $val in $fill-color {
   @if ($key != 'blank') {
     $fill-color: map.merge(
@@ -152,7 +152,7 @@ $fill-color: map.merge(
   }
 }
 
-// text
+// 文本
 $text-color-base: #f0f5ff;
 $text-color: () !default;
 $text-color: map.merge(
@@ -165,7 +165,7 @@ $text-color: map.merge(
   ),
   $text-color
 );
-// mix to hex to avoid overlay issues
+// 混合为 hex 以避免叠加问题
 @each $key, $val in $text-color {
   $text-color: map.merge(
     $text-color,
@@ -175,7 +175,7 @@ $text-color: map.merge(
   ) !global;
 }
 
-// mask
+// 遮罩
 $mask-color: () !default;
 $mask-color: map.merge(
   (
@@ -186,7 +186,7 @@ $mask-color: map.merge(
 );
 
 // Button
-// css3 var in packages/theme-chalk/src/button.scss
+// css3 变量见 packages/theme-chalk/src/button.scss
 $button: () !default;
 $button: map.merge(
   (
@@ -205,7 +205,7 @@ $card: map.merge(
 );
 
 // Empty
-// css3 var in packages/theme-chalk/src/empty.scss
+// css3 变量见 packages/theme-chalk/src/empty.scss
 $empty: () !default;
 $empty: map.merge(
   (

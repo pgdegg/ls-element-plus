@@ -327,8 +327,8 @@ const handleFocus = (evt: FocusEvent) => {
 
 const handleBlur = (evt: FocusEvent) => {
   setTimeout(() => {
-    // validate current focus event is inside el-tooltip-content
-    // if so, ignore the blur event and the next focus event
+    // 校验当前 focus 事件是否位于 el-tooltip-content 内部
+    // 若是，则忽略 blur 事件及下一次 focus 事件
     if (popperRef.value?.isFocusInsideContent() || isMouseInsideContent.value) {
       ignoreFocusEvent = true
       return

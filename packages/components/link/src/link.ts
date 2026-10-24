@@ -6,40 +6,40 @@ import type Link from './link.vue'
 
 export interface LinkProps {
   /**
-   * @description type
+   * @description 类型
    */
   type?: 'primary' | 'success' | 'warning' | 'info' | 'danger' | 'default'
   /**
-   * @description when underlines should appear
+   * @description 下划线出现的时机
    */
   underline?: boolean | 'always' | 'never' | 'hover'
 
   /**
-   * @description whether the component is disabled
+   * @description 组件是否禁用
    */
   disabled?: boolean
   /**
-   * @description same as native hyperlink's `href`
+   * @description 与原生超链接的 `href` 相同
    */
   href?: string
   /**
-   * @description same as native hyperlink's `target`
+   * @description 与原生超链接的 `target` 相同
    */
   target?:
     '_blank' | '_parent' | '_self' | '_top' | (string & NonNullable<unknown>)
 
   /**
-   * @description icon component
+   * @description 图标组件
    */
   icon?: IconPropType
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `LinkProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `LinkProps`。
  */
 export const linkProps = buildProps({
   /**
-   * @description type
+   * @description 类型
    */
   type: {
     type: String,
@@ -47,7 +47,7 @@ export const linkProps = buildProps({
     default: undefined,
   },
   /**
-   * @description when underlines should appear
+   * @description 下划线出现的时机
    */
   underline: {
     type: [Boolean, String],
@@ -55,22 +55,22 @@ export const linkProps = buildProps({
     default: undefined,
   },
   /**
-   * @description whether the component is disabled
+   * @description 组件是否禁用
    */
   disabled: Boolean,
   /**
-   * @description same as native hyperlink's `href`
+   * @description 与原生超链接的 `href` 相同
    */
   href: { type: String, default: '' },
   /**
-   * @description same as native hyperlink's `target`
+   * @description 与原生超链接的 `target` 相同
    */
   target: {
     type: String as PropType<'_blank' | '_parent' | '_self' | '_top' | string>,
     default: '_self',
   },
   /**
-   * @description icon component
+   * @description 图标组件
    */
   icon: {
     type: iconPropType,
@@ -78,7 +78,7 @@ export const linkProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `LinkProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `LinkProps`。
  */
 export type LinkPropsPublic = ExtractPublicPropTypes<typeof linkProps>
 

@@ -38,9 +38,9 @@ export const usePopperContent = (props: PopperContentProps) => {
   const arrowModifier = computed(() => {
     const arrowEl = unref(arrowRef)
     const offset = unref(arrowOffset) ?? DEFAULT_ARROW_OFFSET
-    // Seems like the `phase` and `fn` is required by Modifier type
-    // But on its documentation they didn't specify that.
-    // Refer to https://popper.js.org/docs/v2/modifiers/arrow/
+    // 看起来 Modifier 类型要求提供 `phase` 和 `fn`
+    // 但它的文档中并未明确说明这一点。
+    // 参考 https://popper.js.org/docs/v2/modifiers/arrow/
     return {
       name: 'arrow',
       enabled: !isUndefined(arrowEl),
@@ -83,7 +83,7 @@ export const usePopperContent = (props: PopperContentProps) => {
     )
   })
 
-  // todo: Replace with onCleanup when vue in peerDependencies is ^3.5.0.
+  // todo: 当 peerDependencies 中的 vue 为 ^3.5.0 时，替换为 onCleanup。
   let stopResizeObserver: (() => void) | undefined
   watch(
     () => props.visible,

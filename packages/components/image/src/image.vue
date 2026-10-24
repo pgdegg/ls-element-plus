@@ -174,7 +174,7 @@ const isManual = computed(() => {
 const loadImage = () => {
   if (!isClient) return
 
-  // reset status
+  // 重置状态
   isLoading.value = true
   hasLoadError.value = false
   imageSrc.value = props.src
@@ -238,7 +238,7 @@ function removeLazyLoadListener() {
 }
 
 function clickHandler() {
-  // don't show viewer when preview is false
+  // preview 为 false 时不显示 viewer
   if (!preview.value) return
   showViewer.value = true
   emit('show')
@@ -257,7 +257,7 @@ watch(
   () => props.src,
   () => {
     if (isManual.value) {
-      // reset status
+      // 重置状态
       isLoading.value = true
       hasLoadError.value = false
       removeLazyLoadListener()
@@ -277,7 +277,7 @@ onMounted(() => {
 })
 
 defineExpose({
-  /** @description manually open preview */
+  /** @description 手动打开预览 */
   showPreview: clickHandler,
 })
 </script>

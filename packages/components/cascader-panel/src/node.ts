@@ -37,19 +37,19 @@ class Node {
   text: string
   loaded: boolean
   /**
-   * Is it checked
+   * 是否已选中
    *
    * @default false
    */
   checked = false
   /**
-   * Used to indicate the intermediate state of unchecked and fully checked child nodes
+   * 用于指示子节点未完全选中的中间状态（半选）
    *
    * @default false
    */
   indeterminate = false
   /**
-   * Loading Status
+   * 加载状态
    *
    * @default false
    */
@@ -129,7 +129,7 @@ class Node {
   broadcast(checked: boolean) {
     this.children.forEach((child) => {
       if (child) {
-        // bottom up
+        // 自底向上
         child.broadcast(checked)
         child.onParentCheck?.(checked)
       }
@@ -185,7 +185,7 @@ class Node {
     if (checkStrictly || !multiple) {
       this.checked = checked
     } else {
-      // bottom up to unify the calculation of the indeterminate state
+      // 自底向上，统一计算半选状态
       this.broadcast(checked)
       this.setCheckState(checked)
       this.emit()

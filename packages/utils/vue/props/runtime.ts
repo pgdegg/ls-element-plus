@@ -23,7 +23,7 @@ export const isEpProp = (val: unknown): val is EpProp<any, any, any> =>
   isObject(val) && !!(val as any)[epPropKey]
 
 /**
- * @description Build prop. It can better optimize prop types
+ * @description 构建 prop，能更好地优化 prop 类型
  * @description 生成 prop，能更好地优化类型
  * @example
   // limited options
@@ -52,7 +52,7 @@ export const buildProp = <
   prop: EpPropInput<Type, Value, Validator, Default, Required>,
   key?: string
 ): EpPropFinalized<Type, Value, Validator, Default, Required> => {
-  // filter native prop type and nested prop, e.g `null`, `undefined` (from `buildProps`)
+  // 过滤原生 prop 类型与嵌套 prop，例如 `null`、`undefined`（来自 `buildProps`）
   if (!isObject(prop) || isEpProp(prop)) return prop as any
 
   const { values, required, default: defaultValue, type, validator } = prop

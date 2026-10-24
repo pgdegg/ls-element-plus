@@ -11,7 +11,7 @@ export interface PredefineProps {
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `PredefineProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `PredefineProps`
  */
 export const predefineProps = buildProps({
   colors: {
@@ -30,6 +30,6 @@ export const predefineProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `PredefineProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `PredefineProps`
  */
 export type PredefinePropsPublic = ExtractPublicPropTypes<typeof predefineProps>

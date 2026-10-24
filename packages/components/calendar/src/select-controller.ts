@@ -14,7 +14,7 @@ export interface SelectControllerProps {
 }
 
 /**
- *  @deprecated Removed after 3.0.0, Use `SelectControllerProps` instead.
+ *  @deprecated 自 3.0.0 后移除，请使用 `SelectControllerProps`
  */
 export const selectControllerProps = buildProps({
   date: {
@@ -29,7 +29,7 @@ export const selectControllerProps = buildProps({
 } as const)
 
 /**
- *  @deprecated Removed after 3.0.0, Use `SelectControllerProps` instead.
+ *  @deprecated 自 3.0.0 后移除，请使用 `SelectControllerProps`
  */
 export type SelectControllerPropsPublic = ExtractPublicPropTypes<
   typeof selectControllerProps

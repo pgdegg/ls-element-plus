@@ -18,71 +18,71 @@ export type FormItemProp = Arrayable<string>
 
 export interface FormItemProps {
   /**
-   * @description Label text.
+   * @description 标签文本。
    */
   label?: string
   /**
-   * @description Width of label, e.g. `'50px'`. `'auto'` is supported.
+   * @description 标签宽度，例如 `'50px'`，支持 `'auto'`。
    */
   labelWidth?: string | number
   /**
-   * @description Position of label. If set to `'left'` or `'right'`, `label-width` prop is also required. The default is extend from `form label-position`.
+   * @description 标签位置。若设为 `'left'` 或 `'right'`，还需提供 `label-width` prop。默认继承自 `form label-position`。
    */
   labelPosition?: 'left' | 'right' | 'top' | ''
   /**
-   * @description  A key of `model`. It could be an array of property paths (e.g `['a', 'b', '0']`). In the use of `validate` and `resetFields` method, the attribute is required.
+   * @description `model` 的键。可以是属性路径数组（例如 `['a', 'b', '0']`）。使用 `validate` 和 `resetFields` 方法时，该属性为必填。
    */
   prop?: FormItemProp
   /**
-   * @description Whether the field is required or not, will be determined by validation rules if omitted.
+   * @description 该字段是否为必填；省略时由校验规则决定。
    */
   required?: boolean
   /**
-   * @description Validation rules of form, see the [following table](#formitemrule), more advanced usage at [async-validator](https://github.com/yiminghe/async-validator).
+   * @description 表单校验规则，见[下表](#formitemrule)，更高级用法参见 [async-validator](https://github.com/yiminghe/async-validator)。
    */
   rules?: Arrayable<FormItemRule>
   /**
-   * @description Field error message, set its value and the field will validate error and show this message immediately.
+   * @description 字段错误信息；设置其值后，该字段将校验失败并立即显示此消息。
    */
   error?: string
   /**
-   * @description Validation state of formItem.
+   * @description formItem 的校验状态。
    */
   validateStatus?: FormItemValidateState
   /**
-   * @description Same as for in native label.
+   * @description 与原生 label 的 for 相同。
    */
   for?: string
   /**
-   * @description Inline style validate message.
+   * @description 内联样式的校验信息。
    */
   inlineMessage?: boolean
   /**
-   * @description Whether to show the error message.
+   * @description 是否显示错误信息。
    */
   showMessage?: boolean
   /**
-   * @description Control the size of components in this form-item.
+   * @description 控制该 form-item 内组件的尺寸。
    */
   size?: ComponentSize
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `FormItemProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `FormItemProps`。
  */
 export const formItemProps = buildProps({
   /**
-   * @description Label text.
+   * @description 标签文本。
    */
   label: String,
   /**
-   * @description Width of label, e.g. `'50px'`. `'auto'` is supported.
+   * @description 标签宽度，例如 `'50px'`，支持 `'auto'`。
    */
   labelWidth: {
     type: [String, Number],
   },
   /**
-   * @description Position of label. If set to `'left'` or `'right'`, `label-width` prop is also required. The default is extend from `form label-position`.
+   * @description 标签位置。若设为 `'left'` 或 `'right'`，还需提供 `label-width` prop。默认继承自 `form label-position`。
    */
   labelPosition: {
     type: String,
@@ -90,55 +90,55 @@ export const formItemProps = buildProps({
     default: '',
   },
   /**
-   * @description  A key of `model`. It could be an array of property paths (e.g `['a', 'b', '0']`). In the use of `validate` and `resetFields` method, the attribute is required.
+   * @description `model` 的键。可以是属性路径数组（例如 `['a', 'b', '0']`）。使用 `validate` 和 `resetFields` 方法时，该属性为必填。
    */
   prop: {
     type: definePropType<FormItemProp>([String, Array]),
   },
   /**
-   * @description Whether the field is required or not, will be determined by validation rules if omitted.
+   * @description 该字段是否为必填；省略时由校验规则决定。
    */
   required: {
     type: Boolean,
     default: undefined,
   },
   /**
-   * @description Validation rules of form, see the [following table](#formitemrule), more advanced usage at [async-validator](https://github.com/yiminghe/async-validator).
+   * @description 表单校验规则，见[下表](#formitemrule)，更高级用法参见 [async-validator](https://github.com/yiminghe/async-validator)。
    */
   rules: {
     type: definePropType<Arrayable<FormItemRule>>([Object, Array]),
   },
   /**
-   * @description Field error message, set its value and the field will validate error and show this message immediately.
+   * @description 字段错误信息；设置其值后，该字段将校验失败并立即显示此消息。
    */
   error: String,
   /**
-   * @description Validation state of formItem.
+   * @description formItem 的校验状态。
    */
   validateStatus: {
     type: String,
     values: formItemValidateStates,
   },
   /**
-   * @description Same as for in native label.
+   * @description 与原生 label 的 for 相同。
    */
   for: String,
   /**
-   * @description Inline style validate message.
+   * @description 内联样式的校验信息。
    */
   inlineMessage: {
     type: Boolean,
     default: undefined,
   },
   /**
-   * @description Whether to show the error message.
+   * @description 是否显示错误信息。
    */
   showMessage: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description Control the size of components in this form-item.
+   * @description 控制该 form-item 内组件的尺寸。
    */
   size: {
     type: String,
@@ -147,6 +147,6 @@ export const formItemProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `FormItemProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `FormItemProps`。
  */
 export type FormItemPropsPublic = ExtractPublicPropTypes<typeof formItemProps>

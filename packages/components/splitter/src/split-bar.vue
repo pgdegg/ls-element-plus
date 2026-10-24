@@ -68,7 +68,7 @@ const draggerPseudoClass = computed(() => {
 
 const startPos = ref<[x: number, y: number] | null>(null)
 
-// Start dragging
+// 开始拖动
 const onMousedown = (e: MouseEvent) => {
   if (!props.resizable) return
   startPos.value = [e.pageX, e.pageY]
@@ -88,7 +88,7 @@ const onTouchStart = (e: TouchEvent) => {
   }
 }
 
-// During dragging
+// 拖动过程中
 const onMouseMove = (e: MouseEvent) => {
   const { pageX, pageY } = e
   const offsetX = pageX - startPos.value![0]
@@ -108,7 +108,7 @@ const onTouchMove = (e: TouchEvent) => {
   }
 }
 
-// End dragging
+// 结束拖动
 const onMouseUp = () => {
   startPos.value = null
   window.removeEventListener('mouseup', onMouseUp)

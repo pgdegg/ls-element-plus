@@ -85,7 +85,7 @@ const containerKls = computed(() => {
   ]
 })
 
-// methods
+// 方法
 const handleClose = (event: MouseEvent) => {
   emit('close', event)
 }

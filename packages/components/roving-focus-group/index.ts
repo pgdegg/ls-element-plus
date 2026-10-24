@@ -1,5 +1,5 @@
-// This component is ported from https://github.com/radix-ui/primitives/tree/main/packages/react/roving-focus
-// with some modification for Vue
+// 该组件移植自 https://github.com/radix-ui/primitives/tree/main/packages/react/roving-focus
+// 并针对 Vue 做了一些修改
 import ElRovingFocusGroup from './src/roving-focus-group.vue'
 import ElRovingFocusItem from './src/roving-focus-item.vue'
 

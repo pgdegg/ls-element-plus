@@ -150,16 +150,16 @@ function useEvents<T extends DefaultRow>(props: Partial<TableBodyProps<T>>) {
     )) {
       return
     }
-    // use range width instead of scrollWidth to determine whether the text is overflowing
-    // to address a potential FireFox bug: https://bugzilla.mozilla.org/show_bug.cgi?id=1074543#c3
+    // 使用 range 宽度而非 scrollWidth 来判断文本是否溢出
+    // 为规避一个潜在的 Firefox bug：https://bugzilla.mozilla.org/show_bug.cgi?id=1074543#c3
     const range = document.createRange()
     range.setStart(cellChild, 0)
     range.setEnd(cellChild, cellChild.childNodes.length)
     /** detail: https://github.com/element-plus/element-plus/issues/10790
-     *  What went wrong?
-     *  UI > Browser > Zoom, In Blink/WebKit, getBoundingClientRect() sometimes returns inexact values, probably due to lost precision during internal calculations. In the example above:
-     *    - Expected: 188
-     *    - Actual: 188.00000762939453
+     *  问题出在哪里？
+     *  UI > Browser > Zoom，在 Blink/WebKit 中，getBoundingClientRect() 有时会返回不精确的值，可能是内部计算过程中丢失了精度。以上面的例子为例：
+     *    - 预期：188
+     *    - 实际：188.00000762939453
      */
     const { width: rangeWidth, height: rangeHeight } =
       range.getBoundingClientRect()
@@ -172,8 +172,8 @@ function useEvents<T extends DefaultRow>(props: Partial<TableBodyProps<T>>) {
     if (
       isGreaterThan(rangeWidth + horizontalPadding, cellChildWidth) ||
       isGreaterThan(rangeHeight + verticalPadding, cellChildHeight) ||
-      // When using a high-resolution screen, it is possible that a returns cellChild.scrollWidth value of 1921 and
-      // cellChildWidth returns a value of 1920.994140625. #16856 #16673
+      // 在高分辨率屏幕上使用时，可能出现 cellChild.scrollWidth 返回 1921 而
+      // cellChildWidth 返回 1920.994140625 的情况。#16856 #16673
       isGreaterThan(cellChild.scrollWidth, cellChildWidth)
     ) {
       createTablePopper(
@@ -194,7 +194,7 @@ function useEvents<T extends DefaultRow>(props: Partial<TableBodyProps<T>>) {
     if (cell.rowSpan > 1) {
       toggleRowClassByCell(cell.rowSpan, event, removeClass)
     }
-    // From the normal user interaction flow, it should never be empty. However, to avoid potential runtime errors, we still keep this defensive optional handling.
+    // 按照正常的用户交互流程，它不应该为空。但为避免潜在的运行时错误，我们仍保留这种防御性的可选处理。
     const oldHoverState = parent?.hoverState as NonNullable<Table['hoverState']>
     parent?.emit(
       'cell-mouse-leave',

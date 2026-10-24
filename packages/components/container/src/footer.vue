@@ -12,7 +12,7 @@ import type { CSSProperties } from 'vue'
 
 interface FooterProps {
   /**
-   * @description height of the footer
+   * @description 页脚高度
    */
   height?: string | null
 }

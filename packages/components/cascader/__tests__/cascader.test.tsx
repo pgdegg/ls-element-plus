@@ -1078,9 +1078,9 @@ describe('Cascader.vue', () => {
     for (const size in sizeMap) {
       cascaderSize.value = size as 'small' | 'default' | 'large'
       inputEl.style.setProperty('--el-input-height', `${sizeMap[size]}px`)
-      // first is wait for the watch callback function of realSize which is to be called after nextTick
+      // 第一是等待 realSize 的 watch 回调，该回调在 nextTick 之后被调用
       await nextTick()
-      // second is wait for input to set the height attribute
+      // 第二是等待 input 设置 height 属性
       await nextTick()
       expect(inputEl.style.height).toEqual(`${sizeMap[size] - 2}px`)
     }

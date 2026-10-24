@@ -69,7 +69,7 @@ describe('InputNumber.vue', () => {
     )
   })
 
-  // fix: #10328
+  // 修复：#10328
   test('Make sure the input action can trigger the modelValue update', async () => {
     const num = ref<number>(0)
     const handleUpdate = (data: number | undefined) => {
@@ -88,7 +88,7 @@ describe('InputNumber.vue', () => {
     expect(num.value).toEqual(3)
   })
 
-  // fix: #11963
+  // 修复：#11963
   test('Make sure modelValue correct update when no initial value', async () => {
     const num = ref<number>()
     const wrapper = mount(() => <InputNumber v-model={num.value} />)
@@ -101,7 +101,7 @@ describe('InputNumber.vue', () => {
     expect(num.value).toEqual(null)
   })
 
-  // fix: #14438
+  // 修复：#14438
   test('Make sure display value will match actual value', async () => {
     const num = ref<number>(111)
     const wrapper = mount(() => <InputNumber v-model={num.value} />)
@@ -189,7 +189,7 @@ describe('InputNumber.vue', () => {
     await nextTick()
     expect(wrapper.find('input').element.value).toEqual('3.7')
   })
-  //fix: #12690
+  //修复：#12690
   test('maximum is less than the minimum', async () => {
     const num = ref(6)
     const errorHandler = vi.fn()
@@ -203,7 +203,7 @@ describe('InputNumber.vue', () => {
         },
       })
     } catch {
-      // suppress error
+      // 抑制错误
     }
     expect(errorHandler).toHaveBeenCalled()
     const [error] = errorHandler.mock.calls[0]
@@ -647,7 +647,7 @@ describe('InputNumber.vue', () => {
     expect(decrease.classes()).toContain('el-icon')
   })
 
-  // fix: #18275
+  // 修复：#18275
   test('step-strictly is true and should keep the initial value and step matching', () => {
     const num = ref(2.6)
     const wrapper = mount(() => (

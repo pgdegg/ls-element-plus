@@ -3,36 +3,36 @@ import { buildProps } from '@element-plus/utils'
 
 export interface AriaProps {
   /**
-   * @description native `aria-label` attribute
+   * @description 原生 `aria-label` 属性
    */
   ariaLabel?: string
   /**
-   * @description native `aria-orientation` attribute
+   * @description 原生 `aria-orientation` 属性
    */
   ariaOrientation?: 'horizontal' | 'vertical' | 'undefined'
   /**
-   * @description native `aria-controls` attribute
+   * @description 原生 `aria-controls` 属性
    */
   ariaControls?: string
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `AriaProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `AriaProps`。
  */
 export const ariaProps = buildProps({
   /**
-   * @description native `aria-label` attribute
+   * @description 原生 `aria-label` 属性
    */
   ariaLabel: String,
   /**
-   * @description native `aria-orientation` attribute
+   * @description 原生 `aria-orientation` 属性
    */
   ariaOrientation: {
     type: String,
     values: ['horizontal', 'vertical', 'undefined'],
   },
   /**
-   * @description native `aria-controls` attribute
+   * @description 原生 `aria-controls` 属性
    */
   ariaControls: String,
 })

@@ -43,7 +43,7 @@ type InfiniteScrollEl = HTMLElement & {
     container: HTMLElement | Window
     containerEl: HTMLElement
     instance: ComponentPublicInstance
-    delay: number // export for test
+    delay: number // 供测试使用的导出
     lastScrollTop: number
     cb: InfiniteScrollCallback
     onScroll: () => void
@@ -84,7 +84,7 @@ const handleScroll = (el: InfiniteScrollEl, cb: InfiniteScrollCallback) => {
 
   el[SCOPE].lastScrollTop = scrollTop
 
-  // trigger only if full check has done and not disabled and scroll down
+  // 仅在全量检查完成、未禁用且向下滚动时触发
   if (observer || disabled || delta < 0) return
 
   let shouldTrigger = false
@@ -92,7 +92,7 @@ const handleScroll = (el: InfiniteScrollEl, cb: InfiniteScrollCallback) => {
   if (container === el) {
     shouldTrigger = scrollHeight - (clientHeight + scrollTop) <= distance
   } else {
-    // get the scrollHeight since el might be visible overflow
+    // 获取 scrollHeight，因为 el 可能是可见溢出
     const { clientTop, scrollHeight: height } = el
     const offsetTop = getOffsetTopDistance(el, containerEl)
     shouldTrigger =
@@ -139,7 +139,7 @@ const InfiniteScroll: ObjectDirective<
       throwError(SCOPE, "'v-infinite-scroll' binding value must be a function")
     }
 
-    // ensure parentNode mounted
+    // 确保 parentNode 已挂载
     await nextTick()
 
     const { delay, immediate } = getScrollOptions(el, instance)

@@ -231,7 +231,7 @@ export function useTree(
   function expandNode(node: TreeNode) {
     const keySet = expandedKeySet.value
     if (tree.value && props.accordion) {
-      // whether only one node among the same level can be expanded at one time
+      // 同一层级是否一次只能展开一个节点
       const { treeNodeMap } = tree.value
       keySet.forEach((key) => {
         const treeNode = treeNodeMap.get(key)

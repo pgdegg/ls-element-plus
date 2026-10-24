@@ -54,7 +54,7 @@ import type { TooltipInstance } from '@element-plus/components/tooltip'
 import type { SelectDropdownInstance } from './select-dropdown'
 
 const useSelect = (props: SelectV2Props, emit: SelectV2EmitFn) => {
-  // inject
+  // 依赖注入（inject）
   const { t } = useLocale()
   const slots = useSlots()
   const nsSelect = useNamespace('select')
@@ -81,11 +81,11 @@ const useSelect = (props: SelectV2Props, emit: SelectV2EmitFn) => {
     isBeforeHide: false,
   })
 
-  // data refs
+  // 数据 ref
   const popperSize = ref(-1)
   const debouncing = ref(false)
 
-  // DOM & Component refs
+  // DOM 与组件 ref
   const selectRef = ref<HTMLElement>()
   const selectionRef = ref<HTMLElement>()
   const tooltipRef = ref<TooltipInstance>()
@@ -139,7 +139,7 @@ const useSelect = (props: SelectV2Props, emit: SelectV2EmitFn) => {
   })
 
   const filteredOptions = ref<OptionType[]>([])
-  // the controller of the expanded popup
+  // 弹出层展开状态的控制器
   const expanded = ref(false)
 
   const needStatusIcon = computed(() => elForm?.statusIcon ?? false)
@@ -176,9 +176,9 @@ const useSelect = (props: SelectV2Props, emit: SelectV2EmitFn) => {
 
   const validateState = computed(() => elFormItem?.validateState || '')
   const validateIcon = computed(() => {
-    // When we use indexed access to get the type of an undeclared property,
-    // the unsafe type `any` will be inferred, which TypeScript throws an error to emphasize it.
-    // To avoid TypeScript complaining about it, we use truthiness narrowing to narrow the type of validateState.
+    // 当我们用索引访问获取未声明属性的类型时，
+    // 会推断出不安全的 `any` 类型，TypeScript 会抛出错误以强调这一点。
+    // 为避免 TypeScript 报错，我们使用真值收窄（truthiness narrowing）来收窄 validateState 的类型。
     if (!validateState.value) return
     return ValidateComponentsMap[validateState.value]
   })
@@ -189,7 +189,7 @@ const useSelect = (props: SelectV2Props, emit: SelectV2EmitFn) => {
     () => props.remote && !states.inputValue && !hasOptions.value
   )
 
-  // filteredOptions includes flatten the data into one dimensional array.
+  // filteredOptions 会把数据扁平化为一维数组。
   const emptyText = computed(() => {
     if (props.loading) {
       return props.loadingText || t('el.select.loading')
@@ -221,7 +221,7 @@ const useSelect = (props: SelectV2Props, emit: SelectV2EmitFn) => {
 
     const isValidOption = (o: Option): boolean => {
       if (isFilterMethodValid.value || isRemoteMethodValid.value) return true
-      // when query was given, we should test on the label see whether the label contains the given query
+      // 给出查询词时，应在 label 上检查其是否包含该查询词
       const values = [
         getLabel(o),
         ...props.filterKeys.map((key) => get(o, key)),
@@ -304,9 +304,9 @@ const useSelect = (props: SelectV2Props, emit: SelectV2EmitFn) => {
     }
   }
 
-  // TODO Caching implementation
-  // 1. There is no need to calculate options that have already been calculated
-  // 2. Repeatedly expand and close when persistent is set to false, no need for repeated calculations
+  // TODO 缓存实现
+  // 1. 无需重复计算已经计算过的选项
+  // 2. 当 persistent 设为 false 时反复展开关闭，无需重复计算
   const calculateLabelMaxWidth = () => {
     const canvas = document.createElement('canvas')
     const ctx = canvas.getContext('2d')

@@ -4,7 +4,7 @@ import { styleText } from 'util'
 import consola from 'consola'
 import { docRoot, errorAndExit } from '@element-plus/build-utils'
 
-// NB: this file is only for generating files that enables developers to develop the website.
+// 注意：此文件仅用于生成便于开发者开发网站的文件。
 const componentLocaleRoot = path.resolve(docRoot, '.vitepress/crowdin')
 
 const exists = 'File already exists'
@@ -16,7 +16,7 @@ async function main() {
   }
 
   consola.trace(styleText('cyan', 'Starting for build doc for developing'))
-  // all language should be identical since it is mirrored from crowdin.
+  // 所有语言应保持一致，因为内容镜像自 crowdin。
   const dirs = await fs.promises.readdir(componentLocaleRoot, {
     withFileTypes: true,
   })
@@ -25,17 +25,17 @@ async function main() {
 
   await fs.promises.mkdir(localeOutput)
 
-  // build lang.json for telling `header>language-select` how many languages are there
+  // 构建 lang.json，用于告知 `header>language-select` 共有多少种语言
   await fs.promises.writeFile(
     path.resolve(localeOutput, 'lang.json'),
     JSON.stringify(languages),
     'utf-8'
   )
 
-  // loop through en-US
+  // 遍历 en-US
 
   const enUS = path.resolve(componentLocaleRoot, 'en-US')
-  // we do not include en-US since we are currently using it as template
+  // 我们不包含 en-US，因为目前将其作为模板使用
   const languagePaths = langWithoutEn.map((l) => {
     return {
       name: l,
@@ -112,7 +112,7 @@ main()
   })
   .catch((err) => {
     if (err.message === exists) {
-      // do nothing
+      // 不做任何处理
     } else {
       errorAndExit(err)
     }

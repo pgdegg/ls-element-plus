@@ -62,9 +62,9 @@ export const createModelToggleComposable = <T extends string>(name: T) => {
     const hasUpdateHandler = computed(() =>
       isFunction(props[updateEventKeyRaw])
     )
-    // when it matches the default value we say this is absent
-    // though this could be mistakenly passed from the user but we need to rule out that
-    // condition
+    // 当与默认值匹配时，我们认为该值缺失（未传入）
+    // 尽管这可能是用户误传的，但我们需要排除这种
+    // 情况
     const isModelBindingAbsent = computed(() => props[name] === null)
 
     const doShow = (event?: Event) => {

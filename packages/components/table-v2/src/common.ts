@@ -6,8 +6,8 @@ import type { Column, KeyType } from './types'
 export type AnyColumn = Column<any>
 
 /**
- * @Note even though we can use `string[] | string` as the type but for
- * convenience here we only use `string` as the acceptable value here.
+ * @Note 尽管我们可以使用 `string[] | string` 作为类型，但为了方便，
+ * 这里仅将 `string` 作为可接受的值。
  */
 export const classType = String
 
@@ -47,8 +47,8 @@ export const rowKey = {
 } as const
 
 /**
- * @note even though we can use `StyleValue` but that would be difficult for us to mapping them,
- * so we only use `CSSProperties` as the acceptable value here.
+ * @note 尽管我们可以使用 `StyleValue`，但那样映射起来比较困难，
+ * 因此这里仅将 `CSSProperties` 作为可接受的值。
  */
 export const styleType = {
   type: definePropType<CSSProperties>(Object),

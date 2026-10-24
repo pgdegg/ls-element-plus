@@ -471,7 +471,7 @@ describe('Autocomplete.vue', () => {
     await input.trigger('focus')
     vi.runAllTimers()
     await nextTick()
-    // Expected behavior reference: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
+    // 预期行为参考：https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
     await input.trigger('keydown', { code: EVENT_CODE.home })
     expect(target.highlightedIndex).toBe(0)
     await input.trigger('keydown', { code: EVENT_CODE.end })
@@ -483,7 +483,7 @@ describe('Autocomplete.vue', () => {
     expect(target.highlightedIndex).toBe(10)
     await input.trigger('keydown', { code: EVENT_CODE.pageDown })
     expect(target.highlightedIndex).toBe(target.suggestions.length - 1)
-    //  If focus is in the last row of the grid, focus does not move.
+    //  如果焦点位于网格最后一行，焦点不移动。
     await input.trigger('keydown', { code: EVENT_CODE.pageDown })
     expect(target.highlightedIndex).toBe(target.suggestions.length - 1)
 
@@ -491,7 +491,7 @@ describe('Autocomplete.vue', () => {
     expect(target.highlightedIndex).toBe(10)
     await input.trigger('keydown', { code: EVENT_CODE.pageUp })
     expect(target.highlightedIndex).toBe(0)
-    // If focus is in the first row of the grid, focus does not move.
+    // 如果焦点位于网格第一行，焦点不移动。
     await input.trigger('keydown', { code: EVENT_CODE.pageUp })
     expect(target.highlightedIndex).toBe(0)
   })

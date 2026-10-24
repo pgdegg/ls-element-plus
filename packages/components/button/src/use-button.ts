@@ -80,7 +80,7 @@ export const useButton = (
     return {}
   })
 
-  // add space between two characters in Chinese
+  // 在两个中文字符之间添加空格
   const shouldAddSpace = computed(() => {
     const defaultSlot = slots.default?.()
     if (autoInsertSpace.value && defaultSlot?.length === 1) {

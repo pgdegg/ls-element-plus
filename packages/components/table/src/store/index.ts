@@ -98,7 +98,7 @@ function useStore<T extends DefaultRow>() {
         states.reserveSelection.value = column.reserveSelection
       }
       if (instance.$ready) {
-        instance.store.updateColumns() // hack for dynamics insert column
+        instance.store.updateColumns() // 动态插入列的 hack
         instance.store.scheduleLayout()
       }
     },
@@ -126,7 +126,7 @@ function useStore<T extends DefaultRow>() {
           parent.children.findIndex((item) => item.id === column.id),
           1
         )
-        // fix #10699, delete parent.children immediately will trigger again
+        // 修复 #10699，立即删除 parent.children 会再次触发
         nextTick(() => {
           if (parent.children?.length === 0) {
             delete parent.children
@@ -145,7 +145,7 @@ function useStore<T extends DefaultRow>() {
       updateFnIndex > -1 && states.updateOrderFns.splice(updateFnIndex, 1)
 
       if (instance.$ready) {
-        instance.store.updateColumns() // hack for dynamics remove column
+        instance.store.updateColumns() // 动态删除列的 hack
         instance.store.scheduleLayout()
       }
     },

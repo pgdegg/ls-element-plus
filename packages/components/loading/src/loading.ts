@@ -24,8 +24,8 @@ export function createLoadingComponent(
 ) {
   let afterLeaveTimer: ReturnType<typeof setTimeout>
   let destroyed = false
-  // IMPORTANT NOTE: this is only a hacking way to expose the injections on an
-  // instance, DO NOT FOLLOW this pattern in your own code.
+  // 重要说明：这只是一种在实例上暴露 injections 的 hack 方式，
+  // 请勿在自己的代码中照搬此模式。
   const afterLeaveFlag = ref(false)
   const data = reactive({
     ...options,
@@ -42,7 +42,7 @@ export function createLoadingComponent(
     if (destroyed) return
     destroyed = true
     const target = data.parent
-    // Compatible with the instance data format of vue@3.2.12 and earlier versions #12351
+    // 兼容 vue@3.2.12 及更早版本的实例数据格式 #12351
     const ns =
       ((vm as any).ns as UseNamespaceReturn) || (vm as any)._.exposed.ns
     if (!target.vLoadingAddClassList) {

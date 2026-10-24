@@ -106,7 +106,7 @@ export const usePopper = (
     attributes: computed(() => unref(states).attributes),
     update: () => unref(instanceRef)?.update(),
     forceUpdate: () => unref(instanceRef)?.forceUpdate(),
-    // Preventing end users from modifying the instance.
+    // 防止最终用户修改该实例。
     instanceRef: computed(() => unref(instanceRef)),
   }
 }

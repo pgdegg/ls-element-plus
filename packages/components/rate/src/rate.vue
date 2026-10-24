@@ -189,7 +189,7 @@ const colorMap = computed(() =>
 )
 const activeColor = computed(() => {
   const color = getValueFromMap(currentValue.value, colorMap.value)
-  // {value: '', excluded: true} returned
+  // 返回 {value: '', excluded: true}
   return isObject(color) ? '' : color
 })
 const decimalStyle = computed(() => {
@@ -250,7 +250,7 @@ function showDecimalIcon(item: number) {
 }
 
 function emitValue(value: number) {
-  // if allow clear, and selected value is same as modelValue, reset value to 0
+  // 如果允许清空，且选中值与 modelValue 相同，则将值重置为 0
   if (props.clearable && value === props.modelValue) {
     value = 0
   }
@@ -342,9 +342,9 @@ if (!props.modelValue) {
 }
 
 defineExpose({
-  /** @description set current value */
+  /** @description 设置当前值 */
   setCurrentValue,
-  /** @description reset current value */
+  /** @description 重置当前值 */
   resetCurrentValue,
 })
 </script>

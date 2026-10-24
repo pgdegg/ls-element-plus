@@ -5,7 +5,7 @@ import type { ComputedRef } from 'vue'
 import type { LayoutDirection } from '../types'
 
 interface ListWheelState {
-  atStartEdge: ComputedRef<boolean> // exclusive to reachEnd
+  atStartEdge: ComputedRef<boolean> // 专供 reachEnd
   atEndEdge: ComputedRef<boolean>
   layout: ComputedRef<LayoutDirection>
 }
@@ -30,7 +30,7 @@ const useWheel = (
     cAF(frameHandle)
 
     let { deltaX, deltaY } = e
-    // Special case for windows machine with shift key + wheel scrolling
+    // Windows 机器上 Shift 键 + 滚轮滚动的特殊情况
     if (e.shiftKey && deltaY !== 0) {
       deltaX = deltaY
       deltaY = 0

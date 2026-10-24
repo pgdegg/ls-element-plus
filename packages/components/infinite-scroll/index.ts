@@ -1,4 +1,4 @@
-// TODO: remove the directive in 3.0
+// TODO：在 3.0 中移除该指令
 import InfiniteScroll from './src'
 
 import type { App } from 'vue'

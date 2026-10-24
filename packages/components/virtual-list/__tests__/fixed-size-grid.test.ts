@@ -61,10 +61,10 @@ describe('<fixed-size-grid />', () => {
 
       await nextTick()
 
-      // 8 visible grid. 2 x 4
-      //               total rows  total columns
+      // 8 个可见网格，2 x 4
+      // 总行数  总列数
       //                   |           |
-      // 16 cached grid  (2 + 2) x (4 + 2) - (2 x 4)
+      // 16 个缓存网格 (2 + 2) x (4 + 2) - (2 x 4)
       expect(wrapper.findAll(ITEM_SELECTOR)).toHaveLength(24)
 
       const gridRef = wrapper.vm.$refs.gridRef as GridRef
@@ -99,8 +99,8 @@ describe('<fixed-size-grid />', () => {
 
       makeScroll(unref(gridRef.windowRef), 'scrollLeft', 100)
       await nextTick()
-      // 5 (backward cache 1 + visible 2 + forward cache 2)
-      // * 7 (backward cache 1 + visible 4 + forward cache 2)
+      // 5（向后缓存 1 + 可见 2 + 向前缓存 2）
+      // * 7（向后缓存 1 + 可见 4 + 向前缓存 2）
       // 35
       expect(wrapper.findAll(ITEM_SELECTOR)).toHaveLength(35)
     })
@@ -142,7 +142,7 @@ describe('<fixed-size-grid />', () => {
       // 6 (2 + 2 + 2) * 8 (2 + 4 + 2) grid
       expect(wrapper.findAll(ITEM_SELECTOR)).toHaveLength(48)
       const prevFirstItem = wrapper.find(ITEM_SELECTOR)
-      // should do nothing
+      // 应不执行任何操作
       gridRef.scrollTo({
         scrollLeft: 100,
         scrollTop: 100,
@@ -159,12 +159,12 @@ describe('<fixed-size-grid />', () => {
       expect(wrapper.findAll(ITEM_SELECTOR)).toHaveLength(24)
 
       const gridRef = wrapper.vm.$refs.gridRef as GridRef
-      // do nothing scroll
+      // 滚动时不执行任何操作
       gridRef.scrollToItem()
       await nextTick()
       expect(wrapper.findAll(ITEM_SELECTOR)).toHaveLength(24)
 
-      // auto alignment
+      // 自动对齐
       gridRef.scrollToItem(10)
       await nextTick()
       // 8 x 4 grid
@@ -256,13 +256,13 @@ describe('<fixed-size-grid />', () => {
             config: {
               errorHandler,
               warnHandler() {
-                // suppress warning
+                // 抑制警告
               },
             },
           },
         })
       } catch {
-        // suppress error
+        // 抑制错误
       }
 
       expect(errorHandler).toHaveBeenCalled()
@@ -279,13 +279,13 @@ describe('<fixed-size-grid />', () => {
             config: {
               errorHandler,
               warnHandler() {
-                // suppress warning
+                // 抑制警告
               },
             },
           },
         })
       } catch {
-        // suppress error
+        // 抑制错误
       }
       expect(errorHandler).toHaveBeenCalled()
     })

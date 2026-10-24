@@ -33,7 +33,7 @@ const handleClose = (done: () => void) => {
       done()
     })
     .catch(() => {
-      // catch error
+      // 捕获错误
     })
 }
 </script>

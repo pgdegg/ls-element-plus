@@ -380,7 +380,7 @@
       &:hover {
         .#{bem('upload-list', 'item-status-label')} {
           opacity: 0;
-          // for fade out
+          // 用于淡出
           display: block;
         }
 

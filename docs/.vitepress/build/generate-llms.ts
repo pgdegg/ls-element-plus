@@ -9,7 +9,7 @@ async function generateLLms() {
 
   const matchSuffixes = ['.md', '.vue']
 
-  // Ensure siteDir exists
+  // 确保 siteDir 存在
   await fs.mkdir(siteDir, { recursive: true })
 
   const docs = await glob(
@@ -93,18 +93,18 @@ async function generateLLms() {
         }
       }
     } else if (markdown.endsWith('.vue')) {
-      // For Vue files, use the entire content as example code
+      // 对于 Vue 文件，将整个内容用作示例代码
       parsedContent = `\`\`\`vue\n${fsContent}\n\`\`\``
     }
 
     const fullContent = [
-      // Title
+      // 标题
       '---',
       `Title: ${title}`,
       `URL: ${url}`,
       '---',
       '',
-      // Content
+      // 内容
       parsedContent,
       '',
     ].join('\n')

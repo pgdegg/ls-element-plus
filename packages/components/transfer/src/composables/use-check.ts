@@ -21,7 +21,7 @@ export const useCheck = <T extends TransferDataItem = TransferDataItem>(
   props: Required<
     Pick<
       TransferPanelProps<T>,
-      'data' | 'format' | 'defaultChecked' | 'props' | 'virtualScroll' // 'props' needed by usePropsAlias
+      'data' | 'format' | 'defaultChecked' | 'props' | 'virtualScroll' // usePropsAlias 所需的 'props'
     >
   > & { filterMethod: TransferPanelProps<T>['filterMethod'] },
   panelState: TransferPanelState,

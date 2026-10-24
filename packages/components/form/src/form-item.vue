@@ -100,7 +100,7 @@ const validateState = ref<FormItemValidateState>('')
 const validateStateDebounced = refDebounced(validateState, 100)
 const validateMessage = ref('')
 const formItemRef = ref<HTMLDivElement>()
-// special inline value.
+// 特殊的内联值。
 let initialValue: any = undefined
 let isResettingField = false
 
@@ -240,7 +240,7 @@ const getFilteredRule = (trigger: string) => {
           return rule.trigger === trigger
         }
       })
-      // exclude trigger
+      // 排除 trigger
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       .map(({ trigger, ...rule }): RuleItem => rule)
   )

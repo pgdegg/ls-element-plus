@@ -93,19 +93,19 @@ interface TableColumn<T extends DefaultRow> extends ComponentInternalInstance {
 
 interface TableColumnProps<T extends DefaultRow = DefaultRow> {
   /**
-   * @description type of the column. If set to `selection`, the column will display checkbox. If set to `index`, the column will display index of the row (staring from 1). If set to `expand`, the column will display expand icon
+   * @description 列的类型。设置为 `selection` 时该列显示复选框；设置为 `index` 时显示行索引（从 1 开始）；设置为 `expand` 时显示展开图标
    */
   type?: string
   /**
-   * @description column label
+   * @description 列的标签
    */
   label?: string
   /**
-   * @description class name of cells in the column
+   * @description 该列单元格的类名
    */
   className?: string
   /**
-   * @description class name of the label of this column
+   * @description 该列表头标签的类名
    */
   labelClassName?: string
   /**
@@ -113,103 +113,103 @@ interface TableColumnProps<T extends DefaultRow = DefaultRow> {
    */
   property?: string
   /**
-   * @description field name. You can also use its alias: `property`
+   * @description 字段名。也可以使用它的别名：`property`
    */
   prop?: string
   /**
-   * @description column width
+   * @description 列宽
    */
   width?: string | number
   /**
-   * @description column minimum width. Columns with `width` has a fixed width, while columns with `min-width` has a width that is distributed in proportion
+   * @description 列的最小宽度。设置了 `width` 的列宽度固定，而设置了 `min-width` 的列按比例分配宽度
    */
   minWidth?: string | number
   /**
-   * @description render function for table header of this column
+   * @description 该列表头的渲染函数
    */
   renderHeader?: TableColumnCtx<T>['renderHeader']
   /**
-   * @description whether column can be sorted. Remote sorting can be done by setting this attribute to 'custom' and listening to the `sort-change` event of Table
+   * @description 列是否可排序。将该属性设为 'custom' 并监听 Table 的 `sort-change` 事件即可实现远程排序
    */
   sortable?: boolean | string
   /**
-   * @description sorting method, works when `sortable` is `true`. Should return a number, just like Array.sort
+   * @description 排序方法，在 `sortable` 为 `true` 时生效。应像 Array.sort 一样返回一个数字
    */
   sortMethod?: TableColumnCtx<T>['sortMethod']
   /**
-   * @description specify which property to sort by, works when `sortable` is `true` and `sort-method` is `undefined`. If set to an Array, the column will sequentially sort by the next property if the previous one is equal
+   * @description 指定按哪个属性排序，在 `sortable` 为 `true` 且 `sort-method` 为 `undefined` 时生效。若设为数组，当前一个属性相同时将依次按下一个属性排序
    */
   sortBy?: TableColumnCtx<T>['sortBy']
   /**
-   * @description whether column width can be resized, works when `border` of `el-table` is `true`
+   * @description 列宽是否可调整，在 `el-table` 的 `border` 为 `true` 时生效
    */
   resizable?: boolean
   /**
-   * @description column's key. If you need to use the filter-change event, you need this attribute to identify which column is being filtered
+   * @description 列的 key。若需要使用 filter-change 事件，需要通过该属性标识当前被过滤的是哪一列
    */
   columnKey?: string
   /**
-   * @description alignment, the value should be 'left' \/ 'center' \/ 'right'
+   * @description 对齐方式，取值应为 'left' \/ 'center' \/ 'right'
    */
   align?: string
   /**
-   * @description alignment of the table header. If omitted, the value of the above `align` attribute will be applied, the value should be 'left' \/ 'center' \/ 'right'
+   * @description 表头的对齐方式。省略时将应用上面 `align` 属性的值，取值应为 'left' \/ 'center' \/ 'right'
    */
   headerAlign?: string
   /**
-   * @description whether to hide extra content and show them in a tooltip when hovering on the cell
+   * @description 是否隐藏多余内容，并在悬停单元格时以 tooltip 形式展示
    */
   showOverflowTooltip?: TableColumnCtx<T>['showOverflowTooltip']
   /**
-   * @description function that formats cell tooltip content, works when `show-overflow-tooltip` is `true`
+   * @description 格式化单元格 tooltip 内容的函数，在 `show-overflow-tooltip` 为 `true` 时生效
    */
   tooltipFormatter?: TableColumnCtx<T>['tooltipFormatter']
   /**
-   * @description whether column is fixed at left / right. Will be fixed at left if `true`
+   * @description 列是否固定在左侧 / 右侧。设为 `true` 时固定在左侧
    */
   fixed?: boolean | string
   /**
-   * @description function that formats cell content
+   * @description 格式化单元格内容的函数
    */
   formatter?: TableColumnCtx<T>['formatter']
   /**
-   * @description function that determines if a certain row can be selected, works when `type` is 'selection'
+   * @description 判断某一行是否可被选中的函数，在 `type` 为 'selection' 时生效
    */
   selectable?: TableColumnCtx<T>['selectable']
   /**
-   * @description whether to reserve selection after data refreshing, works when `type` is 'selection'. Note that `row-key` is required for this to work
+   * @description 数据刷新后是否保留选中状态，在 `type` 为 'selection' 时生效。注意：此功能需要设置 `row-key`
    */
   reserveSelection?: boolean
   /**
-   * @description data filtering method. If `filter-multiple` is on, this method will be called multiple times for each row, and a row will display if one of the calls returns `true`
+   * @description 数据过滤方法。开启 `filter-multiple` 时，该方法会对每一行被调用多次，只要有一次调用返回 `true` 就显示该行
    */
   filterMethod?: TableColumnCtx<T>['filterMethod']
   /**
-   * @description filter value for selected data, might be useful when table header is rendered with `render-header`
+   * @description 选中数据的过滤值，在使用 `render-header` 渲染表头时可能有用
    */
   filteredValue?: TableColumnCtx<T>['filteredValue']
   /**
-   * @description an array of data filtering options. For each element in this array, `text` and `value` are required
+   * @description 数据过滤选项数组。数组中每个元素都需要 `text` 和 `value`
    */
   filters?: TableColumnCtx<T>['filters']
   /**
-   * @description placement for the filter dropdown
+   * @description 过滤下拉框的弹出位置
    */
   filterPlacement?: string
   /**
-   * @description whether data filtering supports multiple options
+   * @description 数据过滤是否支持多选
    */
   filterMultiple?: boolean
   /**
-   * @description className for the filter dropdown
+   * @description 过滤下拉框的 className
    */
   filterClassName?: string
   /**
-   * @description customize indices for each row, works on columns with `type=index`
+   * @description 自定义每一行的索引，在 `type=index` 的列上生效
    */
   index?: TableColumnCtx<T>['index']
   /**
-   * @description the order of the sorting strategies used when sorting the data, works when `sortable` is `true`. Accepts an array, as the user clicks on the header, the column is sorted in order of the elements in the array
+   * @description 数据排序时所用排序策略的顺序，在 `sortable` 为 `true` 时生效。接收一个数组，用户点击表头时，列将按数组中元素的顺序进行排序
    */
   sortOrders?: TableColumnCtx<T>['sortOrders']
 }
@@ -224,26 +224,26 @@ export type {
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `TableColumnProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `TableColumnProps`。
  */
 export const tableColumnProps = {
   /**
-   * @description type of the column. If set to `selection`, the column will display checkbox. If set to `index`, the column will display index of the row (staring from 1). If set to `expand`, the column will display expand icon
+   * @description 列的类型。设置为 `selection` 时该列显示复选框；设置为 `index` 时显示行索引（从 1 开始）；设置为 `expand` 时显示展开图标
    */
   type: {
     type: String,
     default: 'default',
   },
   /**
-   * @description column label
+   * @description 列的标签
    */
   label: String,
   /**
-   * @description class name of cells in the column
+   * @description 该列单元格的类名
    */
   className: String,
   /**
-   * @description class name of the label of this column
+   * @description 该列表头标签的类名
    */
   labelClassName: String,
   /**
@@ -251,63 +251,63 @@ export const tableColumnProps = {
    */
   property: String,
   /**
-   * @description field name. You can also use its alias: `property`
+   * @description 字段名。也可以使用它的别名：`property`
    */
   prop: String,
   /**
-   * @description column width
+   * @description 列宽
    */
   width: {
     type: [String, Number],
     default: '',
   },
   /**
-   * @description column minimum width. Columns with `width` has a fixed width, while columns with `min-width` has a width that is distributed in proportion
+   * @description 列的最小宽度。设置了 `width` 的列宽度固定，而设置了 `min-width` 的列按比例分配宽度
    */
   minWidth: {
     type: [String, Number],
     default: '',
   },
   /**
-   * @description render function for table header of this column
+   * @description 该列表头的渲染函数
    */
   renderHeader: Function as PropType<TableColumnCtx<any>['renderHeader']>,
   /**
-   * @description whether column can be sorted. Remote sorting can be done by setting this attribute to 'custom' and listening to the `sort-change` event of Table
+   * @description 列是否可排序。将该属性设为 'custom' 并监听 Table 的 `sort-change` 事件即可实现远程排序
    */
   sortable: {
     type: [Boolean, String],
     default: false,
   },
   /**
-   * @description sorting method, works when `sortable` is `true`. Should return a number, just like Array.sort
+   * @description 排序方法，在 `sortable` 为 `true` 时生效。应像 Array.sort 一样返回一个数字
    */
   sortMethod: Function as PropType<TableColumnCtx<any>['sortMethod']>,
   /**
-   * @description specify which property to sort by, works when `sortable` is `true` and `sort-method` is `undefined`. If set to an Array, the column will sequentially sort by the next property if the previous one is equal
+   * @description 指定按哪个属性排序，在 `sortable` 为 `true` 且 `sort-method` 为 `undefined` 时生效。若设为数组，当前一个属性相同时将依次按下一个属性排序
    */
   sortBy: [String, Function, Array] as PropType<TableColumnCtx<any>['sortBy']>,
   /**
-   * @description whether column width can be resized, works when `border` of `el-table` is `true`
+   * @description 列宽是否可调整，在 `el-table` 的 `border` 为 `true` 时生效
    */
   resizable: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description column's key. If you need to use the filter-change event, you need this attribute to identify which column is being filtered
+   * @description 列的 key。若需要使用 filter-change 事件，需要通过该属性标识当前被过滤的是哪一列
    */
   columnKey: String,
   /**
-   * @description alignment, the value should be 'left' \/ 'center' \/ 'right'
+   * @description 对齐方式，取值应为 'left' \/ 'center' \/ 'right'
    */
   align: String,
   /**
-   * @description alignment of the table header. If omitted, the value of the above `align` attribute will be applied, the value should be 'left' \/ 'center' \/ 'right'
+   * @description 表头的对齐方式。省略时将应用上面 `align` 属性的值，取值应为 'left' \/ 'center' \/ 'right'
    */
   headerAlign: String,
   /**
-   * @description whether to hide extra content and show them in a tooltip when hovering on the cell
+   * @description 是否隐藏多余内容，并在悬停单元格时以 tooltip 形式展示
    */
   showOverflowTooltip: {
     type: [Boolean, Object] as PropType<
@@ -316,41 +316,41 @@ export const tableColumnProps = {
     default: undefined,
   },
   /**
-   * @description function that formats cell tooltip content, works when `show-overflow-tooltip` is `true`
+   * @description 格式化单元格 tooltip 内容的函数，在 `show-overflow-tooltip` 为 `true` 时生效
    */
   tooltipFormatter: Function as PropType<
     TableColumnCtx<any>['tooltipFormatter']
   >,
   /**
-   * @description whether column is fixed at left / right. Will be fixed at left if `true`
+   * @description 列是否固定在左侧 / 右侧。设为 `true` 时固定在左侧
    */
   fixed: [Boolean, String],
   /**
-   * @description function that formats cell content
+   * @description 格式化单元格内容的函数
    */
   formatter: Function as PropType<TableColumnCtx<any>['formatter']>,
   /**
-   * @description function that determines if a certain row can be selected, works when `type` is 'selection'
+   * @description 判断某一行是否可被选中的函数，在 `type` 为 'selection' 时生效
    */
   selectable: Function as PropType<TableColumnCtx<any>['selectable']>,
   /**
-   * @description whether to reserve selection after data refreshing, works when `type` is 'selection'. Note that `row-key` is required for this to work
+   * @description 数据刷新后是否保留选中状态，在 `type` 为 'selection' 时生效。注意：此功能需要设置 `row-key`
    */
   reserveSelection: Boolean,
   /**
-   * @description data filtering method. If `filter-multiple` is on, this method will be called multiple times for each row, and a row will display if one of the calls returns `true`
+   * @description 数据过滤方法。开启 `filter-multiple` 时，该方法会对每一行被调用多次，只要有一次调用返回 `true` 就显示该行
    */
   filterMethod: Function as PropType<TableColumnCtx<any>['filterMethod']>,
   /**
-   * @description filter value for selected data, might be useful when table header is rendered with `render-header`
+   * @description 选中数据的过滤值，在使用 `render-header` 渲染表头时可能有用
    */
   filteredValue: Array as PropType<TableColumnCtx<any>['filteredValue']>,
   /**
-   * @description an array of data filtering options. For each element in this array, `text` and `value` are required
+   * @description 数据过滤选项数组。数组中每个元素都需要 `text` 和 `value`
    */
   filters: Array as PropType<TableColumnCtx<any>['filters']>,
   /**
-   * @description placement for the filter dropdown
+   * @description 过滤下拉框的弹出位置
    */
   filterPlacement: String,
   /**
@@ -361,15 +361,15 @@ export const tableColumnProps = {
     default: true,
   },
   /**
-   * @description className for the filter dropdown
+   * @description 过滤下拉框的 className
    */
   filterClassName: String,
   /**
-   * @description customize indices for each row, works on columns with `type=index`
+   * @description 自定义每一行的索引，在 `type=index` 的列上生效
    */
   index: [Number, Function] as PropType<TableColumnCtx<any>['index']>,
   /**
-   * @description the order of the sorting strategies used when sorting the data, works when `sortable` is `true`. Accepts an array, as the user clicks on the header, the column is sorted in order of the elements in the array
+   * @description 数据排序时所用排序策略的顺序，在 `sortable` 为 `true` 时生效。接收一个数组，用户点击表头时，列将按数组中元素的顺序进行排序
    */
   sortOrders: {
     type: Array as PropType<TableColumnCtx<any>['sortOrders']>,

@@ -34,7 +34,7 @@ const querySearch = (queryString: string, cb) => {
   const results = queryString
     ? links.value.filter(createFilter(queryString))
     : links.value
-  // call callback function to return suggestion objects
+  // 调用回调函数以返回建议对象
   cb(results)
 }
 const createFilter = (queryString: string) => {

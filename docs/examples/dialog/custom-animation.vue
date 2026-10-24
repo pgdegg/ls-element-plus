@@ -81,7 +81,7 @@ code {
 </style>
 
 <style>
-/* Scale Animation */
+/* 缩放动画 */
 .dialog-scale-enter-active,
 .dialog-scale-leave-active,
 .dialog-scale-enter-active .el-dialog,
@@ -100,7 +100,7 @@ code {
   opacity: 0;
 }
 
-/* Slide Animation */
+/* 滑动动画 */
 .dialog-slide-enter-active,
 .dialog-slide-leave-active,
 .dialog-slide-enter-active .el-dialog,
@@ -119,7 +119,7 @@ code {
   opacity: 0;
 }
 
-/* Bounce Animation */
+/* 弹跳动画 */
 .dialog-bounce-enter-active,
 .dialog-bounce-leave-active,
 .dialog-bounce-enter-active .el-dialog,
@@ -138,7 +138,7 @@ code {
   opacity: 0;
 }
 
-/* Object Configuration Animation */
+/* 对象配置动画 */
 .dialog-custom-object-enter-active,
 .dialog-custom-object-leave-active,
 .dialog-custom-object-enter-active .el-dialog,

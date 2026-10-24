@@ -7,13 +7,13 @@ export const extractFirst = <T>(arr: T | T[]): T => {
 }
 
 type Many<T> = T | ReadonlyArray<T>
-// TODO: rename to `ensureArray`
-/** like `_.castArray`, except falsy value returns empty array. */
+// TODO：重命名为 `ensureArray`
+/** 类似 `_.castArray`，但 falsy 值返回空数组。 */
 export const castArray = <T>(arr: Many<T>): T[] => {
   if (!arr && (arr as any) !== 0) return []
   return isArray(arr) ? arr : [arr as T]
 }
 
-// TODO: remove import alias
-// avoid naming conflicts
+// TODO：移除导入别名
+// 避免命名冲突
 export { castArray as ensureArray } from 'lodash-unified'

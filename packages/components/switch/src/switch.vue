@@ -259,11 +259,11 @@ onMounted(() => {
 
 defineExpose({
   /**
-   *  @description manual focus to the switch component
+   *  @description 让 switch 组件手动获得焦点
    **/
   focus,
   /**
-   * @description whether Switch is checked
+   * @description Switch 是否选中
    */
   checked,
 })

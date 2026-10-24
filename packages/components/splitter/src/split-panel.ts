@@ -12,7 +12,7 @@ export interface SplitterPanelProps {
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `SplitterPanelProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `SplitterPanelProps`。
  */
 export const splitterPanelProps = buildProps({
   min: {
@@ -32,7 +32,7 @@ export const splitterPanelProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `SplitterPanelProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `SplitterPanelProps`。
  */
 export type SplitterPanelPropsPublic = ExtractPublicPropTypes<
   typeof splitterPanelProps

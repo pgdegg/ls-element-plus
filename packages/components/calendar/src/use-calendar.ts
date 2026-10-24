@@ -12,7 +12,7 @@ const adjacentMonth = (start: Dayjs, end: Dayjs): [Dayjs, Dayjs][] => {
   const firstMonthLastDay = start.endOf('month')
   const lastMonthFirstDay = end.startOf('month')
 
-  // Whether the last day of the first month and the first day of the last month is in the same week
+  // 第一个月的最后一天与最后一个月的第一天是否在同一周
   const isSameWeek = firstMonthLastDay.isSame(lastMonthFirstDay, 'week')
   const lastMonthStartDay = isSameWeek
     ? lastMonthFirstDay.add(1, 'week')
@@ -28,7 +28,7 @@ const threeConsecutiveMonth = (start: Dayjs, end: Dayjs): [Dayjs, Dayjs][] => {
   const firstMonthLastDay = start.endOf('month')
   const secondMonthFirstDay = start.add(1, 'month').startOf('month')
 
-  // Whether the last day of the first month and the second month is in the same week
+  // 第一个月的最后一天与第二个月是否在同一周
   const secondMonthStartDay = firstMonthLastDay.isSame(
     secondMonthFirstDay,
     'week'
@@ -39,7 +39,7 @@ const threeConsecutiveMonth = (start: Dayjs, end: Dayjs): [Dayjs, Dayjs][] => {
   const secondMonthLastDay = secondMonthStartDay.endOf('month')
   const lastMonthFirstDay = end.startOf('month')
 
-  // Whether the last day of the second month and the last day of the last month is in the same week
+  // 第二个月的最后一天与最后一个月的最后一天是否在同一周
   const lastMonthStartDay = secondMonthLastDay.isSame(lastMonthFirstDay, 'week')
     ? lastMonthFirstDay.add(1, 'week')
     : lastMonthFirstDay
@@ -76,7 +76,7 @@ export const useCalendar = (
     },
   })
 
-  // if range is valid, we get a two-digit array
+  // 若范围有效，则得到一个由两个元素组成的数组
   const validatedRange = computed(() => {
     if (
       !props.range ||
@@ -92,10 +92,10 @@ export const useCalendar = (
       return []
     }
     if (startDayjs.isSame(endDayjs, 'month')) {
-      // same month
+      // 同一个月
       return calculateValidatedDateRange(startDayjs, endDayjs)
     } else {
-      // two months
+      // 两个月
       if (!startDayjs.add(1, 'month').isSame(endDayjs, 'month')) {
         debugWarn(
           componentName,
@@ -123,7 +123,7 @@ export const useCalendar = (
   const nextYearDayjs = computed(() => date.value.add(1, 'year').date(1))
 
   // https://github.com/element-plus/element-plus/issues/3155
-  // Calculate the validate date range according to the start and end dates
+  // 根据开始和结束日期计算有效的日期范围
   const calculateValidatedDateRange = (
     startDayjs: Dayjs,
     endDayjs: Dayjs
@@ -133,22 +133,22 @@ export const useCalendar = (
     const firstMonth = firstDay.get('month')
     const lastMonth = lastDay.get('month')
 
-    // Current month
+    // 当前月
     if (firstMonth === lastMonth) {
       return [[firstDay, lastDay]]
     }
-    // Two adjacent months
+    // 相邻的两个月
     else if ((firstMonth + 1) % 12 === lastMonth) {
       return adjacentMonth(firstDay, lastDay)
     }
-    // Three consecutive months (compatible: 2021-01-30 to 2021-02-28)
+    // 连续三个月（兼容：2021-01-30 至 2021-02-28）
     else if (
       firstMonth + 2 === lastMonth ||
       (firstMonth + 1) % 11 === lastMonth
     ) {
       return threeConsecutiveMonth(firstDay, lastDay)
     }
-    // Other cases
+    // 其他情况
     else {
       debugWarn(
         componentName,

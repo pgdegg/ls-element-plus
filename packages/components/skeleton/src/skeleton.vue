@@ -42,7 +42,7 @@ const ns = useNamespace('skeleton')
 const uiLoading = useThrottleRender(toRef(props, 'loading'), props.throttle)
 
 defineExpose({
-  /** @description loading state */
+  /** @description 加载状态 */
   uiLoading,
 })
 </script>

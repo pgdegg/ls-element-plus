@@ -54,7 +54,7 @@ describe('Input.vue', () => {
     const inputElm = wrapper.find('input')
     expect(inputElm.element.disabled).not.toBeNull()
 
-    // trigger click should not focus #18012
+    // 触发点击不应聚焦 #18012
     inputElm.trigger('click')
     await nextTick()
     expect(inputElm.element.className.includes('is-focus')).toBe(false)
@@ -300,7 +300,7 @@ describe('Input.vue', () => {
       ))
 
       const inputElm = wrapper.find('input')
-      // Simulate typing in the middle when current length is already at limit.
+      // 当前长度已达上限时，模拟在中间输入。
       inputElm.element.value = '1👌a3😄'
       await inputElm.trigger('input')
       await nextTick()
@@ -320,7 +320,7 @@ describe('Input.vue', () => {
       ))
 
       const inputElm = wrapper.find('input')
-      // Place caret before "3" and simulate typing one char while already at limit.
+      // 将光标置于 "3" 之前，并在已达上限时模拟输入一个字符。
       inputElm.element.setSelectionRange(3, 3)
       inputElm.element.value = '1👌a3😄'
       inputElm.element.setSelectionRange(4, 4)
@@ -550,7 +550,7 @@ describe('Input.vue', () => {
       const wrapper = mount(() => <Input v-model={testContent.value} />)
 
       const input = wrapper.find('input').element
-      // mock selectionRange behaviour, due to jsdom's reason this case cannot run well, may be fixed later using headlesschrome or puppeteer
+      // mock selectionRange 行为；由于 jsdom 的原因，此用例无法良好运行，后续可能用 headlesschrome 或 puppeteer 修复
       let selected = false
       defineGetter(input, 'selectionStart', function (this: HTMLInputElement) {
         return selected ? 0 : this.value.length
@@ -588,7 +588,7 @@ describe('Input.vue', () => {
       ;(refTextarea.autosize as Exclude<InputAutoSize, boolean>).minRows = 5
 
       refTextarea.resizeTextarea()
-      // After this textarea min-height (style)  will change
+      // 此后该 textarea 的 min-height（样式）将发生变化
       const nowMinHeight = (refTextarea.textareaStyle as any)[1].minHeight
       expect(originMinHeight).not.toEqual(nowMinHeight)
     })
@@ -672,7 +672,7 @@ describe('Input.vue', () => {
         value.value = val
       }
 
-      // NOTE: should be same as native's change behavior
+      // 注意：应与原生的 change 行为一致
       const wrapper = mount(() => (
         <Input
           placeholder="请输入内容"
@@ -688,7 +688,7 @@ describe('Input.vue', () => {
         el.dispatchEvent(new Event(event))
       }
 
-      // simplified test, component should emit change when native does
+      // 简化测试：原生触发 change 时组件也应触发 change
       simulateEvent('2', 'change')
       await nextTick()
       expect(value.value).toBe('2')
@@ -767,7 +767,7 @@ describe('Input.vue', () => {
       await inputWrapper.trigger('input')
       await inputWrapper.trigger('compositionend')
       expect(handleInput).toBeCalledTimes(1)
-      // native input value is controlled
+      // 原生 input 的值为受控值
       expect(content.value).toEqual('a')
       expect(nativeInput.value).toEqual('a')
     })
@@ -879,11 +879,11 @@ describe('Input.vue', () => {
     input.element.dispatchEvent(new Event('input'))
     await nextTick()
 
-    // clicking icon should NOT emit change (change fires at blur)
+    // 点击图标不应触发 change（change 在 blur 时触发）
     await icon.trigger('click')
     expect(onChange).not.toHaveBeenCalled()
 
-    // blur triggers change because value changed since focus
+    // 由于聚焦后值发生变化，blur 触发 change
     await input.trigger('blur')
     expect(onChange).toHaveBeenCalledTimes(1)
     expect(onChange).toHaveBeenCalledWith('1234567', expect.any(Event))
@@ -942,15 +942,15 @@ describe('Input.vue', () => {
     input.element.dispatchEvent(new Event('input'))
     await nextTick()
 
-    // lazy: modelValue not yet updated
+    // lazy：modelValue 尚未更新
     expect(password.value).toBe('123456')
 
-    // clicking icon should NOT emit change
+    // 点击图标不应触发 change
     await icon.trigger('click')
     expect(onChange).not.toHaveBeenCalled()
     expect(password.value).toBe('123456')
 
-    // blur triggers change + modelValue update (lazy)
+    // blur 触发 change 并更新 modelValue（lazy）
     await input.trigger('blur')
     expect(onChange).toHaveBeenCalledTimes(1)
     expect(onChange).toHaveBeenCalledWith('1234567', expect.any(Event))
@@ -1122,14 +1122,14 @@ describe('Input.vue', () => {
     const icon = wrapper.find('.el-input__password')
     expect(icon.exists()).toBe(true)
 
-    // Initial state: password hidden
+    // 初始状态：密码隐藏
     expect(wrapper.find('.custom-password-icon').text()).toBe('Show')
 
-    // Click to toggle
+    // 点击切换
     await icon.trigger('click')
     expect(wrapper.find('.custom-password-icon').text()).toBe('Hide')
 
-    // Click again
+    // 再次点击
     await icon.trigger('click')
     expect(wrapper.find('.custom-password-icon').text()).toBe('Show')
   })
@@ -1357,6 +1357,6 @@ describe('Input.vue', () => {
     expect(wordLimit.element.className.includes('is-outside')).toBeTruthy()
   })
 
-  // TODO: validateEvent & input containes select cases should be added after the rest components finished
+  // TODO：其余组件完成后，应补充 validateEvent 与 input 包含 select 的用例
   // ...
 })

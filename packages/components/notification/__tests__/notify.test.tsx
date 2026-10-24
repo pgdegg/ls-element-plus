@@ -91,7 +91,7 @@ describe('Notification on command', () => {
   })
 
   it('it should update offsets notifications', async () => {
-    // the gap size between each notification
+    // 各 notification 之间的间距
     const GAP_SIZE = 16
     const height = 100
     const notifications: NotificationHandle[] = []
@@ -104,7 +104,7 @@ describe('Notification on command', () => {
 
       const el = document.querySelector(`${selector}:nth-child(${i + 1})`)!
 
-      // mocking offsetHeight
+      // mock offsetHeight
       cleanups.push(
         defineGetter(el, 'offsetHeight', function (this: HTMLElement) {
           return Number.parseFloat(this.style.height) || height

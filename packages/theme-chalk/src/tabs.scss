@@ -77,8 +77,8 @@
         right: auto;
       }
 
-      // the first and last items of horizontal tabs have their outer
-      // padding removed, so the fallback line should not be inset there.
+      // 水平方向 tabs 的首项和末项去掉了外侧
+      // 内边距，因此回退线在该处不应缩进。
       &.is-top ~ .is-active.is-start::after,
       &.is-bottom ~ .is-active.is-start::after {
         left: 0;
@@ -866,7 +866,7 @@
       }
     }
 
-    // only for SSR
+    // 仅用于 SSR
     > .#{$namespace}-tabs__content + .#{$namespace}-tabs__header,
     > .#{$namespace}-tabs__content-wrap + .#{$namespace}-tabs__header {
       order: -1;
@@ -947,7 +947,7 @@
   @include m(top) {
     flex-direction: column;
 
-    // only for SSR
+    // 仅用于 SSR
     > .#{$namespace}-tabs__content + .#{$namespace}-tabs__header,
     > .#{$namespace}-tabs__content-wrap + .#{$namespace}-tabs__header {
       order: -1;
@@ -1038,7 +1038,7 @@
   }
 }
 
-// HIS component customization.
+// HIS 组件定制。
 .el-tabs {
   $slef: &;
 

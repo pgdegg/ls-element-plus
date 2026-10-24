@@ -21,47 +21,47 @@ export const emitChangeFn = (value: CollapseModelValue) =>
 
 export interface CollapseProps {
   /**
-   * @description whether to activate accordion mode
+   * @description 是否启用手风琴模式
    */
   accordion?: boolean
   /**
-   * @description currently active panel, the type is `string` in accordion mode, otherwise it is `array`
+   * @description 当前激活的面板，手风琴模式下类型为 `string`，否则为 `array`
    */
   modelValue?: CollapseModelValue
   /**
-   * @description set expand icon position
+   * @description 设置展开图标的位置
    */
   expandIconPosition?: CollapseIconPositionType
   /**
-   * @description before-collapse hook before the collapse state changes. If `false` is returned or a `Promise` is returned and then is rejected, will stop collapsing
+   * @description 折叠状态变化前的 before-collapse 钩子。若返回 `false`，或返回 `Promise` 后被拒绝，则停止折叠
    */
   beforeCollapse?: (name: CollapseActiveName) => Awaitable<boolean>
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `CollapseProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `CollapseProps`
  */
 export const collapseProps = buildProps({
   /**
-   * @description whether to activate accordion mode
+   * @description 是否启用手风琴模式
    */
   accordion: Boolean,
   /**
-   * @description currently active panel, the type is `string` in accordion mode, otherwise it is `array`
+   * @description 当前激活的面板，手风琴模式下类型为 `string`，否则为 `array`
    */
   modelValue: {
     type: definePropType<CollapseModelValue>([Array, String, Number]),
     default: () => mutable([] as const),
   },
   /**
-   * @description set expand icon position
+   * @description 设置展开图标的位置
    */
   expandIconPosition: {
     type: definePropType<CollapseIconPositionType>([String]),
     default: 'right',
   },
   /**
-   * @description before-collapse hook before the collapse state changes. If `false` is returned or a `Promise` is returned and then is rejected, will stop collapsing
+   * @description 折叠状态变化前的 before-collapse 钩子。若返回 `false`，或返回 `Promise` 后被拒绝，则停止折叠
    */
   beforeCollapse: {
     type: definePropType<(name: CollapseActiveName) => Awaitable<boolean>>(
@@ -71,7 +71,7 @@ export const collapseProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `CollapseProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `CollapseProps`
  */
 export type CollapsePropsPublic = ExtractPublicPropTypes<typeof collapseProps>
 

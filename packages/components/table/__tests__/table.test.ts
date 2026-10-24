@@ -559,7 +559,7 @@ describe('Table.vue', () => {
       const filter = document.body.querySelector('.el-table-filter')
 
       triggerEvent(filter.querySelector('.el-checkbox'), 'click', true, false)
-      // confirm button
+      // 确认按钮
       await doubleWait()
       triggerEvent(
         filter.querySelector('.el-table-filter__bottom button'),
@@ -663,7 +663,7 @@ describe('Table.vue', () => {
       const filter = document.body.querySelector('.el-table-filter')
 
       triggerEvent(filter.querySelector('.el-checkbox'), 'click', true, false)
-      // confirm button
+      // 确认按钮
       await doubleWait()
       triggerEvent(
         filter.querySelector('.el-table-filter__bottom button'),
@@ -839,7 +839,7 @@ describe('Table.vue', () => {
     it('cell-mouse-enter', async () => {
       const wrapper = createTable('cell-mouse-enter')
       await doubleWait()
-      const cell = wrapper.findAll('.el-table__body .cell')[2] // first row
+      const cell = wrapper.findAll('.el-table__body .cell')[2] // 第一行
       triggerEvent(cell.element.parentElement, 'mouseenter')
       expect(wrapper.vm.result.length).toEqual(4) // row, column, cell, event
       expect(wrapper.vm.result[0]).toHaveProperty('name')
@@ -912,8 +912,8 @@ describe('Table.vue', () => {
     it('cell-mouse-leave', async () => {
       const wrapper = createTable('cell-mouse-leave')
       await doubleWait()
-      const cell = wrapper.findAll('.el-table__body .cell')[7] // second row
-      const cell2 = wrapper.findAll('.el-table__body .cell')[2] // first row
+      const cell = wrapper.findAll('.el-table__body .cell')[7] // 第二行
+      const cell2 = wrapper.findAll('.el-table__body .cell')[2] // 第一行
 
       triggerEvent(cell2.element.parentElement, 'mouseenter')
       triggerEvent(cell.element.parentElement, 'mouseleave')
@@ -926,7 +926,7 @@ describe('Table.vue', () => {
     it('row-click', async () => {
       const wrapper = createTable('row-click')
       await doubleWait()
-      const cell = wrapper.findAll('.el-table__body .cell')[2] // first row
+      const cell = wrapper.findAll('.el-table__body .cell')[2] // 第一行
 
       triggerEvent(cell.element.parentElement.parentElement, 'click')
       expect(wrapper.vm.result.length).toEqual(3) // row, event, column
@@ -938,7 +938,7 @@ describe('Table.vue', () => {
     it('row-dblclick', async () => {
       const wrapper = createTable('row-dblclick')
       await doubleWait()
-      const cell = wrapper.findAll('.el-table__body .cell')[2] // first row
+      const cell = wrapper.findAll('.el-table__body .cell')[2] // 第一行
 
       triggerEvent(cell.element.parentElement.parentElement, 'dblclick')
       expect(wrapper.vm.result.length).toEqual(3) // row, event, column
@@ -1102,7 +1102,7 @@ describe('Table.vue', () => {
       expect(vm.selection.length).toEqual(1)
       expect(vm.fireCount).toEqual(1)
 
-      // test use second parameter
+      // 测试使用第二个参数
       vm.$refs.table.toggleRowSelection(vm.testData[0])
       expect(vm.fireCount).toEqual(2)
 
@@ -1114,7 +1114,7 @@ describe('Table.vue', () => {
       expect(vm.selection.length).toEqual(0)
       expect(vm.fireCount).toEqual(2)
 
-      // test use second parameter
+      // 测试使用第二个参数
       vm.$refs.table.toggleRowSelection(vm.testData[1], undefined, false)
       expect(vm.selection.length).toEqual(1)
       expect(vm.fireCount).toEqual(3)
@@ -1146,7 +1146,7 @@ describe('Table.vue', () => {
       expect(vm.selection.length).toEqual(1)
       expect(vm.fireCount).toEqual(1)
 
-      // clear selection
+      // 清除选中
       vm.$refs.table.clearSelection()
       expect(vm.fireCount).toEqual(2)
       expect(vm.selection.length).toEqual(0)
@@ -1275,7 +1275,7 @@ describe('Table.vue', () => {
         'sorting icon is not empty after mount',
         0
       )
-      // manual click first column header
+      // 手动点击第一列表头
       const elm = wrapper.find('.caret-wrapper')
       elm.trigger('click')
       await doubleWait()
@@ -1829,7 +1829,7 @@ describe('Table.vue', () => {
       await doubleWait()
       const rows = wrapper.findAll('.el-table__row')
       expect(rows.length).toEqual(7)
-      // validate placeholder
+      // 校验 placeholder
       expect(wrapper.findAll('.el-table__placeholder').length).toBe(6)
       const childRows = wrapper.findAll('.el-table__row--level-1')
       expect(childRows.length).toEqual(2)
@@ -2405,7 +2405,7 @@ describe('Table.vue', () => {
       })
       await doubleWait()
       const parentCheckbox = wrapper.findAll('.el-table__body .el-checkbox')[0]
-      // select parent before any lazy load
+      // 在任何懒加载之前选中父节点
       await parentCheckbox.trigger('click')
       await doubleWait()
       const expandIcons = wrapper.findAll('.el-table__expand-icon')
@@ -2414,7 +2414,7 @@ describe('Table.vue', () => {
       const childCheckboxes = wrapper.findAll('.el-table__body .el-checkbox')
       const childCheckbox1 = childCheckboxes[1]
       const childCheckbox2 = childCheckboxes[2]
-      // first level lazy children should inherit selection
+      // 一级懒加载子项应继承选中状态
       expect(childCheckbox1.classes()).toContain('is-checked')
       expect(childCheckbox2.classes()).toContain('is-checked')
       const childExpandIcons = wrapper.findAll('.el-table__expand-icon')
@@ -2422,12 +2422,12 @@ describe('Table.vue', () => {
       await doubleWait()
       const allCheckboxes = wrapper.findAll('.el-table__body .el-checkbox')
       const grandchildCheckbox = allCheckboxes[3]
-      // nested lazy child should inherit selection
+      // 嵌套的懒加载子项应继承选中状态
       expect(grandchildCheckbox.classes()).toContain('is-checked')
       await grandchildCheckbox.trigger('click')
       await doubleWait()
       const parentInput = parentCheckbox.find('.el-checkbox__input')
-      // deselect nested child -> parent indeterminate
+      // 取消选中嵌套子项 -> 父节点变为半选
       expect(parentInput.classes()).toContain('is-indeterminate')
       expect(parentCheckbox.classes()).not.toContain('is-checked')
     })
@@ -2746,23 +2746,23 @@ describe('Table.vue', () => {
 
       await childCheckbox1.trigger('click')
       await doubleWait()
-      // partial selectable children selected -> parent indeterminate
+      // 部分可选子项被选中 -> 父节点半选
       expect(parentInput.classes()).toContain('is-indeterminate')
 
       await childCheckbox3.trigger('click')
       await doubleWait()
-      // all selectable children selected -> parent checked
+      // 所有可选子项被选中 -> 父节点选中
       expect(parentCheckbox.classes()).toContain('is-checked')
       expect(parentInput.classes()).not.toContain('is-indeterminate')
 
       await childCheckbox3.trigger('click')
       await doubleWait()
-      // deselect one child -> parent indeterminate again
+      // 取消选中一个子项 -> 父节点再次变为半选
       expect(parentInput.classes()).toContain('is-indeterminate')
 
       await childCheckbox1.trigger('click')
       await doubleWait()
-      // no selectable children selected -> parent unchecked
+      // 没有可选子项被选中 -> 父节点未选中
       expect(parentCheckbox.classes()).not.toContain('is-checked')
       expect(parentInput.classes()).not.toContain('is-indeterminate')
 
@@ -2770,14 +2770,14 @@ describe('Table.vue', () => {
       await doubleWait()
       await childCheckbox1.trigger('click')
       await doubleWait()
-      // Strict mode: child select should not update parent
+      // 严格模式：子项选中不应更新父节点
       expect(childCheckbox1.classes()).toContain('is-checked')
       expect(parentCheckbox.classes()).not.toContain('is-checked')
       expect(parentInput.classes()).not.toContain('is-indeterminate')
 
       await (wrapper.vm.checkStrictly = false)
       await doubleWait()
-      // Switch to non-strict: parent should reflect child selection
+      // 切换到非严格模式：父节点应反映子项的选中状态
       expect(parentInput.classes()).toContain('is-indeterminate')
     })
 
@@ -2925,7 +2925,7 @@ describe('Table.vue', () => {
       const checkboxes = wrapper.findAll('.el-table__body .el-checkbox')
       const childCheckbox1 = checkboxes[1]
 
-      // Select childCheckbox1 to make parent indeterminate
+      // 选中 childCheckbox1 使父节点半选
       await childCheckbox1.trigger('click')
       await doubleWait()
 
@@ -2934,7 +2934,7 @@ describe('Table.vue', () => {
       expect(halfSelection.length).toEqual(1)
       expect(halfSelection[0].id).toEqual(1)
 
-      // Select childCheckbox2 to make parent fully checked
+      // 选中 childCheckbox2 使父节点完全选中
       const childCheckbox2 = checkboxes[2]
       await childCheckbox2.trigger('click')
       await doubleWait()
@@ -3070,7 +3070,7 @@ describe('Table.vue', () => {
     await doubleWait()
     const findTooltipEl = wrapper.findAll('.el-tooltip').length
     await doubleWait()
-    // 5 rows and 2 columns should be 10
+    // 5 行 2 列，结果应为 10
     expect(findTooltipEl).toEqual(10)
   })
 
@@ -3131,7 +3131,7 @@ describe('Table.vue', () => {
 
     await doubleWait()
     const tr = wrapper.findAll('.overflow_tooltip')
-    // Enter the cell
+    // 进入单元格
     const mockCellRect = vi
       .spyOn(tr[1].find('.cell').element, 'getBoundingClientRect')
       .mockReturnValue({
@@ -3147,7 +3147,7 @@ describe('Table.vue', () => {
       document.querySelector('.el-popper')?.getAttribute('aria-hidden')
     ).toEqual('false')
 
-    // Leave the cell
+    // 离开单元格
     vi.useFakeTimers()
     await tr[1].trigger('mouseleave')
     vi.runAllTimers()
@@ -3157,14 +3157,14 @@ describe('Table.vue', () => {
       document.querySelector('.el-popper')?.getAttribute('aria-hidden')
     ).toEqual('true')
 
-    // Enter the cell again
+    // 再次进入单元格
     await tr[1].trigger('mouseenter')
     await rAF()
     expect(
       document.querySelector('.el-popper')?.getAttribute('aria-hidden')
     ).toEqual('false')
 
-    // When the width of the cell content decreases, enter
+    // 当单元格内容宽度变小时进入
     mockRangeRect.mockReturnValue({
       width: 80,
       height: 30,
@@ -3173,7 +3173,7 @@ describe('Table.vue', () => {
     await rAF()
     expect(document.querySelector('.el-popper')).toEqual(null)
 
-    // From cell1 to cell2
+    // 从 cell1 到 cell2
     mockRangeRect.mockReturnValue({
       width: 150,
       height: 30,
@@ -3411,7 +3411,7 @@ describe('Table.vue', () => {
       '.overflow-tooltip-formatter-cell'
     )
     const vnodeFormatterTds = wrapper.findAll('.vnode-formatter-cell')
-    // Enter the cell
+    // 进入单元格
     await baseFormatterTds[1].trigger('mouseenter')
     await rAF()
 
@@ -3419,7 +3419,7 @@ describe('Table.vue', () => {
       `${testData[0].name}:formattered`
     )
 
-    // From cell1 to cell2
+    // 从 cell1 到 cell2
     await childFormatterTds[1].trigger('mouseenter')
     await rAF()
     expect(document.querySelector('.el-popper span')?.innerHTML).equals(
@@ -3438,7 +3438,7 @@ describe('Table.vue', () => {
       `http://www.baidu.com?q=${testData[0].runtime}`
     )
 
-    // leave and enter again
+    // 离开后再次进入
     vi.useFakeTimers()
     await vnodeFormatterTds[1].trigger('mouseleave')
     vi.runAllTimers()
@@ -3448,7 +3448,7 @@ describe('Table.vue', () => {
       document.querySelector('.el-popper')?.getAttribute('aria-hidden')
     ).toEqual('true')
 
-    // Enter the cell again
+    // 再次进入单元格
     await vnodeFormatterTds[1].trigger('mouseenter')
     await rAF()
     expect(document.querySelector('.el-popper a')?.getAttribute('href')).equals(
@@ -3545,13 +3545,13 @@ describe('Table.vue', () => {
       },
     })
     await doubleWait()
-    // trigger a header re-render so another fixed column style update is
-    // scheduled while the previous one is still pending
+    // 触发表头重新渲染，使另一个固定列样式更新在上一个仍在等待期间被
+    // 调度
     await wrapper.setData({ showExtra: true })
     await doubleWait()
     wrapper.unmount()
-    // pending timers must be cleared on unmount and never touch the
-    // destroyed thead
+    // 待执行的定时器必须在卸载时被清除，绝不能触碰已
+    // 销毁的 thead
     expect(() => vi.runAllTimers()).not.toThrow()
     vi.useRealTimers()
   })

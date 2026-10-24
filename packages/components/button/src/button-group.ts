@@ -5,28 +5,28 @@ import type { ExtractPublicPropTypes } from 'vue'
 import type { ButtonProps } from './button'
 
 export interface ButtonGroupProps {
-  /** @description inherited disabled state */
+  /** @description 继承的 disabled 状态 */
   disabled?: boolean
-  /** @description inherited button appearance */
+  /** @description 继承的按钮外观 */
   plain?: boolean
   text?: boolean
   link?: boolean
   /**
-   * @description control the size of buttons in this button-group
+   * @description 控制该 button-group 中按钮的尺寸
    */
   size?: ButtonProps['size']
   /**
-   * @description control the type of buttons in this button-group
+   * @description 控制该 button-group 中按钮的类型
    */
   type?: ButtonProps['type']
   /**
-   * @description display direction
+   * @description 展示方向
    */
   direction?: 'horizontal' | 'vertical'
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `ButtonGroupProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `ButtonGroupProps`
  */
 export const buttonGroupProps = {
   disabled: { type: Boolean, default: undefined },
@@ -34,15 +34,15 @@ export const buttonGroupProps = {
   text: { type: Boolean, default: undefined },
   link: { type: Boolean, default: undefined },
   /**
-   * @description control the size of buttons in this button-group
+   * @description 控制该 button-group 中按钮的尺寸
    */
   size: buttonProps.size,
   /**
-   * @description control the type of buttons in this button-group
+   * @description 控制该 button-group 中按钮的类型
    */
   type: buttonProps.type,
   /**
-   * @description display direction
+   * @description 展示方向
    */
   direction: {
     type: definePropType<'horizontal' | 'vertical'>(String),
@@ -52,7 +52,7 @@ export const buttonGroupProps = {
 } as const
 
 /**
- * @deprecated Removed after 3.0.0, Use `ButtonGroupProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `ButtonGroupProps`
  */
 export type ButtonGroupPropsPublic = ExtractPublicPropTypes<
   typeof buttonGroupProps

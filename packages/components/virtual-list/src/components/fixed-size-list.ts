@@ -62,13 +62,13 @@ const FixedSizeList = buildList({
         return minOffset
       }
       case CENTERED_ALIGNMENT: {
-        // "Centered" offset is usually the average of the min and max.
-        // But near the edges of the list, this doesn't hold true.
+        // “居中”偏移通常是最小与最大值的平均值。
+        // 但在列表边缘附近，这并不成立。
         const middleOffset = Math.round(minOffset + (maxOffset - minOffset) / 2)
         if (middleOffset < Math.ceil(size / 2)) {
-          return 0 // near the beginning
+          return 0 // 接近起始处
         } else if (middleOffset > lastItemOffset + Math.floor(size / 2)) {
-          return lastItemOffset // near the end
+          return lastItemOffset // 接近末尾
         } else {
           return middleOffset
         }
@@ -103,16 +103,16 @@ const FixedSizeList = buildList({
       0,
       Math.min(
         total - 1,
-        // because startIndex is inclusive, so in order to prevent array outbound indexing
-        // we need to - 1 to prevent outbound behavior
+        // 因为 startIndex 是闭区间，为防止数组越界索引
+        // 需要减 1 以防止越界
         startIndex + numVisibleItems - 1
       )
     )
   },
 
   /**
-   * Fixed size list does not need this cache
-   * Using any to bypass it, TODO: Using type inference to fix this.
+   * 固定尺寸列表不需要此缓存
+   * 使用 any 绕过它，TODO：使用类型推断修复。
    */
   initCache() {
     return undefined as any

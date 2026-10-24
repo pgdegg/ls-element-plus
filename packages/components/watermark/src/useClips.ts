@@ -33,11 +33,11 @@ function prepareCanvas(
 }
 
 /**
- * Get the clips of text content.
- * This is a lazy hook function since SSR no need this
+ * 获取文本内容的裁剪片段。
+ * 这是一个懒加载 hook 函数，因为 SSR 不需要它
  */
 export default function useClips() {
-  // Get single clips
+  // 获取单个裁剪片段
   function getClips(
     content: NonNullable<WatermarkProps['content']> | HTMLImageElement,
     rotate: number,
@@ -100,14 +100,14 @@ export default function useClips() {
     const maxSize = Math.max(width, height)
     const [rCtx, rCanvas, realMaxSize] = prepareCanvas(maxSize, maxSize, ratio)
 
-    // Copy from `ctx` and rotate
+    // 从 `ctx` 复制并旋转
     rCtx.translate(realMaxSize / 2, realMaxSize / 2)
     rCtx.rotate(angle)
     if (contentWidth > 0 && contentHeight > 0) {
       rCtx.drawImage(canvas, -contentWidth / 2, -contentHeight / 2)
     }
 
-    // Get boundary of rotated text
+    // 获取旋转后文本的边界
     function getRotatePos(x: number, y: number) {
       const targetX = x * Math.cos(angle) - y * Math.sin(angle)
       const targetY = x * Math.sin(angle) + y * Math.cos(angle)

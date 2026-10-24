@@ -36,8 +36,8 @@ vi.mock('@vueuse/core', async () => {
   }
 })
 
-// firstly wait for image event
-// secondly wait for vue render
+// 先等待 image 事件
+// 再等待 vue 渲染
 async function doubleWait() {
   await nextTick()
   await nextTick()
@@ -267,7 +267,7 @@ describe('Image.vue', () => {
     expect(wrapper.find('.el-image-viewer__progress').exists()).toBe(true)
     expect(wrapper.find('.el-image-viewer__progress').text()).toBe('1 - 3')
 
-    // progress slot's priority is higher than `show-progress` prop
+    // progress 插槽优先级高于 `show-progress` prop
     wrapper.setProps({ showProgress: false })
     await doubleWait()
     expect(wrapper.find('.el-image-viewer__progress').exists()).toBe(true)
@@ -382,7 +382,7 @@ describe('Image.vue', () => {
         await img.trigger('load')
       }
       await flushPromises()
-      // expect no new error event to be emitted
+      // 预期不会触发新的 error 事件
       expect(wrapper.emitted('error')?.length).toBe(errorCountBefore)
 
       expect(wrapper.find('.el-image__inner').exists()).toBe(true)
@@ -401,7 +401,7 @@ describe('Image.vue', () => {
       }
       const wrapper = mount(() => <Image {...props} />)
       await flushPromises()
-      // Manually trigger the load event if necessary
+      // 必要时手动触发 load 事件
       const img = wrapper.find('img')
       if (img.exists()) {
         await img.trigger('load')

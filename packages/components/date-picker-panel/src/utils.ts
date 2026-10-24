@@ -297,11 +297,11 @@ export const correctlyParseUserInput = (
       dayjsValue = dayjs(value)
     }
     if (!dayjsValue.isValid()) {
-      // return directly if not valid
+      // 无效则直接返回
       return dayjsValue
     }
     const formatValue = dayjsValue.format(format)
-    // Strictly validate date validity
+    // 严格校验日期有效性
     if (!dayjs(formatValue, format, true).isValid()) {
       return dayjs('')
     }

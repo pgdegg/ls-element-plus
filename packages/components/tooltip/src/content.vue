@@ -95,8 +95,8 @@ const transitionClass = computed(() => {
   return props.transition || `${ns.namespace.value}-fade-in-linear`
 })
 const persistentRef = computed(() => {
-  // For testing, we would always want the content to be rendered
-  // to the DOM, so we need to return true here.
+  // 为便于测试，我们总是希望内容被渲染
+  // 到 DOM，因此这里需要返回 true。
   if (process.env.NODE_ENV === 'test') {
     if (!process.env.RUN_TEST_WITH_PERSISTENT) {
       return true
@@ -203,11 +203,11 @@ watch(
 
 defineExpose({
   /**
-   * @description el-popper-content component instance
+   * @description el-popper-content 组件实例
    */
   contentRef,
   /**
-   * @description validate current focus event is trigger inside el-popper-content
+   * @description 校验当前焦点事件是否在 el-popper-content 内部触发
    */
   isFocusInsideContent,
 })

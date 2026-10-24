@@ -17,13 +17,13 @@ export interface UploadListProps {
   handlePreview?: UploadHooks['onPreview']
   listType?: ListType
   /**
-   * @description set HTML attribute: crossorigin.
+   * @description 设置 HTML 属性：crossorigin。
    */
   crossorigin?: Crossorigin
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `UploadListProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `UploadListProps`。
  */
 export const uploadListProps = buildProps({
   files: {
@@ -44,7 +44,7 @@ export const uploadListProps = buildProps({
     default: 'text',
   },
   /**
-   * @description set HTML attribute: crossorigin.
+   * @description 设置 HTML 属性：crossorigin。
    */
   crossorigin: {
     type: definePropType<'anonymous' | 'use-credentials' | ''>(String),
@@ -52,7 +52,7 @@ export const uploadListProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `UploadListProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `UploadListProps`。
  */
 export type UploadListPropsPublic = ExtractPublicPropTypes<
   typeof uploadListProps

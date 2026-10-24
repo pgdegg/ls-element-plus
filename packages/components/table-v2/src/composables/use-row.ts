@@ -103,7 +103,7 @@ export const useRow = (
       rowIndex,
       rowKey,
     })
-    // If this is not controlled, then use this to notify changes
+    // 如果不是受控状态，则通过它通知变更
     props.onExpandedRowsChange?.(_expandedRowKeys)
 
     const tableRoot = tableInstance!.vnode.el as HTMLElement

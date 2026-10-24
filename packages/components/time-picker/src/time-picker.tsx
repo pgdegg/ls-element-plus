@@ -19,7 +19,7 @@ export default defineComponent({
   props: {
     ...timePickerDefaultProps,
     /**
-     * @description whether to pick a time range
+     * @description 是否选择时间范围
      */
     isRange: Boolean,
   },
@@ -37,25 +37,25 @@ export default defineComponent({
         return commonPicker.value?.inputElement
       },
       /**
-       * @description focus the Input component
+       * @description 聚焦 Input 组件
        */
       focus: () => {
         commonPicker.value?.focus()
       },
       /**
-       * @description blur the Input component
+       * @description 使 Input 组件失焦
        */
       blur: () => {
         commonPicker.value?.blur()
       },
       /**
-       * @description open the TimePicker popper
+       * @description 打开 TimePicker 弹层
        */
       handleOpen: () => {
         commonPicker.value?.handleOpen()
       },
       /**
-       * @description close the TimePicker popper
+       * @description 关闭 TimePicker 弹层
        */
       handleClose: () => {
         commonPicker.value?.handleClose()

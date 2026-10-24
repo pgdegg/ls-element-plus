@@ -24,13 +24,13 @@ export const useTranslation = () => {
   const langsRef = computed(() => {
     const currentLang = lang.value
 
-    // When there is no zh-CN in the list, meaning this is the PR preview
-    // so we simply return the current list which contains only en-US
+    // 当列表中没有 zh-CN 时，说明这是 PR 预览
+    // 因此直接返回仅包含 en-US 的当前列表
     if (!langs.includes('zh-CN')) return []
     const langsCopy = langs.slice(0)
     langsCopy.splice(langsCopy.indexOf(currentLang), 1)
 
-    // if current language is not zh-CN, then zh-CN needs to be moved to the head.
+    // 如果当前语言不是 zh-CN，则需要把 zh-CN 移到列表开头。
     if (currentLang !== 'zh-CN') {
       langsCopy.splice(langsCopy.indexOf('zh-CN'), 1)
     }

@@ -38,7 +38,7 @@ export default () => {
     0
   )
 
-  // clean up function
+  // 清理函数
   return () => {
     clientWidth()
     clientHeight()

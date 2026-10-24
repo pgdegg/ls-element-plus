@@ -51,8 +51,8 @@ export default defineComponent({
     }
 
     return () => {
-      // since props always have all defined keys on it, {format, ...props} will always overwrite format
-      // pick props.format or provide default value here before spreading
+      // 由于 props 始终包含所有已定义的键，{format, ...props} 总会覆盖 format
+      // 在展开前取 props.format 或在此处提供默认值
       const format =
         props.format ??
         (DEFAULT_FORMATS_DATEPICKER[props.type] || DEFAULT_FORMATS_DATE)
@@ -68,7 +68,7 @@ export default defineComponent({
           {{
             prepend: slots.prepend,
             append: slots.append,
-            default: (scopedProps: /**FIXME: remove any type */ any) => (
+            default: (scopedProps: /**FIXME: 移除 any 类型 */ any) => (
               <ElDatePickerPanel
                 disabled={props.disabled}
                 editable={props.editable}

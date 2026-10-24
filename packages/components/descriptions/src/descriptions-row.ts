@@ -7,7 +7,7 @@ export interface DescriptionsRowProps {
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `DescriptionsRowProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `DescriptionsRowProps`。
  */
 export const descriptionsRowProps = buildProps({
   row: {

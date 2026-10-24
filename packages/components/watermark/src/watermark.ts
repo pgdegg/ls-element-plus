@@ -17,95 +17,95 @@ export interface WatermarkFontType {
 
 export interface WatermarkProps {
   /**
-   * @description The z-index of the appended watermark element
+   * @description 追加的水印元素的 z-index
    */
   zIndex?: number
   /**
-   * @description The rotation angle of the watermark
+   * @description 水印的旋转角度
    */
   rotate?: number
   /**
-   * @description The width of the watermark
+   * @description 水印宽度
    */
   width?: number
   /**
-   * @description The height of the watermark
+   * @description 水印高度
    */
   height?: number
   /**
-   * @description Image source, it is recommended to export 2x or 3x image, high priority (support base64 format)
+   * @description 图片源，建议导出 2x 或 3x 图片，优先级高（支持 base64 格式）
    */
   image?: string
   /**
-   * @description Watermark text content
+   * @description 水印文本内容
    */
   content?: string | string[]
   /**
-   * @description Text style
+   * @description 文本样式
    */
   font?: WatermarkFontType
   /**
-   * @description The spacing between watermarks
+   * @description 水印之间的间距
    */
   gap?: [number, number]
   /**
-   * @description The offset of the watermark from the upper left corner of the container. The default is gap/2
+   * @description 水印相对于容器左上角的偏移，默认为 gap/2
    */
   offset?: [number, number]
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `WatermarkProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `WatermarkProps`。
  */
 export const watermarkProps = buildProps({
   /**
-   * @description The z-index of the appended watermark element
+   * @description 追加的水印元素的 z-index
    */
   zIndex: {
     type: Number,
     default: 9,
   },
   /**
-   * @description The rotation angle of the watermark
+   * @description 水印的旋转角度
    */
   rotate: {
     type: Number,
     default: -22,
   },
   /**
-   * @description The width of the watermark
+   * @description 水印宽度
    */
   width: Number,
   /**
-   * @description The height of the watermark
+   * @description 水印高度
    */
   height: Number,
   /**
-   * @description Image source, it is recommended to export 2x or 3x image, high priority (support base64 format)
+   * @description 图片源，建议导出 2x 或 3x 图片，优先级高（支持 base64 格式）
    */
   image: String,
   /**
-   * @description Watermark text content
+   * @description 水印文本内容
    */
   content: {
     type: definePropType<string | string[]>([String, Array]),
     default: 'Element Plus',
   },
   /**
-   * @description Text style
+   * @description 文本样式
    */
   font: {
     type: definePropType<WatermarkFontType>(Object),
   },
   /**
-   * @description The spacing between watermarks
+   * @description 水印之间的间距
    */
   gap: {
     type: definePropType<[number, number]>(Array),
     default: () => [100, 100],
   },
   /**
-   * @description The offset of the watermark from the upper left corner of the container. The default is gap/2
+   * @description 水印相对于容器左上角的偏移，默认为 gap/2
    */
   offset: {
     type: definePropType<[number, number]>(Array),
@@ -113,7 +113,7 @@ export const watermarkProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `WatermarkProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `WatermarkProps`。
  */
 export type WatermarkPropsPublic = ExtractPublicPropTypes<typeof watermarkProps>
 export type WatermarkInstance = InstanceType<typeof Watermark> & unknown

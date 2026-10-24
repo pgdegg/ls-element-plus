@@ -115,7 +115,7 @@ describe('Segmented.vue', () => {
       <Segmented v-model={value.value} options={options}></Segmented>
     ))
     await nextTick()
-    // 4 = the disabled options + .el-segmented__item-selected
+    // 4 = 禁用的选项数 + .el-segmented__item-selected
     expect(wrapper.findAll('.is-disabled').length).toBe(4)
   })
 
@@ -167,7 +167,7 @@ describe('Segmented.vue', () => {
       ></Segmented>
     ))
     await nextTick()
-    // 4 = the disabled options + .el-segmented__item-selected
+    // 4 = 禁用的选项数 + .el-segmented__item-selected
     expect(wrapper.findAll('.is-disabled').length).toBe(4)
   })
 

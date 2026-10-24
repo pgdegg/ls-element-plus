@@ -25,16 +25,16 @@ const text = ref('😀😁')
 const textarea = ref('😀😁')
 
 /**
- * Count function for grapheme clustering.
- * Counts the number of graphemes (visual characters) in a string.
+ * 用于字形聚类的计数函数。
+ * 统计字符串中字形（可视字符）的数量。
  *
- * Note: This example uses Array.from() for simplicity.
- * For production use, consider using Intl.Segmenter for better
- * handling of complex emoji and unicode characters.
+ * 注意：本示例为简单起见使用 Array.from()。
+ * 生产环境建议使用 Intl.Segmenter，以更好地
+ * 处理复杂 emoji 与 unicode 字符。
  */
 const calc = (value: string) => {
-  // Simplified version: counts code points (not full grapheme clusters)
-  // For production, use Intl.Segmenter like the component does
+  // 简化版本：统计码点数量（而非完整的字形簇）
+  // 生产环境请像组件那样使用 Intl.Segmenter
   return Array.from(value).length
 }
 </script>

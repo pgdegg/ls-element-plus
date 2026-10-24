@@ -76,7 +76,7 @@ export const useFormItemInputId = (
     )
   })
 
-  // Generate id for ElFormItem label if not provided as prop
+  // 若未通过 prop 提供，为 ElFormItem 的 label 生成 id
   onMounted(() => {
     idUnwatch = watch(
       [toRef(props, 'id'), disableIdGeneration] as any,

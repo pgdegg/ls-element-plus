@@ -128,7 +128,7 @@ describe('Calendar.vue', () => {
   })
 
   it('firstDayOfWeek', async () => {
-    // default en locale, weekStart 0 Sunday
+    // 默认 en 语言环境，weekStart 0 表示周日
     const wrapper = mount(
       defineComponent({
         data: () => ({ value: new Date('2019-04-01') }),
@@ -163,7 +163,7 @@ describe('Calendar.vue', () => {
     expect(firstRow?.lastElementChild?.innerHTML).toContain('1')
     const rows = wrapper.element.querySelectorAll('.el-calendar-table__row')
     expect(rows.length).toBe(6)
-    // reset weekStart 0
+    // 重置 weekStart 为 0
     setDayjsWeekStart()
   })
 

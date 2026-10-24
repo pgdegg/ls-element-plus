@@ -86,13 +86,13 @@ const createGrid = ({
       const cache = ref(initCache(props, instance))
       injectToInstance?.(instance, cache)
       // refs
-      // here windowRef and innerRef can be type of HTMLElement
-      // or user defined component type, depends on the type passed
-      // by user
+      // 这里 windowRef 和 innerRef 可以是 HTMLElement 类型
+      // 或用户自定义组件类型，取决于传入的类型
+      // 由用户传入
       const windowRef = ref<HTMLElement>()
       const hScrollbar = ref<ScrollbarExpose>()
       const vScrollbar = ref<ScrollbarExpose>()
-      // innerRef is the actual container element which contains all the elements
+      // innerRef 是包含所有元素的实际容器元素
       const innerRef = ref<HTMLElement>()
       const states = ref<GridStates>({
         isScrolling: false,
@@ -213,7 +213,7 @@ const createGrid = ({
           pointerEvents: unref(states).isScrolling ? 'none' : undefined,
           width,
 
-          // fix scrolling issues in Firefox.
+          // 修复 Firefox 中的滚动问题。
           margin: 0,
           boxSizing: 'border-box',
         }
@@ -232,7 +232,7 @@ const createGrid = ({
           ] = unref(columnsToRender)
           const [rowCacheStart, rowCacheEnd, rowVisibleStart, rowVisibleEnd] =
             unref(rowsToRender)
-          // emit the render item event with
+          // 以以下内容触发渲染项事件：
           // [xAxisInvisibleStart, xAxisInvisibleEnd, xAxisVisibleStart, xAxisVisibleEnd]
           // [yAxisInvisibleStart, yAxisInvisibleEnd, yAxisVisibleStart, yAxisVisibleEnd]
           emit(ITEM_RENDER_EVT, {
@@ -450,8 +450,8 @@ const createGrid = ({
           clearCache && rowHeight,
           clearCache && direction
         )
-        // since there was no need to introduce an nested array into cache object
-        // we use row,column to construct the key for indexing the map.
+        // 因为没有必要在缓存对象中引入嵌套数组
+        // 我们使用 row,column 构造用于索引 map 的 key。
         const key = `${rowIndex},${columnIndex}`
 
         if (hasOwn(itemStyleCache, key)) {
@@ -477,7 +477,7 @@ const createGrid = ({
         }
       }
 
-      // TODO: debounce setting is scrolling.
+      // TODO：滚动设置防抖。
 
       const resetIsScrolling = () => {
         states.value.isScrolling = false
@@ -488,7 +488,7 @@ const createGrid = ({
 
       // life cycles
       onMounted(() => {
-        // for SSR
+        // 用于 SSR
         if (!isClient) return
         const { initScrollLeft, initScrollTop } = props
         const windowElement = unref(windowRef)
@@ -553,7 +553,7 @@ const createGrid = ({
         resetAfter,
       })
 
-      // rendering part
+      // 渲染部分
 
       const renderScrollbars = () => {
         const {

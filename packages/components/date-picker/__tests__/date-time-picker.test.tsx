@@ -56,7 +56,7 @@ describe('Datetime Picker', () => {
     )!
     timeInput.focus()
     await nextTick()
-    // both input shows correct value
+    // 两个输入框显示正确的值
     expect(dateInput.value).toBe('2018/03/05')
     expect(timeInput.value).toBe('10:15 AM')
 
@@ -90,10 +90,10 @@ describe('Datetime Picker', () => {
     )!
     timeInput.focus()
     await nextTick()
-    // both input shows correct value
+    // 两个输入框显示正确的值
     expect(dateInput.value).toBe('2000-10-01')
     expect(timeInput.value).toBe('10:00:01')
-    // time spinner highlight is correct
+    // 时间滚动器高亮正确
     let spinners = document.querySelectorAll(
       '.el-time-spinner ul li.is-active'
     ) as NodeListOf<HTMLElement>
@@ -127,7 +127,7 @@ describe('Datetime Picker', () => {
       document.querySelector('.el-picker-panel__link-btn') as HTMLElement
     ).click()
     await nextTick()
-    // test if is current time (deviation 10 seconds)
+    // 测试是否为当前时间（偏差 10 秒）
     expect(dayjs(value.value).diff(dayjs()) < 10).toBeTruthy()
   })
 
@@ -224,7 +224,7 @@ describe('Datetime Picker', () => {
     input.trigger('blur')
     input.trigger('focus')
     await nextTick()
-    // click now button
+    // 点击现在按钮
     const btn: HTMLElement = document.querySelector(
       '.el-picker-panel__footer .is-text'
     )!
@@ -245,7 +245,7 @@ describe('Datetime Picker', () => {
     input.trigger('blur')
     input.trigger('focus')
     await nextTick()
-    // now button is disabled
+    // 现在按钮处于禁用状态
     const btn: HTMLElement = document.querySelector(
       '.el-picker-panel__footer .is-text'
     )!
@@ -262,7 +262,7 @@ describe('Datetime Picker', () => {
     input.trigger('blur')
     input.trigger('focus')
     await nextTick()
-    // changed month / year should not effect picked time
+    // 切换月份/年份不应影响已选择的时间
     ;(
       document.querySelector(
         '.el-date-picker__header .arrow-right'
@@ -273,7 +273,7 @@ describe('Datetime Picker', () => {
         '.el-date-picker__header .d-arrow-right'
       ) as HTMLElement
     ).click()
-    // click confirm button
+    // 点击确认按钮
     ;(
       document.querySelectorAll(
         '.el-picker-panel__footer .el-button'
@@ -377,7 +377,7 @@ describe('Datetime Picker', () => {
     timeInput.focus()
     await nextTick()
     expect(timeInput.value).toBe('12:24:48')
-    // time spinner highlight is correct
+    // 时间滚动器高亮正确
     const spinners = document.querySelectorAll(
       '.el-time-spinner ul li.is-active'
     ) as NodeListOf<HTMLElement>
@@ -442,7 +442,7 @@ describe('Datetime Picker', () => {
     expect(timeInput.value).toBe('10:10:00')
   })
 
-  // fix #15196
+  // 修复 #15196
   it('first click accuracy', async () => {
     const value = ref('')
     const wrapper = _mount(() => (
@@ -454,7 +454,7 @@ describe('Datetime Picker', () => {
     input.trigger('focus')
     await nextTick()
     const dayItems = document.querySelectorAll('.el-date-table-cell__text')
-    const targetDay = dayItems[15] as HTMLElement // Try to make sure the date is this month
+    const targetDay = dayItems[15] as HTMLElement // 尽量确保日期为本月
     const dayText = targetDay.textContent
     targetDay.click()
     await nextTick()
@@ -479,7 +479,7 @@ describe('Datetime Picker', () => {
       '2023-10-01 12:01:03'
     )
 
-    // invalid user input not work
+    // 无效的用户输入不生效
     input.element.value = '9999999-10-01'
     await input.trigger('input')
     await input.trigger('blur')
@@ -582,7 +582,7 @@ describe('Datetimerange', () => {
       ),
     }
     await nextTick()
-    // both input shows correct value
+    // 两个输入框显示正确的值
     expect((left.dateInput as HTMLInputElement).value).toBe('2000/11/01')
     expect((left.timeInput as HTMLInputElement).value).toBe('01:01 AM')
     expect((right.dateInput as HTMLInputElement).value).toBe('2000/12/01')
@@ -639,7 +639,7 @@ describe('Datetimerange', () => {
       '1999-03-01 00:00:00',
       '1999-04-01 00:00:00',
     ])
-    // input date when minDate > maxDate
+    // 当 minDate > maxDate 时输入日期
     rightDateInput.value = '1998-01-01'
     triggerEvent(rightDateInput, 'input', true)
     triggerEvent(rightDateInput, 'change', true)
@@ -737,7 +737,7 @@ describe('Datetimerange', () => {
     input.trigger('blur')
     input.trigger('focus')
     await nextTick()
-    // simulate user input of invalid date
+    // 模拟用户输入无效日期
     const pickerss = document.querySelectorAll(
       '.el-date-range-picker__time-header .el-date-range-picker__editors-wrap'
     )
@@ -751,12 +751,12 @@ describe('Datetimerange', () => {
     const btn = document.querySelectorAll(
       '.el-picker-panel__footer .el-button'
     )[1] as HTMLElement
-    expect(btn.getAttribute('disabled')).not.toBeUndefined() // invalid input disables button
+    expect(btn.getAttribute('disabled')).not.toBeUndefined() // 无效输入会禁用按钮
     btn.click()
     await nextTick()
     const rangePanelWrapper = wrapper.findComponent(DatePickerRange)
     expect(rangePanelWrapper.exists()).toBe(true)
-    expect(rangePanelWrapper.vm.visible).toBe(true) // popper still open
+    expect(rangePanelWrapper.vm.visible).toBe(true) // popper 仍然打开
     expect(value.value).toBe('')
     leftDateInput.value = '2001-09-01'
     triggerEvent(leftDateInput, 'input', true)
@@ -765,7 +765,7 @@ describe('Datetimerange', () => {
     expect(btn.getAttribute('disabled')).not.toBeUndefined()
     btn.click()
     await nextTick()
-    expect(rangePanelWrapper.vm.visible).toBe(false) // popper dismiss
+    expect(rangePanelWrapper.vm.visible).toBe(false) // 关闭 popper
     expect(value.value).not.toBe('')
   })
 
@@ -876,7 +876,7 @@ describe('Datetimerange', () => {
     const rightList = document.querySelectorAll(
       '.is-right .el-time-spinner__list'
     ) as any
-    // auto set left time to right time
+    // 自动将左侧时间设置为右侧时间
     expect(
       rightList[0]!.querySelector('.el-time-spinner__item.is-active').innerHTML
     ).toBe(leftSelect[0])

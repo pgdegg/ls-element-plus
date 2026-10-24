@@ -70,8 +70,8 @@ export const getScrollBarWidth = (namespace: string): number => {
 }
 
 /**
- * Scroll with in the container element, positioning the **selected** element at the top
- * of the container
+ * 在容器元素内滚动，将**选中**元素定位到
+ * 容器顶部
  */
 export function scrollIntoView(
   container: HTMLElement,

@@ -6,9 +6,9 @@ export type Measurable = {
 }
 
 /**
- * triggerRef indicates the element that triggers popper
- * contentRef indicates the element of popper content
- * referenceRef indicates the element that popper content relative with
+ * triggerRef 指向触发 popper 的元素
+ * contentRef 指向 popper 内容的元素
+ * referenceRef 指向 popper 内容相对定位所参照的元素
  */
 export type ElPopperInjectionContext = {
   triggerRef: Ref<Measurable | undefined>

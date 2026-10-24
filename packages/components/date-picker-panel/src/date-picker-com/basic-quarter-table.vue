@@ -230,7 +230,7 @@ const handleRangeHover = (event: MouseEvent) => {
   if (target?.tagName !== 'TD') return
 
   const quarter = target.cellIndex
-  // can not select disabled date
+  // 无法选择已禁用的日期
   if (columns.value[quarter].disabled) return
 
   if (quarter !== lastQuarter) {
@@ -296,7 +296,7 @@ watch(
 
 defineExpose({
   /**
-   * @description focus current cell
+   * @description 聚焦当前单元格
    */
   focus,
 })

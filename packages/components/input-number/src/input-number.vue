@@ -244,7 +244,7 @@ const ensurePrecision = (val: number, coefficient: 1 | -1 = 1) => {
     return val
   }
 
-  // Solve the accuracy problem of JS decimal calculation by converting the value to integer.
+  // 通过将值转换为整数来解决 JS 小数计算的精度问题。
   return toPrecision(val + props.step * coefficient)
 }
 const handleKeydown = (event: KeyboardEvent | Event) => {
@@ -400,8 +400,8 @@ const handleFocus = (event: MouseEvent | FocusEvent) => {
 
 const handleBlur = (event: MouseEvent | FocusEvent) => {
   data.userInput = null
-  // When non-numeric content is entered into a numeric input box,
-  // the content displayed on the page is not cleared after the value is cleared. #18533
+  // 当向数字输入框输入非数字内容时，
+  // 值清除后页面上显示的内容未被清除。#18533
   // https://bugzilla.mozilla.org/show_bug.cgi?id=1398528
   if (data.currentValue === null && input.value?.input) {
     input.value.input.value = props.formatter?.('') ?? ''

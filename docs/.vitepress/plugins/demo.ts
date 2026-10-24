@@ -18,7 +18,7 @@ function createDemoContainer(md: MarkdownRenderer): ContainerOpts {
 
     render(tokens, idx) {
       const m = tokens[idx].info.trim().match(/^demo\s*(.*)$/)
-      if (tokens[idx].nesting === 1 /* means the tag is opening */) {
+      if (tokens[idx].nesting === 1 /* 表示该标签为开标签 */) {
         const description = m && m.length > 1 ? m[1] : ''
         const sourceFileToken = tokens[idx + 2]
         let source = ''

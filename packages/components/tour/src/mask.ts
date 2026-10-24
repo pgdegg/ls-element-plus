@@ -5,57 +5,57 @@ import type { PosInfo } from './types'
 
 export interface MaskProps {
   /**
-   * @description mask's zIndex
+   * @description 遮罩的 zIndex
    */
   zIndex?: number
   /**
-   * @description whether to show the mask
+   * @description 是否显示遮罩
    */
   visible?: boolean
   /**
-   * @description mask's fill
+   * @description 遮罩的填充色
    */
   fill?: string
   /***
-   * @description mask's transparent space position
+   * @description 遮罩透明区域的位置
    */
   pos?: PosInfo | null
   /**
-   * @description whether the target element can be clickable, when using mask
+   * @description 使用遮罩时目标元素是否可点击
    */
   targetAreaClickable?: boolean
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `MaskProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `MaskProps`。
  */
 export const maskProps = buildProps({
   /**
-   * @description mask's zIndex
+   * @description 遮罩的 zIndex
    */
   zIndex: {
     type: Number,
     default: 1001,
   },
   /**
-   * @description whether to show the mask
+   * @description 是否显示遮罩
    */
   visible: Boolean,
   /**
-   * @description mask's fill
+   * @description 遮罩的填充色
    */
   fill: {
     type: String,
     default: 'rgba(0,0,0,0.5)',
   },
   /***
-   * @description mask's transparent space position
+   * @description 遮罩透明区域的位置
    */
   pos: {
     type: definePropType<PosInfo | null>(Object),
   },
   /**
-   * @description whether the target element can be clickable, when using mask
+   * @description 使用遮罩时目标元素是否可点击
    */
   targetAreaClickable: {
     type: Boolean,
@@ -64,6 +64,6 @@ export const maskProps = buildProps({
 })
 
 /**
- * @deprecated Removed after 3.0.0, Use `MaskProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `MaskProps`。
  */
 export type MaskPropsPublic = ExtractPublicPropTypes<typeof maskProps>

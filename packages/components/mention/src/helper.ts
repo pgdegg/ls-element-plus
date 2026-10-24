@@ -81,17 +81,17 @@ export const getCursorPosition = (
     element.selectionStart !== null ? element.selectionStart : 0
   const selectionEnd = element.selectionEnd !== null ? element.selectionEnd : 0
   const position = options.useSelectionEnd ? selectionEnd : selectionStart
-  // We'll copy the properties below into the mirror div.
-  // Note that some browsers, such as Firefox, do not concatenate properties
-  // into their shorthand (e.g. padding-top, padding-bottom etc. -> padding),
-  // so we have to list every single property explicitly.
+  // 我们将把下面的属性复制到镜像 div 中。
+  // 注意，某些浏览器（如 Firefox）不会把属性合并
+  // 为简写形式（例如 padding-top、padding-bottom 等 -> padding），
+  // 因此我们必须显式列出每一个属性。
   const properties: string[] = [
-    'direction', // RTL support
+    'direction', // RTL 支持
     'boxSizing',
-    'width', // on Chrome and IE, exclude the scrollbar, so the mirror div wraps exactly as the textarea does
+    'width', // 在 Chrome 和 IE 上排除滚动条，使镜像 div 的换行与 textarea 完全一致
     'height',
     'overflowX',
-    'overflowY', // copy the scrollbar for IE
+    'overflowY', // 为 IE 复制滚动条
     'borderTopWidth',
     'borderRightWidth',
     'borderBottomWidth',
@@ -113,7 +113,7 @@ export const getCursorPosition = (
     'textAlign',
     'textTransform',
     'textIndent',
-    'textDecoration', // might not make a difference, but better be safe
+    'textDecoration', // 可能没有差别，但稳妥起见
     'letterSpacing',
     'wordSpacing',
     'tabSize',
@@ -127,7 +127,7 @@ export const getCursorPosition = (
     if (el?.parentNode) el.parentNode.removeChild(el)
   }
 
-  // The mirror div will replicate the textareas style
+  // 镜像 div 将复刻 textarea 的样式
   const div = document.createElement('div')
   div.id = 'input-textarea-caret-position-mirror-div'
   document.body.appendChild(div)
@@ -137,18 +137,18 @@ export const getCursorPosition = (
 
   const isInput = element.nodeName === 'INPUT'
 
-  // Default textarea styles
+  // textarea 默认样式
   style.whiteSpace = isInput ? 'nowrap' : 'pre-wrap'
-  if (!isInput) style.wordWrap = 'break-word' // only for textarea-s
+  if (!isInput) style.wordWrap = 'break-word' // 仅用于 textarea
 
-  // Position off-screen
-  style.position = 'absolute' // required to return coordinates properly
-  if (!options.debug) style.visibility = 'hidden' // not 'display: none' because we want rendering
+  // 置于屏幕外
+  style.position = 'absolute' // 这是正确返回坐标所必需的
+  if (!options.debug) style.visibility = 'hidden' // 不用 'display: none'，因为我们需要渲染
 
-  // Transfer the element's properties to the div
+  // 将元素的属性转移到 div
   properties.forEach((prop) => {
     if (isInput && prop === 'lineHeight') {
-      // Special case for <input>s because text is rendered centered and line height may be != height
+      // 对 <input> 的特殊处理，因为文本居中渲染且行高可能不等于高度
       if (computed.boxSizing === 'border-box') {
         const height = Number.parseInt(computed.height as string)
         const outerHeight =
@@ -174,28 +174,28 @@ export const getCursorPosition = (
   })
 
   if (isFirefox()) {
-    // Firefox lies about the overflow property for textareas: https://bugzilla.mozilla.org/show_bug.cgi?id=984275
+    // Firefox 对 textarea 的 overflow 属性处理有偏差：https://bugzilla.mozilla.org/show_bug.cgi?id=984275
     if (element.scrollHeight > Number.parseInt(computed.height as string)) {
       style.overflowY = 'scroll'
     }
   } else {
-    style.overflow = 'hidden' // for Chrome to not render a scrollbar; IE keeps overflowY = 'scroll'
+    style.overflow = 'hidden' // 让 Chrome 不渲染滚动条；IE 保持 overflowY = 'scroll'
   }
 
   div.textContent = element.value.slice(0, Math.max(0, position))
-  // The second special handling for input type="text" vs textarea:
-  // spaces need to be replaced with non-breaking spaces - http://stackoverflow.com/a/13402035/1269037
+  // 对 input type="text" 与 textarea 的第二项特殊处理：
+  // 空格需替换为不换行空格 - http://stackoverflow.com/a/13402035/1269037
   if (isInput && div.textContent) {
     div.textContent = div.textContent.replace(/\s/g, '\u00A0')
   }
 
   const span = document.createElement('span')
-  // Wrapping must be replicated *exactly*, including when a long word gets
-  // onto the next line, with whitespace at the end of the line before (#7).
-  // The  *only* reliable way to do that is to copy the *entire* rest of the
-  // textareas content into the <span> created at the caret position.
-  // For inputs, just '.' would be enough, but no need to bother.
-  span.textContent = element.value.slice(Math.max(0, position)) || '.' // || because a completely empty faux span doesn't render at all
+  // 换行必须*精确*复刻，包括长单词换到
+  // 下一行、以及行尾留白的情形（#7）。
+  // 做到这一点*唯一*可靠的方式是把 textarea 剩余的*全部*内容复制到
+  // 光标位置处创建的 <span> 中。
+  // 对于 input，仅用 '.' 就足够，但不必如此麻烦。
+  span.textContent = element.value.slice(Math.max(0, position)) || '.' // || 因为完全为空的伪 span 根本不会渲染
   span.style.position = 'relative'
   span.style.left = `${-element.scrollLeft}px`
   span.style.top = `${-element.scrollTop}px`
@@ -204,8 +204,8 @@ export const getCursorPosition = (
   const relativePosition = {
     top: span.offsetTop + Number.parseInt(computed.borderTopWidth as string),
     left: span.offsetLeft + Number.parseInt(computed.borderLeftWidth as string),
-    // We don't use line-height since it may be too large for position. Eg. 34px
-    // for input
+    // 我们不使用 line-height，因为它对于定位可能过大。例如 34px
+    // 用于 input
     height: Number.parseInt(computed.fontSize as string) * 1.5,
   }
 

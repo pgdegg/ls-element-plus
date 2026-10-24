@@ -49,7 +49,7 @@
     }
   }
 
-  // when data is empty
+  // 数据为空时
   @include e(empty-block) {
     position: sticky;
     left: 0;
@@ -62,14 +62,14 @@
   }
 
   @include e(empty-text) {
-    // min-height doesn't work in IE10 and IE11 https://github.com/philipwalton/flexbugs#3-min-height-on-a-flex-container-wont-apply-to-its-flex-items
-    // set empty text line height up to contrainer min-height as workaround.
+    // min-height 在 IE10 和 IE11 中不生效 https://github.com/philipwalton/flexbugs#3-min-height-on-a-flex-container-wont-apply-to-its-flex-items
+    // 将空文本行高设为容器 min-height 作为变通方案。
     line-height: 60px;
     width: 50%;
     color: getCssVar('text-color', 'secondary');
   }
 
-  // expand the row
+  // 展开行
   @include e(expand-column) {
     .cell {
       padding: 0;
@@ -104,7 +104,7 @@
   @include e(expanded-cell) {
     background-color: getCssVar('table-expanded-cell-bg-color');
 
-    // increase the weight purely
+    // 单纯提高优先级
     &[class*='cell'] {
       padding: 20px 50px;
     }
@@ -120,7 +120,7 @@
   }
 
   @include e(append-wrapper) {
-    // avoid overlapping margin https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing
+    // 避免外边距重叠 https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing
     overflow: hidden;
   }
 
@@ -697,7 +697,7 @@
   }
 }
 
-// HIS component customization.
+// HIS 组件定制。
 .el-table {
   .cell {
     line-height: unset;

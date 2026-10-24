@@ -12,102 +12,102 @@ export type CheckboxGroupValueType = Exclude<CheckboxValueType, boolean>[]
 
 export interface CheckboxGroupProps extends Pick<AriaProps, 'ariaLabel'> {
   /**
-   * @description binding value
+   * @description 绑定值
    */
   modelValue?: CheckboxGroupValueType
   /**
-   * @description whether the nesting checkboxes are disabled
+   * @description 嵌套的复选框是否禁用
    */
   disabled?: boolean
   /**
-   * @description minimum number of checkbox checked
+   * @description 最少选中的复选框数量
    */
   min?: number
   /**
-   * @description maximum number of checkbox checked
+   * @description 最多选中的复选框数量
    */
   max?: number
   /**
-   * @description size of checkbox
+   * @description 复选框尺寸
    */
   size?: ComponentSize
   /**
-   * @description border and background color when button is active
+   * @description 按钮激活时的边框和背景色
    */
   fill?: string
   /**
-   * @description font color when button is active
+   * @description 按钮激活时的字体颜色
    */
   textColor?: string
   /**
-   * @description element tag of the checkbox group
+   * @description 复选框组的元素标签
    */
   tag?: string
   /**
-   * @description whether to trigger form validation
+   * @description 是否触发表单校验
    */
   validateEvent?: boolean
   /**
-   * @description data of the options, the key of `value` and `label` and `disabled` can be customize by `props`
+   * @description 选项数据，`value`、`label` 和 `disabled` 的键可通过 `props` 自定义
    */
   options?: CheckboxOption[]
   /**
-   * @description configuration options
+   * @description 配置选项
    */
   props?: CheckboxOptionProps
   /**
-   * @description component type to render options (e.g. `'button'`)
+   * @description 渲染选项的组件类型（如 `'button'`）
    */
   type?: 'checkbox' | 'button'
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `CheckboxGroupProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `CheckboxGroupProps`
  */
 export const checkboxGroupProps = buildProps({
   /**
-   * @description binding value
+   * @description 绑定值
    */
   modelValue: {
     type: definePropType<CheckboxGroupValueType>(Array),
     default: () => [],
   },
   /**
-   * @description whether the nesting checkboxes are disabled
+   * @description 嵌套的复选框是否禁用
    */
   disabled: {
     type: Boolean,
     default: undefined,
   },
   /**
-   * @description minimum number of checkbox checked
+   * @description 最少选中的复选框数量
    */
   min: Number,
   /**
-   * @description maximum number of checkbox checked
+   * @description 最多选中的复选框数量
    */
   max: Number,
   /**
-   * @description size of checkbox
+   * @description 复选框尺寸
    */
   size: useSizeProp,
   /**
-   * @description border and background color when button is active
+   * @description 按钮激活时的边框和背景色
    */
   fill: String,
   /**
-   * @description font color when button is active
+   * @description 按钮激活时的字体颜色
    */
   textColor: String,
   /**
-   * @description element tag of the checkbox group
+   * @description 复选框组的元素标签
    */
   tag: {
     type: String,
     default: 'div',
   },
   /**
-   * @description whether to trigger form validation
+   * @description 是否触发表单校验
    */
   validateEvent: {
     type: Boolean,
@@ -134,7 +134,7 @@ export const checkboxGroupEmits = {
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `CheckboxGroupProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `CheckboxGroupProps`
  */
 export type CheckboxGroupPropsPublic = ExtractPublicPropTypes<
   typeof checkboxGroupProps

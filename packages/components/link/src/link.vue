@@ -57,7 +57,7 @@ const linkKls = computed(() => [
   ns.is('hover-underline', underline.value === 'hover' && !props.disabled),
 ])
 
-// Boolean compatibility
+// Boolean 兼容性
 const underline = computed(() => {
   if (isBoolean(props.underline)) {
     return props.underline ? 'hover' : 'never'

@@ -4,36 +4,36 @@ import type { ExtractPublicPropTypes } from 'vue'
 
 export interface EmptyProps {
   /**
-   * @description image URL of empty
+   * @description 空状态的图片 URL
    */
   image?: string
   /**
-   * @description image size (width) of empty
+   * @description 空状态的图片尺寸（宽度）
    */
   imageSize?: number
   /**
-   * @description description of empty
+   * @description 空状态的描述
    */
   description?: string
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `EmptyProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `EmptyProps`。
  */
 export const emptyProps = buildProps({
   /**
-   * @description image URL of empty
+   * @description 空状态的图片 URL
    */
   image: {
     type: String,
     default: '',
   },
   /**
-   * @description image size (width) of empty
+   * @description 空状态的图片尺寸（宽度）
    */
   imageSize: Number,
   /**
-   * @description description of empty
+   * @description 空状态的描述
    */
   description: {
     type: String,
@@ -42,6 +42,6 @@ export const emptyProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `EmptyProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `EmptyProps`。
  */
 export type EmptyPropsPublic = ExtractPublicPropTypes<typeof emptyProps>

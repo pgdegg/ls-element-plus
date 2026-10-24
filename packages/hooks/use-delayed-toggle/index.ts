@@ -6,39 +6,39 @@ import type { ToRefs } from 'vue'
 
 export interface UseDelayedToggleProps {
   /**
-   * @description delay of appearance, in millisecond, not valid in controlled mode
+   * @description 出现延迟，单位为毫秒，在受控模式下无效
    */
   showAfter?: number
   /**
-   * @description delay of disappear, in millisecond, not valid in controlled mode
+   * @description 消失延迟，单位为毫秒，在受控模式下无效
    */
   hideAfter?: number
   /**
-   * @description disappear automatically, in millisecond, not valid in controlled mode
+   * @description 自动消失时长，单位为毫秒，在受控模式下无效
    */
   autoClose?: number
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `UseDelayedToggleProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `UseDelayedToggleProps`。
  */
 export const useDelayedToggleProps = buildProps({
   /**
-   * @description delay of appearance, in millisecond, not valid in controlled mode
+   * @description 出现延迟，单位为毫秒，在受控模式下无效
    */
   showAfter: {
     type: Number,
     default: 0,
   },
   /**
-   * @description delay of disappear, in millisecond, not valid in controlled mode
+   * @description 消失延迟，单位为毫秒，在受控模式下无效
    */
   hideAfter: {
     type: Number,
     default: 200,
   },
   /**
-   * @description disappear automatically, in millisecond, not valid in controlled mode
+   * @description 自动消失时长，单位为毫秒，在受控模式下无效
    */
   autoClose: {
     type: Number,

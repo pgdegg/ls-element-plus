@@ -192,13 +192,13 @@ const FixedSizeGrid = createGrid({
       0,
       Math.min(
         totalRow - 1,
-        startIndex + numVisibleRows - 1 // -1 is because stop index is inclusive
+        startIndex + numVisibleRows - 1 // -1 是因为停止索引为闭区间（包含）
       )
     )
   },
   /**
-   * Fixed size grid does not need this cache
-   * Using any to bypass it, TODO: Using type inference to fix this.
+   * 固定尺寸网格不需要此缓存
+   * 使用 any 绕过它，TODO：使用类型推断修复。
    */
   initCache: () => undefined as any,
 

@@ -7,7 +7,7 @@ export const getCssVarName = (namespace: string, type: string) => {
 }
 
 /**
- * get css var value by css var name
+ * 按 CSS 变量名获取 CSS 变量值
  * @param name
  * @returns
  */
@@ -35,7 +35,7 @@ export const getColorValue = (type: string) => {
   return color
 }
 
-// copy color
+// 复制颜色
 
 export const useCopyColor = () => {
   const source = ref('')

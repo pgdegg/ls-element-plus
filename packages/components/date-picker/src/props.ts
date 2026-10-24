@@ -7,7 +7,7 @@ import type { DatePickerType } from '@element-plus/components/date-picker-panel/
 export const datePickerProps = buildProps({
   ...timePickerDefaultProps,
   /**
-   * @description type of the picker
+   * @description 选择器的类型
    */
   type: {
     type: definePropType<DatePickerType>(String),

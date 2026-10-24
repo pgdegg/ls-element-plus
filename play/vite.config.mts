@@ -20,7 +20,7 @@ const IGNORED_DEPENDENCIES = ['vue-component-type-helpers']
 export default defineConfig(async ({ mode }): Promise<UserConfig> => {
   const env = loadEnv(mode, process.cwd(), '')
   let { dependencies } = getPackageDependencies(epPackage)
-  // exclude dts-only deps and published type helpers
+  // 排除仅含 dts 的依赖与已发布的类型辅助函数
   dependencies = dependencies.filter(
     (dep) => !dep.startsWith('@types/') && !IGNORED_DEPENDENCIES.includes(dep)
   )

@@ -26,14 +26,14 @@ export interface UseTooltipProps
     UseTooltipTriggerProps,
     PopperArrowProps {
   /**
-   * @description whether the tooltip content has an arrow
+   * @description tooltip 内容是否带有箭头
    */
   showArrow?: boolean
   'onUpdate:visible'?: (value: boolean) => void
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `UseTooltipProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `UseTooltipProps`。
  */
 export const useTooltipProps = buildProps({
   ...popperProps,
@@ -42,7 +42,7 @@ export const useTooltipProps = buildProps({
   ...useTooltipTriggerProps,
   ...popperArrowProps,
   /**
-   * @description whether the tooltip content has an arrow
+   * @description tooltip 内容是否带有箭头
    */
   showArrow: {
     type: Boolean,
@@ -61,12 +61,12 @@ export const tooltipEmits = [
 ] as const
 
 /**
- * @deprecated Removed after 3.0.0, Use `UseTooltipProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `UseTooltipProps`。
  */
 export type ElTooltipProps = UseTooltipProps
 
 /**
- * @deprecated Removed after 3.0.0, Use `UseTooltipProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `UseTooltipProps`。
  */
 export type ElTooltipPropsPublic = ExtractPublicPropTypes<
   typeof useTooltipProps

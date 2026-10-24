@@ -107,7 +107,7 @@ describe('DatePickerPanel', () => {
         ]) {
           await cell.trigger('click')
         }
-        expect(prevHtml).toBe(wrapper.html()) // test change view disable
+        expect(prevHtml).toBe(wrapper.html()) // 测试切换视图时禁用
         expect(modelValue.value).toBeUndefined()
         expect(onUpdateModelValue).not.toHaveBeenCalled()
         expect(onPanelChange).not.toHaveBeenCalled()
@@ -179,7 +179,7 @@ describe('DatePickerPanel', () => {
         ).element as HTMLInputElement
         timeInput.focus()
         await nextTick()
-        // both input shows correct value
+        // 两个输入框显示正确的值
         expect(dateInput.value).toBe('2018/03/05')
         expect(timeInput.value).toBe('10:15 AM')
 
@@ -209,10 +209,10 @@ describe('DatePickerPanel', () => {
           '.el-date-picker__time-header > span:nth-child(2) input'
         )
         await timeInput.trigger('focus')
-        // both input shows correct value
+        // 两个输入框显示正确的值
         expect((dateInput.element as HTMLInputElement).value).toBe('2000-10-01')
         expect((timeInput.element as HTMLInputElement).value).toBe('10:00:01')
-        // time spinner highlight is correct
+        // 时间滚动器高亮正确
         let spinners = wrapper
           .findAll('.el-time-spinner ul li.is-active')
           .map((s) => s.element)
@@ -240,7 +240,7 @@ describe('DatePickerPanel', () => {
 
         await wrapper.find('.el-picker-panel__link-btn').trigger('click')
         await nextTick()
-        // test if is current time (deviation 10 seconds)
+        // 测试是否为当前时间（偏差 10 秒）
         expect(dayjs(value.value).diff(dayjs()) < 10).toBeTruthy()
       })
 
@@ -292,7 +292,7 @@ describe('DatePickerPanel', () => {
           />
         ))
 
-        // click now button
+        // 点击现在按钮
         const btn = wrapper.find('.el-picker-panel__footer .is-text')
           .element as HTMLElement
         btn.click()
@@ -312,7 +312,7 @@ describe('DatePickerPanel', () => {
           />
         ))
 
-        // now button is disabled
+        // 现在按钮处于禁用状态
         const btn = wrapper.find('.el-picker-panel__footer .is-text')
           .element as HTMLElement
         expect(btn.getAttribute('disabled')).not.toBeUndefined()
@@ -329,14 +329,14 @@ describe('DatePickerPanel', () => {
           />
         ))
 
-        // changed month / year should not effect picked time
+        // 切换月份/年份不应影响已选择的时间
         await wrapper
           .find('.el-date-picker__header .arrow-right')
           .trigger('click')
         await wrapper
           .find('.el-date-picker__header .d-arrow-right')
           .trigger('click')
-        // click confirm button
+        // 点击确认按钮
         const buttons = wrapper.findAll('.el-picker-panel__footer .el-button')
         await buttons[1].trigger('click')
 
@@ -426,7 +426,7 @@ describe('DatePickerPanel', () => {
         await someDateTd.trigger('click')
         await timeInput.trigger('focus')
         expect((timeInput.element as HTMLInputElement).value).toBe('12:24:48')
-        // time spinner highlight is correct
+        // 时间滚动器高亮正确
         const spinners = wrapper
           .findAll('.el-time-spinner ul li.is-active')
           .map((s) => s.element)
@@ -479,14 +479,14 @@ describe('DatePickerPanel', () => {
         expect(timeInput.value).toBe('10:10:00')
       })
 
-      // fix #15196
+      // 修复 #15196
       it('first click accuracy', async () => {
         const value = ref('')
         const wrapper = mount(() => (
           <DatePickerPanel v-model={value.value} type="datetime" />
         ))
         const dayItems = wrapper.findAll('.el-date-table-cell__text')
-        const targetDay = dayItems[15].element as HTMLElement // Try to make sure the date is this month
+        const targetDay = dayItems[15].element as HTMLElement // 尽量确保日期为本月
         const dayText = targetDay.textContent
         await dayItems[15].trigger('click')
         await nextTick()
@@ -661,7 +661,7 @@ describe('DatePickerPanel', () => {
           ).element,
         }
         await nextTick()
-        // both input shows correct value
+        // 两个输入框显示正确的值
         expect((left.dateInput as HTMLInputElement).value).toBe('2000/11/01')
         expect((left.timeInput as HTMLInputElement).value).toBe('01:01 AM')
         expect((right.dateInput as HTMLInputElement).value).toBe('2000/12/01')
@@ -735,7 +735,7 @@ describe('DatePickerPanel', () => {
         expect(
           value.value.map((_) => dayjs(_).format(formatStr))
         ).toStrictEqual(['1999-03-01 00:00:00', '1999-04-01 00:00:00'])
-        // input date when minDate > maxDate
+        // 当 minDate > maxDate 时输入日期
         rightDateInput.value = '1998-01-01'
         rightDateInput.dispatchEvent(new Event('input'))
         rightDateInput.dispatchEvent(new Event('change'))
@@ -813,7 +813,7 @@ describe('DatePickerPanel', () => {
           />
         ))
 
-        // simulate user input of invalid date
+        // 模拟用户输入无效日期
         const pickerss = wrapper.findAll(
           '.el-date-range-picker__time-header .el-date-range-picker__editors-wrap'
         )
@@ -928,7 +928,7 @@ describe('DatePickerPanel', () => {
         await rightTimeInput.trigger('blur')
         await rightTimeInput.trigger('focus')
         const rightList = wrapper.findAll('.is-right .el-time-spinner__list')
-        // auto set left time to right time
+        // 自动将左侧时间设置为右侧时间
         expect(
           rightList[0].element?.querySelector(
             '.el-time-spinner__item.is-active'
@@ -1067,22 +1067,22 @@ describe('DatePickerPanel', () => {
         expect(leftDateInput.value).toBe('2026-04-01')
         expect(rightDateInput.value).toBe('2026-05-01')
 
-        // Simulate the user to change the end date and month from 05 to 04 (intermediate state, the date has not been changed yet)
+        // 模拟用户将结束日期和月份从 05 改为 04（中间状态，日期尚未更改）
         rightDateInput.value = '2026-04-01'
         rightDateInput.dispatchEvent(new Event('input'))
         await nextTick()
 
-        // Intermediate input should not trigger correction, start date should remain unchanged
+        // 中间输入状态不应触发修正，开始日期应保持不变
         expect(leftDateInput.value).toBe('2026-04-01')
         expect(value.value[0]).toStrictEqual(new Date(2026, 3, 1, 1, 0, 0))
 
-        // User continues to input the complete target date
+        // 用户继续输入完整的目标日期
         rightDateInput.value = '2026-04-20'
         rightDateInput.dispatchEvent(new Event('input'))
         rightDateInput.dispatchEvent(new Event('change'))
         await nextTick()
 
-        // Final value is correct, start date is not corrupted
+        // 最终值正确，开始日期未被破坏
         expect(leftDateInput.value).toBe('2026-04-01')
         expect(value.value[0]).toStrictEqual(new Date(2026, 3, 1, 1, 0, 0))
       })
@@ -1184,7 +1184,7 @@ describe('DatePickerPanel', () => {
       })
 
       it('auto-adjusted maxDate should not be a disabled date when input start date', async () => {
-        // Disable dates after 2026-04-17
+        // 禁用 2026-04-17 之后的日期
         const disabledDate = (date: Date) =>
           date.getTime() > new Date(2026, 3, 17).getTime()
         const value = ref([
@@ -1207,7 +1207,7 @@ describe('DatePickerPanel', () => {
           '.el-date-range-picker__time-picker-wrap:nth-child(1) input'
         ).element as HTMLInputElement
 
-        // Change start date to 2026-03-20, auto-adjusted maxDate should not exceed 2026-04-17
+        // 将开始日期改为 2026-03-20，自动调整的 maxDate 不应超过 2026-04-17
         leftDateInput.value = '2026-03-20'
         leftDateInput.dispatchEvent(new Event('input'))
         leftDateInput.dispatchEvent(new Event('change'))
@@ -1219,7 +1219,7 @@ describe('DatePickerPanel', () => {
       })
 
       it('auto-adjusted minDate should not be a disabled date when input end date', async () => {
-        // Disable dates before 2026-01-05
+        // 禁用 2026-01-05 之前的日期
         const disabledDate = (date: Date) =>
           date.getTime() < new Date(2026, 0, 5).getTime()
         const value = ref([
@@ -1242,7 +1242,7 @@ describe('DatePickerPanel', () => {
           '.el-date-range-picker__time-picker-wrap:nth-child(1) input'
         ).element as HTMLInputElement
 
-        // Change end date to 2026-01-08, auto-adjusted minDate should not be earlier than 2026-01-05
+        // 将结束日期改为 2026-01-08，自动调整的 minDate 不应早于 2026-01-05
         rightDateInput.value = '2026-01-08'
         rightDateInput.dispatchEvent(new Event('input'))
         rightDateInput.dispatchEvent(new Event('change'))
@@ -1254,7 +1254,7 @@ describe('DatePickerPanel', () => {
       })
 
       it('auto-adjusted maxDate should converge to minDate when all dates in between are disabled', async () => {
-        // Disable dates on and after 2026-03-21
+        // 禁用 2026-03-21 及之后的日期
         const disabledDate = (date: Date) =>
           date.getTime() > new Date(2026, 2, 20).getTime()
         const value = ref([
@@ -1277,8 +1277,8 @@ describe('DatePickerPanel', () => {
           '.el-date-range-picker__time-picker-wrap:nth-child(1) input'
         ).element as HTMLInputElement
 
-        // Change start date to 2026-03-20 (valid), all dates from 03-21 to 04-20 are disabled,
-        // backward search converges to minDate itself, maxDate = minDate (same-day range)
+        // 将开始日期改为 2026-03-20（有效），03-21 至 04-20 的所有日期均被禁用，
+        // 向后搜索收敛到 minDate 本身，maxDate = minDate（同日范围）
         leftDateInput.value = '2026-03-20'
         leftDateInput.dispatchEvent(new Event('input'))
         leftDateInput.dispatchEvent(new Event('change'))

@@ -37,7 +37,7 @@ import type { TabPaneName, TabsPaneContext } from './constants'
 
 export const tabsProps = buildProps({
   /**
-   * @description type of Tab
+   * @description Tab 的类型
    */
   type: {
     type: String,
@@ -45,7 +45,7 @@ export const tabsProps = buildProps({
     default: '',
   },
   /**
-   * @description type of tabs fixed on the left; inherits `type` when empty
+   * @description 固定在左侧的 tabs 类型；为空时继承 `type`
    */
   leftType: {
     type: String,
@@ -53,7 +53,7 @@ export const tabsProps = buildProps({
     default: '',
   },
   /**
-   * @description type of tabs fixed on the right; inherits `type` when empty
+   * @description 固定在右侧的 tabs 类型；为空时继承 `type`
    */
   rightType: {
     type: String,
@@ -61,31 +61,31 @@ export const tabsProps = buildProps({
     default: '',
   },
   /**
-   * @description whether Tab is closable
+   * @description Tab 是否可关闭
    */
   closable: Boolean,
   /**
-   * @description whether Tab is addable
+   * @description Tab 是否可添加
    */
   addable: Boolean,
   /**
-   * @description binding value, name of the selected tab
+   * @description 绑定值，即当前选中 tab 的名称
    */
   modelValue: {
     type: [String, Number],
   },
   /**
-   * @description initial value when `model-value` is not set
+   * @description 未设置 `model-value` 时的初始值
    */
   defaultValue: {
     type: [String, Number],
   },
   /**
-   * @description whether Tab is addable and closable
+   * @description Tab 是否可添加且可关闭
    */
   editable: Boolean,
   /**
-   * @description position of tabs
+   * @description tabs 的位置
    */
   tabPosition: {
     type: String,
@@ -93,7 +93,7 @@ export const tabsProps = buildProps({
     default: 'top',
   },
   /**
-   * @description hook function before switching tab. If `false` is returned or a `Promise` is returned and then is rejected, switching will be prevented
+   * @description 切换 tab 前的钩子函数。返回 `false`，或返回 `Promise` 且被 reject 时，将阻止切换
    */
   beforeLeave: {
     type: definePropType<
@@ -102,11 +102,11 @@ export const tabsProps = buildProps({
     default: () => true,
   },
   /**
-   * @description whether width of tab automatically fits its container
+   * @description tab 宽度是否自动适配其容器
    */
   stretch: Boolean,
   /**
-   * @description tabs tabindex
+   * @description tabs 的 tabindex
    */
   tabindex: {
     type: [String, Number],
@@ -170,7 +170,7 @@ const Tabs = defineComponent({
     )
 
     const setCurrentName = async (value?: TabPaneName, trigger = false) => {
-      // should do nothing.
+      // 什么都不做。
       if (currentName.value === value || isUndefined(value)) return
 
       try {

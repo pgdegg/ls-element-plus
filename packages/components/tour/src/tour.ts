@@ -16,120 +16,120 @@ import type { TourGap, TourMask } from './types'
 
 export interface TourProps {
   /**
-   * @description open tour
+   * @description 开启 tour
    */
   modelValue?: boolean
   /**
-   * @description what is the current step
+   * @description 当前是第几步
    */
   current?: number
   /**
-   * @description whether to show the arrow
+   * @description 是否显示箭头
    */
   showArrow?: boolean
   /**
-   * @description whether to show a close button
+   * @description 是否显示关闭按钮
    */
   showClose?: boolean
   /**
-   * @description custom close icon
+   * @description 自定义关闭图标
    */
   closeIcon?: IconPropType
   /**
-   * @description position of the guide card relative to the target element
+   * @description 引导卡片相对于目标元素的位置
    */
   placement?: TourContentProps['placement']
   /**
-   * @description custom style for content
+   * @description 内容的自定义样式
    */
   contentStyle?: CSSProperties
   /**
-   * @description whether to enable masking, change mask style and fill color by pass custom props
+   * @description 是否启用遮罩，可通过传入自定义 props 修改遮罩样式和填充色
    */
   mask?: TourMask
   /**
-   * @description transparent gap between mask and target
+   * @description 遮罩与目标之间的透明间距
    */
   gap?: TourGap
   /**
-   * @description tour's zIndex
+   * @description tour 的 zIndex
    */
   zIndex?: number
   /**
-   * @description support pass custom scrollIntoView options
+   * @description 支持传入自定义 scrollIntoView 选项
    */
   scrollIntoViewOptions?: boolean | ScrollIntoViewOptions
   /**
-   * @description type, affects the background color and text color
+   * @description 类型，影响背景色和文字颜色
    */
   type?: 'default' | 'primary'
   /**
-   * @description which element the TourContent appends to
+   * @description TourContent 挂载到哪个元素
    */
   appendTo?: string | HTMLElement
   /**
-   * @description whether the Tour can be closed by pressing ESC
+   * @description 是否可通过按 ESC 关闭 Tour
    */
   closeOnPressEscape?: boolean
   /**
-   * @description whether the target element can be clickable, when using mask
+   * @description 使用遮罩时目标元素是否可点击
    */
   targetAreaClickable?: boolean
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `TourProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `TourProps`。
  */
 export const tourProps = buildProps({
   /**
-   * @description open tour
+   * @description 开启 tour
    */
   modelValue: Boolean,
   /**
-   * @description what is the current step
+   * @description 当前是第几步
    */
   current: {
     type: Number,
   },
   /**
-   * @description whether to show the arrow
+   * @description 是否显示箭头
    */
   showArrow: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description whether to show a close button
+   * @description 是否显示关闭按钮
    */
   showClose: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description custom close icon
+   * @description 自定义关闭图标
    */
   closeIcon: {
     type: iconPropType,
   },
   /**
-   * @description position of the guide card relative to the target element
+   * @description 引导卡片相对于目标元素的位置
    */
   placement: tourContentProps.placement,
   /**
-   * @description custom style for content
+   * @description 内容的自定义样式
    */
   contentStyle: {
     type: definePropType<CSSProperties>([Object]),
   },
   /**
-   * @description whether to enable masking, change mask style and fill color by pass custom props
+   * @description 是否启用遮罩，可通过传入自定义 props 修改遮罩样式和填充色
    */
   mask: {
     type: definePropType<TourMask>([Boolean, Object]),
     default: true,
   },
   /**
-   * @description transparent gap between mask and target
+   * @description 遮罩与目标之间的透明间距
    */
   gap: {
     type: definePropType<TourGap>(Object),
@@ -139,13 +139,13 @@ export const tourProps = buildProps({
     }),
   },
   /**
-   * @description tour's zIndex
+   * @description tour 的 zIndex
    */
   zIndex: {
     type: Number,
   },
   /**
-   * @description support pass custom scrollIntoView options
+   * @description 支持传入自定义 scrollIntoView 选项
    */
   scrollIntoViewOptions: {
     type: definePropType<boolean | ScrollIntoViewOptions>([Boolean, Object]),
@@ -154,27 +154,27 @@ export const tourProps = buildProps({
     }),
   },
   /**
-   * @description type, affects the background color and text color
+   * @description 类型，影响背景色和文字颜色
    */
   type: {
     type: definePropType<'default' | 'primary'>(String),
   },
   /**
-   * @description which element the TourContent appends to
+   * @description TourContent 挂载到哪个元素
    */
   appendTo: {
     type: definePropType<string | HTMLElement>([String, Object]),
     default: 'body',
   },
   /**
-   * @description whether the Tour can be closed by pressing ESC
+   * @description 是否可通过按 ESC 关闭 Tour
    */
   closeOnPressEscape: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description whether the target element can be clickable, when using mask
+   * @description 使用遮罩时目标元素是否可点击
    */
   targetAreaClickable: {
     type: Boolean,
@@ -183,7 +183,7 @@ export const tourProps = buildProps({
 })
 
 /**
- * @deprecated Removed after 3.0.0, Use `TourProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `TourProps`。
  */
 export type TourPropsPublic = ExtractPublicPropTypes<typeof tourProps>
 export type TourInstance = InstanceType<typeof Tour> & unknown

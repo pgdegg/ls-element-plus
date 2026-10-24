@@ -9,7 +9,7 @@ export interface SvPanelProps {
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `SvPanelProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `SvPanelProps`
  */
 export const svPanelProps = buildProps({
   color: {
@@ -20,6 +20,6 @@ export const svPanelProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `SvPanelProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `SvPanelProps`
  */
 export type SvPanelPropsPublic = ExtractPublicPropTypes<typeof svPanelProps>

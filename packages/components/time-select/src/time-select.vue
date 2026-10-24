@@ -177,11 +177,11 @@ const inputElement = useInputElement(() => select.value?.inputElement)
 defineExpose({
   inputElement,
   /**
-   * @description blur the Input component
+   * @description 使 Input 组件失焦
    */
   blur,
   /**
-   * @description focus the Input component
+   * @description 聚焦 Input 组件
    */
   focus,
 })

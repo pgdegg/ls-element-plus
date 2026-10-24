@@ -17,59 +17,59 @@ export interface PopoverProps extends Omit<
   'ariaLabel' | 'gpuAcceleration' | 'rawContent'
 > {
   /**
-   * @description [tabindex](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex) of Popover
+   * @description Popover 的 [tabindex](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex)
    */
   tabindex?: string | number
   /**
-   * @description popover title
+   * @description popover 标题
    */
   title?: string
   /**
-   * @description popover width
+   * @description popover 宽度
    */
   width?: string | number
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `PopoverProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `PopoverProps`。
  */
 export const popoverProps = buildProps({
   ...omit(useTooltipProps, ['ariaLabel', 'gpuAcceleration', 'rawContent']),
   /**
-   * @description popover placement
+   * @description popover 的弹出位置
    */
   placement: dropdownProps.placement,
   /**
-   * @description [tabindex](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex) of Popover
+   * @description Popover 的 [tabindex](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex)
    */
   tabindex: dropdownProps.tabindex,
   /**
-   * @description Tooltip theme, built-in theme: `dark` / `light`
+   * @description Tooltip 主题，内置主题：`dark` / `light`
    */
   effect: {
     ...useTooltipProps.effect,
     default: 'light',
   },
   /**
-   * @description popover title
+   * @description popover 标题
    */
   title: String,
   /**
-   * @description popover width
+   * @description popover 宽度
    */
   width: {
     type: [String, Number],
     default: 150,
   },
   /**
-   * @description popover offset
+   * @description popover 偏移量
    */
   offset: {
     ...useTooltipProps.offset,
     default: undefined,
   },
   /**
-   * @description when popover inactive and `persistent` is `false` , popover will be destroyed
+   * @description 当 popover 不处于激活状态且 `persistent` 为 `false` 时，popover 将被销毁
    */
   persistent: {
     ...useTooltipProps.persistent,
@@ -78,7 +78,7 @@ export const popoverProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `PopoverProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `PopoverProps`。
  */
 export type PopoverPropsPublic = ExtractPublicPropTypes<typeof popoverProps>
 
@@ -94,7 +94,7 @@ export type PopoverEmits = typeof popoverEmits
 export type PopoverInstance = InstanceType<typeof Popover> & unknown
 
 /**
- * @description default values for PopoverProps
+ * @description PopoverProps 的默认值
  */
 export const popoverPropsDefaults = {
   ...omit(useTooltipContentPropsDefaults, ['gpuAcceleration']),

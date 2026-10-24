@@ -6,94 +6,94 @@ import type Statistic from './statistic.vue'
 
 export interface StatisticProps {
   /**
-   * @description Setting the decimal point
+   * @description 设置小数点
    */
   decimalSeparator?: string
   /**
-   * @description Sets the thousandth identifier
+   * @description 设置千分位分隔符
    */
   groupSeparator?: string
   /**
-   * @description numerical precision
+   * @description 数值精度
    */
   precision?: number
   /**
-   * @description Custom numerical presentation
+   * @description 自定义数值展示
    */
   formatter?: (...args: any[]) => string | number
   /**
-   * @description Numerical content
+   * @description 数值内容
    */
   value?: number | Dayjs
   /**
-   * @description Sets the prefix of a number
+   * @description 设置数字前缀
    */
   prefix?: string
   /**
-   * @description  Sets the suffix of a number
+   * @description 设置数字后缀
    */
   suffix?: string
   /**
-   * @description Numeric titles
+   * @description 数值标题
    */
   title?: string
   /**
-   * @description Styles numeric values
+   * @description 数值样式
    */
   valueStyle?: StyleValue
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `StatisticProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `StatisticProps`。
  */
 export const statisticProps = buildProps({
   /**
-   * @description Setting the decimal point
+   * @description 设置小数点
    */
   decimalSeparator: {
     type: String,
     default: '.',
   },
   /**
-   * @description Sets the thousandth identifier
+   * @description 设置千分位分隔符
    */
   groupSeparator: {
     type: String,
     default: ',',
   },
   /**
-   * @description numerical precision
+   * @description 数值精度
    */
   precision: {
     type: Number,
     default: 0,
   },
   /**
-   * @description Custom numerical presentation
+   * @description 自定义数值展示
    */
   formatter: Function,
   /**
-   * @description Numerical content
+   * @description 数值内容
    */
   value: {
     type: definePropType<number | Dayjs>([Number, Object]),
     default: 0,
   },
   /**
-   * @description Sets the prefix of a number
+   * @description 设置数字前缀
    */
   prefix: String,
 
   /**
-   * @description  Sets the suffix of a number
+   * @description 设置数字后缀
    */
   suffix: String,
   /**
-   * @description Numeric titles
+   * @description 数值标题
    */
   title: String,
   /**
-   * @description Styles numeric values
+   * @description 数值样式
    */
   valueStyle: {
     type: definePropType<StyleValue>([String, Object, Array, Boolean]),
@@ -102,7 +102,7 @@ export const statisticProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `StatisticProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `StatisticProps`。
  */
 export type StatisticPropsPublic = ExtractPublicPropTypes<typeof statisticProps>
 

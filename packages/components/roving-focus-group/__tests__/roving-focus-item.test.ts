@@ -132,7 +132,7 @@ describe('<ElRovingFocusItem />', () => {
         focusable: false,
       })
       await firstDOMItem.trigger('mousedown')
-      // when the item is not focusable, the focus event should be prevented by default
+      // 当项不可聚焦时，默认应阻止 focus 事件
       const emittedEvents = firstItem.emitted().mousedown
       expect(emittedEvents.at(0)[0].defaultPrevented).toBe(false)
       expect(emittedEvents.at(1)[0].defaultPrevented).toBe(true)
@@ -205,7 +205,7 @@ describe('<ElRovingFocusItem />', () => {
 
       const DOMItems = wrapper.findAll(`.${focusItemKls}`)
 
-      // navigating clockwise
+      // 顺时针导航
       expect(document.activeElement).toBe(document.body)
       await DOMItems.at(1).trigger('keydown', {
         code: EVENT_CODE.down,
@@ -213,14 +213,14 @@ describe('<ElRovingFocusItem />', () => {
       await nextTick()
       expect(document.activeElement).toStrictEqual(DOMItems.at(2).element)
 
-      // navigate anticlockwise
+      // 逆时针导航
       await DOMItems.at(1).trigger('keydown', {
         code: EVENT_CODE.up,
       })
       await nextTick()
       expect(document.activeElement).toStrictEqual(DOMItems.at(0).element)
 
-      // should be able to focus on the last element when press End
+      // 按下 End 键时应能聚焦到最后一个元素
       await DOMItems.at(0).trigger('keydown', {
         code: EVENT_CODE.end,
       })

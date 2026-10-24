@@ -181,7 +181,7 @@ describe('Rate.vue', () => {
     })
     const stars = wrapper.findAll('.el-rate__item')
     expect(stars.length).toBe(5)
-    // All stars should be active since value is clamped to max (5)
+    // 由于 value 被钳制到最大值（5），所有星星都应为激活状态
     const activeIcons = wrapper.findAll('.el-rate__icon.is-active')
     expect(activeIcons.length).toBe(5)
   })
@@ -196,7 +196,7 @@ describe('Rate.vue', () => {
       },
     })
     const text = wrapper.find('.el-rate__text').element
-    // When value is clamped to max (5), text should show texts[4] which is '5'
+    // 当 value 被钳制到最大值（5）时，文本应显示 texts[4]，即 '5'
     expect(text.textContent).toBe('5')
   })
 

@@ -4,31 +4,31 @@ import type { ExtractPublicPropTypes } from 'vue'
 
 export interface AnchorLinkProps {
   /**
-   * @description the text content of the anchor link
+   * @description 锚点链接的文本内容
    */
   title?: string
   /**
-   * @description The address of the anchor link
+   * @description 锚点链接的地址
    */
   href?: string
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `AnchorLinkProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `AnchorLinkProps`
  */
 export const anchorLinkProps = buildProps({
   /**
-   * @description the text content of the anchor link
+   * @description 锚点链接的文本内容
    */
   title: String,
   /**
-   * @description The address of the anchor link
+   * @description 锚点链接的地址
    */
   href: String,
 })
 
 /**
- * @deprecated Removed after 3.0.0, Use `AnchorLinkProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `AnchorLinkProps`
  */
 export type AnchorLinkPropsPublic = ExtractPublicPropTypes<
   typeof anchorLinkProps

@@ -395,7 +395,7 @@ describe('Select', () => {
   })
 
   test('the scenario of rendering label when there is a default value and persistent is false', async () => {
-    // This is convenient for testing the default value label rendering when persistent is false.
+    // 这便于在 persistent 为 false 时测试默认值标签的渲染。
     process.env.RUN_TEST_WITH_PERSISTENT = 'true'
     wrapper = _mount(
       `
@@ -456,9 +456,9 @@ describe('Select', () => {
       })
     )
     await nextTick()
-    // initial label
+    // 初始标签
     expect(wrapper.find(`.${PLACEHOLDER_CLASS_NAME}`).text()).toBe('A')
-    // update label while dropdown remains closed
+    // 在下拉框保持关闭状态时更新标签
     ;(wrapper.vm as any).options = [
       { value: '1', label: 'A2' },
       { value: '2', label: 'B' },
@@ -501,7 +501,7 @@ describe('Select', () => {
   })
 
   test('when there is a default value and persistent is false, render the label and dynamically modify options and modelValue', async () => {
-    // This is convenient for testing the default value label rendering when persistent is false.
+    // 这便于在 persistent 为 false 时测试默认值标签的渲染。
     process.env.RUN_TEST_WITH_PERSISTENT = 'true'
     wrapper = _mount(
       `
@@ -586,7 +586,7 @@ describe('Select', () => {
   })
 
   test('multiple is true and persistent is false', async () => {
-    // This is convenient for testing the default value label rendering when persistent is false.
+    // 这便于在 persistent 为 false 时测试默认值标签的渲染。
     process.env.RUN_TEST_WITH_PERSISTENT = 'true'
     wrapper = _mount(
       `
@@ -1300,11 +1300,11 @@ describe('Select', () => {
     const input = wrapper.find('input')
     await input.trigger('click')
 
-    expect(selectVm.states.hoveringIndex).toBe(1) // index 0 was skipped
+    expect(selectVm.states.hoveringIndex).toBe(1) // 索引 0 被跳过
     selectVm.navigateOptions('next')
     expect(selectVm.states.hoveringIndex).toBe(2)
     selectVm.navigateOptions('next')
-    expect(selectVm.states.hoveringIndex).toBe(1) // index 0 was skipped
+    expect(selectVm.states.hoveringIndex).toBe(1) // 索引 0 被跳过
   })
 
   test('check default first option when there is a selected value', async () => {
@@ -1346,7 +1346,7 @@ describe('Select', () => {
     const input = wrapper.find('input')
     await input.trigger('click')
 
-    // hover the selected option instead of the first option
+    // 悬停在选中项上，而不是第一个选项
     expect(selectVm.states.hoveringIndex).toBe(2)
     selectVm.navigateOptions('next')
     expect(selectVm.states.hoveringIndex).toBe(3)
@@ -1400,7 +1400,7 @@ describe('Select', () => {
 
     vi.runAllTimers()
     await nextTick()
-    // the selected option is filtered out, hover the first matching option
+    // 选中项被过滤掉时，悬停到第一个匹配项
     expect(selectVm.states.hoveringIndex).toBe(0)
 
     vi.useRealTimers()
@@ -1450,8 +1450,8 @@ describe('Select', () => {
 
     vi.runAllTimers()
     await nextTick()
-    // the selected option is still visible, but hover the first matching
-    // option instead of the selected one while searching
+    // 选中项仍然可见，但悬停到第一个匹配
+    // 项，而不是在搜索时悬停到选中项
     expect(selectVm.states.hoveringIndex).toBe(0)
 
     vi.useRealTimers()
@@ -1488,7 +1488,7 @@ describe('Select', () => {
 
     const input = wrapper.find('input')
     await input.trigger('click')
-    // the selected option at index 9 is scrolled into view
+    // 索引 9 的选中项滚动进入视野
     expect(wrapEl.scrollTop).toBe(4 * 30)
     cleanup.forEach((fn) => fn())
   })
@@ -1530,11 +1530,11 @@ describe('Select', () => {
 
     const input = wrapper.find('input')
     await input.trigger('click')
-    // the selected option is at index 19, scroll it into view
+    // 选中项位于索引 19，将其滚动进入视野
     expect(wrapEl.scrollTop).toBe(14 * 30)
 
-    // reset the scroll position, then options change should re-scroll the
-    // selected option into view
+    // 重置滚动位置，然后选项变化时应重新滚动
+    // 选中项进入视野
     wrapEl.scrollTop = 0
     wrapper.setData({
       options: [
@@ -1832,7 +1832,7 @@ describe('Select', () => {
   })
 
   test('multiple select with collapseTagsTooltip', async () => {
-    // This is convenient for testing the default value label rendering when persistent is false.
+    // 这便于在 persistent 为 false 时测试默认值标签的渲染。
     process.env.RUN_TEST_WITH_PERSISTENT = 'true'
 
     wrapper = _mount(
@@ -2673,7 +2673,7 @@ describe('Select', () => {
     expect(wrapper.findAll('.el-tag__close').length).toBe(0)
     expect(wrapper.findAll('.el-tag').length).toBe(2)
 
-    //test if is clearable
+    // 测试是否可清空
     vm.isClearable = true
     vm.vendors = [2, 3, 4]
     await nextTick()
@@ -2684,7 +2684,7 @@ describe('Select', () => {
     await iconClear.trigger('click')
     expect(wrapper.findAll('.el-tag').length).toBe(2)
 
-    // test for collapse select
+    // 测试折叠选择
     vm.vendors = [1, 2, 4]
     vm.isCollapsed = true
     vm.isClearable = false
@@ -2702,7 +2702,7 @@ describe('Select', () => {
     ).toBe(2)
     expect(wrapper.findAll('.el-tag__close').length).toBe(0)
 
-    // test for collapse select if is clearable
+    // 测试可清空时的折叠选择
     vm.vendors = [1, 2, 4]
     vm.isCollapsed = true
     vm.isClearable = true
@@ -3125,7 +3125,7 @@ describe('Select', () => {
   })
 
   test('should modify size height change', async () => {
-    // no need to calculate input height
+    // 无需计算输入框高度
   })
 
   describe('form item accessibility integration', () => {
@@ -3208,7 +3208,7 @@ describe('Select', () => {
     })
   })
 
-  // fix: 8544
+  // 修复：8544
   it('When props are changed, label can be displayed correctly after selecting operation', async () => {
     wrapper = getGroupSelectVm({}, [
       {
@@ -3296,7 +3296,7 @@ describe('Select', () => {
     expect(wrapper.findAll('.el-tag')[0].text()).toBe('option 1')
   })
 
-  // fix: https://github.com/element-plus/element-plus/issues/11991
+  // 修复：https://github.com/element-plus/element-plus/issues/11991
   it('backspace key should delete selected tag but should not delete disabled options', async () => {
     const options = [
       {
@@ -3335,7 +3335,7 @@ describe('Select', () => {
     await nextTick()
     const selectInput = wrapper.find('.el-select__input')
     expect(wrapper.findAll('.el-tag').length).toBe(2)
-    // after deletion, an el-tag will be deleted
+    // 删除后，一个 el-tag 将被删除
     await selectInput.trigger('keydown', {
       code: EVENT_CODE.backspace,
       key: EVENT_CODE.backspace,
@@ -3347,7 +3347,7 @@ describe('Select', () => {
       key: EVENT_CODE.backspace,
     })
     await nextTick()
-    // after deletion, an el-tag still exist
+    // 删除后，el-tag 仍然存在
     expect(wrapper.findAll('.el-tag').length).toBe(1)
   })
 
@@ -3590,7 +3590,7 @@ describe('Select', () => {
     expect(vm.value).toBe(undefined)
   })
 
-  // case #18022
+  // 案例 #18022
   it('should be do not expend options when select is disabled', async () => {
     const value = null
     const wrapper = _mount(
@@ -3745,7 +3745,7 @@ describe('Select', () => {
       vi.useRealTimers()
     })
 
-    // fix: 11930
+    // 修复：11930
     it('should work when options changed', async () => {
       const wrapper = _mount(
         `
@@ -4123,7 +4123,7 @@ describe('Select', () => {
     const options = Array.from({ length: 21 }).map((_, i) => ({
       value: `value-${i}`,
       label: `Option ${i}`,
-      disabled: i === 0 || i === 10, // disable 10th  options
+      disabled: i === 0 || i === 10, // 禁用第 10 个选项
     }))
 
     const wrapper = _mount(
@@ -4515,19 +4515,19 @@ describe('Select', () => {
       const inputWrapper = wrapper.find('.el-select__input-wrapper')
       const input = wrapper.find('input')
 
-      // When input is empty and not focused, input-wrapper should have hidden class
+      // 当 input 为空且未聚焦时，input-wrapper 应带有 hidden 类
       expect(inputWrapper.classes()).toContain('is-hidden')
 
-      // Focus the input
+      // 聚焦 input
       await input.trigger('focus')
 
-      // When focused, input-wrapper should not have hidden class
+      // 聚焦时，input-wrapper 不应带有 hidden 类
       expect(inputWrapper.classes()).not.toContain('is-hidden')
 
-      // Blur the input
+      // 让 input 失焦
       await input.trigger('blur')
 
-      // When blurred and empty, input-wrapper should have hidden class again
+      // 失焦且为空时，input-wrapper 应再次带有 hidden 类
       expect(inputWrapper.classes()).toContain('is-hidden')
     })
 
@@ -4539,25 +4539,25 @@ describe('Select', () => {
       const inputWrapper = wrapper.find('.el-select__input-wrapper')
       const input = wrapper.find('input')
 
-      // Initially empty, should be hidden
+      // 初始为空，应隐藏
       expect(inputWrapper.classes()).toContain('is-hidden')
 
-      // Set input value
+      // 设置 input 的值
       await input.setValue('test')
 
-      // When input has value, input-wrapper should not have hidden class
+      // 当 input 有值时，input-wrapper 不应带有 hidden 类
       expect(inputWrapper.classes()).not.toContain('is-hidden')
 
-      // Clear input
+      // 清空 input
       await input.setValue('')
 
-      // When empty again, should be hidden
+      // 再次为空时，应隐藏
       expect(inputWrapper.classes()).toContain('is-hidden')
     })
 
-    // #24167: in single mode the empty/blur condition must NOT hide the
-    // input-wrapper, otherwise it falls out of flow and the selection
-    // collapses to zero width inside auto-sized form layouts.
+    // #24167：单选模式下，为空/失焦条件不得隐藏
+    // input-wrapper，否则它会脱离文档流，选中项
+    // 在自适应宽度的表单布局中收缩为零宽度。
     test('should not hide input-wrapper in single mode when empty and not focused', async () => {
       wrapper = getSelectVm({
         filterable: true,

@@ -128,7 +128,7 @@ const getContributorsByComponents = async (components: string[]) => {
     { key: component, path: `docs/examples/${component}` },
     { key: component, path: `docs/en-US/component/${component}.md` },
   ])
-  const commits: Record<string /* component name */, ApiResult['nodes']> = {}
+  const commits: Record<string /* 组件名 */, ApiResult['nodes']> = {}
   do {
     const results = await fetchCommits(options)
 

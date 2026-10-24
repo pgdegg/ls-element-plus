@@ -35,208 +35,208 @@ export type GetDisabledSeconds = (
 
 export const timePickerDefaultProps = buildProps({
   hidePlaceholder: { type: Boolean, default: undefined },
-  /** @description accept compact and partial date/time input */
+  /** @description 接受紧凑和部分的日期/时间输入 */
   quickInput: Boolean,
   /**
-   * @description this prop decides if the date picker panel pops up when the input is focused
+   * @description 该属性决定输入框获得焦点时是否弹出日期选择面板
    */
   automaticDropdown: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description same as `id` in native input
+   * @description 与原生 input 的 `id` 相同
    */
   id: {
     type: definePropType<SingleOrRange<string>>([Array, String]),
   },
   /**
-   * @description same as `name` in native input
+   * @description 与原生 input 的 `name` 相同
    */
   name: {
     type: definePropType<SingleOrRange<string>>([Array, String]),
   },
   /**
-   * @description custom class name for TimePicker's dropdown
+   * @description TimePicker 下拉框的自定义类名
    */
   popperClass: useTooltipContentProps.popperClass,
   /**
-   * @description custom style for TimePicker's dropdown
+   * @description TimePicker 下拉框的自定义样式
    */
   popperStyle: useTooltipContentProps.popperStyle,
   /**
-   * @description format of the displayed value in the input box
+   * @description 输入框中显示值的格式
    */
   format: String,
   /**
-   * @description optional, format of binding value. If not specified, the binding value will be a Date object
+   * @description 可选，绑定值的格式。未指定时，绑定值为 Date 对象
    */
   valueFormat: String,
   /**
-   * @description optional, format of the date displayed in input's inner panel
+   * @description 可选，输入框内部面板中显示日期的格式
    */
   dateFormat: String,
   /**
-   * @description optional, format of the time displayed in input's inner panel
+   * @description 可选，输入框内部面板中显示时间的格式
    */
   timeFormat: String,
   /**
-   * @description type of the picker
+   * @description 选择器的类型
    */
   type: {
     type: String,
     default: '',
   },
   /**
-   * @description whether to show clear button
+   * @description 是否显示清除按钮
    */
   clearable: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description Custom clear icon component
+   * @description 自定义清除图标组件
    */
   clearIcon: {
     type: definePropType<string | Component>([String, Object]),
     default: CircleClose,
   },
   /**
-   * @description whether the input is editable
+   * @description 输入框是否可编辑
    */
   editable: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description Whether to auto-fill the input with the current time on focus when no value is selected.
+   * @description 未选中值时，获得焦点是否用当前时间自动填充输入框。
    */
   saveOnBlur: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description Custom prefix icon component
+   * @description 自定义前缀图标组件
    */
   prefixIcon: {
     type: definePropType<string | Component>([String, Object]),
     default: '',
   },
   /**
-   * @description size of Input
+   * @description Input 的尺寸
    */
   size: useSizeProp,
   /**
-   * @description whether TimePicker is read only
+   * @description TimePicker 是否只读
    */
   readonly: Boolean,
   /**
-   * @description whether TimePicker is disabled
+   * @description TimePicker 是否禁用
    */
   disabled: {
     type: Boolean,
     default: undefined,
   },
   /**
-   * @description placeholder in non-range mode
+   * @description 非范围模式下的占位符
    */
   placeholder: {
     type: String,
     default: '',
   },
   /**
-   * @description [popper.js](https://popper.js.org/docs/v2/) parameters
+   * @description [popper.js](https://popper.js.org/docs/v2/) 参数
    */
   popperOptions: {
     type: definePropType<Partial<Options>>(Object),
     default: () => ({}),
   },
   /**
-   * @description binding value, if it is an array, the length should be 2
+   * @description 绑定值，若为数组，长度应为 2
    */
   modelValue: {
     type: definePropType<ModelValueType | null>([Date, Array, String, Number]),
     default: '',
   },
   /**
-   * @description range separator
+   * @description 范围分隔符
    */
   rangeSeparator: {
     type: String,
     default: '-',
   },
   /**
-   * @description placeholder for the start date in range mode
+   * @description 范围模式下开始日期的占位符
    */
   startPlaceholder: String,
   /**
-   * @description placeholder for the end date in range mode
+   * @description 范围模式下结束日期的占位符
    */
   endPlaceholder: String,
   /**
-   * @description optional, default date of the calendar
+   * @description 可选，日历的默认日期
    */
   defaultValue: {
     type: definePropType<SingleOrRange<Date>>([Date, Array]),
   },
   /**
-   * @description optional, the time value to use when selecting date range
+   * @description 可选，选择日期范围时使用的时间值
    */
   defaultTime: {
     type: definePropType<SingleOrRange<Date>>([Date, Array]),
   },
   /**
-   * @description whether to pick a time range
+   * @description 是否选择时间范围
    */
   isRange: Boolean,
   ...disabledTimeListsProps,
   /**
-   * @description a function determining if a date is disabled with that date as its parameter. Should return a Boolean
+   * @description 以某日期为参数、判断该日期是否禁用的函数。应返回 Boolean
    */
   disabledDate: {
     type: Function,
   },
   /**
-   * @description set custom className
+   * @description 设置自定义 className
    */
   cellClassName: {
     type: Function,
   },
   /**
-   * @description an object array to set shortcut options
+   * @description 用于设置快捷选项的对象数组
    */
   shortcuts: {
     type: Array,
     default: () => [],
   },
   /**
-   * @description whether to pick time using arrow buttons
+   * @description 是否使用箭头按钮选择时间
    */
   arrowControl: Boolean,
   /**
-   * @description input tabindex
+   * @description 输入框的 tabindex
    */
   tabindex: {
     type: definePropType<string | number>([String, Number]),
     default: 0,
   },
   /**
-   * @description whether to trigger form validation
+   * @description 是否触发表单校验
    */
   validateEvent: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description unlink two date-panels in range-picker
+   * @description 在范围选择器中取消两个日期面板的联动
    */
   unlinkPanels: Boolean,
   /**
-   * @description show only one panel in range-picker
+   * @description 范围选择器中只显示一个面板
    */
   singlePanel: Boolean,
   /**
-   * @description position of dropdown
+   * @description 下拉框的位置
    */
   placement: {
     type: definePropType<Placement>(String),
@@ -244,7 +244,7 @@ export const timePickerDefaultProps = buildProps({
     default: 'bottom',
   },
   /**
-   * @description list of possible positions for dropdown
+   * @description 下拉框可选位置列表
    */
   fallbackPlacements: {
     type: definePropType<Placement[]>(Array),
@@ -253,28 +253,28 @@ export const timePickerDefaultProps = buildProps({
   ...useEmptyValuesProps,
   ...useAriaProps(['ariaLabel']),
   /**
-   * @description whether to show the now button
+   * @description 是否显示“此刻”按钮
    */
   showNow: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description whether to show footer
+   * @description 是否显示底部
    */
   showConfirm: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description whether to show footer
+   * @description 是否显示底部
    */
   showFooter: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description whether to show the number of the calendar week
+   * @description 是否显示日历周数
    */
   showWeekNumber: Boolean,
 } as const)
@@ -314,6 +314,6 @@ export const timePickerRangeTriggerProps = buildProps({
 } as const)
 
 /**
- * @deprecated Use `timePickerRangeTriggerProps` instead. This will be removed in future versions.
+ * @deprecated 请改用 `timePickerRangeTriggerProps`，未来版本将移除。
  */
 export const timePickerRngeTriggerProps = timePickerRangeTriggerProps

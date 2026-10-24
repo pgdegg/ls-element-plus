@@ -6,33 +6,33 @@ import type { ExtractPublicPropTypes } from 'vue'
 
 export interface CheckTagProps {
   /**
-   * @description is checked
+   * @description 是否选中
    */
   checked?: boolean
   /**
-   * @description whether the check-tag is disabled
+   * @description check-tag 是否禁用
    */
   disabled?: boolean
   /**
-   * @description type of Tag
+   * @description Tag 类型
    */
   type?: 'primary' | 'success' | 'info' | 'warning' | 'danger'
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `CheckTagProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `CheckTagProps`
  */
 export const checkTagProps = buildProps({
   /**
-   * @description is checked
+   * @description 是否选中
    */
   checked: Boolean,
   /**
-   * @description whether the check-tag is disabled
+   * @description check-tag 是否禁用
    */
   disabled: Boolean,
   /**
-   * @description type of Tag
+   * @description Tag 类型
    */
   type: {
     type: String,
@@ -42,7 +42,7 @@ export const checkTagProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `CheckTagProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `CheckTagProps`
  */
 export type CheckTagPropsPublic = ExtractPublicPropTypes<typeof checkTagProps>
 

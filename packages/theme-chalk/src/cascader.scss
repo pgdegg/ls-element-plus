@@ -216,7 +216,7 @@
     text-align: center;
 
     &.#{$namespace}-vl__window {
-      // for virtual scroll
+      // 用于虚拟滚动
       margin: 6px 0;
       padding: 0;
       ul {
@@ -283,13 +283,13 @@
     background: transparent;
 
     &::placeholder {
-      // two input overlap
+      // 两个输入框重叠
       color: transparent;
     }
   }
 }
 
-// HIS component customization.
+// HIS 组件定制。
 .el-cascader {
   width: 100%;
 }

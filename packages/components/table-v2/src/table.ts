@@ -33,7 +33,7 @@ import type {
 } from './types'
 
 /**
- * Param types
+ * 参数类型
  */
 export type ColumnSortParams<T> = {
   column: Column<T>
@@ -42,7 +42,7 @@ export type ColumnSortParams<T> = {
 }
 
 /**
- * Renderer/Getter types
+ * Renderer/Getter 类型
  */
 
 export type ExtraCellPropGetter<T> = (
@@ -73,7 +73,7 @@ export type RowClassNameGetter<T> = (
 ) => string
 
 /**
- * Handler types
+ * 处理函数类型
  */
 export type ColumnSortHandler<T> = (params: ColumnSortParams<T>) => void
 export type ColumnResizeHandler<T> = (column: Column<T>, width: number) => void
@@ -83,7 +83,7 @@ export const tableV2Props = buildProps({
   cache: tableV2GridProps.cache,
   estimatedRowHeight: tableV2RowProps.estimatedRowHeight,
   rowKey,
-  // Header attributes
+  // 表头属性
   headerClass: {
     type: definePropType<string | HeaderClassNameGetter<any>>([
       String,
@@ -104,14 +104,14 @@ export const tableV2Props = buildProps({
   },
   headerHeight: tableV2HeaderProps.headerHeight,
   /**
-   * Footer attributes
+   * 表尾属性
    */
   footerHeight: {
     type: Number,
     default: 0,
   },
   /**
-   * Row attributes
+   * 行属性
    */
   rowClass: {
     type: definePropType<string | RowClassNameGetter<any>>([String, Function]),
@@ -125,7 +125,7 @@ export const tableV2Props = buildProps({
   },
 
   /**
-   * Cell attributes
+   * 单元格属性
    */
   cellProps: {
     type: definePropType<Record<string, any> | ExtraCellPropGetter<any>>([
@@ -134,7 +134,7 @@ export const tableV2Props = buildProps({
     ]),
   },
   /**
-   * Data models
+   * 数据模型
    */
   columns,
   data: dataType,
@@ -143,14 +143,14 @@ export const tableV2Props = buildProps({
   },
   fixedData: fixedDataType,
   /**
-   * Expanded keys
+   * 展开的 key
    */
   expandColumnKey: tableV2RowProps.expandColumnKey,
   expandedRowKeys: expandKeys,
   defaultExpandedRowKeys: expandKeys,
 
   /**
-   * Attributes
+   * 属性
    */
   class: classType,
   // disabled: Boolean,
@@ -175,7 +175,7 @@ export const tableV2Props = buildProps({
   scrollbarAlwaysOn: virtualizedScrollbarProps.alwaysOn,
 
   /**
-   * Sorting
+   * 排序
    */
   sortBy: {
     type: definePropType<SortBy>(Object),
@@ -187,7 +187,7 @@ export const tableV2Props = buildProps({
   },
 
   /**
-   * Handlers
+   * 处理函数
    */
   onColumnSort: {
     type: definePropType<ColumnSortHandler<any>>(Function),

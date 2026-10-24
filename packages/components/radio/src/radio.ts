@@ -8,78 +8,78 @@ import type Radio from './radio.vue'
 
 export interface RadioPropsBase {
   /**
-   * @description binding value
+   * @description 绑定值
    */
   modelValue?: string | number | boolean
   /**
-   * @description size of the Radio
+   * @description Radio 的尺寸
    */
   size?: ComponentSize
   /**
-   * @description whether Radio is disabled
+   * @description Radio 是否禁用
    */
   disabled?: boolean
   /**
-   * @description the label of Radio
+   * @description Radio 的标签
    */
   label?: string | number | boolean
   /**
-   * @description the value of Radio
+   * @description Radio 的值
    */
   value?: string | number | boolean
   /**
-   * @description native `name` attribute
+   * @description 原生 `name` 属性
    */
   name?: string
 }
 
 export interface RadioProps extends RadioPropsBase {
-  /** @description hide the indicator while retaining the native input */
+  /** @description 隐藏指示器但保留原生 input */
   hideCircle?: boolean
   /**
-   * @description whether to add a border around Radio
+   * @description 是否在 Radio 周围添加边框
    */
   border?: boolean
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `RadioPropsBase` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `RadioPropsBase`。
  */
 export const radioPropsBase = buildProps({
   /**
-   * @description binding value
+   * @description 绑定值
    */
   modelValue: {
     type: [String, Number, Boolean],
     default: undefined,
   },
   /**
-   * @description size of the Radio
+   * @description Radio 的尺寸
    */
   size: useSizeProp,
   /**
-   * @description whether Radio is disabled
+   * @description Radio 是否禁用
    */
   disabled: {
     type: Boolean,
     default: undefined,
   },
   /**
-   * @description the label of Radio
+   * @description Radio 的标签
    */
   label: {
     type: [String, Number, Boolean],
     default: undefined,
   },
   /**
-   * @description the value of Radio
+   * @description Radio 的值
    */
   value: {
     type: [String, Number, Boolean],
     default: undefined,
   },
   /**
-   * @description native `name` attribute
+   * @description 原生 `name` 属性
    */
   name: {
     type: String,
@@ -88,13 +88,13 @@ export const radioPropsBase = buildProps({
 })
 
 /**
- * @deprecated Removed after 3.0.0, Use `RadioProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `RadioProps`。
  */
 export const radioProps = buildProps({
   ...radioPropsBase,
   hideCircle: Boolean,
   /**
-   * @description whether to add a border around Radio
+   * @description 是否在 Radio 周围添加边框
    */
   border: Boolean,
 } as const)
@@ -107,14 +107,14 @@ export const radioEmits = {
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `RadioProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `RadioProps`。
  */
 export type RadioPropsPublic = ExtractPublicPropTypes<typeof radioProps>
 export type RadioEmits = typeof radioEmits
 export type RadioInstance = InstanceType<typeof Radio> & unknown
 
 /**
- * @description default values for RadioProps
+ * @description RadioProps 的默认值
  */
 export const radioPropsDefaults = {
   modelValue: undefined,

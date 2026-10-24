@@ -30,39 +30,39 @@ export const IconComponentMap: Record<
 
 export interface ResultProps {
   /**
-   * @description title of result
+   * @description 结果的标题
    */
   title?: string
   /**
-   * @description sub title of result
+   * @description 结果的副标题
    */
   subTitle?: string
   /**
-   * @description icon type of result
+   * @description 结果的图标类型
    */
   icon?: 'primary' | 'success' | 'warning' | 'info' | 'error'
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `ResultProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `ResultProps`。
  */
 export const resultProps = buildProps({
   /**
-   * @description title of result
+   * @description 结果的标题
    */
   title: {
     type: String,
     default: '',
   },
   /**
-   * @description sub title of result
+   * @description 结果的副标题
    */
   subTitle: {
     type: String,
     default: '',
   },
   /**
-   * @description icon type of result
+   * @description 结果的图标类型
    */
   icon: {
     type: String,
@@ -72,7 +72,7 @@ export const resultProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `ResultProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `ResultProps`。
  */
 export type ResultPropsPublic = ExtractPublicPropTypes<typeof resultProps>
 

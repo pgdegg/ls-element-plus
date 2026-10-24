@@ -76,7 +76,7 @@ const Row = ({ rowData, rowIndex, cells, columns }) => {
     cells[rowSpanIndex] = cloneVNode(cell, { style })
   } else {
     const style = cells[rowSpanIndex].props.style
-    // override the cell here for creating a pure node without pollute the style
+    // 在此处重写单元格，以创建纯净节点而不污染样式
     cells[rowSpanIndex] = (
       <div style={{ ...style, width: `${style.width}px` }} />
     )

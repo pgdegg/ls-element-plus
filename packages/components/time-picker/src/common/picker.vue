@@ -304,7 +304,7 @@ const { isFocused, handleFocus, handleBlur } = useFocusController(inputRef, {
   },
   afterFocus() {
     if (!props.automaticDropdown) return
-    // Clicking the clear icon focuses the input, which must not open the panel (#24826)
+    // 点击清除图标会使输入框获得焦点，此时不应打开面板（#24826）
     if (isClearIconMousedown) {
       isClearIconMousedown = false
       return
@@ -368,19 +368,19 @@ const emitChange = (
   val: TimePickerDefaultProps['modelValue'] | null,
   isClear?: boolean
 ) => {
-  // determine user real change only
+  // 仅判定用户的真实改动
   if (
     isClear ||
     !(
       valueEquals(val, valueOnOpen.value) ||
-      // the parent may normalize the cleared value to another empty
-      // representation, e.g. `null` to '' (#24826)
+      // 父组件可能将清空后的值归一化为另一种空
+      // 表示形式，例如 `null` 转为 ''（#24826）
       (emptyValues.isEmptyValue(val) &&
         emptyValues.isEmptyValue(valueOnOpen.value))
     )
   ) {
     emit(CHANGE_EVENT, val)
-    // Set the value of valueOnOpen when clearing to avoid triggering change events multiple times.
+    // 清空时设置 valueOnOpen 的值，避免多次触发 change 事件。
     isClear && (valueOnOpen.value = val)
     props.validateEvent && formItem?.validate('change').catch(NOOP)
   }
@@ -491,8 +491,8 @@ const onClear = (event?: MouseEvent) => {
   isClearIconMousedown = false
   if (showClearBtn.value) {
     event?.stopPropagation()
-    // When the handleClear Function was provided, emit null will be executed inside it
-    // There is no need for us to execute emit null twice. #14752
+    // 提供了 handleClear 函数时，emit null 会在其内部执行
+    // 无需再执行两次 emit null。#14752
     if (pickerOptions.value.handleClear) {
       pickerOptions.value.handleClear()
     } else {
@@ -708,7 +708,7 @@ const handleKeydownInput = async (event: Event | KeyboardEvent) => {
     return
   }
 
-  // if user is typing, do not let picker handle key input
+  // 用户正在输入时，不要让选择器处理按键输入
   if (userInput.value) {
     event.stopPropagation()
     return
@@ -719,8 +719,8 @@ const handleKeydownInput = async (event: Event | KeyboardEvent) => {
 }
 const onUserInput = (e: string) => {
   userInput.value = e
-  // Temporary fix when the picker is dismissed and the input box
-  // is focused, just mimic the behavior of antdesign.
+  // 临时修复：选择器关闭且输入框
+  // 获得焦点时，仅模仿 antdesign 的行为。
   if (!pickerVisible.value) {
     pickerVisible.value = true
   }
@@ -802,23 +802,23 @@ const inputElement = useInputElement(() =>
 defineExpose({
   inputElement,
   /**
-   * @description focus input box.
+   * @description 聚焦输入框。
    */
   focus,
   /**
-   * @description blur input box.
+   * @description 使输入框失焦。
    */
   blur,
   /**
-   * @description opens picker
+   * @description 打开选择器
    */
   handleOpen,
   /**
-   * @description closes picker
+   * @description 关闭选择器
    */
   handleClose,
   /**
-   * @description pick item manually
+   * @description 手动选择项
    */
   onPick,
 })

@@ -11,7 +11,7 @@ const props = defineProps({
 const attr = 'rel="noreferrer noopenner" target="_blank"'
 
 const parsed = computed(() => {
-  // Note this is relatively arbitrary so that this could be buggy.
+  // 注意：此处逻辑较为随意，可能存在问题。
   return md
     .render(props.content)
     .replace(

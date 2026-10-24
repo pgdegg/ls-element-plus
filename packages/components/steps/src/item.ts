@@ -6,51 +6,51 @@ import type Step from './item.vue'
 
 export interface StepProps {
   /**
-   * @description step title
+   * @description 步骤标题
    */
   title?: string
   /**
-   * @description step custom icon. Icons can be passed via named slot as well
+   * @description 步骤自定义图标。图标也可通过具名插槽传入
    */
   icon?: IconPropType
   /**
-   * @description step description
+   * @description 步骤描述
    * @default ''
    */
   description?: string
   /**
-   * @description current status. It will be automatically set by Steps if not configured.
+   * @description 当前状态。未配置时由 Steps 自动设置。
    * @default ''
    */
   status?: '' | 'wait' | 'process' | 'finish' | 'error' | 'success'
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `StepProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `StepProps`。
  */
 export const stepProps = buildProps({
   /**
-   * @description step title
+   * @description 步骤标题
    */
   title: {
     type: String,
     default: '',
   },
   /**
-   * @description step custom icon. Icons can be passed via named slot as well
+   * @description 步骤自定义图标。图标也可通过具名插槽传入
    */
   icon: {
     type: iconPropType,
   },
   /**
-   * @description step description
+   * @description 步骤描述
    */
   description: {
     type: String,
     default: '',
   },
   /**
-   * @description current status. It will be automatically set by Steps if not configured.
+   * @description 当前状态。未配置时由 Steps 自动设置。
    */
   status: {
     type: String,
@@ -60,7 +60,7 @@ export const stepProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `StepProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `StepProps`。
  */
 export type StepPropsPublic = ExtractPublicPropTypes<typeof stepProps>
 

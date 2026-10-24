@@ -147,15 +147,15 @@ const inputElement = useInputElement(() => inputRef.value?.input)
 defineExpose({
   inputElement,
   /**
-   * @description current color object
+   * @description 当前颜色对象
    */
   color,
   /**
-   * @description custom input ref
+   * @description 自定义输入框 ref
    */
   inputRef,
   /**
-   * @description update sub components
+   * @description 更新子组件
    */
   update,
 })

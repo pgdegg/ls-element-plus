@@ -7,25 +7,25 @@ export type BorderStyle = CSSStyleDeclaration['borderStyle']
 
 export interface DividerProps {
   /**
-   * @description Set divider's direction
+   * @description 设置分割线方向
    */
   direction?: 'horizontal' | 'vertical'
   /**
-   * @description The position of the customized content on the divider line
+   * @description 分割线上自定义内容的位置
    */
   contentPosition?: 'left' | 'center' | 'right'
   /**
-   * @description Set the style of divider
+   * @description 设置分割线样式
    */
   borderStyle?: BorderStyle
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `DividerProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `DividerProps`。
  */
 export const dividerProps = buildProps({
   /**
-   * @description Set divider's direction
+   * @description 设置分割线方向
    */
   direction: {
     type: String,
@@ -33,7 +33,7 @@ export const dividerProps = buildProps({
     default: 'horizontal',
   },
   /**
-   * @description The position of the customized content on the divider line
+   * @description 分割线上自定义内容的位置
    */
   contentPosition: {
     type: String,
@@ -41,7 +41,7 @@ export const dividerProps = buildProps({
     default: 'center',
   },
   /**
-   * @description Set the style of divider
+   * @description 设置分割线样式
    */
   borderStyle: {
     type: definePropType<BorderStyle>(String),
@@ -50,7 +50,7 @@ export const dividerProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `DividerProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `DividerProps`。
  */
 export type DividerPropsPublic = ExtractPublicPropTypes<typeof dividerProps>
 

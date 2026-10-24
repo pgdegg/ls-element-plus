@@ -33,11 +33,11 @@ const ScrollBar = defineComponent({
 
     const nsVirtualScrollbar = useNamespace('virtual-scrollbar')
     const nsScrollbar = useNamespace('scrollbar')
-    // DOM refs
+    // DOM 引用
     const trackRef = ref<HTMLElement>()
     const thumbRef = ref<HTMLElement>()
 
-    // local variables
+    // 局部变量
     let frameHandle: null | number = null
     let onselectstartStore: null | typeof document.onselectstart = null
 
@@ -175,14 +175,14 @@ const ScrollBar = defineComponent({
       if (!prevPage) return
 
       cAF(frameHandle!)
-      // using the current track's offset top/left - the current pointer's clientY/clientX
-      // to get the relative position of the pointer to the track.
+      // 使用当前轨道的 offset top/left 减去当前指针的 clientY/clientX
+      // 得到指针相对于轨道的位置。
       const offset =
         (trackRef.value.getBoundingClientRect()[bar.value.direction] -
           (e as MouseEvent)[bar.value.client]) *
         -1
 
-      // find where the thumb was clicked on.
+      // 找到点击在滑块上的位置。
       const thumbClickPosition =
         thumbRef.value[bar.value.offset] - (prevPage as number)
       /**
@@ -199,13 +199,13 @@ const ScrollBar = defineComponent({
        *  +--------------+                                   +--------------+
        */
 
-      // using the current position - prev position to
+      // 使用当前位置减去上一位置，以
 
       const distance = offset - thumbClickPosition
-      // get how many steps in total.
-      // gap of 2 on top, 2 on bottom, in total 4.
-      // using totalSteps ÷ totalSize getting each step's size * distance to get the new
-      // scroll offset to scrollTo
+      // 得到总步数。
+      // 顶部间距 2、底部间距 2，共 4。
+      // 用 totalSteps、totalSize 得到每步尺寸 * 距离，从而得到新的
+      // 供 scrollTo 使用的滚动偏移
       frameHandle = rAF(() => {
         state.traveled = Math.max(0, Math.min(distance, totalSteps.value))
         emit('scroll', distance, totalSteps.value)
@@ -229,13 +229,13 @@ const ScrollBar = defineComponent({
       (v) => {
         if (state.isDragging) return
         /**
-         *  this is simply mapping the current scrollbar offset
+         * 这只是对当前滚动条偏移做映射
          *
-         *  formula 1:
+         * 公式 1：
          *    v = scrollOffset / (estimatedTotalSize - clientSize)
          *    traveled = v * (clientSize - thumbSize - GAP) --> v * totalSteps
          *
-         *  formula 2:
+         * 公式 2：
          *    traveled = (v * clientSize) / (clientSize / totalSteps) --> (v * clientSize) * (totalSteps / clientSize) --> v * totalSteps
          */
         state.traveled = Math.ceil(v! * totalSteps.value)

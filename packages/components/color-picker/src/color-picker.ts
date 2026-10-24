@@ -18,148 +18,148 @@ import type { ElTooltipContentProps } from '@element-plus/components/tooltip'
 export interface ColorPickerProps
   extends UseEmptyValuesProps, Pick<AriaProps, 'ariaLabel'> {
   /**
-   * @description when color-picker inactive and persistent is false, the color panel will be destroyed
+   * @description color-picker 未激活且 persistent 为 false 时，颜色面板将被销毁
    */
   persistent?: boolean
   /**
-   * @description binding value
+   * @description 绑定值
    */
   modelValue?: string | null
   /**
-   * @description ColorPicker id
+   * @description ColorPicker 的 id
    */
   id?: string
   /**
-   * @description whether to display the alpha slider
+   * @description 是否显示透明度滑块
    */
   showAlpha?: boolean
   /**
-   * @description color format of v-model
+   * @description v-model 的颜色格式
    */
   colorFormat?: ColorFormats
   /**
-   * @description whether to disable the ColorPicker
+   * @description 是否禁用 ColorPicker
    */
   disabled?: boolean
   /**
-   * @description whether to show clear button
+   * @description 是否显示清除按钮
    */
   clearable?: boolean
   /**
-   * @description size of ColorPicker
+   * @description ColorPicker 尺寸
    */
   size?: ComponentSize
   /**
-   * @description custom class name for ColorPicker's dropdown
+   * @description ColorPicker 下拉框的自定义类名
    */
   popperClass?: ElTooltipContentProps['popperClass']
   /**
-   * @description custom style for ColorPicker's dropdown
+   * @description ColorPicker 下拉框的自定义样式
    */
   popperStyle?: ElTooltipContentProps['popperStyle']
   /**
-   * @description ColorPicker tabindex
+   * @description ColorPicker 的 tabindex
    */
   tabindex?: string | number
   /**
-   * @description whether color-picker popper is teleported to the body
+   * @description color-picker 弹层是否传送到 body
    */
   teleported?: ElTooltipContentProps['teleported']
   /**
-   * @description which color-picker panel appends to
+   * @description color-picker 面板追加到哪个元素
    */
   appendTo?: ElTooltipContentProps['appendTo']
   /**
-   * @description predefined color options
+   * @description 预定义颜色选项
    */
   predefine?: string[]
   /**
-   * @description whether to trigger form validation
+   * @description 是否触发表单校验
    */
   validateEvent?: boolean
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `ColorPickerProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `ColorPickerProps`
  */
 export const colorPickerProps = buildProps({
   /**
-   * @description when color-picker inactive and persistent is false, the color panel will be destroyed
+   * @description color-picker 未激活且 persistent 为 false 时，颜色面板将被销毁
    */
   persistent: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description binding value
+   * @description 绑定值
    */
   modelValue: {
     type: definePropType<string | null>(String),
     default: undefined,
   },
   /**
-   * @description ColorPicker id
+   * @description ColorPicker 的 id
    */
   id: String,
   /**
-   * @description whether to display the alpha slider
+   * @description 是否显示透明度滑块
    */
   showAlpha: Boolean,
   /**
-   * @description color format of v-model
+   * @description v-model 的颜色格式
    */
   colorFormat: {
     type: definePropType<ColorFormats>(String),
   },
   /**
-   * @description whether to disable the ColorPicker
+   * @description 是否禁用 ColorPicker
    */
   disabled: {
     type: Boolean,
     default: undefined,
   },
   /**
-   * @description whether to show clear button
+   * @description 是否显示清除按钮
    */
   clearable: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description size of ColorPicker
+   * @description ColorPicker 尺寸
    */
   size: useSizeProp,
   /**
-   * @description custom class name for ColorPicker's dropdown
+   * @description ColorPicker 下拉框的自定义类名
    */
   popperClass: useTooltipContentProps.popperClass,
   /**
-   * @description custom style for ColorPicker's dropdown
+   * @description ColorPicker 下拉框的自定义样式
    */
   popperStyle: useTooltipContentProps.popperStyle,
   /**
-   * @description ColorPicker tabindex
+   * @description ColorPicker 的 tabindex
    */
   tabindex: {
     type: [String, Number],
     default: 0,
   },
   /**
-   * @description whether color-picker popper is teleported to the body
+   * @description color-picker 弹层是否传送到 body
    */
   teleported: useTooltipContentProps.teleported,
   /**
-   * @description which color-picker panel appends to
+   * @description color-picker 面板追加到哪个元素
    */
   appendTo: useTooltipContentProps.appendTo,
   /**
-   * @description predefined color options
+   * @description 预定义颜色选项
    */
   predefine: {
     type: definePropType<string[]>(Array),
   },
   /**
-   * @description whether to trigger form validation
+   * @description 是否触发表单校验
    */
   validateEvent: {
     type: Boolean,
@@ -178,7 +178,7 @@ export const colorPickerEmits = {
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `ColorPickerProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `ColorPickerProps`
  */
 export type ColorPickerPropsPublic = ExtractPublicPropTypes<
   typeof colorPickerProps
@@ -187,7 +187,7 @@ export type ColorPickerEmits = typeof colorPickerEmits
 export type ColorPickerInstance = InstanceType<typeof ColorPicker> & unknown
 
 /**
- * @description default values for ColorPickerProps, used in components that extend ColorPickerProps
+ * @description ColorPickerProps 的默认值，用于扩展 ColorPickerProps 的组件
  */
 export const colorPickerPropsDefaults = {
   persistent: true,

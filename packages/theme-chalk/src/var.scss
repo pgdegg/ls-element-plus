@@ -1,23 +1,23 @@
-// CSS3 var
+// CSS3 变量
 @use 'common/var' as *;
 @use 'mixins/var' as *;
 @use 'mixins/mixins' as *;
 
-// for better performance do not dynamically change the root variable if you really
-// do not need that, since this could introduce recalculation overhead for rendering.
+// 为获得更好的性能，若非确有需要，请勿动态修改根变量，
+// 因为这会引入渲染重算开销。
 // https://lisilinhart.info/posts/css-variables-performance/
 
-// common
+// 通用
 :root {
   @include set-css-var-value('color-white', $color-white);
   @include set-css-var-value('color-black', $color-black);
 
-  // get rgb
+  // 获取 rgb
   @each $type in (primary, success, warning, danger, error, info) {
     @include set-css-color-rgb($type);
   }
 
-  // Typography
+  // 排版
   @include set-component-css-var('font-size', $font-size);
   @include set-component-css-var('font-family', $font-family);
 
@@ -30,19 +30,19 @@
   // --el-border-radius-#{$type}
   @include set-component-css-var('border-radius', $border-radius);
 
-  // Transition
-  // refer to this website to get the bezier motion function detail
-  // https://cubic-bezier.com/#p1,p2,p3,p4 (change px as your function parameter)
+  // 过渡
+  // 参考该网站获取贝塞尔运动函数的详细信息
+  // https://cubic-bezier.com/#p1,p2,p3,p4（将 px 替换为你的函数参数）
   @include set-component-css-var('transition-duration', $transition-duration);
 
   @include set-component-css-var('transition-function', $transition-function);
   @include set-component-css-var('transition', $transition);
 
-  // common component size
+  // 通用组件尺寸
   @include set-component-css-var('component-size', $common-component-size);
 }
 
-// for light
+// 用于浅色
 :root {
   color-scheme: light;
 
@@ -53,26 +53,26 @@
   }
 
   // color-scheme
-  // Background --el-bg-color-#{$type}
+  // 背景 --el-bg-color-#{$type}
   @include set-component-css-var('bg-color', $bg-color);
   // --el-text-color-#{$type}
   @include set-component-css-var('text-color', $text-color);
   // --el-border-color-#{$type}
   @include set-component-css-var('border-color', $border-color);
-  // Fill --el-fill-color-#{$type}
+  // 填充 --el-fill-color-#{$type}
   @include set-component-css-var('fill-color', $fill-color);
 
-  // Box-shadow
+  // 阴影
   // --el-box-shadow-#{$type}
   @include set-component-css-var('box-shadow', $box-shadow);
-  // Disable base
+  // 禁用基础值
   @include set-component-css-var('disabled', $disabled);
 
-  // overlay & mask
+  // 遮罩层与遮罩
   @include set-component-css-var('overlay-color', $overlay-color);
   @include set-component-css-var('mask-color', $mask-color);
 
-  // Border
+  // 边框
   @include set-css-var-value('border-width', $border-width);
   @include set-css-var-value('border-style', $border-style);
   @include set-css-var-value('border-color-hover', $border-color-hover);

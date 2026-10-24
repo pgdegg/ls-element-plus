@@ -2,7 +2,7 @@ import { isExternal } from 'vitepress/dist/client/shared'
 import { ensureLang } from '../utils/lang'
 import navLocale from '../i18n/pages/sidebar.json'
 
-// Mapping the first sub link to the nav link to avoid 404 error.
+// 将第一个子链接映射到导航链接，以避免 404 错误。
 
 function getNav() {
   return Object.fromEntries(

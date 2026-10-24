@@ -7,45 +7,45 @@ import type { ExtractPublicPropTypes } from 'vue'
 
 export interface TagProps {
   /**
-   * @description type of Tag
+   * @description Tag 的类型
    */
   type?: 'primary' | 'success' | 'info' | 'warning' | 'danger'
   /**
-   * @description whether Tag can be removed
+   * @description Tag 是否可被移除
    */
   closable?: boolean
   /**
-   * @description whether to disable animations
+   * @description 是否禁用动画
    */
   disableTransitions?: boolean
   /**
-   * @description whether Tag has a highlighted border
+   * @description Tag 是否有高亮边框
    */
   hit?: boolean
   /**
-   * @description background color of the Tag
+   * @description Tag 的背景色
    */
   color?: string
   /**
-   * @description size of Tag
+   * @description Tag 的尺寸
    */
   size?: ComponentSize
   /**
-   * @description theme of Tag
+   * @description Tag 的主题
    */
   effect?: 'dark' | 'light' | 'plain'
   /**
-   * @description whether Tag is rounded
+   * @description Tag 是否圆角
    */
   round?: boolean
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `TagProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `TagProps`。
  */
 export const tagProps = buildProps({
   /**
-   * @description type of Tag
+   * @description Tag 的类型
    */
   type: {
     type: String,
@@ -53,30 +53,30 @@ export const tagProps = buildProps({
     default: 'primary',
   },
   /**
-   * @description whether Tag can be removed
+   * @description Tag 是否可被移除
    */
   closable: Boolean,
   /**
-   * @description whether to disable animations
+   * @description 是否禁用动画
    */
   disableTransitions: Boolean,
   /**
-   * @description whether Tag has a highlighted border
+   * @description Tag 是否有高亮边框
    */
   hit: Boolean,
   /**
-   * @description background color of the Tag
+   * @description Tag 的背景色
    */
   color: String,
   /**
-   * @description size of Tag
+   * @description Tag 的尺寸
    */
   size: {
     type: String,
     values: componentSizes,
   },
   /**
-   * @description theme of Tag
+   * @description Tag 的主题
    */
   effect: {
     type: String,
@@ -84,13 +84,13 @@ export const tagProps = buildProps({
     default: 'light',
   },
   /**
-   * @description whether Tag is rounded
+   * @description Tag 是否圆角
    */
   round: Boolean,
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `TagProps` instead.
+ * @deprecated 已在 3.0.0 版本后移除，请使用 `TagProps`。
  */
 export type TagPropsPublic = ExtractPublicPropTypes<typeof tagProps>
 

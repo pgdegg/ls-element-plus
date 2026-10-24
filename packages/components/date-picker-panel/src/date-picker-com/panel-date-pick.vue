@@ -334,7 +334,7 @@ const year = computed(() => {
 const selectableRange = ref([])
 const userInputDate = ref<string | null>(null)
 const userInputTime = ref<string | null>(null)
-// todo update to disableHour
+// todo：更新为 disableHour
 const checkDateWithinRange = (date: ConfigType) => {
   return selectableRange.value.length > 0
     ? timeWithinRange(
@@ -382,7 +382,7 @@ const handleDatePick = async (value: DateTableEmits, keepOpen?: boolean) => {
           .month(value.month())
           .date(value.date())
       : value
-    // change default time while out of selectableRange
+    // 当超出 selectableRange 时更改默认时间
     if (!checkDateWithinRange(newDate)) {
       newDate = (selectableRange.value[0][0] as Dayjs)
         .year(value.year())
@@ -394,7 +394,7 @@ const handleDatePick = async (value: DateTableEmits, keepOpen?: boolean) => {
   } else if (selectionMode.value === 'week') {
     emit((value as WeekPickerEmits).date)
   } else if (selectionMode.value === 'dates') {
-    emit(value as DatesPickerEmits, true) // set true to keep panel open
+    emit(value as DatesPickerEmits, true) // 设为 true 以保持面板打开
   }
 }
 
@@ -622,7 +622,7 @@ const onConfirm = () => {
   if (isMultipleType.value) {
     emit(props.parsedValue as Dayjs[])
   } else {
-    // deal with the scenario where: user opens the date time picker, then confirm without doing anything
+    // 处理以下场景：用户打开日期时间选择器后，未做任何操作直接确认
     let result = extractFirst(props.parsedValue)
     if (!result) {
       const defaultTimeD = dayjs(defaultTime).locale(lang.value)
@@ -642,8 +642,8 @@ const disabledNow = computed(() => {
   return disabledDate.value(dayjs().locale(lang.value).toDate())
 })
 const changeToNow = () => {
-  // NOTE: not a permanent solution
-  //       consider disable "now" button in the future
+  // 注意：这不是永久解决方案
+  //       未来考虑禁用“现在”按钮
   const now = dayjs().locale(lang.value)
   const nowDate = now.toDate()
   isChangeToNow.value = true
@@ -797,7 +797,7 @@ const handleFocusPicker = () => {
 
 const _handleFocusPicker = () => {
   handleFocusPicker()
-  // TODO: After focus the date input, the first time you use the ArrowDown keys, you cannot focus on the date cell
+  // TODO：聚焦日期输入框后，第一次按 ArrowDown 键时无法聚焦到日期单元格
   if (selectionMode.value === 'week') {
     handleKeyControl(EVENT_CODE.down)
   }

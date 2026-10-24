@@ -65,7 +65,7 @@ const ariaValuetext = computed(() => {
 
 defineExpose({
   /**
-   * @description update sv panel manually
+   * @description 手动更新 SV 面板
    */
   update,
 })

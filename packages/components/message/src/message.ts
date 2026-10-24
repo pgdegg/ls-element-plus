@@ -12,63 +12,63 @@ import type MessageConstructor from './message.vue'
 
 export interface MessageProps {
   /**
-   * @description custom class name for Message
+   * @description Message 的自定义类名
    */
   customClass?: ClassValue
   /**
-   * @description whether `message` is treated as HTML string
+   * @description `message` 是否作为 HTML 字符串处理
    */
   dangerouslyUseHTMLString?: boolean
   /**
-   * @description display duration, millisecond. If set to 0, it will not turn off automatically
+   * @description 显示时长（毫秒）。设为 0 时不会自动关闭
    */
   duration?: number
   /**
-   * @description custom icon component, overrides `type`
+   * @description 自定义图标组件，覆盖 `type`
    */
   icon?: IconPropType
   /**
-   * @description message dom id
+   * @description 消息的 dom id
    */
   id?: string
   /**
-   * @description message text
+   * @description 消息文本
    */
   message?: string | VNode | (() => VNode)
   /**
-   * @description callback function when closed with the message instance as the parameter
+   * @description 关闭时的回调函数，以消息实例作为参数
    */
   onClose?: () => void
   /**
-   * @description whether to show a close button
+   * @description 是否显示关闭按钮
    */
   showClose?: boolean
   /**
-   * @description message type
+   * @description 消息类型
    */
   type?: MessageType
   /**
-   * @description whether message is plain
+   * @description 消息是否为朴素样式
    */
   plain?: boolean
   /**
-   * @description set the distance to the top of viewport
+   * @description 设置距视口顶部的距离
    */
   offset?: number
   /**
-   * @description message placement position
+   * @description 消息放置位置
    */
   placement?: MessagePlacement
   /**
-   * @description message element zIndex value
+   * @description 消息元素的 zIndex 值
    */
   zIndex?: number
   /**
-   * @description merge messages with the same content, type of VNode message is not supported
+   * @description 合并内容相同的消息，不支持 VNode 类型消息
    */
   grouping?: boolean
   /**
-   * @description The number of repetitions, similar to badge, is used as the initial number when used with `grouping`
+   * @description 重复次数，类似 badge；配合 `grouping` 使用时作为初始数字
    */
   repeatNum?: number
 }
@@ -94,8 +94,8 @@ export const MESSAGE_DEFAULT_PLACEMENT = 'top'
 
 export type MessageType = (typeof messageTypes)[number]
 export type MessagePlacement = (typeof messagePlacement)[number]
-/** @deprecated please use `MessageType` instead */
-export type messageType = MessageType // will be removed in 3.0.0.
+/** @deprecated 请改用 `MessageType` */
+export type messageType = MessageType // 将在 3.0.0 中移除。
 
 export interface MessageConfigContext {
   max?: number
@@ -127,46 +127,46 @@ export const messageDefaults = mutable({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `MessageProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `MessageProps`。
  */
 export const messageProps = buildProps({
   /**
-   * @description custom class name for Message
+   * @description Message 的自定义类名
    */
   customClass: {
     type: definePropType<ClassValue>([String, Array, Object, Boolean]),
     default: messageDefaults.customClass,
   },
   /**
-   * @description whether `message` is treated as HTML string
+   * @description `message` 是否作为 HTML 字符串处理
    */
   dangerouslyUseHTMLString: {
     type: Boolean,
     default: messageDefaults.dangerouslyUseHTMLString,
   },
   /**
-   * @description display duration, millisecond. If set to 0, it will not turn off automatically
+   * @description 显示时长（毫秒）。设为 0 时不会自动关闭
    */
   duration: {
     type: Number,
     default: messageDefaults.duration,
   },
   /**
-   * @description custom icon component, overrides `type`
+   * @description 自定义图标组件，覆盖 `type`
    */
   icon: {
     type: iconPropType,
     default: messageDefaults.icon,
   },
   /**
-   * @description message dom id
+   * @description 消息的 dom id
    */
   id: {
     type: String,
     default: messageDefaults.id,
   },
   /**
-   * @description message text
+   * @description 消息文本
    */
   message: {
     type: definePropType<string | VNode | (() => VNode)>([
@@ -177,21 +177,21 @@ export const messageProps = buildProps({
     default: messageDefaults.message,
   },
   /**
-   * @description callback function when closed with the message instance as the parameter
+   * @description 关闭时的回调函数，以消息实例作为参数
    */
   onClose: {
     type: definePropType<() => void>(Function),
     default: messageDefaults.onClose,
   },
   /**
-   * @description whether to show a close button
+   * @description 是否显示关闭按钮
    */
   showClose: {
     type: Boolean,
     default: messageDefaults.showClose,
   },
   /**
-   * @description message type
+   * @description 消息类型
    */
   type: {
     type: String,
@@ -199,21 +199,21 @@ export const messageProps = buildProps({
     default: messageDefaults.type,
   },
   /**
-   * @description whether message is plain
+   * @description 消息是否为朴素样式
    */
   plain: {
     type: Boolean,
     default: messageDefaults.plain,
   },
   /**
-   * @description set the distance to the top of viewport
+   * @description 设置距视口顶部的距离
    */
   offset: {
     type: Number,
     default: messageDefaults.offset,
   },
   /**
-   * @description message placement position
+   * @description 消息放置位置
    */
   placement: {
     type: String,
@@ -221,21 +221,21 @@ export const messageProps = buildProps({
     default: messageDefaults.placement,
   },
   /**
-   * @description message element zIndex value
+   * @description 消息元素的 zIndex 值
    */
   zIndex: {
     type: Number,
     default: messageDefaults.zIndex,
   },
   /**
-   * @description merge messages with the same content, type of VNode message is not supported
+   * @description 合并内容相同的消息，不支持 VNode 类型消息
    */
   grouping: {
     type: Boolean,
     default: messageDefaults.grouping,
   },
   /**
-   * @description The number of repetitions, similar to badge, is used as the initial number when used with `grouping`
+   * @description 重复次数，类似 badge；配合 `grouping` 使用时作为初始数字
    */
   repeatNum: {
     type: Number,
@@ -244,7 +244,7 @@ export const messageProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `MessageProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `MessageProps`。
  */
 export type MessagePropsPublic = ExtractPublicPropTypes<typeof messageProps>
 
@@ -265,7 +265,7 @@ export type MessageOptions = Partial<
 export type MessageParams = MessageOptions | MessageOptions['message']
 export type MessageParamsNormalized = Omit<MessageProps, 'id'> & {
   /**
-   * @description set the root element for the message, default to `document.body`
+   * @description 设置消息的根元素，默认为 `document.body`
    */
   appendTo: HTMLElement
 }
@@ -275,7 +275,7 @@ export type MessageParamsWithType =
 
 export interface MessageHandler {
   /**
-   * @description close the Message
+   * @description 关闭 Message
    */
   close: () => void
 }

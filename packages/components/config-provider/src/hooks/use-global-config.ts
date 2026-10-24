@@ -18,8 +18,8 @@ import { configProviderContextKey } from '../constants'
 import type { App, MaybeRef, Ref } from 'vue'
 import type { ConfigProviderContext } from '../constants'
 
-// this is meant to fix global methods like `ElMessage(opts)`, this way we can inject current locale
-// into the component as default injection value.
+// 用于修复 `ElMessage(opts)` 这类全局方法，这样我们可以注入当前语言环境
+// 作为默认注入值传入组件。
 // refer to: https://github.com/element-plus/element-plus/issues/2610#issuecomment-887965266
 const globalConfig = ref<ConfigProviderContext>()
 
@@ -45,7 +45,7 @@ export function useGlobalConfig(
   }
 }
 
-// for components like `ElMessage` `ElNotification` `ElMessageBox`.
+// 用于 `ElMessage`、`ElNotification`、`ElMessageBox` 这类组件。
 export function useGlobalComponentSettings(
   block: string,
   sizeFallback?: MaybeRef<ConfigProviderContext['size']>

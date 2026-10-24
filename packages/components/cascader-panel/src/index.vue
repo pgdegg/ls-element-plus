@@ -84,7 +84,7 @@ const props = withDefaults(defineProps<CascaderPanelProps>(), {
 })
 const emit = defineEmits(cascaderPanelEmits)
 
-// for interrupt sync check status in lazy mode
+// 用于在懒加载模式下中断同步选中状态
 let manualChecked = false
 
 const ns = useNamespace('cascader')
@@ -218,7 +218,7 @@ const calculateCheckedValue = () => {
   const { checkStrictly, multiple } = config.value
   const oldNodes = checkedNodes.value
   const newNodes = getCheckedNodes(!checkStrictly)!
-  // ensure the original order
+  // 保持原始顺序
   const nodes = sortByOriginalOrder(oldNodes, newNodes)
   const values = nodes.map((node) => node.valueByOption)
   checkedNodes.value = nodes
@@ -295,14 +295,14 @@ const scrollToExpandingNode = () => {
   menuList.value.forEach((menu) => {
     const menuElement = menu?.$el
     if (menuElement) {
-      // virtual scroll mode, use scrollToItem method
+      // 虚拟滚动模式，使用 scrollToItem 方法
       if (virtualScroll.value) {
         const activeIndex = menu?.getActiveNodeIndex?.()
         if (activeIndex !== undefined && activeIndex >= 0) {
           menu?.scrollToItem?.(activeIndex)
         }
       } else {
-        // logic for non-virtual scroll mode
+        // 非虚拟滚动模式的逻辑
         const container = menuElement.querySelector(
           `.${ns.namespace.value}-scrollbar__wrap`
         )

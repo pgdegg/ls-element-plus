@@ -30,7 +30,7 @@ export const rightLogoSmallSponsors: Sponsor[] = [
     imgL: '/images/bit-l.png',
     url: 'https://bit.dev/?from=element-ui',
     slogan: 'Share Code',
-    isDark: true, // dark theme
+    isDark: true, // 深色主题
   },
 ]
 

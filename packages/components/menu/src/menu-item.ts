@@ -11,44 +11,44 @@ import type { MenuItemRegistered } from './types'
 
 export interface MenuItemProps {
   /**
-   * @description unique identification
+   * @description 唯一标识
    */
   index: string
   /**
-   * @description Vue Router object
+   * @description Vue Router 对象
    */
   route?: RouteLocationRaw
   /**
-   * @description whether disabled
+   * @description 是否禁用
    */
   disabled?: boolean
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `MenuItemProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `MenuItemProps`。
  */
 export const menuItemProps = buildProps({
   /**
-   * @description unique identification
+   * @description 唯一标识
    */
   index: {
     type: String,
     required: true,
   },
   /**
-   * @description Vue Router object
+   * @description Vue Router 对象
    */
   route: {
     type: definePropType<RouteLocationRaw>([String, Object]),
   },
   /**
-   * @description whether disabled
+   * @description 是否禁用
    */
   disabled: Boolean,
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `MenuItemProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `MenuItemProps`。
  */
 export type MenuItemPropsPublic = ExtractPublicPropTypes<typeof menuItemProps>
 

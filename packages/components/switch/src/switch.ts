@@ -20,209 +20,209 @@ import type { IconPropType } from '@element-plus/utils'
 import type Switch from './switch.vue'
 
 export interface SwitchProps {
-  /** Use a square switch track and action. */
+  /** 使用方形开关轨道与滑钮。 */
   square?: boolean
   /**
-   * @description binding value, it should be equivalent to either `active-value` or `inactive-value`, by default it's `boolean` type
+   * @description 绑定值，应等于 `active-value` 或 `inactive-value`，默认为 `boolean` 类型
    */
   modelValue?: boolean | string | number
   /**
-   * @description whether Switch is disabled
+   * @description Switch 是否禁用
    */
   disabled?: boolean
   /**
-   * @description whether Switch is in loading state
+   * @description Switch 是否处于加载状态
    */
   loading?: boolean
   /**
-   * @description size of Switch
+   * @description Switch 的尺寸
    */
   size?: ComponentSize
   /**
-   * @description width of Switch
+   * @description Switch 的宽度
    */
   width?: string | number
   /**
-   * @description whether icon or text is displayed inside dot, only the first character will be rendered for text
+   * @description 是否在圆点内显示图标或文字；文字仅渲染第一个字符
    */
   inlinePrompt?: boolean
   /**
-   * @description component of the icon displayed in action when in `off` state
+   * @description `off` 状态下滑钮中显示的图标组件
    */
   inactiveActionIcon?: IconPropType
   /**
-   * @description component of the icon displayed in action when in `on` state
+   * @description `on` 状态下滑钮中显示的图标组件
    */
   activeActionIcon?: IconPropType
   /**
-   * @description component of the icon displayed when in `on` state, overrides `active-text`
+   * @description `on` 状态时显示的图标组件，覆盖 `active-text`
    */
   activeIcon?: IconPropType
   /**
-   * @description component of the icon displayed when in `off` state, overrides `inactive-text`
+   * @description `off` 状态时显示的图标组件，覆盖 `inactive-text`
    */
   inactiveIcon?: IconPropType
   /**
-   * @description text displayed when in `on` state
+   * @description `on` 状态时显示的文字
    */
   activeText?: string
   /**
-   * @description text displayed when in `off` state
+   * @description `off` 状态时显示的文字
    */
   inactiveText?: string
   /**
-   * @description switch value when in `on` state
+   * @description `on` 状态时的开关值
    */
   activeValue?: boolean | string | number
   /**
-   * @description switch value when in `off` state
+   * @description `off` 状态时的开关值
    */
   inactiveValue?: boolean | string | number
   /**
-   * @description input name of Switch
+   * @description Switch 的 input name
    */
   name?: string
   /**
-   * @description whether to trigger form validation
+   * @description 是否触发表单校验
    */
   validateEvent?: boolean
   /**
-   * @description before-change hook before the switch state changes. If `false` is returned or a `Promise` is returned and then is rejected, will stop switching
+   * @description 开关状态切换前的 before-change 钩子。返回 `false`，或返回 `Promise` 且被拒绝时，将阻止切换
    */
   beforeChange?: () => Promise<boolean> | boolean
   /**
-   * @description id for input
+   * @description input 的 id
    */
   id?: string
   /**
-   * @description tabindex for input
+   * @description input 的 tabindex
    */
   tabindex?: string | number
   /**
-   * @description native `aria-label` attribute
+   * @description 原生 `aria-label` 属性
    */
   ariaLabel?: string
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `SwitchProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `SwitchProps`。
  */
 export const switchProps = buildProps({
   square: Boolean,
   /**
-   * @description binding value, it should be equivalent to either `active-value` or `inactive-value`, by default it's `boolean` type
+   * @description 绑定值，应等于 `active-value` 或 `inactive-value`，默认为 `boolean` 类型
    */
   modelValue: {
     type: [Boolean, String, Number],
     default: false,
   },
   /**
-   * @description whether Switch is disabled
+   * @description Switch 是否禁用
    */
   disabled: {
     type: Boolean,
     default: undefined,
   },
   /**
-   * @description whether Switch is in loading state
+   * @description Switch 是否处于加载状态
    */
   loading: Boolean,
   /**
-   * @description size of Switch
+   * @description Switch 的尺寸
    */
   size: {
     type: String as PropType<ComponentSize>,
     validator: isValidComponentSize,
   },
   /**
-   * @description width of Switch
+   * @description Switch 的宽度
    */
   width: {
     type: [String, Number],
     default: '',
   },
   /**
-   * @description whether icon or text is displayed inside dot, only the first character will be rendered for text
+   * @description 是否在圆点内显示图标或文字；文字仅渲染第一个字符
    */
   inlinePrompt: Boolean,
   /**
-   * @description component of the icon displayed in action when in `off` state
+   * @description `off` 状态下滑钮中显示的图标组件
    */
   inactiveActionIcon: {
     type: iconPropType,
   },
   /**
-   * @description component of the icon displayed in action when in `on` state
+   * @description `on` 状态下滑钮中显示的图标组件
    */
   activeActionIcon: {
     type: iconPropType,
   },
   /**
-   * @description component of the icon displayed when in `on` state, overrides `active-text`
+   * @description `on` 状态时显示的图标组件，覆盖 `active-text`
    */
   activeIcon: {
     type: iconPropType,
   },
   /**
-   * @description component of the icon displayed when in `off` state, overrides `inactive-text`
+   * @description `off` 状态时显示的图标组件，覆盖 `inactive-text`
    */
   inactiveIcon: {
     type: iconPropType,
   },
   /**
-   * @description text displayed when in `on` state
+   * @description `on` 状态时显示的文字
    */
   activeText: {
     type: String,
     default: '',
   },
   /**
-   * @description text displayed when in `off` state
+   * @description `off` 状态时显示的文字
    */
   inactiveText: {
     type: String,
     default: '',
   },
   /**
-   * @description switch value when in `on` state
+   * @description `on` 状态时的开关值
    */
   activeValue: {
     type: [Boolean, String, Number],
     default: true,
   },
   /**
-   * @description switch value when in `off` state
+   * @description `off` 状态时的开关值
    */
   inactiveValue: {
     type: [Boolean, String, Number],
     default: false,
   },
   /**
-   * @description input name of Switch
+   * @description Switch 的 input name
    */
   name: {
     type: String,
     default: '',
   },
   /**
-   * @description whether to trigger form validation
+   * @description 是否触发表单校验
    */
   validateEvent: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description before-change hook before the switch state changes. If `false` is returned or a `Promise` is returned and then is rejected, will stop switching
+   * @description 开关状态切换前的 before-change 钩子。返回 `false`，或返回 `Promise` 且被拒绝时，将阻止切换
    */
   beforeChange: {
     type: definePropType<() => Promise<boolean> | boolean>(Function),
   },
   /**
-   * @description id for input
+   * @description input 的 id
    */
   id: String,
   /**
-   * @description tabindex for input
+   * @description input 的 tabindex
    */
   tabindex: {
     type: [String, Number],
@@ -231,7 +231,7 @@ export const switchProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `SwitchProps` instead.
+ * @deprecated 将于 3.0.0 之后移除，请改用 `SwitchProps`。
  */
 export type SwitchPropsPublic = ExtractPublicPropTypes<typeof switchProps>
 

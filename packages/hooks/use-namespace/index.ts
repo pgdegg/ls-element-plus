@@ -77,7 +77,7 @@ export const useNamespace = (
     return name && state ? `${statePrefix}${name}` : ''
   }
 
-  // for css var
+  // 用于 CSS 变量
   // --el-xxx: value;
   const cssVar = (object: Record<string, string>) => {
     const styles: Record<string, string> = {}
@@ -88,7 +88,7 @@ export const useNamespace = (
     }
     return styles
   }
-  // with block
+  // 包含 block
   const cssVarBlock = (object: Record<string, string>) => {
     const styles: Record<string, string> = {}
     for (const key in object) {

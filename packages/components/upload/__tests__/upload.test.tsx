@@ -132,7 +132,7 @@ describe('<upload />', () => {
       expect(onError).toHaveBeenCalled()
     })
 
-    // Ensure that the modified data in before-upload can be correctly passed into the upload request. (#12029)
+    // 确保 before-upload 中修改的数据能正确传入上传请求。（#12029）
     test('in beforeUpload change data correctly to request', async () => {
       const keyList: string[] = []
       const beforeUpload = vi.fn((file) => (data.value.key = file.name))
@@ -339,19 +339,19 @@ describe('<upload />', () => {
         />
       ))
 
-      // upload the first file
+      // 上传第一个文件
       const firstFile = new File(['content'], 'test-file.txt')
       mockGetFile(wrapper.find('input').element, [firstFile])
       await wrapper.find('input').trigger('change')
       await flushPromises()
 
-      // upload the second file
+      // 上传第二个文件
       const secondFile = new File(['content2'], 'test-file2.txt')
       mockGetFile(wrapper.find('input').element, [firstFile, secondFile])
       await wrapper.find('input').trigger('change')
       await flushPromises()
 
-      // check the keyList after uploading both files
+      // 上传两个文件后检查 keyList
       expect(keyList).toEqual([
         'test-file.txt',
         'test-file.txt',

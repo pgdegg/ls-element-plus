@@ -19,12 +19,12 @@ export const rovingFocusGroupProps = buildProps({
   defaultCurrentTabId: String,
   loop: Boolean,
   dir: {
-    type: String, // left for direction support
+    type: String, // 保留以便支持方向（dir）
     values: ['ltr', 'rtl'],
     default: 'ltr',
   },
   orientation: {
-    // left for orientation support
+    // 保留以便支持朝向（orientation）
     type: definePropType<HTMLAttributes['aria-orientation']>(String),
   },
 

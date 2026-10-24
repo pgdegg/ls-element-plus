@@ -4,9 +4,9 @@ import { isFunction } from '@element-plus/utils'
 import type { Ref } from 'vue'
 import type { Tree, TreeKey, TreeNode, TreeProps } from '../types'
 
-// When the data volume is very large using filter will cause lag
-// I haven't found a better way to optimize it for now
-// Maybe this problem should be left to the server side
+// 数据量很大时使用过滤会导致卡顿
+// 目前尚未找到更好的优化方式
+// 或许这个问题应交给服务端处理
 export function useFilter(props: TreeProps, tree: Ref<Tree | undefined>) {
   const hiddenNodeKeySet = ref<Set<TreeKey>>(new Set([]))
   const hiddenExpandIconKeySet = ref<Set<TreeKey>>(new Set([]))
@@ -48,7 +48,7 @@ export function useFilter(props: TreeProps, tree: Ref<Tree | undefined>) {
           if (!expandKeySet.has(node.key)) {
             hiddenKeys.add(node.key)
           } else if (children) {
-            // If all child nodes are hidden, then the expand icon will be hidden
+            // 若所有子节点都被隐藏，则展开图标也会隐藏
             let allHidden = true
             for (const childNode of children) {
               if (!hiddenKeys.has(childNode.key)) {

@@ -10,117 +10,117 @@ import type { DatePickerType } from '../types'
 
 export const datePickerPanelProps = buildProps({
   /**
-   * @description optional, format of binding value. If not specified, the binding value will be a Date object
+   * @description 可选，绑定值的格式。若未指定，绑定值将为 Date 对象
    */
   valueFormat: String,
   /**
-   * @description optional, format of the date displayed in input's inner panel
+   * @description 可选，输入框内面板中显示的日期格式
    */
   dateFormat: String,
   /**
-   * @description optional, format of the time displayed in input's inner panel
+   * @description 可选，输入框内面板中显示的时间格式
    */
   timeFormat: String,
   /**
-   * @description whether picker is disabled
+   * @description 选择器是否被禁用
    */
   disabled: {
     type: Boolean,
     default: undefined,
   },
   /**
-   * @description binding value, if it is an array, the length should be 2
+   * @description 绑定值；若为数组，长度应为 2
    */
   modelValue: {
     type: definePropType<ModelValueType>([Date, Array, String, Number]),
     default: '',
   },
   /**
-   * @description optional, default date of the calendar
+   * @description 可选，日历的默认日期
    */
   defaultValue: {
     type: definePropType<SingleOrRange<Date>>([Date, Array]),
   },
   /**
-   * @description optional, the time value to use when selecting date range
+   * @description 可选，选择日期范围时使用的时间值
    */
   defaultTime: {
     type: definePropType<SingleOrRange<Date>>([Date, Array]),
   },
   /**
-   * @description whether to pick a time range
+   * @description 是否选择时间范围
    */
   isRange: Boolean,
   ...disabledTimeListsProps,
   /**
-   * @description a function determining if a date is disabled with that date as its parameter. Should return a Boolean
+   * @description 一个函数，以日期作为参数判断该日期是否被禁用，应返回 Boolean
    */
   disabledDate: {
     type: Function,
   },
   /**
-   * @description set custom className
+   * @description 设置自定义 className
    */
   cellClassName: {
     type: Function,
   },
   /**
-   * @description an object array to set shortcut options
+   * @description 用于设置快捷选项的对象数组
    */
   shortcuts: {
     type: Array,
     default: () => [],
   },
   /**
-   * @description whether to pick time using arrow buttons
+   * @description 是否使用箭头按钮选择时间
    */
   arrowControl: Boolean,
   /**
-   * @description unlink two date-panels in range-picker
+   * @description 取消 range-picker 中两个日期面板的联动
    */
   unlinkPanels: Boolean,
   /**
-   * @description whether to show the now button
+   * @description 是否显示现在按钮
    */
   showNow: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description whether to show the confirm button
+   * @description 是否显示确认按钮
    */
   showConfirm: Boolean,
   /**
-   * @description whether to show footer
+   * @description 是否显示底部栏
    */
   showFooter: Boolean,
   /**
-   * @description whether to show the number of the calendar week
+   * @description 是否显示日历周序号
    */
   showWeekNumber: Boolean,
   /**
-   * @description type of the picker
+   * @description 选择器的类型
    */
   type: {
     type: definePropType<DatePickerType>(String),
     default: 'date',
   },
   /**
-   * @description whether to show clear button in range mode
+   * @description 范围模式下是否显示清除按钮
    */
   clearable: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description whether the date picker is bordered
+   * @description 日期选择器是否带边框
    */
   border: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description whether the input is editable
+   * @description 输入框是否可编辑
    */
   editable: {
     type: Boolean,

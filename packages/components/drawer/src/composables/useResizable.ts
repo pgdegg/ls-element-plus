@@ -78,8 +78,8 @@ export function useResizable(
   }
 
   const onMouseUp = (e?: MouseEvent) => {
-    // premature interruption
-    // avoid triggering meaningless execution due to watch size/resizable constraints.
+    // 提前中断
+    // 避免因监听 size/resizable 约束而触发无意义的执行。
     if (!isResizing.value) return
 
     startPos = []

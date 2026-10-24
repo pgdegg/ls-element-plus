@@ -51,14 +51,14 @@ const handleScroll = () => {
     scrollWidth,
     scrollLeft,
   } = wrap
-  // Scroll offsets may be fractional, whereas scroll and client sizes are rounded.
+  // 滚动偏移量可能是小数，而 scroll 和 client 尺寸是取整的。
   const maxTop = scrollHeight - clientHeight
   const maxLeft = scrollWidth - clientWidth
   const hasVerticalOverflow = clientHeight > 0 && maxTop > 1
   const hasHorizontalOverflow = clientWidth > 0 && maxLeft > 1
   let left = scrollLeft
   if (hasHorizontalOverflow && getStyle(wrap, 'direction') === 'rtl') {
-    // Normalize the browser's RTL offset to the distance from the physical left.
+    // 将浏览器的 RTL 偏移量归一化为距物理左侧的距离。
     switch (getRTLOffsetType()) {
       case 'negative':
         left = maxLeft + scrollLeft
@@ -79,7 +79,7 @@ const update = () => {
   const { wrapElement: wrap, scrollbarElement } = scrollbar
   if (!wrap || !scrollbarElement) return
 
-  // Align with the viewport, excluding native scrollbars and any wrap border.
+  // 与视口对齐，排除原生滚动条以及任何 wrap 边框。
   const {
     offsetLeft,
     offsetTop,

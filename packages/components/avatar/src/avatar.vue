@@ -69,7 +69,7 @@ const fitStyle = computed<CSSProperties>(() => ({
   objectFit: props.fit,
 }))
 
-// need reset hasLoadError to false if src changed
+// src 变化时需要将 hasLoadError 重置为 false
 watch(
   () => [props.src, props.srcSet],
   () => (hasLoadError.value = false)

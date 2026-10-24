@@ -3114,19 +3114,19 @@ describe('Select', () => {
       const inputWrapper = select.find('.el-select__input-wrapper')
       const input = select.find('input')
 
-      // When input is empty and not focused, input-wrapper should have hidden class
+      // 当 input 为空且未聚焦时，input-wrapper 应带有 hidden 类
       expect(inputWrapper.classes()).toContain('is-hidden')
 
-      // Focus the input
+      // 聚焦 input
       await input.trigger('focus')
 
-      // When focused, input-wrapper should not have hidden class
+      // 聚焦时，input-wrapper 不应带有 hidden 类
       expect(inputWrapper.classes()).not.toContain('is-hidden')
 
-      // Blur the input
+      // 让 input 失焦
       await input.trigger('blur')
 
-      // When blurred and empty, input-wrapper should have hidden class again
+      // 失焦且为空时，input-wrapper 应再次带有 hidden 类
       expect(inputWrapper.classes()).toContain('is-hidden')
     })
 
@@ -3142,25 +3142,25 @@ describe('Select', () => {
       const inputWrapper = select.find('.el-select__input-wrapper')
       const input = select.find('input')
 
-      // Initially empty, should be hidden
+      // 初始为空，应隐藏
       expect(inputWrapper.classes()).toContain('is-hidden')
 
-      // Set input value
+      // 设置 input 的值
       await input.setValue('test')
 
-      // When input has value, input-wrapper should not have hidden class
+      // 当 input 有值时，input-wrapper 不应带有 hidden 类
       expect(inputWrapper.classes()).not.toContain('is-hidden')
 
-      // Clear input
+      // 清空 input
       await input.setValue('')
 
-      // When empty again, should be hidden
+      // 再次为空时，应隐藏
       expect(inputWrapper.classes()).toContain('is-hidden')
     })
 
-    // #24167: in single mode the empty/blur condition must NOT hide the
-    // input-wrapper, otherwise it falls out of flow and the selection
-    // collapses to zero width inside auto-sized form layouts.
+    // #24167：单选模式下，为空/失焦条件不得隐藏
+    // input-wrapper，否则它会脱离文档流，选中项
+    // 在自适应宽度的表单布局中收缩为零宽度。
     it('should not hide input-wrapper in single mode when empty and not focused', async () => {
       const wrapper = createSelect({
         data: () => ({
@@ -3212,7 +3212,7 @@ describe('Select', () => {
       }
     })
 
-    // Temporarily restore useDebounceFn to use real debounce with fake timers
+    // 临时恢复 useDebounceFn，以便在假定时器下使用真实防抖
     const { useDebounceFn } = await vi.importActual('@vueuse/core')
     const mockedUseDebounceFn = vi.mocked(
       (await import('@vueuse/core')).useDebounceFn
@@ -3242,7 +3242,7 @@ describe('Select', () => {
       const vm = select.vm as any
       const input = wrapper.find('input')
 
-      // Open dropdown first
+      // 先打开下拉框
       await input.trigger('click')
       await nextTick()
       expect(vm.expanded).toBe(true)
@@ -3250,24 +3250,24 @@ describe('Select', () => {
       expect(handleVisibleChange).toHaveBeenCalledTimes(1)
       expect(handleVisibleChange).toHaveBeenLastCalledWith(true)
 
-      // Start typing to trigger remote search and debouncing
+      // 开始输入以触发远程搜索和防抖
       input.element.value = 'a'
       await input.trigger('input')
       await nextTick()
-      vi.advanceTimersByTime(50) // Advance time but don't complete debounce
+      vi.advanceTimersByTime(50) // 推进时间但不完成防抖
       await nextTick()
 
-      // During debouncing (before debounce completes), check dropdown and event count
+      // 防抖期间（防抖完成前），检查下拉框和事件调用次数
       expect(vm.dropdownMenuVisible).toBe(true)
       expect(handleVisibleChange).toHaveBeenCalledTimes(1)
 
-      // Complete the debounce
+      // 完成防抖
       vi.advanceTimersByTime(300)
       await nextTick()
 
       expect(remoteMethod).toHaveBeenCalledWith('a')
       expect(vm.dropdownMenuVisible).toBe(true)
-      // Should still only have been called once - dropdown never closed
+      // 仍应只被调用一次——下拉框从未关闭
       expect(handleVisibleChange).toHaveBeenCalledTimes(1)
     } finally {
       mockedUseDebounceFn.mockImplementation(

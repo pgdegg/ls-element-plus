@@ -189,31 +189,31 @@ onBeforeUnmount(() => {
 
 defineExpose({
   /**
-   * @description el-popper component instance
+   * @description el-popper 组件实例
    */
   popperRef,
   /**
-   * @description el-tooltip-content component instance
+   * @description el-tooltip-content 组件实例
    */
   contentRef,
   /**
-   * @description validate current focus event is trigger inside el-tooltip-content
+   * @description 校验当前焦点事件是否在 el-tooltip-content 内部触发
    */
   isFocusInsideContent,
   /**
-   * @description update el-popper component instance
+   * @description 更新 el-popper 组件实例
    */
   updatePopper,
   /**
-   * @description expose onOpen function to mange el-tooltip open state
+   * @description 暴露 onOpen 函数以管理 el-tooltip 的打开状态
    */
   onOpen,
   /**
-   * @description expose onClose function to manage el-tooltip close state
+   * @description 暴露 onClose 函数以管理 el-tooltip 的关闭状态
    */
   onClose,
   /**
-   * @description expose hide function
+   * @description 暴露 hide 函数
    */
   hide,
 })

@@ -104,7 +104,7 @@ onMounted(() => {
         TRIGGER_ELE_EVENTS.forEach((eventName) => {
           const handler = props[eventName]
           if (handler) {
-            // It's not worth doing type gymnastics here
+            // 这里不值得做复杂的类型体操
             // @ts-ignore
             ;(el as HTMLElement).addEventListener(
               eventName.slice(2).toLowerCase(),
@@ -169,7 +169,7 @@ onBeforeUnmount(() => {
 
 defineExpose({
   /**
-   * @description trigger element
+   * @description 触发元素
    */
   triggerRef,
 })

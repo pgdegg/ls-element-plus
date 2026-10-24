@@ -25,9 +25,9 @@ class TableLayout<T extends DefaultRow> {
   fixedWidth: Ref<null | number>
   rightFixedWidth: Ref<null | number>
   tableHeight!: Ref<null | number>
-  headerHeight!: Ref<null | number> // Table Header Height
-  appendHeight!: Ref<null | number> // Append Slot Height
-  footerHeight!: Ref<null | number> // Table Footer Height
+  headerHeight!: Ref<null | number> // 表头高度
+  appendHeight!: Ref<null | number> // 追加插槽高度
+  footerHeight!: Ref<null | number> // 表尾高度
   gutterWidth: number
   constructor(options: Record<string, any>) {
     this.observers = []
@@ -64,8 +64,8 @@ class TableLayout<T extends DefaultRow> {
   updateScrollY() {
     const height = this.height.value
     /**
-     * When the height is not initialized, it is null.
-     * After the table is initialized, when the height is not configured, the height is 0.
+     * 高度未初始化时为 null。
+     * 表格初始化后，若未配置高度，则高度为 0。
      */
     if (isNull(height)) return false
     const scrollBarRef = this.table.refs.scrollBarRef
@@ -152,7 +152,7 @@ class TableLayout<T extends DefaultRow> {
       (column) => !isNumber(column.width)
     )
     flattenColumns.forEach((column) => {
-      // Clean those columns whose width changed from flex to unflex
+      // 清理宽度从 flex 变为 unflex 的列
       if (isNumber(column.width) && column.realWidth) column.realWidth = null
     })
     if (flexColumns.length > 0 && fit) {
@@ -160,7 +160,7 @@ class TableLayout<T extends DefaultRow> {
         bodyMinWidth += Number(column.width || column.minWidth || 80)
       })
       if (bodyMinWidth <= bodyWidth) {
-        // DON'T HAVE SCROLL BAR
+        // 没有滚动条
         this.scrollX.value = false
 
         const totalFlexWidth = bodyWidth - bodyMinWidth
@@ -191,7 +191,7 @@ class TableLayout<T extends DefaultRow> {
             noneFirstWidth
         }
       } else {
-        // HAVE HORIZONTAL SCROLL BAR
+        // 存在水平滚动条
         this.scrollX.value = true
         flexColumns.forEach((column) => {
           column.realWidth = Number(column.minWidth)

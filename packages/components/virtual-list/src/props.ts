@@ -63,7 +63,7 @@ export const virtualizedProps = buildProps({
   },
 
   /**
-   * @description controls the horizontal direction.
+   * @description 控制水平方向。
    */
   direction,
 
@@ -108,22 +108,22 @@ export const virtualizedProps = buildProps({
 
 export const virtualizedListProps = buildProps({
   /**
-   * @description describes how many items should be pre rendered to the head
-   * and the tail of the window
+   * @description 描述应在窗口头部
+   * 和尾部预渲染多少项
    */
   cache,
 
   estimatedItemSize,
 
   /**
-   * @description controls the list's orientation
+   * @description 控制列表方向
    */
   layout,
 
   initScrollOffset,
 
   /**
-   * @description describes the total number of the list.
+   * @description 描述列表的总项数。
    */
   total,
 

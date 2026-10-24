@@ -6,45 +6,45 @@ export const alertEffects = ['light', 'dark'] as const
 
 export interface AlertProps {
   /**
-   * @description alert title.
+   * @description 警告标题
    */
   title?: string
   /**
-   * @description descriptive text.
+   * @description 描述性文本
    */
   description?: string
   /**
-   * @description alert type.
+   * @description 警告类型
    */
   type?: keyof typeof TypeComponentsMap
   /**
-   * @description whether alert can be dismissed.
+   * @description 警告是否可关闭
    */
   closable?: boolean
   /**
-   * @description text for replacing x button
+   * @description 用于替换关闭按钮（x）的文本
    */
   closeText?: string
   /**
-   * @description whether show icon
+   * @description 是否显示图标
    */
   showIcon?: boolean
   /**
-   * @description should content be placed in center.
+   * @description 内容是否居中
    */
   center?: boolean
   /**
-   * @description theme style
+   * @description 主题样式
    */
   effect?: 'light' | 'dark'
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `AlertProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `AlertProps`
  */
 export const alertProps = buildProps({
   /**
-   * @description alert title.
+   * @description 警告标题
    */
   title: {
     type: String,
@@ -55,7 +55,7 @@ export const alertProps = buildProps({
     default: '',
   },
   /**
-   * @description alert type.
+   * @description 警告类型
    */
   type: {
     type: String,
@@ -63,25 +63,25 @@ export const alertProps = buildProps({
     default: 'info',
   },
   /**
-   * @description whether alert can be dismissed.
+   * @description 警告是否可关闭
    */
   closable: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description text for replacing x button
+   * @description 用于替换关闭按钮（x）的文本
    */
   closeText: {
     type: String,
     default: '',
   },
   /**
-   * @description whether show icon
+   * @description 是否显示图标
    */
   showIcon: Boolean,
   /**
-   * @description should content be placed in center.
+   * @description 内容是否居中
    */
   center: Boolean,
   effect: {
@@ -92,7 +92,7 @@ export const alertProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `AlertProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `AlertProps`
  */
 export type AlertPropsPublic = ExtractPublicPropTypes<typeof alertProps>
 

@@ -348,8 +348,8 @@ const bindScrollEvent = () => {
     const scrollbar = unref(listRefsMap[type])
     if (scrollbar && scrollbar.$el) {
       getScrollbarElement(scrollbar.$el).onscroll = () => {
-        // TODO: scroll is emitted when set scrollTop programmatically
-        // should find better solutions in the future!
+        // TODO：以编程方式设置 scrollTop 时会触发 scroll
+        // 未来应寻找更好的解决方案！
         handleScroll(type)
       }
     }
@@ -363,7 +363,7 @@ onMounted(() => {
   nextTick(() => {
     !props.arrowControl && bindScrollEvent()
     adjustSpinners()
-    // set selection on the first hour part
+    // 选中第一个小时部分
     if (props.role === 'start') emitSelectRange('hours')
   })
 })

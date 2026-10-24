@@ -61,7 +61,7 @@
   @include e('root') {
     position: relative;
 
-    // for showing the scrollbar when mouse is on the root table
+    // 鼠标悬停在根表格上时显示滚动条
     &:hover {
       @include e('main') {
         .#{$namespace}-virtual-scrollbar {

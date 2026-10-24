@@ -27,28 +27,28 @@ export const useTransitionFallthroughEmits = [
   LEAVE_CANCELLED,
 ] as const
 
-// Sometimes we want to delegate the transition emitted event
-// we have to right the function locally, which is not a good
-// approach to this, so we created this hook for the event
-// fallthrough
+// 有时我们希望委托转发 transition 触发的事件
+// 我们不得不在本地编写该函数，这并不是一个好的
+// 做法，因此我们创建了这个 hook 来处理事件
+// 透传（fallthrough）
 
 /**
- * NOTE:
- * This is only a delegator for delegating transition callbacks.
- * Use this at your need.
+ * 注意：
+ * 这只是一个用于委托转发 transition 回调的代理。
+ * 根据需要使用。
  */
 
 /**
- * Simple usage
+ * 简单用法
  *
- * In your setups:
+ * 在你的 setup 中：
  *
  * setup() {
  *   const fallthroughMethods = useTransitionFallthrough()
  *   return fallthrough
  * }
  *
- * In your template:
+ * 在你的模板中：
  *
  * <template>
  *  <transition name="whatever" v-bind="fallthrough">

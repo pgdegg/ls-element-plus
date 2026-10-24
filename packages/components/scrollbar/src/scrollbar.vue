@@ -239,18 +239,18 @@ const update = () => {
   if (wrapRef.value) barRef.value?.handleScroll(wrapRef.value)
 }
 
-// Transform-driven overflow (e.g. slide transitions) is not observable via
-// resize observers, so refresh the bar when transitions/animations end —
-// this applies even when `noresize` is set.
+// 由 transform 驱动的溢出（例如滑动过渡）无法通过
+// resize observer 观测到，因此在过渡/动画结束时刷新滚动条——
+// 即使设置了 `noresize` 也适用。
 const updateBar = () => {
   if (rafId) return
   rafId = requestAnimationFrame(() => {
     rafId = 0
     if (!wrapRef.value) return
 
-    // Bar state may be stale even when the final scroll dimensions match a
-    // previously seen value (e.g. `onUpdated` measured the transient
-    // overflow mid-transition), so always refresh the bar here.
+    // 即使最终滚动尺寸与此前见过的值一致，滚动条状态也可能是过时的
+    //（例如 `onUpdated` 测量到的是过渡过程中的
+    //瞬时溢出），因此始终在此处刷新滚动条。
     barRef.value?.update()
     barRef.value?.handleScroll(wrapRef.value)
     maskRef.value?.update()
@@ -308,17 +308,17 @@ onMounted(() => {
 onUpdated(() => update())
 
 defineExpose({
-  /** @description scrollbar wrap ref */
+  /** @description 滚动条 wrap 的 ref */
   wrapRef,
-  /** @description update scrollbar state manually */
+  /** @description 手动更新滚动条状态 */
   update,
-  /** @description scrolls to a particular set of coordinates */
+  /** @description 滚动到指定的一组坐标 */
   scrollTo,
-  /** @description set distance to scroll top */
+  /** @description 设置距顶部的滚动距离 */
   setScrollTop,
-  /** @description set distance to scroll left */
+  /** @description 设置距左侧的滚动距离 */
   setScrollLeft,
-  /** @description handle scroll event */
+  /** @description 处理滚动事件 */
   handleScroll,
 })
 </script>

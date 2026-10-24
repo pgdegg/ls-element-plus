@@ -72,10 +72,10 @@ export function useDragNodeHandler({
     }
     event.dataTransfer.effectAllowed = 'move'
 
-    // wrap in try catch to address IE's error when first param is 'text/plain'
+    // 用 try catch 包裹，以解决首参为 'text/plain' 时 IE 报错的问题
     try {
-      // setData is required for draggable to work in FireFox
-      // the content has to be '' so dragging a node out of the tree won't open a new tab in FireFox
+      // FireFox 中 draggable 生效需要 setData
+      // content 必须为 ''，这样将节点拖出树时不会在 FireFox 中打开新标签页
       event.dataTransfer.setData('text/plain', '')
     } catch {}
     dragState.value.draggingNode = treeNode
@@ -120,7 +120,7 @@ export function useDragNodeHandler({
     if (dropPrev || dropInner || dropNext) {
       dragState.value.dropNode = dropNode
     } else {
-      // Reset dragState.value.dropNode to null when allowDrop is transfer from true to false.(For issue #14704)
+      // 当 allowDrop 从 true 变为 false 时，将 dragState.value.dropNode 重置为 null。（针对 issue #14704）
       dragState.value.dropNode = null
     }
 
@@ -143,7 +143,7 @@ export function useDragNodeHandler({
     }
     const dropEl = dropNode.$el!
 
-    // find target node without children, just calc content node height
+    // 查找没有子节点的目标节点，仅计算内容节点高度
     const targetPosition = dropEl
       .querySelector(`.${ns.be('node', 'content')}`)!
       .getBoundingClientRect()

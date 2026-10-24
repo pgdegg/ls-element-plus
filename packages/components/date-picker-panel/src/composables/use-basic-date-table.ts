@@ -31,7 +31,7 @@ export const useBasicDateTable = (
 
   let focusWithClick = false
 
-  // todo better way to get Day.js locale object
+  // todo：寻找获取 Day.js locale 对象的更好方式
   const firstDayOfWeek = (props.date as any).$locale().weekStart || 7
   const WEEKS_CONSTANT = props.date
     .locale('en')
@@ -40,7 +40,7 @@ export const useBasicDateTable = (
     .map((_) => _.toLowerCase())
 
   const offsetDay = computed(() => {
-    // Sunday 7(0), cal the left and right offset days, 3217654, such as Monday is -1, the is to adjust the position of the first two rows of dates
+    // 周日为 7(0)，计算左右偏移天数 3217654，例如周一为 -1，用于调整前两行日期的位置
     return firstDayOfWeek > 3 ? 7 - firstDayOfWeek : -firstDayOfWeek
   })
 
@@ -80,7 +80,7 @@ export const useBasicDateTable = (
     return props.selectionMode === 'dates' ? castArray(props.parsedValue!) : []
   })
 
-  // Return value indicates should the counter be incremented
+  // 返回值表示计数器是否应递增
   type CellCoordinate = { columnIndex: number; rowIndex: number }
   type CellMeta = CellCoordinate & {
     count: number
@@ -222,7 +222,7 @@ export const useBasicDateTable = (
   }
 
   const getDateOfCell = (row: number, column: number) => {
-    //NOTE: because relying of startDate is not reliable in every weekStart (especially 2, 3); we re-create it
+    //注意：因为在所有 weekStart（尤其是 2、3）下依赖 startDate 并不可靠；我们会重新创建它
     const startOfMonthDay = unref(days).startOfMonthDay
     const offset = unref(offsetDay)
     const numberOfDaysFromPreviousMonth =
@@ -251,11 +251,11 @@ export const useBasicDateTable = (
     const row = (target.parentNode as HTMLTableRowElement).rowIndex - 1
     const column = (target as HTMLTableCellElement).cellIndex
 
-    // can not select disabled date
+    // 无法选择已禁用的日期
     if (unref(rows)[row][column].disabled) return
 
-    // only update rangeState when mouse moves to a new cell
-    // this avoids frequent Date object creation and improves performance
+    // 仅当鼠标移动到新单元格时才更新 rangeState
+    // 这避免了频繁创建 Date 对象，提升性能
     if (row !== unref(lastRow) || column !== unref(lastColumn)) {
       lastRow.value = row
       lastColumn.value = column

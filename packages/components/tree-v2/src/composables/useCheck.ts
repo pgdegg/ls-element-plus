@@ -33,9 +33,9 @@ export function useCheck(props: TreeProps, tree: Ref<Tree | undefined>) {
     const { levelTreeNodeMap, maxLevel } = tree.value
     const checkedKeySet = checkedKeys.value
     const indeterminateKeySet = new Set<TreeKey>()
-    // It is easier to determine the indeterminate state by
-    // traversing from bottom to top
-    // leaf nodes not have indeterminate status and can be skipped
+    // 通过自底向上遍历更易判断半选状态
+    // 自底向上遍历
+    // 叶子节点没有半选状态，可跳过
     for (let level = maxLevel; level >= 1; --level) {
       const nodes = levelTreeNodeMap.get(level)
       if (!nodes) continue
@@ -44,9 +44,9 @@ export function useCheck(props: TreeProps, tree: Ref<Tree | undefined>) {
         let isEffectivelyChecked =
           !node.isLeaf || node.disabled || checkedKeySet.has(node.key)
         if (children) {
-          // Whether all child nodes are selected
+          // 是否所有子节点都被选中
           let allChecked = true
-          // Whether a child node is selected
+          // 是否某个子节点被选中
           let hasChecked = false
           for (const childNode of children) {
             const key = childNode.key

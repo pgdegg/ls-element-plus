@@ -14,96 +14,96 @@ export type ImageCrossorigin = 'anonymous' | 'use-credentials' | ''
 
 export interface ImageProps {
   /**
-   * @description when enabling preview, use this flag to control whether clicking on backdrop can exit preview mode.
+   * @description 启用预览时，用此标志控制点击背景遮罩是否可退出预览模式。
    */
   hideOnClickModal?: boolean
   /**
-   * @description image source, same as native.
+   * @description 图片源，与原生相同。
    */
   src?: string
   /**
-   * @description indicate how the image should be resized to fit its container, same as [object-fit](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit).
+   * @description 指定图片如何缩放以适应容器，与 [object-fit](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit) 相同。
    */
   fit?: ImageFitType
   /**
-   * @description Indicates how the browser should load the image, same as [native](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/img#loading)
+   * @description 指示浏览器如何加载图片，与 [原生](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/img#loading) 相同
    */
   loading?: 'eager' | 'lazy'
   /**
-   * @description whether to use lazy load.
+   * @description 是否使用懒加载。
    */
   lazy?: boolean
   /**
-   * @description the container to add scroll listener when using lazy load.
+   * @description 使用懒加载时添加滚动监听的容器。
    */
   scrollContainer?: string | HTMLElement
   /**
-   * @description allow big image preview.
+   * @description 允许大图预览。
    */
   previewSrcList?: string[]
   /**
-   * @description whether to append image-viewer to body. A nested parent element attribute transform should have this attribute set to `true`.
+   * @description 是否将 image-viewer 追加到 body。嵌套父元素带有 transform 属性时，应将此属性设为 `true`。
    */
   previewTeleported?: boolean
   /**
-   * @description set image preview z-index.
+   * @description 设置图片预览的 z-index。
    */
   zIndex?: number
   /**
-   * @description initial preview image index, less than the length of `url-list`.
+   * @description 初始预览图索引，小于 `url-list` 的长度。
    */
   initialIndex?: number
   /**
-   * @description whether the viewer preview is infinite.
+   * @description 预览是否循环。
    */
   infinite?: boolean
   /**
-   * @description whether the image-viewer can be closed by pressing ESC.
+   * @description 是否可通过按 ESC 关闭 image-viewer。
    */
   closeOnPressEscape?: boolean
   /**
-   * @description the zoom rate of the image viewer zoom event
+   * @description image-viewer 缩放事件的缩放速率
    */
   zoomRate?: number
   /**
-   * @description preview image scale.
+   * @description 预览图缩放比例。
    */
   scale?: number
   /**
-   * @description the min scale of the image viewer zoom event.
+   * @description image-viewer 缩放事件的最小缩放比例
    */
   minScale?: number
   /**
-   * @description the max scale of the image viewer zoom event.
+   * @description image-viewer 缩放事件的最大缩放比例
    */
   maxScale?: number
   /**
-   * @description show preview image progress content.
+   * @description 是否显示预览图加载进度内容。
    */
   showProgress?: boolean
   /**
-   * @description set HTML attribute: crossorigin.
+   * @description 设置 HTML 属性：crossorigin。
    */
   crossorigin?: ImageCrossorigin
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `ImageProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `ImageProps`。
  */
 export const imageProps = buildProps({
   /**
-   * @description when enabling preview, use this flag to control whether clicking on backdrop can exit preview mode.
+   * @description 启用预览时，用此标志控制点击背景遮罩是否可退出预览模式。
    */
   hideOnClickModal: Boolean,
   /**
-   * @description image source, same as native.
+   * @description 图片源，与原生相同。
    */
   src: {
     type: String,
     default: '',
   },
   /**
-   * @description indicate how the image should be resized to fit its container, same as [object-fit](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit).
+   * @description 指定图片如何缩放以适应容器，与 [object-fit](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit) 相同。
    */
   fit: {
     type: String,
@@ -111,94 +111,94 @@ export const imageProps = buildProps({
     default: '',
   },
   /**
-   * @description Indicates how the browser should load the image, same as [native](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/img#loading)
+   * @description 指示浏览器如何加载图片，与 [原生](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/img#loading) 相同
    */
   loading: {
     type: String,
     values: ['eager', 'lazy'],
   },
   /**
-   * @description whether to use lazy load.
+   * @description 是否使用懒加载。
    */
   lazy: Boolean,
   /**
-   * @description the container to add scroll listener when using lazy load.
+   * @description 使用懒加载时添加滚动监听的容器。
    */
   scrollContainer: {
     type: definePropType<string | HTMLElement | undefined>([String, Object]),
   },
   /**
-   * @description allow big image preview.
+   * @description 允许大图预览。
    */
   previewSrcList: {
     type: definePropType<string[]>(Array),
     default: () => mutable([] as const),
   },
   /**
-   * @description whether to append image-viewer to body. A nested parent element attribute transform should have this attribute set to `true`.
+   * @description 是否将 image-viewer 追加到 body。嵌套父元素带有 transform 属性时，应将此属性设为 `true`。
    */
   previewTeleported: Boolean,
   /**
-   * @description set image preview z-index.
+   * @description 设置图片预览的 z-index。
    */
   zIndex: {
     type: Number,
   },
   /**
-   * @description initial preview image index, less than the length of `url-list`.
+   * @description 初始预览图索引，小于 `url-list` 的长度。
    */
   initialIndex: {
     type: Number,
     default: 0,
   },
   /**
-   * @description whether the viewer preview is infinite.
+   * @description 预览是否循环。
    */
   infinite: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description whether the image-viewer can be closed by pressing ESC.
+   * @description 是否可通过按 ESC 关闭 image-viewer。
    */
   closeOnPressEscape: {
     type: Boolean,
     default: true,
   },
   /**
-   * @description the zoom rate of the image viewer zoom event
+   * @description image-viewer 缩放事件的缩放速率
    */
   zoomRate: {
     type: Number,
     default: 1.2,
   },
   /**
-   * @description preview image scale.
+   * @description 预览图缩放比例。
    */
   scale: {
     type: Number,
     default: 1,
   },
   /**
-   * @description the min scale of the image viewer zoom event.
+   * @description image-viewer 缩放事件的最小缩放比例
    */
   minScale: {
     type: Number,
     default: 0.2,
   },
   /**
-   * @description the max scale of the image viewer zoom event.
+   * @description image-viewer 缩放事件的最大缩放比例
    */
   maxScale: {
     type: Number,
     default: 7,
   },
   /**
-   * @description show preview image progress content.
+   * @description 是否显示预览图加载进度内容。
    */
   showProgress: Boolean,
   /**
-   * @description set HTML attribute: crossorigin.
+   * @description 设置 HTML 属性：crossorigin。
    */
   crossorigin: {
     type: definePropType<ImageCrossorigin>(String),
@@ -206,7 +206,7 @@ export const imageProps = buildProps({
 } as const)
 
 /**
- * @deprecated Removed after 3.0.0, Use `ImageProps` instead.
+ * @deprecated 3.0.0 后移除，请改用 `ImageProps`。
  */
 export type ImagePropsPublic = ExtractPublicPropTypes<typeof imageProps>
 

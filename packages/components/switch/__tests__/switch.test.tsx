@@ -265,7 +265,7 @@ describe('Switch.vue', () => {
     const value = ref(true)
     const result = ref(false)
     const beforeChange = () => {
-      // do something ...
+      // 执行某些操作……
       return result.value
     }
     const wrapper = mount(() => (

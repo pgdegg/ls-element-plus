@@ -34,8 +34,8 @@ const setupFolding = () => {
 
   container.classList.remove('has-fold')
 
-  // Preserve newline separators in the DOM so `textContent` still contains
-  // `\n`, while hiding the separator nodes visually to avoid blank rows.
+  // 在 DOM 中保留换行分隔符，使 `textContent` 仍然包含
+  // `\n`，同时在视觉上隐藏分隔符节点以避免出现空行。
   const lineEls = normalizeCodeFoldLines(code)
 
   const regions = computeFoldRegions(lineEls.map((el) => el.textContent ?? ''))
@@ -43,8 +43,8 @@ const setupFolding = () => {
 
   container.classList.add('has-fold')
 
-  // Reference-count how many folded regions cover each line, so that
-  // unfolding an outer region keeps inner regions collapsed.
+  // 对覆盖每行的折叠区域做引用计数，以便
+  // 展开外层区域时，内层区域保持折叠。
   const foldDepths = new Map<HTMLElement, number>()
   const setCovered = (els: HTMLElement[], folded: boolean) => {
     for (const el of els) {
@@ -117,7 +117,7 @@ watch(decoded, async () => {
   display: block;
   position: relative;
 
-  /* empty rows have no line boxes; keep blank source lines visible */
+  /* 空行没有行盒；保持空白源码行可见 */
   &:empty {
     min-height: 1lh;
   }

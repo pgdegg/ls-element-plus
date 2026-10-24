@@ -194,11 +194,11 @@ const optionRender = computed(() => (option: T) => {
 })
 
 defineExpose({
-  /** @description clear the filter keyword of a certain panel */
+  /** @description 清除某个面板的过滤关键字 */
   clearQuery,
-  /** @description left panel ref */
+  /** @description 左侧面板 ref */
   leftPanel,
-  /** @description right panel ref */
+  /** @description 右侧面板 ref */
   rightPanel,
 })
 </script>

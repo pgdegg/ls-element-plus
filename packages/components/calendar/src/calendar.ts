@@ -16,44 +16,44 @@ const isValidRange = (range: unknown): range is [Date, Date] =>
 
 export interface CalendarProps {
   /**
-   * @description binding value
+   * @description 绑定值
    */
   modelValue?: Date
   /**
-   * @description time range, including start time and end time.
-   *   Start time must be start day of week, end time must be end day of week, the time span cannot exceed two months.
+   * @description 时间范围，包括开始时间和结束时间。
+   *   开始时间必须是一周的第一天，结束时间必须是一周的最后一天，时间跨度不能超过两个月。
    */
   range?: [Date, Date]
   /**
-   * @description type of the controller for the Calendar header
+   * @description Calendar 头部控制器的类型
    */
   controllerType?: 'button' | 'select'
   /**
-   * @description format label when `controller-type` is 'select'
+   * @description `controller-type` 为 'select' 时标签的格式
    */
   formatter?: (value: number, type: 'year' | 'month') => string | number
 }
 
 /**
- * @deprecated Removed after 3.0.0, Use `CalendarProps` instead.
+ * @deprecated 自 3.0.0 后移除，请使用 `CalendarProps`
  */
 export const calendarProps = buildProps({
   /**
-   * @description binding value
+   * @description 绑定值
    */
   modelValue: {
     type: Date,
   },
   /**
-   * @description time range, including start time and end time.
-   *   Start time must be start day of week, end time must be end day of week, the time span cannot exceed two months.
+   * @description 时间范围，包括开始时间和结束时间。
+   *   开始时间必须是一周的第一天，结束时间必须是一周的最后一天，时间跨度不能超过两个月。
    */
   range: {
     type: definePropType<[Date, Date]>(Array),
     validator: isValidRange,
   },
   /**
-   * @description type of the controller for the Calendar header
+   * @description Calendar 头部控制器的类型
    */
   controllerType: {
     type: String,
@@ -61,7 +61,7 @@ export const calendarProps = buildProps({
     default: 'button',
   },
   /**
-   * @description format label when `controller-type` is 'select'
+   * @description `controller-type` 为 'select' 时标签的格式
    */
   formatter: {
     type: definePropType<
@@ -71,7 +71,7 @@ export const calendarProps = buildProps({
 } as const)
 
 /**
- *  @deprecated Removed after 3.0.0, Use `CalendarProps` instead.
+ *  @deprecated 自 3.0.0 后移除，请使用 `CalendarProps`
  */
 export type CalendarPropsPublic = ExtractPublicPropTypes<typeof calendarProps>
 

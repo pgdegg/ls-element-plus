@@ -8,12 +8,12 @@
 
 @include b(tree-select) {
   @include e(popper) {
-    // padding-left same with select option
+    // padding-left 与 select 选项保持一致
     .#{$namespace}-tree-node__expand-icon {
       margin-left: 8px;
     }
 
-    // remove icon when show checkbox
+    // 显示 checkbox 时移除图标
     .#{$namespace}-tree-node.is-checked
       > .#{$namespace}-tree-node__content
       .#{$namespace}-select-dropdown__item.selected::after {
@@ -29,10 +29,10 @@
       flex: 1;
       background: transparent !important;
 
-      // padding-left move to `el-tree-node__expand-icon`
+      // padding-left 移至 `el-tree-node__expand-icon`
       padding-left: 0;
 
-      // fix: select height > tree node height
+      // 修复：select 高度大于树节点高度
       // https://github.com/yujinpan/el-select-tree/pull/33
       height: 20px;
       line-height: 20px;
