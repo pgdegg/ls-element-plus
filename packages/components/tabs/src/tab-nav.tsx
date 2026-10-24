@@ -250,16 +250,28 @@ const TabNav = defineComponent({
       const navSize = nav$.value.getBoundingClientRect()[sizeName.value]
       const containerSize =
         navScroll$.value.getBoundingClientRect()[sizeName.value]
-      const fixedSize = Array.from(
+      const fixedNavs = Array.from(
         el$.value?.querySelectorAll<HTMLElement>(`.${ns.e('nav-fixed')}`) ?? []
-      ).reduce(
+      )
+      const fixedSize = fixedNavs.reduce(
         (size, element) =>
           size + element.getBoundingClientRect()[sizeName.value],
         0
       )
-      const availableContainerSize =
+      const gapCount = Math.max(
+        fixedNavs.length -
+          (props.panes.some((pane) => !pane.props.fixed) ? 0 : 1),
+        0
+      )
+      const availableContainerSize = Math.max(
         (el$.value?.getBoundingClientRect()[sizeName.value] ?? containerSize) -
-        fixedSize
+          fixedSize -
+          (el$.value && isHorizontal.value
+            ? (Number.parseFloat(getComputedStyle(el$.value).columnGap) || 0) *
+              gapCount
+            : 0),
+        0
+      )
       const currentOffset = navOffset.value
 
       if (isGreaterThan(navSize, availableContainerSize)) {
@@ -416,6 +428,16 @@ const TabNav = defineComponent({
         ...fixedRightPanes,
       ]
       const isScrollEmpty = scrollPanes.length === 0
+      const groupTypes = [
+        ...(fixedLeftPanes.length
+          ? [rootTabs.props.leftType || props.type]
+          : []),
+        ...(scrollPanes.length ? [props.type] : []),
+        ...(fixedRightPanes.length
+          ? [rootTabs.props.rightType || props.type]
+          : []),
+      ]
+      const hasMixedTypes = new Set(groupTypes).size > 1
       const hasFixedBorderCard =
         (fixedLeftPanes.length > 0 &&
           (rootTabs.props.leftType || props.type) === 'border-card') ||
@@ -540,6 +562,7 @@ const TabNav = defineComponent({
             ns.is('fixed-right', fixedRightPanes.length > 0),
             ns.is('fixed-border-card', hasFixedBorderCard),
             ns.is('scroll-empty', isScrollEmpty),
+            ns.is('mixed', hasMixedTypes),
             ns.is(rootTabs.props.tabPosition),
           ]}
           role="tablist"

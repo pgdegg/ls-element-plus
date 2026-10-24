@@ -13,6 +13,8 @@ type LayoutOptions = {
   center: boolean
   width: number
   position: 'top' | 'bottom'
+  leftLabels?: string[]
+  centerLabels?: string[]
 }
 
 window.renderTabs = async (options: LayoutOptions) => {
@@ -21,10 +23,14 @@ window.renderTabs = async (options: LayoutOptions) => {
   window.tabsApp = createApp(() =>
     h(Tabs, { ...options, tabPosition: options.position }, () => [
       ...(options.left
-        ? [h(TabPane, { fixed: 'left', name: 'left', label: '本科学收到的 1' })]
+        ? (options.leftLabels ?? ['本科收到的 1']).map((label, index) =>
+            h(TabPane, { fixed: 'left', name: `left-${index}`, label })
+          )
         : []),
       ...(options.center
-        ? ['我负责的 0', '本科已完成 0', '会诊信息'].map((label, index) =>
+        ? (
+            options.centerLabels ?? ['我负责的 0', '本科已完成 0', '会诊信息']
+          ).map((label, index) =>
             h(TabPane, { name: `center-${index}`, label })
           )
         : []),
@@ -42,7 +48,27 @@ declare global {
     tabsApp?: ReturnType<typeof createApp>
     renderTabs: (options: LayoutOptions) => Promise<void>
     renderNavigation: (css: string, width: number) => Promise<void>
+    renderScopes: (css: string, width: number) => Promise<void>
   }
+}
+
+window.renderScopes = async (css, width) => {
+  window.tabsApp?.unmount()
+  document.body.innerHTML = `<style>${css}</style><div id="app" style="width:${width}px"></div>`
+  window.tabsApp = createApp(() =>
+    h('header', { class: 'task-navigation-row' }, [
+      h(Tabs, { class: 'task-scopes' }, () =>
+        ['本科收到的 1', '我负责的 0', '本科已完成 0'].map((label, index) =>
+          h(TabPane, { name: index, label })
+        )
+      ),
+      h(Tabs, { class: 'task-navigation', type: 'card' }, () =>
+        h(TabPane, { name: 'patient', label: '女 · 魏瑞洁', closable: true })
+      ),
+    ])
+  )
+  window.tabsApp.mount('#app')
+  await nextTick()
 }
 
 window.renderNavigation = async (css, width) => {

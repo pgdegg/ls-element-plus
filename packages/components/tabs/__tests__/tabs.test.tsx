@@ -879,6 +879,54 @@ describe('Tabs.vue', () => {
     getBoundingClientRect.mockRestore()
   })
 
+  test('mixed fixed groups include spacing when deciding whether to scroll', async () => {
+    const bounds = vi
+      .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
+      .mockImplementation(function (this: HTMLElement) {
+        const width = this.classList.contains('el-tabs__nav-wrap')
+          ? 400
+          : this.classList.contains('el-tabs__nav-fixed')
+            ? 100
+            : 195
+        return {
+          width,
+          height: 40,
+          top: 0,
+          left: 0,
+          right: width,
+          bottom: 40,
+          x: 0,
+          y: 0,
+          toJSON: () => ({}),
+        }
+      })
+    const wrapper = mount(() => (
+      <Tabs rightType="card">
+        <TabPane name="left" fixed="left" label="left" />
+        <TabPane name="center" label="center" />
+        <TabPane name="right" fixed="right" label="right" />
+      </Tabs>
+    ))
+    try {
+      await nextTick()
+      const wrap = wrapper.find<HTMLElement>('.el-tabs__nav-wrap')
+      expect(wrap.classes()).toContain('is-mixed')
+      wrap.element.style.columnGap = '4px'
+      wrapper.findComponent(TabNav).vm.$forceUpdate()
+      await nextTick()
+      await nextTick()
+      expect(wrap.classes()).toContain('is-scrollable')
+      wrap.element.style.columnGap = '0px'
+      wrapper.findComponent(TabNav).vm.$forceUpdate()
+      await nextTick()
+      await nextTick()
+      expect(wrap.classes()).not.toContain('is-scrollable')
+    } finally {
+      wrapper.unmount()
+      bounds.mockRestore()
+    }
+  })
+
   test('all left-fixed tabs keep their outer edge', async () => {
     const wrapper = mount(() => (
       <Tabs type="card" leftType="border-card">
