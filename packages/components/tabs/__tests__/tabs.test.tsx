@@ -761,6 +761,54 @@ describe('Tabs.vue', () => {
     ).toBe(true)
   })
 
+  test('horizontal outer edges follow visual order across mixed fixed groups', async () => {
+    const left = ref(true)
+    const right = ref(true)
+    const wrapper = mount(() => (
+      <Tabs leftType="card" rightType="border-card">
+        <TabPane
+          fixed={right.value ? 'right' : undefined}
+          name="right"
+          label="right"
+        />
+        <TabPane name="center" label="center" />
+        <TabPane
+          fixed={left.value ? 'left' : undefined}
+          name="left"
+          label="left"
+        />
+      </Tabs>
+    ))
+    await nextTick()
+    expect(
+      wrapper.findAll('.is-start').map((tab) => tab.attributes('id'))
+    ).toEqual(['tab-left'])
+    expect(
+      wrapper.findAll('.is-end').map((tab) => tab.attributes('id'))
+    ).toEqual(['tab-right'])
+    expect(wrapper.find('.el-tabs__nav-fixed-left').classes()).not.toContain(
+      'is-line'
+    )
+    expect(wrapper.find('.el-tabs__nav-fixed-right').classes()).not.toContain(
+      'is-line'
+    )
+    expect(
+      wrapper.find('.el-tabs__nav-scroll > .el-tabs__nav').classes()
+    ).toContain('is-line')
+
+    left.value = false
+    right.value = false
+    await nextTick()
+    await nextTick()
+    expect(
+      wrapper.findAll('.is-start').map((tab) => tab.attributes('id'))
+    ).toEqual(['tab-right'])
+    expect(
+      wrapper.findAll('.is-end').map((tab) => tab.attributes('id'))
+    ).toEqual(['tab-left'])
+    wrapper.unmount()
+  })
+
   test('fixed tab regions support independent types', async () => {
     const wrapper = mount(() => (
       <Tabs modelValue="center" leftType="card" rightType="border-card">

@@ -4,6 +4,7 @@
 @include b(tabs) {
   @include set-component-css-var('tabs', $tabs);
   display: flex;
+  min-width: 0;
 
   @include e(header) {
     padding: 0;
@@ -12,6 +13,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    min-width: 0;
+    flex-shrink: 0;
   }
   @include e(header-vertical) {
     flex-direction: column;
@@ -76,13 +79,13 @@
 
       // the first and last items of horizontal tabs have their outer
       // padding removed, so the fallback line should not be inset there.
-      &.is-top ~ .is-active:nth-child(2)::after,
-      &.is-bottom ~ .is-active:nth-child(2)::after {
+      &.is-top ~ .is-active.is-start::after,
+      &.is-bottom ~ .is-active.is-start::after {
         left: 0;
       }
 
-      &.is-top ~ .is-active:last-child::after,
-      &.is-bottom ~ .is-active:last-child::after {
+      &.is-top ~ .is-active.is-end::after,
+      &.is-bottom ~ .is-active.is-end::after {
         right: 0;
       }
     }
@@ -255,6 +258,7 @@
     float: none;
   }
   @include e(item) {
+    flex-shrink: 0;
     padding: 0 20px;
     height: getCssVar('tabs', 'header-height');
     box-sizing: border-box;
@@ -347,23 +351,11 @@
   }
   @include m((top, bottom)) {
     > .#{$namespace}-tabs__header {
-      .#{$namespace}-tabs__item:nth-child(2) {
+      .#{$namespace}-tabs__nav.is-line > .#{$namespace}-tabs__item.is-start {
         padding-left: 0;
       }
-      .#{$namespace}-tabs__item:last-child {
+      .#{$namespace}-tabs__nav.is-line > .#{$namespace}-tabs__item.is-end {
         padding-right: 0;
-      }
-    }
-
-    &.#{$namespace}-tabs--border-card,
-    &.#{$namespace}-tabs--card {
-      > .#{$namespace}-tabs__header {
-        .#{$namespace}-tabs__item:nth-child(2) {
-          padding-left: 20px;
-        }
-        .#{$namespace}-tabs__item:last-child {
-          padding-right: 20px;
-        }
       }
     }
   }

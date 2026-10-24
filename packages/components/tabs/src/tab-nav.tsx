@@ -410,6 +410,11 @@ const TabNav = defineComponent({
           pane.props.fixed !== 'left' && pane.props.fixed !== 'right'
       )
       const hasFixedPanes = fixedLeftPanes.length + fixedRightPanes.length > 0
+      const orderedPanes = [
+        ...fixedLeftPanes,
+        ...scrollPanes,
+        ...fixedRightPanes,
+      ]
       const isScrollEmpty = scrollPanes.length === 0
       const hasFixedBorderCard =
         (fixedLeftPanes.length > 0 &&
@@ -452,6 +457,11 @@ const TabNav = defineComponent({
               ns.is('active', pane.active),
               ns.is('disabled', disabled),
               ns.is('closable', closable),
+              ns.is('start', pane === orderedPanes[0]?.pane),
+              ns.is(
+                'end',
+                pane === orderedPanes[orderedPanes.length - 1]?.pane
+              ),
               ns.is('focus', isFocus.value),
             ]}
             id={`tab-${tabName}`}
@@ -497,6 +507,7 @@ const TabNav = defineComponent({
               ns.e(`nav-fixed-${position}`),
               ns.is(rootTabs.props.tabPosition),
               ns.is(fixedType, !!fixedType),
+              ns.is('line', !fixedType),
             ]}
           >
             {!fixedType ? (
@@ -547,6 +558,7 @@ const TabNav = defineComponent({
                 class={[
                   ns.e('nav'),
                   ns.is(rootTabs.props.tabPosition),
+                  ns.is('line', !props.type),
                   ns.is(
                     'stretch',
                     props.stretch &&
