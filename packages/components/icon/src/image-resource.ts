@@ -1,5 +1,3 @@
-// Symbol 由每个图标实例共享。每个资源只保留一个加载任务
-// 这样在 load 事件后挂载另一个实例时不会让它一直等待。
 const resources = new WeakMap<
   SVGElement,
   {
@@ -8,23 +6,30 @@ const resources = new WeakMap<
   }
 >()
 
-export const loadIconImage = (resource: SVGElement) => {
+export function loadIconImage(resource: SVGElement): Promise<boolean> {
   const source = resource.dataset.src
   if (!source) return Promise.resolve(true)
   const cached = resources.get(resource)
   if (cached?.source === source) return cached.loaded
-
   const loaded = new Promise<boolean>((resolve) => {
-    const finish = (success: boolean) => {
+    const ImageConstructor = resource.ownerDocument.defaultView?.Image
+    const image = ImageConstructor ? new ImageConstructor() : undefined
+    function finish(success: boolean): void {
       resource.removeEventListener('load', onLoad)
       resource.removeEventListener('error', onError)
+      image?.removeEventListener('load', onLoad)
+      image?.removeEventListener('error', onError)
       resolve(success)
     }
-    const onLoad = () => finish(true)
-    const onError = () => finish(false)
+    const onLoad = (): void => finish(true)
+    const onError = (): void => finish(false)
     resource.addEventListener('load', onLoad)
     resource.addEventListener('error', onError)
+    image?.addEventListener('load', onLoad)
+    image?.addEventListener('error', onError)
     resource.setAttribute('href', source)
+    // An SVG image inside an unreferenced symbol may never start loading.
+    if (image) image.src = source
   })
   resources.set(resource, { source, loaded })
   return loaded

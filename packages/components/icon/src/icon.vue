@@ -30,11 +30,11 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, watch } from 'vue'
+import { computed, ref } from 'vue'
 import { useIntersectionObserver } from '@vueuse/core'
 import { addUnit } from '@element-plus/utils'
 import { useNamespace } from '@element-plus/hooks'
-import { loadIconImage } from './image-resource'
+import { useSpriteIcon } from './use-sprite-icon'
 
 import type { CSSProperties } from 'vue'
 import type { IconProps } from './icon'
@@ -47,58 +47,14 @@ const props = defineProps<IconProps>()
 const ns = useNamespace('icon')
 
 const element = ref<HTMLElement>()
-// version 参数使异步更新后计算出的 sprite 失效。
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const resolveSymbol = (_version?: string | number) => {
-  if (!props.symbol || typeof document === 'undefined') return null
-  const prefix = props.prefix ?? 'icon'
-  if (props.symbolResolver) return props.symbolResolver(props.symbol, prefix)
-  if (prefix === '*')
-    return (
-      Array.from(document.querySelectorAll('symbol[id]')).find((item) =>
-        item.id.endsWith(`-${props.symbol}`)
-      ) ?? null
-    )
-  for (const item of Array.isArray(prefix) ? prefix : [prefix]) {
-    // Sprite ID 可能包含需要 CSS 转义的字符。
-    // eslint-disable-next-line unicorn/prefer-query-selector
-    const symbol = document.getElementById(`${item}-${props.symbol}`)
-    if (symbol) return symbol
-  }
-  return null
-}
-const symbolElement = computed(() => resolveSymbol(props.symbolVersion))
-const imagesReady = ref(false)
-const imageResources = computed(() =>
-  Array.from(
-    symbolElement.value?.querySelectorAll<SVGElement>('[data-src]') ?? []
-  )
-)
-const showPlaceholder = computed(() =>
-  Boolean(
-    props.symbol &&
-    (!symbolElement.value ||
-      (imageResources.value.length && !imagesReady.value))
-  )
-)
-
 const visible = ref(false)
 useIntersectionObserver(element, ([entry]) => {
-  visible.value = !!entry?.isIntersecting
+  if (entry?.isIntersecting) visible.value = true
 })
-watch(
-  [imageResources, visible],
-  async ([resources, isVisible], _, onCleanup) => {
-    imagesReady.value = false
-    if (!isVisible || !resources.length) return
-    let cancelled = false
-    onCleanup(() => {
-      cancelled = true
-    })
-    const loaded = await Promise.all(resources.map(loadIconImage))
-    if (!cancelled) imagesReady.value = loaded.every(Boolean)
-  },
-  { immediate: true, flush: 'sync' }
+const { symbolElement, showPlaceholder } = useSpriteIcon(
+  props,
+  element,
+  visible
 )
 
 const style = computed<CSSProperties>(() => {

@@ -1,5 +1,13 @@
 ## Changelog
 
+### HIS lazy icon loading — 2026-10-27
+
+- Observe sprite symbols inserted after mounting and lazy image source changes without requiring an explicit registry version update.
+- Preload lazy images in unreferenced SVG symbols and share pending loads for the same resource and source.
+- Keep the icon placeholder visible until the symbol and all image resources load successfully; failed images retain the placeholder.
+- Add regression tests for asynchronous sprite insertion, image preloading, and image source replacement, and update the customization documentation.
+- Validation: lint, all five type checks, changed-file formatting, and all 2,822 tests in 185 files passed.
+
 ### HIS upstream sync — 2026-10-27
 
 - Merge 13 upstream `dev` commits from `149862aa6b` through `554e3b3060` into `production`.

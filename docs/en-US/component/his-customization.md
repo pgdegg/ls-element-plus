@@ -31,7 +31,7 @@ The HIS fork includes shared input, form and selection behavior. Application wra
 
 `createCascaderModelAdapter(() => options)` ^(2.14.8) provides `decode`, `encode`, `labels` and `placeholder` for object values, bound paths and intermediate fields. Configure `valueKey`, `childrenKey`, `labelKey`, `multiple`, `bindPath`, `labelPath`, `middleFields`, `inlinePlaceholder` and `separator` as needed. Empty selections clear the model; zero-valued path nodes remain valid.
 
-Icon `symbol`, `prefix`, `symbolResolver`, and `symbolVersion` ^(2.14.8) render sprite symbols and activate `data-src` resources when visible. Applications supply their registry resolver and version after asynchronous sprite loading. The default resolver uses document IDs, with `*` matching any prefix.
+Icon `symbol`, `prefix`, `symbolResolver`, and `symbolVersion` ^(2.14.8) render sprite symbols and activate `data-src` resources when visible. The built-in placeholder stays visible until the symbol and all lazy images load successfully. DOM sprite insertion and data-src changes are observed automatically; custom registries can still supply a resolver and version. The default resolver uses document IDs, with `*` matching any prefix. A shared image preloader also handles symbols that are not referenced by a rendered SVG yet; failed resources keep the placeholder.
 
 `createOptionModelAdapter(() => options)` ^(2.14.8) provides primitive/object selection conversion, labels and enabled default options for radio and checkbox application adapters. Configure `options`, `valueKey`, `valueField`, `labelField` and `multiple`. Falsy option values are preserved.
 
