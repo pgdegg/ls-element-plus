@@ -13,7 +13,11 @@ import {
   isUndefined,
 } from '@element-plus/utils'
 import { useComposition, useFocusController } from '@element-plus/hooks'
-import { useFormDisabled, useFormSize } from '@element-plus/components/form'
+import {
+  useFormDisabled,
+  useFormPlaceholder,
+  useFormSize,
+} from '@element-plus/components/form'
 
 import type { TooltipInstance } from '@element-plus/components/tooltip'
 import type { EmitFn } from '@element-plus/utils'
@@ -37,8 +41,9 @@ export function useInputTag({ props, emit, formItem }: UseInputTagOptions) {
   const tagSize = computed(() => {
     return ['small'].includes(size.value) ? 'small' : 'default'
   })
+  const inputPlaceholder = useFormPlaceholder()
   const placeholder = computed(() => {
-    return props.modelValue?.length ? undefined : props.placeholder
+    return props.modelValue?.length ? undefined : inputPlaceholder.value
   })
   const closable = computed(() => !(props.readonly || disabled.value))
   const inputLimit = computed(() => {

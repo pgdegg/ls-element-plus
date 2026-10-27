@@ -24,6 +24,7 @@ import type { TagProps } from '@element-plus/components/tag'
 import type { IconPropType } from '@element-plus/utils'
 
 export interface InputTagProps {
+  hidePlaceholder?: boolean
   /**
    * @description 绑定值
    */
@@ -135,6 +136,8 @@ export interface InputTagProps {
  * @deprecated 3.0.0 后移除，请改用 `InputTagProps`。
  */
 export const inputTagProps = buildProps({
+  /** @description 是否隐藏占位文本；默认在禁用或只读时隐藏，false 强制显示。 */
+  hidePlaceholder: { type: Boolean, default: undefined },
   /**
    * @description 绑定值
    */

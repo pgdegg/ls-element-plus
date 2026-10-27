@@ -41,6 +41,7 @@ import {
   useFormDisabled,
   useFormItem,
   useFormItemInputId,
+  useFormPlaceholder,
   useFormSize,
 } from '@element-plus/components/form'
 import { useAllowCreate } from './useAllowCreate'
@@ -360,8 +361,11 @@ const useSelect = (props: SelectV2Props, emit: SelectV2EmitFn) => {
     return props.filterable ? !states.inputValue : true
   })
 
+  const placeholder = useFormPlaceholder(
+    computed(() => t('el.select.placeholder'))
+  )
   const currentPlaceholder = computed(() => {
-    const _placeholder = props.placeholder ?? t('el.select.placeholder')
+    const _placeholder = placeholder.value
     return props.multiple || !hasModelValue.value
       ? _placeholder
       : states.selectedLabel

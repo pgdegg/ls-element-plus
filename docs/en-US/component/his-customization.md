@@ -35,7 +35,9 @@ Icon `symbol`, `prefix`, `symbolResolver`, and `symbolVersion` ^(2.14.8) render 
 
 `createOptionModelAdapter(() => options)` ^(2.14.8) provides primitive/object selection conversion, labels and enabled default options for radio and checkbox application adapters. Configure `options`, `valueKey`, `valueField`, `labelField` and `multiple`. Falsy option values are preserved.
 
-Input `hidePlaceholder`, `ignoreParentHidePlaceholder`, `ignoreParentReadonly`, and `focusDelay` ^(2.14.8) allow explicit placeholder/readonly inheritance overrides and cancellable delayed autofocus. `ignoreParentHidePlaceholder` accepts `form` to retain a placeholder inside a form that hides them. Explicit `hidePlaceholder: false` also overrides the form setting. Date/time controls support `hidePlaceholder` for both range inputs.
+Input `hidePlaceholder`, `ignoreParentHidePlaceholder`, `ignoreParentReadonly`, and `focusDelay` ^(2.14.8) allow explicit placeholder/readonly inheritance overrides and cancellable delayed autofocus. `ignoreParentHidePlaceholder` accepts `form` to ignore form-level placeholder hiding. Explicit `hidePlaceholder: false` overrides the form setting and automatic state-based hiding. Date/time controls support `hidePlaceholder` for both range inputs.
+
+Inputs and selectors hide empty placeholders while disabled or readonly by default ^(2.15.0), including inherited Form and container state. Set `hidePlaceholder: false` explicitly to retain a placeholder in those states, or `true` to always hide it. InputNumber, InputTag, Select, SelectV2, Cascader, and TimeSelect expose the same optional setting; Autocomplete, Mention, TreeSelect, and date/time pickers forward or inherit it. Selected values remain visible. Non-editable internal inputs in otherwise interactive pickers retain their normal placeholders.
 
 Card `disabled` ^(2.14.8) displays the existing disabled overlay inside the component theme.
 

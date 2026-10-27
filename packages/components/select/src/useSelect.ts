@@ -44,6 +44,7 @@ import {
   useFormDisabled,
   useFormItem,
   useFormItemInputId,
+  useFormPlaceholder,
   useFormSize,
 } from '@element-plus/components/form'
 
@@ -263,8 +264,11 @@ export const useSelect = (props: SelectProps, emit: SelectEmits) => {
     return props.filterable || isUndefined(value) ? !states.inputValue : true
   })
 
+  const placeholder = useFormPlaceholder(
+    computed(() => t('el.select.placeholder'))
+  )
   const currentPlaceholder = computed(() => {
-    const _placeholder = props.placeholder ?? t('el.select.placeholder')
+    const _placeholder = placeholder.value
     return props.multiple || !hasModelValue.value
       ? _placeholder
       : states.selectedLabel

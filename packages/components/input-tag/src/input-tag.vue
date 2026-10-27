@@ -165,6 +165,7 @@ const props = withDefaults(defineProps<InputTagProps>(), {
   delimiter: '',
   clearIcon: markRaw(CircleClose),
   disabled: undefined,
+  hidePlaceholder: undefined,
   validateEvent: true,
   id: undefined,
   tabindex: 0,

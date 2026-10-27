@@ -9,6 +9,7 @@
     :size="size"
     :effect="effect"
     :placeholder="placeholder"
+    :hide-placeholder="hidePlaceholder"
     default-first-option
     :filterable="editable"
     :empty-values="emptyValues"
@@ -72,6 +73,7 @@ defineEmits([CHANGE_EVENT, 'blur', 'focus', 'clear', UPDATE_MODEL_EVENT])
 const props = withDefaults(defineProps<TimeSelectProps>(), {
   format: 'HH:mm',
   disabled: undefined,
+  hidePlaceholder: undefined,
   editable: true,
   effect: 'light',
   clearable: true,

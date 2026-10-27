@@ -53,6 +53,8 @@ export interface TagTooltipProps {
 }
 
 export const selectV2Props = buildProps({
+  /** @description 是否隐藏占位文本；默认在禁用或只读时隐藏，false 强制显示。 */
+  hidePlaceholder: { type: Boolean, default: undefined },
   /** @description 字符串形式多选值的分隔符 */
   separator: String,
   filterKeys: { type: definePropType<string[]>(Array), default: () => [] },

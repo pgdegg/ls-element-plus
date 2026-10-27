@@ -43,6 +43,7 @@
           :size="pickerSize"
           :disabled="pickerDisabled"
           :placeholder="pickerPlaceholder"
+          :hide-placeholder="false"
           :class="[
             nsDate.b('editor'),
             nsDate.bm('editor', type),

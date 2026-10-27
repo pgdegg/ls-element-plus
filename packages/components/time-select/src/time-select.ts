@@ -10,6 +10,7 @@ import type { ComponentSize } from '@element-plus/constants'
 import type { ClassValue, IconPropType } from '@element-plus/utils'
 
 export interface TimeSelectProps extends UseEmptyValuesProps {
+  hidePlaceholder?: boolean
   /**
    * @description 设置时间格式
    */
@@ -96,6 +97,8 @@ export const DEFAULT_STEP = '00:30'
  * @deprecated 已在 3.0.0 版本后移除，请使用 `TimeSelectProps`。
  */
 export const timeSelectProps = buildProps({
+  /** @description 是否隐藏占位文本；默认在禁用或只读时隐藏，false 强制显示。 */
+  hidePlaceholder: { type: Boolean, default: undefined },
   /**
    * @description 设置时间格式
    */

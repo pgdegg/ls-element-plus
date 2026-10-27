@@ -45,7 +45,7 @@ describe('TimePicker', () => {
     ))
 
     const input = wrapper.find('input')
-    expect(input.attributes('placeholder')).toBe('test_')
+    expect(input.attributes('placeholder')).toBe('')
     expect(input.attributes('readonly')).not.toBeUndefined()
     const outterInput = wrapper.find('.el-input')
     expect(outterInput.classes()).toContain('customClass')

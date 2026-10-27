@@ -31,6 +31,7 @@
           ref="inputRef"
           v-model="inputValue"
           :placeholder="currentPlaceholder"
+          :hide-placeholder="false"
           :readonly="readonly"
           :disabled="isDisabled"
           :validate-event="false"
@@ -313,6 +314,7 @@ import ElIcon from '@element-plus/components/icon'
 import {
   useFormDisabled,
   useFormItem,
+  useFormPlaceholder,
   useFormSize,
 } from '@element-plus/components/form'
 import { ClickOutside as vClickoutside } from '@element-plus/directives'
@@ -436,8 +438,8 @@ const cascaderStyle = computed(() => {
   return attrs.style as StyleValue
 })
 
-const inputPlaceholder = computed(
-  () => props.placeholder ?? t('el.cascader.placeholder')
+const inputPlaceholder = useFormPlaceholder(
+  computed(() => t('el.cascader.placeholder'))
 )
 const currentPlaceholder = computed(() =>
   searchInputValue.value || tags.value.length > 0 || isComposing.value

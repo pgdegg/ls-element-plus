@@ -15,6 +15,7 @@ import type InputNumber from './input-number.vue'
  * @description input-number 组件的 props
  */
 export interface InputNumberProps {
+  hidePlaceholder?: boolean
   /** @description 不补零显示的最大小数位数 */
   maxPrecision?: number
   /**
@@ -115,6 +116,8 @@ export interface InputNumberProps {
  * @deprecated 3.0.0 后移除，请改用 `InputNumberProps`。
  */
 export const inputNumberProps = buildProps({
+  /** @description 是否隐藏占位文本；默认在禁用或只读时隐藏，false 强制显示。 */
+  hidePlaceholder: { type: Boolean, default: undefined },
   maxPrecision: Number,
   /**
    * @description 与原生 input 的 `id` 相同

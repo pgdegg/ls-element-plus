@@ -74,14 +74,18 @@ export const useFormPlaceholder = (
   const hide = useProp<boolean | undefined>('hidePlaceholder')
   const ignoreParent = useProp<string | string[]>('ignoreParentHidePlaceholder')
   const form = inject(formContextKey, undefined)
+  const disabled = useFormDisabled()
+  const readonly = useFormReadonly()
   return computed(() =>
     (hide.value ??
-    (form?.hidePlaceholder &&
+    ((form?.hidePlaceholder &&
       !(
         Array.isArray(ignoreParent.value)
           ? ignoreParent.value
           : [ignoreParent.value]
-      ).includes('form')))
+      ).includes('form')) ||
+      disabled.value ||
+      readonly.value))
       ? ''
       : (placeholder.value ?? unref(fallback))
   )

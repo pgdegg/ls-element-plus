@@ -125,6 +125,8 @@ form/accessibility
 
 ## Form API
 
+Disabled or readonly descendants hide empty placeholders automatically ^(2.15.0), including `readonlyRaw` and inherited container disabled state. A control's explicit `hidePlaceholder: false` keeps its placeholder visible. Form `hidePlaceholder: false` does not disable automatic state-based hiding. Input's `ignoreParentHidePlaceholder: 'form'` only skips form-level hiding; use the control's `hidePlaceholder: false` to override state-based hiding too.
+
 ### Form Attributes
 
 | Name                              | Description                                                                                                                                                                                                                      | Type                                           | Default |

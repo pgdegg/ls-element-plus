@@ -176,6 +176,10 @@ The default locale of is English, if you need to use other languages, please che
 
 Note, date time locale (month name, first day of the week ...) are also configured in localization.
 
+## Placeholder visibility ^(2.15.0)
+
+Empty disabled or readonly controls hide their placeholder by default, including inherited Form and container state. Set `:hide-placeholder="false"` explicitly to keep it visible, or `:hide-placeholder="true"` to hide it in every state. The default is `undefined` (automatic). Selected values and labels remain visible. Internal input restrictions such as a non-filterable selector do not make the control readonly.
+
 ## API
 
 ### Attributes

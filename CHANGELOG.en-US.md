@@ -1,5 +1,15 @@
 ## Changelog
 
+### HIS inactive control placeholders — 2026-10-27
+
+- Hide empty placeholders automatically while a control is disabled or readonly, including Form `readonly` / `readonlyRaw` and inherited container disabled state.
+- Apply the shared rule to Input, Textarea, InputNumber, InputTag, Autocomplete, Mention, Select, SelectV2, TreeSelect, Cascader, DatePicker, TimePicker, and TimeSelect.
+- Preserve explicit `hidePlaceholder: false` as the override to show placeholders, and `true` to hide them unconditionally. Add matching props and typings to the six controls that did not expose this setting.
+- Preserve selected values and labels, and distinguish internal non-editable picker inputs from control-level readonly state. Date and time range inputs follow the same rule at both ends.
+- Document the behavior on the affected component pages and add cross-component regression coverage for reactive states and configuration precedence.
+- Scope: 13 control variants, 6 new optional configuration props, 17 new regression cases, and 2 updated readonly placeholder assertions.
+- Validation: lint, all five type checks, changed-file formatting, all 2,839 tests in 186 files, and the package build passed. Browser interaction was not manually verified.
+
 ### HIS lazy icon loading — 2026-10-27
 
 - Observe sprite symbols inserted after mounting and lazy image source changes without requiring an explicit registry version update.

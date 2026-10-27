@@ -48,6 +48,7 @@
         :step="step"
         :model-value="displayValue"
         :placeholder="placeholder"
+        :hide-placeholder="hidePlaceholder"
         :readonly="inputNumberReadonly"
         :disabled="inputNumberDisabled"
         :size="inputNumberSize"
@@ -130,6 +131,7 @@ defineOptions({
 const props = withDefaults(defineProps<InputNumberProps>(), {
   id: undefined,
   disabled: undefined,
+  hidePlaceholder: undefined,
   step: 1,
   max: Number.MAX_SAFE_INTEGER,
   min: Number.MIN_SAFE_INTEGER,
