@@ -17,7 +17,6 @@ import {
   getEventCode,
   isArray,
   isClient,
-  // isEmpty,
   isFunction,
   isIOS,
   isNumber,

@@ -6,8 +6,6 @@ import {
 } from '@element-plus/utils'
 import { INPUT_EVENT, UPDATE_MODEL_EVENT } from '@element-plus/constants'
 
-import type { ExtractPublicPropTypes } from 'vue'
-
 export type CalendarDateType =
   'prev-month' | 'next-month' | 'prev-year' | 'next-year' | 'today'
 
@@ -34,10 +32,8 @@ export interface CalendarProps {
   formatter?: (value: number, type: 'year' | 'month') => string | number
 }
 
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `CalendarProps`
- */
-export const calendarProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const calendarPropDefs = buildProps({
   /**
    * @description 绑定值
    */
@@ -69,11 +65,6 @@ export const calendarProps = buildProps({
     >(Function),
   },
 } as const)
-
-/**
- *  @deprecated 自 3.0.0 后移除，请使用 `CalendarProps`
- */
-export type CalendarPropsPublic = ExtractPublicPropTypes<typeof calendarProps>
 
 export const calendarEmits = {
   [UPDATE_MODEL_EVENT]: (value: Date) => isDate(value),

@@ -1,6 +1,5 @@
 import { buildProps, definePropType } from '@element-plus/utils'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type Color from '../utils/color'
 
 export interface PredefineProps {
@@ -10,10 +9,8 @@ export interface PredefineProps {
   disabled?: boolean
 }
 
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `PredefineProps`
- */
-export const predefineProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const predefinePropDefs = buildProps({
   colors: {
     type: definePropType<string[]>(Array),
     required: true,
@@ -28,8 +25,3 @@ export const predefineProps = buildProps({
   },
   disabled: Boolean,
 } as const)
-
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `PredefineProps`
- */
-export type PredefinePropsPublic = ExtractPublicPropTypes<typeof predefineProps>

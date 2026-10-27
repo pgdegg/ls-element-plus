@@ -223,10 +223,6 @@
         "text": "Image"
       },
       {
-        "link": "/infinite-scroll",
-        "text": "Infinite Scroll"
-      },
-      {
         "link": "/pagination",
         "text": "Pagination"
       },

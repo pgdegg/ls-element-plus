@@ -331,7 +331,7 @@ import {
   UPDATE_MODEL_EVENT,
 } from '@element-plus/constants'
 import { ArrowDown, Check } from '@element-plus/icons-vue'
-import { cascaderEmits, cascaderProps } from './cascader'
+import { cascaderEmits, cascaderPropDefs } from './cascader'
 
 import type { Options } from '@element-plus/components/popper'
 import type { ComputedRef, StyleValue } from 'vue'
@@ -370,7 +370,7 @@ defineOptions({
   name: 'ElCascader',
 })
 
-const props = defineProps(cascaderProps)
+const props = defineProps(cascaderPropDefs)
 const emit = defineEmits(cascaderEmits)
 const attrs = useAttrs()
 const slots = useSlots()
@@ -673,7 +673,7 @@ const calculateSuggestions = () => {
       node.calcText(showAllLevels, separator)
       return (
         filterMethod(node, searchKeyword.value) ||
-        (filterMethod === cascaderProps.filterMethod.default &&
+        (filterMethod === cascaderPropDefs.filterMethod.default &&
           (props.filterKeys ?? []).some((key) =>
             String(node.data[key] ?? '')
               .toLowerCase()

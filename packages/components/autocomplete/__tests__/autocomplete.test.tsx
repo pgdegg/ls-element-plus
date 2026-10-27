@@ -12,7 +12,7 @@ import Autocomplete from '../src/autocomplete.vue'
 import {
   AutocompleteFetchSuggestionsCallback,
   AutocompleteInstance,
-  AutocompletePropsPublic,
+  AutocompleteProps,
 } from '../src/autocomplete'
 import { EVENT_CODE } from '@element-plus/constants'
 
@@ -88,7 +88,7 @@ const _mount = (
         )
       },
     }) as DefineComponent<
-      AutocompletePropsPublic,
+      AutocompleteProps,
       ReturnType<typeof usePopperContainerId>
     >,
     {

@@ -39,7 +39,6 @@ import OvCollapse from './ov-collapse.vue'
 import OvDescriptions from './ov-descriptions.vue'
 import OvEmpty from './ov-empty.vue'
 import OvImage from './ov-image.vue'
-import OvInfiniteScroll from './ov-infinite-scroll.vue'
 import OvPagination from './ov-pagination.vue'
 import OvProgress from './ov-progress.vue'
 import OvResult from './ov-result.vue'
@@ -123,7 +122,6 @@ export default {
   descriptions: OvDescriptions,
   empty: OvEmpty,
   image: OvImage,
-  'infinite-scroll': OvInfiniteScroll,
   pagination: OvPagination,
   progress: OvProgress,
   result: OvResult,

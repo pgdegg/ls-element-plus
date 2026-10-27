@@ -1,8 +1,9 @@
 import { buildProps } from '@element-plus/utils'
 import { createModelToggleComposable } from '@element-plus/hooks'
-import { popperArrowProps, popperProps } from '@element-plus/components/popper'
-import { useTooltipContentProps } from './content'
-import { useTooltipTriggerProps } from './trigger'
+import { popperArrowPropDefs } from '@element-plus/components/popper/src/arrow'
+import { popperPropDefs } from '@element-plus/components/popper/src/popper'
+import { tooltipContentPropDefs } from './content'
+import { tooltipTriggerPropDefs } from './trigger'
 
 import type {
   PopperArrowProps,
@@ -11,7 +12,6 @@ import type {
 import type { ElTooltipContentProps } from './content'
 import type { UseTooltipTriggerProps } from './trigger'
 import type Tooltip from './tooltip.vue'
-import type { ExtractPublicPropTypes } from 'vue'
 
 export const {
   useModelToggleProps: useTooltipModelToggleProps,
@@ -32,15 +32,13 @@ export interface UseTooltipProps
   'onUpdate:visible'?: (value: boolean) => void
 }
 
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `UseTooltipProps`。
- */
-export const useTooltipProps = buildProps({
-  ...popperProps,
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const tooltipPropDefs = buildProps({
+  ...popperPropDefs,
   ...useTooltipModelToggleProps,
-  ...useTooltipContentProps,
-  ...useTooltipTriggerProps,
-  ...popperArrowProps,
+  ...tooltipContentPropDefs,
+  ...tooltipTriggerPropDefs,
+  ...popperArrowPropDefs,
   /**
    * @description tooltip 内容是否带有箭头
    */
@@ -59,17 +57,5 @@ export const tooltipEmits = [
   'open',
   'close',
 ] as const
-
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `UseTooltipProps`。
- */
-export type ElTooltipProps = UseTooltipProps
-
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `UseTooltipProps`。
- */
-export type ElTooltipPropsPublic = ExtractPublicPropTypes<
-  typeof useTooltipProps
->
 
 export type TooltipInstance = InstanceType<typeof Tooltip> & unknown

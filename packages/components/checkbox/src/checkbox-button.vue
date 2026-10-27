@@ -53,15 +53,10 @@ const {
 } = useCheckbox(props, slots)
 
 const inputBindings = computed(() => {
-  if (
-    props.trueValue ||
-    props.falseValue ||
-    props.trueLabel ||
-    props.falseLabel
-  ) {
+  if (props.trueValue !== undefined || props.falseValue !== undefined) {
     return {
-      'true-value': props.trueValue ?? props.trueLabel ?? true,
-      'false-value': props.falseValue ?? props.falseLabel ?? false,
+      'true-value': props.trueValue ?? true,
+      'false-value': props.falseValue ?? false,
     }
   }
   return {

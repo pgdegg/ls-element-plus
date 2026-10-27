@@ -5,7 +5,6 @@ import {
   isString,
 } from '@element-plus/utils'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type { Dayjs } from 'dayjs'
 
 export interface SelectControllerProps {
@@ -13,10 +12,8 @@ export interface SelectControllerProps {
   formatter?: (value: number, type: 'year' | 'month') => string | number
 }
 
-/**
- *  @deprecated 自 3.0.0 后移除，请使用 `SelectControllerProps`
- */
-export const selectControllerProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const selectControllerPropDefs = buildProps({
   date: {
     type: definePropType<Dayjs>(Object),
     required: true,
@@ -27,13 +24,6 @@ export const selectControllerProps = buildProps({
     >(Function),
   },
 } as const)
-
-/**
- *  @deprecated 自 3.0.0 后移除，请使用 `SelectControllerProps`
- */
-export type SelectControllerPropsPublic = ExtractPublicPropTypes<
-  typeof selectControllerProps
->
 
 export const selectControllerEmits = {
   'date-change': (date: Dayjs | 'today') => isObject(date) || isString(date),

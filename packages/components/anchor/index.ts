@@ -13,4 +13,5 @@ export const ElAnchorLink: SFCWithInstall<typeof AnchorLink> =
   withNoopInstall(AnchorLink)
 export default ElAnchor
 
-export * from './src/anchor'
+export { anchorEmits } from './src/anchor'
+export type { AnchorProps, AnchorInstance, AnchorEmits } from './src/anchor'

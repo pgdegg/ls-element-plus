@@ -5,7 +5,6 @@ import {
   useFormSize,
 } from '@element-plus/components/form'
 import { useGlobalConfig } from '@element-plus/components/config-provider'
-import { useDeprecated } from '@element-plus/hooks'
 import { buttonGroupContextKey } from './constants'
 
 import type { SetupContext } from 'vue'
@@ -15,17 +14,6 @@ export const useButton = (
   props: ButtonProps,
   emit: SetupContext<ButtonEmits>['emit']
 ) => {
-  useDeprecated(
-    {
-      from: 'type.text',
-      replacement: 'link',
-      version: '3.0.0',
-      scope: 'props',
-      ref: 'https://element-plus.org/en-US/component/button.html#button-attributes',
-    },
-    computed(() => props.type === 'text')
-  )
-
   const buttonGroupContext = inject(buttonGroupContextKey, undefined)
   const globalConfig = useGlobalConfig('button')
   const { form } = useFormItem()

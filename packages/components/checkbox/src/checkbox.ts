@@ -2,7 +2,6 @@ import { UPDATE_MODEL_EVENT } from '@element-plus/constants'
 import { useAriaProps, useSizeProp } from '@element-plus/hooks'
 import { isBoolean, isNumber, isString } from '@element-plus/utils'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type { ComponentSize } from '@element-plus/constants'
 import type { AriaProps } from '@element-plus/hooks'
 import type Checkbox from './checkbox.vue'
@@ -52,16 +51,6 @@ export interface CheckboxProps extends Pick<
    */
   falseValue?: string | number
   /**
-   * @deprecated 请使用 `trueValue` 代替
-   * @description Checkbox 选中时的值
-   */
-  trueLabel?: string | number
-  /**
-   * @deprecated 请使用 `falseValue` 代替
-   * @description Checkbox 未选中时的值
-   */
-  falseLabel?: string | number
-  /**
    * @description 输入框 id
    */
   id?: string
@@ -82,10 +71,8 @@ export interface CheckboxProps extends Pick<
    */
   validateEvent?: boolean
 }
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `CheckboxProps`
- */
-export const checkboxProps = {
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const checkboxPropDefs = {
   hideCircle: Boolean,
   cancelDisabled: Boolean,
   /**
@@ -146,22 +133,6 @@ export const checkboxProps = {
     default: undefined,
   },
   /**
-   * @deprecated 请使用 `trueValue` 代替
-   * @description Checkbox 选中时的值
-   */
-  trueLabel: {
-    type: [String, Number],
-    default: undefined,
-  },
-  /**
-   * @deprecated 请使用 `falseValue` 代替
-   * @description Checkbox 未选中时的值
-   */
-  falseLabel: {
-    type: [String, Number],
-    default: undefined,
-  },
-  /**
    * @description 输入框 id
    */
   id: {
@@ -197,11 +168,6 @@ export const checkboxEmits = {
   change: (val: CheckboxValueType) =>
     isString(val) || isNumber(val) || isBoolean(val),
 }
-
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `CheckboxProps`
- */
-export type CheckboxPropsPublic = ExtractPublicPropTypes<typeof checkboxProps>
 export type CheckboxEmits = typeof checkboxEmits
 export type CheckboxInstance = InstanceType<typeof Checkbox> & unknown
 
@@ -213,8 +179,7 @@ export const checkboxPropsDefaults = {
   name: undefined,
   trueValue: undefined,
   falseValue: undefined,
-  trueLabel: undefined,
-  falseLabel: undefined,
+
   id: undefined,
   validateEvent: true,
 } as const

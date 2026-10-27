@@ -1,6 +1,5 @@
 import { buildProps, definePropType } from '@element-plus/utils'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type { RouteLocationRaw } from 'vue-router'
 
 export interface BreadcrumbItemProps {
@@ -14,10 +13,8 @@ export interface BreadcrumbItemProps {
   replace?: boolean
 }
 
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `BreadcrumbItemProps`
- */
-export const breadcrumbItemProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const breadcrumbItemPropDefs = buildProps({
   /**
    * @description 链接的目标路由，与 `vue-router` 的 `to` 相同
    */
@@ -30,10 +27,3 @@ export const breadcrumbItemProps = buildProps({
    */
   replace: Boolean,
 } as const)
-
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `BreadcrumbItemProps`
- */
-export type BreadcrumbItemPropsPublic = ExtractPublicPropTypes<
-  typeof breadcrumbItemProps
->

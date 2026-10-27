@@ -13,7 +13,10 @@ export const ElTourStep: SFCWithInstall<typeof TourStep> =
   withNoopInstall(TourStep)
 export default ElTour
 
-export * from './src/tour'
-export * from './src/step'
-export * from './src/content'
+export { tourEmits } from './src/tour'
+export type { TourProps, TourInstance, TourEmits } from './src/tour'
+export { tourStepEmits } from './src/step'
+export type { TourStepProps, TourStepEmits } from './src/step'
+export { tourStrategies, tourPlacements, tourContentEmits } from './src/content'
+export type { TourContentProps, TourContentEmits } from './src/content'
 export type { TourMask, TourGap, TourBtnProps } from './src/types'

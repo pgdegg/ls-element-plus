@@ -7,7 +7,7 @@ import {
   UPDATE_MODEL_EVENT,
 } from '@element-plus/constants'
 
-import type { ExtractPublicPropTypes, HTMLAttributes } from 'vue'
+import type { HTMLAttributes } from 'vue'
 import type { ComponentSize } from '@element-plus/constants'
 import type InputNumber from './input-number.vue'
 
@@ -112,10 +112,8 @@ export interface InputNumberProps {
   tabindex?: string | number
 }
 
-/**
- * @deprecated 3.0.0 后移除，请改用 `InputNumberProps`。
- */
-export const inputNumberProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const inputNumberPropDefs = buildProps({
   /** @description 是否隐藏占位文本；默认在禁用或只读时隐藏，false 强制显示。 */
   hidePlaceholder: { type: Boolean, default: undefined },
   maxPrecision: Number,
@@ -258,13 +256,6 @@ export const inputNumberProps = buildProps({
     default: 0,
   },
 } as const)
-
-/**
- * @deprecated 3.0.0 后移除，请改用 `InputNumberProps`。
- */
-export type InputNumberPropsPublic = ExtractPublicPropTypes<
-  typeof inputNumberProps
->
 
 export const inputNumberEmits = {
   'precision-exceed': (value: number, precision: number) =>

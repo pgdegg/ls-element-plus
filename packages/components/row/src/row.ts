@@ -1,6 +1,5 @@
 import { buildProps } from '@element-plus/utils'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type Row from './row.vue'
 
 export const RowJustify = [
@@ -33,10 +32,8 @@ export interface RowProps {
   align?: (typeof RowAlign)[number]
 }
 
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `RowProps`。
- */
-export const rowProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const rowPropDefs = buildProps({
   /**
    * @description 自定义元素标签
    */
@@ -67,9 +64,4 @@ export const rowProps = buildProps({
     values: RowAlign,
   },
 } as const)
-
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `RowProps`。
- */
-export type RowPropsPublic = ExtractPublicPropTypes<typeof rowProps>
 export type RowInstance = InstanceType<typeof Row> & unknown

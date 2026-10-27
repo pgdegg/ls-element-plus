@@ -6,7 +6,7 @@ import {
   mutable,
 } from '@element-plus/utils'
 
-import type { AppContext, ExtractPublicPropTypes, VNode } from 'vue'
+import type { AppContext, VNode } from 'vue'
 import type { ClassValue, IconPropType, Mutable } from '@element-plus/utils'
 import type MessageConstructor from './message.vue'
 
@@ -94,8 +94,6 @@ export const MESSAGE_DEFAULT_PLACEMENT = 'top'
 
 export type MessageType = (typeof messageTypes)[number]
 export type MessagePlacement = (typeof messagePlacement)[number]
-/** @deprecated 请改用 `MessageType` */
-export type messageType = MessageType // 将在 3.0.0 中移除。
 
 export interface MessageConfigContext {
   max?: number
@@ -126,10 +124,8 @@ export const messageDefaults = mutable({
   appendTo: isClient ? document.body : (undefined as never),
 } as const)
 
-/**
- * @deprecated 3.0.0 后移除，请改用 `MessageProps`。
- */
-export const messageProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const messagePropDefs = buildProps({
   /**
    * @description Message 的自定义类名
    */
@@ -242,11 +238,6 @@ export const messageProps = buildProps({
     default: messageDefaults.repeatNum,
   },
 } as const)
-
-/**
- * @deprecated 3.0.0 后移除，请改用 `MessageProps`。
- */
-export type MessagePropsPublic = ExtractPublicPropTypes<typeof messageProps>
 
 export const messageEmits = {
   destroy: () => true,

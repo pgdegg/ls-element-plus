@@ -11,7 +11,9 @@ import type { RadioProps } from '../src/radio'
 describe('Radio', () => {
   test('create', async () => {
     const radio = ref('')
-    const wrapper = mount(() => <Radio v-model={radio.value} label="a" />)
+    const wrapper = mount(() => (
+      <Radio v-model={radio.value} label="a" value="a" />
+    ))
     expect(wrapper.classes()).toContain('el-radio')
     await wrapper.trigger('click')
     expect(wrapper.classes()).toContain('is-checked')
@@ -20,7 +22,7 @@ describe('Radio', () => {
   test('disabled', async () => {
     const radio = ref('')
     const wrapper = mount(() => (
-      <Radio v-model={radio.value} label="3" disabled />
+      <Radio v-model={radio.value} label="3" disabled value="3" />
     ))
     await wrapper.trigger('click')
     expect(radio.value).toBe('')
@@ -30,7 +32,7 @@ describe('Radio', () => {
   test('border', () => {
     const radio = ref('')
     const wrapper = mount(() => (
-      <Radio v-model={radio.value} label="3" border />
+      <Radio v-model={radio.value} label="3" border value="3" />
     ))
     expect(wrapper.classes()).toContain('is-bordered')
   })
@@ -42,7 +44,12 @@ describe('Radio', () => {
       changeData.value = val
     }
     const wrapper = mount(() => (
-      <Radio v-model={radio.value} label="3" onChange={handleChange} />
+      <Radio
+        v-model={radio.value}
+        label="3"
+        onChange={handleChange}
+        value="3"
+      />
     ))
     await wrapper.trigger('click')
     await nextTick()
@@ -56,7 +63,12 @@ describe('Radio', () => {
       changeData.value = val
     }
     mount(() => (
-      <Radio v-model={radio.value} label="3" onChange={handleChange} />
+      <Radio
+        v-model={radio.value}
+        label="3"
+        onChange={handleChange}
+        value="3"
+      />
     ))
     radio.value = '3'
     await nextTick()
@@ -520,7 +532,9 @@ describe('Radio Button', () => {
 
     test('value is number change event need checked', async () => {
       const radio = ref(1)
-      const wrapper = mount(() => <Radio v-model={radio.value} label="1" />)
+      const wrapper = mount(() => (
+        <Radio v-model={radio.value} label="1" value="1" />
+      ))
       expect(wrapper.classes()).not.toContain('is-checked')
       await wrapper.trigger('click')
       expect(wrapper.classes()).toContain('is-checked')

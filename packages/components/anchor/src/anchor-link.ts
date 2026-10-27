@@ -1,7 +1,5 @@
 import { buildProps } from '@element-plus/utils'
 
-import type { ExtractPublicPropTypes } from 'vue'
-
 export interface AnchorLinkProps {
   /**
    * @description 锚点链接的文本内容
@@ -13,10 +11,8 @@ export interface AnchorLinkProps {
   href?: string
 }
 
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `AnchorLinkProps`
- */
-export const anchorLinkProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const anchorLinkPropDefs = buildProps({
   /**
    * @description 锚点链接的文本内容
    */
@@ -26,10 +22,3 @@ export const anchorLinkProps = buildProps({
    */
   href: String,
 })
-
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `AnchorLinkProps`
- */
-export type AnchorLinkPropsPublic = ExtractPublicPropTypes<
-  typeof anchorLinkProps
->

@@ -18,8 +18,7 @@
 import { computed } from 'vue'
 import { ElIcon } from '@element-plus/components/icon'
 import { useGlobalConfig } from '@element-plus/components/config-provider'
-import { useDeprecated, useNamespace } from '@element-plus/hooks'
-import { isBoolean } from '@element-plus/utils'
+import { useNamespace } from '@element-plus/hooks'
 import { linkEmits } from './link'
 
 import type { LinkProps } from './link'
@@ -36,17 +35,6 @@ const props = withDefaults(defineProps<LinkProps>(), {
 const emit = defineEmits(linkEmits)
 const globalConfig = useGlobalConfig('link')
 
-useDeprecated(
-  {
-    scope: 'el-link',
-    from: 'The underline option (boolean)',
-    replacement: "'always' | 'hover' | 'never'",
-    version: '3.0.0',
-    ref: 'https://element-plus.org/en-US/component/link.html#underline',
-  },
-  computed(() => isBoolean(props.underline))
-)
-
 const ns = useNamespace('link')
 
 const linkKls = computed(() => [
@@ -57,12 +45,9 @@ const linkKls = computed(() => [
   ns.is('hover-underline', underline.value === 'hover' && !props.disabled),
 ])
 
-// Boolean 兼容性
-const underline = computed(() => {
-  if (isBoolean(props.underline)) {
-    return props.underline ? 'hover' : 'never'
-  } else return props.underline ?? globalConfig.value?.underline ?? 'hover'
-})
+const underline = computed(
+  () => props.underline ?? globalConfig.value?.underline ?? 'hover'
+)
 
 function handleClick(event: MouseEvent) {
   if (!props.disabled) emit('click', event)

@@ -1,11 +1,8 @@
 import { placements } from '@popperjs/core'
 import { buildProps, definePropType } from '@element-plus/utils'
-import {
-  useAriaProps,
-  useEmptyValuesProps,
-  useSizeProp,
-} from '@element-plus/hooks'
-import { useTooltipContentProps } from '@element-plus/components/tooltip'
+import { useAriaProps, useSizeProp } from '@element-plus/hooks'
+import { emptyValuesPropDefs } from '@element-plus/hooks/use-empty-values/index'
+import { tooltipContentPropDefs } from '@element-plus/components/tooltip/src/content'
 import { CircleClose } from '@element-plus/icons-vue'
 import { disabledTimeListsProps } from '../props/shared'
 
@@ -59,11 +56,11 @@ export const timePickerDefaultProps = buildProps({
   /**
    * @description TimePicker 下拉框的自定义类名
    */
-  popperClass: useTooltipContentProps.popperClass,
+  popperClass: tooltipContentPropDefs.popperClass,
   /**
    * @description TimePicker 下拉框的自定义样式
    */
-  popperStyle: useTooltipContentProps.popperStyle,
+  popperStyle: tooltipContentPropDefs.popperStyle,
   /**
    * @description 输入框中显示值的格式
    */
@@ -250,7 +247,7 @@ export const timePickerDefaultProps = buildProps({
     type: definePropType<Placement[]>(Array),
     default: ['bottom', 'top', 'right', 'left'],
   },
-  ...useEmptyValuesProps,
+  ...emptyValuesPropDefs,
   ...useAriaProps(['ariaLabel']),
   /**
    * @description 是否显示“此刻”按钮
@@ -312,8 +309,3 @@ export const timePickerRangeTriggerProps = buildProps({
   endPlaceholder: String,
   disabled: Boolean,
 } as const)
-
-/**
- * @deprecated 请改用 `timePickerRangeTriggerProps`，未来版本将移除。
- */
-export const timePickerRngeTriggerProps = timePickerRangeTriggerProps

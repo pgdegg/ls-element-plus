@@ -122,16 +122,15 @@ tabs/default-value
 
 ### Tabs Slots
 
-| Name                           | Description                                        | Subtags  |
-| ------------------------------ | -------------------------------------------------- | -------- |
-| default                        | customize default content                          | Tab-pane |
-| add-icon ^(2.5.4)              | customize add button icon                          | —        |
-| addIcon ^(2.4.0) ^(deprecated) | customize add button icon                          | —        |
-| header-left ^(2.14.7)          | content fixed to the left of the tab navigation    | —        |
-| fixed-top ^(2.14.6)            | content fixed above the tab-pane content           | —        |
-| fixed-left ^(2.14.6)           | content fixed to the left of the tab-pane content  | —        |
-| fixed-right ^(2.14.6)          | content fixed to the right of the tab-pane content | —        |
-| fixed-bottom ^(2.14.6)         | content fixed below the tab-pane content           | —        |
+| Name                   | Description                                        | Subtags  |
+| ---------------------- | -------------------------------------------------- | -------- |
+| default                | customize default content                          | Tab-pane |
+| add-icon ^(2.5.4)      | customize add button icon                          | —        |
+| header-left ^(2.14.7)  | content fixed to the left of the tab navigation    | —        |
+| fixed-top ^(2.14.6)    | content fixed above the tab-pane content           | —        |
+| fixed-left ^(2.14.6)   | content fixed to the left of the tab-pane content  | —        |
+| fixed-right ^(2.14.6)  | content fixed to the right of the tab-pane content | —        |
+| fixed-bottom ^(2.14.6) | content fixed below the tab-pane content           | —        |
 
 ### Tabs Exposes
 

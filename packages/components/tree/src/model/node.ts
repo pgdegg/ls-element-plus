@@ -11,7 +11,6 @@ import {
 import { NODE_KEY, markNodeData } from './util'
 
 import type TreeStore from './tree-store'
-import type { Nullable } from '@element-plus/utils'
 import type {
   FakeNode,
   TreeKey,
@@ -266,7 +265,7 @@ class Node {
     return getPropertyFromData(this, 'disabled')
   }
 
-  get nextSibling(): Nullable<Node> {
+  get nextSibling(): Node | null {
     const parent = this.parent
     if (parent) {
       const index = parent.childNodes.indexOf(this)
@@ -277,7 +276,7 @@ class Node {
     return null
   }
 
-  get previousSibling(): Nullable<Node> {
+  get previousSibling(): Node | null {
     const parent = this.parent
     if (parent) {
       const index = parent.childNodes.indexOf(this)

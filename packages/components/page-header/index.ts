@@ -7,4 +7,9 @@ export const ElPageHeader: SFCWithInstall<typeof PageHeader> =
   withInstall(PageHeader)
 export default ElPageHeader
 
-export * from './src/page-header'
+export { pageHeaderEmits } from './src/page-header'
+export type {
+  PageHeaderProps,
+  PageHeaderEmits,
+  PageHeaderInstance,
+} from './src/page-header'

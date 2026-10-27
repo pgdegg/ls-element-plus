@@ -42,11 +42,13 @@
     <el-col :span="12">
       <h5 class="mb-2">Custom colors</h5>
       <el-menu
-        active-text-color="#ffd04b"
-        background-color="#545c64"
+        style="
+          --el-menu-active-color: #ffd04b;
+          --el-menu-bg-color: #545c64;
+          --el-menu-text-color: #fff;
+        "
         class="el-menu-vertical-demo"
         default-active="2"
-        text-color="#fff"
         @open="handleOpen"
         @close="handleClose"
       >

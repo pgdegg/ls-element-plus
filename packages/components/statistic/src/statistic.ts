@@ -1,6 +1,6 @@
 import { buildProps, definePropType } from '@element-plus/utils'
 
-import type { ExtractPublicPropTypes, StyleValue } from 'vue'
+import type { StyleValue } from 'vue'
 import type { Dayjs } from 'dayjs'
 import type Statistic from './statistic.vue'
 
@@ -43,10 +43,8 @@ export interface StatisticProps {
   valueStyle?: StyleValue
 }
 
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `StatisticProps`。
- */
-export const statisticProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const statisticPropDefs = buildProps({
   /**
    * @description 设置小数点
    */
@@ -100,10 +98,5 @@ export const statisticProps = buildProps({
     default: undefined,
   },
 } as const)
-
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `StatisticProps`。
- */
-export type StatisticPropsPublic = ExtractPublicPropTypes<typeof statisticProps>
 
 export type StatisticInstance = InstanceType<typeof Statistic> & unknown

@@ -219,7 +219,7 @@ export default defineComponent({
       active,
     })
 
-    const ulStyle = useMenuCssVar(rootMenu.props, subMenu.level + 1)
+    const ulStyle = useMenuCssVar(subMenu.level + 1)
 
     const subMenuPopperOffset = computed(
       () => props.popperOffset ?? rootMenu.props.popperOffset

@@ -19,10 +19,8 @@ export interface UseDelayedToggleProps {
   autoClose?: number
 }
 
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `UseDelayedToggleProps`。
- */
-export const useDelayedToggleProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const delayedTogglePropDefs = buildProps({
   /**
    * @description 出现延迟，单位为毫秒，在受控模式下无效
    */

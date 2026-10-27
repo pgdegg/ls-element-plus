@@ -6,4 +6,4 @@ import type { SFCWithInstall } from '@element-plus/utils'
 export const ElDivider: SFCWithInstall<typeof Divider> = withInstall(Divider)
 export default ElDivider
 
-export * from './src/divider'
+export type { BorderStyle, DividerProps, DividerInstance } from './src/divider'

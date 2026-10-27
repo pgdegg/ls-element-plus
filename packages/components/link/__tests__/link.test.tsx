@@ -41,17 +41,15 @@ describe('Link.vue', () => {
   })
 
   describe('underline prop', () => {
-    // 将在 3.0.0 中移除。
-    it('it should show underline on hover when true', async () => {
-      const wrapper = mount(() => <Link underline>{AXIOM}</Link>)
+    it('uses the hover underline option', async () => {
+      const wrapper = mount(() => <Link underline="hover">{AXIOM}</Link>)
 
       expect(wrapper.classes()).not.toContain('is-underline')
       expect(wrapper.classes()).toContain('is-hover-underline')
     })
 
-    // 将在 3.0.0 中移除。
-    it('it should not show any underline when false', async () => {
-      const wrapper = mount(() => <Link underline={false}>{AXIOM}</Link>)
+    it('uses the never underline option', async () => {
+      const wrapper = mount(() => <Link underline="never">{AXIOM}</Link>)
 
       expect(wrapper.classes()).not.toContain('is-underline')
       expect(wrapper.classes()).not.toContain('is-hover-underline')

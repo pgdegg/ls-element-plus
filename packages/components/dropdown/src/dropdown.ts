@@ -1,9 +1,7 @@
 import { buildProps, definePropType, iconPropType } from '@element-plus/utils'
 import { EVENT_CODE } from '@element-plus/constants'
-import {
-  useTooltipContentProps,
-  useTooltipTriggerProps,
-} from '@element-plus/components/tooltip'
+import { tooltipContentPropDefs } from '@element-plus/components/tooltip/src/content'
+import { tooltipTriggerPropDefs } from '@element-plus/components/tooltip/src/trigger'
 import { roleTypes } from '@element-plus/components/popper'
 
 import type { TooltipTriggerType } from '@element-plus/components/tooltip'
@@ -11,7 +9,7 @@ import type { Placement } from '@element-plus/components/popper'
 import type { Options } from '@popperjs/core'
 import type { ButtonProps, ButtonType } from '@element-plus/components/button'
 import type { ComponentInternalInstance, ComputedRef } from 'vue'
-import type { Arrayable, Nullable } from '@element-plus/utils'
+import type { Arrayable } from '@element-plus/utils'
 
 export interface IElDropdownInstance {
   instance?: ComponentInternalInstance
@@ -22,7 +20,7 @@ export interface IElDropdownInstance {
   hide?: () => void
   trigger?: ComputedRef<string>
   hideOnClick?: ComputedRef<boolean>
-  triggerElm?: ComputedRef<Nullable<HTMLButtonElement>>
+  triggerElm?: ComputedRef<HTMLButtonElement | null>
 }
 
 export const dropdownProps = buildProps({
@@ -30,7 +28,7 @@ export const dropdownProps = buildProps({
    * @description 触发方式
    */
   trigger: {
-    ...useTooltipTriggerProps.trigger,
+    ...tooltipTriggerPropDefs.trigger,
     type: definePropType<Arrayable<Exclude<TooltipTriggerType, 'focus'>>>([
       String,
       Array,
@@ -48,16 +46,16 @@ export const dropdownProps = buildProps({
   /**
    * @description 是否启用虚拟触发
    */
-  virtualTriggering: useTooltipTriggerProps.virtualTriggering,
+  virtualTriggering: tooltipTriggerPropDefs.virtualTriggering,
   /**
    * @description 下拉菜单所依附的参考元素
    */
-  virtualRef: useTooltipTriggerProps.virtualRef,
+  virtualRef: tooltipTriggerPropDefs.virtualRef,
   /**
    * @description Tooltip 主题，内置主题：`dark` / `light`
    */
   effect: {
-    ...useTooltipContentProps.effect,
+    ...tooltipContentPropDefs.effect,
     default: 'light',
   },
   /**
@@ -141,11 +139,11 @@ export const dropdownProps = buildProps({
   /**
    * @description Dropdown 下拉菜单的自定义类名
    */
-  popperClass: useTooltipContentProps.popperClass,
+  popperClass: tooltipContentPropDefs.popperClass,
   /**
    * @description Dropdown 下拉菜单的自定义样式
    */
-  popperStyle: useTooltipContentProps.popperStyle,
+  popperStyle: tooltipContentPropDefs.popperStyle,
   /**
    * @description 是否禁用
    */
@@ -164,11 +162,11 @@ export const dropdownProps = buildProps({
   /**
    * @description 下拉弹层是否传送到 body
    */
-  teleported: useTooltipContentProps.teleported,
+  teleported: tooltipContentPropDefs.teleported,
   /**
    * @description 下拉内容追加到哪个元素
    */
-  appendTo: useTooltipContentProps.appendTo,
+  appendTo: tooltipContentPropDefs.appendTo,
   /**
    * @description 当下拉菜单未激活且 `persistent` 为 `false` 时，菜单将被销毁
    */

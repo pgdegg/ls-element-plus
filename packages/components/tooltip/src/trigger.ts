@@ -1,10 +1,9 @@
 import { buildProps, definePropType } from '@element-plus/utils'
-import { popperTriggerProps } from '@element-plus/components/popper'
+import { popperTriggerPropDefs } from '@element-plus/components/popper/src/trigger'
 import { EVENT_CODE } from '@element-plus/constants'
 
 import type { PopperTriggerProps } from '@element-plus/components/popper'
 import type { Arrayable } from '@element-plus/utils'
-import type { ExtractPublicPropTypes } from 'vue'
 
 export type TooltipTriggerType = 'hover' | 'focus' | 'click' | 'contextmenu'
 
@@ -36,11 +35,9 @@ export const useTooltipTriggerPropsDefaults = {
   ],
 } as const
 
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `UseTooltipTriggerProps`。
- */
-export const useTooltipTriggerProps = buildProps({
-  ...popperTriggerProps,
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const tooltipTriggerPropDefs = buildProps({
+  ...popperTriggerPropDefs,
   /**
    * @description Tooltip 是否禁用
    */
@@ -64,15 +61,3 @@ export const useTooltipTriggerProps = buildProps({
    */
   focusOnTarget: Boolean,
 } as const)
-
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `UseTooltipTriggerProps`。
- */
-export type ElTooltipTriggerProps = UseTooltipTriggerProps
-
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `UseTooltipTriggerProps`。
- */
-export type ElTooltipTriggerPropsPublic = ExtractPublicPropTypes<
-  typeof useTooltipTriggerProps
->

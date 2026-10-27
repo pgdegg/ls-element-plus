@@ -1,5 +1,22 @@
 ## Changelog
 
+### HIS retired API cleanup — 2026-10-27
+
+This is a breaking cleanup of APIs explicitly marked as deprecated and their compatibility paths.
+
+- Remove 107 deprecated type aliases, 8 deprecated value aliases, the `Nullable` alias, 3 obsolete utilities, and the Form `useSize` / `useDisabled` aliases. Migrate internal callers to the supported interfaces, explicit nullable unions, and current Form hooks.
+- Replace 112 deprecated runtime definition names with internal prop definitions and close public component and hook barrels over supported exports. Runtime validation remains intact; unmarked current APIs with similar names remain available.
+- Remove `v-infinite-scroll`, the Popover directive and plugin installation, their styles, examples, documentation routes, and obsolete tests. Scrollbar infinite scrolling and Popover virtual triggering remain supported.
+- Remove Checkbox `trueLabel` / `falseLabel` and Checkbox/Radio label-as-value fallbacks. Migrate examples and fixtures to explicit `value`, `trueValue`, and `falseValue`; cover a zero checked value.
+- Remove Button `type="text"`, Link boolean underline values, Menu color props, Pagination `small`, Dialog/Drawer `title` slots, and TreeSelect's flattened method forwarding. Use current button appearance options, string underline modes, menu CSS variables, `size`, `header`, and nested component refs.
+- Update dependent MessageBox/Popconfirm button handling while preserving Popconfirm's default cancel-button appearance. Remove stale documentation for attributes already absent from the implementation and correct Upload's current remove signature.
+- Add public-export and selection regressions, migrate component tests and SSR fixtures, and remove 20 retired implementation, test, style, and example files.
+- Update production runtime-validator injection to resolve the actual internal definitions, including explicit `.ts` imports and component-specific names; add 12 build-tool regression cases.
+- Audit all 231 retired declaration sites. The built runtime API now contains 446 exports instead of 552: exactly 106 retired exports removed, no unexpected removals or new public implementation exports, and matching ESM/CommonJS surfaces. Preserve the current Tooltip model-toggle exports.
+- Validation passed: `pnpm lint`, all five `pnpm typecheck` targets, `pnpm test --run` (184 files / 2,843 tests), changed-file formatting, `git diff --check`, `pnpm run -C internal/build start`, package export/metadata assertions, and a built-package SSR smoke check.
+- The production documentation build passed, including page rendering and sitemap generation. Its stale local `tsx` shim referenced missing 4.23.0 files, so generation used `node ../node_modules/tsx/dist/cli.mjs` from `docs`, followed by `NODE_ENV=production node node_modules/vitepress/bin/vitepress.js build .`; dependencies and scripts were not changed. No browser interaction was manually verified.
+- Limit lint-staged argument batches to 3,000 characters so the full pre-commit checks can run for large changes on Windows without exceeding the command-line limit.
+
 ### HIS inactive control placeholders — 2026-10-27
 
 - Hide empty placeholders automatically while a control is disabled or readonly, including Form `readonly` / `readonlyRaw` and inherited container disabled state.

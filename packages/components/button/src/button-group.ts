@@ -1,7 +1,6 @@
 import { definePropType } from '@element-plus/utils'
-import { buttonProps } from './button'
+import { buttonPropDefs } from './button'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type { ButtonProps } from './button'
 
 export interface ButtonGroupProps {
@@ -25,10 +24,8 @@ export interface ButtonGroupProps {
   direction?: 'horizontal' | 'vertical'
 }
 
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `ButtonGroupProps`
- */
-export const buttonGroupProps = {
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const buttonGroupPropDefs = {
   disabled: { type: Boolean, default: undefined },
   plain: { type: Boolean, default: undefined },
   text: { type: Boolean, default: undefined },
@@ -36,11 +33,11 @@ export const buttonGroupProps = {
   /**
    * @description 控制该 button-group 中按钮的尺寸
    */
-  size: buttonProps.size,
+  size: buttonPropDefs.size,
   /**
    * @description 控制该 button-group 中按钮的类型
    */
-  type: buttonProps.type,
+  type: buttonPropDefs.type,
   /**
    * @description 展示方向
    */
@@ -50,10 +47,3 @@ export const buttonGroupProps = {
     default: 'horizontal',
   },
 } as const
-
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `ButtonGroupProps`
- */
-export type ButtonGroupPropsPublic = ExtractPublicPropTypes<
-  typeof buttonGroupProps
->

@@ -2,7 +2,6 @@ import { CHANGE_EVENT } from '@element-plus/constants'
 import { buildProps, isNumber } from '@element-plus/utils'
 
 import type Steps from './steps.vue'
-import type { ExtractPublicPropTypes } from 'vue'
 
 export type StepsStatus = 'wait' | 'process' | 'finish' | 'error' | 'success'
 
@@ -42,10 +41,8 @@ export interface StepsProps {
   processStatus?: StepsStatus
 }
 
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `StepsProps`。
- */
-export const stepsProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const stepsPropDefs = buildProps({
   /**
    * @description 每个步骤的间距，省略时为响应式。支持百分比。
    */
@@ -97,11 +94,6 @@ export const stepsProps = buildProps({
     default: 'process',
   },
 } as const)
-
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `StepsProps`。
- */
-export type StepsPropsPublic = ExtractPublicPropTypes<typeof stepsProps>
 
 export const stepsEmits = {
   [CHANGE_EVENT]: (newVal: number, oldVal: number) =>

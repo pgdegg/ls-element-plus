@@ -1,6 +1,5 @@
 import { buildProps, iconPropType } from '@element-plus/utils'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type { IconPropType } from '@element-plus/utils'
 import type Step from './item.vue'
 
@@ -25,10 +24,8 @@ export interface StepProps {
   status?: '' | 'wait' | 'process' | 'finish' | 'error' | 'success'
 }
 
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `StepProps`。
- */
-export const stepProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const stepPropDefs = buildProps({
   /**
    * @description 步骤标题
    */
@@ -58,10 +55,5 @@ export const stepProps = buildProps({
     default: '',
   },
 } as const)
-
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `StepProps`。
- */
-export type StepPropsPublic = ExtractPublicPropTypes<typeof stepProps>
 
 export type StepInstance = InstanceType<typeof Step> & unknown

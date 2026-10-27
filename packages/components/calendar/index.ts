@@ -6,7 +6,12 @@ import type { SFCWithInstall } from '@element-plus/utils'
 export const ElCalendar: SFCWithInstall<typeof Calendar> = withInstall(Calendar)
 export default ElCalendar
 
-export * from './src/calendar'
+export { calendarEmits } from './src/calendar'
+export type {
+  CalendarDateType,
+  CalendarProps,
+  CalendarEmits,
+} from './src/calendar'
 export type {
   CalendarDateTableInstance,
   DateTableInstance,

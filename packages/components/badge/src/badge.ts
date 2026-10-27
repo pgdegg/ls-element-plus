@@ -1,6 +1,6 @@
 import { buildProps, definePropType } from '@element-plus/utils'
 
-import type { ExtractPublicPropTypes, StyleValue } from 'vue'
+import type { StyleValue } from 'vue'
 import type { ClassValue } from '@element-plus/utils'
 
 export interface BadgeProps {
@@ -46,10 +46,8 @@ export interface BadgeProps {
   badgeClass?: ClassValue
 }
 
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `BadgeProps`
- */
-export const badgeProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const badgePropDefs = buildProps({
   /**
    * @description 显示值。
    */
@@ -113,8 +111,3 @@ export const badgeProps = buildProps({
     default: undefined,
   },
 } as const)
-
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `BadgeProps`
- */
-export type BadgePropsPublic = ExtractPublicPropTypes<typeof badgeProps>

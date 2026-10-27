@@ -2,7 +2,6 @@ import { buildProps, isBoolean, isNumber, isString } from '@element-plus/utils'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@element-plus/constants'
 import { useSizeProp } from '@element-plus/hooks'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type { ComponentSize } from '@element-plus/constants'
 import type Radio from './radio.vue'
 
@@ -42,10 +41,8 @@ export interface RadioProps extends RadioPropsBase {
   border?: boolean
 }
 
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `RadioPropsBase`。
- */
-export const radioPropsBase = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const radioBasePropDefs = buildProps({
   /**
    * @description 绑定值
    */
@@ -87,11 +84,9 @@ export const radioPropsBase = buildProps({
   },
 })
 
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `RadioProps`。
- */
-export const radioProps = buildProps({
-  ...radioPropsBase,
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const radioPropDefs = buildProps({
+  ...radioBasePropDefs,
   hideCircle: Boolean,
   /**
    * @description 是否在 Radio 周围添加边框
@@ -105,11 +100,6 @@ export const radioEmits = {
   [CHANGE_EVENT]: (val: string | number | boolean | undefined) =>
     isString(val) || isNumber(val) || isBoolean(val),
 }
-
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `RadioProps`。
- */
-export type RadioPropsPublic = ExtractPublicPropTypes<typeof radioProps>
 export type RadioEmits = typeof radioEmits
 export type RadioInstance = InstanceType<typeof Radio> & unknown
 

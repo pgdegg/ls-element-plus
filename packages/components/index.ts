@@ -81,7 +81,6 @@ export * from './mention'
 export * from './splitter'
 
 // 插件
-export * from './infinite-scroll'
 export * from './loading'
 export * from './message'
 export * from './message-box'

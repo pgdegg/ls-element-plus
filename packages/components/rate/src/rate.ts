@@ -9,7 +9,7 @@ import {
 } from '@element-plus/utils'
 import { useAriaProps, useSizeProp } from '@element-plus/hooks'
 
-import type { Component, ExtractPublicPropTypes } from 'vue'
+import type { Component } from 'vue'
 import type { ComponentSize } from '@element-plus/constants'
 import type { IconPropType } from '@element-plus/utils'
 import type Rate from './rate.vue'
@@ -101,10 +101,8 @@ export interface RateProps {
   ariaLabel?: string
 }
 
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `RateProps`。
- */
-export const rateProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const ratePropDefs = buildProps({
   /**
    * @description 绑定值
    */
@@ -242,11 +240,6 @@ export const rateProps = buildProps({
   clearable: Boolean,
   ...useAriaProps(['ariaLabel']),
 } as const)
-
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `RateProps`。
- */
-export type RatePropsPublic = ExtractPublicPropTypes<typeof rateProps>
 
 export const rateEmits = {
   [CHANGE_EVENT]: (value: number) => isNumber(value),

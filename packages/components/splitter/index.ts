@@ -14,5 +14,15 @@ export default ElSplitter
 export const ElSplitterPanel: SFCWithInstall<typeof SplitPanel> =
   withNoopInstall(SplitPanel)
 
-export * from './src/splitter'
-export * from './src/split-panel'
+export { splitterEmits } from './src/splitter'
+export type {
+  SplitterProps,
+  SplitterInstance,
+  SplitterEmits,
+} from './src/splitter'
+export { splitterPanelEmits } from './src/split-panel'
+export type {
+  SplitterPanelProps,
+  SplitterPanelInstance,
+  SplitterPanelEmits,
+} from './src/split-panel'

@@ -1,6 +1,5 @@
 import { buildProps } from '@element-plus/utils'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type Splitter from './splitter.vue'
 import type { Layout } from './type'
 
@@ -9,10 +8,8 @@ export interface SplitterProps {
   lazy?: boolean
 }
 
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `SplitterProps`。
- */
-export const splitterProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const splitterPropDefs = buildProps({
   layout: {
     type: String,
     default: 'horizontal',
@@ -20,11 +17,6 @@ export const splitterProps = buildProps({
   },
   lazy: Boolean,
 } as const)
-
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `SplitterProps`。
- */
-export type SplitterPropsPublic = ExtractPublicPropTypes<typeof splitterProps>
 export type SplitterInstance = InstanceType<typeof Splitter> & unknown
 
 /* eslint-disable @typescript-eslint/no-unused-vars */

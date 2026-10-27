@@ -7,4 +7,5 @@ export const ElResult: SFCWithInstall<typeof Result> = withInstall(Result)
 
 export default ElResult
 
-export * from './src/result'
+export { IconMap, IconComponentMap } from './src/result'
+export type { ResultProps, ResultInstance } from './src/result'

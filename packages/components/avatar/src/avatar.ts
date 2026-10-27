@@ -6,7 +6,6 @@ import {
 } from '@element-plus/utils'
 import { componentSizes } from '@element-plus/constants'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type { ComponentSize } from '@element-plus/constants'
 import type { IconPropType, ObjectFit } from '@element-plus/utils'
 
@@ -41,10 +40,8 @@ export interface AvatarProps {
   fit?: ObjectFit
 }
 
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `AvatarProps`
- */
-export const avatarProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const avatarPropDefs = buildProps({
   /**
    * @description 头像尺寸。
    */
@@ -89,11 +86,6 @@ export const avatarProps = buildProps({
     default: 'cover',
   },
 } as const)
-
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `AvatarProps`
- */
-export type AvatarPropsPublic = ExtractPublicPropTypes<typeof avatarProps>
 
 export const avatarEmits = {
   error: (evt: Event) => evt instanceof Event,

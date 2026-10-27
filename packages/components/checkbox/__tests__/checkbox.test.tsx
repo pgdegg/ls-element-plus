@@ -11,7 +11,9 @@ import type { CheckboxValueType } from '../src/checkbox'
 describe('Checkbox', () => {
   test('create', async () => {
     const checked = ref(false)
-    const wrapper = mount(() => <Checkbox v-model={checked.value} label="a" />)
+    const wrapper = mount(() => (
+      <Checkbox v-model={checked.value} label="a" value="a" />
+    ))
 
     expect(wrapper.classes()).toContain('el-checkbox')
     expect(wrapper.classes()).not.toContain('is-disabled')
@@ -22,7 +24,7 @@ describe('Checkbox', () => {
   })
 
   test('label set to number 0', async () => {
-    const wrapper = mount(() => <Checkbox label={0} />)
+    const wrapper = mount(() => <Checkbox label={0} value={0} />)
     expect(wrapper.find('.el-checkbox__label').text()).toBe('0')
   })
 
@@ -37,7 +39,7 @@ describe('Checkbox', () => {
     test('checkbox with label attribute', async () => {
       const checked = ref(false)
       const wrapper = mount(() => (
-        <Checkbox checked={checked.value} label="a" />
+        <Checkbox checked={checked.value} label="a" value="a" />
       ))
 
       expect(wrapper.classes('is-checked')).toBe(false)
@@ -65,7 +67,7 @@ describe('Checkbox', () => {
     test('checkbox with label attribute', async () => {
       const checked = ref(false)
       const wrapper = mount(() => (
-        <Checkbox v-model={checked.value} disabled label="a" />
+        <Checkbox v-model={checked.value} disabled label="a" value="a" />
       ))
 
       expect(wrapper.classes()).toContain('is-disabled')
@@ -114,7 +116,12 @@ describe('Checkbox', () => {
       const data = ref()
       const onChange = (val: CheckboxValueType) => (data.value = val)
       const wrapper = mount(() => (
-        <Checkbox v-model={checked.value} onChange={onChange} label="Foobar" />
+        <Checkbox
+          v-model={checked.value}
+          onChange={onChange}
+          label="Foobar"
+          value="Foobar"
+        />
       ))
 
       await wrapper.trigger('click')
@@ -370,6 +377,7 @@ describe('Checkbox', () => {
           true-value="a"
           false-value={0}
           v-model={checked.value}
+          value="Foobar"
         />
       ))
 

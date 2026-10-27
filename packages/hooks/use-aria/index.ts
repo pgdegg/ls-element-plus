@@ -16,10 +16,8 @@ export interface AriaProps {
   ariaControls?: string
 }
 
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `AriaProps`。
- */
-export const ariaProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const ariaPropDefs = buildProps({
   /**
    * @description 原生 `aria-label` 属性
    */
@@ -37,8 +35,8 @@ export const ariaProps = buildProps({
   ariaControls: String,
 })
 
-export const useAriaProps = <T extends keyof typeof ariaProps>(
+export const useAriaProps = <T extends keyof typeof ariaPropDefs>(
   arias: Array<T>
 ) => {
-  return pick<typeof ariaProps, T>(ariaProps, arias)
+  return pick<typeof ariaPropDefs, T>(ariaPropDefs, arias)
 }

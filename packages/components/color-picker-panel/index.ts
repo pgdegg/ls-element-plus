@@ -7,4 +7,15 @@ export const ElColorPickerPanel: SFCWithInstall<typeof ColorPickerPanel> =
   withInstall(ColorPickerPanel)
 export default ElColorPickerPanel
 
-export * from './src/color-picker-panel'
+export {
+  colorPickerPanelEmits,
+  ROOT_COMMON_COLOR_INJECTION_KEY,
+  colorPickerPanelContextKey,
+} from './src/color-picker-panel'
+export type {
+  ColorPickerPanelProps,
+  ColorPickerPanelEmits,
+  ColorPickerPanelInstance,
+  ColorPickerPanelContext,
+  CommonColorContext,
+} from './src/color-picker-panel'

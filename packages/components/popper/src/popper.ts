@@ -2,7 +2,6 @@
 
 import { buildProps } from '@element-plus/utils'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type Popper from './popper.vue'
 
 const effects = ['light', 'dark'] as const
@@ -35,10 +34,8 @@ export interface PopperProps {
   role?: (typeof roleTypes)[number]
 }
 
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `PopperProps`。
- */
-export const popperProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const popperPropDefs = buildProps({
   role: {
     type: String,
     values: roleTypes,
@@ -46,15 +43,4 @@ export const popperProps = buildProps({
   },
 } as const)
 
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `PopperProps`。
- */
-export type PopperPropsPublic = ExtractPublicPropTypes<typeof popperProps>
-
 export type PopperInstance = InstanceType<typeof Popper> & unknown
-
-/** @deprecated 请改用 `popperProps`，它将在下一个大版本中被废弃 */
-export const usePopperProps = popperProps
-
-/** @deprecated 请改用 `PopperProps`，它将在下一个大版本中被废弃 */
-export type UsePopperProps = PopperProps

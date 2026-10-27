@@ -10,10 +10,8 @@ export interface MentionDropdownProps {
   ariaLabel?: string
 }
 
-/**
- * @deprecated 3.0.0 后移除，请改用 `MentionDropdownProps`。
- */
-export const mentionDropdownProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const mentionDropdownPropDefs = buildProps({
   options: {
     type: definePropType<MentionOption[]>(Array),
     default: () => [],

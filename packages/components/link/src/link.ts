@@ -1,6 +1,6 @@
 import { buildProps, iconPropType } from '@element-plus/utils'
 
-import type { ExtractPublicPropTypes, PropType } from 'vue'
+import type { PropType } from 'vue'
 import type { IconPropType } from '@element-plus/utils'
 import type Link from './link.vue'
 
@@ -12,7 +12,7 @@ export interface LinkProps {
   /**
    * @description 下划线出现的时机
    */
-  underline?: boolean | 'always' | 'never' | 'hover'
+  underline?: 'always' | 'never' | 'hover'
 
   /**
    * @description 组件是否禁用
@@ -34,10 +34,8 @@ export interface LinkProps {
   icon?: IconPropType
 }
 
-/**
- * @deprecated 3.0.0 后移除，请改用 `LinkProps`。
- */
-export const linkProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const linkPropDefs = buildProps({
   /**
    * @description 类型
    */
@@ -50,8 +48,8 @@ export const linkProps = buildProps({
    * @description 下划线出现的时机
    */
   underline: {
-    type: [Boolean, String],
-    values: [true, false, 'always', 'never', 'hover'],
+    type: String,
+    values: ['always', 'never', 'hover'],
     default: undefined,
   },
   /**
@@ -76,11 +74,6 @@ export const linkProps = buildProps({
     type: iconPropType,
   },
 } as const)
-
-/**
- * @deprecated 3.0.0 后移除，请改用 `LinkProps`。
- */
-export type LinkPropsPublic = ExtractPublicPropTypes<typeof linkProps>
 
 export const linkEmits = {
   click: (evt: MouseEvent) => evt instanceof MouseEvent,

@@ -14,7 +14,7 @@ export const ElTabPane: SFCWithInstall<typeof TabPane> =
 export default ElTabs
 
 export * from './src/tabs'
-export * from './src/tab-bar'
+export type { TabBarProps, TabBarInstance } from './src/tab-bar'
 export * from './src/tab-nav'
-export * from './src/tab-pane'
+export type { TabPaneProps, TabPaneInstance } from './src/tab-pane'
 export * from './src/constants'

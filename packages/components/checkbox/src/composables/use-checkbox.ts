@@ -1,7 +1,5 @@
-import { computed } from 'vue'
 import { useFormItem, useFormItemInputId } from '@element-plus/components/form'
-import { isArray, isPropAbsent } from '@element-plus/utils'
-import { useDeprecated } from '@element-plus/hooks'
+import { isArray } from '@element-plus/utils'
 import { useCheckboxDisabled } from './use-checkbox-disabled'
 import { useCheckboxEvent } from './use-checkbox-event'
 import { useCheckboxModel } from './use-checkbox-model'
@@ -43,46 +41,13 @@ export const useCheckbox = (
       if (isArray(model.value) && !model.value.includes(actualValue.value)) {
         model.value.push(actualValue.value)
       } else {
-        model.value = props.trueValue ?? props.trueLabel ?? true
+        model.value = props.trueValue ?? true
       }
     }
     props.checked && addToStore()
   }
 
   setStoreValue()
-
-  useDeprecated(
-    {
-      from: 'label act as value',
-      replacement: 'value',
-      version: '3.0.0',
-      scope: 'el-checkbox',
-      ref: 'https://element-plus.org/en-US/component/checkbox.html',
-    },
-    computed(() => isGroup.value && isPropAbsent(props.value))
-  )
-
-  useDeprecated(
-    {
-      from: 'true-label',
-      replacement: 'true-value',
-      version: '3.0.0',
-      scope: 'el-checkbox',
-      ref: 'https://element-plus.org/en-US/component/checkbox.html',
-    },
-    computed(() => !!props.trueLabel)
-  )
-
-  useDeprecated(
-    {
-      from: 'false-label',
-      replacement: 'false-value',
-      version: '3.0.0',
-      scope: 'el-checkbox',
-      ref: 'https://element-plus.org/en-US/component/checkbox.html',
-    },
-    computed(() => !!props.falseLabel)
-  )
 
   return {
     inputId,

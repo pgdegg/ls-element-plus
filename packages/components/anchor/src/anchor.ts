@@ -5,7 +5,6 @@ import {
   isUndefined,
 } from '@element-plus/utils'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type Anchor from './anchor.vue'
 
 export interface AnchorProps {
@@ -43,10 +42,8 @@ export interface AnchorProps {
   selectScrollTop?: boolean
 }
 
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `AnchorProps`
- */
-export const anchorProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const anchorPropDefs = buildProps({
   /**
    * @description 滚动容器
    */
@@ -103,11 +100,6 @@ export const anchorProps = buildProps({
    */
   selectScrollTop: Boolean,
 })
-
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `AnchorProps`
- */
-export type AnchorPropsPublic = ExtractPublicPropTypes<typeof anchorProps>
 export type AnchorInstance = InstanceType<typeof Anchor> & unknown
 
 export const anchorEmits = {

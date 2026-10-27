@@ -15,5 +15,5 @@ export const ElDescriptionsItem: SFCWithInstall<typeof DescriptionsItem> =
 
 export default ElDescriptions
 
-export * from './src/description'
+export type { DescriptionProps, DescriptionInstance } from './src/description'
 export * from './src/description-item'

@@ -7,12 +7,7 @@ import {
 } from '@element-plus/utils'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@element-plus/constants'
 
-import type {
-  ComponentInstance,
-  ExtractPublicPropTypes,
-  h as H,
-  VNode,
-} from 'vue'
+import type { ComponentInstance, h as H, VNode } from 'vue'
 import type { ComponentExposed } from 'vue-component-type-helpers'
 import type Transfer from './transfer.vue'
 
@@ -112,10 +107,8 @@ export interface TransferProps<T extends TransferDataItem = TransferDataItem> {
   itemSize?: number
 }
 
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `TransferProps`。
- */
-export const transferProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const transferPropDefs = buildProps({
   /**
    * @description 数据源
    */
@@ -226,11 +219,6 @@ export const transferProps = buildProps({
     default: 30,
   },
 } as const)
-
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `TransferProps`。
- */
-export type TransferPropsPublic = ExtractPublicPropTypes<typeof transferProps>
 
 export const transferCheckedChangeFn = (
   value: TransferKey[],

@@ -1,5 +1,5 @@
 import { placements } from '@popperjs/core'
-import { useTooltipContentProps } from '@element-plus/components/tooltip'
+import { tooltipContentPropDefs } from '@element-plus/components/tooltip/src/content'
 import { definePropType, isNumber } from '@element-plus/utils'
 import { componentSizes } from '@element-plus/constants'
 
@@ -57,11 +57,11 @@ export const avatarGroupProps = {
   /**
    * @description tooltip 的自定义类名
    */
-  popperClass: useTooltipContentProps.popperClass,
+  popperClass: tooltipContentPropDefs.popperClass,
   /**
    * @description tooltip 的自定义样式
    */
-  popperStyle: useTooltipContentProps.popperStyle,
+  popperStyle: tooltipContentPropDefs.popperStyle,
   /**
    * @description 折叠头像的自定义类名
    */

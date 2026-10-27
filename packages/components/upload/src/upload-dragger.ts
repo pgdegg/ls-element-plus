@@ -1,6 +1,5 @@
 import { buildProps, isArray } from '@element-plus/utils'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type UploadDragger from './upload-dragger.vue'
 
 export interface UploadDraggerProps {
@@ -8,23 +7,14 @@ export interface UploadDraggerProps {
   directory?: boolean
 }
 
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `UploadDraggerProps`。
- */
-export const uploadDraggerProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const uploadDraggerPropDefs = buildProps({
   disabled: {
     type: Boolean,
     default: undefined,
   },
   directory: Boolean,
 } as const)
-
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `UploadDraggerProps`。
- */
-export type UploadDraggerPropsPublic = ExtractPublicPropTypes<
-  typeof uploadDraggerProps
->
 
 export const uploadDraggerEmits = {
   file: (file: File[]) => isArray(file),

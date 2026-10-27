@@ -29,12 +29,6 @@ popover/basic-usage
 
 Like Tooltip, Popover can be triggered by virtual elements, if your use case includes separate the triggering element and the content element, you should definitely use the mechanism, normally we use `#reference` to place our triggering element, with `virtual-ref` API you can set your triggering element anywhere you like, but notice that the triggering element should be an element that accepts `mouse` and `keyboard` event.
 
-:::warning
-
-`v-popover` is about to be deprecated, please use `virtual-ref` as alternative.
-
-:::
-
 :::demo
 
 popover/virtual-triggering
@@ -58,17 +52,6 @@ Of course, you can nest other operations. It's more light-weight than using a di
 :::demo
 
 popover/nested-operation
-
-:::
-
-## Directive
-
-You can still using popover in directive way but this is **not recommended** anymore since this makes your application
-complicated, you may refer to the virtual triggering for more information.
-
-:::demo
-
-popover/directive-usage
 
 :::
 

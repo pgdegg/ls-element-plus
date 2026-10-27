@@ -9,8 +9,6 @@ Sometimes, `Dialog` does not always satisfy our requirements, let's say you have
 
 :::tip
 
-Since v-model is natively supported for all components, `visible.sync` has been deprecated, use `v-model="visibilityBinding"` to control the visibility of the current drawer.
-
 :::
 
 ## Basic Usage
@@ -127,13 +125,6 @@ Drawer provides an API called `destroy-on-close`, which is a flag variable that 
 | footer-class ^(2.9.3)             | custom class names for footer wrapper                                                                                                                                                                                                                                                                        | ^[string]                                                                                                                                                                                      | —       |
 | z-index                           | set z-index                                                                                                                                                                                                                                                                                                  | ^[number]                                                                                                                                                                                      | —       |
 | header-aria-level ^(a11y)         | header's `aria-level` attribute                                                                                                                                                                                                                                                                              | ^[string]                                                                                                                                                                                      | 2       |
-| custom-class ^(deprecated)        | Extra class names for Drawer                                                                                                                                                                                                                                                                                 | ^[string]                                                                                                                                                                                      | —       |
-
-:::warning
-
-`custom-class` has been **deprecated**, and **will be** removed in ^(2.3.0), please use `class`.
-
-:::
 
 ### resizable ^(2.14.8)
 
@@ -160,18 +151,11 @@ Configuration options for resizing the drawer.
 
 ### Slots
 
-| Name                | Description                                                                                    |
-| ------------------- | ---------------------------------------------------------------------------------------------- |
-| default             | Drawer's Content                                                                               |
-| header              | Drawer header section; Replacing this removes the title, but does not remove the close button. |
-| footer              | Drawer footer Section                                                                          |
-| title ^(deprecated) | Works the same as the header slot. Use that instead.                                           |
-
-:::warning
-
-`title` has been **deprecated**, and **will be** removed in ^(3.0.0), please use `header`.
-
-:::
+| Name    | Description                                                                                    |
+| ------- | ---------------------------------------------------------------------------------------------- |
+| default | Drawer's Content                                                                               |
+| header  | Drawer header section; Replacing this removes the title, but does not remove the close button. |
+| footer  | Drawer footer Section                                                                          |
 
 ### Exposes
 

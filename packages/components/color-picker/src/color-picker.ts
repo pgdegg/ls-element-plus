@@ -1,14 +1,10 @@
 import { isNil } from 'lodash-unified'
 import { buildProps, definePropType, isString } from '@element-plus/utils'
-import {
-  useAriaProps,
-  useEmptyValuesProps,
-  useSizeProp,
-} from '@element-plus/hooks'
-import { useTooltipContentProps } from '@element-plus/components/tooltip'
+import { useAriaProps, useSizeProp } from '@element-plus/hooks'
+import { emptyValuesPropDefs } from '@element-plus/hooks/use-empty-values/index'
+import { tooltipContentPropDefs } from '@element-plus/components/tooltip/src/content'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@element-plus/constants'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type { ColorFormats } from '@ctrl/tinycolor'
 import type ColorPicker from './color-picker.vue'
 import type { AriaProps, UseEmptyValuesProps } from '@element-plus/hooks'
@@ -79,10 +75,8 @@ export interface ColorPickerProps
   validateEvent?: boolean
 }
 
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `ColorPickerProps`
- */
-export const colorPickerProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const colorPickerPropDefs = buildProps({
   /**
    * @description color-picker 未激活且 persistent 为 false 时，颜色面板将被销毁
    */
@@ -132,11 +126,11 @@ export const colorPickerProps = buildProps({
   /**
    * @description ColorPicker 下拉框的自定义类名
    */
-  popperClass: useTooltipContentProps.popperClass,
+  popperClass: tooltipContentPropDefs.popperClass,
   /**
    * @description ColorPicker 下拉框的自定义样式
    */
-  popperStyle: useTooltipContentProps.popperStyle,
+  popperStyle: tooltipContentPropDefs.popperStyle,
   /**
    * @description ColorPicker 的 tabindex
    */
@@ -147,11 +141,11 @@ export const colorPickerProps = buildProps({
   /**
    * @description color-picker 弹层是否传送到 body
    */
-  teleported: useTooltipContentProps.teleported,
+  teleported: tooltipContentPropDefs.teleported,
   /**
    * @description color-picker 面板追加到哪个元素
    */
-  appendTo: useTooltipContentProps.appendTo,
+  appendTo: tooltipContentPropDefs.appendTo,
   /**
    * @description 预定义颜色选项
    */
@@ -165,7 +159,7 @@ export const colorPickerProps = buildProps({
     type: Boolean,
     default: true,
   },
-  ...useEmptyValuesProps,
+  ...emptyValuesPropDefs,
   ...useAriaProps(['ariaLabel']),
 } as const)
 export const colorPickerEmits = {
@@ -176,13 +170,6 @@ export const colorPickerEmits = {
   blur: (evt: FocusEvent) => evt instanceof FocusEvent,
   clear: () => true,
 }
-
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `ColorPickerProps`
- */
-export type ColorPickerPropsPublic = ExtractPublicPropTypes<
-  typeof colorPickerProps
->
 export type ColorPickerEmits = typeof colorPickerEmits
 export type ColorPickerInstance = InstanceType<typeof ColorPicker> & unknown
 

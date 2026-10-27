@@ -1,13 +1,10 @@
 import { buildProps, definePropType, mutable } from '@element-plus/utils'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type { TabPaneName, TabsPaneContext } from './constants'
 import type TabBar from './tab-bar.vue'
 
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `TabBarProps`。
- */
-export const tabBarProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const tabBarPropDefs = buildProps({
   active: {
     type: Boolean,
     default: true,
@@ -27,9 +24,4 @@ export type TabBarProps = {
   tabs?: TabsPaneContext[]
   tabRefs?: { [key: TabPaneName]: HTMLDivElement }
 }
-
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `TabBarProps`。
- */
-export type TabBarPropsPublic = ExtractPublicPropTypes<typeof tabBarProps>
 export type TabBarInstance = InstanceType<typeof TabBar> & unknown

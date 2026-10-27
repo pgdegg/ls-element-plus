@@ -30,10 +30,8 @@ export const SCOPE = 'use-empty-values'
 export const DEFAULT_EMPTY_VALUES = ['', undefined, null]
 export const DEFAULT_VALUE_ON_CLEAR = undefined
 
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `UseEmptyValuesProps`。
- */
-export const useEmptyValuesProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const emptyValuesPropDefs = buildProps({
   /**
    * @description 组件支持的空值
    */

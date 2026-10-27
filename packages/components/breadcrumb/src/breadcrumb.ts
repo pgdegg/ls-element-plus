@@ -1,6 +1,5 @@
 import { buildProps, iconPropType } from '@element-plus/utils'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type { IconPropType } from '@element-plus/utils'
 
 export interface BreadcrumbProps {
@@ -14,10 +13,8 @@ export interface BreadcrumbProps {
   separatorIcon?: IconPropType
 }
 
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `BreadcrumbProps`
- */
-export const breadcrumbProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const breadcrumbPropDefs = buildProps({
   /**
    * @description 分隔符
    */
@@ -32,10 +29,3 @@ export const breadcrumbProps = buildProps({
     type: iconPropType,
   },
 } as const)
-
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `BreadcrumbProps`
- */
-export type BreadcrumbPropsPublic = ExtractPublicPropTypes<
-  typeof breadcrumbProps
->

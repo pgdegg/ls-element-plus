@@ -32,6 +32,7 @@
       :model-value="checkedNodeId"
       :label="node.uid"
       :disabled="isDisabled"
+      :value="node.uid"
       @update:model-value="handleSelectCheck"
       @click.stop
     >

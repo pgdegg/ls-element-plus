@@ -1,9 +1,6 @@
 import { placements } from '@popperjs/core'
-import {
-  useAriaProps,
-  useEmptyValuesProps,
-  useSizeProp,
-} from '@element-plus/hooks'
+import { useAriaProps, useSizeProp } from '@element-plus/hooks'
+import { emptyValuesPropDefs } from '@element-plus/hooks/use-empty-values/index'
 import {
   buildProps,
   definePropType,
@@ -13,9 +10,9 @@ import {
 } from '@element-plus/utils'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@element-plus/constants'
 import { scrollbarEmits } from '@element-plus/components/scrollbar'
-import { useTooltipContentProps } from '@element-plus/components/tooltip'
+import { tooltipContentPropDefs } from '@element-plus/components/tooltip/src/content'
 import { ArrowDown, CircleClose } from '@element-plus/icons-vue'
-import { tagProps } from '../../tag'
+import { tagPropDefs } from '@element-plus/components/tag/src/tag'
 import { defaultProps } from './useProps'
 
 import type SelectV2 from './select.vue'
@@ -230,7 +227,7 @@ export const selectV2Props = buildProps({
   /**
    * @description 下拉框是否被 teleport；为 `true` 时将挂载到 `append-to` 指定的位置
    */
-  teleported: useTooltipContentProps.teleported,
+  teleported: tooltipContentPropDefs.teleported,
   /**
    * @description 当下拉框不处于激活状态且 `persistent` 为 `false` 时，下拉框将被销毁
    */
@@ -241,11 +238,11 @@ export const selectV2Props = buildProps({
   /**
    * @description Select 下拉框的自定义类名
    */
-  popperClass: useTooltipContentProps.popperClass,
+  popperClass: tooltipContentPropDefs.popperClass,
   /**
    * @description Select 下拉框的自定义样式
    */
-  popperStyle: useTooltipContentProps.popperStyle,
+  popperStyle: tooltipContentPropDefs.popperStyle,
   /**
    * @description [popper.js](https://popper.js.org/docs/v2/) 参数
    */
@@ -329,11 +326,11 @@ export const selectV2Props = buildProps({
   /**
    * @description 标签类型
    */
-  tagType: { ...tagProps.type, default: 'info' },
+  tagType: { ...tagPropDefs.type, default: 'info' },
   /**
    * @description 标签效果
    */
-  tagEffect: { ...tagProps.effect, default: 'light' },
+  tagEffect: { ...tagPropDefs.effect, default: 'light' },
   /**
    * @description input 的 tabindex
    */
@@ -344,7 +341,7 @@ export const selectV2Props = buildProps({
   /**
    * @description 下拉框挂载到哪个元素
    */
-  appendTo: useTooltipContentProps.appendTo,
+  appendTo: tooltipContentPropDefs.appendTo,
   /**
    * @description 为 `true` 时，下拉面板宽度与输入框相同；
    * 为 `false` 时，宽度根据 `label` 的值自动计算；
@@ -361,7 +358,7 @@ export const selectV2Props = buildProps({
     type: iconPropType,
     default: ArrowDown,
   },
-  ...useEmptyValuesProps,
+  ...emptyValuesPropDefs,
   ...useAriaProps(['ariaLabel']),
 } as const)
 

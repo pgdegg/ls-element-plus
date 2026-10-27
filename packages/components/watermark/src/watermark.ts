@@ -1,6 +1,5 @@
 import { buildProps, definePropType } from '@element-plus/utils'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type Watermark from './watermark.vue'
 
 export interface WatermarkFontType {
@@ -54,10 +53,8 @@ export interface WatermarkProps {
   offset?: [number, number]
 }
 
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `WatermarkProps`。
- */
-export const watermarkProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const watermarkPropDefs = buildProps({
   /**
    * @description 追加的水印元素的 z-index
    */
@@ -111,9 +108,4 @@ export const watermarkProps = buildProps({
     type: definePropType<[number, number]>(Array),
   },
 } as const)
-
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `WatermarkProps`。
- */
-export type WatermarkPropsPublic = ExtractPublicPropTypes<typeof watermarkProps>
 export type WatermarkInstance = InstanceType<typeof Watermark> & unknown

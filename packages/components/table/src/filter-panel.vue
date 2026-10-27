@@ -111,10 +111,8 @@ import { ElIcon } from '@element-plus/components/icon'
 import { ArrowDown, ArrowUp } from '@element-plus/icons-vue'
 import { EVENT_CODE } from '@element-plus/constants'
 import { useLocale, useNamespace } from '@element-plus/hooks'
-import {
-  ElTooltip,
-  useTooltipContentProps,
-} from '@element-plus/components/tooltip'
+import { ElTooltip } from '@element-plus/components/tooltip'
+import { tooltipContentPropDefs } from '@element-plus/components/tooltip/src/content'
 import ElScrollbar from '@element-plus/components/scrollbar'
 import { getEventCode, isPropAbsent } from '@element-plus/utils'
 
@@ -151,7 +149,7 @@ export default defineComponent({
     upDataColumn: {
       type: Function,
     },
-    appendTo: useTooltipContentProps.appendTo,
+    appendTo: tooltipContentPropDefs.appendTo,
   },
   setup(props) {
     const instance = getCurrentInstance()

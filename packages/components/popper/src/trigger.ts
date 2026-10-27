@@ -19,10 +19,8 @@ export interface PopperTriggerProps {
   open?: boolean
 }
 
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `PopperTriggerProps`。
- */
-export const popperTriggerProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const popperTriggerPropDefs = buildProps({
   /** @description popper 所附着的参考元素 */
   virtualRef: {
     type: definePropType<Measurable>(Object),
@@ -55,9 +53,3 @@ export const popperTriggerProps = buildProps({
 } as const)
 
 export type PopperTriggerInstance = InstanceType<typeof Trigger> & unknown
-
-/** @deprecated 请改用 `popperTriggerProps`，它将在下一个大版本中被废弃 */
-export const usePopperTriggerProps = popperTriggerProps
-
-/** @deprecated 请改用 `PopperTriggerInstance`，它将在下一个大版本中被废弃 */
-export type ElPopperArrowTrigger = PopperTriggerInstance

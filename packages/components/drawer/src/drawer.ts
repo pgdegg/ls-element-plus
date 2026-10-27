@@ -5,9 +5,9 @@ import {
   isNumber,
   isString,
 } from '@element-plus/utils'
-import { dialogEmits, dialogProps } from '@element-plus/components/dialog'
+import { dialogEmits } from '@element-plus/components/dialog'
+import { dialogPropDefs } from '@element-plus/components/dialog/src/dialog'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type Drawer from './drawer.vue'
 import type { DialogProps } from '@element-plus/components/dialog'
 
@@ -43,11 +43,9 @@ export interface DrawerProps extends DialogProps {
   headerAriaLevel?: string
 }
 
-/**
- * @deprecated 3.0.0 后移除，请改用 `DrawerProps`。
- */
-export const drawerProps = buildProps({
-  ...dialogProps,
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const drawerPropDefs = buildProps({
+  ...dialogPropDefs,
   direction: {
     type: String,
     default: 'rtl',
@@ -85,11 +83,6 @@ export const drawerProps = buildProps({
     default: '2',
   },
 } as const)
-
-/**
- * @deprecated 3.0.0 后移除，请改用 `DrawerProps`。
- */
-export type DrawerPropsPublic = ExtractPublicPropTypes<typeof drawerProps>
 
 export const drawerEmits = {
   ...dialogEmits,

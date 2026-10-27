@@ -1,6 +1,8 @@
 import fs from 'fs'
+import path from 'path'
 import { Visitor, parseSync } from 'oxc-parser'
 import MagicString from 'magic-string'
+import { projRoot } from '@element-plus/build-utils'
 
 import type { Plugin } from 'rolldown'
 
@@ -68,12 +70,39 @@ function extractImportPropsStatements(
   return fileName
 }
 
-export function SupplyValidator(): Plugin {
-  // 某些 props 的类型名与 prop 名不一致，需要重新映射
-  const reMapPropsName: Record<string, string> = {
-    elTooltipContentProps: 'useTooltipContentProps', // tooltip/src/conent.vue
-    cascaderComponentProps: 'cascaderProps',
+export function getRuntimePropDefinition(propsType: string, source: string) {
+  const propsName = propsType[0].toLowerCase() + propsType.slice(1)
+  const exceptions: Record<string, string> = {
+    elTooltipContentProps: 'tooltipContentPropDefs',
+    cascaderComponentProps: 'cascaderPropDefs',
+    hueSliderProps: 'alphaSliderPropDefs',
   }
+  const definitionName = propsName
+    .replace(/^use(?=[A-Z])/, '')
+    .replace(/^./, (letter) => letter.toLowerCase())
+    .replace(/Props$/, 'PropDefs')
+  return (
+    [exceptions[propsName], definitionName, propsName].find(
+      (name) => name && new RegExp(`export\\s+const\\s+${name}\\b`).test(source)
+    ) ?? propsName
+  )
+}
+
+export function resolveRuntimePropsFile(
+  vueFilePath: string,
+  importFilePath: string
+) {
+  const modulePath = importFilePath.startsWith('@element-plus/')
+    ? path.resolve(projRoot, 'packages', importFilePath.slice(14))
+    : path.resolve(path.dirname(vueFilePath), importFilePath)
+  return [
+    modulePath,
+    `${modulePath}.ts`,
+    path.join(modulePath, 'index.ts'),
+  ].find((file) => fs.existsSync(file) && fs.statSync(file).isFile())
+}
+
+export function SupplyValidator(): Plugin {
   // 某些 import 文件需要重新映射
   const reMapImportFile: Record<string, string> = {
     './types': './virtual-tree', // tree-node.vue
@@ -110,21 +139,22 @@ export function SupplyValidator(): Plugin {
         )
         if (!extractImportFile) return
 
-        const propsName = propsType[0].toLowerCase() + propsType.slice(1)
         const s = new MagicString(code)
         const importFilePath =
           reMapImportFile[extractImportFile] || extractImportFile
+        const definitionFile = resolveRuntimePropsFile(
+          vueFilePath,
+          importFilePath
+        )
+        const propsName = getRuntimePropDefinition(
+          propsType,
+          definitionFile ? fs.readFileSync(definitionFile, 'utf8') : ''
+        )
         if (mergePropsIndexes.length === 2) {
           s.remove(mergePropsIndexes[0], mergePropsIndexes[1])
         }
-        s.prepend(
-          `import { ${reMapPropsName[propsName] || propsName} } from '${importFilePath}'\n`
-        )
-        s.overwrite(
-          propsIndexes[0],
-          propsIndexes[1],
-          `props: ${reMapPropsName[propsName] || propsName}`
-        )
+        s.prepend(`import { ${propsName} } from '${importFilePath}'\n`)
+        s.overwrite(propsIndexes[0], propsIndexes[1], `props: ${propsName}`)
         return {
           code: s.toString(),
           map: s.generateMap({ hires: true }),

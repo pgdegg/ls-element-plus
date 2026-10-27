@@ -1,7 +1,6 @@
 import { buildProps, definePropType } from '@element-plus/utils'
 
 import type Skeleton from './skeleton.vue'
-import type { ExtractPublicPropTypes } from 'vue'
 import type { ThrottleType } from '@element-plus/hooks'
 
 export interface SkeletonProps {
@@ -27,10 +26,8 @@ export interface SkeletonProps {
   throttle?: ThrottleType
 }
 
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `SkeletonProps`。
- */
-export const skeletonProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const skeletonPropDefs = buildProps({
   /**
    * @description 是否显示动画
    */
@@ -63,10 +60,5 @@ export const skeletonProps = buildProps({
     type: definePropType<ThrottleType>([Number, Object]),
   },
 } as const)
-
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `SkeletonProps`。
- */
-export type SkeletonPropsPublic = ExtractPublicPropTypes<typeof skeletonProps>
 
 export type SkeletonInstance = InstanceType<typeof Skeleton> & unknown

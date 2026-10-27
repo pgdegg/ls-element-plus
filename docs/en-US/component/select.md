@@ -259,14 +259,7 @@ Empty disabled or readonly controls hide their placeholder by default, including
 | aria-label ^(a11y)                            | same as `aria-label` in native input                                                                                                     | ^[string]                                                                                                                                                                   | —                                              |
 | empty-values ^(2.7.0)                         | empty values of component, [see config-provider](./config-provider.md#empty-values-configurations)                                       | ^[array]                                                                                                                                                                    | —                                              |
 | value-on-clear ^(2.7.0)                       | clear return value, [see config-provider](./config-provider.md#empty-values-configurations)                                              | ^[string] / ^[number] / ^[boolean] / ^[Function]                                                                                                                            | —                                              |
-| suffix-transition ^(deprecated)               | animation when dropdown appears/disappears icon                                                                                          | ^[boolean]                                                                                                                                                                  | true                                           |
 | tabindex ^(2.9.0)                             | tabindex for input                                                                                                                       | ^[string] / ^[number]                                                                                                                                                       | —                                              |
-
-:::warning
-
-`suffix-transition` has been **deprecated**, and **will be** removed in ^(2.4.0), please use override style scheme.
-
-:::
 
 ### props
 

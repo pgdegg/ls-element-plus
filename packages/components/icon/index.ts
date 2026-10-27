@@ -6,4 +6,4 @@ import type { SFCWithInstall } from '@element-plus/utils'
 export const ElIcon: SFCWithInstall<typeof Icon> = withInstall(Icon)
 export default ElIcon
 
-export * from './src/icon'
+export type { IconProps, IconInstance } from './src/icon'

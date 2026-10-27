@@ -1,15 +1,35 @@
 <template>
   <div>
-    <el-checkbox v-model="checked1" label="Option 1" size="large" />
-    <el-checkbox v-model="checked2" label="Option 2" size="large" />
+    <el-checkbox
+      v-model="checked1"
+      label="Option 1"
+      size="large"
+      value="Option 1"
+    />
+    <el-checkbox
+      v-model="checked2"
+      label="Option 2"
+      size="large"
+      value="Option 2"
+    />
   </div>
   <div class="my-2">
-    <el-checkbox v-model="checked3" label="Option 1" />
-    <el-checkbox v-model="checked4" label="Option 2" />
+    <el-checkbox v-model="checked3" label="Option 1" value="Option 1" />
+    <el-checkbox v-model="checked4" label="Option 2" value="Option 2" />
   </div>
   <div class="mt-2">
-    <el-checkbox v-model="checked5" label="Option 1" size="small" />
-    <el-checkbox v-model="checked6" label="Option 2" size="small" />
+    <el-checkbox
+      v-model="checked5"
+      label="Option 1"
+      size="small"
+      value="Option 1"
+    />
+    <el-checkbox
+      v-model="checked6"
+      label="Option 2"
+      size="small"
+      value="Option 2"
+    />
   </div>
 </template>
 

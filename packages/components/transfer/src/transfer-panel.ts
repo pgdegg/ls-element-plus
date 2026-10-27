@@ -1,7 +1,7 @@
 import { buildProps, definePropType } from '@element-plus/utils'
-import { transferCheckedChangeFn, transferProps } from './transfer'
+import { transferCheckedChangeFn, transferPropDefs } from './transfer'
 
-import type { ComponentInstance, ExtractPublicPropTypes, VNode } from 'vue'
+import type { ComponentInstance, VNode } from 'vue'
 import type { ComponentExposed } from 'vue-component-type-helpers'
 import type {
   TransferDataItem,
@@ -36,11 +36,9 @@ export interface TransferPanelProps<
   itemSize?: number
 }
 
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `TransferPanelProps`。
- */
-export const transferPanelProps = buildProps({
-  data: transferProps.data,
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const transferPanelPropDefs = buildProps({
+  data: transferPropDefs.data,
   optionRender: {
     type: definePropType<(option: TransferDataItem) => VNode | VNode[]>(
       Function
@@ -49,20 +47,13 @@ export const transferPanelProps = buildProps({
   placeholder: String,
   title: String,
   filterable: Boolean,
-  format: transferProps.format,
-  filterMethod: transferProps.filterMethod,
-  defaultChecked: transferProps.leftDefaultChecked,
-  props: transferProps.props,
-  virtualScroll: transferProps.virtualScroll,
-  itemSize: transferProps.itemSize,
+  format: transferPropDefs.format,
+  filterMethod: transferPropDefs.filterMethod,
+  defaultChecked: transferPropDefs.leftDefaultChecked,
+  props: transferPropDefs.props,
+  virtualScroll: transferPropDefs.virtualScroll,
+  itemSize: transferPropDefs.itemSize,
 } as const)
-
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `TransferPanelProps`。
- */
-export type TransferPanelPropsPublic = ExtractPublicPropTypes<
-  typeof transferPanelProps
->
 
 export const transferPanelEmits = {
   [CHECKED_CHANGE_EVENT]: transferCheckedChangeFn,

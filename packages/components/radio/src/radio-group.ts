@@ -3,7 +3,6 @@ import { useAriaProps, useSizeProp } from '@element-plus/hooks'
 import { radioEmits } from './radio'
 
 import type { ComponentSize } from '@element-plus/constants'
-import type { ExtractPublicPropTypes } from 'vue'
 import type RadioGroup from './radio-group.vue'
 
 export type radioOptionProp = {
@@ -71,10 +70,8 @@ export interface RadioGroupProps {
   ariaLabel?: string
 }
 
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `RadioGroupProps`。
- */
-export const radioGroupProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const radioGroupPropDefs = buildProps({
   /**
    * @description 原生 `id` 属性
    */
@@ -142,13 +139,6 @@ export const radioGroupProps = buildProps({
   },
   ...useAriaProps(['ariaLabel']),
 } as const)
-
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `RadioGroupProps`。
- */
-export type RadioGroupPropsPublic = ExtractPublicPropTypes<
-  typeof radioGroupProps
->
 
 export const radioGroupEmits = radioEmits
 export type RadioGroupEmits = typeof radioGroupEmits

@@ -1,7 +1,6 @@
 import { componentSizes } from '@element-plus/constants'
 import { buildProps, definePropType } from '@element-plus/utils'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type { ComponentSize } from '@element-plus/constants'
 import type { Arrayable } from '@element-plus/utils'
 import type { FormItemRule } from './types'
@@ -67,10 +66,8 @@ export interface FormItemProps {
   size?: ComponentSize
 }
 
-/**
- * @deprecated 3.0.0 后移除，请改用 `FormItemProps`。
- */
-export const formItemProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const formItemPropDefs = buildProps({
   /**
    * @description 标签文本。
    */
@@ -145,8 +142,3 @@ export const formItemProps = buildProps({
     values: componentSizes,
   },
 } as const)
-
-/**
- * @deprecated 3.0.0 后移除，请改用 `FormItemProps`。
- */
-export type FormItemPropsPublic = ExtractPublicPropTypes<typeof formItemProps>

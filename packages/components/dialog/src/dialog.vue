@@ -60,13 +60,11 @@
             >
               <template #header>
                 <slot
-                  v-if="!$slots.title"
                   name="header"
                   :close="handleClose"
                   :title-id="titleId"
                   :title-class="ns.e('title')"
                 />
-                <slot v-else name="title" />
               </template>
               <slot />
               <template v-if="$slots.footer" #footer>
@@ -81,10 +79,10 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, provide, ref, useSlots } from 'vue'
+import { provide, ref } from 'vue'
 import { useDebounceFn, useEventListener } from '@vueuse/core'
 import { ElOverlay } from '@element-plus/components/overlay'
-import { useDeprecated, useNamespace, useSameTarget } from '@element-plus/hooks'
+import { useNamespace, useSameTarget } from '@element-plus/hooks'
 import ElFocusTrap from '@element-plus/components/focus-trap'
 import ElDialogContent from './dialog-content.vue'
 import { dialogInjectionKey } from './constants'
@@ -100,18 +98,6 @@ defineOptions({
 
 const props = withDefaults(defineProps<DialogProps>(), dialogPropsDefaults)
 defineEmits(dialogEmits)
-const slots = useSlots()
-
-useDeprecated(
-  {
-    scope: 'el-dialog',
-    from: 'the title slot',
-    replacement: 'the header slot',
-    version: '3.0.0',
-    ref: 'https://element-plus.org/en-US/component/dialog.html#slots',
-  },
-  computed(() => !!slots.title)
-)
 
 const ns = useNamespace('dialog')
 const dialogRef = ref<HTMLElement>()

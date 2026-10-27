@@ -1,6 +1,5 @@
 import { buildProps } from '@element-plus/utils'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type Bar from './bar.vue'
 
 export interface BarProps {
@@ -8,10 +7,8 @@ export interface BarProps {
   minSize: number
 }
 
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `BarProps`。
- */
-export const barProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const barPropDefs = buildProps({
   always: {
     type: Boolean,
     default: true,
@@ -21,10 +18,5 @@ export const barProps = buildProps({
     required: true,
   },
 } as const)
-
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `BarProps`。
- */
-export type BarPropsPublic = ExtractPublicPropTypes<typeof barProps>
 
 export type BarInstance = InstanceType<typeof Bar> & unknown

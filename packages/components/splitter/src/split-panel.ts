@@ -1,6 +1,5 @@
 import { buildProps } from '@element-plus/utils'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type SplitterPanel from './split-panel.vue'
 
 export interface SplitterPanelProps {
@@ -11,10 +10,8 @@ export interface SplitterPanelProps {
   collapsible?: boolean
 }
 
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `SplitterPanelProps`。
- */
-export const splitterPanelProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const splitterPanelPropDefs = buildProps({
   min: {
     type: [String, Number],
   },
@@ -30,13 +27,6 @@ export const splitterPanelProps = buildProps({
   },
   collapsible: Boolean,
 } as const)
-
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `SplitterPanelProps`。
- */
-export type SplitterPanelPropsPublic = ExtractPublicPropTypes<
-  typeof splitterPanelProps
->
 export type SplitterPanelInstance = InstanceType<typeof SplitterPanel> & unknown
 
 export const splitterPanelEmits = {

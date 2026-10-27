@@ -1,7 +1,6 @@
 import { buildProps, definePropType, isObject } from '@element-plus/utils'
 import { rangeArr } from '@element-plus/components/time-picker'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type { Dayjs } from 'dayjs'
 
 export type CalendarDateCellType = 'next' | 'prev' | 'current'
@@ -33,10 +32,8 @@ export interface DateTableProps {
   hideHeader?: boolean
 }
 
-/**
- *  @deprecated 自 3.0.0 后移除，请使用 `DateTableProps`
- */
-export const dateTableProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const dateTablePropDefs = buildProps({
   selectedDay: {
     type: definePropType<Dayjs>(Object),
   },
@@ -51,11 +48,6 @@ export const dateTableProps = buildProps({
     type: Boolean,
   },
 } as const)
-
-/**
- *  @deprecated 自 3.0.0 后移除，请使用 `DateTableProps`
- */
-export type DateTablePropsPublic = ExtractPublicPropTypes<typeof dateTableProps>
 
 export const dateTableEmits = {
   pick: (value: Dayjs) => isObject(value),

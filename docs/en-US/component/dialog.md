@@ -198,28 +198,14 @@ dialog/events
 | z-index                    | same as z-index in native CSS, z-order of dialog                                                                               | ^[number]                              | —           |
 | header-aria-level ^(a11y)  | header's `aria-level` attribute                                                                                                | ^[string]                              | 2           |
 | transition ^(2.10.5)       | custom transition configuration for dialog animation. Can be a string (transition name) or an object with Vue transition props | ^[string] / ^[object]`TransitionProps` | dialog-fade |
-| custom-class ^(deprecated) | custom class names for Dialog                                                                                                  | ^[string]                              | ''          |
-
-:::warning
-
-`custom-class` has been **deprecated**, and **will be** removed in ^(2.4.0), please use `class`.
-
-:::
 
 ### Slots
 
-| Name                | Description                                                                                           |
-| ------------------- | ----------------------------------------------------------------------------------------------------- |
-| default             | default content of Dialog                                                                             |
-| header              | content of the Dialog header; Replacing this removes the title, but does not remove the close button. |
-| footer              | content of the Dialog footer                                                                          |
-| title ^(deprecated) | works the same as the header slot. Use that instead.                                                  |
-
-:::warning
-
-`title` has been **deprecated**, and **will be** removed in ^(3.0.0), please use `header`.
-
-:::
+| Name    | Description                                                                                           |
+| ------- | ----------------------------------------------------------------------------------------------------- |
+| default | default content of Dialog                                                                             |
+| header  | content of the Dialog header; Replacing this removes the title, but does not remove the close button. |
+| footer  | content of the Dialog footer                                                                          |
 
 ### Events
 

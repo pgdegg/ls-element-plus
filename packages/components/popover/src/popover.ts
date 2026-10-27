@@ -1,15 +1,14 @@
 import { buildProps, isBoolean } from '@element-plus/utils'
 import {
   useTooltipContentPropsDefaults,
-  useTooltipProps,
   useTooltipTriggerPropsDefaults,
 } from '@element-plus/components/tooltip'
+import { tooltipPropDefs } from '@element-plus/components/tooltip/src/tooltip'
 import { dropdownProps } from '@element-plus/components/dropdown'
 import { popperArrowPropsDefaults } from '@element-plus/components/popper'
 import { omit } from 'lodash-unified'
 
 import type { UseTooltipProps } from '@element-plus/components/tooltip'
-import type { ExtractPublicPropTypes } from 'vue'
 import type Popover from './popover.vue'
 
 export interface PopoverProps extends Omit<
@@ -30,11 +29,9 @@ export interface PopoverProps extends Omit<
   width?: string | number
 }
 
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `PopoverProps`。
- */
-export const popoverProps = buildProps({
-  ...omit(useTooltipProps, ['ariaLabel', 'gpuAcceleration', 'rawContent']),
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const popoverPropDefs = buildProps({
+  ...omit(tooltipPropDefs, ['ariaLabel', 'gpuAcceleration', 'rawContent']),
   /**
    * @description popover 的弹出位置
    */
@@ -47,7 +44,7 @@ export const popoverProps = buildProps({
    * @description Tooltip 主题，内置主题：`dark` / `light`
    */
   effect: {
-    ...useTooltipProps.effect,
+    ...tooltipPropDefs.effect,
     default: 'light',
   },
   /**
@@ -65,22 +62,17 @@ export const popoverProps = buildProps({
    * @description popover 偏移量
    */
   offset: {
-    ...useTooltipProps.offset,
+    ...tooltipPropDefs.offset,
     default: undefined,
   },
   /**
    * @description 当 popover 不处于激活状态且 `persistent` 为 `false` 时，popover 将被销毁
    */
   persistent: {
-    ...useTooltipProps.persistent,
+    ...tooltipPropDefs.persistent,
     default: true,
   },
 } as const)
-
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `PopoverProps`。
- */
-export type PopoverPropsPublic = ExtractPublicPropTypes<typeof popoverProps>
 
 export const popoverEmits = {
   'update:visible': (value: boolean) => isBoolean(value),

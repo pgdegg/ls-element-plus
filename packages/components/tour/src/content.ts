@@ -1,6 +1,5 @@
 import { buildProps, definePropType } from '@element-plus/utils'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type { Placement, Strategy, VirtualElement } from '@floating-ui/dom'
 
 export const tourStrategies = ['absolute', 'fixed'] as const
@@ -47,10 +46,8 @@ export interface TourContentProps {
   zIndex?: number
 }
 
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `TourContentProps`。
- */
-export const tourContentProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const tourContentPropDefs = buildProps({
   /**
    * @description 引导卡片相对于目标元素的位置
    */
@@ -93,13 +90,6 @@ export const tourContentProps = buildProps({
     default: 2001,
   },
 })
-
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `TourContentProps`。
- */
-export type TourContentPropsPublic = ExtractPublicPropTypes<
-  typeof tourContentProps
->
 
 export const tourContentEmits = {
   close: () => true,

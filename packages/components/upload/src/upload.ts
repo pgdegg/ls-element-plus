@@ -3,13 +3,10 @@ import { ajaxUpload } from './ajax'
 
 import type { Awaitable, Mutable } from '@element-plus/utils'
 import type { UploadAjaxError } from './ajax'
-import type { ExtractPublicPropTypes } from 'vue'
 import type Upload from './upload.vue'
 
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `UploadProps`。
- */
-export const uploadListTypes = ['text', 'picture', 'picture-card'] as const
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const uploadListTypeValues = ['text', 'picture', 'picture-card'] as const
 
 let fileId = 1
 export const genFileId = () => Date.now() + fileId++
@@ -206,10 +203,8 @@ export interface UploadProps extends UploadBaseProps {
   crossorigin?: Crossorigin
 }
 
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `UploadBaseProps`。
- */
-export const uploadBaseProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const uploadBasePropDefs = buildProps({
   /**
    * @description 请求 URL
    */
@@ -299,7 +294,7 @@ export const uploadBaseProps = buildProps({
    */
   listType: {
     type: String,
-    values: uploadListTypes,
+    values: uploadListTypeValues,
     default: 'text',
   },
   /**
@@ -326,11 +321,9 @@ export const uploadBaseProps = buildProps({
   directory: Boolean,
 } as const)
 
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `UploadProps`。
- */
-export const uploadProps = buildProps({
-  ...uploadBaseProps,
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const uploadPropDefs = buildProps({
+  ...uploadBasePropDefs,
   /**
    * @description 上传前的钩子函数，参数为待上传文件。若返回 `false`，或返回 `Promise` 且被 reject，则中止上传
    */
@@ -400,11 +393,6 @@ export const uploadProps = buildProps({
     type: definePropType<'anonymous' | 'use-credentials' | ''>(String),
   },
 } as const)
-
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `UploadProps`。
- */
-export type UploadPropsPublic = ExtractPublicPropTypes<typeof uploadProps>
 
 export type UploadInstance = InstanceType<typeof Upload> & unknown
 

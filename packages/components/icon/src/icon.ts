@@ -1,6 +1,5 @@
 import { buildProps, definePropType } from '@element-plus/utils'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type Icon from './icon.vue'
 
 export interface IconProps {
@@ -21,10 +20,8 @@ export interface IconProps {
   color?: string
 }
 
-/**
- * @deprecated 3.0.0 后移除，请改用 `IconProps`。
- */
-export const iconProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const iconPropDefs = buildProps({
   symbol: String,
   prefix: {
     type: definePropType<string | string[]>([String, Array]),
@@ -47,9 +44,4 @@ export const iconProps = buildProps({
     type: String,
   },
 } as const)
-
-/**
- * @deprecated 3.0.0 后移除，请改用 `IconProps`。
- */
-export type IconPropsPublic = ExtractPublicPropTypes<typeof iconProps>
 export type IconInstance = InstanceType<typeof Icon> & unknown

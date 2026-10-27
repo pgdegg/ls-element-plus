@@ -1,6 +1,5 @@
 import { buildProps, iconPropType } from '@element-plus/utils'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type { IconPropType } from '@element-plus/utils'
 import type TimelineItem from './timeline-item.vue'
 
@@ -43,10 +42,8 @@ export interface TimelineItemProps {
   hollow?: boolean
 }
 
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `TimelineItemProps`。
- */
-export const timelineItemProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const timelineItemPropDefs = buildProps({
   /**
    * @description 时间戳内容
    */
@@ -104,12 +101,5 @@ export const timelineItemProps = buildProps({
    */
   hollow: Boolean,
 } as const)
-
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `TimelineItemProps`。
- */
-export type TimelineItemPropsPublic = ExtractPublicPropTypes<
-  typeof timelineItemProps
->
 
 export type TimelineItemInstance = InstanceType<typeof TimelineItem> & unknown

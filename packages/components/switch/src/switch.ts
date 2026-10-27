@@ -15,7 +15,7 @@ import {
 import { useAriaProps } from '@element-plus/hooks'
 
 import type { ComponentSize } from '@element-plus/constants'
-import type { ExtractPublicPropTypes, PropType } from 'vue'
+import type { PropType } from 'vue'
 import type { IconPropType } from '@element-plus/utils'
 import type Switch from './switch.vue'
 
@@ -104,10 +104,8 @@ export interface SwitchProps {
   ariaLabel?: string
 }
 
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `SwitchProps`。
- */
-export const switchProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const switchPropDefs = buildProps({
   square: Boolean,
   /**
    * @description 绑定值，应等于 `active-value` 或 `inactive-value`，默认为 `boolean` 类型
@@ -229,11 +227,6 @@ export const switchProps = buildProps({
   },
   ...useAriaProps(['ariaLabel']),
 } as const)
-
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `SwitchProps`。
- */
-export type SwitchPropsPublic = ExtractPublicPropTypes<typeof switchProps>
 
 export const switchEmits = {
   [UPDATE_MODEL_EVENT]: (val: boolean | string | number) =>

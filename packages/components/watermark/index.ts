@@ -7,4 +7,8 @@ export const ElWatermark: SFCWithInstall<typeof Watermark> =
   withInstall(Watermark)
 export default ElWatermark
 
-export * from './src/watermark'
+export type {
+  WatermarkFontType,
+  WatermarkProps,
+  WatermarkInstance,
+} from './src/watermark'

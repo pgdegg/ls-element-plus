@@ -1,7 +1,6 @@
 import { buildProps, definePropType } from '@element-plus/utils'
 import { componentSizes } from '@element-plus/constants'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type { ComponentSize } from '@element-plus/constants'
 import type Text from './text.vue'
 
@@ -32,10 +31,8 @@ export interface TextProps {
   tag?: string
 }
 
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `TextProps`。
- */
-export const textProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const textPropDefs = buildProps({
   onClick: {
     type: definePropType<(event: MouseEvent) => void>(Function),
   },
@@ -73,10 +70,5 @@ export const textProps = buildProps({
     default: 'span',
   },
 } as const)
-
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `TextProps`。
- */
-export type TextPropsPublic = ExtractPublicPropTypes<typeof textProps>
 
 export type TextInstance = InstanceType<typeof Text> & unknown

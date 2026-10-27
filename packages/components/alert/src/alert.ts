@@ -1,7 +1,5 @@
 import { TypeComponentsMap, buildProps, keysOf } from '@element-plus/utils'
 
-import type { ExtractPublicPropTypes } from 'vue'
-
 export const alertEffects = ['light', 'dark'] as const
 
 export interface AlertProps {
@@ -39,10 +37,8 @@ export interface AlertProps {
   effect?: 'light' | 'dark'
 }
 
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `AlertProps`
- */
-export const alertProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const alertPropDefs = buildProps({
   /**
    * @description 警告标题
    */
@@ -90,11 +86,6 @@ export const alertProps = buildProps({
     default: 'light',
   },
 } as const)
-
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `AlertProps`
- */
-export type AlertPropsPublic = ExtractPublicPropTypes<typeof alertProps>
 
 export const alertEmits = {
   close: (evt: MouseEvent) => evt instanceof MouseEvent,

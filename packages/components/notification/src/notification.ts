@@ -1,7 +1,7 @@
 import { Close } from '@element-plus/icons-vue'
 import { buildProps, definePropType, iconPropType } from '@element-plus/utils'
 
-import type { AppContext, ExtractPublicPropTypes, Ref, VNode } from 'vue'
+import type { AppContext, Ref, VNode } from 'vue'
 import type { ClassValue, IconPropType } from '@element-plus/utils'
 import type { ProgressProps } from '@element-plus/components/progress'
 import type Notification from './notification.vue'
@@ -99,10 +99,8 @@ export interface NotificationProps {
   pauseOnHover?: boolean
 }
 
-/**
- * @deprecated 3.0.0 后移除，请改用 `NotificationProps`。
- */
-export const notificationProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const notificationPropDefs = buildProps({
   /**
    * @description Notification 的自定义类名
    */
@@ -222,13 +220,6 @@ export const notificationProps = buildProps({
     default: true,
   },
 } as const)
-
-/**
- * @deprecated 3.0.0 后移除，请改用 `NotificationProps`。
- */
-export type NotificationPropsPublic = ExtractPublicPropTypes<
-  typeof notificationProps
->
 
 export const notificationEmits = {
   destroy: () => true,

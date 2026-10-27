@@ -26,9 +26,11 @@
     :default-active="activeIndex2"
     class="el-menu-demo"
     mode="horizontal"
-    background-color="#545c64"
-    text-color="#fff"
-    active-text-color="#ffd04b"
+    style="
+      --el-menu-bg-color: #545c64;
+      --el-menu-text-color: #fff;
+      --el-menu-active-color: #ffd04b;
+    "
     @select="handleSelect"
   >
     <el-menu-item index="1">Processing Center</el-menu-item>

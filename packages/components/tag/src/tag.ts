@@ -3,7 +3,6 @@ import { componentSizes } from '@element-plus/constants'
 
 import type { ComponentSize } from '@element-plus/constants'
 import type Tag from './tag.vue'
-import type { ExtractPublicPropTypes } from 'vue'
 
 export interface TagProps {
   /**
@@ -40,10 +39,8 @@ export interface TagProps {
   round?: boolean
 }
 
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `TagProps`。
- */
-export const tagProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const tagPropDefs = buildProps({
   /**
    * @description Tag 的类型
    */
@@ -88,11 +85,6 @@ export const tagProps = buildProps({
    */
   round: Boolean,
 } as const)
-
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `TagProps`。
- */
-export type TagPropsPublic = ExtractPublicPropTypes<typeof tagProps>
 
 export const tagEmits = {
   close: (evt: MouseEvent) => evt instanceof MouseEvent,

@@ -15,14 +15,7 @@ export const useCheckboxStatus = (
 ) => {
   const checkboxGroup = inject(checkboxGroupContextKey, undefined)
   const isFocused = ref(false)
-  const actualValue = computed(() => {
-    // 在 2.x 版本中，若没有 props.value，props.label 将充当 props.value
-    // 在 3.x 版本中，移除此计算值，改用 props.value。
-    if (!isPropAbsent(props.value)) {
-      return props.value
-    }
-    return props.label
-  })
+  const actualValue = computed(() => props.value)
   const isChecked = computed<boolean>(() => {
     const value = model.value
     if (isBoolean(value)) {
@@ -34,7 +27,7 @@ export const useCheckboxStatus = (
         return value.map(toRaw).includes(actualValue.value)
       }
     } else if (value !== null && value !== undefined) {
-      return value === props.trueValue || value === props.trueLabel
+      return value === props.trueValue
     } else {
       return !!value
     }
@@ -49,7 +42,7 @@ export const useCheckboxStatus = (
   const checkboxSize = useFormSize(computed(() => checkboxGroup?.size?.value))
 
   const hasOwnLabel = computed<boolean>(() => {
-    return !!slots.default || !isPropAbsent(actualValue.value)
+    return !!slots.default || !isPropAbsent(props.label)
   })
 
   return {

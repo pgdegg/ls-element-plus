@@ -1,8 +1,6 @@
 import { computed, inject, ref } from 'vue'
 import { UPDATE_MODEL_EVENT } from '@element-plus/constants'
 import { useFormDisabled, useFormSize } from '@element-plus/components/form'
-import { useDeprecated } from '@element-plus/hooks'
-import { isPropAbsent } from '@element-plus/utils'
 import { radioGroupKey } from './constants'
 
 import type { RadioButtonProps } from './radio-button'
@@ -16,14 +14,7 @@ export const useRadio = (
   const radioRef = ref<HTMLInputElement>()
   const radioGroup = inject(radioGroupKey, undefined)
   const isGroup = computed(() => !!radioGroup)
-  const actualValue = computed(() => {
-    // 在 2.x 版本中，如果没有 props.value，props.label 将充当 props.value
-    // 在 3.x 版本中，移除此计算值，改用 props.value。
-    if (!isPropAbsent(props.value)) {
-      return props.value
-    }
-    return props.label
-  })
+  const actualValue = computed(() => props.value)
   const modelValue = computed<RadioProps['modelValue']>({
     get() {
       return isGroup.value ? radioGroup!.modelValue : props.modelValue!
@@ -47,17 +38,6 @@ export const useRadio = (
       ? -1
       : 0
   })
-
-  useDeprecated(
-    {
-      from: 'label act as value',
-      replacement: 'value',
-      version: '3.0.0',
-      scope: 'el-radio',
-      ref: 'https://element-plus.org/en-US/component/radio.html',
-    },
-    computed(() => isGroup.value && isPropAbsent(props.value))
-  )
 
   return {
     radioRef,

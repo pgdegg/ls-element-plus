@@ -1,7 +1,6 @@
 import { buildProps } from '@element-plus/utils'
 import { useSizeProp } from '@element-plus/hooks'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type { ComponentSize } from '@element-plus/constants'
 import type Description from './description.vue'
 
@@ -42,10 +41,8 @@ export interface DescriptionProps {
   labelWidth?: string | number
 }
 
-/**
- * @deprecated 3.0.0 后移除，请改用 `DescriptionProps`。
- */
-export const descriptionProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const descriptionPropDefs = buildProps({
   /**
    * @description 是否带边框
    */
@@ -90,11 +87,4 @@ export const descriptionProps = buildProps({
     type: [String, Number],
   },
 } as const)
-
-/**
- * @deprecated 3.0.0 后移除，请改用 `DescriptionProps`。
- */
-export type DescriptionPropsPublic = ExtractPublicPropTypes<
-  typeof descriptionProps
->
 export type DescriptionInstance = InstanceType<typeof Description> & unknown

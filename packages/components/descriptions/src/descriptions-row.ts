@@ -6,10 +6,8 @@ export interface DescriptionsRowProps {
   row?: DescriptionItemVNode[]
 }
 
-/**
- * @deprecated 3.0.0 后移除，请改用 `DescriptionsRowProps`。
- */
-export const descriptionsRowProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const descriptionsRowPropDefs = buildProps({
   row: {
     type: definePropType<DescriptionItemVNode[]>(Array),
     default: () => [],

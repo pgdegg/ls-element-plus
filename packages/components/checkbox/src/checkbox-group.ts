@@ -2,7 +2,6 @@ import { UPDATE_MODEL_EVENT } from '@element-plus/constants'
 import { useAriaProps, useSizeProp } from '@element-plus/hooks'
 import { buildProps, definePropType, isArray } from '@element-plus/utils'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type checkboxGroup from './checkbox-group.vue'
 import type { CheckboxProps, CheckboxValueType } from './checkbox'
 import type { ComponentSize } from '@element-plus/constants'
@@ -61,10 +60,8 @@ export interface CheckboxGroupProps extends Pick<AriaProps, 'ariaLabel'> {
   type?: 'checkbox' | 'button'
 }
 
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `CheckboxGroupProps`
- */
-export const checkboxGroupProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const checkboxGroupPropDefs = buildProps({
   /**
    * @description 绑定值
    */
@@ -132,13 +129,6 @@ export const checkboxGroupEmits = {
   [UPDATE_MODEL_EVENT]: (val: CheckboxGroupValueType) => isArray(val),
   change: (val: CheckboxValueType[]) => isArray(val),
 }
-
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `CheckboxGroupProps`
- */
-export type CheckboxGroupPropsPublic = ExtractPublicPropTypes<
-  typeof checkboxGroupProps
->
 export type CheckboxGroupEmits = typeof checkboxGroupEmits
 export type CheckboxGroupInstance = InstanceType<typeof checkboxGroup> & unknown
 

@@ -1,7 +1,6 @@
 import { buildProps } from '@element-plus/utils'
 
 import type SkeletonItem from './skeleton-item.vue'
-import type { ExtractPublicPropTypes } from 'vue'
 
 export interface SkeletonItemProps {
   /**
@@ -19,10 +18,8 @@ export interface SkeletonItemProps {
     | 'button'
 }
 
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `SkeletonItemProps`。
- */
-export const skeletonItemProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const skeletonItemPropDefs = buildProps({
   /**
    * @description 当前渲染的骨架类型
    */
@@ -42,12 +39,5 @@ export const skeletonItemProps = buildProps({
     default: 'text',
   },
 } as const)
-
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `SkeletonItemProps`。
- */
-export type SkeletonItemPropsPublic = ExtractPublicPropTypes<
-  typeof skeletonItemProps
->
 
 export type SkeletonItemInstance = InstanceType<typeof SkeletonItem> & unknown

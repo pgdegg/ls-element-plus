@@ -8,5 +8,13 @@ export const ElCascaderPanel: SFCWithInstall<typeof CascaderPanel> =
 
 export default ElCascaderPanel
 export * from './src/types'
-export * from './src/config'
+export {
+  CASCADER_PANEL_ITEM_SIZE,
+  CASCADER_PANEL_HEIGHT,
+  CommonProps,
+  DefaultProps,
+  cascaderPanelEmits,
+  useCascaderConfig,
+} from './src/config'
+export type { CascaderCommonProps, CascaderPanelProps } from './src/config'
 export * from './src/instance'

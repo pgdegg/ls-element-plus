@@ -1,11 +1,12 @@
 import { buildProps, definePropType } from '@element-plus/utils'
 import { CircleClose, Clock } from '@element-plus/icons-vue'
-import { useEmptyValuesProps, useSizeProp } from '@element-plus/hooks'
+import { useSizeProp } from '@element-plus/hooks'
+import { emptyValuesPropDefs } from '@element-plus/hooks/use-empty-values/index'
 
 import type { UseEmptyValuesProps } from '@element-plus/hooks'
 import type { PopperEffect } from '@element-plus/components/popper'
 import type TimeSelect from './time-select.vue'
-import type { Component, ExtractPublicPropTypes, StyleValue } from 'vue'
+import type { Component, StyleValue } from 'vue'
 import type { ComponentSize } from '@element-plus/constants'
 import type { ClassValue, IconPropType } from '@element-plus/utils'
 
@@ -93,10 +94,8 @@ export const DEFAULT_START = '09:00'
 export const DEFAULT_END = '18:00'
 export const DEFAULT_STEP = '00:30'
 
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `TimeSelectProps`。
- */
-export const timeSelectProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const timeSelectPropDefs = buildProps({
   /** @description 是否隐藏占位文本；默认在禁用或只读时隐藏，false 强制显示。 */
   hidePlaceholder: { type: Boolean, default: undefined },
   /**
@@ -217,14 +216,7 @@ export const timeSelectProps = buildProps({
     type: definePropType<StyleValue>([String, Array, Object, Boolean]),
     default: undefined,
   },
-  ...useEmptyValuesProps,
+  ...emptyValuesPropDefs,
 } as const)
-
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `TimeSelectProps`。
- */
-export type TimeSelectPropsPublic = ExtractPublicPropTypes<
-  typeof timeSelectProps
->
 
 export type TimeSelectInstance = InstanceType<typeof TimeSelect> & unknown

@@ -1,18 +1,15 @@
 import { buildProps, definePropType } from '@element-plus/utils'
-import {
-  popperContentProps,
-  popperContentPropsDefaults,
-} from '@element-plus/components/popper'
+import { popperContentPropsDefaults } from '@element-plus/components/popper'
+import { popperContentPropDefs } from '@element-plus/components/popper/src/content'
 import {
   useAriaProps,
-  useDelayedToggleProps,
   useDelayedTogglePropsDefaults,
 } from '@element-plus/hooks'
+import { delayedTogglePropDefs } from '@element-plus/hooks/use-delayed-toggle/index'
 
 import type { AriaProps, UseDelayedToggleProps } from '@element-plus/hooks'
 import type { PopperContentProps } from '@element-plus/components/popper'
 import type TooltipContent from './content.vue'
-import type { ExtractPublicPropTypes } from 'vue'
 
 export interface ElTooltipContentProps
   extends UseDelayedToggleProps, Omit<PopperContentProps, 'visible'> {
@@ -63,12 +60,10 @@ export const useTooltipContentPropsDefaults = {
   teleported: true,
 } as const
 
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `ElTooltipContentProps`。
- */
-export const useTooltipContentProps = buildProps({
-  ...useDelayedToggleProps,
-  ...popperContentProps,
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const tooltipContentPropDefs = buildProps({
+  ...delayedTogglePropDefs,
+  ...popperContentPropDefs,
   /**
    * @description tooltip 内容挂载到哪个元素
    */
@@ -118,13 +113,6 @@ export const useTooltipContentProps = buildProps({
   disabled: Boolean,
   ...useAriaProps(['ariaLabel']),
 } as const)
-
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `ElTooltipContentProps`。
- */
-export type ElTooltipContentPropsPublic = ExtractPublicPropTypes<
-  typeof useTooltipContentProps
->
 
 export type TooltipContentInstance = InstanceType<typeof TooltipContent> &
   unknown

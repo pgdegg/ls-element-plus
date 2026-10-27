@@ -1,12 +1,9 @@
 import { buildProps } from '@element-plus/utils'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type TabPane from './tab-pane.vue'
 
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `TabPaneProps`。
- */
-export const tabPaneProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const tabPanePropDefs = buildProps({
   /**
    * @description tab 的标题
    */
@@ -70,10 +67,5 @@ export type TabPaneProps = {
    */
   lazy?: boolean
 }
-
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `TabPaneProps`。
- */
-export type TabPanePropsPublic = ExtractPublicPropTypes<typeof tabPaneProps>
 
 export type TabPaneInstance = InstanceType<typeof TabPane> & unknown

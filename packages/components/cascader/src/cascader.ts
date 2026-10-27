@@ -6,9 +6,10 @@ import {
   iconPropType,
   isBoolean,
 } from '@element-plus/utils'
-import { useEmptyValuesProps, useSizeProp } from '@element-plus/hooks'
-import { useTooltipContentProps } from '@element-plus/components/tooltip'
-import { tagProps } from '@element-plus/components/tag'
+import { useSizeProp } from '@element-plus/hooks'
+import { emptyValuesPropDefs } from '@element-plus/hooks/use-empty-values/index'
+import { tooltipContentPropDefs } from '@element-plus/components/tooltip/src/content'
+import { tagPropDefs } from '@element-plus/components/tag/src/tag'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@element-plus/constants'
 import { CircleClose } from '@element-plus/icons-vue'
 
@@ -156,10 +157,8 @@ export interface CascaderComponentProps
   fitInputWidth?: boolean | number
 }
 
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `CascaderComponentProps`
- */
-export const cascaderProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const cascaderPropDefs = buildProps({
   /** @description 是否隐藏占位文本；默认在禁用或只读时隐藏，false 强制显示。 */
   hidePlaceholder: { type: Boolean, default: undefined },
   ...CommonProps,
@@ -285,15 +284,15 @@ export const cascaderProps = buildProps({
   /**
    * @description Cascader 下拉框的自定义类名
    */
-  popperClass: useTooltipContentProps.popperClass,
+  popperClass: tooltipContentPropDefs.popperClass,
   /**
    * @description Cascader 下拉框的自定义样式
    */
-  popperStyle: useTooltipContentProps.popperStyle,
+  popperStyle: tooltipContentPropDefs.popperStyle,
   /**
    * @description 弹层是否被传送
    */
-  teleported: useTooltipContentProps.teleported,
+  teleported: tooltipContentPropDefs.teleported,
   /**
    * @description tooltip 主题，内置主题：`dark` / `light`
    */
@@ -305,11 +304,11 @@ export const cascaderProps = buildProps({
    * @description 标签类型
    */
 
-  tagType: { ...tagProps.type, default: 'info' },
+  tagType: { ...tagPropDefs.type, default: 'info' },
   /**
    * @description 标签效果
    */
-  tagEffect: { ...tagProps.effect, default: 'light' },
+  tagEffect: { ...tagPropDefs.effect, default: 'light' },
   /**
    * @description 是否触发表单校验
    */
@@ -351,7 +350,7 @@ export const cascaderProps = buildProps({
     type: [Boolean, Number],
     default: false,
   },
-  ...useEmptyValuesProps,
+  ...emptyValuesPropDefs,
 })
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

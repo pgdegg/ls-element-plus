@@ -7,5 +7,17 @@ export const ElDialog: SFCWithInstall<typeof Dialog> = withInstall(Dialog)
 export default ElDialog
 
 export * from './src/use-dialog'
-export * from './src/dialog'
+export {
+  dialogEmits,
+  dialogContextKey,
+  dialogPropsDefaults,
+} from './src/dialog'
+export type {
+  DialogBeforeCloseFn,
+  DialogTransition,
+  DialogProps,
+  DialogEmits,
+  DialogInstance,
+  DialogConfigContext,
+} from './src/dialog'
 export * from './src/constants'

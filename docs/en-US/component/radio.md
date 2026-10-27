@@ -7,29 +7,7 @@ lang: en-US
 
 Single selection among multiple options.
 
-:::warning
-
-`label` act as `value` has been **deprecated**, `label` is used only as display text, this action **will be** removed in ^(3.0.0), consider switching to new API.
-
-:::
-
-:::tip
-
-New API `value` has been added in ^(2.6.0), the examples in the document all use the `value`.
-If you are using a version **less than** ^(2.6.0), please refer to:
-
-:::
-
-```vue
-<template>
-  <el-radio-group v-model="radio1">
-    <!-- works when >=2.6.0, recommended ✔️ not work when <2.6.0 ❌ -->
-    <el-radio value="Value 1">Option 1</el-radio>
-    <!-- works when <2.6.0, deprecated act as value when >=3.0.0 -->
-    <el-radio label="Label 2 & Value 2">Option 2</el-radio>
-  </el-radio-group>
-</template>
-```
+Use `value` for the model value and `label` or the default slot for display text.
 
 ## Basic usage
 
@@ -128,7 +106,6 @@ radio/radio-button
 | aria-label ^(a11y) ^(2.7.2) | same as `aria-label` in RadioGroup                                                             | ^[string]                                                       | —                                                        |
 | name                        | native `name` attribute                                                                        | ^[string]                                                       | —                                                        |
 | id                          | native `id` attribute                                                                          | ^[string]                                                       | —                                                        |
-| label ^(a11y) ^(deprecated) | same as `aria-label` in RadioGroup                                                             | ^[string]                                                       | —                                                        |
 | options ^(2.11.2)           | data of the options, the key of `value` and `label` and `disabled` can be customize by `props` | ^[array]`Array<{[key: string]: any}>`                           | —                                                        |
 | props ^(2.11.2)             | configuration options                                                                          | ^[object]`{ value?: string, label?: string, disabled?: string}` | `{value: 'value', label: 'label', disabled: 'disabled'}` |
 | type ^(2.11.5)              | component type to render options (e.g. `'button'`)                                             | ^[enum]`'radio' \| 'button'`                                    | 'radio'                                                  |

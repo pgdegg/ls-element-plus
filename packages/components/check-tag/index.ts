@@ -6,4 +6,9 @@ import type { SFCWithInstall } from '@element-plus/utils'
 export const ElCheckTag: SFCWithInstall<typeof CheckTag> = withInstall(CheckTag)
 export default ElCheckTag
 
-export * from './src/check-tag'
+export { checkTagEmits } from './src/check-tag'
+export type {
+  CheckTagProps,
+  CheckTagEmits,
+  CheckTagInstance,
+} from './src/check-tag'

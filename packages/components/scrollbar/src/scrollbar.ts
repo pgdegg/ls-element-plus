@@ -2,7 +2,7 @@ import { buildProps, definePropType, isNumber } from '@element-plus/utils'
 import { useAriaProps } from '@element-plus/hooks'
 
 import type { ClassValue } from '@element-plus/utils'
-import type { ExtractPublicPropTypes, StyleValue } from 'vue'
+import type { StyleValue } from 'vue'
 import type Scrollbar from './scrollbar.vue'
 
 export interface ScrollbarProps {
@@ -93,10 +93,8 @@ export interface ScrollbarProps {
   ariaOrientation?: 'horizontal' | 'vertical' | 'undefined'
 }
 
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `ScrollbarProps`。
- */
-export const scrollbarProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const scrollbarPropDefs = buildProps({
   overflowWidth: { type: Number, default: 4 },
   overflowHeight: { type: Number, default: 4 },
   /**
@@ -199,11 +197,6 @@ export const scrollbarProps = buildProps({
   role: String,
   ...useAriaProps(['ariaLabel', 'ariaOrientation']),
 } as const)
-
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `ScrollbarProps`。
- */
-export type ScrollbarPropsPublic = ExtractPublicPropTypes<typeof scrollbarProps>
 
 export const scrollbarEmits = {
   'end-reached': (direction: ScrollbarDirection) =>

@@ -223,10 +223,8 @@ export type {
   ValueOf,
 }
 
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `TableColumnProps`。
- */
-export const tableColumnProps = {
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const tableColumnPropDefs = {
   /**
    * @description 列的类型。设置为 `selection` 时该列显示复选框；设置为 `index` 时显示行索引（从 1 开始）；设置为 `expand` 时显示展开图标
    */
@@ -384,4 +382,4 @@ export const tableColumnProps = {
   },
 }
 
-export default tableColumnProps
+export default tableColumnPropDefs

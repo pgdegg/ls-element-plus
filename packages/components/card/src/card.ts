@@ -1,6 +1,6 @@
 import { buildProps, definePropType } from '@element-plus/utils'
 
-import type { ExtractPublicPropTypes, InjectionKey, StyleValue } from 'vue'
+import type { InjectionKey, StyleValue } from 'vue'
 import type { ClassValue } from '@element-plus/utils'
 
 export interface CardProps {
@@ -36,10 +36,8 @@ export interface CardProps {
   shadow?: 'always' | 'hover' | 'never'
 }
 
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `CardProps`
- */
-export const cardProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const cardPropDefs = buildProps({
   disabled: Boolean,
   /**
    * @description 卡片标题。同时接受由 `slot#header` 传入的 DOM
@@ -92,11 +90,6 @@ export const cardProps = buildProps({
     default: undefined,
   },
 } as const)
-
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `CardProps`
- */
-export type CardPropsPublic = ExtractPublicPropTypes<typeof cardProps>
 export interface CardConfigContext {
   shadow?: CardProps['shadow']
 }

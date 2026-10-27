@@ -8,7 +8,6 @@ import {
   reactive,
   ref,
 } from 'vue'
-import { pick } from 'lodash-unified'
 import { ElSelect, selectProps } from '@element-plus/components/select'
 import { ElTree, treeProps } from '@element-plus/components/tree'
 import { definePropType } from '@element-plus/utils'
@@ -65,28 +64,6 @@ export default defineComponent({
     expose(methods)
     onMounted(() => {
       Object.assign(methods, {
-        // TODO：3.0 仅保留 tree 和 select
-        ...pick(tree.value, [
-          'filter',
-          'updateKeyChildren',
-          'getCheckedNodes',
-          'setCheckedNodes',
-          'getCheckedKeys',
-          'setCheckedKeys',
-          'setChecked',
-          'getHalfCheckedNodes',
-          'getHalfCheckedKeys',
-          'getCurrentKey',
-          'getCurrentNode',
-          'setCurrentKey',
-          'setCurrentNode',
-          'getNode',
-          'remove',
-          'append',
-          'insertBefore',
-          'insertAfter',
-        ]),
-        ...pick(select.value, ['focus', 'blur', 'selectedLabel']),
         treeRef: tree.value,
         selectRef: select.value,
       })

@@ -1,7 +1,7 @@
 import { buildProps, definePropType, iconPropType } from '@element-plus/utils'
-import { tourContentProps } from './content'
+import { tourContentPropDefs } from './content'
 
-import type { CSSProperties, ExtractPublicPropTypes } from 'vue'
+import type { CSSProperties } from 'vue'
 import type { IconPropType } from '@element-plus/utils'
 import type { TourBtnProps, TourMask } from './types'
 import type { TourContentProps } from './content'
@@ -61,10 +61,8 @@ export interface TourStepProps {
   type?: 'default' | 'primary'
 }
 
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `TourStepProps`。
- */
-export const tourStepProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const tourStepPropDefs = buildProps({
   /**
    * @description 获取引导卡片指向的元素。为空时显示在屏幕中央
    */
@@ -104,7 +102,7 @@ export const tourStepProps = buildProps({
   /**
    * @description 引导卡片相对于目标元素的位置
    */
-  placement: tourContentProps.placement,
+  placement: tourContentPropDefs.placement,
   /**
    * @description 是否启用遮罩，可通过传入自定义 props 修改遮罩样式和填充色
    */
@@ -144,11 +142,6 @@ export const tourStepProps = buildProps({
     type: definePropType<'default' | 'primary'>(String),
   },
 })
-
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `TourStepProps`。
- */
-export type TourStepPropsPublic = ExtractPublicPropTypes<typeof tourStepProps>
 
 export const tourStepEmits = {
   close: () => true,

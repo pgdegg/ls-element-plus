@@ -14,10 +14,9 @@ import {
   INPUT_EVENT,
   UPDATE_MODEL_EVENT,
 } from '@element-plus/constants'
-import { tagProps } from '@element-plus/components/tag/src/tag'
+import { tagPropDefs } from '@element-plus/components/tag/src/tag'
 import { CircleClose } from '@element-plus/icons-vue'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type { ComponentSize } from '@element-plus/constants'
 import type { PopperEffect } from '@element-plus/components/popper'
 import type { TagProps } from '@element-plus/components/tag'
@@ -132,10 +131,8 @@ export interface InputTagProps {
   ariaLabel?: string
 }
 
-/**
- * @deprecated 3.0.0 后移除，请改用 `InputTagProps`。
- */
-export const inputTagProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const inputTagPropDefs = buildProps({
   /** @description 是否隐藏占位文本；默认在禁用或只读时隐藏，false 强制显示。 */
   hidePlaceholder: { type: Boolean, default: undefined },
   /**
@@ -151,11 +148,11 @@ export const inputTagProps = buildProps({
   /**
    * @description 标签类型
    */
-  tagType: { ...tagProps.type, default: 'info' },
+  tagType: { ...tagPropDefs.type, default: 'info' },
   /**
    * @description 标签 effect
    */
-  tagEffect: tagProps.effect,
+  tagEffect: tagPropDefs.effect,
   /**
    * @description Tooltip 主题，内置主题：`dark` / `light`
    */
@@ -282,11 +279,6 @@ export const inputTagProps = buildProps({
    */
   ariaLabel: String,
 } as const)
-
-/**
- * @deprecated 3.0.0 后移除，请改用 `InputTagProps`。
- */
-export type InputTagPropsPublic = ExtractPublicPropTypes<typeof inputTagProps>
 
 export const inputTagEmits = {
   [UPDATE_MODEL_EVENT]: (value?: string[]) =>

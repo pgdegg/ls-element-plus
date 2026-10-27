@@ -6,5 +6,6 @@ import type { SFCWithInstall } from '@element-plus/utils'
 export const ElRow: SFCWithInstall<typeof Row> = withInstall(Row)
 export default ElRow
 
-export * from './src/row'
+export { RowJustify, RowAlign } from './src/row'
+export type { RowProps, RowInstance } from './src/row'
 export * from './src/constants'

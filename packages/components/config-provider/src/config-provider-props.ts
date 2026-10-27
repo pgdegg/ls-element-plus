@@ -1,5 +1,6 @@
 import { buildProps, definePropType } from '@element-plus/utils'
-import { useEmptyValuesProps, useSizeProp } from '@element-plus/hooks'
+import { useSizeProp } from '@element-plus/hooks'
+import { emptyValuesPropDefs } from '@element-plus/hooks/use-empty-values/index'
 
 import type { ExtractPropTypes, ExtractPublicPropTypes } from 'vue'
 import type { Language } from '@element-plus/locale'
@@ -93,7 +94,7 @@ export const configProviderProps = buildProps({
   table: {
     type: definePropType<TableConfigContext>(Object),
   },
-  ...useEmptyValuesProps,
+  ...emptyValuesPropDefs,
 } as const)
 export type ConfigProviderProps = ExtractPropTypes<typeof configProviderProps>
 export type ConfigProviderPropsPublic = ExtractPublicPropTypes<

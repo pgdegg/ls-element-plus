@@ -1,7 +1,6 @@
 import { buildProps, iconPropType } from '@element-plus/utils'
 import { Back } from '@element-plus/icons-vue'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type { IconPropType } from '@element-plus/utils'
 import type PageHeader from './page-header.vue'
 
@@ -20,10 +19,8 @@ export interface PageHeaderProps {
   content?: string
 }
 
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `PageHeaderProps`。
- */
-export const pageHeaderProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const pageHeaderPropDefs = buildProps({
   /**
    * @description 页头的图标组件
    */
@@ -43,13 +40,6 @@ export const pageHeaderProps = buildProps({
     default: '',
   },
 } as const)
-
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `PageHeaderProps`。
- */
-export type PageHeaderPropsPublic = ExtractPublicPropTypes<
-  typeof pageHeaderProps
->
 
 export const pageHeaderEmits = {
   back: () => true,

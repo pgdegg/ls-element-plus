@@ -12,6 +12,12 @@ export const ElSteps: SFCWithInstall<typeof Steps> & {
 export default ElSteps
 export const ElStep: SFCWithInstall<typeof Step> = withNoopInstall(Step)
 
-export * from './src/item'
-export * from './src/steps'
+export type { StepProps, StepInstance } from './src/item'
+export { stepsEmits } from './src/steps'
+export type {
+  StepsStatus,
+  StepsProps,
+  StepsEmits,
+  StepsInstance,
+} from './src/steps'
 export * from './src/tokens'

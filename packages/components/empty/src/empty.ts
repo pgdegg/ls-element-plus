@@ -1,7 +1,5 @@
 import { buildProps } from '@element-plus/utils'
 
-import type { ExtractPublicPropTypes } from 'vue'
-
 export interface EmptyProps {
   /**
    * @description 空状态的图片 URL
@@ -17,10 +15,8 @@ export interface EmptyProps {
   description?: string
 }
 
-/**
- * @deprecated 3.0.0 后移除，请改用 `EmptyProps`。
- */
-export const emptyProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const emptyPropDefs = buildProps({
   /**
    * @description 空状态的图片 URL
    */
@@ -40,8 +36,3 @@ export const emptyProps = buildProps({
     default: '',
   },
 } as const)
-
-/**
- * @deprecated 3.0.0 后移除，请改用 `EmptyProps`。
- */
-export type EmptyPropsPublic = ExtractPublicPropTypes<typeof emptyProps>

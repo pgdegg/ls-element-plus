@@ -9,7 +9,7 @@ import { useAriaProps, useSizeProp } from '@element-plus/hooks'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@element-plus/constants'
 
 import type { Option } from './types'
-import type { ComponentInstance, ExtractPublicPropTypes } from 'vue'
+import type { ComponentInstance } from 'vue'
 import type { ComponentExposed } from 'vue-component-type-helpers'
 import type { ComponentSize } from '@element-plus/constants'
 import type Segmented from './segmented.vue'
@@ -70,10 +70,8 @@ export interface SegmentedProps<T extends Option = Option> {
   ariaLabel?: string
 }
 
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `SegmentedProps`。
- */
-export const segmentedProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const segmentedPropDefs = buildProps({
   direction: {
     type: definePropType<'vertical' | 'horizontal'>(String),
     default: 'horizontal',
@@ -131,11 +129,6 @@ export const segmentedProps = buildProps({
   name: String,
   ...useAriaProps(['ariaLabel']),
 })
-
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `SegmentedProps`。
- */
-export type SegmentedPropsPublic = ExtractPublicPropTypes<typeof segmentedProps>
 
 export const segmentedEmits = {
   [UPDATE_MODEL_EVENT]: (val: any) =>

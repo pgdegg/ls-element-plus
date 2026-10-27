@@ -6,4 +6,10 @@ import type { SFCWithInstall } from '@element-plus/utils'
 export const ElDrawer: SFCWithInstall<typeof Drawer> = withInstall(Drawer)
 export default ElDrawer
 
-export * from './src/drawer'
+export { drawerEmits } from './src/drawer'
+export type {
+  DrawerResizableOptions,
+  DrawerProps,
+  DrawerEmits,
+  DrawerInstance,
+} from './src/drawer'

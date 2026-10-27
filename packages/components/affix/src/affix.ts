@@ -6,7 +6,6 @@ import {
 } from '@element-plus/utils'
 import { CHANGE_EVENT } from '@element-plus/constants'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type Affix from './affix.vue'
 import type { ZIndexType } from '@element-plus/utils'
 
@@ -37,10 +36,8 @@ export interface AffixProps {
   appendTo?: string | HTMLElement
 }
 
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `AffixProps`
- */
-export const affixProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const affixPropDefs = buildProps({
   /**
    * @description affix 元素的 zIndex 值
    */
@@ -82,11 +79,6 @@ export const affixProps = buildProps({
     default: 'body',
   },
 } as const)
-
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `AffixProps`
- */
-export type AffixPropsPublic = ExtractPublicPropTypes<typeof affixProps>
 
 export const affixEmits = {
   scroll: ({ scrollTop, fixed }: { scrollTop: number; fixed: boolean }) =>

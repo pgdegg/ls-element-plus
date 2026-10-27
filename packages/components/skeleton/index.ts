@@ -13,5 +13,8 @@ export const ElSkeletonItem: SFCWithInstall<typeof SkeletonItem> =
   withNoopInstall(SkeletonItem)
 export default ElSkeleton
 
-export * from './src/skeleton'
-export * from './src/skeleton-item'
+export type { SkeletonProps, SkeletonInstance } from './src/skeleton'
+export type {
+  SkeletonItemProps,
+  SkeletonItemInstance,
+} from './src/skeleton-item'

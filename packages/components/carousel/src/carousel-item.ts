@@ -1,7 +1,5 @@
 import { buildProps } from '@element-plus/utils'
 
-import type { ExtractPublicPropTypes } from 'vue'
-
 export interface CarouselItemProps {
   /**
    * @description 项的名称，可用于 `setActiveItem`
@@ -13,10 +11,8 @@ export interface CarouselItemProps {
   label?: string | number
 }
 
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `CarouselItemProps`
- */
-export const carouselItemProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const carouselItemPropDefs = buildProps({
   /**
    * @description 项的名称，可用于 `setActiveItem`
    */
@@ -29,10 +25,3 @@ export const carouselItemProps = buildProps({
     default: '',
   },
 } as const)
-
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `CarouselItemProps`
- */
-export type CarouselItemPropsPublic = ExtractPublicPropTypes<
-  typeof carouselItemProps
->

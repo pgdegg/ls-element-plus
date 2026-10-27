@@ -119,8 +119,7 @@
             >
               <el-button
                 v-if="showCancelButton"
-                :type="cancelButtonType === 'text' ? '' : cancelButtonType"
-                :text="cancelButtonType === 'text'"
+                :type="cancelButtonType"
                 :loading="cancelButtonLoading"
                 :loading-icon="cancelButtonLoadingIcon"
                 :class="[cancelButtonClass]"
@@ -134,8 +133,7 @@
               <el-button
                 v-show="showConfirmButton"
                 ref="confirmRef"
-                :type="confirmButtonType === 'text' ? '' : confirmButtonType"
-                :text="confirmButtonType === 'text'"
+                :type="confirmButtonType"
                 :loading="confirmButtonLoading"
                 :loading-icon="confirmButtonLoadingIcon"
                 :class="[confirmButtonClasses]"

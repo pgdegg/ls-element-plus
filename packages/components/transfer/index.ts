@@ -6,4 +6,21 @@ import type { SFCWithInstall } from '@element-plus/utils'
 export const ElTransfer: SFCWithInstall<typeof Transfer> = withInstall(Transfer)
 export default ElTransfer
 
-export * from './src/transfer'
+export {
+  LEFT_CHECK_CHANGE_EVENT,
+  RIGHT_CHECK_CHANGE_EVENT,
+  transferCheckedChangeFn,
+  transferEmits,
+} from './src/transfer'
+export type {
+  TransferKey,
+  TransferDirection,
+  TransferDataItem,
+  renderContent,
+  TransferFormat,
+  TransferPropsAlias,
+  TransferCheckedState,
+  TransferProps,
+  TransferEmits,
+  TransferInstance,
+} from './src/transfer'

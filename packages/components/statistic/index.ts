@@ -7,4 +7,4 @@ export const ElStatistic: SFCWithInstall<typeof Statistic> =
   withInstall(Statistic)
 
 export default ElStatistic
-export * from './src/statistic'
+export type { StatisticProps, StatisticInstance } from './src/statistic'

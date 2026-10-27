@@ -50,9 +50,7 @@ describe('menu', () => {
 
     const wrapper = _mount(
       `<el-menu default-active="2"
-        background-color="${backgroundColor}"
-        text-color="${textColor}"
-        active-text-color="${activeTextColor}">
+        style="--el-menu-bg-color: ${backgroundColor}; --el-menu-text-color: ${textColor}; --el-menu-active-color: ${activeTextColor}">
         <el-menu-item index="1" ref="item1">处理中心</el-menu-item>
         <el-menu-item index="2" ref="item2">订单管理</el-menu-item>
       </el-menu>`
@@ -169,9 +167,7 @@ describe('menu', () => {
   test('hover-bg-color', async () => {
     const wrapper = _mount(
       `<el-menu ref="menu" default-active="2"
-        :background-color="background"
-        text-color="#000"
-        active-text-color="#0f0">
+        :style="{'--el-menu-bg-color': background, '--el-menu-text-color': '#000', '--el-menu-active-color': '#0f0'}">
         <el-menu-item index="1" ref="item1">处理中心</el-menu-item>
         <el-menu-item index="2" ref="item2">订单管理</el-menu-item>
       </el-menu>`,

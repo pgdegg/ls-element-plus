@@ -5,7 +5,6 @@ import {
   mutable,
 } from '@element-plus/utils'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type Image from './image.vue'
 
 export type ImageFitType =
@@ -87,10 +86,8 @@ export interface ImageProps {
   crossorigin?: ImageCrossorigin
 }
 
-/**
- * @deprecated 3.0.0 后移除，请改用 `ImageProps`。
- */
-export const imageProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const imagePropDefs = buildProps({
   /**
    * @description 启用预览时，用此标志控制点击背景遮罩是否可退出预览模式。
    */
@@ -204,11 +201,6 @@ export const imageProps = buildProps({
     type: definePropType<ImageCrossorigin>(String),
   },
 } as const)
-
-/**
- * @deprecated 3.0.0 后移除，请改用 `ImageProps`。
- */
-export type ImagePropsPublic = ExtractPublicPropTypes<typeof imageProps>
 
 export const imageEmits = {
   load: (evt: Event) => evt instanceof Event,

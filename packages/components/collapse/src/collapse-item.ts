@@ -1,7 +1,6 @@
 import { buildProps, definePropType, iconPropType } from '@element-plus/utils'
 import { ArrowRight } from '@element-plus/icons-vue'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type { IconPropType } from '@element-plus/utils'
 import type { CollapseActiveName } from './collapse'
 
@@ -24,10 +23,8 @@ export interface CollapseItemProps {
   disabled?: boolean
 }
 
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `CollapseItemProps`
- */
-export const collapseItemProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const collapseItemPropDefs = buildProps({
   /**
    * @description 面板标题
    */
@@ -54,10 +51,3 @@ export const collapseItemProps = buildProps({
    */
   disabled: Boolean,
 } as const)
-
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `CollapseItemProps`
- */
-export type CollapseItemPropsPublic = ExtractPublicPropTypes<
-  typeof collapseItemProps
->

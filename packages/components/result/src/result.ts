@@ -6,7 +6,7 @@ import {
   WarningFilled,
 } from '@element-plus/icons-vue'
 
-import type { Component, ExtractPublicPropTypes } from 'vue'
+import type { Component } from 'vue'
 import type Result from './result.vue'
 
 export const IconMap = {
@@ -43,10 +43,8 @@ export interface ResultProps {
   icon?: 'primary' | 'success' | 'warning' | 'info' | 'error'
 }
 
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `ResultProps`。
- */
-export const resultProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const resultPropDefs = buildProps({
   /**
    * @description 结果的标题
    */
@@ -70,10 +68,5 @@ export const resultProps = buildProps({
     default: 'info',
   },
 } as const)
-
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `ResultProps`。
- */
-export type ResultPropsPublic = ExtractPublicPropTypes<typeof resultProps>
 
 export type ResultInstance = InstanceType<typeof Result> & unknown

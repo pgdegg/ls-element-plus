@@ -6,4 +6,5 @@ import type { SFCWithInstall } from '@element-plus/utils'
 export const ElTag: SFCWithInstall<typeof Tag> = withInstall(Tag)
 export default ElTag
 
-export * from './src/tag'
+export { tagEmits } from './src/tag'
+export type { TagProps, TagEmits, TagInstance } from './src/tag'

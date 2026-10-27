@@ -1,11 +1,11 @@
 import { placements } from '@popperjs/core'
 import { buildProps, definePropType } from '@element-plus/utils'
 import { useAriaProps } from '@element-plus/hooks'
-import { popperArrowProps, popperArrowPropsDefaults } from './arrow'
+import { popperArrowPropDefs, popperArrowPropsDefaults } from './arrow'
 
 import type { ClassValue } from '@element-plus/utils'
 import type { PopperEffect } from './popper'
-import type { ExtractPublicPropTypes, StyleValue } from 'vue'
+import type { StyleValue } from 'vue'
 import type { Options, Placement } from '@popperjs/core'
 import type { Measurable } from './constants'
 import type Content from './content.vue'
@@ -38,10 +38,8 @@ export interface PopperCoreConfigProps {
   strategy?: (typeof POSITIONING_STRATEGIES)[number]
 }
 
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `PopperCoreConfigProps`。
- */
-export const popperCoreConfigProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const popperCoreConfigPropDefs = buildProps({
   boundariesPadding: {
     type: Number,
     default: 0,
@@ -83,13 +81,6 @@ export const popperCoreConfigProps = buildProps({
   },
 } as const)
 
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `PopperCoreConfigProps`。
- */
-export type PopperCoreConfigPropsPublic = ExtractPublicPropTypes<
-  typeof popperCoreConfigProps
->
-
 export interface PopperContentProps
   extends PopperCoreConfigProps, PopperArrowProps {
   id?: string
@@ -112,12 +103,10 @@ export interface PopperContentProps
   loop?: boolean
 }
 
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `PopperContentProps`。
- */
-export const popperContentProps = buildProps({
-  ...popperCoreConfigProps,
-  ...popperArrowProps,
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const popperContentPropDefs = buildProps({
+  ...popperCoreConfigPropDefs,
+  ...popperArrowPropDefs,
   id: String,
   style: {
     type: definePropType<StyleValue>([String, Array, Object, Boolean]),
@@ -162,13 +151,6 @@ export const popperContentProps = buildProps({
   loop: Boolean,
 } as const)
 
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `PopperContentProps`。
- */
-export type PopperContentPropsPublic = ExtractPublicPropTypes<
-  typeof popperContentProps
->
-
 export const popperCoreConfigPropsDefaults = {
   boundariesPadding: 0,
   gpuAcceleration: true,
@@ -205,21 +187,3 @@ export const popperContentEmits = {
 export type PopperContentEmits = typeof popperContentEmits
 
 export type PopperContentInstance = InstanceType<typeof Content> & unknown
-
-/** @deprecated 请改用 `popperCoreConfigProps`，它将在下一个大版本中被废弃 */
-export const usePopperCoreConfigProps = popperCoreConfigProps
-
-/** @deprecated 请改用 `popperContentProps`，它将在下一个大版本中被废弃 */
-export const usePopperContentProps = popperContentProps
-
-/** @deprecated 请改用 `popperContentEmits`，它将在下一个大版本中被废弃 */
-export const usePopperContentEmits = popperContentEmits
-
-/** @deprecated 请改用 `PopperCoreConfigProps`，它将在下一个大版本中被废弃 */
-export type UsePopperCoreConfigProps = PopperCoreConfigProps
-
-/** @deprecated 请改用 `PopperContentProps`，它将在下一个大版本中被废弃 */
-export type UsePopperContentProps = PopperContentProps
-
-/** @deprecated 请改用 `PopperContentInstance`，它将在下一个大版本中被废弃 */
-export type ElPopperArrowContent = PopperContentInstance

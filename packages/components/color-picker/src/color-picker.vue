@@ -130,8 +130,8 @@ import { colorPickerEmits, colorPickerPropsDefaults } from './color-picker'
 import {
   ElColorPickerPanel,
   ROOT_COMMON_COLOR_INJECTION_KEY,
-  colorPickerPanelProps,
 } from '@element-plus/components/color-picker-panel'
+import { colorPickerPanelPropDefs } from '@element-plus/components/color-picker-panel/src/color-picker-panel'
 import Color from '@element-plus/components/color-picker-panel/src/utils/color'
 import { useCommonColor } from '@element-plus/components/color-picker-panel/src/composables/use-common-color'
 
@@ -188,7 +188,7 @@ const color = reactiveComputed(
 ) as Color
 
 const panelProps = computed(() =>
-  pick(props, Object.keys(colorPickerPanelProps))
+  pick(props, Object.keys(colorPickerPanelPropDefs))
 )
 
 const displayedColor = computed(() => {

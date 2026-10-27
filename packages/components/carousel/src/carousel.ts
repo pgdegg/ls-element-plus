@@ -1,7 +1,5 @@
 import { buildProps, isNumber } from '@element-plus/utils'
 
-import type { ExtractPublicPropTypes } from 'vue'
-
 export interface CarouselProps {
   /**
    * @description 初始激活幻灯片的索引（从 0 开始）
@@ -57,10 +55,8 @@ export interface CarouselProps {
   motionBlur?: boolean
 }
 
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `CarouselProps`
- */
-export const carouselProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const carouselPropDefs = buildProps({
   /**
    * @description 初始激活幻灯片的索引（从 0 开始）
    */
@@ -164,9 +160,4 @@ export const carouselEmits = {
    */
   change: (current: number, prev: number) => [current, prev].every(isNumber),
 }
-
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `CarouselProps`
- */
-export type CarouselPropsPublic = ExtractPublicPropTypes<typeof carouselProps>
 export type CarouselEmits = typeof carouselEmits

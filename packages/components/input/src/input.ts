@@ -10,7 +10,7 @@ import { UPDATE_MODEL_EVENT } from '@element-plus/constants'
 import { useAriaProps, useSizeProp } from '@element-plus/hooks'
 import { CircleClose } from '@element-plus/icons-vue'
 
-import type { ExtractPublicPropTypes, HTMLAttributes, StyleValue } from 'vue'
+import type { HTMLAttributes, StyleValue } from 'vue'
 import type { ComponentSize } from '@element-plus/constants'
 import type { IconPropType } from '@element-plus/utils'
 
@@ -176,10 +176,8 @@ export interface InputProps {
   countGraphemes?: (value: string) => number
 }
 
-/**
- * @deprecated 3.0.0 后移除，请改用 `InputProps`。
- */
-export const inputProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const inputPropDefs = buildProps({
   keeps: {
     type: definePropType<InputProps['keeps']>([String, RegExp, Array]),
   },
@@ -390,11 +388,6 @@ export const inputProps = buildProps({
    */
   name: String,
 } as const)
-
-/**
- * @deprecated 3.0.0 后移除，请改用 `InputProps`。
- */
-export type InputPropsPublic = ExtractPublicPropTypes<typeof inputProps>
 
 export const inputEmits = {
   [UPDATE_MODEL_EVENT]: (value: string) => isString(value),

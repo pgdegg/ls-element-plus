@@ -9,7 +9,6 @@ import type {
   VNode,
 } from 'vue'
 import type { ComponentSize } from '@element-plus/constants'
-import type { Nullable } from '@element-plus/utils'
 import type { Store } from '../store'
 import type { TableColumnCtx } from '../table-column/defaults'
 import type TableLayout from '../table-layout'
@@ -47,11 +46,11 @@ interface TreeProps {
   checkStrictly?: boolean
 }
 
-type HoverState<T extends DefaultRow> = Nullable<{
+type HoverState<T extends DefaultRow> = {
   cell: HTMLElement
   column: TableColumnCtx<T>
   row: T
-}>
+} | null
 
 type RIS<T extends DefaultRow> = {
   row: T
@@ -407,10 +406,8 @@ interface TableEmits<T extends DefaultRow = DefaultRow> {
   ): void
 }
 
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `TableProps`。
- */
-export const tableProps = {
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const tablePropDefs = {
   /**
    * @description 表格数据
    */
@@ -668,4 +665,4 @@ export type {
   TableEmits,
 }
 
-export default tableProps
+export default tablePropDefs

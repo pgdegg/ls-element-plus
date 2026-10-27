@@ -1,16 +1,13 @@
 import { buttonTypes } from '@element-plus/components/button'
 import { QuestionFilled } from '@element-plus/icons-vue'
 import { buildProps, iconPropType } from '@element-plus/utils'
-import {
-  useTooltipContentProps,
-  useTooltipTriggerProps,
-} from '@element-plus/components/tooltip'
+import { tooltipContentPropDefs } from '@element-plus/components/tooltip/src/content'
+import { tooltipTriggerPropDefs } from '@element-plus/components/tooltip/src/trigger'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type { ButtonType } from '@element-plus/components/button'
 import type {
   ElTooltipContentProps,
-  ElTooltipTriggerProps,
+  UseTooltipTriggerProps,
 } from '@element-plus/components/tooltip'
 import type { IconPropType } from '@element-plus/utils'
 import type Popconfirm from './popconfirm.vue'
@@ -71,17 +68,15 @@ export interface PopconfirmProps {
   /**
    * @description 是否启用虚拟触发
    */
-  virtualTriggering?: ElTooltipTriggerProps['virtualTriggering']
+  virtualTriggering?: UseTooltipTriggerProps['virtualTriggering']
   /**
    * @description popper 所附着的参考元素
    */
-  virtualRef?: ElTooltipTriggerProps['virtualRef']
+  virtualRef?: UseTooltipTriggerProps['virtualRef']
 }
 
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `PopconfirmProps`。
- */
-export const popconfirmProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const popconfirmPropDefs = buildProps({
   /**
    * @description 标题
    */
@@ -108,7 +103,7 @@ export const popconfirmProps = buildProps({
   cancelButtonType: {
     type: String,
     values: buttonTypes,
-    default: 'text',
+    default: undefined,
   },
   /**
    * @description 图标组件
@@ -139,17 +134,17 @@ export const popconfirmProps = buildProps({
    * @description Tooltip 主题，内置主题：`dark` / `light`
    */
   effect: {
-    ...useTooltipContentProps.effect,
+    ...tooltipContentPropDefs.effect,
     default: 'light',
   },
   /**
    * @description popconfirm 是否被 teleport 到 body
    */
-  teleported: useTooltipContentProps.teleported,
+  teleported: tooltipContentPropDefs.teleported,
   /**
    * @description 当 popconfirm 不处于激活状态且 `persistent` 为 `false` 时，popconfirm 将被销毁
    */
-  persistent: useTooltipContentProps.persistent,
+  persistent: tooltipContentPropDefs.persistent,
   /**
    * @description popconfirm 宽度，最小宽度 150px
    */
@@ -157,8 +152,8 @@ export const popconfirmProps = buildProps({
     type: [String, Number],
     default: 150,
   },
-  virtualTriggering: useTooltipTriggerProps.virtualTriggering,
-  virtualRef: useTooltipTriggerProps.virtualRef,
+  virtualTriggering: tooltipTriggerPropDefs.virtualTriggering,
+  virtualRef: tooltipTriggerPropDefs.virtualRef,
 } as const)
 
 export const popconfirmEmits = {
@@ -173,12 +168,5 @@ export const popconfirmEmits = {
 }
 
 export type PopconfirmEmits = typeof popconfirmEmits
-
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `PopconfirmProps`。
- */
-export type PopconfirmPropsPublic = ExtractPublicPropTypes<
-  typeof popconfirmProps
->
 
 export type PopconfirmInstance = InstanceType<typeof Popconfirm> & unknown

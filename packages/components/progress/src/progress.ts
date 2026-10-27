@@ -1,6 +1,6 @@
 import { buildProps, definePropType } from '@element-plus/utils'
 
-import type { ExtractPublicPropTypes, SVGAttributes } from 'vue'
+import type { SVGAttributes } from 'vue'
 import type Progress from './progress.vue'
 
 export type ProgressColor = { color: string; percentage: number }
@@ -65,10 +65,8 @@ export interface ProgressProps {
   format?: ProgressFn
 }
 
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `ProgressProps`。
- */
-export const progressProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const progressPropDefs = buildProps({
   /**
    * @description 进度条类型
    */
@@ -163,9 +161,4 @@ export const progressProps = buildProps({
     default: (percentage: number): string => `${percentage}%`,
   },
 } as const)
-
-/**
- * @deprecated 将于 3.0.0 之后移除，请改用 `ProgressProps`。
- */
-export type ProgressPropsPublic = ExtractPublicPropTypes<typeof progressProps>
 export type ProgressInstance = InstanceType<typeof Progress> & unknown

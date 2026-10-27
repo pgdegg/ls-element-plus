@@ -5,7 +5,6 @@ import {
   isString,
 } from '@element-plus/utils'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type { RouteLocationRaw } from 'vue-router'
 import type { MenuItemRegistered } from './types'
 
@@ -24,10 +23,8 @@ export interface MenuItemProps {
   disabled?: boolean
 }
 
-/**
- * @deprecated 3.0.0 后移除，请改用 `MenuItemProps`。
- */
-export const menuItemProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const menuItemPropDefs = buildProps({
   /**
    * @description 唯一标识
    */
@@ -46,11 +43,6 @@ export const menuItemProps = buildProps({
    */
   disabled: Boolean,
 } as const)
-
-/**
- * @deprecated 3.0.0 后移除，请改用 `MenuItemProps`。
- */
-export type MenuItemPropsPublic = ExtractPublicPropTypes<typeof menuItemProps>
 
 export const menuItemEmits = {
   click: (item: MenuItemRegistered) =>

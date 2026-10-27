@@ -94,21 +94,6 @@ export const menuProps = buildProps({
    */
   collapse: Boolean,
   /**
-   * @description Menu 背景色（十六进制格式）（已废弃，请改用 `--bg-color`）
-   * @deprecated use `--bg-color` instead
-   */
-  backgroundColor: String,
-  /**
-   * @description Menu 文本色（十六进制格式）（已废弃，请改用 `--text-color`）
-   * @deprecated use `--text-color` instead
-   */
-  textColor: String,
-  /**
-   * @description 当前激活菜单项的文本色（十六进制格式）（已废弃，请改用 `--active-color`）
-   * @deprecated use `--active-color` instead
-   */
-  activeTextColor: String,
-  /**
    * @description 可选，点击外部时菜单是否折叠
    */
   closeOnClickOutside: Boolean,
@@ -489,7 +474,7 @@ export default defineComponent({
       })
     }
 
-    const ulStyle = useMenuCssVar(props, 0)
+    const ulStyle = useMenuCssVar(0)
 
     return () => {
       let slot: VNodeArrayChildren = slots.default?.() ?? []

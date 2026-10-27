@@ -6,15 +6,15 @@ import {
   isObject,
   isString,
 } from '@element-plus/utils'
-import { useTooltipContentProps } from '@element-plus/components/tooltip'
+import { tooltipContentPropDefs } from '@element-plus/components/tooltip/src/content'
 import {
   CHANGE_EVENT,
   INPUT_EVENT,
   UPDATE_MODEL_EVENT,
 } from '@element-plus/constants'
-import { inputProps } from '@element-plus/components/input'
+import { inputPropDefs } from '@element-plus/components/input/src/input'
 
-import type { ComponentInstance, ExtractPublicPropTypes } from 'vue'
+import type { ComponentInstance } from 'vue'
 import type { ComponentExposed } from 'vue-component-type-helpers'
 import type Autocomplete from './autocomplete.vue'
 import type { Options, Placement } from '@element-plus/components/popper'
@@ -116,11 +116,9 @@ export interface AutocompleteProps<
   loopNavigation?: boolean
 }
 
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `AutocompleteProps`
- */
-export const autocompleteProps = buildProps({
-  ...inputProps,
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const autocompletePropDefs = buildProps({
+  ...inputPropDefs,
   /**
    * @description 用于展示的输入建议对象的键名
    */
@@ -167,15 +165,15 @@ export const autocompleteProps = buildProps({
   /**
    * @description autocomplete 下拉框的自定义类名
    */
-  popperClass: useTooltipContentProps.popperClass,
+  popperClass: tooltipContentPropDefs.popperClass,
   /**
    * @description autocomplete 下拉框的自定义样式
    */
-  popperStyle: useTooltipContentProps.popperStyle,
+  popperStyle: tooltipContentPropDefs.popperStyle,
   /**
    * @description [popper.js](https://popper.js.org/docs/v2/) 参数
    */
-  popperOptions: useTooltipContentProps.popperOptions,
+  popperOptions: tooltipContentPropDefs.popperOptions,
   /**
    * @description 是否显示箭头
    */
@@ -201,11 +199,11 @@ export const autocompleteProps = buildProps({
   /**
    * @description 下拉框是否传送到 body
    */
-  teleported: useTooltipContentProps.teleported,
+  teleported: tooltipContentPropDefs.teleported,
   /**
    * @description 下拉框追加到哪个元素
    */
-  appendTo: useTooltipContentProps.appendTo,
+  appendTo: tooltipContentPropDefs.appendTo,
   /**
    * @description 远程搜索建议默认是否高亮第一项
    */
@@ -222,13 +220,6 @@ export const autocompleteProps = buildProps({
     default: true,
   },
 } as const)
-
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `AutocompleteProps`
- */
-export type AutocompletePropsPublic = ExtractPublicPropTypes<
-  typeof autocompleteProps
->
 
 export const autocompleteEmits = {
   [UPDATE_MODEL_EVENT]: (value: string | number) =>

@@ -6,7 +6,7 @@ import TourStep from '../src/step.vue'
 import { EVENT_CODE } from '@element-plus/constants'
 import triggerEvent from '@element-plus/test-utils/trigger-event'
 
-import type { TourPropsPublic } from '../src/tour'
+import type { TourProps } from '../src/tour'
 
 describe('Tour.vue', () => {
   afterEach(() => {
@@ -317,7 +317,7 @@ describe('Tour.vue', () => {
     const onClose = vi.fn()
     const modelValue = ref(true)
     const wrapper = mount(
-      defineComponent<TourPropsPublic>({
+      defineComponent<TourProps>({
         setup() {
           return () => (
             <Tour

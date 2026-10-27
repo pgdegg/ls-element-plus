@@ -6,7 +6,14 @@ import type { SFCWithInstall } from '@element-plus/utils'
 export const ElInput: SFCWithInstall<typeof Input> = withInstall(Input)
 export default ElInput
 
-export * from './src/input'
+export { inputEmits, inputPropsDefaults } from './src/input'
+export type {
+  InputModelModifiers,
+  InputAutoSize,
+  InputType,
+  InputProps,
+  InputEmits,
+} from './src/input'
 export type { InputInstance } from './src/instance'
 
 export * from './src/keeps'

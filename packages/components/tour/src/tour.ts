@@ -6,10 +6,10 @@ import {
   isNumber,
 } from '@element-plus/utils'
 import { UPDATE_MODEL_EVENT } from '@element-plus/constants'
-import { tourContentProps } from './content'
+import { tourContentPropDefs } from './content'
 
 import type { TourContentProps } from './content'
-import type { CSSProperties, ExtractPublicPropTypes } from 'vue'
+import type { CSSProperties } from 'vue'
 import type { IconPropType } from '@element-plus/utils'
 import type Tour from './tour.vue'
 import type { TourGap, TourMask } from './types'
@@ -77,10 +77,8 @@ export interface TourProps {
   targetAreaClickable?: boolean
 }
 
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `TourProps`。
- */
-export const tourProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const tourPropDefs = buildProps({
   /**
    * @description 开启 tour
    */
@@ -114,7 +112,7 @@ export const tourProps = buildProps({
   /**
    * @description 引导卡片相对于目标元素的位置
    */
-  placement: tourContentProps.placement,
+  placement: tourContentPropDefs.placement,
   /**
    * @description 内容的自定义样式
    */
@@ -181,11 +179,6 @@ export const tourProps = buildProps({
     default: true,
   },
 })
-
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `TourProps`。
- */
-export type TourPropsPublic = ExtractPublicPropTypes<typeof tourProps>
 export type TourInstance = InstanceType<typeof Tour> & unknown
 
 export const tourEmits = {

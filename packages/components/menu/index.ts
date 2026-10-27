@@ -24,8 +24,9 @@ export const ElSubMenu: SFCWithInstall<typeof SubMenu> =
   withNoopInstall(SubMenu)
 
 export * from './src/menu'
-export * from './src/menu-item'
-export * from './src/menu-item-group'
+export { menuItemEmits } from './src/menu-item'
+export type { MenuItemProps, MenuItemEmits } from './src/menu-item'
+export type { MenuItemGroupProps } from './src/menu-item-group'
 export * from './src/sub-menu'
 export * from './src/types'
 export * from './src/instance'

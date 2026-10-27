@@ -1,10 +1,6 @@
 import type { IconPropType } from '@element-plus/utils'
-import type {
-  ComponentInternalInstance,
-  ExtractPublicPropTypes,
-  SetupContext,
-} from 'vue'
-import type { treeEmits, treeProps } from './virtual-tree'
+import type { ComponentInternalInstance, SetupContext } from 'vue'
+import type { treeEmits } from './virtual-tree'
 
 export type TreeNodeData = Record<string, any>
 
@@ -65,11 +61,6 @@ export interface TreeNodeProps {
   hiddenExpandIcon?: boolean
   itemSize?: number
 }
-
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `TreeProps`。
- */
-export type TreePropsPublic = ExtractPublicPropTypes<typeof treeProps>
 
 export interface TreeNode {
   key: TreeKey

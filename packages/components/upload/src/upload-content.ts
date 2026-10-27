@@ -1,7 +1,6 @@
 import { NOOP, buildProps, definePropType } from '@element-plus/utils'
-import { uploadBaseProps, uploadBasePropsDefaults } from './upload'
+import { uploadBasePropDefs, uploadBasePropsDefaults } from './upload'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type {
   UploadBaseProps,
   UploadFile,
@@ -22,11 +21,9 @@ export interface UploadContentProps extends UploadBaseProps {
   onExceed?: UploadHooks['onExceed']
 }
 
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `UploadContentProps`。
- */
-export const uploadContentProps = buildProps({
-  ...uploadBaseProps,
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const uploadContentPropDefs = buildProps({
+  ...uploadBasePropDefs,
 
   beforeUpload: {
     type: definePropType<UploadHooks['beforeUpload']>(Function),
@@ -63,13 +60,6 @@ export const uploadContentProps = buildProps({
     default: NOOP,
   },
 } as const)
-
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `UploadContentProps`。
- */
-export type UploadContentPropsPublic = ExtractPublicPropTypes<
-  typeof uploadContentProps
->
 
 export type UploadContentInstance = InstanceType<typeof UploadContent> & unknown
 

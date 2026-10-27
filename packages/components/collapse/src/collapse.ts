@@ -8,7 +8,6 @@ import {
 } from '@element-plus/utils'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@element-plus/constants'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type { Arrayable, Awaitable } from '@element-plus/utils'
 
 export type CollapseActiveName = string | number
@@ -38,10 +37,8 @@ export interface CollapseProps {
   beforeCollapse?: (name: CollapseActiveName) => Awaitable<boolean>
 }
 
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `CollapseProps`
- */
-export const collapseProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const collapsePropDefs = buildProps({
   /**
    * @description 是否启用手风琴模式
    */
@@ -69,11 +66,6 @@ export const collapseProps = buildProps({
     ),
   },
 } as const)
-
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `CollapseProps`
- */
-export type CollapsePropsPublic = ExtractPublicPropTypes<typeof collapseProps>
 
 export const collapseEmits = {
   [UPDATE_MODEL_EVENT]: emitChangeFn,

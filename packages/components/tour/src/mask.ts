@@ -1,6 +1,5 @@
 import { buildProps, definePropType } from '@element-plus/utils'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type { PosInfo } from './types'
 
 export interface MaskProps {
@@ -26,10 +25,8 @@ export interface MaskProps {
   targetAreaClickable?: boolean
 }
 
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `MaskProps`。
- */
-export const maskProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const maskPropDefs = buildProps({
   /**
    * @description 遮罩的 zIndex
    */
@@ -62,8 +59,3 @@ export const maskProps = buildProps({
     default: true,
   },
 })
-
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `MaskProps`。
- */
-export type MaskPropsPublic = ExtractPublicPropTypes<typeof maskProps>

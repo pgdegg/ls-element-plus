@@ -1,5 +1,3 @@
-import type { ExtractPublicPropTypes } from 'vue'
-
 export interface MenuItemGroupProps {
   /**
    * @description 分组标题
@@ -7,19 +5,10 @@ export interface MenuItemGroupProps {
   title?: string
 }
 
-/**
- * @deprecated 3.0.0 后移除，请改用 `MenuItemGroupProps`。
- */
-export const menuItemGroupProps = {
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const menuItemGroupPropDefs = {
   /**
    * @description 分组标题
    */
   title: String,
 } as const
-
-/**
- * @deprecated 3.0.0 后移除，请改用 `MenuItemGroupProps`。
- */
-export type MenuItemGroupPropsPublic = ExtractPublicPropTypes<
-  typeof menuItemGroupProps
->

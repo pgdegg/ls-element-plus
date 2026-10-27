@@ -13,8 +13,8 @@ export const ElBreadcrumbItem: SFCWithInstall<typeof BreadcrumbItem> =
   withNoopInstall(BreadcrumbItem)
 export default ElBreadcrumb
 
-export * from './src/breadcrumb'
-export * from './src/breadcrumb-item'
+export type { BreadcrumbProps } from './src/breadcrumb'
+export type { BreadcrumbItemProps } from './src/breadcrumb-item'
 export * from './src/constants'
 export type {
   BreadcrumbInstance,

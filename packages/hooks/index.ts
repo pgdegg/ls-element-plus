@@ -19,7 +19,11 @@ export * from './use-id'
 export * from './use-escape-keydown'
 export * from './use-popper-container'
 export * from './use-intermediate-render'
-export * from './use-delayed-toggle'
+export {
+  useDelayedTogglePropsDefaults,
+  useDelayedToggle,
+} from './use-delayed-toggle'
+export type { UseDelayedToggleProps, DelayedToggle } from './use-delayed-toggle'
 export * from './use-forward-ref'
 export * from './use-namespace'
 export * from './use-z-index'
@@ -29,8 +33,16 @@ export * from './use-ordered-children'
 export * from './use-size'
 export * from './use-focus-controller'
 export * from './use-composition'
-export * from './use-empty-values'
-export * from './use-aria'
+export {
+  emptyValuesContextKey,
+  SCOPE,
+  DEFAULT_EMPTY_VALUES,
+  DEFAULT_VALUE_ON_CLEAR,
+  useEmptyValues,
+} from './use-empty-values'
+export type { UseEmptyValuesProps } from './use-empty-values'
+export { useAriaProps } from './use-aria'
+export type { AriaProps } from './use-aria'
 export * from './use-input-element'
 export * from './use-content-style'
 

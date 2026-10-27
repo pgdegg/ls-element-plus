@@ -31,18 +31,13 @@
           <slot name="actions" :confirm="confirm" :cancel="cancel">
             <el-button
               size="small"
-              :type="cancelButtonType === 'text' ? '' : cancelButtonType"
-              :text="cancelButtonType === 'text'"
+              :type="cancelButtonType"
+              :text="cancelButtonType === undefined"
               @click="cancel"
             >
               {{ finalCancelButtonText }}
             </el-button>
-            <el-button
-              size="small"
-              :type="confirmButtonType === 'text' ? '' : confirmButtonType"
-              :text="confirmButtonType === 'text'"
-              @click="confirm"
-            >
+            <el-button size="small" :type="confirmButtonType" @click="confirm">
               {{ finalConfirmButtonText }}
             </el-button>
           </slot>
@@ -74,7 +69,7 @@ defineOptions({
 
 const props = withDefaults(defineProps<PopconfirmProps>(), {
   confirmButtonType: 'primary',
-  cancelButtonType: 'text',
+  cancelButtonType: undefined,
   icon: () => QuestionFilled,
   iconColor: '#f90',
   hideAfter: 200,

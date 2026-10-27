@@ -1,6 +1,5 @@
 import { buildProps, definePropType, mutable } from '@element-plus/utils'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type Col from './col.vue'
 
 export type ColSizeObject = {
@@ -54,10 +53,8 @@ export interface ColProps {
   xl?: ColSize
 }
 
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `ColProps`
- */
-export const colProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const colPropDefs = buildProps({
   /**
    * @description 自定义元素标签
    */
@@ -129,9 +126,4 @@ export const colProps = buildProps({
     default: () => mutable({} as const),
   },
 } as const)
-
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `ColProps`
- */
-export type ColPropsPublic = ExtractPublicPropTypes<typeof colProps>
 export type ColInstance = InstanceType<typeof Col> & unknown

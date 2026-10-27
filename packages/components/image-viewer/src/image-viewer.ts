@@ -5,7 +5,7 @@ import {
   mutable,
 } from '@element-plus/utils'
 
-import type { Component, ExtractPublicPropTypes } from 'vue'
+import type { Component } from 'vue'
 import type ImageViewer from './image-viewer.vue'
 
 export type ImageViewerAction =
@@ -68,10 +68,8 @@ export interface ImageViewerProps {
   crossorigin?: ImageViewerCrossorigin
 }
 
-/**
- * @deprecated 3.0.0 后移除，请改用 `ImageViewerProps`。
- */
-export const imageViewerProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const imageViewerPropDefs = buildProps({
   /**
    * @description 预览链接列表。
    */
@@ -153,13 +151,6 @@ export const imageViewerProps = buildProps({
     type: definePropType<ImageViewerCrossorigin>(String),
   },
 } as const)
-
-/**
- * @deprecated 3.0.0 后移除，请改用 `ImageViewerProps`。
- */
-export type ImageViewerPropsPublic = ExtractPublicPropTypes<
-  typeof imageViewerProps
->
 
 export const imageViewerEmits = {
   close: () => true,

@@ -1,7 +1,7 @@
 import { buildProps, definePropType, isNumber } from '@element-plus/utils'
 import { CHANGE_EVENT } from '@element-plus/constants'
 
-import type { ExtractPublicPropTypes, StyleValue } from 'vue'
+import type { StyleValue } from 'vue'
 import type { Dayjs } from 'dayjs'
 import type Countdown from './countdown.vue'
 
@@ -32,10 +32,8 @@ export interface CountdownProps {
   valueStyle?: StyleValue
 }
 
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `CountdownProps`
- */
-export const countdownProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const countdownPropDefs = buildProps({
   /**
    * @description 倒计时显示的格式化
    */
@@ -70,11 +68,6 @@ export const countdownProps = buildProps({
     default: undefined,
   },
 } as const)
-
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `CountdownProps`
- */
-export type CountdownPropsPublic = ExtractPublicPropTypes<typeof countdownProps>
 
 export const countdownEmits = {
   finish: () => true,

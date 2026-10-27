@@ -46,10 +46,8 @@ const itemSize = {
   default: 26,
 }
 
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `TreeProps`。
- */
-export const treeProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const treePropDefs = buildProps({
   data: {
     type: definePropType<TreeData>(Array),
     default: () => mutable([] as const),
@@ -121,10 +119,8 @@ export const treeProps = buildProps({
   scrollbarAlwaysOn: Boolean,
 } as const)
 
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `TreeNodeProps`。
- */
-export const treeNodeProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const treeNodePropDefs = buildProps({
   node: {
     type: definePropType<TreeNode>(Object),
     default: () => mutable(EMPTY_NODE),

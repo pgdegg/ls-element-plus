@@ -7,7 +7,6 @@ import {
   isString,
 } from '@element-plus/utils'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type { ComponentSize } from '@element-plus/constants'
 import type { FormItemProp } from './form-item'
 import type { FormRules } from './types'
@@ -23,10 +22,8 @@ export interface FormMetaProps {
   disabled?: boolean
 }
 
-/**
- * @deprecated 3.0.0 后移除，请改用 `FormMetaProps`。
- */
-export const formMetaProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const formMetaPropDefs = buildProps({
   /**
    * @description 控制该表单内组件的尺寸。
    */
@@ -107,11 +104,9 @@ export interface FormProps extends FormMetaProps {
   scrollIntoViewOptions?: ScrollIntoViewOptions | boolean
 }
 
-/**
- * @deprecated 3.0.0 后移除，请改用 `FormProps`。
- */
-export const formProps = buildProps({
-  ...formMetaProps,
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const formPropDefs = buildProps({
+  ...formMetaPropDefs,
   readonly: Boolean,
   readonlyRaw: Boolean,
   hidePlaceholder: Boolean,
@@ -198,16 +193,6 @@ export const formProps = buildProps({
     default: true,
   },
 } as const)
-
-/**
- * @deprecated 3.0.0 后移除，请改用 `FormProps`。
- */
-export type FormPropsPublic = ExtractPublicPropTypes<typeof formProps>
-
-/**
- * @deprecated 3.0.0 后移除，请改用 `FormMetaProps`。
- */
-export type FormMetaPropsPublic = ExtractPublicPropTypes<typeof formMetaProps>
 
 export const formEmits = {
   validate: (prop: FormItemProp, isValid: boolean, message: string) =>

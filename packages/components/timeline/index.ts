@@ -14,5 +14,8 @@ export const ElTimelineItem: SFCWithInstall<typeof TimelineItem> =
   withNoopInstall(TimelineItem)
 
 export * from './src/timeline'
-export * from './src/timeline-item'
+export type {
+  TimelineItemProps,
+  TimelineItemInstance,
+} from './src/timeline-item'
 export * from './src/tokens'

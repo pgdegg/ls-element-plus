@@ -7,4 +7,9 @@ export const ElPopconfirm: SFCWithInstall<typeof Popconfirm> =
   withInstall(Popconfirm)
 export default ElPopconfirm
 
-export * from './src/popconfirm'
+export { popconfirmEmits } from './src/popconfirm'
+export type {
+  PopconfirmProps,
+  PopconfirmEmits,
+  PopconfirmInstance,
+} from './src/popconfirm'

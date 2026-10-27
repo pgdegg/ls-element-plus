@@ -17,7 +17,6 @@ import {
   mutable,
 } from '@element-plus/utils'
 import {
-  useDeprecated,
   useGlobalSize,
   useLocale,
   useNamespace,
@@ -156,10 +155,6 @@ export const paginationProps = buildProps({
     default: true,
   },
   /**
-   * @description 是否使用小型分页
-   */
-  small: Boolean,
-  /**
    * @description 设置分页尺寸
    */
   size: useSizeProp,
@@ -214,19 +209,7 @@ export default defineComponent({
     const ns = useNamespace('pagination')
     const vnodeProps = getCurrentInstance()!.vnode.props || {}
     const _globalSize = useGlobalSize()
-    const _size = computed(() =>
-      props.small ? 'small' : (props.size ?? _globalSize.value)
-    )
-    useDeprecated(
-      {
-        from: 'small',
-        replacement: 'size',
-        version: '3.0.0',
-        scope: 'el-pagination',
-        ref: 'https://element-plus.org/zh-CN/component/pagination.html',
-      },
-      computed(() => !!props.small)
-    )
+    const _size = computed(() => props.size ?? _globalSize.value)
     // 我们可以在 `vnodeProps` 上找到 @xxx="xxx" 形式的 props，以检查用户是否绑定了对应的事件
     const hasCurrentPageListener =
       'onUpdate:currentPage' in vnodeProps ||

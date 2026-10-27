@@ -1,11 +1,11 @@
 import { buildProps, definePropType, isBoolean } from '@element-plus/utils'
 import { UPDATE_MODEL_EVENT } from '@element-plus/constants'
 import {
-  dialogContentProps,
+  dialogContentPropDefs,
   dialogContentPropsDefaults,
 } from './dialog-content'
 
-import type { ExtractPublicPropTypes, InjectionKey, TransitionProps } from 'vue'
+import type { InjectionKey, TransitionProps } from 'vue'
 import type { ClassValue } from '@element-plus/utils'
 import type { DialogContentProps } from './dialog-content'
 import type Dialog from './dialog.vue'
@@ -102,13 +102,11 @@ export interface DialogProps extends DialogContentProps {
   transition?: DialogTransition
 }
 
-/**
- * @deprecated 3.0.0 后移除，请改用 `DialogProps`。
- */
-export const dialogProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const dialogPropDefs = buildProps({
   height: { type: [String, Number] },
   resetOnResize: Boolean,
-  ...dialogContentProps,
+  ...dialogContentPropDefs,
   /**
    * @description 是否将 Dialog 自身追加到 body。嵌套 Dialog 应将此属性设为 `true`
    */
@@ -221,11 +219,6 @@ export const dialogProps = buildProps({
     default: undefined,
   },
 } as const)
-
-/**
- * @deprecated 3.0.0 后移除，请改用 `DialogProps`。
- */
-export type DialogPropsPublic = ExtractPublicPropTypes<typeof dialogProps>
 
 export const dialogEmits = {
   open: () => true,

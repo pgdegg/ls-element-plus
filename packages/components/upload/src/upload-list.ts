@@ -1,7 +1,6 @@
 import { NOOP, buildProps, definePropType, mutable } from '@element-plus/utils'
-import { uploadListTypes } from './upload'
+import { uploadListTypeValues } from './upload'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type {
   Crossorigin,
   ListType,
@@ -22,10 +21,8 @@ export interface UploadListProps {
   crossorigin?: Crossorigin
 }
 
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `UploadListProps`。
- */
-export const uploadListProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const uploadListPropDefs = buildProps({
   files: {
     type: definePropType<UploadFiles>(Array),
     default: () => mutable([]),
@@ -40,7 +37,7 @@ export const uploadListProps = buildProps({
   },
   listType: {
     type: String,
-    values: uploadListTypes,
+    values: uploadListTypeValues,
     default: 'text',
   },
   /**
@@ -50,13 +47,6 @@ export const uploadListProps = buildProps({
     type: definePropType<'anonymous' | 'use-credentials' | ''>(String),
   },
 } as const)
-
-/**
- * @deprecated 已在 3.0.0 版本后移除，请使用 `UploadListProps`。
- */
-export type UploadListPropsPublic = ExtractPublicPropTypes<
-  typeof uploadListProps
->
 export const uploadListEmits = {
   remove: (file: UploadFile) => !!file,
 }

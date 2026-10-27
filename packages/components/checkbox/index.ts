@@ -19,6 +19,19 @@ export const ElCheckboxButton: SFCWithInstall<typeof CheckboxButton> =
 export const ElCheckboxGroup: SFCWithInstall<typeof CheckboxGroup> =
   withNoopInstall(CheckboxGroup)
 
-export * from './src/checkbox-group'
-export * from './src/checkbox'
+export { checkboxGroupEmits, checkboxDefaultProps } from './src/checkbox-group'
+export type {
+  CheckboxGroupValueType,
+  CheckboxGroupProps,
+  CheckboxGroupEmits,
+  CheckboxGroupInstance,
+  CheckboxOption,
+} from './src/checkbox-group'
+export { checkboxEmits, checkboxPropsDefaults } from './src/checkbox'
+export type {
+  CheckboxValueType,
+  CheckboxProps,
+  CheckboxEmits,
+  CheckboxInstance,
+} from './src/checkbox'
 export * from './src/constants'

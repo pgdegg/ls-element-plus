@@ -2,7 +2,7 @@ import { useSizeProp } from '@element-plus/hooks'
 import { buildProps, definePropType, iconPropType } from '@element-plus/utils'
 import { Loading } from '@element-plus/icons-vue'
 
-import type { Component, ExtractPublicPropTypes } from 'vue'
+import type { Component } from 'vue'
 import type { ComponentSize } from '@element-plus/constants'
 import type { IconPropType } from '@element-plus/utils'
 
@@ -13,11 +13,6 @@ export const buttonTypes = [
   'warning',
   'info',
   'danger',
-  /**
-   * @deprecated
-   * Text 类型将在下一个大版本 (3.0.0) 中被废弃
-   */
-  'text',
   '',
 ] as const
 export const buttonNativeTypes = ['button', 'submit', 'reset'] as const
@@ -106,10 +101,8 @@ export interface ButtonProps {
   tag?: string | Component
 }
 
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `ButtonProps`
- */
-export const buttonProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const buttonPropDefs = buildProps({
   ignoreGroupDisabled: Boolean,
   /**
    * @description 按钮尺寸
@@ -225,11 +218,6 @@ export const buttonProps = buildProps({
 export const buttonEmits = {
   click: (evt: MouseEvent) => evt instanceof MouseEvent,
 }
-
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `ButtonProps`
- */
-export type ButtonPropsPublic = ExtractPublicPropTypes<typeof buttonProps>
 export type ButtonEmits = typeof buttonEmits
 
 export interface ButtonConfigContext {

@@ -8,4 +8,14 @@ export const ElAutocomplete: SFCWithInstall<typeof Autocomplete> =
 
 export default ElAutocomplete
 
-export * from './src/autocomplete'
+export { autocompleteEmits } from './src/autocomplete'
+export type {
+  AutocompleteDataItem,
+  AutocompleteData,
+  AutocompleteFetchSuggestionsCallback,
+  AutocompleteFetchSuggestions,
+  AutocompletePlacement,
+  AutocompleteProps,
+  AutocompleteEmits,
+  AutocompleteInstance,
+} from './src/autocomplete'

@@ -56,10 +56,8 @@ export interface DialogContentProps {
   ariaLevel?: string
 }
 
-/**
- * @deprecated 3.0.0 后移除，请改用 `DialogContentProps`。
- */
-export const dialogContentProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const dialogContentPropDefs = buildProps({
   /**
    * @description 是否将头部和底部居中对齐
    */

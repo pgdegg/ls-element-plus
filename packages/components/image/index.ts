@@ -6,4 +6,11 @@ import type { SFCWithInstall } from '@element-plus/utils'
 export const ElImage: SFCWithInstall<typeof Image> = withInstall(Image)
 export default ElImage
 
-export * from './src/image'
+export { imageEmits } from './src/image'
+export type {
+  ImageFitType,
+  ImageCrossorigin,
+  ImageProps,
+  ImageEmits,
+  ImageInstance,
+} from './src/image'

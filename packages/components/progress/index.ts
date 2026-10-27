@@ -6,4 +6,9 @@ import type { SFCWithInstall } from '@element-plus/utils'
 export const ElProgress: SFCWithInstall<typeof Progress> = withInstall(Progress)
 export default ElProgress
 
-export * from './src/progress'
+export type {
+  ProgressColor,
+  ProgressFn,
+  ProgressProps,
+  ProgressInstance,
+} from './src/progress'

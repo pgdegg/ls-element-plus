@@ -6,5 +6,6 @@ import type { SFCWithInstall } from '@element-plus/utils'
 export const ElBacktop: SFCWithInstall<typeof Backtop> = withInstall(Backtop)
 export default ElBacktop
 
-export * from './src/backtop'
+export { backtopEmits } from './src/backtop'
+export type { BacktopProps, BacktopEmits } from './src/backtop'
 export type { BacktopInstance } from './src/instance'

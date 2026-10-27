@@ -1,8 +1,7 @@
 import type { InjectionKey, VNode } from 'vue'
-import type { Nullable } from '@element-plus/utils'
 import type { default as CascaderNode } from './node'
 
-export type { CascaderNode, Nullable }
+export type { CascaderNode }
 export type CascaderNodeValue = string | number | Record<string, any>
 export type CascaderNodePathValue = CascaderNodeValue[]
 export type CascaderValue =

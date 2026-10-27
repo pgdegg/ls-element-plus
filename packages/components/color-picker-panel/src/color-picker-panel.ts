@@ -2,12 +2,7 @@ import { isNil } from 'lodash-unified'
 import { buildProps, definePropType, isString } from '@element-plus/utils'
 import { UPDATE_MODEL_EVENT } from '@element-plus/constants'
 
-import type {
-  ComputedRef,
-  ExtractPublicPropTypes,
-  InjectionKey,
-  StyleValue,
-} from 'vue'
+import type { ComputedRef, InjectionKey, StyleValue } from 'vue'
 import type { ColorFormats } from '@ctrl/tinycolor'
 import type { ClassValue } from '@element-plus/utils'
 import type ColorPickerPanel from './color-picker-panel.vue'
@@ -52,10 +47,8 @@ export interface ColorPickerPanelProps {
   hueSliderStyle?: StyleValue
 }
 
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `ColorPickerPanelProps`
- */
-export const colorPickerPanelProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const colorPickerPanelPropDefs = buildProps({
   /**
    * @description 绑定值
    */
@@ -115,13 +108,6 @@ export const colorPickerPanelProps = buildProps({
 export const colorPickerPanelEmits = {
   [UPDATE_MODEL_EVENT]: (val: string | null) => isString(val) || isNil(val),
 }
-
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `ColorPickerPanelProps`
- */
-export type ColorPickerPanelPropsPublic = ExtractPublicPropTypes<
-  typeof colorPickerPanelProps
->
 export type ColorPickerPanelEmits = typeof colorPickerPanelEmits
 export type ColorPickerPanelInstance = InstanceType<typeof ColorPickerPanel> &
   unknown

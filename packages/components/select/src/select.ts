@@ -1,14 +1,11 @@
 import { placements } from '@popperjs/core'
 import { scrollbarEmits } from '@element-plus/components/scrollbar'
-import {
-  useAriaProps,
-  useEmptyValuesProps,
-  useSizeProp,
-} from '@element-plus/hooks'
+import { useAriaProps, useSizeProp } from '@element-plus/hooks'
+import { emptyValuesPropDefs } from '@element-plus/hooks/use-empty-values/index'
 import { buildProps, definePropType, iconPropType } from '@element-plus/utils'
-import { useTooltipContentProps } from '@element-plus/components/tooltip'
+import { tooltipContentPropDefs } from '@element-plus/components/tooltip/src/content'
 import { ArrowDown, CircleClose } from '@element-plus/icons-vue'
-import { tagProps } from '@element-plus/components/tag'
+import { tagPropDefs } from '@element-plus/components/tag/src/tag'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@element-plus/constants'
 import { defaultProps } from '@element-plus/components/select-v2/src/useProps'
 
@@ -239,7 +236,7 @@ export const selectProps = buildProps({
   /**
    * @description 下拉框是否被 teleport；为 `true` 时将挂载到 `append-to` 指定的位置
    */
-  teleported: useTooltipContentProps.teleported,
+  teleported: tooltipContentPropDefs.teleported,
   /**
    * @description 当下拉框不处于激活状态且 `persistent` 为 `false` 时，下拉框将被销毁
    */
@@ -269,11 +266,11 @@ export const selectProps = buildProps({
    * @description 标签类型
    */
 
-  tagType: { ...tagProps.type, default: 'info' },
+  tagType: { ...tagPropDefs.type, default: 'info' },
   /**
    * @description 标签效果
    */
-  tagEffect: { ...tagProps.effect, default: 'light' },
+  tagEffect: { ...tagPropDefs.effect, default: 'light' },
   /**
    * @description 是否触发表单校验
    */
@@ -321,7 +318,7 @@ export const selectProps = buildProps({
   /**
    * @description 下拉框挂载到哪个元素
    */
-  appendTo: useTooltipContentProps.appendTo,
+  appendTo: tooltipContentPropDefs.appendTo,
   options: {
     type: definePropType<Record<string, any>[]>(Array),
   },
@@ -329,7 +326,7 @@ export const selectProps = buildProps({
     type: definePropType<SelectOptionProps>(Object),
     default: () => defaultProps,
   },
-  ...useEmptyValuesProps,
+  ...emptyValuesPropDefs,
   ...useAriaProps(['ariaLabel']),
 })
 /* eslint-disable @typescript-eslint/no-unused-vars */

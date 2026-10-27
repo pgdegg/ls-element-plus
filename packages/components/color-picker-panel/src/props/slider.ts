@@ -1,6 +1,5 @@
 import { buildProps, definePropType } from '@element-plus/utils'
 
-import type { ExtractPublicPropTypes } from 'vue'
 import type Color from '../utils/color'
 
 export interface AlphaSliderProps {
@@ -12,10 +11,8 @@ export interface AlphaSliderProps {
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface HueSliderProps extends AlphaSliderProps {}
 
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `AlphaSliderProps`
- */
-export const alphaSliderProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const alphaSliderPropDefs = buildProps({
   color: {
     type: definePropType<Color>(Object),
     required: true,
@@ -23,15 +20,3 @@ export const alphaSliderProps = buildProps({
   vertical: Boolean,
   disabled: Boolean,
 } as const)
-
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `HueSliderProps`
- */
-export const hueSliderProps = alphaSliderProps
-
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `AlphaSliderProps`
- */
-export type AlphaSliderPropsPublic = ExtractPublicPropTypes<
-  typeof alphaSliderProps
->

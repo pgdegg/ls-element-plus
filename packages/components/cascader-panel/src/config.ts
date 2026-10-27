@@ -158,10 +158,8 @@ export const DefaultProps: CascaderConfig = {
   showPrefix: true,
 }
 
-/**
- * @deprecated 自 3.0.0 后移除，请使用 `CascaderPanelProps`
- */
-export const cascaderPanelProps = buildProps({
+/** @internal Runtime prop definitions; use the public props interface for types. */
+export const cascaderPanelPropDefs = buildProps({
   ...CommonProps,
   border: {
     type: Boolean,
