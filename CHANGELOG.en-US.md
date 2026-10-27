@@ -1,5 +1,17 @@
 ## Changelog
 
+### HIS upstream sync — 2026-10-27
+
+- Merge 13 upstream `dev` commits from `149862aa6b` through `554e3b3060` into `production`.
+- Drawer: support `resizable` options with minimum and maximum sizes.
+- DatePicker: keep panel shortcuts reactive.
+- Splitter: share CSS size parsing helpers through the utilities package.
+- Docs: add the theme editor and follow the upstream color utility module split.
+- Locale: complete missing Turkish translations.
+- Tooling: update pnpm to 12.15.0 and synchronize upstream build and development dependencies.
+- Preserve HIS component customizations and Chinese source comments; adopt upstream translations and the extracted color clipboard hook when resolving conflicts.
+- Validation: frozen-lockfile install, lint, all five type checks, changed-file formatting, and all 2,820 tests in 184 files passed. The standalone package build and local HIS archive generation passed. Initial concurrent checks caused a Table test timeout and a declaration-worker timeout; both passed when rerun separately.
+
 
 ### 2.14.7
 

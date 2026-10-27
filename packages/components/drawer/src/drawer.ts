@@ -1,9 +1,20 @@
-import { buildProps } from '@element-plus/utils'
+import {
+  buildProps,
+  definePropType,
+  isBoolean,
+  isNumber,
+  isString,
+} from '@element-plus/utils'
 import { dialogEmits, dialogProps } from '@element-plus/components/dialog'
 
 import type { ExtractPublicPropTypes } from 'vue'
 import type Drawer from './drawer.vue'
 import type { DialogProps } from '@element-plus/components/dialog'
+
+export interface DrawerResizableOptions {
+  minSize?: number | string
+  maxSize?: number | string
+}
 
 export interface DrawerProps extends DialogProps {
   /**
@@ -11,9 +22,9 @@ export interface DrawerProps extends DialogProps {
    */
   direction?: 'ltr' | 'rtl' | 'ttb' | 'btt'
   /**
-   * @description 是否为抽屉启用可调大小功能
+   * @description 是否启用抽屉尺寸调整；对象形式可配置最小和最大尺寸。
    */
-  resizable?: boolean
+  resizable?: boolean | DrawerResizableOptions
   /**
    * @description Drawer 尺寸；使用 number 类型时以像素为单位，使用 string 类型时请传入 'x%'；否则将被解释为 number 类型
    */
@@ -42,7 +53,21 @@ export const drawerProps = buildProps({
     default: 'rtl',
     values: ['ltr', 'rtl', 'ttb', 'btt'],
   },
-  resizable: Boolean,
+  resizable: {
+    type: definePropType<boolean | DrawerResizableOptions>([Boolean, Object]),
+    default: false,
+    validator: (val: boolean | DrawerResizableOptions) => {
+      if (isBoolean(val)) return true
+      return (
+        (val.minSize === undefined ||
+          isNumber(val.minSize) ||
+          isString(val.minSize)) &&
+        (val.maxSize === undefined ||
+          isNumber(val.maxSize) ||
+          isString(val.maxSize))
+      )
+    },
+  },
   size: {
     type: [String, Number],
     default: '30%',
