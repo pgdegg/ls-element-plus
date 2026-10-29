@@ -1,5 +1,12 @@
 ## Changelog
 
+### HIS inline placeholder colors — 2026-10-29
+
+- Fix Cascader inline placeholder text to use the input text color, including the WebKit text fill color in disabled and readonly states.
+- Target Select inline placeholder text directly instead of overriding the shared placeholder color variable, preserving caret colors and overriding disabled text styles.
+- Preserve custom `--el-input-text-color` values and fall back to the regular text color. Ordinary placeholders retain their existing styles.
+- Validation: `pnpm build:theme`, changed-file formatting, `git diff --check`, all five `pnpm typecheck` targets, and `pnpm test --run` (184 files / 2,843 tests) passed. Lint passed with `docs/.vitepress/.temp/**` excluded after the standard command encountered an existing `import/order` plugin error in generated documentation files. Browser color verification could not complete because browser startup timed out.
+
 ### HIS retired API cleanup — 2026-10-27
 
 This is a breaking cleanup of APIs explicitly marked as deprecated and their compatibility paths.

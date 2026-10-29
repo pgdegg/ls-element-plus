@@ -292,4 +292,12 @@
 // HIS 组件定制。
 .el-cascader {
   width: 100%;
+
+  &.inline-placeholder .el-input .el-input__inner::placeholder {
+    color: var(--el-input-text-color, var(--el-text-color-regular));
+    -webkit-text-fill-color: var(
+      --el-input-text-color,
+      var(--el-text-color-regular)
+    );
+  }
 }

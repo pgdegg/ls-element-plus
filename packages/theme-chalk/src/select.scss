@@ -313,10 +313,9 @@
 // 针对特定输入框，单独设置 placeholder 颜色
 .inline-placeholder {
   &.el-select {
-    --el-text-color-placeholder: var(
-      --el-input-text-color,
-      var(--el-text-color-regular)
-    );
+    .el-select__wrapper .el-select__placeholder {
+      color: var(--el-input-text-color, var(--el-text-color-regular));
+    }
   }
 }
 
