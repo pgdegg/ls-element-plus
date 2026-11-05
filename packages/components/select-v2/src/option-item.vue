@@ -2,6 +2,7 @@
   <li
     :id="`${contentId}-${index}`"
     role="option"
+    :title="String(getLabel(item) ?? '')"
     :aria-selected="selected"
     :aria-disabled="disabled || undefined"
     :style="style"

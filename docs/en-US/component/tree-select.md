@@ -132,6 +132,8 @@ and please go to the original component to view the documentation.
 | [tree](./tree.md#attributes)            | [tree](./tree.md#exposes)            | [tree](./tree.md#events)            | [tree](./tree.md#slots)            |
 | [select](./select.md#select-attributes) | [select](./select.md#select-exposes) | [select](./select.md#select-events) | [select](./select.md#select-slots) |
 
+原生 `title` 默认提示选中项的完整标签，包含折叠的多选项。继承 Select 的 `show-value-in-title` ^(2.14.8) 后，提示同时展示 `value「label」`。详见[原生完整内容提示](./his-customization.md#原生完整内容提示)。
+
 #### Own Attributes
 
 | Name                 | Description                                                                                                         | Type                    | Default |

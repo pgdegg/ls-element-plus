@@ -51,6 +51,14 @@ time-select/time-range
 
 Empty disabled or readonly controls hide their placeholder by default, including inherited Form and container state. Set `:hide-placeholder="false"` explicitly to keep it visible, or `:hide-placeholder="true"` to hide it in every state. The default is `undefined` (automatic). Selected values and labels remain visible. Internal input restrictions such as a non-filterable selector do not make the control readonly.
 
+## 原生完整内容提示 ^(2.14.8)
+
+默认使用浏览器原生 `title` 提示选中时间的完整标签，显式 `title` 优先，空字符串可关闭提示。
+
+| 属性                          | 说明                                                                                | 类型       | 默认值 |
+| ----------------------------- | ----------------------------------------------------------------------------------- | ---------- | ------ |
+| show-value-in-title ^(2.14.8) | 是否在原生提示中同时展示值和完整标签，格式为 `value「label」`；控件内文字保持原样。 | ^[boolean] | false  |
+
 ## API
 
 ### Attributes

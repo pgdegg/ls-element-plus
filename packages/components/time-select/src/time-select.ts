@@ -11,6 +11,11 @@ import type { ComponentSize } from '@element-plus/constants'
 import type { ClassValue, IconPropType } from '@element-plus/utils'
 
 export interface TimeSelectProps extends UseEmptyValuesProps {
+  /**
+   * @description 原生 title 提示是否同时展示选项值和完整标签。
+   * @default `false`
+   */
+  showValueInTitle?: boolean
   hidePlaceholder?: boolean
   /**
    * @description 设置时间格式
@@ -96,6 +101,11 @@ export const DEFAULT_STEP = '00:30'
 
 /** @internal Runtime prop definitions; use the public props interface for types. */
 export const timeSelectPropDefs = buildProps({
+  /**
+   * @description 原生 title 提示是否同时展示选项值和完整标签。
+   * @default `false`
+   */
+  showValueInTitle: Boolean,
   /** @description 是否隐藏占位文本；默认在禁用或只读时隐藏，false 强制显示。 */
   hidePlaceholder: { type: Boolean, default: undefined },
   /**

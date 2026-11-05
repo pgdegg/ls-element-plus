@@ -99,6 +99,7 @@
               v-for="(item, index) in suggestions"
               :id="`${listboxId}-item-${index}`"
               :key="index"
+              :title="String(item[valueKey] ?? '')"
               :class="{ highlighted: highlightedIndex === index }"
               role="option"
               :aria-selected="highlightedIndex === index"

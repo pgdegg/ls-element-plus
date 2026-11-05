@@ -27,6 +27,11 @@ import type { ClassValue, IconPropType } from '@element-plus/utils'
 
 export interface CascaderComponentProps
   extends CascaderCommonProps, UseEmptyValuesProps {
+  /**
+   * @description 原生 title 提示是否同时展示选项值和完整标签。
+   * @default `false`
+   */
+  showValueInTitle?: boolean
   hidePlaceholder?: boolean
   /**
    * @description 输入框尺寸
@@ -159,6 +164,11 @@ export interface CascaderComponentProps
 
 /** @internal Runtime prop definitions; use the public props interface for types. */
 export const cascaderPropDefs = buildProps({
+  /**
+   * @description 原生 title 提示是否同时展示选项值和完整标签。
+   * @default `false`
+   */
+  showValueInTitle: Boolean,
   /** @description 是否隐藏占位文本；默认在禁用或只读时隐藏，false 强制显示。 */
   hidePlaceholder: { type: Boolean, default: undefined },
   ...CommonProps,

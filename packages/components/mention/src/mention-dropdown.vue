@@ -19,6 +19,7 @@
         :id="`${contentId}-${index}`"
         ref="optionRefs"
         :key="index"
+        :title="String(item.label ?? item.value ?? '')"
         :class="optionkls(item, index)"
         role="option"
         :aria-disabled="item.disabled || disabled || undefined"

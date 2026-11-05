@@ -31,6 +31,7 @@
             id as string
           "
           ref="inputRef"
+          :title="$attrs.title"
           container-role="combobox"
           :model-value="
             // https://github.com/vuejs/language-tools/issues/2104#issuecomment-3092541527
@@ -102,6 +103,7 @@
             id as string[]
           "
           ref="inputRef"
+          :title="$attrs.title"
           :model-value="displayValue"
           :name="
             // https://github.com/vuejs/language-tools/issues/2104#issuecomment-3092541527

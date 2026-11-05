@@ -71,6 +71,29 @@ Input, InputNumber, Autocomplete, Select, SelectV2, Cascader, DatePicker, TimePi
 
 `tabPaneActiveContextKey` ^(2.14.8) provides `selfActive`, ancestor-aware `active` and the nested pane `path`. `useContentStyle(highlight, zoom)` ^(2.14.8) supplies shared value, label and placeholder emphasis classes for application adapters.
 
+## 原生完整内容提示 ^(2.14.8)
+
+输入框、文本域、数字输入框、自动补全、提及输入框、标签输入框、选择器、树选择器、级联选择器以及日期和时间选择器使用浏览器原生 `title` 提示完整内容。悬停在控件或其输入区域上即可查看，不创建额外的悬浮窗口。
+
+选择类控件默认提示选中项的完整标签；多选时逐行显示所有标签，包括折叠项。级联标签遵循 `show-all-levels` 和 `separator`，日期与时间范围同时提示起止内容。输入框提示格式化后的显示文字，禁用和只读状态同样有效。密码输入框不会自动生成提示。
+
+| 组件                                               | 属性                            | 类型      | 默认值  | 说明                                                                                                          |
+| -------------------------------------------------- | ------------------------------- | --------- | ------- | ------------------------------------------------------------------------------------------------------------- |
+| Select、SelectV2、TreeSelect、Cascader、TimeSelect | `show-value-in-title` ^(2.14.8) | `boolean` | `false` | 开启后，选中项提示同时展示值和完整标签，格式为 `value「label」`。仅改变原生提示，控件内文字和绑定值保持原样。 |
+
+对象值按选择器的 `value-key` 取值，零值和布尔值会完整保留。级联值遵循 `emit-path`，路径值使用 `separator` 连接。显式传入的 `title` 优先，设置 `title=""` 可以关闭该控件的原生提示。下拉选项也使用 `title` 提示完整标签。
+
+```vue
+<template>
+  <!-- 默认提示“门诊科室”，开启后提示“OPD「门诊科室」” -->
+  <el-select v-model="department" show-value-in-title>
+    <el-option value="OPD" label="门诊科室" />
+  </el-select>
+  <!-- 显式关闭当前输入框的原生提示 -->
+  <el-input v-model="remark" title="" />
+</template>
+```
+
 ## Styles
 
 HIS styles live in the corresponding theme-chalk component sources and are included in both the complete theme and component styles. Application compositions such as VXE table selectors and medical-card forms keep their own styles beside their owning components. Import the library theme before application page styles.

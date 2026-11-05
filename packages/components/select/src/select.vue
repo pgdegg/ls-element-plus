@@ -3,6 +3,7 @@
     ref="selectRef"
     v-click-outside:[popperRef]="handleClickOutside"
     :class="[nsSelect.b(), nsSelect.m(selectSize)]"
+    :title="($attrs.title as string | undefined) ?? selectionTitle"
     @[mouseEnterEventName]="states.inputHovering = true"
     @mouseleave="states.inputHovering = false"
   >
@@ -370,7 +371,12 @@ import ElTooltip from '@element-plus/components/tooltip'
 import ElScrollbar from '@element-plus/components/scrollbar'
 import ElTag from '@element-plus/components/tag'
 import ElIcon from '@element-plus/components/icon'
-import { flattedChildren, isArray, isObject } from '@element-plus/utils'
+import {
+  flattedChildren,
+  formatValueTitle,
+  isArray,
+  isObject,
+} from '@element-plus/utils'
 import { useCalcInputWidth } from '@element-plus/hooks'
 import { useProps } from '@element-plus/components/select-v2/src/useProps'
 import ElOption from './option.vue'
@@ -604,6 +610,21 @@ export default defineComponent({
       return API.states.selected.map((i) => i.currentLabel as string)
     })
 
+    const selectionTitle = computed(() => {
+      if (!API.hasModelValue.value) return API.states.inputValue || undefined
+      return (
+        API.states.selected
+          .map((item) =>
+            formatValueTitle(
+              item.currentLabel,
+              API.getValueKey(item),
+              props.showValueInTitle
+            )
+          )
+          .join('\n') || undefined
+      )
+    })
+
     onBeforeUnmount(() => {
       // https://github.com/element-plus/element-plus/issues/21279
       const record = warnHandlerMap.get(instance.appContext)
@@ -638,6 +659,7 @@ export default defineComponent({
       inputElement,
       modelValue,
       selectedLabel,
+      selectionTitle,
       calculatorRef,
       inputStyle,
       getLabel,

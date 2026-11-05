@@ -2,6 +2,7 @@
   <li
     :id="`${menuId}-${node.uid}`"
     role="menuitem"
+    :title="node.label"
     :aria-haspopup="!isLeaf"
     :aria-owns="isLeaf ? undefined : menuId"
     :aria-expanded="inExpandingPath"

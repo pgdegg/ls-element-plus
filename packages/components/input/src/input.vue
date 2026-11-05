@@ -8,6 +8,7 @@
       },
     ]"
     :style="containerStyle"
+    :title="inputTitle"
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave"
   >
@@ -34,6 +35,7 @@
           ref="input"
           :class="nsInput.e('inner')"
           v-bind="attrs"
+          :title="inputTitle"
           :name="name"
           :minlength="countGraphemes ? undefined : minlength"
           :maxlength="countGraphemes ? undefined : maxlength"
@@ -132,6 +134,7 @@
           nsTextarea.is('clearable', clearable),
         ]"
         v-bind="attrs"
+        :title="inputTitle"
         :name="name"
         :minlength="countGraphemes ? undefined : minlength"
         :maxlength="countGraphemes ? undefined : maxlength"
@@ -360,6 +363,14 @@ const textareaStyle = computed<StyleValue>(() => [
 const nativeInputValue = computed(() =>
   isNil(props.modelValue) ? '' : String(props.modelValue)
 )
+const inputTitle = computed(() => {
+  if (rawAttrs.title !== undefined) return rawAttrs.title as string
+  if (props.type === 'password' || props.showPassword) return undefined
+  const value = props.formatter
+    ? props.formatter(nativeInputValue.value)
+    : nativeInputValue.value
+  return value || undefined
+})
 const renderClear = computed(
   () => props.clearable && !inputDisabled.value && !props.readonly
 )

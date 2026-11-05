@@ -22,6 +22,7 @@
         v-clickoutside:[contentRef]="handleClickOutside"
         :class="cascaderKls"
         :style="cascaderStyle"
+        :title="selectionTitle"
         @click="() => togglePopperVisible(readonly ? undefined : true)"
         @keydown="handleKeyDown"
         @mouseenter="inputHover = true"
@@ -32,6 +33,7 @@
           v-model="inputValue"
           :placeholder="currentPlaceholder"
           :hide-placeholder="false"
+          :title="selectionTitle"
           :readonly="readonly"
           :disabled="isDisabled"
           :validate-event="false"
@@ -194,6 +196,7 @@
             <li
               v-for="(item, index) in suggestions"
               :key="item.uid"
+              :title="item.text"
               :class="[
                 nsCascader.e('suggestion-item'),
                 nsCascader.is('checked', item.checked),
@@ -243,6 +246,7 @@
                 :id="`suggestion-${data[index].uid}`"
                 :key="data[index].uid"
                 :data-suggestion-index="index"
+                :title="data[index].text"
                 :class="[
                   nsCascader.e('suggestion-item'),
                   nsCascader.is('checked', data[index].checked),
@@ -297,6 +301,7 @@ import { useCssVar, useDebounceFn, useResizeObserver } from '@vueuse/core'
 import {
   NOOP,
   focusNode,
+  formatValueTitle,
   getEventCode,
   getSibling,
   isClient,
@@ -501,6 +506,25 @@ const presentText = computed(() => {
       : nodes[0].calcText(showAllLevels, separator)
     : ''
 })
+
+const selectionTitle = computed(
+  () =>
+    (attrs.title as string | undefined) ??
+    (checkedNodes.value
+      .map((node) =>
+        formatValueTitle(
+          props.showAllLevels
+            ? node.pathLabels.join(props.separator)
+            : node.label,
+          Array.isArray(node.valueByOption)
+            ? node.valueByOption.join(props.separator)
+            : node.valueByOption,
+          props.showValueInTitle
+        )
+      )
+      .join('\n') ||
+      undefined)
+)
 
 const validateState = computed(() => formItem?.validateState || '')
 

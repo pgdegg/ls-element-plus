@@ -3,6 +3,7 @@
     ref="select"
     :name="name"
     :model-value="value"
+    :show-value-in-title="showValueInTitle"
     :disabled="_disabled"
     :clearable="clearable"
     :clear-icon="clearIcon"

@@ -3,6 +3,7 @@
     v-show="visible"
     :id="id"
     :class="containerKls"
+    :title="String(currentLabel ?? '')"
     role="option"
     :aria-disabled="isDisabled || undefined"
     :aria-selected="itemSelected"

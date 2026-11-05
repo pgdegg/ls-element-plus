@@ -3,6 +3,7 @@
     ref="wrapperRef"
     :class="containerKls"
     :style="containerStyle"
+    :title="contentTitle"
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave"
   >
@@ -76,6 +77,7 @@
           ref="inputRef"
           v-model="inputValue"
           v-bind="attrs"
+          :title="contentTitle"
           type="text"
           :minlength="minlength"
           :maxlength="maxlength"
@@ -177,6 +179,14 @@ const emit = defineEmits(inputTagEmits)
 
 const attrs = useAttrs()
 const slots = useSlots()
+const contentTitle = computed(
+  () =>
+    (attrs.value.title as string | undefined) ??
+    ([...(props.modelValue ?? []), inputValue.value]
+      .filter(Boolean)
+      .join('\n') ||
+      undefined)
+)
 const { form, formItem } = useFormItem()
 const { inputId } = useFormItemInputId(props, { formItemContext: formItem })
 

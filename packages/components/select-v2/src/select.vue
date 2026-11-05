@@ -3,6 +3,7 @@
     ref="selectRef"
     v-click-outside:[popperRef]="handleClickOutside"
     :class="[nsSelect.b(), nsSelect.m(selectSize)]"
+    :title="($attrs.title as string | undefined) ?? selectionTitle"
     @mouseenter="states.inputHovering = true"
     @mouseleave="states.inputHovering = false"
   >
@@ -335,7 +336,7 @@ import {
   watch,
 } from 'vue'
 import { useInputElement } from '@element-plus/hooks/use-input-element'
-import { isArray } from '@element-plus/utils'
+import { formatValueTitle, isArray } from '@element-plus/utils'
 import { ClickOutside } from '@element-plus/directives'
 import ElTooltip from '@element-plus/components/tooltip'
 import ElTag from '@element-plus/components/tag'
@@ -429,6 +430,28 @@ export default defineComponent({
       return API.states.cachedOptions.map((i) => API.getLabel(i) as string)
     })
 
+    const selectionTitle = computed(() => {
+      if (!API.hasModelValue.value) return API.states.inputValue || undefined
+      if (!props.multiple) {
+        return formatValueTitle(
+          API.states.selectedLabel,
+          API.getValueKey(modelValue.value),
+          props.showValueInTitle
+        )
+      }
+      return (
+        API.states.cachedOptions
+          .map((item) =>
+            formatValueTitle(
+              API.getLabel(item),
+              API.getValueKey(API.getValue(item)),
+              props.showValueInTitle
+            )
+          )
+          .join('\n') || undefined
+      )
+    })
+
     watch(
       selectedLabel,
       (value) => {
@@ -454,6 +477,7 @@ export default defineComponent({
       inputElement,
       modelValue,
       selectedLabel,
+      selectionTitle,
       calculatorRef,
       inputStyle,
       contentId,

@@ -40,6 +40,11 @@ export interface TagTooltipProps {
 }
 
 export const selectProps = buildProps({
+  /**
+   * @description 原生 title 提示是否同时展示选项值和完整标签。
+   * @default `false`
+   */
+  showValueInTitle: Boolean,
   /** @description 是否隐藏占位文本；默认在禁用或只读时隐藏，false 强制显示。 */
   hidePlaceholder: { type: Boolean, default: undefined },
   /** @description 字符串形式多选值的分隔符 */

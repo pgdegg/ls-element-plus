@@ -2,6 +2,7 @@
   <div
     ref="wrapperRef"
     :class="[nsDate.is('active', isFocused), $attrs.class]"
+    :title="rangeTitle"
     :style="
       // https://github.com/vuejs/language-tools/issues/2104#issuecomment-3092541527
       $attrs.style as CSSProperties
@@ -16,6 +17,7 @@
       v-bind="attrs"
       :id="inputId"
       ref="inputRef"
+      :title="rangeTitle"
       :name="name && name[0]"
       :placeholder="startPlaceholder"
       :value="modelValue && modelValue[0]"
@@ -29,6 +31,7 @@
       v-bind="attrs"
       :id="id && id[1]"
       ref="endInputRef"
+      :title="rangeTitle"
       :name="name && name[1]"
       :placeholder="endPlaceholder"
       :value="modelValue && modelValue[1]"
@@ -77,6 +80,16 @@ const { inputId } = useFormItemInputId(
 )
 
 const attrs = useAttrs()
+const rangeTitle = computed(
+  () =>
+    (attrs.value.title as string | undefined) ??
+    ((Array.isArray(props.modelValue)
+      ? props.modelValue
+          .filter((value) => value != null && value !== '')
+          .join(' - ')
+      : props.modelValue) ||
+      undefined)
+)
 const nsDate = useNamespace('date')
 const nsRange = useNamespace('range')
 
