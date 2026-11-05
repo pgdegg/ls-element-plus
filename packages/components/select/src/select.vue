@@ -585,6 +585,7 @@ export default defineComponent({
     provide(
       selectKey,
       reactive({
+        selectDisabled: API.selectDisabled,
         props: _props,
         states: API.states,
         selectRef: API.selectRef,
