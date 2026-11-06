@@ -68,6 +68,10 @@ const alias: AliasOptions = [
 export const getViteConfig = ({ mode }: { mode: string }) => {
   const env = loadEnv(mode, process.cwd(), '')
   return {
+    define: {
+      // 国际化插件输出 AST，Vue I18n 9 需要开启 JIT 才能解析。
+      __INTLIFY_JIT_COMPILATION__: true,
+    },
     css: {
       preprocessorOptions: {
         scss: {

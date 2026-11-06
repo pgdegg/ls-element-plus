@@ -551,6 +551,7 @@ export default defineConfig([
       'docs/.vitepress/cache/*',
       'docs/.vitepress/crowdin/*',
       '!docs/.vitepress/crowdin/en-US',
+      '!docs/.vitepress/crowdin/zh-CN',
       'docs/.vitepress/dist/*',
       '!.*',
     ],

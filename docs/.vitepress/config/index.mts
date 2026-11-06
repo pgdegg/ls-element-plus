@@ -2,6 +2,7 @@ import consola from 'consola'
 import { REPO_BRANCH, REPO_PATH } from '@element-plus/build-constants'
 import { docsDirName } from '@element-plus/build-utils'
 import { languages } from '../utils/lang'
+import { defaultLang } from '../vitepress/constant'
 import { features } from './features'
 import { head } from './head'
 import { nav } from './nav'
@@ -41,7 +42,7 @@ consola.debug(`DOC_ENV: ${process.env.DOC_ENV}`)
 
 const locales = {}
 languages.forEach((lang) => {
-  locales[`/${lang}`] = {
+  locales[lang] = {
     label: lang,
     lang,
   }
@@ -49,6 +50,7 @@ languages.forEach((lang) => {
 
 const setupConfig = (configEnv) => {
   const config: UserConfig<any> = {
+    lang: defaultLang,
     title: 'Element Plus',
     description: 'A Vue 3 based component library for designers and developers',
     lastUpdated: true,

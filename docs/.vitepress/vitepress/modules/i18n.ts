@@ -1,4 +1,5 @@
 import { createI18n } from 'vue-i18n'
+import { defaultLang } from '../constant'
 
 import type { DefineLocaleMessage } from 'vue-i18n'
 
@@ -23,7 +24,7 @@ const messages = Object.fromEntries(
 export const install: UserModule = ({ app }) => {
   const i18n = createI18n({
     legacy: false,
-    locale: 'en-US',
+    locale: defaultLang,
     fallbackLocale: 'en-US',
     messages,
   })

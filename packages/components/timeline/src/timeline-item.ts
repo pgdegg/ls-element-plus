@@ -72,7 +72,7 @@ export const TimelineItemDefaultValueProps = buildProps({
    */
   type: {
     type: String,
-    values: ['primary', 'success', 'warning', 'danger', 'info'],
+    values: ['primary', 'success', 'warning', 'danger', 'info', ''],
     default: '',
   },
   /**
