@@ -70,8 +70,8 @@ export interface SegmentedProps<T extends Option = Option> {
   ariaLabel?: string
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const segmentedPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const SegmentedDefaultValueProps = buildProps({
   direction: {
     type: definePropType<'vertical' | 'horizontal'>(String),
     default: 'horizontal',

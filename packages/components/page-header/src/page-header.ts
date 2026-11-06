@@ -19,8 +19,8 @@ export interface PageHeaderProps {
   content?: string
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const pageHeaderPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const PageHeaderDefaultValueProps = buildProps({
   /**
    * @description 页头的图标组件
    */

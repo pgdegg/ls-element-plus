@@ -23,8 +23,8 @@ export interface MenuItemProps {
   disabled?: boolean
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const menuItemPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const MenuItemDefaultValueProps = buildProps({
   /**
    * @description 唯一标识
    */

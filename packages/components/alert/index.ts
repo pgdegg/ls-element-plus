@@ -6,6 +6,6 @@ import type { SFCWithInstall } from '@element-plus/utils'
 export const ElAlert: SFCWithInstall<typeof Alert> = withInstall(Alert)
 export default ElAlert
 
-export { alertEffects, alertEmits } from './src/alert'
+export { alertEffects, alertEmits, AlertDefaultValueProps } from './src/alert'
 export type { AlertProps, AlertEmits } from './src/alert'
 export type { AlertInstance } from './src/instance'

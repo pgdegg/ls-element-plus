@@ -19,7 +19,7 @@ import { useEventListener } from '@vueuse/core'
 import { composeEventHandlers } from '@element-plus/utils'
 import {
   ROVING_FOCUS_COLLECTION_INJECTION_KEY,
-  rovingFocusGroupProps,
+  RovingFocusGroupDefaultValueProps,
 } from './roving-focus-group'
 import { ROVING_FOCUS_GROUP_INJECTION_KEY } from './tokens'
 import { focusFirst, getFocusIntent, reorderArray } from './utils'
@@ -33,7 +33,7 @@ const EVT_OPTS: EventInit = { bubbles: false, cancelable: true }
 export default defineComponent({
   name: 'ElRovingFocusGroupImpl',
   inheritAttrs: false,
-  props: rovingFocusGroupProps,
+  props: RovingFocusGroupDefaultValueProps,
   emits: [CURRENT_TAB_ID_CHANGE_EVT, 'entryFocus'],
   setup(props, { emit }) {
     const currentTabbedId = ref<string | null>(

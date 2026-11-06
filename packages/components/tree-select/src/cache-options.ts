@@ -13,13 +13,15 @@ export type CacheOption = {
   isDisabled: boolean
 }
 
-export default defineComponent({
-  props: {
-    data: {
-      type: Array as PropType<CacheOption[]>,
-      default: () => [],
-    },
+export const TreeSelectCacheOptionsDefaultValueProps = {
+  data: {
+    type: Array as PropType<CacheOption[]>,
+    default: () => [],
   },
+} as const
+
+export default defineComponent({
+  props: TreeSelectCacheOptionsDefaultValueProps,
   setup(props) {
     const select = inject(selectKey) as NonNullable<SelectContext>
 

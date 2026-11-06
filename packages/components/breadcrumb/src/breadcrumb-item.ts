@@ -13,8 +13,8 @@ export interface BreadcrumbItemProps {
   replace?: boolean
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const breadcrumbItemPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const BreadcrumbItemDefaultValueProps = buildProps({
   /**
    * @description 链接的目标路由，与 `vue-router` 的 `to` 相同
    */

@@ -6,9 +6,9 @@ import {
   isString,
 } from '@element-plus/utils'
 import { UPDATE_MODEL_EVENT } from '@element-plus/constants'
-import { inputPropDefs } from '@element-plus/components/input/src/input'
+import { InputDefaultValueProps } from '@element-plus/components/input/src/input'
 import { filterOption } from './helper'
-import { tooltipContentPropDefs } from '@element-plus/components/tooltip/src/content'
+import { TooltipContentDefaultValueProps } from '@element-plus/components/tooltip/src/content'
 
 import type { ComponentInstance } from 'vue'
 import type { ComponentExposed } from 'vue-component-type-helpers'
@@ -83,9 +83,9 @@ export interface MentionProps<
   props?: MentionOptionProps
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const mentionPropDefs = buildProps({
-  ...inputPropDefs,
+/** Runtime prop definitions; use the public props interface for types. */
+export const MentionDefaultValueProps = buildProps({
+  ...InputDefaultValueProps,
   /**
    * @description @提及选项列表
    */
@@ -164,11 +164,11 @@ export const mentionPropDefs = buildProps({
   /**
    * @description 下拉面板的自定义类名
    */
-  popperClass: tooltipContentPropDefs.popperClass,
+  popperClass: TooltipContentDefaultValueProps.popperClass,
   /**
    * @description 下拉面板的自定义样式
    */
-  popperStyle: tooltipContentPropDefs.popperStyle,
+  popperStyle: TooltipContentDefaultValueProps.popperStyle,
   /**
    * @description [popper.js](https://popper.js.org/docs/v2/) 参数
    */

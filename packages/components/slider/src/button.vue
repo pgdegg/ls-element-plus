@@ -34,7 +34,7 @@ import { computed, reactive, toRefs } from 'vue'
 import { ElTooltip } from '@element-plus/components/tooltip'
 import { useNamespace } from '@element-plus/hooks'
 import { useSliderButton } from './composables'
-import { sliderButtonEmits, sliderButtonProps } from './button'
+import { SliderButtonDefaultValueProps, sliderButtonEmits } from './button'
 
 import type { SliderButtonInitData } from './button'
 
@@ -42,7 +42,7 @@ defineOptions({
   name: 'ElSliderButton',
 })
 
-const props = defineProps(sliderButtonProps)
+const props = defineProps(SliderButtonDefaultValueProps)
 const emit = defineEmits(sliderButtonEmits)
 
 const ns = useNamespace('slider')

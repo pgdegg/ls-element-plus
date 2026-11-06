@@ -36,8 +36,8 @@ export interface CardProps {
   shadow?: 'always' | 'hover' | 'never'
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const cardPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const CardDefaultValueProps = buildProps({
   disabled: Boolean,
   /**
    * @description 卡片标题。同时接受由 `slot#header` 传入的 DOM

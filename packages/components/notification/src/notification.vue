@@ -42,38 +42,25 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, markRaw, onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
+import {
+  NotificationDefaultValueProps,
+  notificationEmits,
+} from './notification'
 import { useEventListener, useIntervalFn, useTimeoutFn } from '@vueuse/core'
 import { TypeComponentsMap, getEventCode } from '@element-plus/utils'
 import { EVENT_CODE } from '@element-plus/constants'
 import { ElIcon } from '@element-plus/components/icon'
 import { ElProgress } from '@element-plus/components/progress'
 import { useGlobalComponentSettings } from '@element-plus/components/config-provider'
-import { notificationEmits } from './notification'
-import { Close } from '@element-plus/icons-vue'
 
 import type { CSSProperties } from 'vue'
-import type { NotificationProps } from './notification'
 
 defineOptions({
   name: 'ElNotification',
 })
 
-const props = withDefaults(defineProps<NotificationProps>(), {
-  customClass: '',
-  duration: 4500,
-  id: '',
-  message: '',
-  offset: 0,
-  onClick: () => undefined,
-  position: 'top-right',
-  showClose: true,
-  title: '',
-  type: '',
-  closeIcon: markRaw(Close),
-  progress: false,
-  pauseOnHover: true,
-})
+const props = defineProps(NotificationDefaultValueProps)
 defineEmits(notificationEmits)
 
 const { ns, zIndex } = useGlobalComponentSettings('notification')

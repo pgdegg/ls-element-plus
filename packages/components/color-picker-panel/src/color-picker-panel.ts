@@ -47,8 +47,8 @@ export interface ColorPickerPanelProps {
   hueSliderStyle?: StyleValue
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const colorPickerPanelPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const ColorPickerPanelDefaultValueProps = buildProps({
   /**
    * @description 绑定值
    */

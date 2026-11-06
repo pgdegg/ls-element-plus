@@ -3,7 +3,7 @@ import { column } from './common'
 
 import type { ExtractPropTypes, ExtractPublicPropTypes, StyleValue } from 'vue'
 
-export const tableV2CellProps = buildProps({
+export const TableV2CellDefaultValueProps = buildProps({
   class: String,
   cellData: {
     type: definePropType<any>([String, Boolean, Number, Object]),
@@ -20,7 +20,9 @@ export const tableV2CellProps = buildProps({
   rowIndex: Number,
 } as const)
 
-export type TableV2CellProps = ExtractPropTypes<typeof tableV2CellProps>
+export type TableV2CellProps = ExtractPropTypes<
+  typeof TableV2CellDefaultValueProps
+>
 export type TableV2CellPropsPublic = ExtractPublicPropTypes<
-  typeof tableV2CellProps
+  typeof TableV2CellDefaultValueProps
 >

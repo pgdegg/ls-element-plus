@@ -5,7 +5,7 @@ import { COMPONENT_NAME } from './constants'
 
 import type { ExtractPropTypes, ExtractPublicPropTypes, Slot, VNode } from 'vue'
 
-export const descriptionItemProps = buildProps({
+export const DescriptionsItemDefaultValueProps = buildProps({
   /**
    * @description 标签文本
    */
@@ -80,14 +80,16 @@ export const descriptionItemProps = buildProps({
 
 const DescriptionItem = defineComponent({
   name: COMPONENT_NAME,
-  props: descriptionItemProps,
+  props: DescriptionsItemDefaultValueProps,
 })
 
 export default DescriptionItem
 
-export type DescriptionItemProps = ExtractPropTypes<typeof descriptionItemProps>
+export type DescriptionItemProps = ExtractPropTypes<
+  typeof DescriptionsItemDefaultValueProps
+>
 export type DescriptionItemPropsPublic = ExtractPublicPropTypes<
-  typeof descriptionItemProps
+  typeof DescriptionsItemDefaultValueProps
 >
 export type DescriptionItemVNode = VNode & {
   children: { [name: string]: Slot } | null

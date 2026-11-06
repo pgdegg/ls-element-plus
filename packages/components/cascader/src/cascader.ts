@@ -1,5 +1,5 @@
 import { placements } from '@popperjs/core'
-import { CommonProps } from '@element-plus/components/cascader-panel'
+import { CascaderCommonDefaultValueProps } from '@element-plus/components/cascader-panel'
 import {
   buildProps,
   definePropType,
@@ -8,8 +8,8 @@ import {
 } from '@element-plus/utils'
 import { useSizeProp } from '@element-plus/hooks'
 import { emptyValuesPropDefs } from '@element-plus/hooks/use-empty-values/index'
-import { tooltipContentPropDefs } from '@element-plus/components/tooltip/src/content'
-import { tagPropDefs } from '@element-plus/components/tag/src/tag'
+import { TooltipContentDefaultValueProps } from '@element-plus/components/tooltip/src/content'
+import { TagDefaultValueProps } from '@element-plus/components/tag/src/tag'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@element-plus/constants'
 import { CircleClose } from '@element-plus/icons-vue'
 
@@ -162,8 +162,8 @@ export interface CascaderComponentProps
   fitInputWidth?: boolean | number
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const cascaderPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const CascaderDefaultValueProps = buildProps({
   /**
    * @description 原生 title 提示是否同时展示选项值和完整标签。
    * @default `false`
@@ -171,7 +171,7 @@ export const cascaderPropDefs = buildProps({
   showValueInTitle: Boolean,
   /** @description 是否隐藏占位文本；默认在禁用或只读时隐藏，false 强制显示。 */
   hidePlaceholder: { type: Boolean, default: undefined },
-  ...CommonProps,
+  ...CascaderCommonDefaultValueProps,
   /**
    * @description 输入框尺寸
    */
@@ -294,15 +294,15 @@ export const cascaderPropDefs = buildProps({
   /**
    * @description Cascader 下拉框的自定义类名
    */
-  popperClass: tooltipContentPropDefs.popperClass,
+  popperClass: TooltipContentDefaultValueProps.popperClass,
   /**
    * @description Cascader 下拉框的自定义样式
    */
-  popperStyle: tooltipContentPropDefs.popperStyle,
+  popperStyle: TooltipContentDefaultValueProps.popperStyle,
   /**
    * @description 弹层是否被传送
    */
-  teleported: tooltipContentPropDefs.teleported,
+  teleported: TooltipContentDefaultValueProps.teleported,
   /**
    * @description tooltip 主题，内置主题：`dark` / `light`
    */
@@ -314,11 +314,11 @@ export const cascaderPropDefs = buildProps({
    * @description 标签类型
    */
 
-  tagType: { ...tagPropDefs.type, default: 'info' },
+  tagType: { ...TagDefaultValueProps.type, default: 'info' },
   /**
    * @description 标签效果
    */
-  tagEffect: { ...tagPropDefs.effect, default: 'light' },
+  tagEffect: { ...TagDefaultValueProps.effect, default: 'light' },
   /**
    * @description 是否触发表单校验
    */

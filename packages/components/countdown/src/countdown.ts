@@ -32,8 +32,8 @@ export interface CountdownProps {
   valueStyle?: StyleValue
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const countdownPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const CountdownDefaultValueProps = buildProps({
   /**
    * @description 倒计时显示的格式化
    */

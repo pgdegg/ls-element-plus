@@ -1,5 +1,5 @@
 import { definePropType } from '@element-plus/utils'
-import { buttonPropDefs } from './button'
+import { ButtonDefaultValueProps } from './button'
 
 import type { ButtonProps } from './button'
 
@@ -24,8 +24,8 @@ export interface ButtonGroupProps {
   direction?: 'horizontal' | 'vertical'
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const buttonGroupPropDefs = {
+/** Runtime prop definitions; use the public props interface for types. */
+export const ButtonGroupDefaultValueProps = {
   disabled: { type: Boolean, default: undefined },
   plain: { type: Boolean, default: undefined },
   text: { type: Boolean, default: undefined },
@@ -33,11 +33,11 @@ export const buttonGroupPropDefs = {
   /**
    * @description 控制该 button-group 中按钮的尺寸
    */
-  size: buttonPropDefs.size,
+  size: ButtonDefaultValueProps.size,
   /**
    * @description 控制该 button-group 中按钮的类型
    */
-  type: buttonPropDefs.type,
+  type: ButtonDefaultValueProps.type,
   /**
    * @description 展示方向
    */

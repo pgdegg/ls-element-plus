@@ -8,7 +8,7 @@ import type {
   StyleValue,
 } from 'vue'
 
-export const rovingFocusGroupProps = buildProps({
+export const RovingFocusGroupDefaultValueProps = buildProps({
   style: {
     type: definePropType<StyleValue>([String, Array, Object, Boolean]),
     default: undefined,
@@ -34,11 +34,11 @@ export const rovingFocusGroupProps = buildProps({
 })
 
 export type ElRovingFocusGroupProps = ExtractPropTypes<
-  typeof rovingFocusGroupProps
+  typeof RovingFocusGroupDefaultValueProps
 >
 
 export type ElRovingFocusGroupPropsPublic = ExtractPublicPropTypes<
-  typeof rovingFocusGroupProps
+  typeof RovingFocusGroupDefaultValueProps
 >
 
 const {

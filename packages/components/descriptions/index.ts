@@ -17,3 +17,9 @@ export default ElDescriptions
 
 export type { DescriptionProps, DescriptionInstance } from './src/description'
 export * from './src/description-item'
+
+export { DescriptionsDefaultValueProps } from './src/description'
+
+export { DescriptionsCellDefaultValueProps } from './src/descriptions-cell'
+
+export { DescriptionsRowDefaultValueProps } from './src/descriptions-row'

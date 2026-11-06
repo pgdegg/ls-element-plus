@@ -6,23 +6,15 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue'
+import { AsideDefaultValueProps } from './aside'
 import { useNamespace } from '@element-plus/hooks'
 
 import type { CSSProperties } from 'vue'
 
-interface AsideProps {
-  /**
-   * @description 侧边区域宽度
-   */
-  width?: string | null
-}
-
 defineOptions({
   name: 'ElAside',
 })
-const props = withDefaults(defineProps<AsideProps>(), {
-  width: null,
-})
+const props = defineProps(AsideDefaultValueProps)
 
 const ns = useNamespace('aside')
 const style = computed(

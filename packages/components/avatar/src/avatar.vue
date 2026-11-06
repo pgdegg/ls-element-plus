@@ -17,23 +17,19 @@
 
 <script lang="ts" setup>
 import { computed, inject, ref, watch } from 'vue'
+import { AvatarDefaultValueProps, avatarEmits } from './avatar'
 import { ElIcon } from '@element-plus/components/icon'
 import { useNamespace } from '@element-plus/hooks'
 import { addUnit, isNumber, isString } from '@element-plus/utils'
-import { avatarEmits } from './avatar'
 import { avatarGroupContextKey } from './constants'
 
-import type { AvatarProps } from './avatar'
 import type { CSSProperties } from 'vue'
 
 defineOptions({
   name: 'ElAvatar',
 })
 
-const props = withDefaults(defineProps<AvatarProps>(), {
-  src: '',
-  fit: 'cover',
-})
+const props = defineProps(AvatarDefaultValueProps)
 
 const emit = defineEmits(avatarEmits)
 

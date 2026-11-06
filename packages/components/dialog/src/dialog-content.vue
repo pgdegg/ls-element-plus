@@ -32,26 +32,21 @@
 
 <script lang="ts" setup>
 import { computed, inject } from 'vue'
+import {
+  DialogContentDefaultValueProps,
+  dialogContentEmits,
+} from './dialog-content'
 import { ElIcon } from '@element-plus/components/icon'
 import { FOCUS_TRAP_INJECTION_KEY } from '@element-plus/components/focus-trap'
 import { useDraggable, useLocale } from '@element-plus/hooks'
 import { CloseComponents, composeRefs } from '@element-plus/utils'
 import { dialogInjectionKey } from './constants'
-import {
-  dialogContentEmits,
-  dialogContentPropsDefaults,
-} from './dialog-content'
-
-import type { DialogContentProps } from './dialog-content'
 
 const { t } = useLocale()
 const { Close } = CloseComponents
 
 defineOptions({ name: 'ElDialogContent' })
-const props = withDefaults(
-  defineProps<DialogContentProps>(),
-  dialogContentPropsDefaults
-)
+const props = defineProps(DialogContentDefaultValueProps)
 defineEmits(dialogContentEmits)
 
 const { dialogRef, headerRef, bodyId, ns, style } = inject(dialogInjectionKey)!

@@ -10,8 +10,8 @@ export interface ThumbProps {
   always?: boolean
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const thumbPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const ThumbDefaultValueProps = buildProps({
   vertical: Boolean,
   size: String,
   move: Number,

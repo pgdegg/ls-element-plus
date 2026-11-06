@@ -5,7 +5,7 @@ import type { Awaitable, Mutable } from '@element-plus/utils'
 import type { UploadAjaxError } from './ajax'
 import type Upload from './upload.vue'
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
+/** Runtime prop definitions; use the public props interface for types. */
 export const uploadListTypeValues = ['text', 'picture', 'picture-card'] as const
 
 let fileId = 1
@@ -203,8 +203,8 @@ export interface UploadProps extends UploadBaseProps {
   crossorigin?: Crossorigin
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const uploadBasePropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const UploadBaseDefaultValueProps = buildProps({
   /**
    * @description 请求 URL
    */
@@ -321,9 +321,9 @@ export const uploadBasePropDefs = buildProps({
   directory: Boolean,
 } as const)
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const uploadPropDefs = buildProps({
-  ...uploadBasePropDefs,
+/** Runtime prop definitions; use the public props interface for types. */
+export const UploadDefaultValueProps = buildProps({
+  ...UploadBaseDefaultValueProps,
   /**
    * @description 上传前的钩子函数，参数为待上传文件。若返回 `false`，或返回 `Promise` 且被 reject，则中止上传
    */
@@ -395,29 +395,3 @@ export const uploadPropDefs = buildProps({
 } as const)
 
 export type UploadInstance = InstanceType<typeof Upload> & unknown
-
-export const uploadBasePropsDefaults = {
-  action: '#',
-  method: 'post',
-  data: () => mutable({}),
-  name: 'file',
-  showFileList: true,
-  accept: '',
-  fileList: () => mutable([]),
-  autoUpload: true,
-  listType: 'text',
-  httpRequest: ajaxUpload,
-  disabled: undefined,
-} as const
-
-export const uploadPropsDefaults = {
-  ...uploadBasePropsDefaults,
-  beforeUpload: NOOP,
-  onRemove: NOOP,
-  onChange: NOOP,
-  onPreview: NOOP,
-  onSuccess: NOOP,
-  onProgress: NOOP,
-  onError: NOOP,
-  onExceed: NOOP,
-} as const

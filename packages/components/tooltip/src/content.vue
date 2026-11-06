@@ -47,6 +47,7 @@
 
 <script lang="ts" setup>
 import { computed, inject, onBeforeUnmount, ref, unref, watch } from 'vue'
+import { TooltipContentDefaultValueProps } from './content'
 import { computedEager, onClickOutside } from '@vueuse/core'
 import { useNamespace, usePopperContainerId } from '@element-plus/hooks'
 import {
@@ -57,9 +58,7 @@ import {
 import { ElPopperContent } from '@element-plus/components/popper'
 import { TOOLTIP_INJECTION_KEY } from './constants'
 import { isTriggerType } from './utils'
-import { useTooltipContentPropsDefaults } from './content'
 
-import type { ElTooltipContentProps } from './content'
 import type { OnClickOutsideReturn } from '@vueuse/core'
 import type { PopperContentInstance } from '@element-plus/components/popper'
 
@@ -68,10 +67,7 @@ defineOptions({
   inheritAttrs: false,
 })
 
-const props = withDefaults(
-  defineProps<ElTooltipContentProps>(),
-  useTooltipContentPropsDefaults
-)
+const props = defineProps(TooltipContentDefaultValueProps)
 
 const { selector } = usePopperContainerId()
 const ns = useNamespace('tooltip')

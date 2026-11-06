@@ -19,6 +19,7 @@
 
 <script lang="ts" setup>
 import { inject, nextTick, ref, toRef, unref } from 'vue'
+import { TooltipTriggerDefaultValueProps } from './trigger'
 import { ElPopperTrigger } from '@element-plus/components/popper'
 import {
   composeEventHandlers,
@@ -28,19 +29,14 @@ import {
 import { useNamespace } from '@element-plus/hooks'
 import { TOOLTIP_INJECTION_KEY } from './constants'
 import { whenTrigger } from './utils'
-import { useTooltipTriggerPropsDefaults } from './trigger'
 
-import type { UseTooltipTriggerProps } from './trigger'
 import type { OnlyChildExpose } from '@element-plus/components/slot'
 
 defineOptions({
   name: 'ElTooltipTrigger',
 })
 
-const props = withDefaults(
-  defineProps<UseTooltipTriggerProps>(),
-  useTooltipTriggerPropsDefaults
-)
+const props = defineProps(TooltipTriggerDefaultValueProps)
 
 const ns = useNamespace('tooltip')
 const { controlled, id, open, onOpen, onClose, onToggle } = inject(

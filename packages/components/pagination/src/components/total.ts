@@ -3,16 +3,18 @@ import { buildProps } from '@element-plus/utils'
 import type Total from './total.vue'
 import type { ExtractPropTypes, ExtractPublicPropTypes } from 'vue'
 
-export const paginationTotalProps = buildProps({
+export const PaginationTotalDefaultValueProps = buildProps({
   total: {
     type: Number,
     default: 1000,
   },
 } as const)
 
-export type PaginationTotalProps = ExtractPropTypes<typeof paginationTotalProps>
+export type PaginationTotalProps = ExtractPropTypes<
+  typeof PaginationTotalDefaultValueProps
+>
 export type PaginationTotalPropsPublic = ExtractPublicPropTypes<
-  typeof paginationTotalProps
+  typeof PaginationTotalDefaultValueProps
 >
 
 export type TotalInstance = InstanceType<typeof Total> & unknown

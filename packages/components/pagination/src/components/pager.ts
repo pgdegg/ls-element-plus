@@ -3,7 +3,7 @@ import { buildProps } from '@element-plus/utils'
 import type { ExtractPropTypes, ExtractPublicPropTypes } from 'vue'
 import type Pager from './pager.vue'
 
-export const paginationPagerProps = buildProps({
+export const PaginationPagerDefaultValueProps = buildProps({
   currentPage: {
     type: Number,
     default: 1,
@@ -19,9 +19,11 @@ export const paginationPagerProps = buildProps({
   disabled: Boolean,
 } as const)
 
-export type PaginationPagerProps = ExtractPropTypes<typeof paginationPagerProps>
+export type PaginationPagerProps = ExtractPropTypes<
+  typeof PaginationPagerDefaultValueProps
+>
 export type PaginationPagerPropsPublic = ExtractPublicPropTypes<
-  typeof paginationPagerProps
+  typeof PaginationPagerDefaultValueProps
 >
 
 export type PagerInstance = InstanceType<typeof Pager> & unknown

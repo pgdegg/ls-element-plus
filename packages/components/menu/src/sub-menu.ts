@@ -45,7 +45,7 @@ import type {
 } from 'vue'
 import type { MenuProvider, SubMenuProvider } from './types'
 
-export const subMenuProps = buildProps({
+export const SubMenuDefaultValueProps = buildProps({
   /**
    * @description 唯一标识
    */
@@ -115,13 +115,15 @@ export const subMenuProps = buildProps({
     type: iconPropType,
   },
 } as const)
-export type SubMenuProps = ExtractPropTypes<typeof subMenuProps>
-export type SubMenuPropsPublic = ExtractPublicPropTypes<typeof subMenuProps>
+export type SubMenuProps = ExtractPropTypes<typeof SubMenuDefaultValueProps>
+export type SubMenuPropsPublic = ExtractPublicPropTypes<
+  typeof SubMenuDefaultValueProps
+>
 
 const COMPONENT_NAME = 'ElSubMenu'
 export default defineComponent({
   name: COMPONENT_NAME,
-  props: subMenuProps,
+  props: SubMenuDefaultValueProps,
 
   setup(props, { slots, expose }) {
     const instance = getCurrentInstance()!

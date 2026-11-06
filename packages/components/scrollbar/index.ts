@@ -8,7 +8,11 @@ export const ElScrollbar: SFCWithInstall<typeof Scrollbar> =
 export default ElScrollbar
 
 export * from './src/util'
-export { scrollbarEmits } from './src/scrollbar'
+export {
+  scrollbarEmits,
+  ScrollbarDefaultValueProps,
+  ScrollbarMaskDefaultValueProps,
+} from './src/scrollbar'
 export type {
   ScrollbarProps,
   ScrollbarEmits,
@@ -17,3 +21,7 @@ export type {
 } from './src/scrollbar'
 export type { ThumbProps, ThumbInstance } from './src/thumb'
 export * from './src/constants'
+
+export { BarDefaultValueProps } from './src/bar'
+
+export { ThumbDefaultValueProps } from './src/thumb'

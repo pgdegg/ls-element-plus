@@ -3,7 +3,7 @@ import { buildProps, iconPropType } from '@element-plus/utils'
 import type { ExtractPropTypes, ExtractPublicPropTypes } from 'vue'
 import type Next from './next.vue'
 
-export const paginationNextProps = buildProps({
+export const PaginationNextDefaultValueProps = buildProps({
   disabled: Boolean,
   currentPage: {
     type: Number,
@@ -21,9 +21,11 @@ export const paginationNextProps = buildProps({
   },
 } as const)
 
-export type PaginationNextProps = ExtractPropTypes<typeof paginationNextProps>
+export type PaginationNextProps = ExtractPropTypes<
+  typeof PaginationNextDefaultValueProps
+>
 export type PaginationNextPropsPublic = ExtractPublicPropTypes<
-  typeof paginationNextProps
+  typeof PaginationNextDefaultValueProps
 >
 
 export type NextInstance = InstanceType<typeof Next> & unknown

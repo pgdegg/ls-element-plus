@@ -8,7 +8,7 @@ import type {
 } from 'vue'
 import type { KeyType } from './types'
 
-export const tableV2HeaderRowProps = buildProps({
+export const TableV2HeaderRowDefaultValueProps = buildProps({
   class: String,
   columns,
   columnsStyles: {
@@ -20,8 +20,8 @@ export const tableV2HeaderRowProps = buildProps({
 } as const)
 
 export type TableV2HeaderRowProps = ExtractPropTypes<
-  typeof tableV2HeaderRowProps
+  typeof TableV2HeaderRowDefaultValueProps
 >
 export type TableV2HeaderRowPropsPublic = ExtractPublicPropTypes<
-  typeof tableV2HeaderRowProps
+  typeof TableV2HeaderRowDefaultValueProps
 >

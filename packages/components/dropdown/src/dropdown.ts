@@ -1,7 +1,7 @@
 import { buildProps, definePropType, iconPropType } from '@element-plus/utils'
 import { EVENT_CODE } from '@element-plus/constants'
-import { tooltipContentPropDefs } from '@element-plus/components/tooltip/src/content'
-import { tooltipTriggerPropDefs } from '@element-plus/components/tooltip/src/trigger'
+import { TooltipContentDefaultValueProps } from '@element-plus/components/tooltip/src/content'
+import { TooltipTriggerDefaultValueProps } from '@element-plus/components/tooltip/src/trigger'
 import { roleTypes } from '@element-plus/components/popper'
 
 import type { TooltipTriggerType } from '@element-plus/components/tooltip'
@@ -23,12 +23,12 @@ export interface IElDropdownInstance {
   triggerElm?: ComputedRef<HTMLButtonElement | null>
 }
 
-export const dropdownProps = buildProps({
+export const DropdownDefaultValueProps = buildProps({
   /**
    * @description 触发方式
    */
   trigger: {
-    ...tooltipTriggerPropDefs.trigger,
+    ...TooltipTriggerDefaultValueProps.trigger,
     type: definePropType<Arrayable<Exclude<TooltipTriggerType, 'focus'>>>([
       String,
       Array,
@@ -46,16 +46,16 @@ export const dropdownProps = buildProps({
   /**
    * @description 是否启用虚拟触发
    */
-  virtualTriggering: tooltipTriggerPropDefs.virtualTriggering,
+  virtualTriggering: TooltipTriggerDefaultValueProps.virtualTriggering,
   /**
    * @description 下拉菜单所依附的参考元素
    */
-  virtualRef: tooltipTriggerPropDefs.virtualRef,
+  virtualRef: TooltipTriggerDefaultValueProps.virtualRef,
   /**
    * @description Tooltip 主题，内置主题：`dark` / `light`
    */
   effect: {
-    ...tooltipContentPropDefs.effect,
+    ...TooltipContentDefaultValueProps.effect,
     default: 'light',
   },
   /**
@@ -139,11 +139,11 @@ export const dropdownProps = buildProps({
   /**
    * @description Dropdown 下拉菜单的自定义类名
    */
-  popperClass: tooltipContentPropDefs.popperClass,
+  popperClass: TooltipContentDefaultValueProps.popperClass,
   /**
    * @description Dropdown 下拉菜单的自定义样式
    */
-  popperStyle: tooltipContentPropDefs.popperStyle,
+  popperStyle: TooltipContentDefaultValueProps.popperStyle,
   /**
    * @description 是否禁用
    */
@@ -162,11 +162,11 @@ export const dropdownProps = buildProps({
   /**
    * @description 下拉弹层是否传送到 body
    */
-  teleported: tooltipContentPropDefs.teleported,
+  teleported: TooltipContentDefaultValueProps.teleported,
   /**
    * @description 下拉内容追加到哪个元素
    */
-  appendTo: tooltipContentPropDefs.appendTo,
+  appendTo: TooltipContentDefaultValueProps.appendTo,
   /**
    * @description 当下拉菜单未激活且 `persistent` 为 `false` 时，菜单将被销毁
    */
@@ -176,7 +176,7 @@ export const dropdownProps = buildProps({
   },
 } as const)
 
-export const dropdownItemProps = buildProps({
+export const DropdownItemDefaultValueProps = buildProps({
   /**
    * @description 派发给 Dropdown `command` 回调的命令
    */
@@ -201,7 +201,7 @@ export const dropdownItemProps = buildProps({
   },
 } as const)
 
-export const dropdownMenuProps = buildProps({
+export const DropdownMenuDefaultValueProps = buildProps({
   onKeydown: { type: definePropType<(e: KeyboardEvent) => void>(Function) },
 })
 

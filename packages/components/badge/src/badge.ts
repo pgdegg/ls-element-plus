@@ -46,8 +46,8 @@ export interface BadgeProps {
   badgeClass?: ClassValue
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const badgePropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const BadgeDefaultValueProps = buildProps({
   /**
    * @description 显示值。
    */

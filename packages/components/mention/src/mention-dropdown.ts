@@ -10,8 +10,8 @@ export interface MentionDropdownProps {
   ariaLabel?: string
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const mentionDropdownPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const MentionDropdownDefaultValueProps = buildProps({
   options: {
     type: definePropType<MentionOption[]>(Array),
     default: () => [],

@@ -34,8 +34,8 @@ export interface LinkProps {
   icon?: IconPropType
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const linkPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const LinkDefaultValueProps = buildProps({
   /**
    * @description 类型
    */

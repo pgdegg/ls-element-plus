@@ -1,8 +1,8 @@
 import { buttonTypes } from '@element-plus/components/button'
 import { QuestionFilled } from '@element-plus/icons-vue'
 import { buildProps, iconPropType } from '@element-plus/utils'
-import { tooltipContentPropDefs } from '@element-plus/components/tooltip/src/content'
-import { tooltipTriggerPropDefs } from '@element-plus/components/tooltip/src/trigger'
+import { TooltipContentDefaultValueProps } from '@element-plus/components/tooltip/src/content'
+import { TooltipTriggerDefaultValueProps } from '@element-plus/components/tooltip/src/trigger'
 
 import type { ButtonType } from '@element-plus/components/button'
 import type {
@@ -75,8 +75,8 @@ export interface PopconfirmProps {
   virtualRef?: UseTooltipTriggerProps['virtualRef']
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const popconfirmPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const PopconfirmDefaultValueProps = buildProps({
   /**
    * @description 标题
    */
@@ -134,17 +134,17 @@ export const popconfirmPropDefs = buildProps({
    * @description Tooltip 主题，内置主题：`dark` / `light`
    */
   effect: {
-    ...tooltipContentPropDefs.effect,
+    ...TooltipContentDefaultValueProps.effect,
     default: 'light',
   },
   /**
    * @description popconfirm 是否被 teleport 到 body
    */
-  teleported: tooltipContentPropDefs.teleported,
+  teleported: TooltipContentDefaultValueProps.teleported,
   /**
    * @description 当 popconfirm 不处于激活状态且 `persistent` 为 `false` 时，popconfirm 将被销毁
    */
-  persistent: tooltipContentPropDefs.persistent,
+  persistent: TooltipContentDefaultValueProps.persistent,
   /**
    * @description popconfirm 宽度，最小宽度 150px
    */
@@ -152,8 +152,8 @@ export const popconfirmPropDefs = buildProps({
     type: [String, Number],
     default: 150,
   },
-  virtualTriggering: tooltipTriggerPropDefs.virtualTriggering,
-  virtualRef: tooltipTriggerPropDefs.virtualRef,
+  virtualTriggering: TooltipTriggerDefaultValueProps.virtualTriggering,
+  virtualRef: TooltipTriggerDefaultValueProps.virtualRef,
 } as const)
 
 export const popconfirmEmits = {

@@ -101,6 +101,7 @@
 
 <script lang="ts" setup>
 import { computed, nextTick, provide, ref, watch } from 'vue'
+import { ColorPickerDefaultValueProps, colorPickerEmits } from './color-picker'
 import { debounce, pick } from 'lodash-unified'
 import { ElIcon } from '@element-plus/components/icon'
 import { reactiveComputed } from '@vueuse/core'
@@ -126,26 +127,21 @@ import {
 } from '@element-plus/constants'
 import { NOOP, getEventCode } from '@element-plus/utils'
 import { ArrowDown, Close } from '@element-plus/icons-vue'
-import { colorPickerEmits, colorPickerPropsDefaults } from './color-picker'
 import {
   ElColorPickerPanel,
   ROOT_COMMON_COLOR_INJECTION_KEY,
 } from '@element-plus/components/color-picker-panel'
-import { colorPickerPanelPropDefs } from '@element-plus/components/color-picker-panel/src/color-picker-panel'
+import { ColorPickerPanelDefaultValueProps } from '@element-plus/components/color-picker-panel/src/color-picker-panel'
 import Color from '@element-plus/components/color-picker-panel/src/utils/color'
 import { useCommonColor } from '@element-plus/components/color-picker-panel/src/composables/use-common-color'
 
 import type { ColorPickerPanelInstance } from '@element-plus/components/color-picker-panel'
 import type { TooltipInstance } from '@element-plus/components/tooltip'
-import type { ColorPickerProps } from './color-picker'
 
 defineOptions({
   name: 'ElColorPicker',
 })
-const props = withDefaults(
-  defineProps<ColorPickerProps>(),
-  colorPickerPropsDefaults
-)
+const props = defineProps(ColorPickerDefaultValueProps)
 
 const emit = defineEmits(colorPickerEmits)
 
@@ -188,7 +184,7 @@ const color = reactiveComputed(
 ) as Color
 
 const panelProps = computed(() =>
-  pick(props, Object.keys(colorPickerPanelPropDefs))
+  pick(props, Object.keys(ColorPickerPanelDefaultValueProps))
 )
 
 const displayedColor = computed(() => {

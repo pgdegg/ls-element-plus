@@ -16,7 +16,7 @@ export type ExperimentalFeatures = {
   // TO BE Defined
 }
 
-export const configProviderProps = buildProps({
+export const ConfigProviderDefaultValueProps = buildProps({
   /**
    * @description 控制用户是否需要无障碍（a11y）功能
    */
@@ -96,7 +96,9 @@ export const configProviderProps = buildProps({
   },
   ...emptyValuesPropDefs,
 } as const)
-export type ConfigProviderProps = ExtractPropTypes<typeof configProviderProps>
+export type ConfigProviderProps = ExtractPropTypes<
+  typeof ConfigProviderDefaultValueProps
+>
 export type ConfigProviderPropsPublic = ExtractPublicPropTypes<
-  typeof configProviderProps
+  typeof ConfigProviderDefaultValueProps
 >

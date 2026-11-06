@@ -46,8 +46,8 @@ const itemSize = {
   default: 26,
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const treePropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const TreeV2DefaultValueProps = buildProps({
   data: {
     type: definePropType<TreeData>(Array),
     default: () => mutable([] as const),
@@ -119,8 +119,8 @@ export const treePropDefs = buildProps({
   scrollbarAlwaysOn: Boolean,
 } as const)
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const treeNodePropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const TreeV2NodeDefaultValueProps = buildProps({
   node: {
     type: definePropType<TreeNode>(Object),
     default: () => mutable(EMPTY_NODE),
@@ -135,7 +135,7 @@ export const treeNodePropDefs = buildProps({
   itemSize,
 } as const)
 
-export const treeNodeContentProps = buildProps({
+export const TreeV2NodeContentDefaultValueProps = buildProps({
   node: {
     type: definePropType<TreeNode>(Object),
     required: true,

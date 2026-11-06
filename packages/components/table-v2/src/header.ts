@@ -8,7 +8,7 @@ const requiredNumberType = {
   required: true,
 } as const
 
-export const tableV2HeaderProps = buildProps({
+export const TableV2HeaderDefaultValueProps = buildProps({
   class: String,
   columns,
   fixedHeaderData: {
@@ -31,7 +31,9 @@ export const tableV2HeaderProps = buildProps({
   width: requiredNumberType,
 } as const)
 
-export type TableV2HeaderProps = ExtractPropTypes<typeof tableV2HeaderProps>
+export type TableV2HeaderProps = ExtractPropTypes<
+  typeof TableV2HeaderDefaultValueProps
+>
 export type TableV2HeaderPropsPublic = ExtractPublicPropTypes<
-  typeof tableV2HeaderProps
+  typeof TableV2HeaderDefaultValueProps
 >

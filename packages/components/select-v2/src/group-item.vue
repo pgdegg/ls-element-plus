@@ -9,21 +9,11 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { SelectV2GroupItemDefaultValueProps } from './group-item-props'
 import { useNamespace } from '@element-plus/hooks'
 
-import type { CSSProperties, PropType } from 'vue'
-
 export default defineComponent({
-  props: {
-    item: {
-      type: Object,
-      required: true,
-    },
-    style: {
-      type: Object as PropType<CSSProperties>,
-    },
-    height: Number,
-  },
+  props: SelectV2GroupItemDefaultValueProps,
   setup() {
     const ns = useNamespace('select')
     return {

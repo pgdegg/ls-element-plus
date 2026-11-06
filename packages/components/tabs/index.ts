@@ -18,3 +18,7 @@ export type { TabBarProps, TabBarInstance } from './src/tab-bar'
 export * from './src/tab-nav'
 export type { TabPaneProps, TabPaneInstance } from './src/tab-pane'
 export * from './src/constants'
+
+export { TabBarDefaultValueProps } from './src/tab-bar'
+
+export { TabPaneDefaultValueProps } from './src/tab-pane'

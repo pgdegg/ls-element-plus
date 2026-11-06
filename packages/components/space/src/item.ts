@@ -4,18 +4,20 @@ import { useNamespace } from '@element-plus/hooks'
 
 import type { ExtractPropTypes, ExtractPublicPropTypes } from 'vue'
 
-export const spaceItemProps = buildProps({
+export const SpaceItemDefaultValueProps = buildProps({
   prefixCls: {
     type: String,
   },
 } as const)
-export type SpaceItemProps = ExtractPropTypes<typeof spaceItemProps>
-export type SpaceItemPropsPublic = ExtractPublicPropTypes<typeof spaceItemProps>
+export type SpaceItemProps = ExtractPropTypes<typeof SpaceItemDefaultValueProps>
+export type SpaceItemPropsPublic = ExtractPublicPropTypes<
+  typeof SpaceItemDefaultValueProps
+>
 
 const SpaceItem = defineComponent({
   name: 'ElSpaceItem',
 
-  props: spaceItemProps,
+  props: SpaceItemDefaultValueProps,
 
   setup(props, { slots }) {
     const ns = useNamespace('space')

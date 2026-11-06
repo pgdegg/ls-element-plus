@@ -15,19 +15,15 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue'
+import { DividerDefaultValueProps } from './divider'
 import { useNamespace } from '@element-plus/hooks'
 
 import type { CSSProperties } from 'vue'
-import type { DividerProps } from './divider'
 
 defineOptions({
   name: 'ElDivider',
 })
-const props = withDefaults(defineProps<DividerProps>(), {
-  direction: 'horizontal',
-  contentPosition: 'center',
-  borderStyle: 'solid',
-})
+const props = defineProps(DividerDefaultValueProps)
 const ns = useNamespace('divider')
 const dividerStyle = computed(() => {
   return ns.cssVar({

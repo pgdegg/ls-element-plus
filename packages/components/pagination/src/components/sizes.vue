@@ -28,13 +28,13 @@ import { ElOption, ElSelect } from '@element-plus/components/select'
 import { useLocale, useNamespace } from '@element-plus/hooks'
 import { isArray } from '@element-plus/utils'
 import { usePagination } from '../usePagination'
-import { paginationSizesProps } from './sizes'
+import { PaginationSizesDefaultValueProps } from './sizes'
 
 defineOptions({
   name: 'ElPaginationSizes',
 })
 
-const props = defineProps(paginationSizesProps)
+const props = defineProps(PaginationSizesDefaultValueProps)
 const emit = defineEmits(['page-size-change'])
 const { t } = useLocale()
 const ns = useNamespace('pagination')

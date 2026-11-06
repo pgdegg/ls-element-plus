@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import { SplitterBarDefaultValueProps } from './split-bar-props'
 import {
   ArrowDown,
   ArrowLeft,
@@ -14,24 +15,7 @@ defineOptions({
   name: 'ElSplitterBar',
 })
 
-const props = defineProps({
-  index: {
-    type: Number,
-    required: true,
-  },
-  layout: {
-    type: String,
-    values: ['horizontal', 'vertical'] as const,
-    default: 'horizontal',
-  },
-  resizable: {
-    type: Boolean,
-    default: true,
-  },
-  lazy: Boolean,
-  startCollapsible: Boolean,
-  endCollapsible: Boolean,
-})
+const props = defineProps(SplitterBarDefaultValueProps)
 
 const emit = defineEmits(['moveStart', 'moving', 'moveEnd', 'collapse'])
 

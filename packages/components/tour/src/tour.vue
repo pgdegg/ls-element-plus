@@ -31,34 +31,23 @@
 
 <script lang="ts" setup>
 import { computed, provide, ref, toRef, useSlots, watch } from 'vue'
+import { TourDefaultValueProps, tourEmits } from './tour'
 import { useNamespace, useZIndex } from '@element-plus/hooks'
 import { isBoolean, isUndefined } from '@element-plus/utils'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@element-plus/constants'
 import ElTourMask from './mask.vue'
 import ElTourContent from './content.vue'
 import ElTourSteps from './steps'
-import { tourEmits } from './tour'
 import { tourKey, useTarget } from './helper'
 
 import type { TourStepProps } from './step'
-import type { TourProps } from './tour'
 
 defineOptions({
   name: 'ElTour',
   inheritAttrs: false,
 })
 
-const props = withDefaults(defineProps<TourProps>(), {
-  showArrow: true,
-  showClose: true,
-  placement: 'bottom',
-  mask: true,
-  gap: () => ({ offset: 6, radius: 2 }),
-  scrollIntoViewOptions: () => ({ block: 'center' }),
-  appendTo: 'body',
-  closeOnPressEscape: true,
-  targetAreaClickable: true,
-})
+const props = defineProps(TourDefaultValueProps)
 const emit = defineEmits(tourEmits)
 
 const ns = useNamespace('tour')

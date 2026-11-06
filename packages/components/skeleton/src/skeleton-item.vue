@@ -5,16 +5,13 @@
 </template>
 
 <script lang="ts" setup>
+import { SkeletonItemDefaultValueProps } from './skeleton-item'
 import { useNamespace } from '@element-plus/hooks'
 import { PictureFilled } from '@element-plus/icons-vue'
-
-import type { SkeletonItemProps } from './skeleton-item.ts'
 
 defineOptions({
   name: 'ElSkeletonItem',
 })
-withDefaults(defineProps<SkeletonItemProps>(), {
-  variant: 'text',
-})
+defineProps(SkeletonItemDefaultValueProps)
 const ns = useNamespace('skeleton')
 </script>

@@ -66,8 +66,8 @@ export interface FormItemProps {
   size?: ComponentSize
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const formItemPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const FormItemDefaultValueProps = buildProps({
   /**
    * @description 标签文本。
    */

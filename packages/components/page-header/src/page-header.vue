@@ -53,22 +53,16 @@
 </template>
 
 <script lang="ts" setup>
+import { PageHeaderDefaultValueProps, pageHeaderEmits } from './page-header'
 import { ElIcon } from '@element-plus/components/icon'
 import { ElDivider } from '@element-plus/components/divider'
 import { useLocale, useNamespace } from '@element-plus/hooks'
-import { Back } from '@element-plus/icons-vue'
-import { pageHeaderEmits } from './page-header'
-
-import type { PageHeaderProps } from './page-header'
 
 defineOptions({
   name: 'ElPageHeader',
 })
 
-withDefaults(defineProps<PageHeaderProps>(), {
-  icon: () => Back,
-  content: '',
-})
+defineProps(PageHeaderDefaultValueProps)
 const emit = defineEmits(pageHeaderEmits)
 
 const { t } = useLocale()

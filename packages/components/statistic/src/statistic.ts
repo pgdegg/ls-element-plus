@@ -43,8 +43,8 @@ export interface StatisticProps {
   valueStyle?: StyleValue
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const statisticPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const StatisticDefaultValueProps = buildProps({
   /**
    * @description 设置小数点
    */

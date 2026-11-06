@@ -5,7 +5,7 @@ import type { ClassValue } from '@element-plus/utils'
 import type { ExtractPropTypes, ExtractPublicPropTypes, StyleValue } from 'vue'
 import type Sizes from './sizes.vue'
 
-export const paginationSizesProps = buildProps({
+export const PaginationSizesDefaultValueProps = buildProps({
   pageSize: {
     type: Number,
     required: true,
@@ -31,9 +31,11 @@ export const paginationSizesProps = buildProps({
   appendSizeTo: String,
 } as const)
 
-export type PaginationSizesProps = ExtractPropTypes<typeof paginationSizesProps>
+export type PaginationSizesProps = ExtractPropTypes<
+  typeof PaginationSizesDefaultValueProps
+>
 export type PaginationSizesPropsPublic = ExtractPublicPropTypes<
-  typeof paginationSizesProps
+  typeof PaginationSizesDefaultValueProps
 >
 
 export type SizesInstance = InstanceType<typeof Sizes> & unknown

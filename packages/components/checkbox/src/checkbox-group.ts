@@ -60,8 +60,8 @@ export interface CheckboxGroupProps extends Pick<AriaProps, 'ariaLabel'> {
   type?: 'checkbox' | 'button'
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const checkboxGroupPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const CheckboxGroupDefaultValueProps = buildProps({
   /**
    * @description 绑定值
    */

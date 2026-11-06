@@ -7,25 +7,18 @@
 
 <script lang="ts" setup>
 import { getCurrentInstance, provide, watch } from 'vue'
+import { StepsDefaultValueProps, stepsEmits } from './steps'
 import { CHANGE_EVENT } from '@element-plus/constants'
 import { useNamespace, useOrderedChildren } from '@element-plus/hooks'
-import { stepsEmits } from './steps'
 import { STEPS_INJECTION_KEY } from './tokens'
 
-import type { StepsProps } from './steps'
 import type { StepItemState } from './item.vue'
 
 defineOptions({
   name: 'ElSteps',
 })
 
-const props = withDefaults(defineProps<StepsProps>(), {
-  space: '',
-  direction: 'horizontal',
-  active: 0,
-  processStatus: 'process',
-  finishStatus: 'finish',
-})
+const props = defineProps(StepsDefaultValueProps)
 const emit = defineEmits(stepsEmits)
 
 const ns = useNamespace('steps')

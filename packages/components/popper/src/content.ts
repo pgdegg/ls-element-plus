@@ -1,7 +1,7 @@
 import { placements } from '@popperjs/core'
 import { buildProps, definePropType } from '@element-plus/utils'
 import { useAriaProps } from '@element-plus/hooks'
-import { popperArrowPropDefs, popperArrowPropsDefaults } from './arrow'
+import { PopperArrowDefaultValueProps } from './arrow'
 
 import type { ClassValue } from '@element-plus/utils'
 import type { PopperEffect } from './popper'
@@ -38,8 +38,8 @@ export interface PopperCoreConfigProps {
   strategy?: (typeof POSITIONING_STRATEGIES)[number]
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const popperCoreConfigPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const PopperCoreConfigDefaultValueProps = buildProps({
   boundariesPadding: {
     type: Number,
     default: 0,
@@ -103,10 +103,10 @@ export interface PopperContentProps
   loop?: boolean
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const popperContentPropDefs = buildProps({
-  ...popperCoreConfigPropDefs,
-  ...popperArrowPropDefs,
+/** Runtime prop definitions; use the public props interface for types. */
+export const PopperContentDefaultValueProps = buildProps({
+  ...PopperCoreConfigDefaultValueProps,
+  ...PopperArrowDefaultValueProps,
   id: String,
   style: {
     type: definePropType<StyleValue>([String, Array, Object, Boolean]),
@@ -150,32 +150,6 @@ export const popperContentPropDefs = buildProps({
   ...useAriaProps(['ariaLabel']),
   loop: Boolean,
 } as const)
-
-export const popperCoreConfigPropsDefaults = {
-  boundariesPadding: 0,
-  gpuAcceleration: true,
-  offset: 12,
-  placement: 'bottom',
-  popperOptions: () => ({}),
-  strategy: 'absolute',
-} as const
-
-export const popperContentPropsDefaults = {
-  ...popperCoreConfigPropsDefaults,
-  ...popperArrowPropsDefaults,
-  effect: 'dark',
-  enterable: true,
-  stopPopperMouseEvent: true,
-  visible: false,
-  pure: false,
-  focusOnShow: false,
-  trapping: false,
-  virtualTriggering: false,
-  loop: false,
-  style: undefined,
-  popperStyle: undefined,
-  popperClass: undefined,
-} as const
 
 export const popperContentEmits = {
   mouseenter: (evt: MouseEvent) => evt instanceof MouseEvent,

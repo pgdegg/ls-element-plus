@@ -18,8 +18,8 @@ export interface SkeletonItemProps {
     | 'button'
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const skeletonItemPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const SkeletonItemDefaultValueProps = buildProps({
   /**
    * @description 当前渲染的骨架类型
    */

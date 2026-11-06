@@ -11,15 +11,12 @@
 
 <script lang="ts" setup>
 import { inject, ref } from 'vue'
+import { BarDefaultValueProps } from './bar'
 import { GAP } from './util'
 import Thumb from './thumb.vue'
 import { scrollbarContextKey } from './constants'
 
-import type { BarProps } from './bar'
-
-const props = withDefaults(defineProps<BarProps>(), {
-  always: true,
-})
+const props = defineProps(BarDefaultValueProps)
 
 const scrollbar = inject(scrollbarContextKey)
 

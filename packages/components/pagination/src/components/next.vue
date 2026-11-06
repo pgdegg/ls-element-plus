@@ -18,13 +18,13 @@
 import { computed } from 'vue'
 import { useLocale } from '@element-plus/hooks'
 import { ElIcon } from '@element-plus/components/icon'
-import { paginationNextProps } from './next'
+import { PaginationNextDefaultValueProps } from './next'
 
 defineOptions({
   name: 'ElPaginationNext',
 })
 
-const props = defineProps(paginationNextProps)
+const props = defineProps(PaginationNextDefaultValueProps)
 
 defineEmits(['click'])
 

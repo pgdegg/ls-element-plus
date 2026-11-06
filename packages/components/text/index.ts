@@ -7,3 +7,5 @@ export const ElText: SFCWithInstall<typeof Text> = withInstall(Text)
 export default ElText
 
 export type { TextProps, TextInstance } from './src/text'
+
+export { TextDefaultValueProps } from './src/text'

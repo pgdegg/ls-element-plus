@@ -1,11 +1,11 @@
 import { defineComponent, inject, renderSlot } from 'vue'
 import { useNamespace } from '@element-plus/hooks'
 import { ROOT_PICKER_INJECTION_KEY } from '../constants'
-import { basicCellProps } from '../props/basic-cell'
+import { BasicCellDefaultValueProps } from '../props/basic-cell'
 
 export default defineComponent({
   name: 'ElDatePickerCell',
-  props: basicCellProps,
+  props: BasicCellDefaultValueProps,
   setup(props) {
     const ns = useNamespace('date-table-cell')
     const { slots } = inject(ROOT_PICKER_INJECTION_KEY)!

@@ -1,10 +1,6 @@
 import { buildProps, definePropType } from '@element-plus/utils'
-import { popperContentPropsDefaults } from '@element-plus/components/popper'
-import { popperContentPropDefs } from '@element-plus/components/popper/src/content'
-import {
-  useAriaProps,
-  useDelayedTogglePropsDefaults,
-} from '@element-plus/hooks'
+import { PopperContentDefaultValueProps } from '@element-plus/components/popper/src/content'
+import { useAriaProps } from '@element-plus/hooks'
 import { delayedTogglePropDefs } from '@element-plus/hooks/use-delayed-toggle/index'
 
 import type { AriaProps, UseDelayedToggleProps } from '@element-plus/hooks'
@@ -52,18 +48,10 @@ export interface ElTooltipContentProps
   ariaLabel?: AriaProps['ariaLabel']
 }
 
-export const useTooltipContentPropsDefaults = {
-  ...useDelayedTogglePropsDefaults,
-  ...popperContentPropsDefaults,
-  content: '',
-  visible: null,
-  teleported: true,
-} as const
-
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const tooltipContentPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const TooltipContentDefaultValueProps = buildProps({
   ...delayedTogglePropDefs,
-  ...popperContentPropDefs,
+  ...PopperContentDefaultValueProps,
   /**
    * @description tooltip 内容挂载到哪个元素
    */

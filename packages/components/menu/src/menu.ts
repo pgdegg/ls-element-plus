@@ -50,7 +50,7 @@ import type {
 } from 'vue'
 import type { UseResizeObserverReturn } from '@vueuse/core'
 
-export const menuProps = buildProps({
+export const MenuDefaultValueProps = buildProps({
   /**
    * @description 菜单显示模式
    */
@@ -168,8 +168,10 @@ export const menuProps = buildProps({
     default: true,
   },
 } as const)
-export type MenuProps = ExtractPropTypes<typeof menuProps>
-export type MenuPropsPublic = ExtractPublicPropTypes<typeof menuProps>
+export type MenuProps = ExtractPropTypes<typeof MenuDefaultValueProps>
+export type MenuPropsPublic = ExtractPublicPropTypes<
+  typeof MenuDefaultValueProps
+>
 
 const checkIndexPath = (indexPath: unknown): indexPath is string[] =>
   isArray(indexPath) && indexPath.every((path) => isString(path))
@@ -199,7 +201,7 @@ const DEFAULT_MORE_ITEM_WIDTH = 64
 export default defineComponent({
   name: 'ElMenu',
 
-  props: menuProps,
+  props: MenuDefaultValueProps,
   emits: menuEmits,
 
   setup(props, { emit, slots, expose }) {

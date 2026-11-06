@@ -11,10 +11,15 @@ export * from './src/types'
 export {
   CASCADER_PANEL_ITEM_SIZE,
   CASCADER_PANEL_HEIGHT,
-  CommonProps,
+  CascaderCommonDefaultValueProps,
   DefaultProps,
   cascaderPanelEmits,
   useCascaderConfig,
+  CascaderPanelDefaultValueProps,
+  CascaderMenuDefaultValueProps,
+  CascaderNodeDefaultValueProps,
 } from './src/config'
 export type { CascaderCommonProps, CascaderPanelProps } from './src/config'
 export * from './src/instance'
+
+export { CascaderNodeContentDefaultValueProps } from './src/node-content'

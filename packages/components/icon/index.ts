@@ -7,3 +7,5 @@ export const ElIcon: SFCWithInstall<typeof Icon> = withInstall(Icon)
 export default ElIcon
 
 export type { IconProps, IconInstance } from './src/icon'
+
+export { IconDefaultValueProps } from './src/icon'

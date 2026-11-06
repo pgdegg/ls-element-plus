@@ -42,8 +42,8 @@ export interface AnchorProps {
   selectScrollTop?: boolean
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const anchorPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const AnchorDefaultValueProps = buildProps({
   /**
    * @description 滚动容器
    */

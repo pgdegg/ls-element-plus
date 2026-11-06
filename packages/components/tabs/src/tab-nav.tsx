@@ -44,7 +44,7 @@ import type { TabBarInstance } from './tab-bar'
 import type { TabPaneName, TabsPaneContext } from './constants'
 import type { Scrollable } from './composables/use-tab-nav-touch'
 
-export const tabNavProps = buildProps({
+export const TabNavDefaultValueProps = buildProps({
   panes: {
     type: definePropType<TabsPaneContext[]>(Array),
     default: () => mutable([] as const),
@@ -75,14 +75,16 @@ export const tabNavEmits = {
   tabRemove: (tab: TabsPaneContext, ev: Event) => ev instanceof Event,
 }
 
-export type TabNavProps = ExtractPropTypes<typeof tabNavProps>
-export type TabNavPropsPublic = ExtractPublicPropTypes<typeof tabNavProps>
+export type TabNavProps = ExtractPropTypes<typeof TabNavDefaultValueProps>
+export type TabNavPropsPublic = ExtractPublicPropTypes<
+  typeof TabNavDefaultValueProps
+>
 export type TabNavEmits = typeof tabNavEmits
 
 const COMPONENT_NAME = 'ElTabNav'
 const TabNav = defineComponent({
   name: COMPONENT_NAME,
-  props: tabNavProps,
+  props: TabNavDefaultValueProps,
   emits: tabNavEmits,
   setup(props, { expose, emit }) {
     const rootTabs = inject(tabsRootContextKey)

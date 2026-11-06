@@ -10,6 +10,7 @@ export {
   MESSAGE_DEFAULT_PLACEMENT,
   messageDefaults,
   messageEmits,
+  MessageDefaultValueProps,
 } from './src/message'
 export type {
   MessageProps,

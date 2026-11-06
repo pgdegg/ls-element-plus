@@ -25,13 +25,13 @@ import { computed, ref } from 'vue'
 import { useLocale, useNamespace } from '@element-plus/hooks'
 import ElInput from '@element-plus/components/input'
 import { usePagination } from '../usePagination'
-import { paginationJumperProps } from './jumper'
+import { PaginationJumperDefaultValueProps } from './jumper'
 
 defineOptions({
   name: 'ElPaginationJumper',
 })
 
-defineProps(paginationJumperProps)
+defineProps(PaginationJumperDefaultValueProps)
 const { t } = useLocale()
 const ns = useNamespace('pagination')
 const { pageCount, disabled, currentPage, changeEvent } = usePagination()

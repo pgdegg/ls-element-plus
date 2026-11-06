@@ -32,8 +32,8 @@ export interface DateTableProps {
   hideHeader?: boolean
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const dateTablePropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const DateTableDefaultValueProps = buildProps({
   selectedDay: {
     type: definePropType<Dayjs>(Object),
   },

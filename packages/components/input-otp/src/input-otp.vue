@@ -42,6 +42,7 @@
 
 <script lang="ts" setup>
 import { computed, ref, watch } from 'vue'
+import { InputOtpDefaultValueProps, inputOtpEmits } from './input-otp'
 import { clamp } from '@vueuse/core'
 import { useLocale, useNamespace } from '@element-plus/hooks'
 import { NOOP, getEventCode, isFunction, rAF } from '@element-plus/utils'
@@ -56,7 +57,6 @@ import {
   EVENT_CODE,
   UPDATE_MODEL_EVENT,
 } from '@element-plus/constants'
-import { inputOtpEmits } from './input-otp'
 
 import type { InputOtpProps } from './input-otp'
 
@@ -64,13 +64,7 @@ defineOptions({
   name: 'ElInputOtp',
 })
 
-const props = withDefaults(defineProps<InputOtpProps>(), {
-  length: 6,
-  validator: () => true,
-  type: 'outlined',
-  disabled: undefined,
-  validateEvent: true,
-})
+const props = defineProps(InputOtpDefaultValueProps)
 const emit = defineEmits(inputOtpEmits)
 
 const initialValue = computed(() => {

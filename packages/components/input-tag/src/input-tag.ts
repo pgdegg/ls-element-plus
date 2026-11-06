@@ -14,7 +14,7 @@ import {
   INPUT_EVENT,
   UPDATE_MODEL_EVENT,
 } from '@element-plus/constants'
-import { tagPropDefs } from '@element-plus/components/tag/src/tag'
+import { TagDefaultValueProps } from '@element-plus/components/tag/src/tag'
 import { CircleClose } from '@element-plus/icons-vue'
 
 import type { ComponentSize } from '@element-plus/constants'
@@ -131,8 +131,8 @@ export interface InputTagProps {
   ariaLabel?: string
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const inputTagPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const InputTagDefaultValueProps = buildProps({
   /** @description 是否隐藏占位文本；默认在禁用或只读时隐藏，false 强制显示。 */
   hidePlaceholder: { type: Boolean, default: undefined },
   /**
@@ -148,11 +148,11 @@ export const inputTagPropDefs = buildProps({
   /**
    * @description 标签类型
    */
-  tagType: { ...tagPropDefs.type, default: 'info' },
+  tagType: { ...TagDefaultValueProps.type, default: 'info' },
   /**
    * @description 标签 effect
    */
-  tagEffect: tagPropDefs.effect,
+  tagEffect: TagDefaultValueProps.effect,
   /**
    * @description Tooltip 主题，内置主题：`dark` / `light`
    */

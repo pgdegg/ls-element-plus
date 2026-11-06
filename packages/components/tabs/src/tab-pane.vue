@@ -26,20 +26,16 @@ import {
   useSlots,
   watch,
 } from 'vue'
+import { TabPaneDefaultValueProps } from './tab-pane'
 import { throwError } from '@element-plus/utils'
 import { useNamespace } from '@element-plus/hooks'
 import { tabPaneActiveContextKey, tabsRootContextKey } from './constants'
-
-import type { TabPaneProps } from './tab-pane'
 
 const COMPONENT_NAME = 'ElTabPane'
 defineOptions({
   name: COMPONENT_NAME,
 })
-const props = withDefaults(defineProps<TabPaneProps>(), {
-  label: '',
-  closable: undefined,
-})
+const props = defineProps(TabPaneDefaultValueProps)
 
 const instance = getCurrentInstance()!
 const slots = useSlots()

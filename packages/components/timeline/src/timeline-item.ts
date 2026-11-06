@@ -42,8 +42,8 @@ export interface TimelineItemProps {
   hollow?: boolean
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const timelineItemPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const TimelineItemDefaultValueProps = buildProps({
   /**
    * @description 时间戳内容
    */

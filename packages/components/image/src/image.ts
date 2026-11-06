@@ -86,8 +86,8 @@ export interface ImageProps {
   crossorigin?: ImageCrossorigin
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const imagePropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const ImageDefaultValueProps = buildProps({
   /**
    * @description 启用预览时，用此标志控制点击背景遮罩是否可退出预览模式。
    */

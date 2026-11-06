@@ -23,7 +23,7 @@ export const useCheck = <T extends TransferDataItem = TransferDataItem>(
       TransferPanelProps<T>,
       'data' | 'format' | 'defaultChecked' | 'props' | 'virtualScroll' // usePropsAlias 所需的 'props'
     >
-  > & { filterMethod: TransferPanelProps<T>['filterMethod'] },
+  > & { filterMethod?: TransferPanelProps<T>['filterMethod'] },
   panelState: TransferPanelState,
   emit: SetupContext<TransferPanelEmits>['emit']
 ) => {

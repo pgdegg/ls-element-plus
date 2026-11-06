@@ -19,8 +19,8 @@ export interface DividerProps {
   borderStyle?: BorderStyle
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const dividerPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const DividerDefaultValueProps = buildProps({
   /**
    * @description 设置分割线方向
    */

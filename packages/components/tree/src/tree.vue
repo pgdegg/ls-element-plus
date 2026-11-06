@@ -55,7 +55,7 @@ import { useNodeExpandEventBroadcast } from './model/useNodeExpandEventBroadcast
 import { useDragNodeHandler } from './model/useDragNode'
 import { useKeydown } from './model/useKeydown'
 import { ROOT_TREE_INJECTION_KEY } from './tokens'
-import { treeEmits, treeProps } from './tree'
+import { TreeDefaultValueProps, treeEmits } from './tree'
 
 import type Node from './model/node'
 import type { ComponentInternalInstance } from 'vue'
@@ -64,7 +64,7 @@ import type { FilterValue, TreeData, TreeKey, TreeNodeData } from './tree.type'
 export default defineComponent({
   name: 'ElTree',
   components: { ElTreeNode },
-  props: treeProps,
+  props: TreeDefaultValueProps,
   emits: treeEmits,
   setup(props, ctx) {
     const { t } = useLocale()

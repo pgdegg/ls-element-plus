@@ -7,7 +7,10 @@ export const ElInputNumber: SFCWithInstall<typeof InputNumber> =
   withInstall(InputNumber)
 
 export default ElInputNumber
-export { inputNumberEmits } from './src/input-number'
+export {
+  inputNumberEmits,
+  InputNumberDefaultValueProps,
+} from './src/input-number'
 export type {
   InputNumberProps,
   InputNumberEmits,

@@ -46,43 +46,22 @@
 
 <script lang="ts" setup>
 import { computed, getCurrentInstance, provide, useSlots } from 'vue'
+import {
+  ROOT_TREE_INJECTION_KEY,
+  TreeV2DefaultValueProps,
+  treeEmits,
+} from './virtual-tree'
 import { useLocale, useNamespace } from '@element-plus/hooks'
 import { formItemContextKey } from '@element-plus/components/form'
 import { FixedSizeList } from '@element-plus/components/virtual-list'
 import { useTree } from './composables/useTree'
 import ElTreeNode from './tree-node.vue'
-import {
-  ROOT_TREE_INJECTION_KEY,
-  TreeOptionsEnum,
-  treeEmits,
-} from './virtual-tree'
-import { mutable } from '@element-plus/utils'
-
-import type { TreeProps } from './types'
 
 defineOptions({
   name: 'ElTreeV2',
 })
 
-const props = withDefaults(defineProps<TreeProps>(), {
-  data: () => mutable([]),
-  height: 200,
-  props: () =>
-    mutable({
-      children: TreeOptionsEnum.CHILDREN,
-      label: TreeOptionsEnum.LABEL,
-      disabled: TreeOptionsEnum.DISABLED,
-      value: TreeOptionsEnum.KEY,
-      class: TreeOptionsEnum.CLASS,
-    }),
-  defaultCheckedKeys: () => mutable([]),
-  defaultExpandedKeys: () => mutable([]),
-  indent: 16,
-  itemSize: 26,
-  expandOnClickNode: true,
-  checkOnClickLeaf: true,
-  perfMode: true,
-})
+const props = defineProps(TreeV2DefaultValueProps)
 const emit = defineEmits(treeEmits)
 
 const slots = useSlots()

@@ -4,7 +4,7 @@ import { componentSizes } from '@element-plus/constants'
 import type { ExtractPropTypes, ExtractPublicPropTypes } from 'vue'
 import type Jumper from './jumper.vue'
 
-export const paginationJumperProps = buildProps({
+export const PaginationJumperDefaultValueProps = buildProps({
   size: {
     type: String,
     values: componentSizes,
@@ -12,10 +12,10 @@ export const paginationJumperProps = buildProps({
 } as const)
 
 export type PaginationJumperProps = ExtractPropTypes<
-  typeof paginationJumperProps
+  typeof PaginationJumperDefaultValueProps
 >
 export type PaginationJumperPropsPublic = ExtractPublicPropTypes<
-  typeof paginationJumperProps
+  typeof PaginationJumperDefaultValueProps
 >
 
 export type PaginationJumperInstance = InstanceType<typeof Jumper> & unknown

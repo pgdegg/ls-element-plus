@@ -1,7 +1,7 @@
 import { buildProps, definePropType } from '@element-plus/utils'
 import {
-  virtualizedGridProps,
-  virtualizedScrollbarProps,
+  VirtualizedGridDefaultValueProps,
+  VirtualizedScrollbarDefaultValueProps,
 } from '@element-plus/components/virtual-list'
 import {
   classType,
@@ -12,9 +12,9 @@ import {
   requiredNumber,
   rowKey,
 } from './common'
-import { tableV2RowProps } from './row'
-import { tableV2HeaderProps } from './header'
-import { tableV2GridProps } from './grid'
+import { TableV2RowDefaultValueProps } from './row'
+import { TableV2HeaderDefaultValueProps } from './header'
+import { TableV2GridDefaultValueProps } from './grid'
 
 import type {
   CSSProperties,
@@ -79,9 +79,9 @@ export type ColumnSortHandler<T> = (params: ColumnSortParams<T>) => void
 export type ColumnResizeHandler<T> = (column: Column<T>, width: number) => void
 export type ExpandedRowsChangeHandler = (expandedRowKeys: KeyType[]) => void
 
-export const tableV2Props = buildProps({
-  cache: tableV2GridProps.cache,
-  estimatedRowHeight: tableV2RowProps.estimatedRowHeight,
+export const TableV2DefaultValueProps = buildProps({
+  cache: TableV2GridDefaultValueProps.cache,
+  estimatedRowHeight: TableV2RowDefaultValueProps.estimatedRowHeight,
   rowKey,
   // 表头属性
   headerClass: {
@@ -102,7 +102,7 @@ export const tableV2Props = buildProps({
       Function,
     ]),
   },
-  headerHeight: tableV2HeaderProps.headerHeight,
+  headerHeight: TableV2HeaderDefaultValueProps.headerHeight,
   /**
    * 表尾属性
    */
@@ -145,7 +145,7 @@ export const tableV2Props = buildProps({
   /**
    * 展开的 key
    */
-  expandColumnKey: tableV2RowProps.expandColumnKey,
+  expandColumnKey: TableV2RowDefaultValueProps.expandColumnKey,
   expandedRowKeys: expandKeys,
   defaultExpandedRowKeys: expandKeys,
 
@@ -170,9 +170,9 @@ export const tableV2Props = buildProps({
     type: Number,
     default: 12,
   },
-  hScrollbarSize: virtualizedGridProps.hScrollbarSize,
-  vScrollbarSize: virtualizedGridProps.vScrollbarSize,
-  scrollbarAlwaysOn: virtualizedScrollbarProps.alwaysOn,
+  hScrollbarSize: VirtualizedGridDefaultValueProps.hScrollbarSize,
+  vScrollbarSize: VirtualizedGridDefaultValueProps.vScrollbarSize,
+  scrollbarAlwaysOn: VirtualizedScrollbarDefaultValueProps.alwaysOn,
 
   /**
    * 排序
@@ -198,11 +198,13 @@ export const tableV2Props = buildProps({
   onEndReached: {
     type: definePropType<(remainDistance: number) => void>(Function),
   },
-  onRowExpand: tableV2RowProps.onRowExpand,
-  onScroll: tableV2GridProps.onScroll,
-  onRowsRendered: tableV2GridProps.onRowsRendered,
-  rowEventHandlers: tableV2RowProps.rowEventHandlers,
+  onRowExpand: TableV2RowDefaultValueProps.onRowExpand,
+  onScroll: TableV2GridDefaultValueProps.onScroll,
+  onRowsRendered: TableV2GridDefaultValueProps.onRowsRendered,
+  rowEventHandlers: TableV2RowDefaultValueProps.rowEventHandlers,
 } as const)
 
-export type TableV2Props = ExtractPropTypes<typeof tableV2Props>
-export type TableV2PropsPublic = ExtractPublicPropTypes<typeof tableV2Props>
+export type TableV2Props = ExtractPropTypes<typeof TableV2DefaultValueProps>
+export type TableV2PropsPublic = ExtractPublicPropTypes<
+  typeof TableV2DefaultValueProps
+>

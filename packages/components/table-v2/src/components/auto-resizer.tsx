@@ -1,11 +1,11 @@
 import { defineComponent } from 'vue'
 import { useNamespace } from '@element-plus/hooks'
-import { autoResizerProps } from '../auto-resizer'
+import { AutoResizerDefaultValueProps } from '../auto-resizer'
 import { useAutoResize } from '../composables'
 
 const AutoResizer = defineComponent({
   name: 'ElAutoResizer',
-  props: autoResizerProps,
+  props: AutoResizerDefaultValueProps,
   setup(props, { slots }) {
     const ns = useNamespace('auto-resizer')
     const { height, width, sizer } = useAutoResize(props)

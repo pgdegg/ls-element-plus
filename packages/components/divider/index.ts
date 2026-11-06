@@ -7,3 +7,5 @@ export const ElDivider: SFCWithInstall<typeof Divider> = withInstall(Divider)
 export default ElDivider
 
 export type { BorderStyle, DividerProps, DividerInstance } from './src/divider'
+
+export { DividerDefaultValueProps } from './src/divider'

@@ -197,6 +197,7 @@ import {
   useSlots,
   watch,
 } from 'vue'
+import { InputDefaultValueProps, inputEmits } from './input'
 import { useInputElement } from '@element-plus/hooks/use-input-element'
 import { useResizeObserver } from '@vueuse/core'
 import { isNil } from 'lodash-unified'
@@ -234,10 +235,8 @@ import {
 } from '@element-plus/constants'
 import { calcTextareaHeight, looseToNumber } from './utils'
 import { buildKeepRegExp } from './keeps'
-import { inputEmits, inputPropsDefaults } from './input'
 
 import type { StyleValue } from 'vue'
-import type { InputProps } from './input'
 
 type TargetElement = HTMLInputElement | HTMLTextAreaElement
 
@@ -246,7 +245,7 @@ defineOptions({
   name: COMPONENT_NAME,
   inheritAttrs: false,
 })
-const props = withDefaults(defineProps<InputProps>(), inputPropsDefaults)
+const props = defineProps(InputDefaultValueProps)
 const emit = defineEmits(inputEmits)
 
 const inputReadonly = useFormReadonly()

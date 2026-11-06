@@ -19,16 +19,15 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue'
+import { SvPanelDefaultValueProps } from '../props/sv-panel'
 import { useLocale } from '@element-plus/hooks/use-locale'
 import { useSvPanel, useSvPanelDOM } from '../composables/use-sv-panel'
-
-import type { SvPanelProps } from '../props/sv-panel'
 
 defineOptions({
   name: 'ElSvPanel',
 })
 
-const props = defineProps<SvPanelProps>()
+const props = defineProps(SvPanelDefaultValueProps)
 
 const {
   cursorRef,

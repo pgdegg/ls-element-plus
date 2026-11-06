@@ -11,8 +11,8 @@ export interface CarouselItemProps {
   label?: string | number
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const carouselItemPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const CarouselItemDefaultValueProps = buildProps({
   /**
    * @description 项的名称，可用于 `setActiveItem`
    */

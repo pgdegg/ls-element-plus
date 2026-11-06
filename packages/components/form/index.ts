@@ -13,9 +13,16 @@ export default ElForm
 export const ElFormItem: SFCWithInstall<typeof FormItem> =
   withNoopInstall(FormItem)
 
-export { formEmits } from './src/form'
+export {
+  formEmits,
+  FormMetaDefaultValueProps,
+  FormDefaultValueProps,
+} from './src/form'
 export type { FormMetaProps, FormProps, FormEmits } from './src/form'
-export { formItemValidateStates } from './src/form-item'
+export {
+  formItemValidateStates,
+  FormItemDefaultValueProps,
+} from './src/form-item'
 export type {
   FormItemValidateState,
   FormItemProp,
@@ -27,3 +34,5 @@ export * from './src/hooks'
 
 export type FormInstance = InstanceType<typeof Form> & unknown
 export type FormItemInstance = InstanceType<typeof FormItem> & unknown
+
+export { FormLabelWrapDefaultValueProps } from './src/form-label-wrap'

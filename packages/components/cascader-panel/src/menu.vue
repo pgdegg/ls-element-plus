@@ -86,6 +86,7 @@
 
 <script lang="ts" setup>
 import { computed, getCurrentInstance, inject, nextTick, ref } from 'vue'
+import { CascaderMenuDefaultValueProps } from './config'
 import { clamp } from 'lodash-unified'
 import ElScrollbar from '@element-plus/components/scrollbar'
 import { FixedSizeList as ElFixedSizeList } from '@element-plus/components/virtual-list'
@@ -95,29 +96,14 @@ import ElIcon from '@element-plus/components/icon'
 import { focusNode } from '@element-plus/utils'
 import ElCascaderNode from './node.vue'
 import { CASCADER_PANEL_INJECTION_KEY } from './types'
-import { CASCADER_PANEL_HEIGHT, CASCADER_PANEL_ITEM_SIZE } from './config'
 
-import type { CascaderNode } from './types'
-import type { CascaderCommonProps } from './config'
 import type { FixedSizeListInstance } from '@element-plus/components/virtual-list'
 
 defineOptions({
   name: 'ElCascaderMenu',
 })
 
-const props = withDefaults(
-  defineProps<
-    {
-      nodes: CascaderNode[]
-      index: number
-    } & Pick<CascaderCommonProps, 'virtualScroll' | 'itemSize' | 'height'>
-  >(),
-  {
-    virtualScroll: false,
-    itemSize: CASCADER_PANEL_ITEM_SIZE,
-    height: CASCADER_PANEL_HEIGHT,
-  }
-)
+const props = defineProps(CascaderMenuDefaultValueProps)
 
 const instance = getCurrentInstance()!
 const ns = useNamespace('cascader-menu')

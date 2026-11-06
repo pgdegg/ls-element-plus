@@ -7,3 +7,5 @@ export const ElCol: SFCWithInstall<typeof Col> = withInstall(Col)
 export default ElCol
 
 export type { ColSizeObject, ColSize, ColProps, ColInstance } from './src/col'
+
+export { ColDefaultValueProps } from './src/col'

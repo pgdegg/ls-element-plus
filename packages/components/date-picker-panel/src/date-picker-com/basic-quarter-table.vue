@@ -38,7 +38,7 @@ import { computed, nextTick, ref, watch } from 'vue'
 import dayjs from 'dayjs'
 import { useLocale, useNamespace } from '@element-plus/hooks'
 import { castArray, hasClass } from '@element-plus/utils'
-import { basicQuarterTableProps } from '../props/basic-quarter-table'
+import { BasicQuarterTableDefaultValueProps } from '../props/basic-quarter-table'
 import { datesInQuarter, normalizeQuarterDate } from '../utils'
 import ElDatePickerCell from './basic-cell-render'
 
@@ -66,7 +66,7 @@ type QuarterCell = {
   type: 'normal' | 'today'
 }
 
-const props = defineProps(basicQuarterTableProps)
+const props = defineProps(BasicQuarterTableDefaultValueProps)
 const emit = defineEmits(['changerange', 'pick', 'select'])
 
 const ns = useNamespace('quarter-table')

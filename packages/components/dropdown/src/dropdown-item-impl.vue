@@ -42,7 +42,7 @@ import {
   getEventCode,
 } from '@element-plus/utils'
 import { EVENT_CODE } from '@element-plus/constants'
-import { dropdownItemProps } from './dropdown'
+import { DropdownItemDefaultValueProps } from './dropdown'
 import { DROPDOWN_INJECTION_KEY } from './tokens'
 
 export default defineComponent({
@@ -50,7 +50,7 @@ export default defineComponent({
   components: {
     ElIcon,
   },
-  props: dropdownItemProps,
+  props: DropdownItemDefaultValueProps,
   emits: ['pointermove', 'pointerleave', 'click', 'clickimpl'],
   setup(_, { emit }) {
     const ns = useNamespace('dropdown')

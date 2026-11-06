@@ -17,7 +17,7 @@ import {
 import { useNamespace } from '@element-plus/hooks'
 import { isUndefined } from '@element-plus/utils'
 import { UPDATE_MODEL_EVENT } from '@element-plus/constants'
-import { datePickerPanelProps } from './props/date-picker-panel'
+import { DatePickerPanelDefaultValueProps } from './props/date-picker-panel'
 import { ROOT_PICKER_INJECTION_KEY } from './constants'
 import { getPanel } from './panel-utils'
 import { useCommonPicker } from '../../time-picker/src/composables/use-common-picker'
@@ -36,7 +36,7 @@ export default defineComponent({
   name: 'ElDatePickerPanel',
   install: null,
   inheritAttrs: false,
-  props: datePickerPanelProps,
+  props: DatePickerPanelDefaultValueProps,
   emits: [
     UPDATE_MODEL_EVENT,
     'calendar-change',

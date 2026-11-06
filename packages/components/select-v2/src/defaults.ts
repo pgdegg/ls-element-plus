@@ -10,9 +10,9 @@ import {
 } from '@element-plus/utils'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@element-plus/constants'
 import { scrollbarEmits } from '@element-plus/components/scrollbar'
-import { tooltipContentPropDefs } from '@element-plus/components/tooltip/src/content'
+import { TooltipContentDefaultValueProps } from '@element-plus/components/tooltip/src/content'
 import { ArrowDown, CircleClose } from '@element-plus/icons-vue'
-import { tagPropDefs } from '@element-plus/components/tag/src/tag'
+import { TagDefaultValueProps } from '@element-plus/components/tag/src/tag'
 import { defaultProps } from './useProps'
 
 import type SelectV2 from './select.vue'
@@ -49,7 +49,7 @@ export interface TagTooltipProps {
   offset?: number
 }
 
-export const selectV2Props = buildProps({
+export const SelectV2DefaultValueProps = buildProps({
   /**
    * @description 原生 title 提示是否同时展示选项值和完整标签。
    * @default `false`
@@ -232,7 +232,7 @@ export const selectV2Props = buildProps({
   /**
    * @description 下拉框是否被 teleport；为 `true` 时将挂载到 `append-to` 指定的位置
    */
-  teleported: tooltipContentPropDefs.teleported,
+  teleported: TooltipContentDefaultValueProps.teleported,
   /**
    * @description 当下拉框不处于激活状态且 `persistent` 为 `false` 时，下拉框将被销毁
    */
@@ -243,11 +243,11 @@ export const selectV2Props = buildProps({
   /**
    * @description Select 下拉框的自定义类名
    */
-  popperClass: tooltipContentPropDefs.popperClass,
+  popperClass: TooltipContentDefaultValueProps.popperClass,
   /**
    * @description Select 下拉框的自定义样式
    */
-  popperStyle: tooltipContentPropDefs.popperStyle,
+  popperStyle: TooltipContentDefaultValueProps.popperStyle,
   /**
    * @description [popper.js](https://popper.js.org/docs/v2/) 参数
    */
@@ -331,11 +331,11 @@ export const selectV2Props = buildProps({
   /**
    * @description 标签类型
    */
-  tagType: { ...tagPropDefs.type, default: 'info' },
+  tagType: { ...TagDefaultValueProps.type, default: 'info' },
   /**
    * @description 标签效果
    */
-  tagEffect: { ...tagPropDefs.effect, default: 'light' },
+  tagEffect: { ...TagDefaultValueProps.effect, default: 'light' },
   /**
    * @description input 的 tabindex
    */
@@ -346,7 +346,7 @@ export const selectV2Props = buildProps({
   /**
    * @description 下拉框挂载到哪个元素
    */
-  appendTo: tooltipContentPropDefs.appendTo,
+  appendTo: TooltipContentDefaultValueProps.appendTo,
   /**
    * @description 为 `true` 时，下拉面板宽度与输入框相同；
    * 为 `false` 时，宽度根据 `label` 的值自动计算；
@@ -367,7 +367,7 @@ export const selectV2Props = buildProps({
   ...useAriaProps(['ariaLabel']),
 } as const)
 
-export const optionV2Props = buildProps({
+export const OptionV2DefaultValueProps = buildProps({
   data: Array,
   disabled: Boolean,
   hovering: Boolean,
@@ -400,10 +400,14 @@ export const optionV2Emits = {
 }
 /* eslint-enable @typescript-eslint/no-unused-vars */
 
-export type SelectV2Props = ExtractPropTypes<typeof selectV2Props>
-export type SelectV2PropsPublic = ExtractPublicPropTypes<typeof selectV2Props>
-export type OptionV2Props = ExtractPropTypes<typeof optionV2Props>
-export type OptionV2PropsPublic = ExtractPublicPropTypes<typeof optionV2Props>
+export type SelectV2Props = ExtractPropTypes<typeof SelectV2DefaultValueProps>
+export type SelectV2PropsPublic = ExtractPublicPropTypes<
+  typeof SelectV2DefaultValueProps
+>
+export type OptionV2Props = ExtractPropTypes<typeof OptionV2DefaultValueProps>
+export type OptionV2PropsPublic = ExtractPublicPropTypes<
+  typeof OptionV2DefaultValueProps
+>
 export type SelectV2EmitFn = EmitFn<typeof selectV2Emits>
 export type OptionV2EmitFn = EmitFn<typeof optionV2Emits>
 

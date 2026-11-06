@@ -25,3 +25,16 @@ export { CommonPicker, TimePickPanel }
 export default ElTimePicker
 
 export * from './src/quick-input'
+
+export { BasicTimeSpinnerDefaultValueProps } from './src/props/basic-time-spinner'
+
+export { PanelTimePickerDefaultValueProps } from './src/props/panel-time-picker'
+
+export { PanelTimeRangeDefaultValueProps } from './src/props/panel-time-range'
+
+export {
+  DisabledTimeListsDefaultValueProps,
+  TimePanelSharedDefaultValueProps,
+} from './src/props/shared'
+
+export { TimePickerDefaultValueProps } from './src/time-picker'

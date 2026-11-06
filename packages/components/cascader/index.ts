@@ -7,7 +7,7 @@ export const ElCascader: SFCWithInstall<typeof Cascader> = withInstall(Cascader)
 
 export default ElCascader
 
-export { cascaderEmits } from './src/cascader'
+export { cascaderEmits, CascaderDefaultValueProps } from './src/cascader'
 export type { CascaderComponentProps, CascaderEmits } from './src/cascader'
 export * from './src/instances'
 export * from './src/model-adapter'

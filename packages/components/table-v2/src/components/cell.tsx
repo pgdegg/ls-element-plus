@@ -1,4 +1,5 @@
 import { renderSlot } from 'vue'
+import { TableV2CellDefaultValueProps } from '../cell'
 
 import type { FunctionalComponent } from 'vue'
 import type { TableV2CellProps } from '../cell'
@@ -19,5 +20,7 @@ const TableV2Cell: FunctionalComponent<TableV2CellProps> = (
 
 TableV2Cell.displayName = 'ElTableV2Cell'
 TableV2Cell.inheritAttrs = false
+
+TableV2Cell.props = TableV2CellDefaultValueProps
 
 export default TableV2Cell

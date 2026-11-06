@@ -55,8 +55,8 @@ export interface CarouselProps {
   motionBlur?: boolean
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const carouselPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const CarouselDefaultValueProps = buildProps({
   /**
    * @description 初始激活幻灯片的索引（从 0 开始）
    */

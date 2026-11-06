@@ -22,6 +22,7 @@ import {
   useSlots,
   watch,
 } from 'vue'
+import { AnchorDefaultValueProps, anchorEmits } from './anchor'
 import { useEventListener } from '@vueuse/core'
 import { useNamespace } from '@element-plus/hooks'
 import {
@@ -35,25 +36,16 @@ import {
   throttleByRaf,
 } from '@element-plus/utils'
 import { CHANGE_EVENT } from '@element-plus/constants'
-import { anchorEmits } from './anchor'
 import { anchorKey } from './constants'
 
 import type { CSSProperties } from 'vue'
-import type { AnchorProps } from './anchor'
 import type { AnchorLinkState } from './constants'
 
 defineOptions({
   name: 'ElAnchor',
 })
 
-const props = withDefaults(defineProps<AnchorProps>(), {
-  offset: 0,
-  bound: 15,
-  duration: 300,
-  marker: true,
-  type: 'default',
-  direction: 'vertical',
-})
+const props = defineProps(AnchorDefaultValueProps)
 const emit = defineEmits(anchorEmits)
 const slots = useSlots()
 

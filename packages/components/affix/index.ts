@@ -6,5 +6,5 @@ import type { SFCWithInstall } from '@element-plus/utils'
 export const ElAffix: SFCWithInstall<typeof Affix> = withInstall(Affix)
 export default ElAffix
 
-export { affixEmits } from './src/affix'
+export { affixEmits, AffixDefaultValueProps } from './src/affix'
 export type { AffixProps, AffixEmits, AffixInstance } from './src/affix'

@@ -2,7 +2,7 @@ import { isNil } from 'lodash-unified'
 import { buildProps, definePropType, isString } from '@element-plus/utils'
 import { useAriaProps, useSizeProp } from '@element-plus/hooks'
 import { emptyValuesPropDefs } from '@element-plus/hooks/use-empty-values/index'
-import { tooltipContentPropDefs } from '@element-plus/components/tooltip/src/content'
+import { TooltipContentDefaultValueProps } from '@element-plus/components/tooltip/src/content'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@element-plus/constants'
 
 import type { ColorFormats } from '@ctrl/tinycolor'
@@ -75,8 +75,8 @@ export interface ColorPickerProps
   validateEvent?: boolean
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const colorPickerPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const ColorPickerDefaultValueProps = buildProps({
   /**
    * @description color-picker 未激活且 persistent 为 false 时，颜色面板将被销毁
    */
@@ -126,11 +126,11 @@ export const colorPickerPropDefs = buildProps({
   /**
    * @description ColorPicker 下拉框的自定义类名
    */
-  popperClass: tooltipContentPropDefs.popperClass,
+  popperClass: TooltipContentDefaultValueProps.popperClass,
   /**
    * @description ColorPicker 下拉框的自定义样式
    */
-  popperStyle: tooltipContentPropDefs.popperStyle,
+  popperStyle: TooltipContentDefaultValueProps.popperStyle,
   /**
    * @description ColorPicker 的 tabindex
    */
@@ -141,11 +141,11 @@ export const colorPickerPropDefs = buildProps({
   /**
    * @description color-picker 弹层是否传送到 body
    */
-  teleported: tooltipContentPropDefs.teleported,
+  teleported: TooltipContentDefaultValueProps.teleported,
   /**
    * @description color-picker 面板追加到哪个元素
    */
-  appendTo: tooltipContentPropDefs.appendTo,
+  appendTo: TooltipContentDefaultValueProps.appendTo,
   /**
    * @description 预定义颜色选项
    */
@@ -172,19 +172,3 @@ export const colorPickerEmits = {
 }
 export type ColorPickerEmits = typeof colorPickerEmits
 export type ColorPickerInstance = InstanceType<typeof ColorPicker> & unknown
-
-/**
- * @description ColorPickerProps 的默认值，用于扩展 ColorPickerProps 的组件
- */
-export const colorPickerPropsDefaults = {
-  persistent: true,
-  modelValue: undefined,
-  disabled: undefined,
-  clearable: true,
-  popperClass: undefined,
-  popperStyle: undefined,
-  tabindex: 0,
-  teleported: true,
-  validateEvent: true,
-  valueOnClear: undefined,
-} as const

@@ -13,22 +13,17 @@
 
 <script lang="ts" setup>
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { TextDefaultValueProps } from './text'
 import { useElementSize, useMutationObserver } from '@vueuse/core'
 import { useNamespace } from '@element-plus/hooks'
 import { useFormSize } from '@element-plus/components/form'
 import { cAF, isUndefined, rAF } from '@element-plus/utils'
 
-import type { TextProps } from './text'
-
 defineOptions({
   name: 'ElText',
 })
 
-const props = withDefaults(defineProps<TextProps>(), {
-  type: '',
-  size: '',
-  tag: 'span',
-})
+const props = defineProps(TextDefaultValueProps)
 const textRef = ref<HTMLElement>()
 
 const textSize = useFormSize()

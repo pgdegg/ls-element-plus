@@ -56,8 +56,8 @@ export interface DialogContentProps {
   ariaLevel?: string
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const dialogContentPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const DialogContentDefaultValueProps = buildProps({
   /**
    * @description 是否将头部和底部居中对齐
    */
@@ -140,15 +140,3 @@ export const dialogContentPropDefs = buildProps({
 export const dialogContentEmits = {
   close: () => true,
 }
-
-export const dialogContentPropsDefaults = {
-  alignCenter: undefined,
-  draggable: undefined,
-  overflow: undefined,
-  showClose: true,
-  title: '',
-  ariaLevel: '2',
-  headerClass: undefined,
-  bodyClass: undefined,
-  footerClass: undefined,
-} as const

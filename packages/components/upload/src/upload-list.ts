@@ -21,8 +21,8 @@ export interface UploadListProps {
   crossorigin?: Crossorigin
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const uploadListPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const UploadListDefaultValueProps = buildProps({
   files: {
     type: definePropType<UploadFiles>(Array),
     default: () => mutable([]),

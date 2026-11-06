@@ -62,6 +62,7 @@
 
 <script lang="ts" setup>
 import { computed, inject } from 'vue'
+import { CascaderNodeDefaultValueProps } from './config'
 import ElCheckbox from '@element-plus/components/checkbox'
 import ElRadio from '@element-plus/components/radio'
 import ElIcon from '@element-plus/components/icon'
@@ -77,10 +78,7 @@ defineOptions({
   name: 'ElCascaderNode',
 })
 
-const props = defineProps<{
-  node: CascaderNode
-  menuId?: string
-}>()
+const props = defineProps(CascaderNodeDefaultValueProps)
 const emit = defineEmits(['expand'])
 
 const panel = inject(CASCADER_PANEL_INJECTION_KEY)!

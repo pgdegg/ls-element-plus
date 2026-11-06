@@ -18,7 +18,11 @@ export const ElRadioGroup: SFCWithInstall<typeof RadioGroup> =
 export const ElRadioButton: SFCWithInstall<typeof RadioButton> =
   withNoopInstall(RadioButton)
 
-export { radioEmits, radioPropsDefaults } from './src/radio'
+export {
+  radioEmits,
+  RadioBaseDefaultValueProps,
+  RadioDefaultValueProps,
+} from './src/radio'
 export type {
   RadioPropsBase,
   RadioProps,
@@ -28,7 +32,7 @@ export type {
 export {
   radioDefaultProps,
   radioGroupEmits,
-  radioGroupPropsDefaults,
+  RadioGroupDefaultValueProps,
 } from './src/radio-group'
 export type {
   radioOptionProp,
@@ -37,6 +41,8 @@ export type {
   RadioGroupEmits,
   RadioGroupInstance,
 } from './src/radio-group'
-export { radioButtonPropsDefaults } from './src/radio-button'
+
 export type { RadioButtonProps, RadioButtonInstance } from './src/radio-button'
 export * from './src/constants'
+
+export { RadioButtonDefaultValueProps } from './src/radio-button'

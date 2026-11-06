@@ -24,19 +24,17 @@
 
 <script lang="ts" setup>
 import { inject } from 'vue'
+import { DescriptionsRowDefaultValueProps } from './descriptions-row'
 import ElDescriptionsCell from './descriptions-cell'
 import { descriptionsKey } from './token'
 
-import type { DescriptionsRowProps } from './descriptions-row'
 import type { IDescriptionsInject } from './descriptions.type'
 
 defineOptions({
   name: 'ElDescriptionsRow',
 })
 
-withDefaults(defineProps<DescriptionsRowProps>(), {
-  row: () => [],
-})
+defineProps(DescriptionsRowDefaultValueProps)
 
 const descriptions = inject(descriptionsKey, {} as IDescriptionsInject)
 </script>

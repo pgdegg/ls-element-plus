@@ -47,7 +47,7 @@
 <script lang="ts" setup>
 import { computed, reactive, ref } from 'vue'
 import { useAttrs, useFocusController, useNamespace } from '@element-plus/hooks'
-import { timePickerRangeTriggerProps } from './props'
+import { TimePickerRangeTriggerDefaultValueProps } from './props'
 import { useFormItem, useFormItemInputId } from '@element-plus/components/form'
 
 import type { CSSProperties } from 'vue'
@@ -57,7 +57,7 @@ defineOptions({
   inheritAttrs: false,
 })
 
-const props = defineProps(timePickerRangeTriggerProps)
+const props = defineProps(TimePickerRangeTriggerDefaultValueProps)
 const emit = defineEmits([
   'mouseenter',
   'mouseleave',

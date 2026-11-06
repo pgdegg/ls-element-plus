@@ -18,12 +18,14 @@ import { formContextKey, formItemContextKey } from './constants'
 import type { CSSProperties } from 'vue'
 
 const COMPONENT_NAME = 'ElLabelWrap'
+export const FormLabelWrapDefaultValueProps = {
+  isAutoWidth: Boolean,
+  updateAll: Boolean,
+} as const
+
 export default defineComponent({
   name: COMPONENT_NAME,
-  props: {
-    isAutoWidth: Boolean,
-    updateAll: Boolean,
-  },
+  props: FormLabelWrapDefaultValueProps,
 
   setup(props, { slots }) {
     const formContext = inject(formContextKey, undefined)

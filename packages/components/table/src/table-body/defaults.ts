@@ -20,7 +20,7 @@ interface TableBodyProps<T extends DefaultRow> {
   tooltipOptions?: TableOverflowTooltipOptions
 }
 
-const defaultProps = {
+export const TableBodyDefaultValueProps = {
   store: {
     required: true,
     type: Object as PropType<TableBodyProps<any>['store']>,
@@ -46,4 +46,3 @@ const defaultProps = {
 }
 
 export { TableBodyProps }
-export default defaultProps

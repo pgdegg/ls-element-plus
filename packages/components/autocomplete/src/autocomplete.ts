@@ -6,13 +6,13 @@ import {
   isObject,
   isString,
 } from '@element-plus/utils'
-import { tooltipContentPropDefs } from '@element-plus/components/tooltip/src/content'
+import { TooltipContentDefaultValueProps } from '@element-plus/components/tooltip/src/content'
 import {
   CHANGE_EVENT,
   INPUT_EVENT,
   UPDATE_MODEL_EVENT,
 } from '@element-plus/constants'
-import { inputPropDefs } from '@element-plus/components/input/src/input'
+import { InputDefaultValueProps } from '@element-plus/components/input/src/input'
 
 import type { ComponentInstance } from 'vue'
 import type { ComponentExposed } from 'vue-component-type-helpers'
@@ -116,9 +116,10 @@ export interface AutocompleteProps<
   loopNavigation?: boolean
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const autocompletePropDefs = buildProps({
-  ...inputPropDefs,
+/** Runtime prop definitions; use the public props interface for types. */
+export const AutocompleteDefaultValueProps = buildProps({
+  ...InputDefaultValueProps,
+  offset: { type: Number, default: 0 },
   /**
    * @description 用于展示的输入建议对象的键名
    */
@@ -165,15 +166,15 @@ export const autocompletePropDefs = buildProps({
   /**
    * @description autocomplete 下拉框的自定义类名
    */
-  popperClass: tooltipContentPropDefs.popperClass,
+  popperClass: TooltipContentDefaultValueProps.popperClass,
   /**
    * @description autocomplete 下拉框的自定义样式
    */
-  popperStyle: tooltipContentPropDefs.popperStyle,
+  popperStyle: TooltipContentDefaultValueProps.popperStyle,
   /**
    * @description [popper.js](https://popper.js.org/docs/v2/) 参数
    */
-  popperOptions: tooltipContentPropDefs.popperOptions,
+  popperOptions: TooltipContentDefaultValueProps.popperOptions,
   /**
    * @description 是否显示箭头
    */
@@ -199,11 +200,11 @@ export const autocompletePropDefs = buildProps({
   /**
    * @description 下拉框是否传送到 body
    */
-  teleported: tooltipContentPropDefs.teleported,
+  teleported: TooltipContentDefaultValueProps.teleported,
   /**
    * @description 下拉框追加到哪个元素
    */
-  appendTo: tooltipContentPropDefs.appendTo,
+  appendTo: TooltipContentDefaultValueProps.appendTo,
   /**
    * @description 远程搜索建议默认是否高亮第一项
    */

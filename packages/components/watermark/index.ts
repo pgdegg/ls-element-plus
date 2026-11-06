@@ -12,3 +12,5 @@ export type {
   WatermarkProps,
   WatermarkInstance,
 } from './src/watermark'
+
+export { WatermarkDefaultValueProps } from './src/watermark'

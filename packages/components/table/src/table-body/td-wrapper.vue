@@ -3,18 +3,11 @@
 </template>
 
 <script setup lang="ts">
+import { TableTdWrapperDefaultValueProps } from './td-wrapper-props'
+
 defineOptions({
   name: 'TableTdWrapper',
 })
 
-defineProps({
-  colspan: {
-    type: Number,
-    default: 1,
-  },
-  rowspan: {
-    type: Number,
-    default: 1,
-  },
-})
+defineProps(TableTdWrapperDefaultValueProps)
 </script>

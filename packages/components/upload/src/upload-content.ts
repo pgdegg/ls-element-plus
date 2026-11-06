@@ -1,5 +1,5 @@
 import { NOOP, buildProps, definePropType } from '@element-plus/utils'
-import { uploadBasePropDefs, uploadBasePropsDefaults } from './upload'
+import { UploadBaseDefaultValueProps } from './upload'
 
 import type {
   UploadBaseProps,
@@ -21,9 +21,9 @@ export interface UploadContentProps extends UploadBaseProps {
   onExceed?: UploadHooks['onExceed']
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const uploadContentPropDefs = buildProps({
-  ...uploadBasePropDefs,
+/** Runtime prop definitions; use the public props interface for types. */
+export const UploadContentDefaultValueProps = buildProps({
+  ...UploadBaseDefaultValueProps,
 
   beforeUpload: {
     type: definePropType<UploadHooks['beforeUpload']>(Function),
@@ -62,14 +62,3 @@ export const uploadContentPropDefs = buildProps({
 } as const)
 
 export type UploadContentInstance = InstanceType<typeof UploadContent> & unknown
-
-export const uploadContentPropsDefaults = {
-  ...uploadBasePropsDefaults,
-  beforeUpload: NOOP,
-  onRemove: NOOP,
-  onStart: NOOP,
-  onSuccess: NOOP,
-  onProgress: NOOP,
-  onError: NOOP,
-  onExceed: NOOP,
-} as const

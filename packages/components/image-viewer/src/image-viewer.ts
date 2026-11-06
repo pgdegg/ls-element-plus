@@ -68,8 +68,8 @@ export interface ImageViewerProps {
   crossorigin?: ImageViewerCrossorigin
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const imageViewerPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const ImageViewerDefaultValueProps = buildProps({
   /**
    * @description 预览链接列表。
    */

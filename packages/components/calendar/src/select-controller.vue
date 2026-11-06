@@ -22,20 +22,21 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue'
+import {
+  SelectControllerDefaultValueProps,
+  selectControllerEmits,
+} from './select-controller'
 import dayjs from 'dayjs'
 import { useLocale, useNamespace } from '@element-plus/hooks'
 import ElSelect from '@element-plus/components/select'
 import { ElButton } from '@element-plus/components/button'
 import { isFunction } from '@element-plus/utils'
-import { selectControllerEmits } from './select-controller'
-
-import type { SelectControllerProps } from './select-controller'
 
 defineOptions({
   name: 'SelectController',
 })
 
-const props = defineProps<SelectControllerProps>()
+const props = defineProps(SelectControllerDefaultValueProps)
 const emit = defineEmits(selectControllerEmits)
 
 const nsSelect = useNamespace('calendar-select')

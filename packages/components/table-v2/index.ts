@@ -29,3 +29,37 @@ export * from './src/table'
 export * from './src/row'
 
 export type { HeaderCellSlotProps } from './src/renderers/header-cell'
+
+export { TableV2CellDefaultValueProps } from './src/cell'
+
+export { TableV2GridDefaultValueProps } from './src/grid'
+
+export { TableV2HeaderRowDefaultValueProps } from './src/header-row'
+
+export { TableV2HeaderDefaultValueProps } from './src/header'
+
+export { TableV2SortIconDefaultValueProps } from './src/components/sort-icon'
+
+export { TableV2ExpandIconDefaultValueProps } from './src/components/expand-icon'
+
+export { TableV2MainTableRendererDefaultValueProps } from './src/renderers/main-table'
+
+export { TableV2LeftTableRendererDefaultValueProps } from './src/renderers/left-table'
+
+export { TableV2RightTableRendererDefaultValueProps } from './src/renderers/right-table'
+
+export { TableV2RowRendererDefaultValueProps } from './src/renderers/row'
+
+export { TableV2CellRendererDefaultValueProps } from './src/renderers/cell'
+
+export { TableV2HeaderRendererDefaultValueProps } from './src/renderers/header'
+
+export { TableV2HeaderCellRendererDefaultValueProps } from './src/renderers/header-cell'
+
+export { TableV2FooterRendererDefaultValueProps } from './src/renderers/footer'
+
+export { TableV2EmptyRendererDefaultValueProps } from './src/renderers/empty'
+
+export { TableV2HeaderCellDefaultValueProps } from './src/header-cell'
+
+export { TableV2OverlayDefaultValueProps } from './src/renderers/overlay'

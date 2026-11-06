@@ -13,6 +13,7 @@
 
 <script lang="ts" setup>
 import { computed, inject, onBeforeUnmount, onMounted, watch } from 'vue'
+import { PopperTriggerDefaultValueProps } from './trigger'
 import { isNil } from 'lodash-unified'
 import { unrefElement } from '@vueuse/core'
 import { ElOnlyChild } from '@element-plus/components/slot'
@@ -21,14 +22,13 @@ import { isElement, isFocusable } from '@element-plus/utils'
 import { POPPER_INJECTION_KEY } from './constants'
 
 import type { WatchStopHandle } from 'vue'
-import type { PopperTriggerProps } from './trigger'
 
 defineOptions({
   name: 'ElPopperTrigger',
   inheritAttrs: false,
 })
 
-const props = defineProps<PopperTriggerProps>()
+const props = defineProps(PopperTriggerDefaultValueProps)
 
 const { role, triggerRef } = inject(POPPER_INJECTION_KEY, undefined)!
 

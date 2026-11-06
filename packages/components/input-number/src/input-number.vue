@@ -88,6 +88,7 @@ import {
   useSlots,
   watch,
 } from 'vue'
+import { InputNumberDefaultValueProps, inputNumberEmits } from './input-number'
 import { useInputElement } from '@element-plus/hooks/use-input-element'
 import { isNil } from 'lodash-unified'
 import { ElInput, createInputGroup } from '@element-plus/components/input'
@@ -117,10 +118,8 @@ import {
   INPUT_EVENT,
   UPDATE_MODEL_EVENT,
 } from '@element-plus/constants'
-import { inputNumberEmits } from './input-number'
 
 import type { InputInstance } from '@element-plus/components/input'
-import type { InputNumberProps } from './input-number'
 
 const InputGroup = createInputGroup(useSlots(), 'customize-number')
 
@@ -128,23 +127,7 @@ defineOptions({
   name: 'ElInputNumber',
 })
 
-const props = withDefaults(defineProps<InputNumberProps>(), {
-  id: undefined,
-  disabled: undefined,
-  hidePlaceholder: undefined,
-  step: 1,
-  max: Number.MAX_SAFE_INTEGER,
-  min: Number.MIN_SAFE_INTEGER,
-  stepStrictly: false,
-  readonly: false,
-  controls: true,
-  controlsPosition: '',
-  valueOnClear: null,
-  validateEvent: true,
-  inputmode: undefined,
-  align: 'center',
-  tabindex: 0,
-})
+const props = defineProps(InputNumberDefaultValueProps)
 const emit = defineEmits(inputNumberEmits)
 
 const { t } = useLocale()

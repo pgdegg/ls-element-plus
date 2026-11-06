@@ -1,5 +1,5 @@
 import { placements } from '@popperjs/core'
-import { tooltipContentPropDefs } from '@element-plus/components/tooltip/src/content'
+import { TooltipContentDefaultValueProps } from '@element-plus/components/tooltip/src/content'
 import { definePropType, isNumber } from '@element-plus/utils'
 import { componentSizes } from '@element-plus/constants'
 
@@ -8,7 +8,7 @@ import type { ExtractPropTypes, ExtractPublicPropTypes, StyleValue } from 'vue'
 import type { Placement, PopperEffect } from '@element-plus/components/popper'
 import type { ClassValue } from '@element-plus/utils'
 
-export const avatarGroupProps = {
+export const AvatarGroupDefaultValueProps = {
   /**
    * @description 控制该 avatar-group 中头像的尺寸
    */
@@ -57,11 +57,11 @@ export const avatarGroupProps = {
   /**
    * @description tooltip 的自定义类名
    */
-  popperClass: tooltipContentPropDefs.popperClass,
+  popperClass: TooltipContentDefaultValueProps.popperClass,
   /**
    * @description tooltip 的自定义样式
    */
-  popperStyle: tooltipContentPropDefs.popperStyle,
+  popperStyle: TooltipContentDefaultValueProps.popperStyle,
   /**
    * @description 折叠头像的自定义类名
    */
@@ -77,7 +77,9 @@ export const avatarGroupProps = {
     default: undefined,
   },
 } as const
-export type AvatarGroupProps = ExtractPropTypes<typeof avatarGroupProps>
+export type AvatarGroupProps = ExtractPropTypes<
+  typeof AvatarGroupDefaultValueProps
+>
 export type AvatarGroupPropsPublic = ExtractPublicPropTypes<
-  typeof avatarGroupProps
+  typeof AvatarGroupDefaultValueProps
 >

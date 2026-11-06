@@ -2,8 +2,8 @@ import { buildProps } from '@element-plus/utils'
 
 import type TabPane from './tab-pane.vue'
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const tabPanePropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const TabPaneDefaultValueProps = buildProps({
   /**
    * @description tab 的标题
    */

@@ -11,6 +11,7 @@ export {
   RIGHT_CHECK_CHANGE_EVENT,
   transferCheckedChangeFn,
   transferEmits,
+  TransferDefaultValueProps,
 } from './src/transfer'
 export type {
   TransferKey,
@@ -24,3 +25,5 @@ export type {
   TransferEmits,
   TransferInstance,
 } from './src/transfer'
+
+export { TransferPanelDefaultValueProps } from './src/transfer-panel'

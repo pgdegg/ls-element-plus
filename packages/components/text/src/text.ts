@@ -31,8 +31,8 @@ export interface TextProps {
   tag?: string
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const textPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const TextDefaultValueProps = buildProps({
   onClick: {
     type: definePropType<(event: MouseEvent) => void>(Function),
   },

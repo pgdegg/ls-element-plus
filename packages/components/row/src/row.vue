@@ -6,21 +6,17 @@
 
 <script lang="ts" setup>
 import { computed, provide } from 'vue'
+import { RowDefaultValueProps } from './row'
 import { useNamespace } from '@element-plus/hooks'
 import { rowContextKey } from './constants'
 
 import type { CSSProperties } from 'vue'
-import type { RowProps } from './row'
 
 defineOptions({
   name: 'ElRow',
 })
 
-const props = withDefaults(defineProps<RowProps>(), {
-  tag: 'div',
-  gutter: 0,
-  justify: 'start',
-})
+const props = defineProps(RowDefaultValueProps)
 
 const ns = useNamespace('row')
 const gutter = computed(() => props.gutter)

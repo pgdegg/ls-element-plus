@@ -25,8 +25,8 @@ export interface MaskProps {
   targetAreaClickable?: boolean
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const maskPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const TourMaskDefaultValueProps = buildProps({
   /**
    * @description 遮罩的 zIndex
    */

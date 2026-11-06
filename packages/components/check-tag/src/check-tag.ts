@@ -18,8 +18,8 @@ export interface CheckTagProps {
   type?: 'primary' | 'success' | 'info' | 'warning' | 'danger'
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const checkTagPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const CheckTagDefaultValueProps = buildProps({
   /**
    * @description 是否选中
    */

@@ -19,10 +19,9 @@
 </template>
 
 <script lang="ts" setup>
+import { CardDefaultValueProps } from './card'
 import { useNamespace } from '@element-plus/hooks'
 import { useGlobalConfig } from '@element-plus/components/config-provider'
-
-import type { CardProps } from './card'
 
 const globalConfig = useGlobalConfig('card')
 
@@ -30,15 +29,7 @@ defineOptions({
   name: 'ElCard',
 })
 
-withDefaults(defineProps<CardProps>(), {
-  header: '',
-  footer: '',
-  bodyStyle: '',
-  headerClass: undefined,
-  bodyClass: undefined,
-  footerClass: undefined,
-  shadow: undefined,
-})
+defineProps(CardDefaultValueProps)
 
 const ns = useNamespace('card')
 </script>

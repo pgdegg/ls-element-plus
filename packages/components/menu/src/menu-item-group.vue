@@ -11,14 +11,13 @@
 </template>
 
 <script lang="ts" setup>
+import { MenuItemGroupDefaultValueProps } from './menu-item-group'
 import { useNamespace } from '@element-plus/hooks'
-
-import type { MenuItemGroupProps } from './menu-item-group'
 
 defineOptions({
   name: 'ElMenuItemGroup',
 })
-defineProps<MenuItemGroupProps>()
+defineProps(MenuItemGroupDefaultValueProps)
 
 const ns = useNamespace('menu-item-group')
 </script>

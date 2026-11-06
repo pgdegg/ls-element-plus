@@ -19,3 +19,5 @@ export type {
   TimelineItemInstance,
 } from './src/timeline-item'
 export * from './src/tokens'
+
+export { TimelineItemDefaultValueProps } from './src/timeline-item'

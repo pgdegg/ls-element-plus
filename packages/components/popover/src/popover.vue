@@ -28,20 +28,19 @@
 
 <script lang="ts" setup>
 import { computed, ref, unref } from 'vue'
+import { PopoverDefaultValueProps, popoverEmits } from './popover'
 import { pick } from 'lodash-unified'
 import { ElTooltip } from '@element-plus/components/tooltip'
 import { addUnit, isArray } from '@element-plus/utils'
 import { useNamespace } from '@element-plus/hooks'
-import { popoverEmits, popoverPropsDefaults } from './popover'
 
 import type { TooltipInstance } from '@element-plus/components/tooltip'
-import type { PopoverProps } from './popover'
 
 defineOptions({
   name: 'ElPopover',
 })
 
-const props = withDefaults(defineProps<PopoverProps>(), popoverPropsDefaults)
+const props = defineProps(PopoverDefaultValueProps)
 const emit = defineEmits(popoverEmits)
 
 const passTooltipProps = computed(() => {

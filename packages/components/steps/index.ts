@@ -13,7 +13,7 @@ export default ElSteps
 export const ElStep: SFCWithInstall<typeof Step> = withNoopInstall(Step)
 
 export type { StepProps, StepInstance } from './src/item'
-export { stepsEmits } from './src/steps'
+export { stepsEmits, StepsDefaultValueProps } from './src/steps'
 export type {
   StepsStatus,
   StepsProps,
@@ -21,3 +21,5 @@ export type {
   StepsInstance,
 } from './src/steps'
 export * from './src/tokens'
+
+export { StepDefaultValueProps } from './src/item'

@@ -18,7 +18,7 @@ import type {
   TreeData,
 } from './tree.type'
 
-export const treeProps = buildProps({
+export const TreeDefaultValueProps = buildProps({
   data: {
     type: definePropType<TreeData>(Array),
     default: () => [],

@@ -50,6 +50,7 @@ import {
   useSlots,
   watch,
 } from 'vue'
+import { FormItemDefaultValueProps } from './form-item'
 import AsyncValidator from 'async-validator'
 import { refDebounced } from '@vueuse/core'
 import {
@@ -74,17 +75,12 @@ import type {
   FormItemRule,
   FormValidateFailure,
 } from './types'
-import type { FormItemProps, FormItemValidateState } from './form-item'
+import type { FormItemValidateState } from './form-item'
 
 defineOptions({
   name: 'ElFormItem',
 })
-const props = withDefaults(defineProps<FormItemProps>(), {
-  labelPosition: '',
-  showMessage: true,
-  required: undefined,
-  inlineMessage: undefined,
-})
+const props = defineProps(FormItemDefaultValueProps)
 const slots = useSlots()
 
 const formContext = inject(formContextKey, undefined)

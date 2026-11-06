@@ -6,7 +6,7 @@ import {
   isNumber,
 } from '@element-plus/utils'
 import { UPDATE_MODEL_EVENT } from '@element-plus/constants'
-import { tourContentPropDefs } from './content'
+import { TourContentDefaultValueProps } from './content'
 
 import type { TourContentProps } from './content'
 import type { CSSProperties } from 'vue'
@@ -77,8 +77,8 @@ export interface TourProps {
   targetAreaClickable?: boolean
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const tourPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const TourDefaultValueProps = buildProps({
   /**
    * @description 开启 tour
    */
@@ -112,7 +112,7 @@ export const tourPropDefs = buildProps({
   /**
    * @description 引导卡片相对于目标元素的位置
    */
-  placement: tourContentPropDefs.placement,
+  placement: TourContentDefaultValueProps.placement,
   /**
    * @description 内容的自定义样式
    */

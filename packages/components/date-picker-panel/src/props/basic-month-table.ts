@@ -1,14 +1,19 @@
 import { buildProps } from '@element-plus/utils'
-import { datePickerSharedProps, selectionModeWithDefault } from './shared'
+import {
+  DatePickerSharedDefaultValueProps,
+  selectionModeWithDefault,
+} from './shared'
 
 import type { ExtractPropTypes, ExtractPublicPropTypes } from 'vue'
 
-export const basicMonthTableProps = buildProps({
-  ...datePickerSharedProps,
+export const BasicMonthTableDefaultValueProps = buildProps({
+  ...DatePickerSharedDefaultValueProps,
   selectionMode: selectionModeWithDefault('month'),
 })
 
-export type BasicMonthTableProps = ExtractPropTypes<typeof basicMonthTableProps>
+export type BasicMonthTableProps = ExtractPropTypes<
+  typeof BasicMonthTableDefaultValueProps
+>
 export type BasicMonthTablePropsPublic = ExtractPublicPropTypes<
-  typeof basicMonthTableProps
+  typeof BasicMonthTableDefaultValueProps
 >

@@ -13,7 +13,7 @@ import { BAR_MAP } from '@element-plus/components/scrollbar'
 import { cAF, rAF } from '@element-plus/utils'
 import { useNamespace } from '@element-plus/hooks'
 import { HORIZONTAL, SCROLLBAR_MIN_SIZE, ScrollbarDirKey } from '../defaults'
-import { virtualizedScrollbarProps } from '../props'
+import { VirtualizedScrollbarDefaultValueProps } from '../props'
 import { renderThumbStyle } from '../utils'
 
 import type { CSSProperties } from 'vue'
@@ -26,7 +26,7 @@ interface ScrollState {
 
 const ScrollBar = defineComponent({
   name: 'ElVirtualScrollBar',
-  props: virtualizedScrollbarProps,
+  props: VirtualizedScrollbarDefaultValueProps,
   emits: ['scroll', 'start-move', 'stop-move'],
   setup(props, { emit }) {
     const GAP = computed(() => props.startGap + props.endGap) // top 2 + bottom 2 | left 2 + right 2

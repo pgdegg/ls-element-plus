@@ -101,8 +101,8 @@ export interface ButtonProps {
   tag?: string | Component
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const buttonPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const ButtonDefaultValueProps = buildProps({
   ignoreGroupDisabled: Boolean,
   /**
    * @description 按钮尺寸

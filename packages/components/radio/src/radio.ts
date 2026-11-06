@@ -41,8 +41,8 @@ export interface RadioProps extends RadioPropsBase {
   border?: boolean
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const radioBasePropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const RadioBaseDefaultValueProps = buildProps({
   /**
    * @description 绑定值
    */
@@ -84,9 +84,9 @@ export const radioBasePropDefs = buildProps({
   },
 })
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const radioPropDefs = buildProps({
-  ...radioBasePropDefs,
+/** Runtime prop definitions; use the public props interface for types. */
+export const RadioDefaultValueProps = buildProps({
+  ...RadioBaseDefaultValueProps,
   hideCircle: Boolean,
   /**
    * @description 是否在 Radio 周围添加边框
@@ -102,15 +102,3 @@ export const radioEmits = {
 }
 export type RadioEmits = typeof radioEmits
 export type RadioInstance = InstanceType<typeof Radio> & unknown
-
-/**
- * @description RadioProps 的默认值
- */
-export const radioPropsDefaults = {
-  modelValue: undefined,
-  disabled: undefined,
-  label: undefined,
-  value: undefined,
-  name: undefined,
-  border: false,
-} as const

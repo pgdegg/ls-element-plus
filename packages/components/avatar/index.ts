@@ -13,7 +13,7 @@ export const ElAvatarGroup: SFCWithInstall<typeof AvatarGroup> =
   withNoopInstall(AvatarGroup)
 export default ElAvatar
 
-export { avatarEmits } from './src/avatar'
+export { avatarEmits, AvatarDefaultValueProps } from './src/avatar'
 export type { AvatarProps, AvatarEmits } from './src/avatar'
 export * from './src/constants'
 export * from './src/avatar-group-props'

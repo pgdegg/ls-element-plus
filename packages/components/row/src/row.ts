@@ -32,8 +32,8 @@ export interface RowProps {
   align?: (typeof RowAlign)[number]
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const rowPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const RowDefaultValueProps = buildProps({
   /**
    * @description 自定义元素标签
    */

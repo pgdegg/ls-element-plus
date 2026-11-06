@@ -54,13 +54,13 @@ import {
   ref,
   watch,
 } from 'vue'
+import { StepDefaultValueProps } from './item'
 import { useNamespace } from '@element-plus/hooks'
 import { ElIcon } from '@element-plus/components/icon'
 import { Check, Close } from '@element-plus/icons-vue'
 import { isNumber } from '@element-plus/utils'
 import { STEPS_INJECTION_KEY } from './tokens'
 
-import type { StepProps } from './item'
 import type { CSSProperties, ComputedRef, Ref, VNode } from 'vue'
 import type { StepsProps } from './steps'
 
@@ -84,12 +84,7 @@ defineOptions({
   name: 'ElStep',
 })
 
-const props = withDefaults(defineProps<StepProps>(), {
-  title: '',
-  description: '',
-  icon: '',
-  status: '',
-})
+const props = defineProps(StepDefaultValueProps)
 
 const ns = useNamespace('step')
 const index = ref(-1)

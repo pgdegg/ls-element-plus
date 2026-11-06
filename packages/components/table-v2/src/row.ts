@@ -1,5 +1,5 @@
 import { buildProps, definePropType } from '@element-plus/utils'
-import { virtualizedGridProps } from '@element-plus/components/virtual-list'
+import { VirtualizedGridDefaultValueProps } from '@element-plus/components/virtual-list'
 import { columns, expandColumnKey, rowKey } from './common'
 
 import type {
@@ -47,7 +47,7 @@ export type RowEventHandlers = {
   onMouseleave?: RowEventHandler
 }
 
-export const tableV2RowProps = buildProps({
+export const TableV2RowDefaultValueProps = buildProps({
   class: String,
   columns,
   columnsStyles: {
@@ -57,7 +57,7 @@ export const tableV2RowProps = buildProps({
   depth: Number,
   expandColumnKey,
   estimatedRowHeight: {
-    ...virtualizedGridProps.estimatedRowHeight,
+    ...VirtualizedGridDefaultValueProps.estimatedRowHeight,
     default: undefined,
   },
   isScrolling: Boolean,
@@ -90,7 +90,9 @@ export const tableV2RowProps = buildProps({
   },
 } as const)
 
-export type TableV2RowProps = ExtractPropTypes<typeof tableV2RowProps>
+export type TableV2RowProps = ExtractPropTypes<
+  typeof TableV2RowDefaultValueProps
+>
 export type TableV2RowPropsPublic = ExtractPublicPropTypes<
-  typeof tableV2RowProps
+  typeof TableV2RowDefaultValueProps
 >

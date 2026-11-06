@@ -172,6 +172,7 @@
 
 <script lang="ts" setup generic="T extends DefaultRow = DefaultRow">
 import { computed, getCurrentInstance, onBeforeUnmount, provide } from 'vue'
+import { TableDefaultValueProps } from './table/defaults'
 import { debounce } from 'lodash-unified'
 import { Mousewheel as vMousewheel } from '@element-plus/directives'
 import { useLocale, useNamespace } from '@element-plus/hooks'
@@ -191,6 +192,7 @@ import { TABLE_INJECTION_KEY } from './tokens'
 import { hColgroup } from './h-helper'
 import { useScrollbar } from './composables/use-scrollbar'
 
+import type { PropType } from 'vue'
 import type {
   DefaultRow,
   Table,
@@ -202,24 +204,51 @@ defineOptions({
   name: 'ElTable',
 })
 
-const props = withDefaults(defineProps<TableProps<T>>(), {
-  data: () => [],
-  fit: true,
-  showHeader: true,
-  selectOnIndeterminate: true,
-  indent: 16,
-  treeProps: () => ({
-    hasChildren: 'hasChildren',
-    children: 'children',
-    checkStrictly: false,
-  }),
-  style: () => ({}),
-  className: '',
-  tableLayout: 'fixed',
-  showOverflowTooltip: undefined,
-  scrollbarTabindex: undefined,
-  allowDragLastColumn: true,
-})
+const props = defineProps(
+  TableDefaultValueProps as Omit<
+    typeof TableDefaultValueProps,
+    | 'data'
+    | 'rowKey'
+    | 'context'
+    | 'summaryMethod'
+    | 'rowClassName'
+    | 'rowStyle'
+    | 'cellClassName'
+    | 'cellStyle'
+    | 'headerRowClassName'
+    | 'headerRowStyle'
+    | 'headerCellClassName'
+    | 'headerCellStyle'
+    | 'rowExpandable'
+    | 'spanMethod'
+    | 'load'
+    | 'tooltipFormatter'
+  > & {
+    [
+      K in
+        | 'data'
+        | 'rowKey'
+        | 'context'
+        | 'summaryMethod'
+        | 'rowClassName'
+        | 'rowStyle'
+        | 'cellClassName'
+        | 'cellStyle'
+        | 'headerRowClassName'
+        | 'headerRowStyle'
+        | 'headerCellClassName'
+        | 'headerCellStyle'
+        | 'rowExpandable'
+        | 'spanMethod'
+        | 'load'
+        | 'tooltipFormatter'
+    ]: (typeof TableDefaultValueProps)[K] extends { type: unknown }
+      ? Omit<(typeof TableDefaultValueProps)[K], 'type'> & {
+          type: PropType<Exclude<TableProps<T>[K], undefined>>
+        }
+      : PropType<Exclude<TableProps<T>[K], undefined>>
+  }
+)
 
 defineEmits<TableEmits<T>>()
 

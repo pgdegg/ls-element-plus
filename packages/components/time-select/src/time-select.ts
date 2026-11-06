@@ -99,8 +99,8 @@ export const DEFAULT_START = '09:00'
 export const DEFAULT_END = '18:00'
 export const DEFAULT_STEP = '00:30'
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const timeSelectPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const TimeSelectDefaultValueProps = buildProps({
   /**
    * @description 原生 title 提示是否同时展示选项值和完整标签。
    * @default `false`

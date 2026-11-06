@@ -1,5 +1,5 @@
 import { buildProps, definePropType, iconPropType } from '@element-plus/utils'
-import { tourContentPropDefs } from './content'
+import { TourContentDefaultValueProps } from './content'
 
 import type { CSSProperties } from 'vue'
 import type { IconPropType } from '@element-plus/utils'
@@ -61,8 +61,8 @@ export interface TourStepProps {
   type?: 'default' | 'primary'
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const tourStepPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const TourStepDefaultValueProps = buildProps({
   /**
    * @description 获取引导卡片指向的元素。为空时显示在屏幕中央
    */
@@ -102,7 +102,7 @@ export const tourStepPropDefs = buildProps({
   /**
    * @description 引导卡片相对于目标元素的位置
    */
-  placement: tourContentPropDefs.placement,
+  placement: TourContentDefaultValueProps.placement,
   /**
    * @description 是否启用遮罩，可通过传入自定义 props 修改遮罩样式和填充色
    */

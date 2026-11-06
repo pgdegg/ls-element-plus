@@ -4,14 +4,16 @@ import { flattedChildren, isArray } from '@element-plus/utils'
 import type { FlattenVNodes } from '@element-plus/utils'
 import type { Component, VNode } from 'vue'
 
+export const TourStepsDefaultValueProps = {
+  current: {
+    type: Number,
+    default: 0,
+  },
+} as const
+
 export default defineComponent({
   name: 'ElTourSteps',
-  props: {
-    current: {
-      type: Number,
-      default: 0,
-    },
-  },
+  props: TourStepsDefaultValueProps,
   emits: ['update-total'],
   setup(props, { slots, emit }) {
     let cacheTotal = 0

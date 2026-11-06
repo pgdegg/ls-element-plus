@@ -109,7 +109,7 @@ import { useFormSize } from '@element-plus/components/form'
 import { addUnit, ensureArray } from '@element-plus/utils'
 import { ArrowDown } from '@element-plus/icons-vue'
 import { useId, useLocale, useNamespace } from '@element-plus/hooks'
-import { dropdownProps } from './dropdown'
+import { DropdownDefaultValueProps } from './dropdown'
 import {
   DROPDOWN_INJECTION_KEY,
   DROPDOWN_INSTANCE_INJECTION_KEY,
@@ -132,7 +132,7 @@ export default defineComponent({
     ElIcon,
     ArrowDown,
   },
-  props: dropdownProps,
+  props: DropdownDefaultValueProps,
   emits: ['visible-change', 'click', 'command'],
   setup(props, { emit }) {
     const _instance = getCurrentInstance()

@@ -41,8 +41,8 @@ export interface StepsProps {
   processStatus?: StepsStatus
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const stepsPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const StepsDefaultValueProps = buildProps({
   /**
    * @description 每个步骤的间距，省略时为响应式。支持百分比。
    */

@@ -12,23 +12,19 @@
 
 <script lang="ts" setup>
 import { computed, inject, nextTick, onBeforeUnmount, ref, watch } from 'vue'
+import { TabBarDefaultValueProps } from './tab-bar'
 import { useResizeObserver } from '@vueuse/core'
 import { capitalize, isUndefined, rAF, throwError } from '@element-plus/utils'
 import { useNamespace } from '@element-plus/hooks'
 import { tabsRootContextKey } from './constants'
 
-import type { TabBarProps } from './tab-bar'
 import type { CSSProperties } from 'vue'
 
 const COMPONENT_NAME = 'ElTabBar'
 defineOptions({
   name: COMPONENT_NAME,
 })
-const props = withDefaults(defineProps<TabBarProps>(), {
-  active: true,
-  tabs: () => [],
-  tabRefs: () => ({}),
-})
+const props = defineProps(TabBarDefaultValueProps)
 
 const rootTabs = inject(tabsRootContextKey)
 if (!rootTabs) throwError(COMPONENT_NAME, '<el-tabs><el-tab-bar /></el-tabs>')

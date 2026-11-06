@@ -27,7 +27,7 @@ import { useCache } from '../hooks/use-cache'
 import useWheel from '../hooks/use-wheel'
 import Scrollbar from '../components/scrollbar'
 import { getRTLOffsetType, getScrollDir, isHorizontal } from '../utils'
-import { virtualizedListProps } from '../props'
+import { VirtualizedListDefaultValueProps } from '../props'
 import {
   AUTO_ALIGNMENT,
   BACKWARD,
@@ -60,7 +60,7 @@ const createList = ({
 }: ListConstructorProps<VirtualizedListProps>) => {
   return defineComponent({
     name: name ?? 'ElVirtualList',
-    props: virtualizedListProps,
+    props: VirtualizedListDefaultValueProps,
     emits: [ITEM_RENDER_EVT, SCROLL_EVT, END_REACHED_EVT],
     setup(props, { emit, expose }) {
       validateProps(props)

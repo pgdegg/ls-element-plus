@@ -31,7 +31,7 @@ import type {
 } from 'vue'
 import type { AlignItems, ClassValue } from '@element-plus/utils'
 
-export const spaceProps = buildProps({
+export const SpaceDefaultValueProps = buildProps({
   /**
    * @description 排列方向
    */
@@ -104,13 +104,15 @@ export const spaceProps = buildProps({
     },
   },
 } as const)
-export type SpaceProps = ExtractPropTypes<typeof spaceProps>
-export type SpacePropsPublic = ExtractPublicPropTypes<typeof spaceProps>
+export type SpaceProps = ExtractPropTypes<typeof SpaceDefaultValueProps>
+export type SpacePropsPublic = ExtractPublicPropTypes<
+  typeof SpaceDefaultValueProps
+>
 
 const Space = defineComponent({
   name: 'ElSpace',
 
-  props: spaceProps,
+  props: SpaceDefaultValueProps,
 
   setup(props, { slots }) {
     const { classes, containerStyle, itemStyle } = useSpace(props)

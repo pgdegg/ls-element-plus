@@ -1,11 +1,11 @@
 import { buildProps, definePropType } from '@element-plus/utils'
-import { panelSharedProps } from './shared'
+import { PanelSharedDefaultValueProps } from './shared'
 
 import type { ExtractPropTypes, ExtractPublicPropTypes } from 'vue'
 import type { DayOrDays } from '@element-plus/components/time-picker'
 
-export const panelDatePickProps = buildProps({
-  ...panelSharedProps,
+export const PanelDatePickDefaultValueProps = buildProps({
+  ...PanelSharedDefaultValueProps,
   parsedValue: {
     type: definePropType<DayOrDays>([Object, Array]),
   },
@@ -19,7 +19,9 @@ export const panelDatePickProps = buildProps({
   },
 } as const)
 
-export type PanelDatePickProps = ExtractPropTypes<typeof panelDatePickProps>
+export type PanelDatePickProps = ExtractPropTypes<
+  typeof PanelDatePickDefaultValueProps
+>
 export type PanelDatePickPropsPublic = ExtractPublicPropTypes<
-  typeof panelDatePickProps
+  typeof PanelDatePickDefaultValueProps
 >

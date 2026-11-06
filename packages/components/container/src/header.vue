@@ -6,24 +6,16 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue'
+import { HeaderDefaultValueProps } from './header'
 import { useNamespace } from '@element-plus/hooks'
 
 import type { CSSProperties } from 'vue'
-
-interface HeaderProps {
-  /**
-   * @description 头部高度
-   */
-  height?: string | null
-}
 
 defineOptions({
   name: 'ElHeader',
 })
 
-const props = withDefaults(defineProps<HeaderProps>(), {
-  height: null,
-})
+const props = defineProps(HeaderDefaultValueProps)
 
 const ns = useNamespace('header')
 const style = computed(() => {

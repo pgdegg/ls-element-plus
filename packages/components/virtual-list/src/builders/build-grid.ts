@@ -24,7 +24,7 @@ import Scrollbar from '../components/scrollbar'
 import { useGridWheel } from '../hooks/use-grid-wheel'
 import { useCache } from '../hooks/use-cache'
 import { useGridTouch } from '../hooks/use-grid-touch'
-import { virtualizedGridProps } from '../props'
+import { VirtualizedGridDefaultValueProps } from '../props'
 import { getRTLOffsetType, getScrollDir, isRTL } from '../utils'
 import {
   AUTO_ALIGNMENT,
@@ -76,7 +76,7 @@ const createGrid = ({
 }: GridConstructorProps<VirtualizedGridProps>) => {
   return defineComponent({
     name: name ?? 'ElVirtualList',
-    props: virtualizedGridProps,
+    props: VirtualizedGridDefaultValueProps,
     emits: [ITEM_RENDER_EVT, SCROLL_EVT],
     setup(props, { emit, expose, slots }) {
       const ns = useNamespace('vl')

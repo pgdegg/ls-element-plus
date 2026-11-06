@@ -106,8 +106,8 @@ import ElIcon from '@element-plus/components/icon'
 import { useLocale } from '@element-plus/hooks'
 import { PICKER_BASE_INJECTION_KEY } from '@element-plus/components/time-picker'
 import {
+  PanelYearRangeDefaultValueProps,
   panelYearRangeEmits,
-  panelYearRangeProps,
 } from '../props/panel-year-range'
 import { useYearRangeHeader } from '../composables/use-year-range-header'
 import { useRangePicker } from '../composables/use-range-picker'
@@ -125,7 +125,7 @@ defineOptions({
   name: 'DatePickerYearRange',
 })
 
-const props = defineProps(panelYearRangeProps)
+const props = defineProps(PanelYearRangeDefaultValueProps)
 const emit = defineEmits(panelYearRangeEmits)
 const step = 10
 const unit = 'year'

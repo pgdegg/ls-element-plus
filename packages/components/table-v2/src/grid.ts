@@ -1,7 +1,7 @@
 import { buildProps, definePropType } from '@element-plus/utils'
 import {
-  virtualizedGridProps,
-  virtualizedListProps,
+  VirtualizedGridDefaultValueProps,
+  VirtualizedListDefaultValueProps,
 } from '@element-plus/components/virtual-list'
 import {
   classType,
@@ -11,8 +11,8 @@ import {
   requiredNumber,
   styleType,
 } from './common'
-import { tableV2HeaderProps } from './header'
-import { tableV2RowProps } from './row'
+import { TableV2HeaderDefaultValueProps } from './header'
+import { TableV2RowDefaultValueProps } from './row'
 
 import type { ExtractPropTypes, ExtractPublicPropTypes } from 'vue'
 import type { ItemSize } from '@element-plus/components/virtual-list'
@@ -24,11 +24,11 @@ export type onRowRenderedParams = {
   rowVisibleEnd: number
 }
 
-export const tableV2GridProps = buildProps({
+export const TableV2GridDefaultValueProps = buildProps({
   columns,
   data: dataType,
   fixedData: fixedDataType,
-  estimatedRowHeight: tableV2RowProps.estimatedRowHeight,
+  estimatedRowHeight: TableV2RowDefaultValueProps.estimatedRowHeight,
 
   /**
    * 尺寸相关属性
@@ -37,7 +37,7 @@ export const tableV2GridProps = buildProps({
   height: requiredNumber,
 
   headerWidth: requiredNumber,
-  headerHeight: tableV2HeaderProps.headerHeight,
+  headerHeight: TableV2HeaderDefaultValueProps.headerHeight,
 
   bodyWidth: requiredNumber,
   rowHeight: requiredNumber,
@@ -45,11 +45,11 @@ export const tableV2GridProps = buildProps({
   /**
    * 特殊属性
    */
-  cache: virtualizedListProps.cache,
+  cache: VirtualizedListDefaultValueProps.cache,
   useIsScrolling: Boolean,
-  scrollbarAlwaysOn: virtualizedGridProps.scrollbarAlwaysOn,
-  scrollbarStartGap: virtualizedGridProps.scrollbarStartGap,
-  scrollbarEndGap: virtualizedGridProps.scrollbarEndGap,
+  scrollbarAlwaysOn: VirtualizedGridDefaultValueProps.scrollbarAlwaysOn,
+  scrollbarStartGap: VirtualizedGridDefaultValueProps.scrollbarStartGap,
+  scrollbarEndGap: VirtualizedGridDefaultValueProps.scrollbarEndGap,
 
   /**
    * CSS 属性
@@ -62,7 +62,7 @@ export const tableV2GridProps = buildProps({
     type: definePropType<ItemSize>(Function),
     required: true,
   },
-  rowKey: tableV2RowProps.rowKey,
+  rowKey: TableV2RowDefaultValueProps.rowKey,
 
   /**
    * 事件处理函数
@@ -75,7 +75,9 @@ export const tableV2GridProps = buildProps({
   },
 } as const)
 
-export type TableV2GridProps = ExtractPropTypes<typeof tableV2GridProps>
+export type TableV2GridProps = ExtractPropTypes<
+  typeof TableV2GridDefaultValueProps
+>
 export type TableV2GridPropsPublic = ExtractPublicPropTypes<
-  typeof tableV2GridProps
+  typeof TableV2GridDefaultValueProps
 >

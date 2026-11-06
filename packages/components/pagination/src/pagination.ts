@@ -48,7 +48,7 @@ const isAbsent = (v: unknown): v is undefined => typeof v !== 'number'
 type LayoutKey =
   'prev' | 'pager' | 'next' | 'jumper' | '->' | 'total' | 'sizes' | 'slot'
 
-export const paginationProps = buildProps({
+export const PaginationDefaultValueProps = buildProps({
   /**
    * @description 每页条数的选项
    */
@@ -175,9 +175,11 @@ export const paginationProps = buildProps({
    */
   appendSizeTo: String,
 } as const)
-export type PaginationProps = ExtractPropTypes<typeof paginationProps>
+export type PaginationProps = ExtractPropTypes<
+  typeof PaginationDefaultValueProps
+>
 export type PaginationPropsPublic = ExtractPublicPropTypes<
-  typeof paginationProps
+  typeof PaginationDefaultValueProps
 >
 
 export const paginationEmits = {
@@ -201,7 +203,7 @@ const componentName = 'ElPagination'
 export default defineComponent({
   name: componentName,
 
-  props: paginationProps,
+  props: PaginationDefaultValueProps,
   emits: paginationEmits,
 
   setup(props, { emit, slots }) {

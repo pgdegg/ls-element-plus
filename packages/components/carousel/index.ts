@@ -15,9 +15,11 @@ export default ElCarousel
 export const ElCarouselItem: SFCWithInstall<typeof CarouselItem> =
   withNoopInstall(CarouselItem)
 
-export { carouselEmits } from './src/carousel'
+export { carouselEmits, CarouselDefaultValueProps } from './src/carousel'
 export type { CarouselProps, CarouselEmits } from './src/carousel'
 export type { CarouselItemProps } from './src/carousel-item'
 export * from './src/constants'
 
 export type { CarouselInstance, CarouselItemInstance } from './src/instance'
+
+export { CarouselItemDefaultValueProps } from './src/carousel-item'

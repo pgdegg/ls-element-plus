@@ -29,6 +29,7 @@ import {
   toRefs,
   watch,
 } from 'vue'
+import { RadioGroupDefaultValueProps } from './radio-group'
 import { useFormItem, useFormItemInputId } from '@element-plus/components/form'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@element-plus/constants'
 import { useId, useInputElement, useNamespace } from '@element-plus/hooks'
@@ -37,7 +38,6 @@ import {
   type RadioGroupProps,
   radioDefaultProps,
   radioGroupEmits,
-  radioGroupPropsDefaults,
 } from './radio-group'
 import { radioGroupKey } from './constants'
 import { isEqual, omit } from 'lodash-unified'
@@ -48,10 +48,7 @@ defineOptions({
   name: 'ElRadioGroup',
 })
 
-const props = withDefaults(
-  defineProps<RadioGroupProps>(),
-  radioGroupPropsDefaults
-)
+const props = defineProps(RadioGroupDefaultValueProps)
 const emit = defineEmits(radioGroupEmits)
 
 const ns = useNamespace('radio')

@@ -43,16 +43,16 @@
 
 <script lang="ts" setup>
 import { nextTick } from 'vue'
+import { RadioDefaultValueProps, radioEmits } from './radio'
 import { useNamespace } from '@element-plus/hooks'
 import { CHANGE_EVENT } from '@element-plus/constants'
-import { type RadioProps, radioEmits, radioPropsDefaults } from './radio'
 import { useRadio } from './use-radio'
 
 defineOptions({
   name: 'ElRadio',
 })
 
-const props = withDefaults(defineProps<RadioProps>(), radioPropsDefaults)
+const props = defineProps(RadioDefaultValueProps)
 const emit = defineEmits(radioEmits)
 
 const ns = useNamespace('radio')

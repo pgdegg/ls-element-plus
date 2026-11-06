@@ -384,7 +384,7 @@ import ElSelectMenu from './select-dropdown.vue'
 import { useSelect } from './useSelect'
 import { selectKey } from './token'
 import ElOptions from './options'
-import { selectEmits, selectProps } from './select'
+import { SelectDefaultValueProps, selectEmits } from './select'
 import ElOptionGroup from './option-group.vue'
 
 import type { AppConfig, AppContext, VNode } from 'vue'
@@ -451,7 +451,7 @@ export default defineComponent({
     ElIcon,
   },
   directives: { ClickOutside },
-  props: selectProps,
+  props: SelectDefaultValueProps,
   emits: selectEmits,
 
   setup(props, { emit, slots }) {

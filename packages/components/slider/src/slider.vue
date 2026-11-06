@@ -113,7 +113,7 @@ import ElInputNumber from '@element-plus/components/input-number'
 import { useFormItemInputId, useFormSize } from '@element-plus/components/form'
 import { useLocale, useNamespace } from '@element-plus/hooks'
 import { sliderContextKey } from './constants'
-import { sliderEmits, sliderProps } from './slider'
+import { SliderDefaultValueProps, sliderEmits } from './slider'
 import SliderButton from './button.vue'
 import SliderMarker from './marker'
 import {
@@ -131,7 +131,7 @@ defineOptions({
   name: 'ElSlider',
 })
 
-const props = defineProps(sliderProps)
+const props = defineProps(SliderDefaultValueProps)
 const emit = defineEmits(sliderEmits)
 
 const ns = useNamespace('slider')

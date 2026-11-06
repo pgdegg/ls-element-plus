@@ -42,22 +42,16 @@
 </template>
 
 <script lang="ts" setup>
-import { markRaw } from 'vue'
+import { CollapseItemDefaultValueProps } from './collapse-item'
 import ElCollapseTransition from '@element-plus/components/collapse-transition'
 import ElIcon from '@element-plus/components/icon'
-import { ArrowRight } from '@element-plus/icons-vue'
 import { useCollapseItem, useCollapseItemDOM } from './use-collapse-item'
-
-import type { CollapseItemProps } from './collapse-item'
 
 defineOptions({
   name: 'ElCollapseItem',
 })
 
-const props = withDefaults(defineProps<CollapseItemProps>(), {
-  title: '',
-  icon: markRaw(ArrowRight),
-})
+const props = defineProps(CollapseItemDefaultValueProps)
 const {
   focusing,
   id,

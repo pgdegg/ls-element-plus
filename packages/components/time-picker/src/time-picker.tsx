@@ -9,20 +9,22 @@ import {
 import Picker from './common/picker.vue'
 import TimePickPanel from './time-picker-com/panel-time-pick.vue'
 import TimeRangePanel from './time-picker-com/panel-time-range.vue'
-import { timePickerDefaultProps } from './common/props'
+import { TimePickerCommonDefaultValueProps } from './common/props'
 
 dayjs.extend(customParseFormat)
+
+export const TimePickerDefaultValueProps = {
+  ...TimePickerCommonDefaultValueProps,
+  /**
+   * @description 是否选择时间范围
+   */
+  isRange: Boolean,
+} as const
 
 export default defineComponent({
   name: 'ElTimePicker',
   install: null,
-  props: {
-    ...timePickerDefaultProps,
-    /**
-     * @description 是否选择时间范围
-     */
-    isRange: Boolean,
-  },
+  props: TimePickerDefaultValueProps,
   emits: [UPDATE_MODEL_EVENT],
   setup(props, ctx) {
     const commonPicker = ref<InstanceType<typeof Picker>>()

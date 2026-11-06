@@ -6,7 +6,7 @@ import type { SFCWithInstall } from '@element-plus/utils'
 export const ElCalendar: SFCWithInstall<typeof Calendar> = withInstall(Calendar)
 export default ElCalendar
 
-export { calendarEmits } from './src/calendar'
+export { calendarEmits, CalendarDefaultValueProps } from './src/calendar'
 export type {
   CalendarDateType,
   CalendarProps,
@@ -17,3 +17,7 @@ export type {
   DateTableInstance,
   CalendarInstance,
 } from './src/instance'
+
+export { DateTableDefaultValueProps } from './src/date-table'
+
+export { SelectControllerDefaultValueProps } from './src/select-controller'

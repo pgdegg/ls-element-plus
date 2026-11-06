@@ -11,7 +11,7 @@ export { ElPopperArrow, ElPopperTrigger, ElPopperContent }
 export const ElPopper: SFCWithInstall<typeof Popper> = withInstall(Popper)
 export default ElPopper
 
-export { Effect, roleTypes } from './src/popper'
+export { Effect, roleTypes, PopperDefaultValueProps } from './src/popper'
 export type {
   PopperEffect,
   PopperTrigger,
@@ -20,9 +20,9 @@ export type {
 } from './src/popper'
 export type { PopperTriggerProps, PopperTriggerInstance } from './src/trigger'
 export {
-  popperCoreConfigPropsDefaults,
-  popperContentPropsDefaults,
   popperContentEmits,
+  PopperCoreConfigDefaultValueProps,
+  PopperContentDefaultValueProps,
 } from './src/content'
 export type {
   CreatePopperInstanceParams,
@@ -31,8 +31,12 @@ export type {
   PopperContentEmits,
   PopperContentInstance,
 } from './src/content'
-export { popperArrowPropsDefaults } from './src/arrow'
+
 export type { PopperArrowProps, PopperArrowInstance } from './src/arrow'
 export * from './src/constants'
 
 export type { Placement, Options } from '@popperjs/core'
+
+export { PopperArrowDefaultValueProps } from './src/arrow'
+
+export { PopperTriggerDefaultValueProps } from './src/trigger'

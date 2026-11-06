@@ -11,6 +11,9 @@ export * from './src/utils'
 export {
   ROVING_FOCUS_COLLECTION_INJECTION_KEY,
   ROVING_FOCUS_ITEM_COLLECTION_INJECTION_KEY,
+  RovingFocusGroupDefaultValueProps,
 } from './src/roving-focus-group'
 
 export default ElRovingFocusGroup
+
+export { RovingFocusItemDefaultValueProps } from './src/roving-focus-item-props'

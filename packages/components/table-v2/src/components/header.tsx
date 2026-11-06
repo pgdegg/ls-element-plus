@@ -9,7 +9,7 @@ import {
 } from 'vue'
 import { useNamespace } from '@element-plus/hooks'
 import { ensureArray } from '@element-plus/utils'
-import { tableV2HeaderProps } from '../header'
+import { TableV2HeaderDefaultValueProps } from '../header'
 import { enforceUnit } from '../utils'
 import { TABLE_V2_GRID_INJECTION_KEY } from '../tokens'
 
@@ -20,7 +20,7 @@ import type { UseColumnsReturn } from '../composables/use-columns'
 const COMPONENT_NAME = 'ElTableV2Header'
 const TableV2Header = defineComponent({
   name: COMPONENT_NAME,
-  props: tableV2HeaderProps,
+  props: TableV2HeaderDefaultValueProps,
   setup(props, { slots, expose }) {
     const ns = useNamespace('table-v2')
     const scrollLeftInfo = inject<Ref<number>>(TABLE_V2_GRID_INJECTION_KEY)

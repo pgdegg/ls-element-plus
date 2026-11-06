@@ -7,7 +7,7 @@ import type {
   Ref,
 } from 'vue'
 import type { SelectProps } from './select'
-import type { optionProps } from './option'
+import type { OptionDefaultValueProps } from './option'
 
 export interface SelectGroupContext {
   disabled: boolean
@@ -37,8 +37,10 @@ export type SelectStates = {
   menuVisibleOnFocus: boolean
   isBeforeHide: boolean
 }
-export type OptionProps = ExtractPropTypes<typeof optionProps>
-export type OptionPropsPublic = ExtractPublicPropTypes<typeof optionProps>
+export type OptionProps = ExtractPropTypes<typeof OptionDefaultValueProps>
+export type OptionPropsPublic = ExtractPublicPropTypes<
+  typeof OptionDefaultValueProps
+>
 export interface OptionStates {
   index: number
   groupDisabled: boolean

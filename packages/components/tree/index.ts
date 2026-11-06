@@ -11,3 +11,7 @@ export * from './src/tree.type'
 export * from './src/instance'
 export * from './src/tokens'
 export * from './src/tree'
+
+export { TreeNodeContentDefaultValueProps } from './src/tree-node-content-props'
+
+export { TreeNodeDefaultValueProps } from './src/tree-node-props'

@@ -18,3 +18,5 @@ export default _MessageBox
 export const ElMessageBox = _MessageBox
 
 export * from './src/message-box.type'
+
+export { MessageBoxDefaultValueProps } from './src/index-props'

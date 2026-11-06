@@ -13,6 +13,7 @@ import {
   unref,
   watch,
 } from 'vue'
+import { FocusTrapDefaultValueProps } from './focus-trap-props'
 import { isNil } from 'lodash-unified'
 import { EVENT_CODE } from '@element-plus/constants'
 import { useEscapeKeydown } from '@element-plus/hooks'
@@ -36,21 +37,12 @@ import {
   ON_TRAP_FOCUS_EVT,
 } from './tokens'
 
-import type { PropType } from 'vue'
 import type { FocusLayer } from './utils'
 
 export default defineComponent({
   name: 'ElFocusTrap',
   inheritAttrs: false,
-  props: {
-    loop: Boolean,
-    trapped: Boolean,
-    focusTrapEl: Object as PropType<HTMLElement>,
-    focusStartEl: {
-      type: [Object, String] as PropType<'container' | 'first' | HTMLElement>,
-      default: 'first',
-    },
-  },
+  props: FocusTrapDefaultValueProps,
   emits: [
     ON_TRAP_FOCUS_EVT,
     ON_RELEASE_FOCUS_EVT,

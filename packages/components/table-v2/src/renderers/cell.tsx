@@ -6,7 +6,12 @@ import { Alignment } from '../constants'
 import { placeholderSign } from '../private'
 import { componentToSlot, enforceUnit, tryCall } from '../utils'
 
-import type { FunctionalComponent, UnwrapNestedRefs, VNode } from 'vue'
+import type {
+  FunctionalComponent,
+  PropType,
+  UnwrapNestedRefs,
+  VNode,
+} from 'vue'
 import type { TableV2RowCellRenderParam } from '../components'
 import type { Translator, UseNamespaceReturn } from '@element-plus/hooks'
 import type { UseTableReturn } from '../use-table'
@@ -21,6 +26,71 @@ type CellRendererProps = TableV2RowCellRenderParam &
     ns: UseNamespaceReturn
     t: Translator
   }
+
+export const TableV2CellRendererDefaultValueProps = {
+  column: {
+    type: Object as PropType<CellRendererProps['column']>,
+    required: true,
+  },
+  columns: {
+    type: Array as PropType<CellRendererProps['columns']>,
+    required: true,
+  },
+  columnIndex: {
+    type: Number as PropType<CellRendererProps['columnIndex']>,
+    required: true,
+  },
+  depth: {
+    type: Number as PropType<CellRendererProps['depth']>,
+    required: true,
+  },
+  style: {
+    type: [String, Array, Object, Boolean] as PropType<
+      CellRendererProps['style']
+    >,
+    required: true,
+  },
+  rowData: {
+    type: null as unknown as PropType<CellRendererProps['rowData']>,
+    required: true,
+  },
+  rowIndex: {
+    type: Number as PropType<CellRendererProps['rowIndex']>,
+    required: true,
+  },
+  isScrolling: {
+    type: Boolean as PropType<CellRendererProps['isScrolling']>,
+    required: true,
+    default: undefined,
+  },
+  expandIconProps: {
+    type: Object as PropType<CellRendererProps['expandIconProps']>,
+  },
+  expandColumnKey: {
+    type: String as PropType<CellRendererProps['expandColumnKey']>,
+  },
+  rowKey: {
+    type: [String, Number, Symbol] as PropType<CellRendererProps['rowKey']>,
+    required: true,
+  },
+  cellProps: {
+    type: [Object, Function] as PropType<CellRendererProps['cellProps']>,
+  },
+  indentSize: {
+    type: Number as PropType<CellRendererProps['indentSize']>,
+    required: true,
+  },
+  iconSize: {
+    type: Number as PropType<CellRendererProps['iconSize']>,
+    required: true,
+  },
+  expandedRowKeys: {
+    type: Array as PropType<CellRendererProps['expandedRowKeys']>,
+    required: true,
+  },
+  ns: { type: Object as PropType<CellRendererProps['ns']>, required: true },
+  t: { type: Function as PropType<CellRendererProps['t']>, required: true },
+} as const
 
 const CellRenderer: FunctionalComponent<CellRendererProps> = (
   {
@@ -133,5 +203,7 @@ const CellRenderer: FunctionalComponent<CellRendererProps> = (
 }
 
 CellRenderer.inheritAttrs = false
+
+CellRenderer.props = TableV2CellRendererDefaultValueProps
 
 export default CellRenderer

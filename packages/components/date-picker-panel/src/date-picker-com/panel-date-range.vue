@@ -437,7 +437,7 @@ import {
   DArrowLeft,
   DArrowRight,
 } from '@element-plus/icons-vue'
-import { panelDateRangeProps } from '../props/panel-date-range'
+import { PanelDateRangeDefaultValueProps } from '../props/panel-date-range'
 import { useRangePicker } from '../composables/use-range-picker'
 import {
   correctlyParseUserInput,
@@ -459,7 +459,7 @@ type UserInput = {
   max: string | null
 }
 
-const props = defineProps(panelDateRangeProps)
+const props = defineProps(PanelDateRangeDefaultValueProps)
 const emit = defineEmits([
   'pick',
   'set-picker-option',

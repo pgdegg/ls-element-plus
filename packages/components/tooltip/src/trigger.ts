@@ -1,5 +1,5 @@
 import { buildProps, definePropType } from '@element-plus/utils'
-import { popperTriggerPropDefs } from '@element-plus/components/popper/src/trigger'
+import { PopperTriggerDefaultValueProps } from '@element-plus/components/popper/src/trigger'
 import { EVENT_CODE } from '@element-plus/constants'
 
 import type { PopperTriggerProps } from '@element-plus/components/popper'
@@ -26,18 +26,9 @@ export interface UseTooltipTriggerProps extends PopperTriggerProps {
   focusOnTarget?: boolean
 }
 
-export const useTooltipTriggerPropsDefaults = {
-  trigger: 'hover',
-  triggerKeys: () => [
-    EVENT_CODE.enter,
-    EVENT_CODE.numpadEnter,
-    EVENT_CODE.space,
-  ],
-} as const
-
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const tooltipTriggerPropDefs = buildProps({
-  ...popperTriggerPropDefs,
+/** Runtime prop definitions; use the public props interface for types. */
+export const TooltipTriggerDefaultValueProps = buildProps({
+  ...PopperTriggerDefaultValueProps,
   /**
    * @description Tooltip 是否禁用
    */

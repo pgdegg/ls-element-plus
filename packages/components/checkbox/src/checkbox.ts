@@ -71,8 +71,8 @@ export interface CheckboxProps extends Pick<
    */
   validateEvent?: boolean
 }
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const checkboxPropDefs = {
+/** Runtime prop definitions; use the public props interface for types. */
+export const CheckboxDefaultValueProps = {
   hideCircle: Boolean,
   cancelDisabled: Boolean,
   /**
@@ -171,15 +171,6 @@ export const checkboxEmits = {
 export type CheckboxEmits = typeof checkboxEmits
 export type CheckboxInstance = InstanceType<typeof Checkbox> & unknown
 
-export const checkboxPropsDefaults = {
-  modelValue: undefined,
-  label: undefined,
-  value: undefined,
-  disabled: undefined,
-  name: undefined,
-  trueValue: undefined,
-  falseValue: undefined,
-
-  id: undefined,
-  validateEvent: true,
+export const CheckboxButtonDefaultValueProps = {
+  ...CheckboxDefaultValueProps,
 } as const

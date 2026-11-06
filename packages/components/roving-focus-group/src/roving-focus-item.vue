@@ -10,6 +10,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, inject, provide, ref, unref } from 'vue'
+import { RovingFocusItemDefaultValueProps } from './roving-focus-item-props'
 import { useId } from '@element-plus/hooks'
 import { composeEventHandlers, getEventCode } from '@element-plus/utils'
 import { EVENT_CODE } from '@element-plus/constants'
@@ -23,13 +24,7 @@ export default defineComponent({
   components: {
     ElRovingFocusCollectionItem,
   },
-  props: {
-    focusable: {
-      type: Boolean,
-      default: true,
-    },
-    active: Boolean,
-  },
+  props: RovingFocusItemDefaultValueProps,
   emits: ['mousedown', 'focus', 'keydown'],
   setup(props, { emit }) {
     const { currentTabbedId, onItemFocus, onItemShiftTab, onKeydown } = inject(

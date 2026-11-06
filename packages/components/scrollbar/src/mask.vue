@@ -14,17 +14,16 @@
 
 <script lang="ts" setup>
 import { inject, shallowReactive, shallowRef } from 'vue'
+import { ScrollbarMaskDefaultValueProps } from './scrollbar'
 import { useNamespace } from '@element-plus/hooks'
 import { getStyle } from '@element-plus/utils'
 import { scrollbarContextKey } from './constants'
 import { getRTLOffsetType } from './mask-utils'
 
 import type { CSSProperties } from 'vue'
-import type { ScrollbarDirection, ScrollbarProps } from './scrollbar'
+import type { ScrollbarDirection } from './scrollbar'
 
-defineProps<{
-  mask: ScrollbarProps['mask']
-}>()
+defineProps(ScrollbarMaskDefaultValueProps)
 
 const ns = useNamespace('scrollbar')
 const scrollbar = inject(scrollbarContextKey)!

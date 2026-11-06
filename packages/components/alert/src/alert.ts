@@ -37,8 +37,8 @@ export interface AlertProps {
   effect?: 'light' | 'dark'
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const alertPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const AlertDefaultValueProps = buildProps({
   /**
    * @description 警告标题
    */

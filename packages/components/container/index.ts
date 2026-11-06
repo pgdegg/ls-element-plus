@@ -30,3 +30,11 @@ export type AsideInstance = InstanceType<typeof Aside> & unknown
 export type FooterInstance = InstanceType<typeof Footer> & unknown
 export type HeaderInstance = InstanceType<typeof Header> & unknown
 export type MainInstance = InstanceType<typeof Main> & unknown
+
+export { AsideDefaultValueProps } from './src/aside'
+
+export { ContainerDefaultValueProps } from './src/container'
+
+export { FooterDefaultValueProps } from './src/footer'
+
+export { HeaderDefaultValueProps } from './src/header'

@@ -12,3 +12,5 @@ export type {
   ProgressProps,
   ProgressInstance,
 } from './src/progress'
+
+export { ProgressDefaultValueProps } from './src/progress'

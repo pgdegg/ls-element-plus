@@ -26,8 +26,8 @@ export interface SkeletonProps {
   throttle?: ThrottleType
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const skeletonPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const SkeletonDefaultValueProps = buildProps({
   /**
    * @description 是否显示动画
    */

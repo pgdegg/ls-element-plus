@@ -7,8 +7,8 @@ export interface UploadDraggerProps {
   directory?: boolean
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const uploadDraggerPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const UploadDraggerDefaultValueProps = buildProps({
   disabled: {
     type: Boolean,
     default: undefined,

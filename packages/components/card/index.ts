@@ -6,6 +6,6 @@ import type { SFCWithInstall } from '@element-plus/utils'
 export const ElCard: SFCWithInstall<typeof Card> = withInstall(Card)
 export default ElCard
 
-export { cardContextKey } from './src/card'
+export { cardContextKey, CardDefaultValueProps } from './src/card'
 export type { CardProps, CardConfigContext } from './src/card'
 export type { CardInstance } from './src/instance'

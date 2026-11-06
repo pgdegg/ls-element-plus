@@ -2,7 +2,7 @@ import { defineComponent, provide, unref } from 'vue'
 import { useLocale, useNamespace } from '@element-plus/hooks'
 import { useTable } from './use-table'
 import { TableV2InjectionKey } from './tokens'
-import { tableV2Props } from './table'
+import { TableV2DefaultValueProps } from './table'
 // renderers
 import MainTable from './renderers/main-table'
 import LeftTable from './renderers/left-table'
@@ -40,7 +40,7 @@ const COMPONENT_NAME = 'ElTableV2'
 
 const TableV2 = defineComponent({
   name: COMPONENT_NAME,
-  props: tableV2Props,
+  props: TableV2DefaultValueProps,
   slots: Object as SlotsType<TableV2Slots>,
   setup(props, { slots, expose }) {
     const ns = useNamespace('table-v2')

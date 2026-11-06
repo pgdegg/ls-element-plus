@@ -6,22 +6,14 @@
 
 <script lang="ts" setup>
 import { provide, reactive, toRef } from 'vue'
+import { ButtonGroupDefaultValueProps } from './button-group'
 import { useNamespace } from '@element-plus/hooks'
 import { buttonGroupContextKey } from './constants'
-
-import type { ButtonGroupProps } from './button-group'
 
 defineOptions({
   name: 'ElButtonGroup',
 })
-const props = withDefaults(defineProps<ButtonGroupProps>(), {
-  direction: 'horizontal',
-  disabled: undefined,
-  plain: undefined,
-  text: undefined,
-  link: undefined,
-  type: '',
-})
+const props = defineProps(ButtonGroupDefaultValueProps)
 provide(
   buttonGroupContextKey,
   reactive({

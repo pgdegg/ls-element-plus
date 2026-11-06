@@ -51,22 +51,18 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue'
+import { TagDefaultValueProps, tagEmits } from './tag'
 import ElIcon from '@element-plus/components/icon'
 import { Close } from '@element-plus/icons-vue'
 import { useLocale, useNamespace } from '@element-plus/hooks'
 import { useFormSize } from '@element-plus/components/form'
-import { tagEmits } from './tag'
 
 import type { VNode } from 'vue'
-import type { TagProps } from './tag'
 
 defineOptions({
   name: 'ElTag',
 })
-const props = withDefaults(defineProps<TagProps>(), {
-  type: 'primary',
-  effect: 'light',
-})
+const props = defineProps(TagDefaultValueProps)
 const emit = defineEmits(tagEmits)
 
 const tagSize = useFormSize()

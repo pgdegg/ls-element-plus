@@ -10,8 +10,8 @@ export interface SplitterPanelProps {
   collapsible?: boolean
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const splitterPanelPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const SplitterPanelDefaultValueProps = buildProps({
   min: {
     type: [String, Number],
   },

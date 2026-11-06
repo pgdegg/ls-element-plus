@@ -5,7 +5,7 @@ import { Alignment, SortOrder, oppositeOrderMap } from '../constants'
 import { placeholderSign } from '../private'
 import { componentToSlot, enforceUnit, tryCall } from '../utils'
 
-import type { FunctionalComponent, UnwrapNestedRefs } from 'vue'
+import type { FunctionalComponent, PropType, UnwrapNestedRefs } from 'vue'
 import type { Translator, UseNamespaceReturn } from '@element-plus/hooks'
 import type { TableV2HeaderRowCellRendererParams } from '../components'
 import type { UseTableReturn } from '../use-table'
@@ -17,6 +17,53 @@ export type HeaderCellRendererProps = TableV2HeaderRowCellRendererParams &
     ns: UseNamespaceReturn
     t: Translator
   }
+
+export const TableV2HeaderCellRendererDefaultValueProps = {
+  columns: {
+    type: Array as PropType<HeaderCellRendererProps['columns']>,
+    required: true,
+  },
+  column: {
+    type: Object as PropType<HeaderCellRendererProps['column']>,
+    required: true,
+  },
+  columnIndex: {
+    type: Number as PropType<HeaderCellRendererProps['columnIndex']>,
+    required: true,
+  },
+  headerIndex: {
+    type: Number as PropType<HeaderCellRendererProps['headerIndex']>,
+    required: true,
+  },
+  style: {
+    type: [String, Array, Object, Boolean] as PropType<
+      HeaderCellRendererProps['style']
+    >,
+    required: true,
+  },
+  onColumnSorted: {
+    type: Function as PropType<HeaderCellRendererProps['onColumnSorted']>,
+    required: true,
+  },
+  headerCellProps: {
+    type: null as unknown as PropType<
+      HeaderCellRendererProps['headerCellProps']
+    >,
+  },
+  sortBy: {
+    type: Object as PropType<HeaderCellRendererProps['sortBy']>,
+    required: true,
+  },
+  sortState: { type: Object as PropType<HeaderCellRendererProps['sortState']> },
+  ns: {
+    type: Object as PropType<HeaderCellRendererProps['ns']>,
+    required: true,
+  },
+  t: {
+    type: Function as PropType<HeaderCellRendererProps['t']>,
+    required: true,
+  },
+} as const
 
 const HeaderCellRenderer: FunctionalComponent<HeaderCellRendererProps> = (
   props,
@@ -106,6 +153,8 @@ const HeaderCellRenderer: FunctionalComponent<HeaderCellRendererProps> = (
     </div>
   )
 }
+
+HeaderCellRenderer.props = TableV2HeaderCellRendererDefaultValueProps
 
 export default HeaderCellRenderer
 export type HeaderCellSlotProps = HeaderCellRendererProps & { class: string }

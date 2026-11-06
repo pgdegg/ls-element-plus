@@ -32,8 +32,8 @@ export interface CalendarProps {
   formatter?: (value: number, type: 'year' | 'month') => string | number
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const calendarPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const CalendarDefaultValueProps = buildProps({
   /**
    * @description 绑定值
    */

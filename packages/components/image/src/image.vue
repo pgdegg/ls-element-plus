@@ -73,6 +73,7 @@ import {
   useAttrs as useRawAttrs,
   watch,
 } from 'vue'
+import { ImageDefaultValueProps, imageEmits } from './image'
 import { useIntersectionObserver, useThrottleFn } from '@vueuse/core'
 import { fromPairs } from 'lodash-unified'
 import { useAttrs, useLocale, useNamespace } from '@element-plus/hooks'
@@ -85,9 +86,7 @@ import {
   isString,
   isWindow,
 } from '@element-plus/utils'
-import { imageEmits } from './image'
 
-import type { ImageProps } from './image'
 import type { CSSProperties } from 'vue'
 
 defineOptions({
@@ -95,18 +94,7 @@ defineOptions({
   inheritAttrs: false,
 })
 
-const props = withDefaults(defineProps<ImageProps>(), {
-  src: '',
-  fit: '',
-  previewSrcList: () => [],
-  initialIndex: 0,
-  infinite: true,
-  closeOnPressEscape: true,
-  zoomRate: 1.2,
-  scale: 1,
-  minScale: 0.2,
-  maxScale: 7,
-})
+const props = defineProps(ImageDefaultValueProps)
 const emit = defineEmits(imageEmits)
 
 const { t } = useLocale()

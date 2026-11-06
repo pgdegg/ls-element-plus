@@ -7,7 +7,10 @@ export const ElImageViewer: SFCWithInstall<typeof ImageViewer> =
   withInstall(ImageViewer)
 export default ElImageViewer
 
-export { imageViewerEmits } from './src/image-viewer'
+export {
+  imageViewerEmits,
+  ImageViewerDefaultValueProps,
+} from './src/image-viewer'
 export type {
   ImageViewerAction,
   ImageViewerCrossorigin,

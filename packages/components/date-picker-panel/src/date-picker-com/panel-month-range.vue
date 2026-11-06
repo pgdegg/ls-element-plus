@@ -142,8 +142,8 @@ import {
   isValidRange,
 } from '../utils'
 import {
+  PanelMonthRangeDefaultValueProps,
   panelMonthRangeEmits,
-  panelMonthRangeProps,
 } from '../props/panel-month-range'
 import { useMonthRangeHeader } from '../composables/use-month-range-header'
 import { useRangePicker } from '../composables/use-range-picker'
@@ -156,7 +156,7 @@ defineOptions({
   name: 'DatePickerMonthRange',
 })
 
-const props = defineProps(panelMonthRangeProps)
+const props = defineProps(PanelMonthRangeDefaultValueProps)
 const emit = defineEmits(panelMonthRangeEmits)
 const unit = 'year'
 

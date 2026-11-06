@@ -1,5 +1,5 @@
 import { buildProps, definePropType } from '@element-plus/utils'
-import { disabledTimeListsProps } from '@element-plus/components/time-picker/src/props/shared'
+import { DisabledTimeListsDefaultValueProps } from '@element-plus/components/time-picker/src/props/shared'
 
 import type { ExtractPropTypes, ExtractPublicPropTypes } from 'vue'
 import type {
@@ -8,7 +8,7 @@ import type {
 } from '@element-plus/components/time-picker'
 import type { DatePickerType } from '../types'
 
-export const datePickerPanelProps = buildProps({
+export const DatePickerPanelDefaultValueProps = buildProps({
   /**
    * @description 可选，绑定值的格式。若未指定，绑定值将为 Date 对象
    */
@@ -51,7 +51,7 @@ export const datePickerPanelProps = buildProps({
    * @description 是否选择时间范围
    */
   isRange: Boolean,
-  ...disabledTimeListsProps,
+  ...DisabledTimeListsDefaultValueProps,
   /**
    * @description 一个函数，以日期作为参数判断该日期是否被禁用，应返回 Boolean
    */
@@ -128,7 +128,9 @@ export const datePickerPanelProps = buildProps({
   },
 } as const)
 
-export type DatePickerPanelProps = ExtractPropTypes<typeof datePickerPanelProps>
+export type DatePickerPanelProps = ExtractPropTypes<
+  typeof DatePickerPanelDefaultValueProps
+>
 export type DatePickerPanelPropsPublic = ExtractPublicPropTypes<
-  typeof datePickerPanelProps
+  typeof DatePickerPanelDefaultValueProps
 >

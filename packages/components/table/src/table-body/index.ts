@@ -12,13 +12,13 @@ import useLayoutObserver from '../layout-observer'
 import { removePopper } from '../util'
 import { TABLE_INJECTION_KEY } from '../tokens'
 import useRender from './render-helper'
-import defaultProps from './defaults'
+import { TableBodyDefaultValueProps } from './defaults'
 
 import type { VNode } from 'vue'
 
 export default defineComponent({
   name: 'ElTableBody',
-  props: defaultProps,
+  props: TableBodyDefaultValueProps,
   setup(props) {
     const instance = getCurrentInstance()
     const parent = inject(TABLE_INJECTION_KEY)

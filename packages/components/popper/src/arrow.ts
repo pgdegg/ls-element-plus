@@ -9,16 +9,12 @@ export interface PopperArrowProps {
   arrowOffset?: number
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const popperArrowPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const PopperArrowDefaultValueProps = buildProps({
   arrowOffset: {
     type: Number,
     default: 5,
   },
 } as const)
-
-export const popperArrowPropsDefaults = {
-  arrowOffset: 5,
-} as const
 
 export type PopperArrowInstance = InstanceType<typeof Arrow> & unknown

@@ -21,7 +21,7 @@ import { ElRovingFocusItem } from '@element-plus/components/roving-focus-group'
 import { composeEventHandlers, whenMouse } from '@element-plus/utils'
 import ElDropdownItemImpl from './dropdown-item-impl.vue'
 import { useDropdown } from './useDropdown'
-import { dropdownItemProps } from './dropdown'
+import { DropdownItemDefaultValueProps } from './dropdown'
 import { DROPDOWN_INJECTION_KEY } from './tokens'
 
 export default defineComponent({
@@ -31,7 +31,7 @@ export default defineComponent({
     ElDropdownItemImpl,
   },
   inheritAttrs: false,
-  props: dropdownItemProps,
+  props: DropdownItemDefaultValueProps,
   emits: ['pointermove', 'pointerleave', 'click'],
   setup(props, { emit, attrs }) {
     const { elDropdown } = useDropdown()

@@ -6,8 +6,8 @@ export interface DescriptionsRowProps {
   row?: DescriptionItemVNode[]
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const descriptionsRowPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const DescriptionsRowDefaultValueProps = buildProps({
   row: {
     type: definePropType<DescriptionItemVNode[]>(Array),
     default: () => [],

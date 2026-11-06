@@ -266,7 +266,7 @@ import {
   DArrowLeft,
   DArrowRight,
 } from '@element-plus/icons-vue'
-import { panelDatePickProps } from '../props/panel-date-pick'
+import { PanelDatePickDefaultValueProps } from '../props/panel-date-pick'
 import {
   correctlyParseUserInput,
   getValidDateOfMonth,
@@ -298,7 +298,7 @@ type DatePickType = PanelDatePickProps['type']
 // todo
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const timeWithinRange = (_: ConfigType, __: any, ___: string) => true
-const props = defineProps(panelDatePickProps)
+const props = defineProps(PanelDatePickDefaultValueProps)
 const contextEmit = defineEmits(['pick', 'set-picker-option', 'panel-change'])
 const ppNs = useNamespace('picker-panel')
 const dpNs = useNamespace('date-picker')

@@ -6,6 +6,7 @@
 
 <script lang="ts" setup>
 import { computed, provide, reactive, ref, toRefs, watch } from 'vue'
+import { FormDefaultValueProps, formEmits } from './form'
 import { cloneDeep } from 'lodash-unified'
 import {
   NOOP,
@@ -18,12 +19,10 @@ import {
 import { useNamespace } from '@element-plus/hooks'
 import { useFormSize } from './hooks'
 import { formContextKey } from './constants'
-import { formEmits } from './form'
 import { filterFields, useFormLabelWidth } from './utils'
 
 import type { ValidateFieldsError } from 'async-validator'
 import type { Arrayable } from '@element-plus/utils'
-import type { FormProps } from './form'
 import type {
   FormContext,
   FormItemContext,
@@ -36,15 +35,7 @@ const COMPONENT_NAME = 'ElForm'
 defineOptions({
   name: COMPONENT_NAME,
 })
-const props = withDefaults(defineProps<FormProps>(), {
-  labelPosition: 'right',
-  requireAsteriskPosition: 'left',
-  labelWidth: '',
-  labelSuffix: '',
-  showMessage: true,
-  validateOnRuleChange: true,
-  scrollIntoViewOptions: true,
-})
+const props = defineProps(FormDefaultValueProps)
 const emit = defineEmits(formEmits)
 
 const contentStyle = computed(() =>

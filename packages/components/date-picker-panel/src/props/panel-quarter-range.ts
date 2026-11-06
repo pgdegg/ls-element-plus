@@ -1,10 +1,10 @@
 import { buildProps } from '@element-plus/utils'
-import { panelRangeSharedProps } from './shared'
+import { PanelRangeSharedDefaultValueProps } from './shared'
 
 import type { ExtractPropTypes, ExtractPublicPropTypes } from 'vue'
 
-export const panelQuarterRangeProps = buildProps({
-  ...panelRangeSharedProps,
+export const PanelQuarterRangeDefaultValueProps = buildProps({
+  ...PanelRangeSharedDefaultValueProps,
 } as const)
 
 export const panelQuarterRangeEmits = [
@@ -14,8 +14,8 @@ export const panelQuarterRangeEmits = [
 ]
 
 export type PanelQuarterRangeProps = ExtractPropTypes<
-  typeof panelQuarterRangeProps
+  typeof PanelQuarterRangeDefaultValueProps
 >
 export type PanelQuarterRangePropsPublic = ExtractPublicPropTypes<
-  typeof panelQuarterRangeProps
+  typeof PanelQuarterRangeDefaultValueProps
 >

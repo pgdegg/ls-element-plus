@@ -134,6 +134,7 @@ import {
   shallowRef,
   watch,
 } from 'vue'
+import { ImageViewerDefaultValueProps, imageViewerEmits } from './image-viewer'
 import { clamp, useEventListener } from '@vueuse/core'
 import { throttle } from 'lodash-unified'
 import {
@@ -157,14 +158,9 @@ import {
   ZoomIn,
   ZoomOut,
 } from '@element-plus/icons-vue'
-import { imageViewerEmits } from './image-viewer'
 
 import type { CSSProperties } from 'vue'
-import type {
-  ImageViewerAction,
-  ImageViewerMode,
-  ImageViewerProps,
-} from './image-viewer'
+import type { ImageViewerAction, ImageViewerMode } from './image-viewer'
 
 const modes: Record<'CONTAIN' | 'ORIGINAL', ImageViewerMode> = {
   CONTAIN: {
@@ -181,16 +177,7 @@ defineOptions({
   name: 'ElImageViewer',
 })
 
-const props = withDefaults(defineProps<ImageViewerProps>(), {
-  urlList: () => [],
-  initialIndex: 0,
-  infinite: true,
-  closeOnPressEscape: true,
-  zoomRate: 1.2,
-  scale: 1,
-  minScale: 0.2,
-  maxScale: 7,
-})
+const props = defineProps(ImageViewerDefaultValueProps)
 const emit = defineEmits(imageViewerEmits)
 
 let stopWheelListener: (() => void) | undefined

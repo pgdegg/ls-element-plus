@@ -8,3 +8,5 @@ export default ElEmpty
 
 export type { EmptyProps } from './src/empty'
 export type { EmptyInstance } from './src/instance'
+
+export { EmptyDefaultValueProps } from './src/empty'

@@ -11,8 +11,8 @@ export interface AlphaSliderProps {
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface HueSliderProps extends AlphaSliderProps {}
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const alphaSliderPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const AlphaSliderDefaultValueProps = buildProps({
   color: {
     type: definePropType<Color>(Object),
     required: true,
@@ -20,3 +20,7 @@ export const alphaSliderPropDefs = buildProps({
   vertical: Boolean,
   disabled: Boolean,
 } as const)
+
+export const HueSliderDefaultValueProps = {
+  ...AlphaSliderDefaultValueProps,
+} as const

@@ -46,8 +46,8 @@ export interface TourContentProps {
   zIndex?: number
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const tourContentPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const TourContentDefaultValueProps = buildProps({
   /**
    * @description 引导卡片相对于目标元素的位置
    */

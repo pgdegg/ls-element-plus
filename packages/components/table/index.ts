@@ -39,3 +39,17 @@ export type {
   TableTooltipData,
   TableConfigContext,
 } from './src/table/defaults'
+
+export { TableBodyDefaultValueProps } from './src/table-body/defaults'
+
+export { TableColumnDefaultValueProps } from './src/table-column/defaults'
+
+export { TableFooterDefaultValueProps } from './src/table-footer/index'
+
+export { TableHeaderDefaultValueProps } from './src/table-header/index'
+
+export { TableDefaultValueProps } from './src/table/defaults'
+
+export { TableFilterPanelDefaultValueProps } from './src/filter-panel-props'
+
+export { TableTdWrapperDefaultValueProps } from './src/table-body/td-wrapper-props'

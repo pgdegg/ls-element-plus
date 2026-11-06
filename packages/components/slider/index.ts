@@ -8,3 +8,7 @@ export default ElSlider
 
 export * from './src/slider'
 export * from './src/constants'
+
+export { SliderButtonDefaultValueProps } from './src/button'
+
+export { SliderMarkerDefaultValueProps } from './src/marker'

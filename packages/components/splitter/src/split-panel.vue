@@ -10,6 +10,10 @@ import {
   toRefs,
   watch,
 } from 'vue'
+import {
+  SplitterPanelDefaultValueProps,
+  splitterPanelEmits,
+} from './split-panel'
 import { useNamespace } from '@element-plus/hooks'
 import {
   isPercent,
@@ -20,10 +24,7 @@ import {
 } from '@element-plus/utils'
 import { getCollapsible, isCollapsible } from './hooks/usePanel'
 import SplitBar from './split-bar.vue'
-import { splitterPanelEmits } from './split-panel'
 import { splitterRootContextKey } from './type'
-
-import type { SplitterPanelProps } from './split-panel'
 
 const ns = useNamespace('splitter-panel')
 
@@ -32,9 +33,7 @@ defineOptions({
   name: COMPONENT_NAME,
 })
 
-const props = withDefaults(defineProps<SplitterPanelProps>(), {
-  resizable: true,
-})
+const props = defineProps(SplitterPanelDefaultValueProps)
 
 const emits = defineEmits(splitterPanelEmits)
 const splitterContext = inject(splitterRootContextKey)

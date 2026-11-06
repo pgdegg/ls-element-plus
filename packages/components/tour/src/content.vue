@@ -27,23 +27,15 @@
 
 <script lang="ts" setup>
 import { computed, inject, ref, toRef, watch } from 'vue'
+import { TourContentDefaultValueProps, tourContentEmits } from './content'
 import ElFocusTrap from '@element-plus/components/focus-trap'
-import { tourContentEmits } from './content'
 import { tourKey, useFloating } from './helper'
-
-import type { TourContentProps } from './content'
 
 defineOptions({
   name: 'ElTourContent',
 })
 
-const props = withDefaults(defineProps<TourContentProps>(), {
-  placement: 'bottom',
-  reference: null,
-  strategy: 'absolute',
-  offset: 10,
-  zIndex: 2001,
-})
+const props = defineProps(TourContentDefaultValueProps)
 const emit = defineEmits(tourContentEmits)
 
 const placement = ref(props.placement)

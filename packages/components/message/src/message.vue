@@ -51,6 +51,11 @@
 
 <script lang="ts" setup>
 import { computed, nextTick, onMounted, ref, watch } from 'vue'
+import {
+  MESSAGE_DEFAULT_PLACEMENT,
+  MessageDefaultValueProps,
+  messageEmits,
+} from './message'
 import { useEventListener, useResizeObserver, useTimeoutFn } from '@vueuse/core'
 import {
   TypeComponents,
@@ -61,17 +66,10 @@ import { EVENT_CODE } from '@element-plus/constants'
 import ElBadge from '@element-plus/components/badge'
 import { useGlobalComponentSettings } from '@element-plus/components/config-provider'
 import { ElIcon } from '@element-plus/components/icon'
-import {
-  MESSAGE_DEFAULT_PLACEMENT,
-  messageDefaults,
-  messageEmits,
-} from './message'
 import { getLastOffset, getOffsetOrSpace } from './instance'
-import { omit } from 'lodash-unified'
 
 import type { BadgeProps } from '@element-plus/components/badge'
 import type { CSSProperties } from 'vue'
-import type { MessageProps } from './message'
 
 const { Close } = TypeComponents
 
@@ -79,10 +77,7 @@ defineOptions({
   name: 'ElMessage',
 })
 
-const props = withDefaults(
-  defineProps<MessageProps>(),
-  omit(messageDefaults, 'appendTo')
-)
+const props = defineProps(MessageDefaultValueProps)
 const emit = defineEmits(messageEmits)
 
 const isStartTransition = ref(false)

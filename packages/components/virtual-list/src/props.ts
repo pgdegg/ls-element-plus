@@ -46,7 +46,7 @@ const layout = buildProp({
   default: VERTICAL,
 } as const)
 
-export const virtualizedProps = buildProps({
+export const VirtualizedDefaultValueProps = buildProps({
   className: {
     type: definePropType<ClassValue>([String, Array, Object, Boolean]),
     default: '',
@@ -106,7 +106,7 @@ export const virtualizedProps = buildProps({
   scrollbarAlwaysOn: Boolean,
 } as const)
 
-export const virtualizedListProps = buildProps({
+export const VirtualizedListDefaultValueProps = buildProps({
   /**
    * @description 描述应在窗口头部
    * 和尾部预渲染多少项
@@ -128,7 +128,7 @@ export const virtualizedListProps = buildProps({
   total,
 
   itemSize,
-  ...virtualizedProps,
+  ...VirtualizedDefaultValueProps,
 } as const)
 
 const scrollbarSize = {
@@ -139,7 +139,7 @@ const scrollbarSize = {
 const startGap = { type: Number, default: 0 } as const
 const endGap = { type: Number, default: 2 } as const
 
-export const virtualizedGridProps = buildProps({
+export const VirtualizedGridDefaultValueProps = buildProps({
   columnCache: cache,
   columnWidth: itemSize,
   estimatedColumnWidth: estimatedItemSize,
@@ -165,10 +165,10 @@ export const virtualizedGridProps = buildProps({
   scrollbarStartGap: startGap,
   scrollbarEndGap: endGap,
   role: String,
-  ...virtualizedProps,
+  ...VirtualizedDefaultValueProps,
 } as const)
 
-export const virtualizedScrollbarProps = buildProps({
+export const VirtualizedScrollbarDefaultValueProps = buildProps({
   alwaysOn: Boolean,
   class: {
     type: definePropType<ClassValue>([String, Array, Object, Boolean]),
@@ -195,22 +195,28 @@ export const virtualizedScrollbarProps = buildProps({
   visible: Boolean,
 } as const)
 
-export type VirtualizedProps = ExtractPropTypes<typeof virtualizedProps>
+export type VirtualizedProps = ExtractPropTypes<
+  typeof VirtualizedDefaultValueProps
+>
 export type VirtualizedPropsPublic = ExtractPublicPropTypes<
-  typeof virtualizedProps
+  typeof VirtualizedDefaultValueProps
 >
-export type VirtualizedListProps = ExtractPropTypes<typeof virtualizedListProps>
+export type VirtualizedListProps = ExtractPropTypes<
+  typeof VirtualizedListDefaultValueProps
+>
 export type VirtualizedListPropsPublic = ExtractPublicPropTypes<
-  typeof virtualizedListProps
+  typeof VirtualizedListDefaultValueProps
 >
-export type VirtualizedGridProps = ExtractPropTypes<typeof virtualizedGridProps>
+export type VirtualizedGridProps = ExtractPropTypes<
+  typeof VirtualizedGridDefaultValueProps
+>
 export type VirtualizedGridPropsPublic = ExtractPublicPropTypes<
-  typeof virtualizedGridProps
+  typeof VirtualizedGridDefaultValueProps
 >
 
 export type VirtualizedScrollbarProps = ExtractPropTypes<
-  typeof virtualizedScrollbarProps
+  typeof VirtualizedScrollbarDefaultValueProps
 >
 export type VirtualizedScrollbarPropsPublic = ExtractPublicPropTypes<
-  typeof virtualizedScrollbarProps
+  typeof VirtualizedScrollbarDefaultValueProps
 >

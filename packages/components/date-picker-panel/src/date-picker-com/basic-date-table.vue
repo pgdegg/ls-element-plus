@@ -55,8 +55,8 @@
 <script lang="ts" setup>
 import { onBeforeUnmount } from 'vue'
 import {
+  BasicDateTableDefaultValueProps,
   basicDateTableEmits,
-  basicDateTableProps,
 } from '../props/basic-date-table'
 import {
   useBasicDateTable,
@@ -64,7 +64,7 @@ import {
 } from '../composables/use-basic-date-table'
 import ElDatePickerCell from './basic-cell-render'
 
-const props = defineProps(basicDateTableProps)
+const props = defineProps(BasicDateTableDefaultValueProps)
 const emit = defineEmits(basicDateTableEmits)
 
 const {

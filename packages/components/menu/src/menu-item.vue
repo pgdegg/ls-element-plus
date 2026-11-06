@@ -47,21 +47,20 @@ import {
   reactive,
   toRef,
 } from 'vue'
+import { MenuItemDefaultValueProps, menuItemEmits } from './menu-item'
 import ElTooltip from '@element-plus/components/tooltip'
 import { throwError } from '@element-plus/utils'
 import { useNamespace } from '@element-plus/hooks'
 import useMenu from './use-menu'
-import { menuItemEmits } from './menu-item'
 import { MENU_INJECTION_KEY, SUB_MENU_INJECTION_KEY } from './tokens'
 
-import type { MenuItemProps } from './menu-item'
 import type { MenuItemRegistered, MenuProvider, SubMenuProvider } from './types'
 
 const COMPONENT_NAME = 'ElMenuItem'
 defineOptions({
   name: COMPONENT_NAME,
 })
-const props = defineProps<MenuItemProps>()
+const props = defineProps(MenuItemDefaultValueProps)
 const emit = defineEmits(menuItemEmits)
 
 const instance = getCurrentInstance()!

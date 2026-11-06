@@ -30,7 +30,7 @@ import {
 } from 'vue'
 import { useId, useNamespace } from '@element-plus/hooks'
 import { useOption } from './useOption'
-import { COMPONENT_NAME, optionProps } from './option'
+import { COMPONENT_NAME, OptionDefaultValueProps } from './option'
 import { isFocusable, isIOS } from '@element-plus/utils'
 
 import type {
@@ -43,7 +43,7 @@ export default defineComponent({
   name: COMPONENT_NAME,
   componentName: COMPONENT_NAME,
 
-  props: optionProps,
+  props: OptionDefaultValueProps,
 
   setup(props) {
     const ns = useNamespace('select')

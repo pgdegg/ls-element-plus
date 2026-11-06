@@ -1,10 +1,10 @@
 import { buildProps } from '@element-plus/utils'
-import { panelRangeSharedProps } from './shared'
+import { PanelRangeSharedDefaultValueProps } from './shared'
 
 import type { ExtractPropTypes, ExtractPublicPropTypes } from 'vue'
 
-export const panelYearRangeProps = buildProps({
-  ...panelRangeSharedProps,
+export const PanelYearRangeDefaultValueProps = buildProps({
+  ...PanelRangeSharedDefaultValueProps,
 } as const)
 
 export const panelYearRangeEmits = [
@@ -13,7 +13,9 @@ export const panelYearRangeEmits = [
   'calendar-change',
 ]
 
-export type PanelYearRangeProps = ExtractPropTypes<typeof panelYearRangeProps>
+export type PanelYearRangeProps = ExtractPropTypes<
+  typeof PanelYearRangeDefaultValueProps
+>
 export type PanelYearRangePropsPublic = ExtractPublicPropTypes<
-  typeof panelYearRangeProps
+  typeof PanelYearRangeDefaultValueProps
 >

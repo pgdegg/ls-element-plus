@@ -17,16 +17,15 @@
 </template>
 
 <script lang="ts" setup>
+import { PredefineDefaultValueProps } from '../props/predefine'
 import { usePredefine, usePredefineDOM } from '../composables/use-predefine'
 import { useLocale } from '@element-plus/hooks/use-locale'
-
-import type { PredefineProps } from '../props/predefine'
 
 defineOptions({
   name: 'ElColorPredefine',
 })
 
-const props = defineProps<PredefineProps>()
+const props = defineProps(PredefineDefaultValueProps)
 
 const { rgbaColors, handleSelect } = usePredefine(props)
 const { rootKls, colorsKls, colorSelectorKls } = usePredefineDOM(props)

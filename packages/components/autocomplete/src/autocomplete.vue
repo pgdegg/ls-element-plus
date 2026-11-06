@@ -134,30 +134,33 @@ import {
   ref,
   useAttrs as useRawAttrs,
 } from 'vue'
+import {
+  AutocompleteDefaultValueProps,
+  autocompleteEmits,
+} from './autocomplete'
 import { pick } from 'lodash-unified'
 import { onClickOutside, useDebounceFn } from '@vueuse/core'
 import { Loading } from '@element-plus/icons-vue'
 import { useId, useInputElement, useNamespace } from '@element-plus/hooks'
-import { NOOP, getEventCode, isArray, throwError } from '@element-plus/utils'
+import { getEventCode, isArray, throwError } from '@element-plus/utils'
 import {
   CHANGE_EVENT,
   EVENT_CODE,
   INPUT_EVENT,
   UPDATE_MODEL_EVENT,
 } from '@element-plus/constants'
-import ElInput, { inputPropsDefaults } from '@element-plus/components/input'
+import ElInput from '@element-plus/components/input'
 import ElScrollbar from '@element-plus/components/scrollbar'
 import ElTooltip from '@element-plus/components/tooltip'
 import ElIcon from '@element-plus/components/icon'
 import { useFormDisabled, useFormReadonly } from '@element-plus/components/form'
-import { autocompleteEmits } from './autocomplete'
 
+import type { PropType, Ref, StyleValue } from 'vue'
 import type {
   AutocompleteData,
   AutocompleteDataItem,
   AutocompleteProps,
 } from './autocomplete'
-import type { Ref, StyleValue } from 'vue'
 import type { TooltipInstance } from '@element-plus/components/tooltip'
 import type { InputInstance } from '@element-plus/components/input'
 
@@ -167,22 +170,17 @@ defineOptions({
   inheritAttrs: false,
 })
 
-const props = withDefaults(defineProps<AutocompleteProps<T>>(), {
-  ...inputPropsDefaults,
-  valueKey: 'value',
-  modelValue: '',
-  debounce: 300,
-  placement: 'bottom-start',
-  fetchSuggestions: NOOP,
-  triggerOnFocus: true,
-  loopNavigation: true,
-  teleported: true,
-  showArrow: true,
-  offset: 12,
-  popperClass: undefined,
-  popperStyle: undefined,
-  popperOptions: () => ({}),
-})
+const props = defineProps(
+  AutocompleteDefaultValueProps as Omit<
+    typeof AutocompleteDefaultValueProps,
+    'fetchSuggestions'
+  > & {
+    [K in 'fetchSuggestions']: Omit<
+      (typeof AutocompleteDefaultValueProps)[K],
+      'type'
+    > & { type: PropType<Exclude<AutocompleteProps<T>[K], undefined>> }
+  }
+)
 const emit = defineEmits(autocompleteEmits)
 const passInputProps = computed(() => {
   const inputProps = ElInput.props ?? []

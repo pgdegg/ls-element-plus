@@ -6,23 +6,15 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue'
+import { FooterDefaultValueProps } from './footer'
 import { useNamespace } from '@element-plus/hooks'
 
 import type { CSSProperties } from 'vue'
 
-interface FooterProps {
-  /**
-   * @description 页脚高度
-   */
-  height?: string | null
-}
-
 defineOptions({
   name: 'ElFooter',
 })
-const props = withDefaults(defineProps<FooterProps>(), {
-  height: null,
-})
+const props = defineProps(FooterDefaultValueProps)
 
 const ns = useNamespace('footer')
 

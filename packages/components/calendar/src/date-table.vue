@@ -37,17 +37,17 @@
 </template>
 
 <script lang="ts" setup>
+import { DateTableDefaultValueProps, dateTableEmits } from './date-table'
 import { useNamespace } from '@element-plus/hooks'
-import { dateTableEmits } from './date-table'
 import { useDateTable } from './use-date-table'
 
-import type { CalendarDateCell, DateTableProps } from './date-table'
+import type { CalendarDateCell } from './date-table'
 
 defineOptions({
   name: 'DateTable',
 })
 
-const props = defineProps<DateTableProps>()
+const props = defineProps(DateTableDefaultValueProps)
 const emit = defineEmits(dateTableEmits)
 
 const {

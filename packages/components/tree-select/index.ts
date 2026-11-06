@@ -9,3 +9,7 @@ export const ElTreeSelect: SFCWithInstall<typeof TreeSelect> =
 export default ElTreeSelect
 
 export type { TreeSelectInstance } from './src/instance'
+
+export { TreeSelectCacheOptionsDefaultValueProps } from './src/cache-options'
+
+export { TreeSelectDefaultValueProps } from './src/tree-select-props'

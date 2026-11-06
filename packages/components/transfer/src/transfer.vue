@@ -65,13 +65,13 @@
 
 <script lang="ts" setup generic="T extends TransferDataItem = TransferDataItem">
 import { Comment, computed, h, reactive, ref, watch } from 'vue'
+import { TransferDefaultValueProps, transferEmits } from './transfer'
 import { NOOP, isEmpty, isUndefined } from '@element-plus/utils'
 import { useLocale, useNamespace } from '@element-plus/hooks'
 import { ElButton } from '@element-plus/components/button'
 import { ElIcon } from '@element-plus/components/icon'
 import { useFormItem } from '@element-plus/components/form'
 import { ArrowLeft, ArrowRight } from '@element-plus/icons-vue'
-import { transferEmits } from './transfer'
 import {
   useCheckedChange,
   useComputedData,
@@ -80,7 +80,7 @@ import {
 } from './composables'
 import TransferPanel from './transfer-panel.vue'
 
-import type { VNode } from 'vue'
+import type { PropType, VNode } from 'vue'
 import type {
   TransferCheckedState,
   TransferDataItem,
@@ -93,24 +93,17 @@ defineOptions({
   name: 'ElTransfer',
 })
 
-const props = withDefaults(defineProps<TransferProps<T>>(), {
-  data: () => [],
-  titles: () => [] as unknown as [string, string],
-  buttonTexts: () => [] as unknown as [string, string],
-  leftDefaultChecked: () => [],
-  rightDefaultChecked: () => [],
-  modelValue: () => [],
-  format: () => ({}),
-  props: () => ({
-    label: 'label',
-    key: 'key',
-    disabled: 'disabled',
-  }),
-  targetOrder: 'original',
-  validateEvent: true,
-  virtualScroll: false,
-  itemSize: 30,
-})
+const props = defineProps(
+  TransferDefaultValueProps as Omit<
+    typeof TransferDefaultValueProps,
+    'data' | 'filterMethod' | 'renderContent'
+  > & {
+    [K in 'data' | 'filterMethod' | 'renderContent']: Omit<
+      (typeof TransferDefaultValueProps)[K],
+      'type'
+    > & { type: PropType<Exclude<TransferProps<T>[K], undefined>> }
+  }
+)
 const emit = defineEmits(transferEmits)
 const slots = defineSlots<{
   default?: (props: { option: T }) => VNode[]

@@ -13,6 +13,7 @@ import {
   onMounted,
   ref,
 } from 'vue'
+import { TableColumnDefaultValueProps } from './defaults'
 import { useGlobalConfig } from '@element-plus/components/config-provider'
 import { isArray, isString, isUndefined } from '@element-plus/utils'
 import { cellStarts } from '../config'
@@ -20,7 +21,7 @@ import { compose, createTableColumnId, mergeOptions } from '../util'
 import useWatcher from './watcher-helper'
 import useRender from './render-helper'
 
-import type { VNode } from 'vue'
+import type { PropType, VNode } from 'vue'
 import type { TableColumn, TableColumnCtx, TableColumnProps } from './defaults'
 import type { DefaultRow } from '../table/defaults'
 
@@ -28,16 +29,43 @@ defineOptions({
   name: 'ElTableColumn',
 })
 
-const props = withDefaults(defineProps<TableColumnProps<T>>(), {
-  type: 'default',
-  width: '',
-  minWidth: '',
-  sortable: false,
-  resizable: true,
-  showOverflowTooltip: undefined,
-  filterMultiple: true,
-  sortOrders: () => ['ascending', 'descending', null],
-})
+const props = defineProps(
+  TableColumnDefaultValueProps as Omit<
+    typeof TableColumnDefaultValueProps,
+    | 'renderHeader'
+    | 'sortMethod'
+    | 'sortBy'
+    | 'showOverflowTooltip'
+    | 'tooltipFormatter'
+    | 'formatter'
+    | 'selectable'
+    | 'filterMethod'
+    | 'filteredValue'
+    | 'filters'
+    | 'index'
+    | 'sortOrders'
+  > & {
+    [
+      K in
+        | 'renderHeader'
+        | 'sortMethod'
+        | 'sortBy'
+        | 'showOverflowTooltip'
+        | 'tooltipFormatter'
+        | 'formatter'
+        | 'selectable'
+        | 'filterMethod'
+        | 'filteredValue'
+        | 'filters'
+        | 'index'
+        | 'sortOrders'
+    ]: (typeof TableColumnDefaultValueProps)[K] extends { type: unknown }
+      ? Omit<(typeof TableColumnDefaultValueProps)[K], 'type'> & {
+          type: PropType<Exclude<TableColumnProps<T>[K], undefined>>
+        }
+      : PropType<Exclude<TableColumnProps<T>[K], undefined>>
+  }
+)
 const slots = defineSlots<{
   default?: (props: {
     row: T

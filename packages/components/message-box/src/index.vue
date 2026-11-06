@@ -166,6 +166,7 @@ import {
   toRefs,
   watch,
 } from 'vue'
+import { MessageBoxDefaultValueProps } from './index-props'
 import ElButton from '@element-plus/components/button'
 import { TrapFocus } from '@element-plus/directives'
 import {
@@ -181,20 +182,14 @@ import {
   TypeComponentsMap,
   isFunction,
   isString,
-  isValidComponentSize,
 } from '@element-plus/utils'
 import { ElIcon } from '@element-plus/components/icon'
 import { Loading } from '@element-plus/icons-vue'
 import ElFocusTrap from '@element-plus/components/focus-trap'
 import { useGlobalComponentSettings } from '@element-plus/components/config-provider'
 
-import type { ComponentPublicInstance, PropType } from 'vue'
-import type { ComponentSize } from '@element-plus/constants'
-import type {
-  Action,
-  MessageBoxState,
-  MessageBoxType,
-} from './message-box.type'
+import type { ComponentPublicInstance } from 'vue'
+import type { Action, MessageBoxState } from './message-box.type'
 import type { InputInstance } from '@element-plus/components/input'
 
 export default defineComponent({
@@ -211,48 +206,7 @@ export default defineComponent({
     ...TypeComponents,
   },
   inheritAttrs: false,
-  props: {
-    buttonSize: {
-      type: String as PropType<ComponentSize>,
-      validator: isValidComponentSize,
-    },
-    modal: {
-      type: Boolean,
-      default: true,
-    },
-    lockScroll: {
-      type: Boolean,
-      default: true,
-    },
-    showClose: {
-      type: Boolean,
-      default: true,
-    },
-    closeOnClickModal: {
-      type: Boolean,
-      default: true,
-    },
-    closeOnPressEscape: {
-      type: Boolean,
-      default: true,
-    },
-    closeOnHashChange: {
-      type: Boolean,
-      default: true,
-    },
-    center: Boolean,
-    draggable: Boolean,
-    overflow: Boolean,
-    roundButton: Boolean,
-    container: {
-      type: String, // 默认追加到 body
-      default: 'body',
-    },
-    boxType: {
-      type: String as PropType<MessageBoxType>,
-      default: '',
-    },
-  },
+  props: MessageBoxDefaultValueProps,
   emits: ['vanish', 'action'],
   setup(props, { emit }) {
     // const popup = usePopup(props, doClose)

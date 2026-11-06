@@ -40,24 +40,18 @@
 
 <script lang="ts" setup>
 import { computed, inject } from 'vue'
+import { TimelineItemDefaultValueProps } from './timeline-item'
 import { ElIcon } from '@element-plus/components/icon'
 import { useNamespace } from '@element-plus/hooks'
 import { TIMELINE_INJECTION_KEY } from './tokens'
 
 import type { TimelineProvider } from './tokens'
-import type { TimelineItemProps } from './timeline-item'
 
 defineOptions({
   name: 'ElTimelineItem',
 })
 
-const props = withDefaults(defineProps<TimelineItemProps>(), {
-  timestamp: '',
-  placement: 'bottom',
-  type: '',
-  color: '',
-  size: 'normal',
-})
+const props = defineProps(TimelineItemDefaultValueProps)
 const { props: timelineProps } = inject<TimelineProvider>(
   TIMELINE_INJECTION_KEY
 )!

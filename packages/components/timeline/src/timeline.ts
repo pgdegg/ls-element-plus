@@ -7,7 +7,7 @@ import type { VNodeChildAtom } from '@element-plus/utils'
 import type { ExtractPropTypes, ExtractPublicPropTypes } from 'vue'
 import type { TimelineProvider } from './tokens'
 
-export const timelineProps = buildProps({
+export const TimelineDefaultValueProps = buildProps({
   /**
    * @description 时间线与内容的相对位置
    */
@@ -21,12 +21,14 @@ export const timelineProps = buildProps({
    */
   reverse: Boolean,
 } as const)
-export type TimelineProps = ExtractPropTypes<typeof timelineProps>
-export type TimelinePropsPublic = ExtractPublicPropTypes<typeof timelineProps>
+export type TimelineProps = ExtractPropTypes<typeof TimelineDefaultValueProps>
+export type TimelinePropsPublic = ExtractPublicPropTypes<
+  typeof TimelineDefaultValueProps
+>
 
 const Timeline = defineComponent({
   name: 'ElTimeline',
-  props: timelineProps,
+  props: TimelineDefaultValueProps,
 
   setup(props, { slots }) {
     const ns = useNamespace('timeline')

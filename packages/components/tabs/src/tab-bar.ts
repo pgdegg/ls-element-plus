@@ -3,8 +3,8 @@ import { buildProps, definePropType, mutable } from '@element-plus/utils'
 import type { TabPaneName, TabsPaneContext } from './constants'
 import type TabBar from './tab-bar.vue'
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const tabBarPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const TabBarDefaultValueProps = buildProps({
   active: {
     type: Boolean,
     default: true,

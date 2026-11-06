@@ -13,8 +13,8 @@ export interface BreadcrumbProps {
   separatorIcon?: IconPropType
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const breadcrumbPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const BreadcrumbDefaultValueProps = buildProps({
   /**
    * @description 分隔符
    */

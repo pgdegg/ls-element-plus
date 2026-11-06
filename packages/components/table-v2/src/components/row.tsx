@@ -8,7 +8,7 @@ import {
   unref,
 } from 'vue'
 import { isArray, isFunction, isNumber } from '@element-plus/utils'
-import { tableV2RowProps } from '../row'
+import { TableV2RowDefaultValueProps } from '../row'
 import { TableV2InjectionKey } from '../tokens'
 import { placeholderSign } from '../private'
 
@@ -129,7 +129,7 @@ const COMPONENT_NAME = 'ElTableV2TableRow'
 
 const TableV2Row = defineComponent({
   name: COMPONENT_NAME,
-  props: tableV2RowProps,
+  props: TableV2RowDefaultValueProps,
   setup(props, { expose, slots, attrs }) {
     const {
       eventHandlers,

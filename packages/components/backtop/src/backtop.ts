@@ -17,8 +17,8 @@ export interface BacktopProps {
   bottom?: number
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const backtopPropDefs = {
+/** Runtime prop definitions; use the public props interface for types. */
+export const BacktopDefaultValueProps = {
   /**
    * @description 滚动高度达到该值之前按钮不显示。
    */

@@ -7,7 +7,7 @@ export const ElCountdown: SFCWithInstall<typeof Countdown> =
   withInstall(Countdown)
 export default ElCountdown
 
-export { countdownEmits } from './src/countdown'
+export { countdownEmits, CountdownDefaultValueProps } from './src/countdown'
 export type {
   CountdownProps,
   CountdownEmits,

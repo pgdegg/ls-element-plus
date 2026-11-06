@@ -1,9 +1,6 @@
 import { buildProps, definePropType, isBoolean } from '@element-plus/utils'
 import { UPDATE_MODEL_EVENT } from '@element-plus/constants'
-import {
-  dialogContentPropDefs,
-  dialogContentPropsDefaults,
-} from './dialog-content'
+import { DialogContentDefaultValueProps } from './dialog-content'
 
 import type { InjectionKey, TransitionProps } from 'vue'
 import type { ClassValue } from '@element-plus/utils'
@@ -102,11 +99,11 @@ export interface DialogProps extends DialogContentProps {
   transition?: DialogTransition
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const dialogPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const DialogDefaultValueProps = buildProps({
   height: { type: [String, Number] },
   resetOnResize: Boolean,
-  ...dialogContentPropDefs,
+  ...DialogContentDefaultValueProps,
   /**
    * @description 是否将 Dialog 自身追加到 body。嵌套 Dialog 应将此属性设为 `true`
    */
@@ -240,17 +237,3 @@ export interface DialogConfigContext {
 
 export const dialogContextKey: InjectionKey<DialogConfigContext> =
   Symbol('dialogContextKey')
-
-export const dialogPropsDefaults = {
-  ...dialogContentPropsDefaults,
-  appendTo: 'body',
-  closeOnClickModal: true,
-  closeOnPressEscape: true,
-  lockScroll: true,
-  modal: true,
-  openDelay: 0,
-  closeDelay: 0,
-  headerAriaLevel: '2',
-  transition: undefined,
-  modalClass: undefined,
-} as const

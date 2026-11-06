@@ -11,6 +11,7 @@ export {
   colorPickerPanelEmits,
   ROOT_COMMON_COLOR_INJECTION_KEY,
   colorPickerPanelContextKey,
+  ColorPickerPanelDefaultValueProps,
 } from './src/color-picker-panel'
 export type {
   ColorPickerPanelProps,
@@ -19,3 +20,12 @@ export type {
   ColorPickerPanelContext,
   CommonColorContext,
 } from './src/color-picker-panel'
+
+export { PredefineDefaultValueProps } from './src/props/predefine'
+
+export {
+  AlphaSliderDefaultValueProps,
+  HueSliderDefaultValueProps,
+} from './src/props/slider'
+
+export { SvPanelDefaultValueProps } from './src/props/sv-panel'

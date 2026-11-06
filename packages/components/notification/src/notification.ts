@@ -99,8 +99,8 @@ export interface NotificationProps {
   pauseOnHover?: boolean
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const notificationPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const NotificationDefaultValueProps = buildProps({
   /**
    * @description Notification 的自定义类名
    */

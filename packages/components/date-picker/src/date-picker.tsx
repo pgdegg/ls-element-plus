@@ -7,7 +7,7 @@ import {
 } from '@element-plus/components/time-picker'
 import { UPDATE_MODEL_EVENT } from '@element-plus/constants'
 import { ElDatePickerPanel } from '@element-plus/components/date-picker-panel'
-import { datePickerProps } from './props'
+import { DatePickerDefaultValueProps } from './props'
 
 import type {
   DateModelType,
@@ -18,7 +18,7 @@ import type { DatePickerExpose } from './instance'
 export default defineComponent({
   name: 'ElDatePicker',
   install: null,
-  props: datePickerProps,
+  props: DatePickerDefaultValueProps,
   emits: [UPDATE_MODEL_EVENT],
   setup(props, { expose, emit, slots }) {
     provide(

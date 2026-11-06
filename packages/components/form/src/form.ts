@@ -22,8 +22,8 @@ export interface FormMetaProps {
   disabled?: boolean
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const formMetaPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const FormMetaDefaultValueProps = buildProps({
   /**
    * @description 控制该表单内组件的尺寸。
    */
@@ -104,9 +104,9 @@ export interface FormProps extends FormMetaProps {
   scrollIntoViewOptions?: ScrollIntoViewOptions | boolean
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const formPropDefs = buildProps({
-  ...formMetaPropDefs,
+/** Runtime prop definitions; use the public props interface for types. */
+export const FormDefaultValueProps = buildProps({
+  ...FormMetaDefaultValueProps,
   readonly: Boolean,
   readonlyRaw: Boolean,
   hidePlaceholder: Boolean,

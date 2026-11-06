@@ -21,6 +21,7 @@ import {
   ref,
   toRefs,
 } from 'vue'
+import { OptionGroupDefaultValueProps } from './option-group-props'
 import { useMutationObserver } from '@vueuse/core'
 import { ensureArray, isArray } from '@element-plus/utils'
 import { useNamespace } from '@element-plus/hooks'
@@ -33,16 +34,7 @@ export default defineComponent({
   name: 'ElOptionGroup',
   componentName: 'ElOptionGroup',
 
-  props: {
-    /**
-     * @description 分组名称
-     */
-    label: String,
-    /**
-     * @description 是否禁用该分组内的所有选项
-     */
-    disabled: Boolean,
-  },
+  props: OptionGroupDefaultValueProps,
   setup(props) {
     const ns = useNamespace('select')
     const groupRef = ref<HTMLElement>()

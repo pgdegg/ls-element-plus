@@ -7,7 +7,10 @@ export const ElColorPicker: SFCWithInstall<typeof ColorPicker> =
   withInstall(ColorPicker)
 export default ElColorPicker
 
-export { colorPickerEmits, colorPickerPropsDefaults } from './src/color-picker'
+export {
+  colorPickerEmits,
+  ColorPickerDefaultValueProps,
+} from './src/color-picker'
 export type {
   ColorPickerProps,
   ColorPickerEmits,

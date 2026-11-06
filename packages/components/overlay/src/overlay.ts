@@ -9,7 +9,7 @@ import type {
 } from 'vue'
 import type { ClassValue, ZIndexType } from '@element-plus/utils'
 
-export const overlayProps = buildProps({
+export const OverlayDefaultValueProps = buildProps({
   mask: {
     type: Boolean,
     default: true,
@@ -23,8 +23,10 @@ export const overlayProps = buildProps({
     type: definePropType<ZIndexType>([String, Number]),
   },
 } as const)
-export type OverlayProps = ExtractPropTypes<typeof overlayProps>
-export type OverlayPropsPublic = ExtractPublicPropTypes<typeof overlayProps>
+export type OverlayProps = ExtractPropTypes<typeof OverlayDefaultValueProps>
+export type OverlayPropsPublic = ExtractPublicPropTypes<
+  typeof OverlayDefaultValueProps
+>
 
 export const overlayEmits = {
   click: (evt: MouseEvent) => evt instanceof MouseEvent,
@@ -36,7 +38,7 @@ const BLOCK = 'overlay'
 export default defineComponent({
   name: 'ElOverlay',
 
-  props: overlayProps,
+  props: OverlayDefaultValueProps,
   emits: overlayEmits,
 
   setup(props, { slots, emit }) {

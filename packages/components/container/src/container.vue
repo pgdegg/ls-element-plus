@@ -6,22 +6,16 @@
 
 <script lang="ts" setup>
 import { computed, useSlots } from 'vue'
+import { ContainerDefaultValueProps } from './container'
 import { useNamespace } from '@element-plus/hooks'
 
 import type { Component, VNode } from 'vue'
-
-interface ContainerProps {
-  /**
-   * @description 子元素的布局方向
-   */
-  direction?: 'horizontal' | 'vertical'
-}
 
 defineOptions({
   name: 'ElContainer',
 })
 
-const props = defineProps<ContainerProps>()
+const props = defineProps(ContainerDefaultValueProps)
 const slots = useSlots()
 
 const ns = useNamespace('container')

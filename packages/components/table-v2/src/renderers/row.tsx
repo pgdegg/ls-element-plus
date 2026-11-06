@@ -4,6 +4,7 @@ import { tryCall } from '../utils'
 import type {
   ComponentInternalInstance,
   FunctionalComponent,
+  PropType,
   UnwrapNestedRefs,
 } from 'vue'
 import type { UseNamespaceReturn } from '@element-plus/hooks'
@@ -11,7 +12,7 @@ import type { UseTableReturn } from '../use-table'
 import type { TableV2Props } from '../table'
 import type { TableGridRowSlotParams } from '../table-grid'
 
-type RowRendererProps = TableGridRowSlotParams &
+type RowRendererProps = Omit<TableGridRowSlotParams, 'key'> &
   Pick<
     TableV2Props,
     | 'expandColumnKey'
@@ -35,6 +36,84 @@ type RowRendererProps = TableGridRowSlotParams &
     ns: UseNamespaceReturn
     tableInstance?: ComponentInternalInstance
   }
+
+export const TableV2RowRendererDefaultValueProps = {
+  columns: {
+    type: Array as PropType<RowRendererProps['columns']>,
+    required: true,
+  },
+  rowData: {
+    type: null as unknown as PropType<RowRendererProps['rowData']>,
+    required: true,
+  },
+  columnIndex: {
+    type: Number as PropType<RowRendererProps['columnIndex']>,
+    required: true,
+  },
+  rowIndex: {
+    type: Number as PropType<RowRendererProps['rowIndex']>,
+    required: true,
+  },
+  data: {
+    type: null as unknown as PropType<RowRendererProps['data']>,
+    required: true,
+  },
+  isScrolling: {
+    type: Boolean as PropType<RowRendererProps['isScrolling']>,
+    default: undefined,
+  },
+  style: {
+    type: [String, Array, Object, Boolean] as PropType<
+      RowRendererProps['style']
+    >,
+    required: true,
+  },
+  estimatedRowHeight: {
+    type: Number as PropType<RowRendererProps['estimatedRowHeight']>,
+  },
+  rowEventHandlers: {
+    type: Object as PropType<RowRendererProps['rowEventHandlers']>,
+  },
+  expandColumnKey: {
+    type: String as PropType<RowRendererProps['expandColumnKey']>,
+  },
+  rowKey: {
+    type: [String, Number, Symbol] as PropType<RowRendererProps['rowKey']>,
+    required: true,
+  },
+  rowClass: {
+    type: [String, Function] as PropType<RowRendererProps['rowClass']>,
+  },
+  rowProps: { type: null as unknown as PropType<RowRendererProps['rowProps']> },
+  columnsStyles: {
+    type: Object as PropType<RowRendererProps['columnsStyles']>,
+    required: true,
+  },
+  expandedRowKeys: {
+    type: Array as PropType<RowRendererProps['expandedRowKeys']>,
+    required: true,
+  },
+  hasFixedColumns: {
+    type: Number as PropType<RowRendererProps['hasFixedColumns']>,
+    required: true,
+  },
+  depthMap: {
+    type: Object as PropType<RowRendererProps['depthMap']>,
+    required: true,
+  },
+  onRowHovered: {
+    type: Function as PropType<RowRendererProps['onRowHovered']>,
+    required: true,
+  },
+  onRowExpanded: {
+    type: Function as PropType<RowRendererProps['onRowExpanded']>,
+    required: true,
+  },
+  ns: { type: Object as PropType<RowRendererProps['ns']>, required: true },
+  tableInstance: {
+    type: Object as PropType<RowRendererProps['tableInstance']>,
+  },
+} as const
 
 const RowRenderer: FunctionalComponent<RowRendererProps> = (
   props,
@@ -132,5 +211,7 @@ const RowRenderer: FunctionalComponent<RowRendererProps> = (
     </Row>
   )
 }
+
+RowRenderer.props = TableV2RowRendererDefaultValueProps
 
 export default RowRenderer

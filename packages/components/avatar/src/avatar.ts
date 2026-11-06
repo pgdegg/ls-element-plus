@@ -40,8 +40,8 @@ export interface AvatarProps {
   fit?: ObjectFit
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const avatarPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const AvatarDefaultValueProps = buildProps({
   /**
    * @description 头像尺寸。
    */

@@ -26,6 +26,7 @@
 
 <script lang="ts" setup>
 import { computed, provide, useSlots } from 'vue'
+import { DescriptionsDefaultValueProps } from './description'
 import { flattedChildren } from '@element-plus/utils'
 import { useNamespace } from '@element-plus/hooks'
 import { useFormSize } from '@element-plus/components/form'
@@ -33,7 +34,6 @@ import ElDescriptionsRow from './descriptions-row.vue'
 import { descriptionsKey } from './token'
 import { COMPONENT_NAME } from './constants'
 
-import type { DescriptionProps } from './description'
 import type { IDescriptionsInject } from './descriptions.type'
 import type { DescriptionItemVNode } from './description-item'
 
@@ -41,12 +41,7 @@ defineOptions({
   name: 'ElDescriptions',
 })
 
-const props = withDefaults(defineProps<DescriptionProps>(), {
-  column: 3,
-  direction: 'horizontal',
-  title: '',
-  extra: '',
-})
+const props = defineProps(DescriptionsDefaultValueProps)
 
 const ns = useNamespace('descriptions')
 

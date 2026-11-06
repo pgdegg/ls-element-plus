@@ -29,12 +29,12 @@ import {
 } from '@element-plus/components/roving-focus-group'
 import { useNamespace } from '@element-plus/hooks'
 import { DROPDOWN_INJECTION_KEY } from './tokens'
-import { dropdownMenuProps } from './dropdown'
+import { DropdownMenuDefaultValueProps } from './dropdown'
 import { useDropdown } from './useDropdown'
 
 export default defineComponent({
   name: 'ElDropdownMenu',
-  props: dropdownMenuProps,
+  props: DropdownMenuDefaultValueProps,
   setup(props) {
     const ns = useNamespace('dropdown')
     const { _elDropdownSize } = useDropdown()

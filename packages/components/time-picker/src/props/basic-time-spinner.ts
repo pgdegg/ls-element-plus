@@ -1,10 +1,10 @@
 import { buildProps, definePropType } from '@element-plus/utils'
-import { disabledTimeListsProps } from '../props/shared'
+import { DisabledTimeListsDefaultValueProps } from '../props/shared'
 
 import type { ExtractPropTypes, ExtractPublicPropTypes } from 'vue'
 import type { Dayjs } from 'dayjs'
 
-export const basicTimeSpinnerProps = buildProps({
+export const BasicTimeSpinnerDefaultValueProps = buildProps({
   role: {
     type: String,
     required: true,
@@ -23,12 +23,12 @@ export const basicTimeSpinnerProps = buildProps({
     type: definePropType<'a' | 'A' | ''>(String),
     default: '',
   },
-  ...disabledTimeListsProps,
+  ...DisabledTimeListsDefaultValueProps,
 } as const)
 
 export type BasicTimeSpinnerProps = ExtractPropTypes<
-  typeof basicTimeSpinnerProps
+  typeof BasicTimeSpinnerDefaultValueProps
 >
 export type BasicTimeSpinnerPropsPublic = ExtractPublicPropTypes<
-  typeof basicTimeSpinnerProps
+  typeof BasicTimeSpinnerDefaultValueProps
 >

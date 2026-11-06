@@ -25,3 +25,7 @@ export type {
   OptionPublicInstance as SelectOptionProxy,
   OptionBasic,
 } from './src/type'
+
+export { OptionDefaultValueProps } from './src/option'
+
+export { OptionGroupDefaultValueProps } from './src/option-group-props'

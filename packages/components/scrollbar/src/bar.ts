@@ -7,8 +7,8 @@ export interface BarProps {
   minSize: number
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const barPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const BarDefaultValueProps = buildProps({
   always: {
     type: Boolean,
     default: true,

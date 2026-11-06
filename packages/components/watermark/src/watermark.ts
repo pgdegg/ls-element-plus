@@ -53,8 +53,8 @@ export interface WatermarkProps {
   offset?: [number, number]
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const watermarkPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const WatermarkDefaultValueProps = buildProps({
   /**
    * @description 追加的水印元素的 z-index
    */

@@ -40,37 +40,39 @@ export interface TableHeaderProps<T extends DefaultRow> {
   allowDragLastColumn: boolean
 }
 
+export const TableHeaderDefaultValueProps = {
+  fixed: {
+    type: String,
+    default: '',
+  },
+  store: {
+    required: true,
+    type: Object as PropType<TableHeaderProps<any>['store']>,
+  },
+  border: Boolean,
+  defaultSort: {
+    type: Object as PropType<TableHeaderProps<any>['defaultSort']>,
+    default: () => {
+      return {
+        prop: '',
+        order: '',
+      }
+    },
+  },
+  appendFilterPanelTo: {
+    type: String,
+  },
+  allowDragLastColumn: {
+    type: Boolean,
+  },
+} as const
+
 export default defineComponent({
   name: 'ElTableHeader',
   components: {
     ElCheckbox,
   },
-  props: {
-    fixed: {
-      type: String,
-      default: '',
-    },
-    store: {
-      required: true,
-      type: Object as PropType<TableHeaderProps<any>['store']>,
-    },
-    border: Boolean,
-    defaultSort: {
-      type: Object as PropType<TableHeaderProps<any>['defaultSort']>,
-      default: () => {
-        return {
-          prop: '',
-          order: '',
-        }
-      },
-    },
-    appendFilterPanelTo: {
-      type: String,
-    },
-    allowDragLastColumn: {
-      type: Boolean,
-    },
-  },
+  props: TableHeaderDefaultValueProps,
   setup(props, { emit }) {
     const instance = getCurrentInstance() as TableHeader
     const parent = inject(TABLE_INJECTION_KEY)

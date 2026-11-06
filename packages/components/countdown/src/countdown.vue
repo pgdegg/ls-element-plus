@@ -15,22 +15,16 @@
 
 <script lang="ts" setup>
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { CountdownDefaultValueProps, countdownEmits } from './countdown'
 import { ElStatistic } from '@element-plus/components/statistic'
 import { cAF, rAF } from '@element-plus/utils'
 import { CHANGE_EVENT } from '@element-plus/constants'
-import { countdownEmits } from './countdown'
 import { formatTime, getTime } from './utils'
-
-import type { CountdownProps } from './countdown'
 
 defineOptions({
   name: 'ElCountdown',
 })
-const props = withDefaults(defineProps<CountdownProps>(), {
-  format: 'HH:mm:ss',
-  value: 0,
-  valueStyle: undefined,
-})
+const props = defineProps(CountdownDefaultValueProps)
 const emit = defineEmits(countdownEmits)
 
 let timer: ReturnType<typeof rAF> | undefined

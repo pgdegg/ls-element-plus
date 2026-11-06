@@ -8,3 +8,5 @@ export default ElBadge
 
 export type { BadgeProps } from './src/badge'
 export type { BadgeInstance } from './src/instance'
+
+export { BadgeDefaultValueProps } from './src/badge'

@@ -83,16 +83,19 @@
 
 <script lang="ts" setup generic="T extends TransferDataItem = TransferDataItem">
 import { computed, reactive, toRefs, useSlots } from 'vue'
-import { isEmpty, mutable } from '@element-plus/utils'
+import {
+  TransferPanelDefaultValueProps,
+  transferPanelEmits,
+} from './transfer-panel'
+import { isEmpty } from '@element-plus/utils'
 import { useLocale, useNamespace } from '@element-plus/hooks'
 import { ElCheckbox, ElCheckboxGroup } from '@element-plus/components/checkbox'
 import { ElInput } from '@element-plus/components/input'
 import { FixedSizeList as ElFixedSizeList } from '@element-plus/components/virtual-list'
 import { Search } from '@element-plus/icons-vue'
-import { transferPanelEmits } from './transfer-panel'
 import { useCheck, usePropsAlias } from './composables'
 
-import type { VNode } from 'vue'
+import type { PropType, VNode } from 'vue'
 import type { TransferDataItem } from './transfer'
 import type { TransferPanelProps, TransferPanelState } from './transfer-panel'
 
@@ -100,19 +103,17 @@ defineOptions({
   name: 'ElTransferPanel',
 })
 
-const props = withDefaults(defineProps<TransferPanelProps<T>>(), {
-  data: () => [],
-  format: () => ({}),
-  defaultChecked: () => [],
-  props: () =>
-    mutable({
-      label: 'label',
-      key: 'key',
-      disabled: 'disabled',
-    }),
-  virtualScroll: false,
-  itemSize: 30,
-})
+const props = defineProps(
+  TransferPanelDefaultValueProps as Omit<
+    typeof TransferPanelDefaultValueProps,
+    'data' | 'optionRender' | 'filterMethod'
+  > & {
+    [K in 'data' | 'optionRender' | 'filterMethod']: Omit<
+      (typeof TransferPanelDefaultValueProps)[K],
+      'type'
+    > & { type: PropType<Exclude<TransferPanelProps<T>[K], undefined>> }
+  }
+)
 const emit = defineEmits(transferPanelEmits)
 const slots = useSlots()
 

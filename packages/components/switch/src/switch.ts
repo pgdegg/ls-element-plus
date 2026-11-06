@@ -104,8 +104,8 @@ export interface SwitchProps {
   ariaLabel?: string
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const switchPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const SwitchDefaultValueProps = buildProps({
   square: Boolean,
   /**
    * @description 绑定值，应等于 `active-value` 或 `inactive-value`，默认为 `boolean` 类型

@@ -33,7 +33,7 @@ import dayjs from 'dayjs'
 import { useLocale, useNamespace } from '@element-plus/hooks'
 import { rangeArr } from '@element-plus/components/time-picker'
 import { castArray, hasClass } from '@element-plus/utils'
-import { basicYearTableProps } from '../props/basic-year-table'
+import { BasicYearTableDefaultValueProps } from '../props/basic-year-table'
 import { getValidDateOfYear } from '../utils'
 import ElDatePickerCell from './basic-cell-render'
 
@@ -65,7 +65,7 @@ const datesInYear = (year: number, lang: string) => {
   return rangeArr(numOfDays).map((n) => firstDay.add(n, 'day').toDate())
 }
 
-const props = defineProps(basicYearTableProps)
+const props = defineProps(BasicYearTableDefaultValueProps)
 const emit = defineEmits(['changerange', 'pick', 'select'])
 
 const ns = useNamespace('year-table')

@@ -9,8 +9,8 @@ export interface PredefineProps {
   disabled?: boolean
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const predefinePropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const PredefineDefaultValueProps = buildProps({
   colors: {
     type: definePropType<string[]>(Array),
     required: true,

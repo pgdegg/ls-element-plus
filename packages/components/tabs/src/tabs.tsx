@@ -35,7 +35,7 @@ import type { Awaitable } from '@element-plus/utils'
 import type { TabNavInstance } from './tab-nav'
 import type { TabPaneName, TabsPaneContext } from './constants'
 
-export const tabsProps = buildProps({
+export const TabsDefaultValueProps = buildProps({
   /**
    * @description Tab 的类型
    */
@@ -113,8 +113,10 @@ export const tabsProps = buildProps({
     default: 0,
   },
 } as const)
-export type TabsProps = ExtractPropTypes<typeof tabsProps>
-export type TabsPropsPublic = ExtractPublicPropTypes<typeof tabsProps>
+export type TabsProps = ExtractPropTypes<typeof TabsDefaultValueProps>
+export type TabsPropsPublic = ExtractPublicPropTypes<
+  typeof TabsDefaultValueProps
+>
 
 const isPaneName = (value: unknown): value is string | number =>
   isString(value) || isNumber(value)
@@ -145,7 +147,7 @@ export type TabsPanes = Record<number, TabsPaneContext>
 const Tabs = defineComponent({
   name: 'ElTabs',
 
-  props: tabsProps,
+  props: TabsDefaultValueProps,
   emits: tabsEmits,
   slots: Object as SlotsType<TabsSlots>,
 

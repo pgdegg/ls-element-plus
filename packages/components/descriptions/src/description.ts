@@ -41,8 +41,8 @@ export interface DescriptionProps {
   labelWidth?: string | number
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const descriptionPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const DescriptionsDefaultValueProps = buildProps({
   /**
    * @description 是否带边框
    */

@@ -1,9 +1,9 @@
 import { buildProps } from '@element-plus/utils'
 import { createModelToggleComposable } from '@element-plus/hooks'
-import { popperArrowPropDefs } from '@element-plus/components/popper/src/arrow'
-import { popperPropDefs } from '@element-plus/components/popper/src/popper'
-import { tooltipContentPropDefs } from './content'
-import { tooltipTriggerPropDefs } from './trigger'
+import { PopperArrowDefaultValueProps } from '@element-plus/components/popper/src/arrow'
+import { PopperDefaultValueProps } from '@element-plus/components/popper/src/popper'
+import { TooltipContentDefaultValueProps } from './content'
+import { TooltipTriggerDefaultValueProps } from './trigger'
 
 import type {
   PopperArrowProps,
@@ -32,13 +32,13 @@ export interface UseTooltipProps
   'onUpdate:visible'?: (value: boolean) => void
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const tooltipPropDefs = buildProps({
-  ...popperPropDefs,
+/** Runtime prop definitions; use the public props interface for types. */
+export const TooltipDefaultValueProps = buildProps({
+  ...PopperDefaultValueProps,
   ...useTooltipModelToggleProps,
-  ...tooltipContentPropDefs,
-  ...tooltipTriggerPropDefs,
-  ...popperArrowPropDefs,
+  ...TooltipContentDefaultValueProps,
+  ...TooltipTriggerDefaultValueProps,
+  ...PopperArrowDefaultValueProps,
   /**
    * @description tooltip 内容是否带有箭头
    */

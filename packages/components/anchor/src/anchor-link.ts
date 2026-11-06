@@ -11,8 +11,8 @@ export interface AnchorLinkProps {
   href?: string
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const anchorLinkPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const AnchorLinkDefaultValueProps = buildProps({
   /**
    * @description 锚点链接的文本内容
    */

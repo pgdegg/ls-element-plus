@@ -7,7 +7,7 @@ import type {
   GetDisabledSeconds,
 } from '../common/props'
 
-export const disabledTimeListsProps = buildProps({
+export const DisabledTimeListsDefaultValueProps = buildProps({
   /**
    * @description 指定不可选择的小时数组
    */
@@ -29,13 +29,13 @@ export const disabledTimeListsProps = buildProps({
 } as const)
 
 export type DisabledTimeListsProps = ExtractPropTypes<
-  typeof disabledTimeListsProps
+  typeof DisabledTimeListsDefaultValueProps
 >
 export type DisabledTimeListsPropsPublic = ExtractPublicPropTypes<
-  typeof disabledTimeListsProps
+  typeof DisabledTimeListsDefaultValueProps
 >
 
-export const timePanelSharedProps = buildProps({
+export const TimePanelSharedDefaultValueProps = buildProps({
   visible: Boolean,
   actualVisible: {
     type: Boolean,
@@ -47,7 +47,9 @@ export const timePanelSharedProps = buildProps({
   },
 } as const)
 
-export type TimePanelSharedProps = ExtractPropTypes<typeof timePanelSharedProps>
+export type TimePanelSharedProps = ExtractPropTypes<
+  typeof TimePanelSharedDefaultValueProps
+>
 export type TimePanelSharedPropsPublic = ExtractPublicPropTypes<
-  typeof timePanelSharedProps
+  typeof TimePanelSharedDefaultValueProps
 >

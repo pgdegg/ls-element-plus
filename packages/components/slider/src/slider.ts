@@ -27,7 +27,7 @@ export interface SliderInitData {
   sliderSize: number
 }
 
-export const sliderProps = buildProps({
+export const SliderDefaultValueProps = buildProps({
   /**
    * @description 绑定值
    */
@@ -174,8 +174,10 @@ export const sliderProps = buildProps({
   },
   ...useAriaProps(['ariaLabel']),
 } as const)
-export type SliderProps = ExtractPropTypes<typeof sliderProps>
-export type SliderPropsPublic = ExtractPublicPropTypes<typeof sliderProps>
+export type SliderProps = ExtractPropTypes<typeof SliderDefaultValueProps>
+export type SliderPropsPublic = ExtractPublicPropTypes<
+  typeof SliderDefaultValueProps
+>
 
 const isValidValue = (value: Arrayable<number>) =>
   isNumber(value) || (isArray(value) && value.every(isNumber))

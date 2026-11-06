@@ -5,6 +5,7 @@ import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@element-plus/constants'
 import type { PropType } from 'vue'
 import type {
   CascaderConfig,
+  CascaderNode,
   CascaderNodePathValue,
   CascaderOption,
   CascaderProps,
@@ -49,7 +50,7 @@ export const CASCADER_PANEL_ITEM_SIZE = 34
  */
 export const CASCADER_PANEL_HEIGHT = 204
 
-export const CommonProps = buildProps({
+export const CascaderCommonDefaultValueProps = buildProps({
   /**
    * @description 指定节点对象的哪个键作为节点的值
    */
@@ -158,9 +159,9 @@ export const DefaultProps: CascaderConfig = {
   showPrefix: true,
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const cascaderPanelPropDefs = buildProps({
-  ...CommonProps,
+/** Runtime prop definitions; use the public props interface for types. */
+export const CascaderPanelDefaultValueProps = buildProps({
+  ...CascaderCommonDefaultValueProps,
   border: {
     type: Boolean,
     default: true,
@@ -186,3 +187,16 @@ export const useCascaderConfig = (props: { props: CascaderProps }) => {
     ...props.props,
   }))
 }
+
+export const CascaderMenuDefaultValueProps = buildProps({
+  nodes: { type: definePropType<CascaderNode[]>(Array), required: true },
+  index: { type: Number, required: true },
+  virtualScroll: CascaderCommonDefaultValueProps.virtualScroll,
+  itemSize: CascaderCommonDefaultValueProps.itemSize,
+  height: CascaderCommonDefaultValueProps.height,
+} as const)
+
+export const CascaderNodeDefaultValueProps = buildProps({
+  node: { type: definePropType<CascaderNode>(Object), required: true },
+  menuId: String,
+} as const)

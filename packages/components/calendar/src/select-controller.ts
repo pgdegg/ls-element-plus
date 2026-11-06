@@ -12,8 +12,8 @@ export interface SelectControllerProps {
   formatter?: (value: number, type: 'year' | 'month') => string | number
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const selectControllerPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const SelectControllerDefaultValueProps = buildProps({
   date: {
     type: definePropType<Dayjs>(Object),
     required: true,

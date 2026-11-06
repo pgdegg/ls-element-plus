@@ -112,8 +112,8 @@ export interface InputNumberProps {
   tabindex?: string | number
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const inputNumberPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const InputNumberDefaultValueProps = buildProps({
   /** @description 是否隐藏占位文本；默认在禁用或只读时隐藏，false 强制显示。 */
   hidePlaceholder: { type: Boolean, default: undefined },
   maxPrecision: Number,
@@ -240,13 +240,13 @@ export const inputNumberPropDefs = buildProps({
    * @description 指定输入框中展示值的格式
    */
   formatter: {
-    type: Function,
+    type: definePropType<InputNumberProps['formatter']>(Function),
   },
   /**
    * @description 指定从格式化输入中提取的值
    */
   parser: {
-    type: Function,
+    type: definePropType<InputNumberProps['parser']>(Function),
   },
   /**
    * @description 与原生 input 的 `tabindex` 相同

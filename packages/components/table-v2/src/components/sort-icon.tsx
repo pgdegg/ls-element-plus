@@ -2,13 +2,25 @@ import ElIcon from '@element-plus/components/icon'
 import { SortDown, SortUp } from '@element-plus/icons-vue'
 import { SortOrder } from '../constants'
 
-import type { FunctionalComponent } from 'vue'
+import type { FunctionalComponent, PropType } from 'vue'
 
 export type SortIconProps = {
   sortOrder: SortOrder
   ariaLabel?: string
   class?: JSX.IntrinsicAttributes['class']
 }
+
+export const TableV2SortIconDefaultValueProps = {
+  sortOrder: {
+    type: String as PropType<SortIconProps['sortOrder']>,
+    required: true,
+  },
+  ariaLabel: { type: String as PropType<SortIconProps['ariaLabel']> },
+  class: {
+    type: [String, Boolean, Object, Array] as PropType<SortIconProps['class']>,
+    default: undefined,
+  },
+} as const
 
 const SortIcon: FunctionalComponent<SortIconProps> = (props) => {
   const { sortOrder } = props
@@ -21,5 +33,7 @@ const SortIcon: FunctionalComponent<SortIconProps> = (props) => {
     </button>
   )
 }
+
+SortIcon.props = TableV2SortIconDefaultValueProps
 
 export default SortIcon

@@ -34,8 +34,8 @@ export interface PopperProps {
   role?: (typeof roleTypes)[number]
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const popperPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const PopperDefaultValueProps = buildProps({
   role: {
     type: String,
     values: roleTypes,

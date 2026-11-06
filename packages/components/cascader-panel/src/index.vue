@@ -32,6 +32,11 @@ import {
   useSlots,
   watch,
 } from 'vue'
+import {
+  CascaderPanelDefaultValueProps,
+  cascaderPanelEmits,
+  useCascaderConfig,
+} from './config'
 import { cloneDeep, flattenDeep, isEqual } from 'lodash-unified'
 import {
   castArray,
@@ -52,12 +57,6 @@ import { useNamespace } from '@element-plus/hooks'
 import ElCascaderMenu from './menu.vue'
 import Store from './store'
 import Node from './node'
-import {
-  CASCADER_PANEL_HEIGHT,
-  CASCADER_PANEL_ITEM_SIZE,
-  cascaderPanelEmits,
-  useCascaderConfig,
-} from './config'
 import { checkNode, getMenuIndex, sortByOriginalOrder } from './utils'
 import { CASCADER_PANEL_INJECTION_KEY } from './types'
 
@@ -69,19 +68,12 @@ import type {
   ElCascaderPanelContext,
 } from './types'
 import type { CascaderMenuInstance } from './instance'
-import type { CascaderPanelProps } from './config'
 
 defineOptions({
   name: 'ElCascaderPanel',
 })
 
-const props = withDefaults(defineProps<CascaderPanelProps>(), {
-  options: () => [],
-  props: () => ({}),
-  border: true,
-  itemSize: CASCADER_PANEL_ITEM_SIZE,
-  height: CASCADER_PANEL_HEIGHT,
-})
+const props = defineProps(CascaderPanelDefaultValueProps)
 const emit = defineEmits(cascaderPanelEmits)
 
 // 用于在懒加载模式下中断同步选中状态

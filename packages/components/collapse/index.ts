@@ -13,7 +13,11 @@ export default ElCollapse
 export const ElCollapseItem: SFCWithInstall<typeof CollapseItem> =
   withNoopInstall(CollapseItem)
 
-export { emitChangeFn, collapseEmits } from './src/collapse'
+export {
+  emitChangeFn,
+  collapseEmits,
+  CollapseDefaultValueProps,
+} from './src/collapse'
 export type {
   CollapseActiveName,
   CollapseModelValue,
@@ -24,3 +28,5 @@ export type {
 export type { CollapseItemProps } from './src/collapse-item'
 export * from './src/constants'
 export type { CollapseInstance, CollapseItemInstance } from './src/instance'
+
+export { CollapseItemDefaultValueProps } from './src/collapse-item'

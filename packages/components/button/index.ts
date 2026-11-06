@@ -13,7 +13,12 @@ export const ElButtonGroup: SFCWithInstall<typeof ButtonGroup> =
   withNoopInstall(ButtonGroup)
 export default ElButton
 
-export { buttonTypes, buttonNativeTypes, buttonEmits } from './src/button'
+export {
+  buttonTypes,
+  buttonNativeTypes,
+  buttonEmits,
+  ButtonDefaultValueProps,
+} from './src/button'
 export type {
   ButtonType,
   ButtonNativeType,
@@ -23,3 +28,5 @@ export type {
 } from './src/button'
 export * from './src/constants'
 export type { ButtonInstance, ButtonGroupInstance } from './src/instance'
+
+export { ButtonGroupDefaultValueProps } from './src/button-group'

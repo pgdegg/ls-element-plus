@@ -20,6 +20,7 @@ import {
   watch,
   watchEffect,
 } from 'vue'
+import { AffixDefaultValueProps, affixEmits } from './affix'
 import {
   useElementBounding,
   useEventListener,
@@ -28,22 +29,14 @@ import {
 import { addUnit, getScrollContainer, throwError } from '@element-plus/utils'
 import { useNamespace } from '@element-plus/hooks'
 import { CHANGE_EVENT } from '@element-plus/constants'
-import { affixEmits } from './affix'
 
 import type { CSSProperties } from 'vue'
-import type { AffixProps } from './affix'
 
 const COMPONENT_NAME = 'ElAffix'
 defineOptions({
   name: COMPONENT_NAME,
 })
-const props = withDefaults(defineProps<AffixProps>(), {
-  zIndex: 100,
-  target: '',
-  offset: 0,
-  position: 'top',
-  appendTo: 'body',
-})
+const props = defineProps(AffixDefaultValueProps)
 const emit = defineEmits(affixEmits)
 
 const ns = useNamespace('affix')

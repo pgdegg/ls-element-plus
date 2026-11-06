@@ -145,8 +145,8 @@ import {
   normalizeQuarterDate,
 } from '../utils'
 import {
+  PanelQuarterRangeDefaultValueProps,
   panelQuarterRangeEmits,
-  panelQuarterRangeProps,
 } from '../props/panel-quarter-range'
 import { useMonthRangeHeader } from '../composables/use-month-range-header'
 import { useRangePicker } from '../composables/use-range-picker'
@@ -164,7 +164,7 @@ defineOptions({
   name: 'DatePickerQuarterRange',
 })
 
-const props = defineProps(panelQuarterRangeProps)
+const props = defineProps(PanelQuarterRangeDefaultValueProps)
 const emit = defineEmits(panelQuarterRangeEmits)
 const unit = 'year'
 

@@ -2,9 +2,9 @@ import { placements } from '@popperjs/core'
 import { buildProps, definePropType } from '@element-plus/utils'
 import { useAriaProps, useSizeProp } from '@element-plus/hooks'
 import { emptyValuesPropDefs } from '@element-plus/hooks/use-empty-values/index'
-import { tooltipContentPropDefs } from '@element-plus/components/tooltip/src/content'
+import { TooltipContentDefaultValueProps } from '@element-plus/components/tooltip/src/content'
 import { CircleClose } from '@element-plus/icons-vue'
-import { disabledTimeListsProps } from '../props/shared'
+import { DisabledTimeListsDefaultValueProps } from '../props/shared'
 
 import type { Component, ExtractPropTypes, ExtractPublicPropTypes } from 'vue'
 import type { Options } from '@popperjs/core'
@@ -30,7 +30,7 @@ export type GetDisabledSeconds = (
   comparingDate?: Dayjs
 ) => number[]
 
-export const timePickerDefaultProps = buildProps({
+export const TimePickerCommonDefaultValueProps = buildProps({
   hidePlaceholder: { type: Boolean, default: undefined },
   /** @description 接受紧凑和部分的日期/时间输入 */
   quickInput: Boolean,
@@ -56,11 +56,11 @@ export const timePickerDefaultProps = buildProps({
   /**
    * @description TimePicker 下拉框的自定义类名
    */
-  popperClass: tooltipContentPropDefs.popperClass,
+  popperClass: TooltipContentDefaultValueProps.popperClass,
   /**
    * @description TimePicker 下拉框的自定义样式
    */
-  popperStyle: tooltipContentPropDefs.popperStyle,
+  popperStyle: TooltipContentDefaultValueProps.popperStyle,
   /**
    * @description 输入框中显示值的格式
    */
@@ -186,7 +186,7 @@ export const timePickerDefaultProps = buildProps({
    * @description 是否选择时间范围
    */
   isRange: Boolean,
-  ...disabledTimeListsProps,
+  ...DisabledTimeListsDefaultValueProps,
   /**
    * @description 以某日期为参数、判断该日期是否禁用的函数。应返回 Boolean
    */
@@ -277,10 +277,10 @@ export const timePickerDefaultProps = buildProps({
 } as const)
 
 export type TimePickerDefaultProps = ExtractPropTypes<
-  typeof timePickerDefaultProps
+  typeof TimePickerCommonDefaultValueProps
 >
 export type TimePickerDefaultPropsPublic = ExtractPublicPropTypes<
-  typeof timePickerDefaultProps
+  typeof TimePickerCommonDefaultValueProps
 >
 
 export interface PickerOptions {
@@ -295,7 +295,7 @@ export interface PickerOptions {
   handleCancel?: () => void
 }
 
-export const timePickerRangeTriggerProps = buildProps({
+export const TimePickerRangeTriggerDefaultValueProps = buildProps({
   id: {
     type: definePropType<string[]>(Array),
   },

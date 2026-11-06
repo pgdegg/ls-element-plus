@@ -75,7 +75,7 @@ import { useLocale, useNamespace } from '@element-plus/hooks'
 import { getEventCode, isArray } from '@element-plus/utils'
 import { EVENT_CODE } from '@element-plus/constants'
 import { PICKER_BASE_INJECTION_KEY } from '../constants'
-import { panelTimeRangeProps } from '../props/panel-time-range'
+import { PanelTimeRangeDefaultValueProps } from '../props/panel-time-range'
 import { useTimePanel } from '../composables/use-time-panel'
 import {
   buildAvailableTimeSlotGetter,
@@ -85,7 +85,7 @@ import TimeSpinner from './basic-time-spinner.vue'
 
 import type { Dayjs } from 'dayjs'
 
-const props = defineProps(panelTimeRangeProps)
+const props = defineProps(PanelTimeRangeDefaultValueProps)
 const emit = defineEmits(['pick', 'select-range', 'set-picker-option'])
 
 const makeSelectRange = (start: number, end: number) => {

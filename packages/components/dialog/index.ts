@@ -10,7 +10,7 @@ export * from './src/use-dialog'
 export {
   dialogEmits,
   dialogContextKey,
-  dialogPropsDefaults,
+  DialogDefaultValueProps,
 } from './src/dialog'
 export type {
   DialogBeforeCloseFn,
@@ -21,3 +21,5 @@ export type {
   DialogConfigContext,
 } from './src/dialog'
 export * from './src/constants'
+
+export { DialogContentDefaultValueProps } from './src/dialog-content'

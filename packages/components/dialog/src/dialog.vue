@@ -82,23 +82,21 @@
 
 <script lang="ts" setup>
 import { provide, ref } from 'vue'
+import { DialogDefaultValueProps, dialogEmits } from './dialog'
 import { useDebounceFn, useEventListener } from '@vueuse/core'
 import { ElOverlay } from '@element-plus/components/overlay'
 import { useNamespace, useSameTarget } from '@element-plus/hooks'
 import ElFocusTrap from '@element-plus/components/focus-trap'
 import ElDialogContent from './dialog-content.vue'
 import { dialogInjectionKey } from './constants'
-import { dialogEmits, dialogPropsDefaults } from './dialog'
 import { useDialog } from './use-dialog'
-
-import type { DialogProps } from './dialog'
 
 defineOptions({
   name: 'ElDialog',
   inheritAttrs: false,
 })
 
-const props = withDefaults(defineProps<DialogProps>(), dialogPropsDefaults)
+const props = defineProps(DialogDefaultValueProps)
 defineEmits(dialogEmits)
 
 const ns = useNamespace('dialog')

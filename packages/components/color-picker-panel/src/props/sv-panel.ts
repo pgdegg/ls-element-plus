@@ -7,8 +7,8 @@ export interface SvPanelProps {
   disabled?: boolean
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const svPanelPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const SvPanelDefaultValueProps = buildProps({
   color: {
     type: definePropType<Color>(Object),
     required: true,

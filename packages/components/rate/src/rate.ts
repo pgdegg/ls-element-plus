@@ -101,8 +101,8 @@ export interface RateProps {
   ariaLabel?: string
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const ratePropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const RateDefaultValueProps = buildProps({
   /**
    * @description 绑定值
    */

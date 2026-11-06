@@ -20,3 +20,7 @@ export type {
   BreadcrumbInstance,
   BreadcrumbItemInstance,
 } from './src/instances'
+
+export { BreadcrumbItemDefaultValueProps } from './src/breadcrumb-item'
+
+export { BreadcrumbDefaultValueProps } from './src/breadcrumb'

@@ -37,8 +37,8 @@ export interface CollapseProps {
   beforeCollapse?: (name: CollapseActiveName) => Awaitable<boolean>
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const collapsePropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const CollapseDefaultValueProps = buildProps({
   /**
    * @description 是否启用手风琴模式
    */

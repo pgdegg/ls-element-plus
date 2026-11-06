@@ -6,29 +6,18 @@
 
 <script lang="ts" setup>
 import { computed, inject } from 'vue'
+import { ColDefaultValueProps } from './col'
 import { isNumber, isObject } from '@element-plus/utils'
 import { useNamespace } from '@element-plus/hooks'
 import { rowContextKey } from '@element-plus/components/row'
 
 import type { CSSProperties } from 'vue'
-import type { ColProps } from './col'
 
 defineOptions({
   name: 'ElCol',
 })
 
-const props = withDefaults(defineProps<ColProps>(), {
-  tag: 'div',
-  span: 24,
-  offset: 0,
-  pull: 0,
-  push: 0,
-  xs: () => ({}),
-  sm: () => ({}),
-  md: () => ({}),
-  lg: () => ({}),
-  xl: () => ({}),
-})
+const props = defineProps(ColDefaultValueProps)
 
 const { gutter } = inject(rowContextKey, { gutter: computed(() => 0) })
 const ns = useNamespace('col')

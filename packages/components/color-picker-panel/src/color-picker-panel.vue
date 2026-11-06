@@ -44,6 +44,12 @@
 
 <script lang="ts" setup>
 import { computed, inject, nextTick, onMounted, provide, ref, watch } from 'vue'
+import {
+  ColorPickerPanelDefaultValueProps,
+  ROOT_COMMON_COLOR_INJECTION_KEY,
+  colorPickerPanelContextKey,
+  colorPickerPanelEmits,
+} from './color-picker-panel'
 import { useInputElement } from '@element-plus/hooks/use-input-element'
 import { ElInput } from '@element-plus/components/input'
 import { useFormDisabled, useFormItem } from '@element-plus/components/form'
@@ -54,27 +60,14 @@ import AlphaSlider from './components/alpha-slider.vue'
 import HueSlider from './components/hue-slider.vue'
 import Predefine from './components/predefine.vue'
 import SvPanel from './components/sv-panel.vue'
-import {
-  ROOT_COMMON_COLOR_INJECTION_KEY,
-  colorPickerPanelContextKey,
-  colorPickerPanelEmits,
-} from './color-picker-panel'
 import { useCommonColor } from './composables/use-common-color'
 
-import type { ColorPickerPanelProps } from './color-picker-panel'
 import type { InputInstance } from '@element-plus/components/input'
 
 defineOptions({
   name: 'ElColorPickerPanel',
 })
-const props = withDefaults(defineProps<ColorPickerPanelProps>(), {
-  modelValue: undefined,
-  border: true,
-  validateEvent: true,
-  showAlpha: false,
-  hueSliderClass: undefined,
-  hueSliderStyle: undefined,
-})
+const props = defineProps(ColorPickerPanelDefaultValueProps)
 const emit = defineEmits(colorPickerPanelEmits)
 
 const ns = useNamespace('color-picker-panel')

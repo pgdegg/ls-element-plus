@@ -8,8 +8,8 @@ export interface SplitterProps {
   lazy?: boolean
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const splitterPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const SplitterDefaultValueProps = buildProps({
   layout: {
     type: String,
     default: 'horizontal',

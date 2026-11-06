@@ -124,8 +124,8 @@ export const messageDefaults = mutable({
   appendTo: isClient ? document.body : (undefined as never),
 } as const)
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const messagePropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const MessageDefaultValueProps = buildProps({
   /**
    * @description Message 的自定义类名
    */

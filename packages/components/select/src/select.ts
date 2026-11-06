@@ -3,9 +3,9 @@ import { scrollbarEmits } from '@element-plus/components/scrollbar'
 import { useAriaProps, useSizeProp } from '@element-plus/hooks'
 import { emptyValuesPropDefs } from '@element-plus/hooks/use-empty-values/index'
 import { buildProps, definePropType, iconPropType } from '@element-plus/utils'
-import { tooltipContentPropDefs } from '@element-plus/components/tooltip/src/content'
+import { TooltipContentDefaultValueProps } from '@element-plus/components/tooltip/src/content'
 import { ArrowDown, CircleClose } from '@element-plus/icons-vue'
-import { tagPropDefs } from '@element-plus/components/tag/src/tag'
+import { TagDefaultValueProps } from '@element-plus/components/tag/src/tag'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@element-plus/constants'
 import { defaultProps } from '@element-plus/components/select-v2/src/useProps'
 
@@ -39,7 +39,7 @@ export interface TagTooltipProps {
   offset?: number
 }
 
-export const selectProps = buildProps({
+export const SelectDefaultValueProps = buildProps({
   /**
    * @description 原生 title 提示是否同时展示选项值和完整标签。
    * @default `false`
@@ -241,7 +241,7 @@ export const selectProps = buildProps({
   /**
    * @description 下拉框是否被 teleport；为 `true` 时将挂载到 `append-to` 指定的位置
    */
-  teleported: tooltipContentPropDefs.teleported,
+  teleported: TooltipContentDefaultValueProps.teleported,
   /**
    * @description 当下拉框不处于激活状态且 `persistent` 为 `false` 时，下拉框将被销毁
    */
@@ -271,11 +271,11 @@ export const selectProps = buildProps({
    * @description 标签类型
    */
 
-  tagType: { ...tagPropDefs.type, default: 'info' },
+  tagType: { ...TagDefaultValueProps.type, default: 'info' },
   /**
    * @description 标签效果
    */
-  tagEffect: { ...tagPropDefs.effect, default: 'light' },
+  tagEffect: { ...TagDefaultValueProps.effect, default: 'light' },
   /**
    * @description 是否触发表单校验
    */
@@ -323,7 +323,7 @@ export const selectProps = buildProps({
   /**
    * @description 下拉框挂载到哪个元素
    */
-  appendTo: tooltipContentPropDefs.appendTo,
+  appendTo: TooltipContentDefaultValueProps.appendTo,
   options: {
     type: definePropType<Record<string, any>[]>(Array),
   },
@@ -353,8 +353,10 @@ export const selectEmits = {
 }
 /* eslint-enable @typescript-eslint/no-unused-vars */
 
-export type SelectProps = ExtractPropTypes<typeof selectProps>
-export type SelectPropsPublic = ExtractPublicPropTypes<typeof selectProps>
+export type SelectProps = ExtractPropTypes<typeof SelectDefaultValueProps>
+export type SelectPropsPublic = ExtractPublicPropTypes<
+  typeof SelectDefaultValueProps
+>
 export type SelectEmits = EmitFn<typeof selectEmits>
 export type SelectInstance = InstanceType<typeof Select> & unknown
 export type SelectOptionProps = Props

@@ -25,22 +25,15 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue'
+import { StatisticDefaultValueProps } from './statistic'
 import { useNamespace } from '@element-plus/hooks'
 import { isFunction, isNumber } from '@element-plus/utils'
-
-import type { StatisticProps } from './statistic'
 
 defineOptions({
   name: 'ElStatistic',
 })
 
-const props = withDefaults(defineProps<StatisticProps>(), {
-  decimalSeparator: '.',
-  groupSeparator: ',',
-  precision: 0,
-  value: 0,
-  valueStyle: undefined,
-})
+const props = defineProps(StatisticDefaultValueProps)
 const ns = useNamespace('statistic')
 
 const displayValue = computed(() => {

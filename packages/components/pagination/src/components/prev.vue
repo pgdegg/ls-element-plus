@@ -18,13 +18,13 @@
 import { computed } from 'vue'
 import { useLocale } from '@element-plus/hooks'
 import { ElIcon } from '@element-plus/components/icon'
-import { paginationPrevEmits, paginationPrevProps } from './prev'
+import { PaginationPrevDefaultValueProps, paginationPrevEmits } from './prev'
 
 defineOptions({
   name: 'ElPaginationPrev',
 })
 
-const props = defineProps(paginationPrevProps)
+const props = defineProps(PaginationPrevDefaultValueProps)
 defineEmits(paginationPrevEmits)
 
 const { t } = useLocale()

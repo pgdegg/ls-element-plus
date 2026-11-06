@@ -67,6 +67,7 @@
 
 <script lang="ts" setup>
 import { computed, inject, markRaw, ref, watch } from 'vue'
+import { RateDefaultValueProps, rateEmits } from './rate'
 import { clamp } from 'lodash-unified'
 import {
   CHANGE_EVENT,
@@ -81,13 +82,10 @@ import {
   useFormSize,
 } from '@element-plus/components/form'
 import { ElIcon } from '@element-plus/components/icon'
-import { Star, StarFilled } from '@element-plus/icons-vue'
 import { useNamespace } from '@element-plus/hooks'
-import { rateEmits } from './rate'
 
 import type { CSSProperties, Component } from 'vue'
 import type { IconInstance } from '@element-plus/components/icon'
-import type { RateProps } from './rate'
 
 function getValueFromMap<T>(
   value: number,
@@ -113,29 +111,7 @@ defineOptions({
   name: 'ElRate',
 })
 
-const props = withDefaults(defineProps<RateProps>(), {
-  modelValue: 0,
-  id: undefined,
-  lowThreshold: 2,
-  highThreshold: 4,
-  max: 5,
-  colors: () => ['', '', ''],
-  voidColor: '',
-  disabledVoidColor: '',
-  icons: () => [StarFilled, StarFilled, StarFilled],
-  voidIcon: () => Star,
-  disabledVoidIcon: () => StarFilled,
-  disabled: undefined,
-  textColor: '',
-  texts: () => [
-    'Extremely bad',
-    'Disappointed',
-    'Fair',
-    'Satisfied',
-    'Surprise',
-  ],
-  scoreTemplate: '{value}',
-})
+const props = defineProps(RateDefaultValueProps)
 const emit = defineEmits(rateEmits)
 
 const formItemContext = inject(formItemContextKey, undefined)

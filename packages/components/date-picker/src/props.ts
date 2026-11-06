@@ -1,11 +1,11 @@
-import { timePickerDefaultProps } from '@element-plus/components/time-picker'
+import { TimePickerCommonDefaultValueProps } from '@element-plus/components/time-picker'
 import { buildProps, definePropType } from '@element-plus/utils'
 
 import type { ExtractPropTypes, ExtractPublicPropTypes } from 'vue'
 import type { DatePickerType } from '@element-plus/components/date-picker-panel/src/types'
 
-export const datePickerProps = buildProps({
-  ...timePickerDefaultProps,
+export const DatePickerDefaultValueProps = buildProps({
+  ...TimePickerCommonDefaultValueProps,
   /**
    * @description 选择器的类型
    */
@@ -15,7 +15,9 @@ export const datePickerProps = buildProps({
   },
 } as const)
 
-export type DatePickerProps = ExtractPropTypes<typeof datePickerProps>
+export type DatePickerProps = ExtractPropTypes<
+  typeof DatePickerDefaultValueProps
+>
 export type DatePickerPropsPublic = ExtractPublicPropTypes<
-  typeof datePickerProps
+  typeof DatePickerDefaultValueProps
 >

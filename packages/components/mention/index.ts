@@ -6,7 +6,11 @@ import type { SFCWithInstall } from '@element-plus/utils'
 export const ElMention: SFCWithInstall<typeof Mention> = withInstall(Mention)
 export default ElMention
 
-export { mentionEmits, mentionDefaultProps } from './src/mention'
+export {
+  mentionEmits,
+  mentionDefaultProps,
+  MentionDefaultValueProps,
+} from './src/mention'
 export type {
   MentionProps,
   MentionEmits,
@@ -14,3 +18,5 @@ export type {
   MentionOptionProps,
 } from './src/mention'
 export type { MentionOption } from './src/types'
+
+export { MentionDropdownDefaultValueProps } from './src/mention-dropdown'

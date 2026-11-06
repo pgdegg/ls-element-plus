@@ -6,7 +6,7 @@ import {
   isString,
 } from '@element-plus/utils'
 import { dialogEmits } from '@element-plus/components/dialog'
-import { dialogPropDefs } from '@element-plus/components/dialog/src/dialog'
+import { DialogDefaultValueProps } from '@element-plus/components/dialog/src/dialog'
 
 import type Drawer from './drawer.vue'
 import type { DialogProps } from '@element-plus/components/dialog'
@@ -43,9 +43,9 @@ export interface DrawerProps extends DialogProps {
   headerAriaLevel?: string
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const drawerPropDefs = buildProps({
-  ...dialogPropDefs,
+/** Runtime prop definitions; use the public props interface for types. */
+export const DrawerDefaultValueProps = buildProps({
+  ...DialogDefaultValueProps,
   direction: {
     type: String,
     default: 'rtl',

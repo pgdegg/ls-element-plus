@@ -43,8 +43,8 @@ export interface ResultProps {
   icon?: 'primary' | 'success' | 'warning' | 'info' | 'error'
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const resultPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const ResultDefaultValueProps = buildProps({
   /**
    * @description 结果的标题
    */

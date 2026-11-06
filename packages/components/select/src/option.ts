@@ -1,7 +1,7 @@
 import { buildProps } from '@element-plus/utils'
 
 export const COMPONENT_NAME = 'ElOption'
-export const optionProps = buildProps({
+export const OptionDefaultValueProps = buildProps({
   /**
    * @description 选项的值
    */

@@ -6,5 +6,5 @@ import type { SFCWithInstall } from '@element-plus/utils'
 export const ElPopover: SFCWithInstall<typeof Popover> = withInstall(Popover)
 export default ElPopover
 
-export { popoverEmits, popoverPropsDefaults } from './src/popover'
+export { popoverEmits, PopoverDefaultValueProps } from './src/popover'
 export type { PopoverProps, PopoverEmits, PopoverInstance } from './src/popover'

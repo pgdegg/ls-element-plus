@@ -19,8 +19,8 @@ export interface PopperTriggerProps {
   open?: boolean
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const popperTriggerPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const PopperTriggerDefaultValueProps = buildProps({
   /** @description popper 所附着的参考元素 */
   virtualRef: {
     type: definePropType<Measurable>(Object),

@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue'
 import { isArray } from '@element-plus/utils'
-import { tableV2HeaderRowProps } from '../header-row'
+import { TableV2HeaderRowDefaultValueProps } from '../header-row'
 
 import type { CSSProperties } from 'vue'
 import type { ColumnCellsType } from '../types'
@@ -8,7 +8,7 @@ import type { TableV2HeaderRowProps } from '../header-row'
 
 const TableV2HeaderRow = defineComponent({
   name: 'ElTableV2HeaderRow',
-  props: tableV2HeaderRowProps,
+  props: TableV2HeaderRowDefaultValueProps,
   setup(props, { slots }) {
     return () => {
       const { columns, columnsStyles, headerIndex, style } = props

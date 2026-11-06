@@ -106,23 +106,18 @@
 
 <script lang="ts">
 import { computed, defineComponent, getCurrentInstance, ref } from 'vue'
+import { TableFilterPanelDefaultValueProps } from './filter-panel-props'
 import { ElCheckbox, ElCheckboxGroup } from '@element-plus/components/checkbox'
 import { ElIcon } from '@element-plus/components/icon'
 import { ArrowDown, ArrowUp } from '@element-plus/icons-vue'
 import { EVENT_CODE } from '@element-plus/constants'
 import { useLocale, useNamespace } from '@element-plus/hooks'
 import { ElTooltip } from '@element-plus/components/tooltip'
-import { tooltipContentPropDefs } from '@element-plus/components/tooltip/src/content'
 import ElScrollbar from '@element-plus/components/scrollbar'
 import { getEventCode, isPropAbsent } from '@element-plus/utils'
 
-import type { DefaultRow } from './table/defaults'
 import type { TooltipInstance } from '@element-plus/components/tooltip'
-import type { Placement } from '@element-plus/components/popper'
-import type { PropType } from 'vue'
-import type { TableColumnCtx } from './table-column/defaults'
 import type { TableHeader } from './table-header'
-import type { Store } from './store'
 
 export default defineComponent({
   name: 'ElTableFilterPanel',
@@ -135,22 +130,7 @@ export default defineComponent({
     ArrowDown,
     ArrowUp,
   },
-  props: {
-    placement: {
-      type: String as PropType<Placement>,
-      default: 'bottom-start',
-    },
-    store: {
-      type: Object as PropType<Store<DefaultRow>>,
-    },
-    column: {
-      type: Object as PropType<TableColumnCtx<DefaultRow>>,
-    },
-    upDataColumn: {
-      type: Function,
-    },
-    appendTo: tooltipContentPropDefs.appendTo,
-  },
+  props: TableFilterPanelDefaultValueProps,
   setup(props) {
     const instance = getCurrentInstance()
     const { t } = useLocale()

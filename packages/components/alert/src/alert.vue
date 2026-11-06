@@ -45,6 +45,7 @@
 
 <script lang="ts" setup>
 import { computed, ref, useSlots } from 'vue'
+import { AlertDefaultValueProps, alertEmits } from './alert'
 import { ElIcon } from '@element-plus/components/icon'
 import {
   TypeComponents,
@@ -53,9 +54,6 @@ import {
   isComment,
 } from '@element-plus/utils'
 import { useNamespace } from '@element-plus/hooks'
-import { alertEmits } from './alert'
-
-import type { AlertProps } from './alert'
 
 const { Close } = TypeComponents
 
@@ -63,14 +61,7 @@ defineOptions({
   name: 'ElAlert',
 })
 
-const props = withDefaults(defineProps<AlertProps>(), {
-  title: '',
-  description: '',
-  type: 'info',
-  closable: true,
-  closeText: '',
-  effect: 'light',
-})
+const props = defineProps(AlertDefaultValueProps)
 const emit = defineEmits(alertEmits)
 const slots = useSlots()
 

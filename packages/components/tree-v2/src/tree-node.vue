@@ -57,30 +57,27 @@
 
 <script lang="ts" setup>
 import { computed, inject } from 'vue'
+import {
+  NODE_CONTEXTMENU,
+  ROOT_TREE_INJECTION_KEY,
+  TreeV2NodeDefaultValueProps,
+  treeNodeEmits,
+} from './virtual-tree'
 import ElIcon from '@element-plus/components/icon'
 import { CaretRight } from '@element-plus/icons-vue'
 import ElCheckbox from '@element-plus/components/checkbox'
 import { useNamespace } from '@element-plus/hooks'
-import { isFunction, isString, mutable } from '@element-plus/utils'
+import { isFunction, isString } from '@element-plus/utils'
 import ElNodeContent from './tree-node-content'
-import {
-  EMPTY_NODE,
-  NODE_CONTEXTMENU,
-  ROOT_TREE_INJECTION_KEY,
-  treeNodeEmits,
-} from './virtual-tree'
 
-import type { TreeNode, TreeNodeProps } from './types'
+import type { TreeNode } from './types'
 import type { CheckboxValueType } from '@element-plus/components/checkbox'
 
 defineOptions({
   name: 'ElTreeNode',
 })
 
-const props = withDefaults(defineProps<TreeNodeProps>(), {
-  node: () => mutable(EMPTY_NODE),
-  itemSize: 26,
-})
+const props = defineProps(TreeV2NodeDefaultValueProps)
 const emit = defineEmits(treeNodeEmits)
 
 const tree = inject(ROOT_TREE_INJECTION_KEY)

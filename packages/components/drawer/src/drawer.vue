@@ -103,30 +103,21 @@
 
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
+import { DrawerDefaultValueProps, drawerEmits } from './drawer'
 import { Close } from '@element-plus/icons-vue'
 import { ElOverlay } from '@element-plus/components/overlay'
 import ElFocusTrap from '@element-plus/components/focus-trap'
-import { dialogPropsDefaults, useDialog } from '@element-plus/components/dialog'
+import { useDialog } from '@element-plus/components/dialog'
 import ElIcon from '@element-plus/components/icon'
 import { useLocale, useNamespace } from '@element-plus/hooks'
-import { drawerEmits } from './drawer'
 import { useResizable } from './composables/useResizable'
-
-import type { DrawerProps } from './drawer'
 
 defineOptions({
   name: 'ElDrawer',
   inheritAttrs: false,
 })
 
-const props = withDefaults(defineProps<DrawerProps>(), {
-  ...dialogPropsDefaults,
-  direction: 'rtl',
-  size: '30%',
-  withHeader: true,
-  modalFade: true,
-  headerAriaLevel: '2',
-})
+const props = defineProps(DrawerDefaultValueProps)
 const emit = defineEmits(drawerEmits)
 
 const drawerRef = ref<HTMLElement>()

@@ -406,8 +406,9 @@ interface TableEmits<T extends DefaultRow = DefaultRow> {
   ): void
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const tablePropDefs = {
+/** Runtime prop definitions; use the public props interface for types. */
+export const TableDefaultValueProps = {
+  context: { type: Object as PropType<TableProps<any>['context']> },
   /**
    * @description 表格数据
    */
@@ -664,5 +665,3 @@ export type {
   TableConfigContext,
   TableEmits,
 }
-
-export default tablePropDefs

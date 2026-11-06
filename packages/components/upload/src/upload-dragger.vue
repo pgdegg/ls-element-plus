@@ -11,14 +11,16 @@
 
 <script lang="ts" setup>
 import { inject, ref } from 'vue'
+import {
+  UploadDraggerDefaultValueProps,
+  uploadDraggerEmits,
+} from './upload-dragger'
 import { useNamespace } from '@element-plus/hooks'
 import { useFormDisabled } from '@element-plus/components/form'
 import { throwError } from '@element-plus/utils/error'
 import { flatten } from 'lodash-unified'
 import { uploadContextKey } from './constants'
-import { uploadDraggerEmits } from './upload-dragger'
 
-import type { UploadDraggerProps } from './upload-dragger'
 import type { UploadRawFile } from './upload'
 
 const COMPONENT_NAME = 'ElUploadDrag'
@@ -27,9 +29,7 @@ defineOptions({
   name: COMPONENT_NAME,
 })
 
-const props = withDefaults(defineProps<UploadDraggerProps>(), {
-  disabled: undefined,
-})
+const props = defineProps(UploadDraggerDefaultValueProps)
 const emit = defineEmits(uploadDraggerEmits)
 
 const uploaderContext = inject(uploadContextKey)

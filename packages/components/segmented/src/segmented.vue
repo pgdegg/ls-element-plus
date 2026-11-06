@@ -33,6 +33,11 @@
 
 <script lang="ts" setup generic="T extends Option = Option">
 import { computed, reactive, ref, watch } from 'vue'
+import {
+  SegmentedDefaultValueProps,
+  defaultProps,
+  segmentedEmits,
+} from './segmented'
 import { useActiveElement, useResizeObserver } from '@vueuse/core'
 import { useId, useNamespace } from '@element-plus/hooks'
 import {
@@ -43,8 +48,8 @@ import {
 } from '@element-plus/components/form'
 import { NOOP, isObject } from '@element-plus/utils'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@element-plus/constants'
-import { defaultProps, segmentedEmits } from './segmented'
 
+import type { PropType } from 'vue'
 import type { Option } from './types'
 import type { SegmentedProps } from './segmented'
 
@@ -52,14 +57,16 @@ defineOptions({
   name: 'ElSegmented',
 })
 
-const props = withDefaults(defineProps<SegmentedProps<T>>(), {
-  direction: 'horizontal',
-  options: () => [],
-  props: () => defaultProps,
-  validateEvent: true,
-  modelValue: undefined,
-  disabled: undefined,
-})
+const props = defineProps(
+  SegmentedDefaultValueProps as Omit<
+    typeof SegmentedDefaultValueProps,
+    'options'
+  > & {
+    [K in 'options']: Omit<(typeof SegmentedDefaultValueProps)[K], 'type'> & {
+      type: PropType<Exclude<SegmentedProps<T>[K], undefined>>
+    }
+  }
+)
 const emit = defineEmits(segmentedEmits)
 
 const ns = useNamespace('segmented')

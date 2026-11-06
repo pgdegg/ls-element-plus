@@ -1,5 +1,5 @@
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@element-plus/constants'
-import { isString } from '@element-plus/utils'
+import { buildProps, definePropType, isString } from '@element-plus/utils'
 
 import type { InputHTMLAttributes, VNode } from 'vue'
 import type { ComponentSize } from '@element-plus/constants'
@@ -74,3 +74,32 @@ export const inputOtpEmits = {
 }
 
 export type InputOtpEmits = typeof inputOtpEmits
+
+export const InputOtpDefaultValueProps = buildProps({
+  ariaLabel: String,
+  modelValue: { type: [String, Number] },
+  length: { type: Number, default: 6 },
+  validator: {
+    type: definePropType<NonNullable<InputOtpProps['validator']>>(Function),
+    default: () => true,
+  },
+  inputmode: { type: definePropType<InputOtpProps['inputmode']>(String) },
+  type: {
+    type: String,
+    values: ['outlined', 'filled', 'underlined'],
+    default: 'outlined',
+  },
+  size: { type: definePropType<InputOtpProps['size']>(String) },
+  mask: Boolean,
+  disabled: { type: Boolean, default: undefined },
+  readonly: Boolean,
+  id: String,
+  validateEvent: { type: Boolean, default: true },
+  separator: {
+    type: definePropType<InputOtpProps['separator']>([
+      String,
+      Object,
+      Function,
+    ]),
+  },
+} as const)

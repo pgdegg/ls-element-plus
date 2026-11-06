@@ -39,8 +39,8 @@ export interface TagProps {
   round?: boolean
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const tagPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const TagDefaultValueProps = buildProps({
   /**
    * @description Tag 的类型
    */

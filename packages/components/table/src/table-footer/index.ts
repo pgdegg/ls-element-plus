@@ -17,31 +17,33 @@ export interface TableFooter<T extends DefaultRow> {
   defaultSort: Sort
 }
 
+export const TableFooterDefaultValueProps = {
+  fixed: {
+    type: String,
+    default: '',
+  },
+  store: {
+    required: true,
+    type: Object as PropType<TableFooter<any>['store']>,
+  },
+  summaryMethod: Function as PropType<TableFooter<any>['summaryMethod']>,
+  sumText: String,
+  border: Boolean,
+  defaultSort: {
+    type: Object as PropType<TableFooter<any>['defaultSort']>,
+    default: () => {
+      return {
+        prop: '',
+        order: '',
+      }
+    },
+  },
+} as const
+
 export default defineComponent({
   name: 'ElTableFooter',
 
-  props: {
-    fixed: {
-      type: String,
-      default: '',
-    },
-    store: {
-      required: true,
-      type: Object as PropType<TableFooter<any>['store']>,
-    },
-    summaryMethod: Function as PropType<TableFooter<any>['summaryMethod']>,
-    sumText: String,
-    border: Boolean,
-    defaultSort: {
-      type: Object as PropType<TableFooter<any>['defaultSort']>,
-      default: () => {
-        return {
-          prop: '',
-          order: '',
-        }
-      },
-    },
-  },
+  props: TableFooterDefaultValueProps,
   setup(props) {
     const parent = inject(TABLE_INJECTION_KEY) as Table<any>
     const ns = useNamespace('table')

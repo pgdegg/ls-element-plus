@@ -58,9 +58,14 @@
 
 <script lang="ts" setup generic="T extends MentionOption = MentionOption">
 import { computed, mergeProps, nextTick, ref } from 'vue'
+import {
+  MentionDefaultValueProps,
+  mentionDefaultProps,
+  mentionEmits,
+} from './mention'
 import { pick } from 'lodash-unified'
 import { useFocusController, useId, useNamespace } from '@element-plus/hooks'
-import ElInput, { inputPropsDefaults } from '@element-plus/components/input'
+import ElInput from '@element-plus/components/input'
 import ElTooltip from '@element-plus/components/tooltip'
 import {
   EVENT_CODE,
@@ -69,13 +74,12 @@ import {
 } from '@element-plus/constants'
 import { useFormDisabled } from '@element-plus/components/form'
 import { getEventCode, isArray, isFunction } from '@element-plus/utils'
-import { mentionDefaultProps, mentionEmits } from './mention'
-import { filterOption, getCursorPosition, getMentionCtx } from './helper'
+import { getCursorPosition, getMentionCtx } from './helper'
 import ElMentionDropdown from './mention-dropdown.vue'
 
+import type { CSSProperties, PropType } from 'vue'
 import type { MentionProps } from './mention'
 import type { Placement } from '@popperjs/core'
-import type { CSSProperties } from 'vue'
 import type { InputInstance } from '@element-plus/components/input'
 import type { TooltipInstance } from '@element-plus/components/tooltip'
 import type { MentionCtx, MentionOption } from './types'
@@ -85,19 +89,17 @@ defineOptions({
   inheritAttrs: false,
 })
 
-const props = withDefaults(defineProps<MentionProps<T>>(), {
-  ...inputPropsDefaults,
-  options: () => [],
-  prefix: '@',
-  split: ' ',
-  filterOption: () => filterOption,
-  placement: 'bottom',
-  offset: 0,
-  popperClass: undefined,
-  popperStyle: undefined,
-  popperOptions: () => ({}),
-  props: () => mentionDefaultProps,
-})
+const props = defineProps(
+  MentionDefaultValueProps as Omit<
+    typeof MentionDefaultValueProps,
+    'options' | 'filterOption'
+  > & {
+    [K in 'options' | 'filterOption']: Omit<
+      (typeof MentionDefaultValueProps)[K],
+      'type'
+    > & { type: PropType<Exclude<MentionProps<T>[K], undefined>> }
+  }
+)
 const emit = defineEmits(mentionEmits)
 defineSlots<
   InputInstance['$slots'] & {

@@ -93,8 +93,8 @@ export interface ScrollbarProps {
   ariaOrientation?: 'horizontal' | 'vertical' | 'undefined'
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const scrollbarPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const ScrollbarDefaultValueProps = buildProps({
   overflowWidth: { type: Number, default: 4 },
   overflowHeight: { type: Number, default: 4 },
   /**
@@ -213,3 +213,7 @@ export type ScrollbarEmits = typeof scrollbarEmits
 export type ScrollbarDirection = 'top' | 'bottom' | 'left' | 'right'
 
 export type ScrollbarInstance = InstanceType<typeof Scrollbar> & unknown
+
+export const ScrollbarMaskDefaultValueProps = {
+  mask: ScrollbarDefaultValueProps.mask,
+} as const

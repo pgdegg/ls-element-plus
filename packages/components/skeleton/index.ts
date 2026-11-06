@@ -18,3 +18,7 @@ export type {
   SkeletonItemProps,
   SkeletonItemInstance,
 } from './src/skeleton-item'
+
+export { SkeletonItemDefaultValueProps } from './src/skeleton-item'
+
+export { SkeletonDefaultValueProps } from './src/skeleton'

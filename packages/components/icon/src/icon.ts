@@ -20,8 +20,8 @@ export interface IconProps {
   color?: string
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const iconPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const IconDefaultValueProps = buildProps({
   symbol: String,
   prefix: {
     type: definePropType<string | string[]>([String, Array]),

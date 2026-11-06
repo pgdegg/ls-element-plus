@@ -232,7 +232,7 @@ import {
   ROOT_COMMON_PICKER_INJECTION_KEY,
 } from '../constants'
 import { useCommonPicker } from '../composables/use-common-picker'
-import { timePickerDefaultProps } from './props'
+import { TimePickerCommonDefaultValueProps } from './props'
 import PickerRangeTrigger from './picker-range-trigger.vue'
 
 import type { InputInstance } from '@element-plus/components/input'
@@ -248,7 +248,7 @@ defineOptions({
   name: 'Picker',
 })
 
-const props = defineProps(timePickerDefaultProps)
+const props = defineProps(TimePickerCommonDefaultValueProps)
 const pickerReadonly = useFormReadonly()
 const pickerPlaceholder = useFormPlaceholder()
 const pickerStartPlaceholder = useFormPlaceholder(undefined, 'startPlaceholder')

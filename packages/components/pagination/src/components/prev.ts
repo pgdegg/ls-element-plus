@@ -3,7 +3,7 @@ import { buildProps, iconPropType } from '@element-plus/utils'
 import type { ExtractPropTypes, ExtractPublicPropTypes } from 'vue'
 import type Prev from './prev.vue'
 
-export const paginationPrevProps = buildProps({
+export const PaginationPrevDefaultValueProps = buildProps({
   disabled: Boolean,
   currentPage: {
     type: Number,
@@ -21,9 +21,11 @@ export const paginationPrevEmits = {
   click: (evt: MouseEvent) => evt instanceof MouseEvent,
 }
 
-export type PaginationPrevProps = ExtractPropTypes<typeof paginationPrevProps>
+export type PaginationPrevProps = ExtractPropTypes<
+  typeof PaginationPrevDefaultValueProps
+>
 export type PaginationPrevPropsPublic = ExtractPublicPropTypes<
-  typeof paginationPrevProps
+  typeof PaginationPrevDefaultValueProps
 >
 
 export type PrevInstance = InstanceType<typeof Prev> & unknown

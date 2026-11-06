@@ -107,8 +107,8 @@ export interface TransferProps<T extends TransferDataItem = TransferDataItem> {
   itemSize?: number
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const transferPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const TransferDefaultValueProps = buildProps({
   /**
    * @description 数据源
    */

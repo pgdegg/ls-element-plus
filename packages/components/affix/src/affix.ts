@@ -36,8 +36,8 @@ export interface AffixProps {
   appendTo?: string | HTMLElement
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const affixPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const AffixDefaultValueProps = buildProps({
   /**
    * @description affix 元素的 zIndex 值
    */

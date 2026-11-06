@@ -23,8 +23,8 @@ export interface CollapseItemProps {
   disabled?: boolean
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const collapseItemPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const CollapseItemDefaultValueProps = buildProps({
   /**
    * @description 面板标题
    */

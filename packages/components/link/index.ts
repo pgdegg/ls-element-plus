@@ -6,7 +6,7 @@ import type { SFCWithInstall } from '@element-plus/utils'
 export const ElLink: SFCWithInstall<typeof Link> = withInstall(Link)
 export default ElLink
 
-export { linkEmits } from './src/link'
+export { linkEmits, LinkDefaultValueProps } from './src/link'
 export type {
   LinkProps,
   LinkEmits,

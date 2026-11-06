@@ -1,4 +1,3 @@
-import { markRaw } from 'vue'
 import {
   buildProps,
   definePropType,
@@ -176,8 +175,8 @@ export interface InputProps {
   countGraphemes?: (value: string) => number
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const inputPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const InputDefaultValueProps = buildProps({
   keeps: {
     type: definePropType<InputProps['keeps']>([String, RegExp, Array]),
   },
@@ -270,13 +269,13 @@ export const inputPropDefs = buildProps({
    * @description 格式化内容
    */
   formatter: {
-    type: Function,
+    type: definePropType<InputProps['formatter']>(Function),
   },
   /**
    * @description 解析内容
    */
   parser: {
-    type: Function,
+    type: definePropType<InputProps['parser']>(Function),
   },
   /**
    * @description 占位文本
@@ -408,21 +407,3 @@ export const inputEmits = {
   compositionend: (evt: CompositionEvent) => evt instanceof CompositionEvent,
 }
 export type InputEmits = typeof inputEmits
-
-/**
- * @description InputProps 的默认值，用于继承 InputProps 的组件（如 Autocomplete）
- */
-export const inputPropsDefaults = {
-  hidePlaceholder: undefined,
-  disabled: undefined,
-  modelValue: '',
-  modelModifiers: () => ({}),
-  type: 'text' as InputType,
-  autocomplete: 'off',
-  clearIcon: markRaw(CircleClose),
-  wordLimitPosition: 'inside',
-  tabindex: 0,
-  validateEvent: true,
-  inputStyle: () => ({}),
-  rows: 2,
-} as const

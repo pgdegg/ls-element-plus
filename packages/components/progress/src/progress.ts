@@ -65,8 +65,8 @@ export interface ProgressProps {
   format?: ProgressFn
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const progressPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const ProgressDefaultValueProps = buildProps({
   /**
    * @description 进度条类型
    */

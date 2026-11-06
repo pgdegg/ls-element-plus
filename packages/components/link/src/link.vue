@@ -16,22 +16,15 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue'
+import { LinkDefaultValueProps, linkEmits } from './link'
 import { ElIcon } from '@element-plus/components/icon'
 import { useGlobalConfig } from '@element-plus/components/config-provider'
 import { useNamespace } from '@element-plus/hooks'
-import { linkEmits } from './link'
-
-import type { LinkProps } from './link'
 
 defineOptions({
   name: 'ElLink',
 })
-const props = withDefaults(defineProps<LinkProps>(), {
-  type: undefined,
-  underline: undefined,
-  href: '',
-  target: '_self',
-})
+const props = defineProps(LinkDefaultValueProps)
 const emit = defineEmits(linkEmits)
 const globalConfig = useGlobalConfig('link')
 

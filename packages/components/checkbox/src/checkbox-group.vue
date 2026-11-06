@@ -23,6 +23,11 @@
 
 <script lang="ts" setup>
 import { computed, nextTick, provide, ref, toRefs, watch } from 'vue'
+import {
+  CheckboxGroupDefaultValueProps,
+  checkboxDefaultProps,
+  checkboxGroupEmits,
+} from './checkbox-group'
 import { isEqual, omit, pick } from 'lodash-unified'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@element-plus/constants'
 import { NOOP } from '@element-plus/utils'
@@ -32,28 +37,17 @@ import {
   useFormItem,
   useFormItemInputId,
 } from '@element-plus/components/form'
-import { checkboxDefaultProps, checkboxGroupEmits } from './checkbox-group'
 import { checkboxGroupContextKey } from './constants'
 import ElCheckbox from './checkbox.vue'
 import ElCheckboxButton from './checkbox-button.vue'
 
-import type {
-  CheckboxGroupProps,
-  CheckboxGroupValueType,
-} from './checkbox-group'
+import type { CheckboxGroupValueType } from './checkbox-group'
 
 defineOptions({
   name: 'ElCheckboxGroup',
 })
 
-const props = withDefaults(defineProps<CheckboxGroupProps>(), {
-  modelValue: () => [],
-  disabled: undefined,
-  tag: 'div',
-  validateEvent: true,
-  props: () => checkboxDefaultProps,
-  type: 'checkbox',
-})
+const props = defineProps(CheckboxGroupDefaultValueProps)
 const emit = defineEmits(checkboxGroupEmits)
 const ns = useNamespace('checkbox')
 const groupRef = ref<HTMLElement>()

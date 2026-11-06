@@ -223,8 +223,8 @@ export type {
   ValueOf,
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const tableColumnPropDefs = {
+/** Runtime prop definitions; use the public props interface for types. */
+export const TableColumnDefaultValueProps = {
   /**
    * @description 列的类型。设置为 `selection` 时该列显示复选框；设置为 `index` 时显示行索引（从 1 开始）；设置为 `expand` 时显示展开图标
    */
@@ -381,5 +381,3 @@ export const tableColumnPropDefs = {
     },
   },
 }
-
-export default tableColumnPropDefs

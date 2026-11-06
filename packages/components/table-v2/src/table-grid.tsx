@@ -16,7 +16,7 @@ import {
 import { isNumber, isObject } from '@element-plus/utils'
 import { Header } from './components'
 import { TABLE_V2_GRID_INJECTION_KEY, TableV2InjectionKey } from './tokens'
-import { tableV2GridProps } from './grid'
+import { TableV2GridDefaultValueProps } from './grid'
 import { sum } from './utils'
 
 import type { UnwrapRef } from 'vue'
@@ -163,7 +163,7 @@ const useTableGrid = (props: TableV2GridProps) => {
 
 const TableGrid = defineComponent({
   name: COMPONENT_NAME,
-  props: tableV2GridProps,
+  props: TableV2GridDefaultValueProps,
   setup(props, { slots, expose }) {
     const { ns } = inject(TableV2InjectionKey)!
 

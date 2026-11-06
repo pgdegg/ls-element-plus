@@ -94,7 +94,7 @@ import {
   timeUnits,
 } from '../constants'
 import { buildTimeList } from '../utils'
-import { basicTimeSpinnerProps } from '../props/basic-time-spinner'
+import { BasicTimeSpinnerDefaultValueProps } from '../props/basic-time-spinner'
 import { getTimeLists } from '../composables/use-time-picker'
 
 import type { Ref } from 'vue'
@@ -102,7 +102,7 @@ import type { ScrollbarInstance } from '@element-plus/components/scrollbar'
 import type { TimeUnit } from '../constants'
 import type { TimeList } from '../utils'
 
-const props = defineProps(basicTimeSpinnerProps)
+const props = defineProps(BasicTimeSpinnerDefaultValueProps)
 const pickerBase = inject(PICKER_BASE_INJECTION_KEY) as any
 const { isRange, format, saveOnBlur } = pickerBase.props
 const emit = defineEmits([CHANGE_EVENT, 'select-range', 'set-option'])

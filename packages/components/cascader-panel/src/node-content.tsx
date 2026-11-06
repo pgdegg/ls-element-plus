@@ -12,14 +12,16 @@ function isVNodeEmpty(vnodes?: VNode[] | VNode) {
     : vnodes?.type === Comment)
 }
 
+export const CascaderNodeContentDefaultValueProps = {
+  node: {
+    type: Object as PropType<CascaderNode>,
+    required: true,
+  },
+} as const
+
 export default defineComponent({
   name: 'NodeContent',
-  props: {
-    node: {
-      type: Object as PropType<CascaderNode>,
-      required: true,
-    },
-  },
+  props: CascaderNodeContentDefaultValueProps,
   setup(props) {
     const ns = useNamespace('cascader-node')
     const { renderLabelFn } = inject(CASCADER_PANEL_INJECTION_KEY)!

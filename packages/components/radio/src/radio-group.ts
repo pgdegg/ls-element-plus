@@ -70,8 +70,8 @@ export interface RadioGroupProps {
   ariaLabel?: string
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const radioGroupPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const RadioGroupDefaultValueProps = buildProps({
   /**
    * @description 原生 `id` 属性
    */
@@ -143,18 +143,3 @@ export const radioGroupPropDefs = buildProps({
 export const radioGroupEmits = radioEmits
 export type RadioGroupEmits = typeof radioGroupEmits
 export type RadioGroupInstance = InstanceType<typeof RadioGroup> & unknown
-
-/**
- * @description RadioGroupProps 的默认值
- */
-export const radioGroupPropsDefaults = {
-  id: undefined,
-  disabled: undefined,
-  modelValue: undefined,
-  fill: '',
-  textColor: '',
-  name: undefined,
-  validateEvent: true,
-  props: () => radioDefaultProps,
-  type: 'radio',
-} as const

@@ -24,8 +24,8 @@ export interface StepProps {
   status?: '' | 'wait' | 'process' | 'finish' | 'error' | 'success'
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const stepPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const StepDefaultValueProps = buildProps({
   /**
    * @description 步骤标题
    */

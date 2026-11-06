@@ -53,8 +53,8 @@ export interface ColProps {
   xl?: ColSize
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const colPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const ColDefaultValueProps = buildProps({
   /**
    * @description 自定义元素标签
    */

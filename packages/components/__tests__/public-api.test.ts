@@ -172,3 +172,31 @@ describe('supported public exports', () => {
     expect(components.useFormDisabled).toBeTypeOf('function')
   })
 })
+
+const runtimeComponents = Object.entries(
+  components as Record<string, unknown>
+).filter((entry): entry is [string, { props: Record<string, unknown> }] => {
+  const [name, value] = entry
+  return (
+    name.startsWith('El') &&
+    value !== null &&
+    (typeof value === 'object' || typeof value === 'function') &&
+    'props' in value &&
+    typeof value.props === 'object' &&
+    value.props !== null &&
+    Object.keys(value.props).length > 0
+  )
+})
+
+describe('shared runtime props', () => {
+  it.each(runtimeComponents)(
+    '%s uses its public runtime definition',
+    (name, component) => {
+      const definition = (components as Record<string, unknown>)[
+        `${name.slice(2)}DefaultValueProps`
+      ]
+      expect(definition).toBeDefined()
+      expect(component.props).toBe(definition)
+    }
+  )
+})

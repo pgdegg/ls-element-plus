@@ -8,7 +8,7 @@ import type {
   ExtractPublicPropTypes,
 } from 'vue'
 
-export const sliderMarkerProps = buildProps({
+export const SliderMarkerDefaultValueProps = buildProps({
   mark: {
     type: definePropType<
       | string
@@ -20,14 +20,16 @@ export const sliderMarkerProps = buildProps({
     default: undefined,
   },
 } as const)
-export type SliderMarkerProps = ExtractPropTypes<typeof sliderMarkerProps>
+export type SliderMarkerProps = ExtractPropTypes<
+  typeof SliderMarkerDefaultValueProps
+>
 export type SliderMarkerPropsPublic = ExtractPublicPropTypes<
-  typeof sliderMarkerProps
+  typeof SliderMarkerDefaultValueProps
 >
 
 export default defineComponent({
   name: 'ElSliderMarker',
-  props: sliderMarkerProps,
+  props: SliderMarkerDefaultValueProps,
   setup(props) {
     const ns = useNamespace('slider')
     const label = computed(() => {

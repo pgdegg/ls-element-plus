@@ -15,8 +15,8 @@ export interface EmptyProps {
   description?: string
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const emptyPropDefs = buildProps({
+/** Runtime prop definitions; use the public props interface for types. */
+export const EmptyDefaultValueProps = buildProps({
   /**
    * @description 空状态的图片 URL
    */

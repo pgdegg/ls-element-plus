@@ -11,11 +11,11 @@ import ElTooltip from '@element-plus/components/tooltip'
 import { useNamespace } from '@element-plus/hooks'
 import ElAvatar from './avatar.vue'
 import { avatarGroupContextKey } from './constants'
-import { avatarGroupProps } from './avatar-group-props'
+import { AvatarGroupDefaultValueProps } from './avatar-group-props'
 
 export default defineComponent({
   name: 'ElAvatarGroup',
-  props: avatarGroupProps,
+  props: AvatarGroupDefaultValueProps,
   setup(props, { slots }) {
     const ns = useNamespace('avatar-group')
 

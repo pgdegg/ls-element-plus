@@ -93,6 +93,7 @@ import {
   ref,
   watch,
 } from 'vue'
+import { TreeNodeDefaultValueProps } from './tree-node-props'
 import { debugWarn, isFunction, isString } from '@element-plus/utils'
 import ElCollapseTransition from '@element-plus/components/collapse-transition'
 import ElCheckbox from '@element-plus/components/checkbox'
@@ -103,11 +104,11 @@ import NodeContent from './tree-node-content.vue'
 import { getNodeKey as getNodeKeyUtil, handleCurrentChange } from './model/util'
 import { useNodeExpandEventBroadcast } from './model/useNodeExpandEventBroadcast'
 import { dragEventsKey } from './model/useDragNode'
-import Node from './model/node'
 import { NODE_INSTANCE_INJECTION_KEY, ROOT_TREE_INJECTION_KEY } from './tokens'
 
-import type { ComponentInternalInstance, PropType } from 'vue'
-import type { RootTreeType, TreeNodeData, TreeOptionProps } from './tree.type'
+import type Node from './model/node'
+import type { ComponentInternalInstance } from 'vue'
+import type { RootTreeType, TreeNodeData } from './tree.type'
 import type { CheckboxValueType } from '@element-plus/components/checkbox'
 
 export default defineComponent({
@@ -119,20 +120,7 @@ export default defineComponent({
     ElIcon,
     Loading,
   },
-  props: {
-    node: {
-      type: Node,
-      default: () => ({}),
-    },
-    props: {
-      type: Object as PropType<TreeOptionProps>,
-      default: () => ({}),
-    },
-    accordion: Boolean,
-    renderContent: Function,
-    renderAfterExpand: Boolean,
-    showCheckbox: Boolean,
-  },
+  props: TreeNodeDefaultValueProps,
   emits: ['node-expand'],
   setup(props, ctx) {
     const ns = useNamespace('tree')

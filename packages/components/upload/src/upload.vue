@@ -49,14 +49,13 @@
 
 <script lang="ts" setup>
 import { computed, onBeforeUnmount, provide, shallowRef, toRef } from 'vue'
+import { UploadDefaultValueProps } from './upload'
 import { useFormDisabled } from '@element-plus/components/form'
 import { uploadContextKey } from './constants'
 import UploadList from './upload-list.vue'
 import UploadContent from './upload-content.vue'
 import { useHandlers } from './use-handlers'
-import { uploadPropsDefaults } from './upload'
 
-import type { UploadProps } from './upload'
 import type {
   UploadContentInstance,
   UploadContentProps,
@@ -66,7 +65,7 @@ defineOptions({
   name: 'ElUpload',
 })
 
-const props = withDefaults(defineProps<UploadProps>(), uploadPropsDefaults)
+const props = defineProps(UploadDefaultValueProps)
 
 const disabled = useFormDisabled()
 

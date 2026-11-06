@@ -5,8 +5,8 @@ export interface MenuItemGroupProps {
   title?: string
 }
 
-/** @internal Runtime prop definitions; use the public props interface for types. */
-export const menuItemGroupPropDefs = {
+/** Runtime prop definitions; use the public props interface for types. */
+export const MenuItemGroupDefaultValueProps = {
   /**
    * @description 分组标题
    */

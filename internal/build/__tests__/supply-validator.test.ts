@@ -8,14 +8,14 @@ import {
 
 describe('runtime prop definition resolution', () => {
   it.each([
-    ['ButtonProps', 'buttonPropDefs'],
-    ['UseTooltipProps', 'tooltipPropDefs'],
-    ['ElTooltipContentProps', 'tooltipContentPropDefs'],
-    ['CascaderComponentProps', 'cascaderPropDefs'],
-    ['HueSliderProps', 'alphaSliderPropDefs'],
-    ['TreeNodeProps', 'treeNodePropDefs'],
-    ['SelectProps', 'selectProps'],
-    ['TimePickerDefaultProps', 'timePickerDefaultProps'],
+    ['ButtonProps', 'ButtonDefaultValueProps'],
+    ['UseTooltipProps', 'TooltipDefaultValueProps'],
+    ['ElTooltipContentProps', 'TooltipContentDefaultValueProps'],
+    ['CascaderComponentProps', 'CascaderDefaultValueProps'],
+    ['HueSliderProps', 'HueSliderDefaultValueProps'],
+    ['TreeNodeProps', 'TreeV2NodeDefaultValueProps'],
+    ['SelectProps', 'SelectDefaultValueProps'],
+    ['TimePickerDefaultProps', 'TimePickerCommonDefaultValueProps'],
   ])(
     'resolves %s to its actual runtime definition',
     (propsType, definition) => {
@@ -27,8 +27,11 @@ describe('runtime prop definition resolution', () => {
 
   it('preserves current unmarked definitions instead of guessing a retired name', () => {
     expect(
-      getRuntimePropDefinition('TreeProps', 'export const treeProps = {}')
-    ).toBe('treeProps')
+      getRuntimePropDefinition(
+        'TreeProps',
+        'export const TreeDefaultValueProps = {}'
+      )
+    ).toBe('TreeDefaultValueProps')
   })
 
   it.each([

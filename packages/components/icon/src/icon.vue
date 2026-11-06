@@ -31,19 +31,19 @@
 
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
+import { IconDefaultValueProps } from './icon'
 import { useIntersectionObserver } from '@vueuse/core'
 import { addUnit } from '@element-plus/utils'
 import { useNamespace } from '@element-plus/hooks'
 import { useSpriteIcon } from './use-sprite-icon'
 
 import type { CSSProperties } from 'vue'
-import type { IconProps } from './icon'
 
 defineOptions({
   name: 'ElIcon',
   inheritAttrs: false,
 })
-const props = defineProps<IconProps>()
+const props = defineProps(IconDefaultValueProps)
 const ns = useNamespace('icon')
 
 const element = ref<HTMLElement>()

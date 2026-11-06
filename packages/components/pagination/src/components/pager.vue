@@ -74,12 +74,12 @@ import { computed, ref, watch } from 'vue'
 import { DArrowLeft, DArrowRight, MoreFilled } from '@element-plus/icons-vue'
 import { useLocale, useNamespace } from '@element-plus/hooks'
 import { CHANGE_EVENT } from '@element-plus/constants'
-import { paginationPagerProps } from './pager'
+import { PaginationPagerDefaultValueProps } from './pager'
 
 defineOptions({
   name: 'ElPaginationPager',
 })
-const props = defineProps(paginationPagerProps)
+const props = defineProps(PaginationPagerDefaultValueProps)
 const emit = defineEmits([CHANGE_EVENT])
 const nsPager = useNamespace('pager')
 const nsIcon = useNamespace('icon')

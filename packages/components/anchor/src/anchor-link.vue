@@ -22,15 +22,14 @@ import {
   ref,
   watch,
 } from 'vue'
+import { AnchorLinkDefaultValueProps } from './anchor-link'
 import { anchorKey } from './constants'
-
-import type { AnchorLinkProps } from './anchor-link'
 
 defineOptions({
   name: 'ElAnchorLink',
 })
 
-const props = defineProps<AnchorLinkProps>()
+const props = defineProps(AnchorLinkDefaultValueProps)
 
 const linkRef = ref<HTMLElement | null>(null)
 

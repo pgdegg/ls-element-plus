@@ -11,20 +11,22 @@ import type {
 } from './descriptions.type'
 import type { DescriptionItemVNode } from './description-item'
 
+export const DescriptionsCellDefaultValueProps = {
+  cell: {
+    type: Object as PropType<DescriptionItemVNode>,
+  },
+  tag: {
+    type: String,
+    default: 'td',
+  },
+  type: {
+    type: String,
+  },
+} as const
+
 export default defineComponent({
   name: 'ElDescriptionsCell',
-  props: {
-    cell: {
-      type: Object as PropType<DescriptionItemVNode>,
-    },
-    tag: {
-      type: String,
-      default: 'td',
-    },
-    type: {
-      type: String,
-    },
-  },
+  props: DescriptionsCellDefaultValueProps,
   setup() {
     const descriptions = inject(descriptionsKey, {} as IDescriptionsInject)
 

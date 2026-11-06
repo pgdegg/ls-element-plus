@@ -1,6 +1,6 @@
 import { defineComponent, renderSlot, watch } from 'vue'
 import { provideGlobalConfig } from './hooks/use-global-config'
-import { configProviderProps } from './config-provider-props'
+import { ConfigProviderDefaultValueProps } from './config-provider-props'
 
 import type { MessageConfigContext } from '@element-plus/components/message'
 
@@ -10,7 +10,7 @@ export const messageConfig: MessageConfigContext = {
 
 const ConfigProvider = defineComponent({
   name: 'ElConfigProvider',
-  props: configProviderProps,
+  props: ConfigProviderDefaultValueProps,
 
   setup(props, { slots }) {
     const config = provideGlobalConfig(props)

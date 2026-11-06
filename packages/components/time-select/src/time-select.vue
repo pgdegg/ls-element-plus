@@ -40,6 +40,12 @@
 
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
+import {
+  DEFAULT_END,
+  DEFAULT_START,
+  DEFAULT_STEP,
+  TimeSelectDefaultValueProps,
+} from './time-select'
 import { useInputElement } from '@element-plus/hooks/use-input-element'
 import dayjs from 'dayjs'
 import customParseFormat from 'dayjs/plugin/customParseFormat.js'
@@ -48,7 +54,6 @@ import { useFormDisabled } from '@element-plus/components/form'
 import ElIcon from '@element-plus/components/icon'
 import { useLocale, useNamespace } from '@element-plus/hooks'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@element-plus/constants'
-import { CircleClose, Clock } from '@element-plus/icons-vue'
 import {
   compareTime,
   formatTime,
@@ -57,9 +62,6 @@ import {
   parseTime,
 } from './utils'
 import { debugWarn } from '@element-plus/utils'
-import { DEFAULT_END, DEFAULT_START, DEFAULT_STEP } from './time-select'
-
-import type { TimeSelectProps } from './time-select'
 
 dayjs.extend(customParseFormat)
 
@@ -71,22 +73,7 @@ defineOptions({
 
 defineEmits([CHANGE_EVENT, 'blur', 'focus', 'clear', UPDATE_MODEL_EVENT])
 
-const props = withDefaults(defineProps<TimeSelectProps>(), {
-  format: 'HH:mm',
-  disabled: undefined,
-  hidePlaceholder: undefined,
-  editable: true,
-  effect: 'light',
-  clearable: true,
-  start: DEFAULT_START,
-  end: DEFAULT_END,
-  step: DEFAULT_STEP,
-  prefixIcon: () => Clock,
-  clearIcon: () => CircleClose,
-  popperClass: '',
-  valueOnClear: undefined,
-  popperStyle: undefined,
-})
+const props = defineProps(TimeSelectDefaultValueProps)
 
 const nsInput = useNamespace('input')
 const select = ref<typeof ElSelect>()

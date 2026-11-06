@@ -71,20 +71,21 @@ function extractImportPropsStatements(
 }
 
 export function getRuntimePropDefinition(propsType: string, source: string) {
-  const propsName = propsType[0].toLowerCase() + propsType.slice(1)
+  const baseName = propsType
+    .replace(/^(Use|El)(?=[A-Z])/, '')
+    .replace(/Props$/, '')
   const exceptions: Record<string, string> = {
-    elTooltipContentProps: 'tooltipContentPropDefs',
-    cascaderComponentProps: 'cascaderPropDefs',
-    hueSliderProps: 'alphaSliderPropDefs',
+    CascaderComponent: 'Cascader',
+    Description: 'Descriptions',
+    TreeNode: 'TreeV2Node',
+    TimePickerDefault: 'TimePickerCommon',
   }
-  const definitionName = propsName
-    .replace(/^use(?=[A-Z])/, '')
-    .replace(/^./, (letter) => letter.toLowerCase())
-    .replace(/Props$/, 'PropDefs')
+  const definitionName = `${exceptions[baseName] ?? baseName}DefaultValueProps`
+  const candidates = [definitionName, `${baseName}V2DefaultValueProps`]
   return (
-    [exceptions[propsName], definitionName, propsName].find(
-      (name) => name && new RegExp(`export\\s+const\\s+${name}\\b`).test(source)
-    ) ?? propsName
+    candidates.find((name) =>
+      new RegExp(`export\\s+const\\s+${name}\\b`).test(source)
+    ) ?? definitionName
   )
 }
 

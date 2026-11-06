@@ -11,7 +11,7 @@ import type {
 import type { ClassValue } from '@element-plus/utils'
 import type Button from './button.vue'
 
-export const sliderButtonProps = buildProps({
+export const SliderButtonDefaultValueProps = buildProps({
   modelValue: {
     type: Number,
     default: 0,
@@ -27,9 +27,11 @@ export const sliderButtonProps = buildProps({
     default: 'top',
   },
 } as const)
-export type SliderButtonProps = ExtractPropTypes<typeof sliderButtonProps>
+export type SliderButtonProps = ExtractPropTypes<
+  typeof SliderButtonDefaultValueProps
+>
 export type SliderButtonPropsPublic = ExtractPublicPropTypes<
-  typeof sliderButtonProps
+  typeof SliderButtonDefaultValueProps
 >
 
 export const sliderButtonEmits = {

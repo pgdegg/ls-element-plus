@@ -27,7 +27,7 @@ export type RangeState = {
 export type DisabledDateType = (date: Date) => boolean
 export type CellClassNameType = (date: Date) => string
 
-export const datePickerSharedProps = buildProps({
+export const DatePickerSharedDefaultValueProps = buildProps({
   cellClassName: {
     type: definePropType<CellClassNameType>(Function),
   },
@@ -57,7 +57,7 @@ export const datePickerSharedProps = buildProps({
   disabled: Boolean,
 } as const)
 
-export const panelSharedProps = buildProps({
+export const PanelSharedDefaultValueProps = buildProps({
   type: {
     type: definePropType<DatePickType>(String),
     required: true,
@@ -83,7 +83,7 @@ export const panelSharedProps = buildProps({
   },
 } as const)
 
-export const panelRangeSharedProps = buildProps({
+export const PanelRangeSharedDefaultValueProps = buildProps({
   unlinkPanels: Boolean,
   visible: {
     type: Boolean,
@@ -118,8 +118,8 @@ export const rangePickerSharedEmits = {
 
 export type RangePickerSharedEmits = typeof rangePickerSharedEmits
 export type PanelRangeSharedProps = ExtractPropTypes<
-  typeof panelRangeSharedProps
+  typeof PanelRangeSharedDefaultValueProps
 >
 export type PanelRangeSharedPropsPublic = ExtractPublicPropTypes<
-  typeof panelRangeSharedProps
+  typeof PanelRangeSharedDefaultValueProps
 >
