@@ -1,4 +1,4 @@
-import { defineComponent, nextTick, ref } from 'vue'
+import { KeepAlive, defineComponent, nextTick, ref } from 'vue'
 import { flushPromises, mount } from '@vue/test-utils'
 import { describe, expect, test, vi } from 'vitest'
 import { EVENT_CODE } from '@element-plus/constants'
@@ -25,6 +25,22 @@ const Comp = defineComponent({
 })
 
 describe('Tabs.vue', () => {
+  test('unmounts a pane cached by KeepAlive', async () => {
+    const active = ref(true)
+    const wrapper = mount(() => (
+      <Tabs>
+        <KeepAlive>
+          {active.value ? <TabPane name="cached" label="Cached" /> : null}
+        </KeepAlive>
+      </Tabs>
+    ))
+
+    active.value = false
+    await nextTick()
+
+    expect(() => wrapper.unmount()).not.toThrow()
+  })
+
   test('create', async () => {
     const wrapper = mount(() => (
       <Tabs>

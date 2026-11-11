@@ -37,14 +37,18 @@ export const useOrderedChildren = <T extends ChildEssential>(
   const children = shallowRef<Record<number, T>>({})
   const orderedChildren = shallowRef<T[]>([])
   const nodesMap = new WeakMap<ParentNode, Node[]>()
+  const childRegistrations = new Map<number, { node: Node; nodes: Node[] }>()
 
   const addChild = (child: T) => {
     children.value[child.uid] = child
     triggerRef(children)
 
     onMounted(() => {
-      const childNode = child.getVnode().el! as Node
-      const parentNode = childNode.parentNode!
+      if (children.value[child.uid] !== child) return
+
+      const childNode = child.getVnode().el as Node | null
+      const parentNode = childNode?.parentNode
+      if (!childNode || !parentNode) return
 
       if (!nodesMap.has(parentNode)) {
         nodesMap.set(parentNode, [])
@@ -64,7 +68,9 @@ export const useOrderedChildren = <T extends ChildEssential>(
         }
       }
 
-      nodesMap.get(parentNode)!.push(childNode)
+      const nodes = nodesMap.get(parentNode)!
+      nodes.push(childNode)
+      childRegistrations.set(child.uid, { node: childNode, nodes })
     })
   }
 
@@ -72,11 +78,13 @@ export const useOrderedChildren = <T extends ChildEssential>(
     delete children.value[child.uid]
     triggerRef(children)
 
-    const childNode = child.getVnode().el! as Node
-    const parentNode = childNode.parentNode!
-    const childNodes = nodesMap.get(parentNode)!
-    const index = childNodes.indexOf(childNode)
-    childNodes.splice(index, 1)
+    const registration = childRegistrations.get(child.uid)
+    if (!registration) return
+
+    const { node, nodes } = registration
+    const index = nodes.indexOf(node)
+    if (index !== -1) nodes.splice(index, 1)
+    childRegistrations.delete(child.uid)
   }
 
   const sortChildren = () => {

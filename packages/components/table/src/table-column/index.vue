@@ -10,8 +10,10 @@ import {
   h,
   onBeforeMount,
   onBeforeUnmount,
+  onBeforeUpdate,
   onMounted,
   ref,
+  triggerRef,
 } from 'vue'
 import { TableColumnDefaultValueProps } from './defaults'
 import { useGlobalConfig } from '@element-plus/components/config-provider'
@@ -205,6 +207,15 @@ onMounted(() => {
         : null,
       updateColumnOrder
     )
+})
+
+let headerSlot = slots.header
+onBeforeUpdate(() => {
+  // The header renders in the table header component, which does not track this column's slots.
+  if (slots.header !== headerSlot) {
+    headerSlot = slots.header
+    triggerRef(columnConfig)
+  }
 })
 
 onBeforeUnmount(() => {
