@@ -25,6 +25,68 @@ const Comp = defineComponent({
 })
 
 describe('Tabs.vue', () => {
+  test('按溢出状态注册和移除滚动监听，触摸起始监听使用被动模式', async () => {
+    let overflow = false
+    const rect = vi
+      .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
+      .mockImplementation(function (this: HTMLElement) {
+        const width =
+          overflow && this.classList.contains('el-tabs__nav') ? 500 : 100
+        return {
+          width,
+          height: 40,
+          top: 0,
+          left: 0,
+          right: width,
+          bottom: 40,
+          x: 0,
+          y: 0,
+          toJSON: () => ({}),
+        }
+      })
+    const add = vi.spyOn(HTMLElement.prototype, 'addEventListener')
+    const remove = vi.spyOn(HTMLElement.prototype, 'removeEventListener')
+    const wrapper = mount(() => (
+      <Tabs>
+        <TabPane label="页签" />
+      </Tabs>
+    ))
+    try {
+      await nextTick()
+      const nav = wrapper.find('.el-tabs__nav').element
+      const calls = () =>
+        add.mock.calls.filter((_, index) => add.mock.contexts[index] === nav)
+      expect(
+        calls().some(([type]) =>
+          ['wheel', 'touchstart', 'touchmove'].includes(type)
+        )
+      ).toBe(false)
+      overflow = true
+      wrapper.findComponent(TabNav).vm.$forceUpdate()
+      await nextTick()
+      await nextTick()
+      expect(calls().some(([type]) => type === 'wheel')).toBe(true)
+      expect(calls().find(([type]) => type === 'touchstart')?.[2]).toEqual({
+        passive: true,
+      })
+      overflow = false
+      wrapper.findComponent(TabNav).vm.$forceUpdate()
+      await nextTick()
+      await nextTick()
+      expect(
+        remove.mock.calls.some(
+          ([type], index) =>
+            type === 'wheel' && remove.mock.contexts[index] === nav
+        )
+      ).toBe(true)
+    } finally {
+      wrapper.unmount()
+      rect.mockRestore()
+      add.mockRestore()
+      remove.mockRestore()
+    }
+  })
+
   test('unmounts a pane cached by KeepAlive', async () => {
     const active = ref(true)
     const wrapper = mount(() => (

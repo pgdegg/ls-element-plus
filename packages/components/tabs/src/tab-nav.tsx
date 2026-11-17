@@ -12,6 +12,7 @@ import {
 } from 'vue'
 import {
   useDocumentVisibility,
+  useEventListener,
   useResizeObserver,
   useWindowFocus,
 } from '@vueuse/core'
@@ -167,6 +168,13 @@ const TabNav = defineComponent({
       maxOffset,
       isHorizontal,
     })
+
+    useEventListener(
+      computed(() => (scrollable.value ? nav$.value : undefined)),
+      'touchstart',
+      handleTouchStart,
+      { passive: true }
+    )
 
     const scrollPrev = () => {
       if (!navScroll$.value) return
@@ -592,9 +600,9 @@ const TabNav = defineComponent({
                 ]}
                 ref={nav$}
                 style={navStyle.value}
-                onWheel={handleWheel}
-                onTouchstart={handleTouchStart}
-                onTouchmove={handleTouchMove}
+                // 仅溢出的页签需要拦截滚动，避免阻塞外层页面滚动。
+                onWheel={scrollable.value ? handleWheel : undefined}
+                onTouchmove={scrollable.value ? handleTouchMove : undefined}
                 onTouchend={handleTouchEnd}
                 onTouchcancel={handleTouchEnd}
               >

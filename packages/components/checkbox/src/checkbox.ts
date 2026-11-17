@@ -71,7 +71,7 @@ export interface CheckboxProps extends Pick<
    */
   validateEvent?: boolean
 }
-/** Runtime prop definitions; use the public props interface for types. */
+/** @internal Runtime prop definitions; use the public props interface for types. */
 export const CheckboxDefaultValueProps = {
   hideCircle: Boolean,
   cancelDisabled: Boolean,

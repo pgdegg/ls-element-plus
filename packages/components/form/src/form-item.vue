@@ -285,8 +285,10 @@ const doValidate = async (rules: RuleItem[]): Promise<true> => {
   const validator = new AsyncValidator({
     [modelName]: rules,
   })
+  // 自定义校验器可通过 options.data 读取完整模型，进行跨字段校验。
+  const options = { firstFields: true, data: formContext?.model }
   return validator
-    .validate({ [modelName]: fieldValue.value }, { firstFields: true })
+    .validate({ [modelName]: fieldValue.value }, options)
     .then(() => {
       onValidationSucceeded()
       return true as const

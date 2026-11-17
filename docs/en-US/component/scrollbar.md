@@ -7,6 +7,8 @@ lang: en-US
 
 Used to replace the browser's native scrollbar.
 
+嵌套使用时，鼠标所在的最内层可滚动区域优先显示滚动条；沿当前方向滚动到边界后，显示权交给可继续滚动的外层区域。此行为不拦截原生滚动，也不修改 `overscroll-behavior`；其他层的 `always` 滚动条在交互期间暂时隐藏，鼠标离开后恢复。
+
 ## Basic usage
 
 :::demo Use `height` property to set the height of the scrollbar, or if not set, it adapts according to the parent container height.

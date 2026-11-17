@@ -1,9 +1,17 @@
 <template>
   <transition :name="ns.b('fade')">
     <div
-      v-show="always || visible"
+      v-show="
+        !scrollbar.nestedSuppressed &&
+        (always || visible || scrollbar.nestedActive)
+      "
       ref="instance"
       :class="[ns.e('bar'), ns.is(bar.key)]"
+      :style="
+        scrollbar.nestedSuppressed
+          ? { visibility: 'hidden', pointerEvents: 'none' }
+          : undefined
+      "
       @mousedown="clickTrackHandler"
       @click.stop
     >

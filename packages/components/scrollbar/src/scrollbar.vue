@@ -65,6 +65,7 @@ import { useNamespace } from '@element-plus/hooks'
 import Bar from './bar.vue'
 import ScrollbarMask from './mask.vue'
 import { scrollbarContextKey } from './constants'
+import { useNestedScrollbar } from './use-nested-scrollbar'
 
 import type { ScrollbarDirection } from './scrollbar'
 import type { BarInstance } from './bar'
@@ -100,6 +101,8 @@ const wrapRef = ref<HTMLDivElement>()
 const resizeRef = ref<HTMLElement>()
 const barRef = ref<BarInstance>()
 const maskRef = ref<InstanceType<typeof ScrollbarMask>>()
+const { active: nestedActive, suppressed: nestedSuppressed } =
+  useNestedScrollbar(scrollbarRef, wrapRef)
 
 const wrapStyle = computed<StyleValue>(() => {
   const style: CSSProperties = {}
@@ -274,6 +277,8 @@ provide(
   reactive({
     scrollbarElement: scrollbarRef,
     wrapElement: wrapRef,
+    nestedActive,
+    nestedSuppressed,
   })
 )
 
