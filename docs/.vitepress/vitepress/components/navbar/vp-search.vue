@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import '@docsearch/css/dist/style.css'
-import { getCurrentInstance, onMounted, watch } from 'vue'
+import { getCurrentInstance, onBeforeUnmount, onMounted, watch } from 'vue'
 import { useRoute, useRouter, withBase } from 'vitepress'
-import docsearch from '@docsearch/js'
+import docsearch from '@docsearch/js/docsearch'
 import { isClient } from '@vueuse/core'
 import { useLang } from '../../composables/lang'
 import searchLocale from '../../../i18n/component/search.json'
+
+import type { HitComponentFn } from '@docsearch/js/docsearch'
 
 const props = defineProps<{
   options: any
@@ -13,6 +15,7 @@ const props = defineProps<{
 }>()
 
 const vm = getCurrentInstance()
+let searchInstance: ReturnType<typeof docsearch> | undefined
 const route = useRoute()
 const router = useRouter()
 
@@ -25,6 +28,8 @@ watch([() => props.options, lang], ([newOptions]) => {
 onMounted(() => {
   initialize(props.options)
 })
+
+onBeforeUnmount(() => searchInstance?.destroy())
 
 function isSpecialClick(event: MouseEvent) {
   return (
@@ -44,6 +49,7 @@ function getRelativePath(absoluteUrl: string) {
 
 function update(options: any) {
   if (vm && vm.vnode.el) {
+    searchInstance?.destroy()
     vm.vnode.el.innerHTML =
       '<div class="algolia-search-box" id="docsearch"></div>'
     initialize(options)
@@ -56,19 +62,22 @@ function initialize(userOptions: any) {
   const facetFilters = props.multilang ? [`language:${lang.value}`] : []
   const algoliaLocale = searchLocale[lang.value].algolia
 
-  docsearch(
+  searchInstance = docsearch(
     Object.assign({}, userOptions, {
       container: '#docsearch',
-      indexName: 'element-plus',
+      indices: [
+        {
+          name: 'element-plus',
+          searchParameters: Object.assign({}, userOptions.searchParameters, {
+            // 按当前文档语言过滤搜索结果。
+            facetFilters: facetFilters.concat(
+              userOptions.searchParameters?.facetFilters || []
+            ),
+          }),
+        },
+      ],
       placeholder: algoliaLocale.placeholder,
       translations: algoliaLocale.translations,
-      searchParameters: Object.assign({}, userOptions.searchParameters, {
-        // 传入自定义的 lang facetFilter 以支持多语言搜索
-        // https://github.com/algolia/docsearch-configs/pull/3942
-        facetFilters: facetFilters.concat(
-          userOptions.searchParameters?.facetFilters || []
-        ),
-      }),
 
       getMissingResultsUrl({ query }: { query: string }) {
         return `https://github.com/element-plus/element-plus/issues/new?title=${encodeURIComponent(
@@ -102,43 +111,36 @@ function initialize(userOptions: any) {
         })
       },
 
-      hitComponent: ({ hit, children }: { hit: any; children: any }) => {
+      hitComponent: (({ hit, children }, { html }) => {
         const relativeHit = hit.url.startsWith('http')
           ? getRelativePath(hit.url as string)
           : withBase(hit.url)
 
-        return {
-          type: 'a',
-          ref: undefined,
-          constructor: undefined,
-          key: undefined,
-          props: {
-            href: hit.url,
-            onClick: (event: MouseEvent) => {
-              if (isSpecialClick(event)) {
-                return
-              }
+        return html`<a
+          href=${hit.url}
+          onClick=${(event: MouseEvent) => {
+            if (isSpecialClick(event)) {
+              return
+            }
 
-              // 当用户已处于正确锚点时，我们依赖原生链接滚动，
-              // 因为 Router 不支持重复的
-              // history 记录
-              if (route.path === relativeHit) {
-                return
-              }
+            // 当用户已处于正确锚点时，我们依赖原生链接滚动，
+            // 因为 Router 不支持重复的
+            // history 记录
+            if (route.path === relativeHit) {
+              return
+            }
 
-              // 如果命中结果跳转到其他页面，我们阻止原生链接
-              // 默认行为，以利用 Router 的加载特性
-              if (route.path !== relativeHit) {
-                event.preventDefault()
-              }
+            // 如果命中结果跳转到其他页面，我们阻止原生链接
+            // 默认行为，以利用 Router 的加载特性
+            if (route.path !== relativeHit) {
+              event.preventDefault()
+            }
 
-              router.go(relativeHit)
-            },
-            children,
-          },
-          __v: children.__v,
-        }
-      },
+            router.go(relativeHit)
+          }}
+          >${children}</a
+        >`
+      }) satisfies HitComponentFn,
     })
   )
 }
@@ -171,7 +173,10 @@ function initialize(userOptions: any) {
 .DocSearch {
   --docsearch-primary-color: var(--brand-color);
   --docsearch-highlight-color: var(--brand-color);
-  --docsearch-key-gradient: rgba(125, 125, 125, 0.1);
+  --docsearch-subtle-color: var(--border-color);
+  --docsearch-search-button-text-color: var(--text-color-lighter);
+  --docsearch-key-background: var(--bg-color-mute);
+  --docsearch-key-color: var(--text-color-light);
   // --docsearch-key-shadow: rgba(125, 125, 125, 0.3);
   --docsearch-footer-height: 44px;
   --docsearch-footer-background: var(--bg-color);
