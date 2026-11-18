@@ -195,7 +195,7 @@ export const useFloating = (
     const _middleware: Middleware[] = [
       offsetMiddleware(unref(offset)),
       flip(),
-      shift(),
+      shift({ crossAxis: true }),
       overflowMiddleware(),
     ]
 
@@ -235,6 +235,8 @@ export const useFloating = (
         left: '50%',
         transform: 'translate3d(-50%, -50%, 0)',
         maxWidth: '100vw',
+        maxHeight: '100vh',
+        overflow: 'auto',
         zIndex: unref(zIndex),
       }
     }
@@ -246,7 +248,14 @@ export const useFloating = (
       zIndex: unref(zIndex),
       top: unref(y) != null ? `${unref(y)}px` : '',
       left: unref(x) != null ? `${unref(x)}px` : '',
-      maxWidth: overflow?.maxWidth ? `${overflow?.maxWidth}px` : '',
+      maxWidth: overflow?.maxWidth != null ? `${overflow.maxWidth}px` : '',
+      maxHeight: overflow?.maxHeight != null ? `${overflow.maxHeight}px` : '',
+      overflow:
+        overflow &&
+        ((unref(contentRef)?.scrollWidth ?? 0) > overflow.maxWidth ||
+          (unref(contentRef)?.scrollHeight ?? 0) > overflow.maxHeight)
+          ? 'auto'
+          : undefined,
     }
   })
 
@@ -289,13 +298,17 @@ const overflowMiddleware = (): Middleware => {
     name: 'overflow',
     async fn(state) {
       const overflow = await detectOverflow(state)
-      let overWidth = 0
-      if (overflow.left > 0) overWidth = overflow.left
-      if (overflow.right > 0) overWidth = overflow.right
-      const floatingWidth = state.rects.floating.width
       return {
         data: {
-          maxWidth: floatingWidth - overWidth,
+          // 两侧溢出量相减得到完整可用空间，窗口变大后也能恢复原有尺寸。
+          maxWidth: Math.max(
+            0,
+            state.rects.floating.width - overflow.left - overflow.right
+          ),
+          maxHeight: Math.max(
+            0,
+            state.rects.floating.height - overflow.top - overflow.bottom
+          ),
         },
       }
     },

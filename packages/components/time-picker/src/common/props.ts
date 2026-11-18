@@ -245,7 +245,7 @@ export const TimePickerCommonDefaultValueProps = buildProps({
    */
   fallbackPlacements: {
     type: definePropType<Placement[]>(Array),
-    default: ['bottom', 'top', 'right', 'left'],
+    default: ['bottom', 'top'],
   },
   ...emptyValuesPropDefs,
   ...useAriaProps(['ariaLabel']),

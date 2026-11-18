@@ -35,6 +35,8 @@ const _mount = (template: string, data, otherObj?) => {
 
 describe('Dropdown', () => {
   afterEach(() => {
+    vi.useRealTimers()
+    vi.restoreAllMocks()
     wrappers.forEach((wrapper) => wrapper.unmount())
     wrappers.length = 0
     document.body.innerHTML = ''
@@ -195,6 +197,13 @@ describe('Dropdown', () => {
   })
 
   test('virtual ref', async () => {
+    // 虚拟坐标测试需提供有效视口，避免 jsdom 的零尺寸被当成真实边界。
+    vi.spyOn(document.documentElement, 'clientWidth', 'get').mockReturnValue(
+      1024
+    )
+    vi.spyOn(document.documentElement, 'clientHeight', 'get').mockReturnValue(
+      768
+    )
     const wrapper = _mount(
       `
       <el-button style="height: 400px; width: 400px" @click="handleClick" @contextmenu="handleContextmenu">

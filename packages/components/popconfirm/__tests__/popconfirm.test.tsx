@@ -13,6 +13,7 @@ const selector = '.el-popper'
 
 describe('Popconfirm.vue', () => {
   afterEach(() => {
+    vi.restoreAllMocks()
     document.body.innerHTML = ''
   })
 
@@ -70,6 +71,13 @@ describe('Popconfirm.vue', () => {
   })
 
   it('should work with virtualTriggering and virtualRef', async () => {
+    // 虚拟坐标仍需在有效视口内进行避让计算。
+    vi.spyOn(document.documentElement, 'clientWidth', 'get').mockReturnValue(
+      1024
+    )
+    vi.spyOn(document.documentElement, 'clientHeight', 'get').mockReturnValue(
+      768
+    )
     const wrapper = mount({
       setup() {
         const visible = ref(false)
@@ -110,6 +118,11 @@ describe('Popconfirm.vue', () => {
     await nextTick()
 
     const popperEl = document.querySelector(selector)!
+    // jsdom 不计算样式布局，为已声明的面板宽度提供实际测量值。
+    Object.defineProperty(popperEl, 'offsetWidth', {
+      configurable: true,
+      value: 150,
+    })
     expect(popperEl.getAttribute('style')).toContain('display: none')
     const button = wrapper.find('button[data-testid="testid"]')
 

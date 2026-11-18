@@ -7,7 +7,7 @@ import {
   unref,
   watch,
 } from 'vue'
-import { useResizeObserver } from '@vueuse/core'
+import { autoUpdate } from '@floating-ui/dom'
 import { isUndefined } from 'lodash-unified'
 import { usePopper } from '@element-plus/hooks'
 import { POPPER_INJECTION_KEY } from '../constants'
@@ -75,31 +75,34 @@ export const usePopperContent = (props: PopperContentProps) => {
   })
 
   onMounted(() => {
+    // 虚拟触发点可能由响应式坐标构成，不能只依赖 DOM 的布局监听。
     watch(
       () => unref(computedReference)?.getBoundingClientRect?.(),
-      () => {
-        update()
-      }
+      () => update()
     )
   })
 
-  // todo: 当 peerDependencies 中的 vue 为 ^3.5.0 时，替换为 onCleanup。
-  let stopResizeObserver: (() => void) | undefined
+  let stopAutoUpdate: (() => void) | undefined
   watch(
-    () => props.visible,
-    (visible) => {
-      stopResizeObserver?.()
-      stopResizeObserver = undefined
-      if (visible) {
-        stopResizeObserver = useResizeObserver(contentRef, update).stop
+    [() => props.visible, computedReference, contentRef],
+    ([visible, reference, content]) => {
+      stopAutoUpdate?.()
+      stopAutoUpdate = undefined
+      if (visible && reference && content) {
+        // Popper 负责滚动和窗口变化；这里补齐触发元素尺寸及布局位移更新。
+        stopAutoUpdate = autoUpdate(reference, content, () => update(), {
+          ancestorScroll: false,
+          ancestorResize: false,
+        })
       }
-    }
+    },
+    { immediate: true, flush: 'post' }
   )
 
   onBeforeUnmount(() => {
     popperInstanceRef.value = undefined
-    stopResizeObserver?.()
-    stopResizeObserver = undefined
+    stopAutoUpdate?.()
+    stopAutoUpdate = undefined
   })
 
   return {
